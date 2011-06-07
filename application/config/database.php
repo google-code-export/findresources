@@ -41,11 +41,17 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost';
-$db['default']['username'] = '';
-$db['default']['password'] = '';
+
+
+//$tnsname = '(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = 127.0.0.1)(PORT = 1521))
+//            (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME = ORCL)))';
+//$tnsname = '(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=127.0.0.1)(PORT=1521))';
+//$tnsname = '(DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = 127.0.0.1)(PORT = 1521)) ) (CONNECT_DATA = (SID = ORCL) ) )';
+$db['default']['hostname'] = "//localhost:1521/XE";
+$db['default']['username'] = 'SYSTEM';
+$db['default']['password'] = 'manager';
 $db['default']['database'] = '';
-$db['default']['dbdriver'] = 'mysql';
+$db['default']['dbdriver'] = 'oci8';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
 $db['default']['db_debug'] = TRUE;
