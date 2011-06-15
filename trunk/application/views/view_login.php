@@ -62,7 +62,7 @@ code {
 <p>Para ingresar como psicologo: psicologo/psicologo.</p>
 
 
-<?php echo form_open(base_url() . 'user/login'); ?>
+<?php echo form_open(base_url() . 'index.php/user/login'); ?>
 	<div>
 		<label>User:</label>
 		<?php echo form_input(array('id' => 'username', 'name' => 'username'))?>		
