@@ -71,6 +71,8 @@ code {
 		<?php echo form_password(array('id' => 'password', 'name' => 'password'))?>		
 	</div>
 	<p/>
+	<?php echo validation_errors();?>
+
 	<?php echo form_submit(array('name' => 'submit'), 'Login');?>
 
 <?php echo form_close();?>
