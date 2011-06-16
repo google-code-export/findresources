@@ -26,8 +26,9 @@ class User extends CI_Controller {
 	
 	public function login()
 	{
-		echo "hola estas logueado";
-		/*
+		$this->form_validation->set_rules('username', 'Username', 'required|trim|max_length[50]|xss_clean');
+		$this->form_validation->set_rules('password', 'Password', 'required|trim|max_length[200]|xss_clean');
+		
 		if($this->form_validation->run() == FALSE)
 		{
 			
@@ -39,7 +40,7 @@ class User extends CI_Controller {
 			
 			echo 'Estas adentro nene';
 			
-		}*/
+		}
 	}
 	
 	
