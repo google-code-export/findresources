@@ -37,7 +37,7 @@ class User extends CI_Controller {
 		}
 		else
 		{
-			
+			// Process their input and login the user
 			echo 'Estas adentro nene';
 			
 		}
