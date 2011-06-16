@@ -8,13 +8,13 @@ class Testdb extends CI_Controller {
     
     $this->load->database();
 
-    $query = $this->db->query('SELECT id, test FROM tests');
+    $query = $this->db->query('SELECT ID, D_TABLA FROM TABLA_CREADA_DESDE_CASA');
 
     foreach ($query->result() as $row)
     {
         echo $row->ID;
         echo " --> ";
-        echo $row->TEST;
+        echo $row->D_TABLA;
         echo "<hr>";
     }
 
