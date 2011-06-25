@@ -181,10 +181,13 @@ class CI_DB_oci8_driver extends CI_DB {
 	 */
 	function _set_stmt_id($sql)
 	{
-		if ( ! is_resource($this->stmt_id))
-		{
+		/** FINDRESOURCES - [BUG] Dos queries en el mismo script 
+		 *                        pueden devolver lo mismo.
+		 */
+		//if ( ! is_resource($this->stmt_id))
+		//{
 			$this->stmt_id = ociparse($this->conn_id, $this->_prep_query($sql));
-		}
+		//}
 	}
 
 	// --------------------------------------------------------------------
