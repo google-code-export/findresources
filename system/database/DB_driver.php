@@ -382,8 +382,11 @@ class CI_DB_driver {
 			$this->stmt_id		= FALSE;
 		}
 
+		/** FINDRESOURCES - [BUG] No es posible setear la cantidad 
+		 *                        de filas sin que tire warning.
+		 */
 		// oci8 vars must be set before calling this
-		$RES->num_rows	= $RES->num_rows();
+		//$RES->num_rows	= $RES->num_rows();
 
 		// Is query caching enabled?  If so, we'll serialize the
 		// result object and save it to a cache file.
