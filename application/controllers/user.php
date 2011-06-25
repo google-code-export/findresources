@@ -21,11 +21,18 @@ class User extends CI_Controller {
 	 */
 	public function index()
 	{	
+				
 		$this->load->view('view_login');
 	}
 	
+	public function main_page(){
+		echo 'You are logged in bitch';
+	}
+	
+	
 	public function login()
 	{
+		
 		$this->form_validation->set_rules('username', 'Username', 'required|trim|max_length[50]|xss_clean');
 		$this->form_validation->set_rules('password', 'Password', 'required|trim|max_length[200]|xss_clean');
 		
@@ -38,7 +45,26 @@ class User extends CI_Controller {
 		else
 		{
 			// Process their input and login the user
-			echo 'Estas adentro nene';
+			extract($_POST);
+
+			echo $username;
+			echo '<br>' . $password;
+						
+			$user_id = $this->User_model->check_login($username, $password);
+			
+			if(! $user_id){
+				//login failed error
+				$this->session->set_flashdata('login_error', TRUE);
+				redirect('user/login');				
+			}
+			else
+			{
+				//logem in
+				$this->session->set_userdata('logged_in', TRUE);
+				$this->session->set_userdata('user_id', $user_id);
+				
+				redirect('user/main_page');
+			}
 			
 		}
 	}
