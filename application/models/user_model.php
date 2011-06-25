@@ -15,10 +15,11 @@ class User_model extends CI_Model {
 		
 		//Change this by an store procedure.
 	    $result = $this->db->query($query_str, array($username, $password));
-
+		
+	    
 	    if($result->num_rows() == 1)
 	    {
-	    	return $result->row(0)->username;
+		    return $result->row(0)->USERNAME;
 	    }
 	    else
 	    {

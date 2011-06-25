@@ -47,9 +47,6 @@ class User extends CI_Controller {
 			// Process their input and login the user
 			extract($_POST);
 
-			echo $username;
-			echo '<br>' . $password;
-						
 			$user_id = $this->User_model->check_login($username, $password);
 			
 			if(! $user_id){
