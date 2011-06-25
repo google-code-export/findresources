@@ -71,7 +71,13 @@ code {
 		<?php echo form_password(array('id' => 'password', 'name' => 'password'))?>		
 	</div>
 	<p/>
-	<?php echo validation_errors();?>
+	<?php 
+	
+	if ($this->session->flashdata('login_error'))
+	{
+		echo 'You entered an incorrect username or password';
+	}
+	echo validation_errors();?>
 
 	<?php echo form_submit(array('name' => 'submit'), 'Login');?>
 
