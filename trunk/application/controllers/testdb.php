@@ -63,10 +63,9 @@ class Testdb extends CI_Controller {
 	    echo '<pre>';
 	    var_dump($data);
 	    echo '</pre>';
-	    echo "N1:".$n1."<br />";
-	    echo "N2:".$n2;
     }
-    
+    echo "N1:".$n1."<br />";
+	echo "N2:".$n2;
 	/** [FIN] EJECUTAR SP CON FUNCIONES DE CODEIGNITER **/
   }
 }  
