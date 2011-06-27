@@ -83,5 +83,9 @@ code {
 
 <?php echo form_close();?>
 
+<?php 
+	echo anchor('user/register', 'Registrarse', 'title="Crear nuevo usuario"');
+?>
+
 </body>
 </html>
