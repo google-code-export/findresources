@@ -377,7 +377,10 @@ class CI_DB_driver {
 		if ($this->dbdriver == 'oci8')
 		{
 			$RES->stmt_id		= $this->stmt_id;
-			$RES->curs_id		= NULL;
+		/** FINDRESOURCES - [BUG] Es necesario setear el curs_id en el result 
+		 *                        para que ejecute el cursor
+		 */
+			$RES->curs_id		= $this->curs_id;
 			$RES->limit_used	= $this->limit_used;
 			$this->stmt_id		= FALSE;
 		}
@@ -386,7 +389,7 @@ class CI_DB_driver {
 		 *                        de filas sin que tire warning.
 		 */
 		// oci8 vars must be set before calling this
-		//$RES->num_rows	= $RES->num_rows();
+		$RES->num_rows	= @$RES->num_rows();
 
 		// Is query caching enabled?  If so, we'll serialize the
 		// result object and save it to a cache file.
