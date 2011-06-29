@@ -70,11 +70,11 @@ class Testdb extends CI_Controller {
 
 		/** PAQUETE_CREADO_DESDE_CASA.PR_NOMBRES [LIBRERIA CODEIGNITER]**/
 		/*echo '<h5>PAQUETE_CREADO_DESDE_CASA.PR_NOMBRES [LIBRERIA CODEIGNITER]</h5>';
-		$curs = $this->db->get_cursor();
-		 $n1 = '0';
-		 $n2 = '0';
+		$cursx = $this->db->get_cursor();
+		 $n1 = NULL;
+		 $n2 = NULL;
 		 $params = array(
-		 array('name'=>':PO_SALIDA', 'value'=>&$curs, 'type'=>SQLT_RSET , 'length'=>-1),
+		 array('name'=>':PO_SALIDA', 'value'=>&$cursx, 'type'=>SQLT_RSET , 'length'=>-1),
 		 array('name'=>':PO_C_ERROR', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
 		 array('name'=>':PO_D_ERROR', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
 		 );
@@ -82,7 +82,7 @@ class Testdb extends CI_Controller {
 		 $this->db->stored_procedure('PAQUETE_CREADO_DESDE_CASA','PR_NOMBRES',$params);
 		 echo "<br />";
 		 echo "<br />";
-		 //oci_execute($curs);
+		//oci_execute($curs);
 		 //oci_fetch_all($refcur, $res);
 
 		 while ($data =& oci_fetch_row($this->db->curs_id)) {
@@ -100,7 +100,7 @@ class Testdb extends CI_Controller {
 		echo '<h5>PKG_UTIL.PR_OBTIENE_TIPOS_DOCUMENTOS [LIBRERIA FINDRESOURCES]</h5>';
 		 $n1 = NULL;
 		 $n2 = NULL;
-		 $curs2 = "NULL";
+		 $curs2 = NULL;
 		 $params = array(
 		 array('name'=>':PO_SALIDA', 'value'=>&$curs2, 'type'=>SQLT_RSET , 'length'=>-1),
 		 array('name'=>':PO_C_ERROR', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>-1),
@@ -155,38 +155,39 @@ class Testdb extends CI_Controller {
 		echo "<hr />";
 
 
-		/** SP Baja usuarios **/
-		/*$n1 = '0';
-		 $n2 = '0';
+		/** PKG_USUARIO.PR_BAJA_USUARIO [LIBRERIA FINDRESOURCES]**/
+		echo '<h5>PKG_USUARIO.PR_BAJA_USUARIO [LIBRERIA FINDRESOURCES]</h5>';
 		 $p1 = 'Juan1';
+ 		 $n1 = NULL;
+		 $n2 = NULL;
 		 $params = array(
 		 array('name'=>':pi_usuario', 'value'=>$p1, 'type'=>SQLT_CHR, 'length'=>-1),
-		 array('name'=>':PO_C_ERROR', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>-1),
-		 array('name'=>':PO_D_ERROR', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>-1)
+		 array('name'=>':PO_C_ERROR', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
+		 array('name'=>':PO_D_ERROR', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
 		 );
-		 $this->db->stored_procedure('pkg_usuario','pr_baja_usuario',$params);
+		 $this->oracledb->stored_procedure($this->db->conn_id,'PKG_USUARIO','PR_BAJA_USUARIO',$params);
 
-		 if ($n1 == 0)
-		 echo "OK";
-		 else
-	  echo "ERROR (".$n1.") :".$n2;
-	  */
-
-		/** SP Modifica usuarios **/
-		/*$n1 = '0';
-		 $n2 = '0';
-		 $p1 = 'Juan1';
-		 $p2 = 'clave_test';
-		 $p3 = 'nombre test';
-		 $p4 = 'apellido test';
-		 $p5 = 'razon social test';
-		 $p6 = 'DNI';
-		 $p7 = 'numero doc test';
-		 $p8 = 'telefono test';
-		 $p9 = 'ARG';
-		 $p10 = 'email@test.com';
-		 $p11 = 'C';
-		 $params = array(
+		if ($n1 == 0) 	echo "OK";
+		else 			echo "ERROR (".$n1.") :".$n2;
+	  
+		echo "<hr />";
+		
+		
+		/** PKG_USUARIO.PR_MODIFICACION_USUARIO [LIBRERIA FINDRESOURCES]**/
+		echo '<h5>PKG_USUARIO.PR_MODIFICACION_USUARIO [LIBRERIA FINDRESOURCES]</h5>';
+		$n1 = NULL;
+		$n2 = NULL;
+		$p1 = 'test9';
+		$p2 = 'test92';
+		$p3 = 'nombre2';
+		$p4 = 'apellido2';
+		$p5 = 'test2';
+		$p6 = 'DNI';
+		$p7 = '12345622';
+		$p8 = '1234';
+		$p9 = 'ARG';
+		$p10 = 'test22@test.com';
+		$params = array(
 		 array('name'=>':pi_usuario', 'value'=>$p1, 'type'=>SQLT_CHR, 'length'=>-1),
 		 array('name'=>':pi_clave', 'value'=>$p2, 'type'=>SQLT_CHR, 'length'=>-1),
 		 array('name'=>':pi_nombre', 'value'=>$p3, 'type'=>SQLT_CHR, 'length'=>-1),
@@ -197,44 +198,35 @@ class Testdb extends CI_Controller {
 		 array('name'=>':pi_telefono', 'value'=>$p8, 'type'=>SQLT_CHR, 'length'=>-1),
 		 array('name'=>':pi_pais', 'value'=>$p9, 'type'=>SQLT_CHR, 'length'=>-1),
 		 array('name'=>':pi_email', 'value'=>$p10, 'type'=>SQLT_CHR, 'length'=>-1),
-		 array('name'=>':pi_t_usuario', 'value'=>$p11, 'type'=>SQLT_CHR, 'length'=>-1),
-		 array('name'=>':PO_C_ERROR', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>-1),
-		 array('name'=>':PO_D_ERROR', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>-1)
+		 array('name'=>':PO_C_ERROR', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
+		 array('name'=>':PO_D_ERROR', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
 		 );
-		 $this->db->stored_procedure('pkg_usuario','pr_modificacion_usuario',$params);
+		 $this->oracledb->stored_procedure($this->db->conn_id,'PKG_USUARIO','MODIFICACION_USUARIO',$params);
 
-		 if ($n1 == 0)
-		 echo "OK";
-		 else
-	  echo "ERROR (".$n1.") :".$n2;
-	  */
-
-		/** SP Obtiene Paises **/
-		/*$n1 = '0';
-		 $n2 = '0';
-		 $curs2 = $this->db->get_cursor();
+		 if ($n1 == 0) 	echo "OK";
+		else 			echo "ERROR (".$n1.") :".$n2;
+		echo "<hr />";
+		
+		
+		/** PKG_UTIL.PR_OBTIENE_PAISES [LIBRERIA FINDRESOURCES]**/
+		echo '<h5>PKG_UTIL.PR_OBTIENE_PAISES [LIBRERIA FINDRESOURCES]</h5>';
+		$n1 = NULL;
+		 $n2 = NULL;
+		 $curs2 = NULL;
 		 $params = array(
-		 //array('name'=>':PO_SALIDA', 'value'=>&$curs, 'type'=>OCI_B_CURSOR, 'length'=>-1),
 		 array('name'=>':PO_SALIDA', 'value'=>&$curs2, 'type'=>SQLT_RSET , 'length'=>-1),
-		 array('name'=>':PO_C_ERROR', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>-1),
-		 array('name'=>':PO_D_ERROR', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>-1)
+		 array('name'=>':PO_C_ERROR', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
+		 array('name'=>':PO_D_ERROR', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
 		 );
-		 $this->db->stored_procedure('pkg_util','pr_obtiene_paises',$params);
-		 //oci_execute($curs2);
+		 $this->oracledb->stored_procedure($this->db->conn_id,'PKG_UTIL','PR_OBTIENE_PAISES',$params);
+		var_dump($this->oracledb->get_cursor_data());
 
-		 oci_fetch_all($curs2,$res);
-		 var_dump($res);
-		 //while ($data2 =& oci_fetch_row($this->db->curs_id)) {
-		 //    echo '<pre>';
-		 //    var_dump($data2);
-		 //    echo '</pre>';
-		 //}
-		 if ($n1 == 0)
-		 echo "OK";
-		 else
-	  echo "ERROR (".$n1.") :".$n2;
-	  */
-		/** [FIN] EJECUTAR SP CON FUNCIONES DE CODEIGNITER **/
+		if ($n1 == 0) 	echo "OK";
+		else 			echo "ERROR (".$n1.") :".$n2;
+		 
+		echo "<hr />";
+		
+		
 		 
 		/** CERRAR LA CONEXIÓN A LA BASE **/ 
 	 	$this->oracledb->close();
