@@ -66,7 +66,7 @@ class Testdb extends CI_Controller {
 		 oci_free_statement($stmt);
 		 oci_free_statement($curs2);
 		 //oci_close($conn);
-
+	  	echo "<hr />";
 
 		/** PAQUETE_CREADO_DESDE_CASA.PR_NOMBRES [LIBRERIA CODEIGNITER]**/
 		/*echo '<h5>PAQUETE_CREADO_DESDE_CASA.PR_NOMBRES [LIBRERIA CODEIGNITER]</h5>';
