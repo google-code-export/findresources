@@ -4,6 +4,31 @@ class Test extends CI_Controller {
   function index()
   {
     echo 'Hola Mundo!';
-  }  
+ 	$this->load->scaffolding('entries');
+    ?>
+   <!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="utf-8">
+   <title>jQuery demo</title>
+ </head>
+ <body>
+   <a href="http://jquery.com/">jQuery</a>
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+   <script>
+     $(document).ready(function(){
+       $("a").click(function(event){
+         alert("As you can see, the link no longer took you to jquery.com");
+         event.preventDefault();
+       });
+     });
+   </script>
+ </body>
+ </html>
+    <?php
+
+    
+    
+    } 
 }
 ?>
