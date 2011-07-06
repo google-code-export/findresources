@@ -81,6 +81,7 @@ clicked = function(id) {
 </SCRIPT> 
 
 <center> 
+<h1 style="text-align:center;">Test de Lüscher</h1> 
 <h3><?php echo $title;?></h3> 
 <table> 
 <tr> 
@@ -96,7 +97,7 @@ clicked = function(id) {
 <td> 
   <a href="javascript:void(0);" OnMouseDown="clicked(0);return false;"><img id="image0" src="images/luscher/0.jpg" width="100" height="100"></a> 
 </td> 
-</tr><tr> 
+
 <td> 
   <a href="javascript:void(0);" OnMouseDown="clicked(2);return false;"><img id="image2" src="images/luscher/2.jpg" width="100" height="100"></a> 
 </td> 
