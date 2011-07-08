@@ -1,34 +1,47 @@
-<?php
+<?php 
 
 class Test extends CI_Controller {
-  function index()
-  {
-    echo 'Hola Mundo!';
- 	$this->load->scaffolding('entries');
-    ?>
-   <!DOCTYPE html>
- <html lang="en">
- <head>
-   <meta charset="utf-8">
-   <title>jQuery demo</title>
- </head>
- <body>
-   <a href="http://jquery.com/">jQuery</a>
-   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-   <script>
-     $(document).ready(function(){
-       $("a").click(function(event){
-         alert("As you can see, the link no longer took you to jquery.com");
-         event.preventDefault();
-       });
-     });
-   </script>
- </body>
- </html>
-    <?php
+	
+ 	function __construct() {
+        parent::__construct();
+    }
 
-    
-    
-    } 
+	function index(){
+		/** REALIZAR VALIDACION DE LOS TESTS A REALIZAR POR EL USUARIO**/
+		/** E IR LLAMANDO A LOS TESTS QUE CORRESPONDAN**/
+	}
+	
+	function luscher(){
+		$data['c1'] = '';
+		$data['c2'] = '';
+		$data['timer1'] = '';
+		$data['timer2'] = '';
+		if($this->input->post('init') == '') {
+			$data['source'] = "init_test";
+			$this->load->view('view_test_luscher',$data);
+		 } else {
+		 	if ($this->input->post('colors1') == '') {
+			 	$data['source'] = "select_colors1";
+			 	$this->load->view('view_test_luscher',$data);
+		 	} else {
+		 		if ($this->input->post('colors2') == '') {
+		 			$data['c1'] = $this->input->post('colors1');
+		 			$data['timer1'] = $this->input->post('timer');
+			 		$data['source'] = "select_colors2";
+			 		$this->load->view('view_test_luscher',$data);
+		 		} else {
+		 			$data['c1'] = $this->input->post('colors1');
+		 			$data['c2'] = $this->input->post('colors2');
+		 			$data['timer1'] = $this->input->post('timer1');
+		 			$data['timer2'] = $this->input->post('timer');
+		 			$data['source'] = "test_finished";
+		 			$this->load->view('view_test_luscher',$data);
+		 		}
+		 	}
+		 }
+	}
+
+	
+	
 }
 ?>
