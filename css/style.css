@@ -1,0 +1,10 @@
+#timer {
+  border: none;
+  font-family: verdana;
+  font-size: 10pt;
+  font-weight: bold;
+  position: fixed;
+  float: right;
+  right: 20px;
+  width: 60px;	
+}
