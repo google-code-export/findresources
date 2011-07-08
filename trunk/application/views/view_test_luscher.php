@@ -5,19 +5,21 @@
     <title>FindResources - Test de Lüscher</title> 
     <meta name="description" content="FindResources - Choose best people" /> 
     <meta name="keywords" content="personality test color psychology luscher colour" /> 
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="js/countDown.js"></script>
+    <link rel="stylesheet" href="css/style.css">
 </head> 
 <body> 
 <?php
-if ($source== "select_sex"){
+if ($source== "init_test"){
 
 ?>
 <div id="page"> 
-<form action="" method="post" id="quiz_form"> 
-<input type="hidden" name="sex" value=""> 
+<form action="" method="post" id="quiz_form" name="quiz_form"> 
+<input type="hidden" name="init" value="y"> 
 <input type="hidden" name="colors1" value=""> 
 <input type="hidden" name="colors2" value=""> 
-<input type="hidden" name="timer" value=""> 
+<!-- <input type="hidden" name="timer" value=""> -->
 <center> 
 <h1 style="text-align:center;">Test de Lüscher</h1> 
 <table width=85%"> 
@@ -25,11 +27,15 @@ if ($source== "select_sex"){
 Para la realización de este test usted deberá seleccionar 8 colores en el orden que prefiera.
 </td></tr> 
 <tr><td align="center"> 
+<!-- [Selección del sexo] -->
+<!-- 
 <br />Por favor seleccione su sexo: 
 <select name="sex"> 
   <option value="m">Hombre</option> 
   <option value="f">Mujer</option> 
 </select> 
+--> 
+
 <br><br> 
 <input type=submit value="Comenzar el test"> 
 </td></tr> 
@@ -49,12 +55,18 @@ if ($source == "select_colors2" ) {
 	$color ="colors2";
 	$title = "Selecciona nuevamente los colores en el orden que prefieras.";
 }
+$minutos = "10";
+$segundos = "01";
+echo '<script type="text/javascript">function init() {cd(\''.$minutos.'\', \''.$segundos.'\');}window.onload = init;</script>';
 ?>
-<form action="" method="post" id="quiz_form"> 
-<input type="hidden" name="sex" value="m"> 
+<form action="" method="post" id="quiz_form" name="quiz_form"> 
+<input type="hidden" name="init" value="y"> 
 <input type="hidden" name="colors1" value="<?php echo $c1;?>"> 
 <input type="hidden" name="colors2" value="<?php echo $c2;?>"> 
-<input type="hidden" name="timer" value="">
+<input type="hidden" name="timer1" value="<?php echo $timer1;?>"> 
+<input type="hidden" name="timer2" value="<?php echo $timer2;?>"> 
+<!-- <input type="hidden" name="timer" value="">--> 
+<input id="timer" readonly="true" type="text" value="10:00" border="0" name="timer">
  
 <SCRIPT> 
 var total = 0;
@@ -119,8 +131,8 @@ clicked = function(id) {
 }
 if ($source == "test_finished") {
 	echo "<pre>Muchas gracias por realizar el Test de Lüscher. Esta información será tenida en cuenta en sus postulaciones.<br /><br /><hr><br />";
-	echo "1era Selección: ".$c1."<br />";
-	echo "2da  Selección: ".$c2."</pre>";	
+	echo "1era Selección: ".$c1." : ".$timer1."<br />";
+	echo "2da  Selección: ".$c2." : ".$timer2."</pre>";	
 }
 
 
