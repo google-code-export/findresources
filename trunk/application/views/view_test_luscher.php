@@ -6,8 +6,8 @@
     <meta name="description" content="FindResources - Choose best people" /> 
     <meta name="keywords" content="personality test color psychology luscher colour" /> 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <script type="text/javascript" src="js/countDown.js"></script>
-    <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="<?php echo base_url();?>js/countDown.js"></script>
+    <link rel="stylesheet" href="<?php echo base_url();?>css/style.css">
 </head> 
 <body> 
 <?php
@@ -73,7 +73,7 @@ var total = 0;
 var quiz_form = document.getElementById('quiz_form');
 clicked = function(id) {
   //replace image
-  document.getElementById('image'+id).src = 'images/luscher/blank.gif';
+  document.getElementById('image'+id).src = '<?php echo base_url();?>images/luscher/blank.gif';
   document.getElementById('image'+id).parentNode.onmousedown = function() {
     return false;
   }
@@ -98,29 +98,29 @@ clicked = function(id) {
 <table> 
 <tr> 
 <td> 
-  <a href="javascript:void(0);" OnMouseDown="clicked(3);return false;"><img id="image3" src="images/luscher/3.jpg" width="100" height="100"></a> 
+  <a href="javascript:void(0);" OnMouseDown="clicked(3);return false;"><img id="image3" src="<?php echo base_url();?>images/luscher/3.jpg" width="100" height="100"></a> 
 </td> 
 <td> 
-  <a href="javascript:void(0);" OnMouseDown="clicked(7);return false;"><img id="image7" src="images/luscher/7.jpg" width="100" height="100"></a> 
+  <a href="javascript:void(0);" OnMouseDown="clicked(7);return false;"><img id="image7" src="<?php echo base_url();?>images/luscher/7.jpg" width="100" height="100"></a> 
 </td> 
 <td> 
-  <a href="javascript:void(0);" OnMouseDown="clicked(5);return false;"><img id="image5" src="images/luscher/5.jpg" width="100" height="100"></a> 
+  <a href="javascript:void(0);" OnMouseDown="clicked(5);return false;"><img id="image5" src="<?php echo base_url();?>images/luscher/5.jpg" width="100" height="100"></a> 
 </td> 
 <td> 
-  <a href="javascript:void(0);" OnMouseDown="clicked(0);return false;"><img id="image0" src="images/luscher/0.jpg" width="100" height="100"></a> 
+  <a href="javascript:void(0);" OnMouseDown="clicked(0);return false;"><img id="image0" src="<?php echo base_url();?>images/luscher/0.jpg" width="100" height="100"></a> 
 </td> 
 
 <td> 
-  <a href="javascript:void(0);" OnMouseDown="clicked(2);return false;"><img id="image2" src="images/luscher/2.jpg" width="100" height="100"></a> 
+  <a href="javascript:void(0);" OnMouseDown="clicked(2);return false;"><img id="image2" src="<?php echo base_url();?>images/luscher/2.jpg" width="100" height="100"></a> 
 </td> 
 <td> 
-  <a href="javascript:void(0);" OnMouseDown="clicked(1);return false;"><img id="image1" src="images/luscher/1.jpg" width="100" height="100"></a> 
+  <a href="javascript:void(0);" OnMouseDown="clicked(1);return false;"><img id="image1" src="<?php echo base_url();?>images/luscher/1.jpg" width="100" height="100"></a> 
 </td> 
 <td> 
-  <a href="javascript:void(0);" OnMouseDown="clicked(4);return false;"><img id="image4" src="images/luscher/4.jpg" width="100" height="100"></a> 
+  <a href="javascript:void(0);" OnMouseDown="clicked(4);return false;"><img id="image4" src="<?php echo base_url();?>images/luscher/4.jpg" width="100" height="100"></a> 
 </td> 
 <td> 
-  <a href="javascript:void(0);" OnMouseDown="clicked(6);return false;"><img id="image6" src="images/luscher/6.jpg" width="100" height="100"></a> 
+  <a href="javascript:void(0);" OnMouseDown="clicked(6);return false;"><img id="image6" src="<?php echo base_url();?>images/luscher/6.jpg" width="100" height="100"></a> 
 </td> 
 </tr> 
 </table> 
