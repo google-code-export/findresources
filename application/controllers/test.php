@@ -8,7 +8,9 @@ class Test extends CI_Controller {
 
 	function index(){
 		/** REALIZAR VALIDACION DE LOS TESTS A REALIZAR POR EL USUARIO**/
-		/** E IR LLAMANDO A LOS TESTS QUE CORRESPONDAN**/
+		/** E IR LLAMANDO A LOS TESTS QUE CORRESPONDAN VALIDANDO CON **/
+		/** LO QUE LE FALTA REALIZAR SEGÚN LA INFO OBTENIDA DE LA BD **/
+		$this->luscher();
 	}
 	
 	function luscher(){
