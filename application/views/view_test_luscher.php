@@ -11,6 +11,7 @@
 </head> 
 <body> 
 <?php
+/** PAGINA DE INICIO DEL TEST **/
 if ($source== "init_test"){
 ?>
 <div id="page"> 
@@ -27,6 +28,7 @@ Para la realización de este test usted deberá seleccionar 8 colores en el orden 
 </center>
 <?php 
 }
+/** PAGINA DE SELECCION DE COLORES DEL TEST **/
 if ($source == "select_colors1" || $source == "select_colors2"){
  
 if ($source == "select_colors1"){
@@ -106,10 +108,12 @@ clicked = function(id) {
 </center> 
  <?php 
 }
+/** PAGINA FINAL DEL TEST **/
 if ($source == "test_finished") {
 	echo '<br /><h3>Muchas gracias por realizar el Test. Esta información será tenida en cuenta en sus postulaciones.</h3><br /><hr><br />';
 	echo '<br /><a href="'.base_url().'Test">Continuar con el siguiente test.</a><br /><hr><br />';
-	echo '<pre>1era Selección: ".$c1." : ".$timer1."<br />';
+	echo '<pre>RESULTADOS: <br />';
+	echo '1era Selección: ".$c1." : ".$timer1."<br />';
 	echo '2da  Selección: ".$c2." : ".$timer2."</pre>';	
 	switch($num){
 		case "1": 
@@ -122,7 +126,7 @@ if ($source == "test_finished") {
 			$test = "raven";
 			break;
 	}
-	$this->session->set_userdata($test, "DONE");
+	//$this->session->set_userdata($test, "DONE");
 }
 ?>
 </div> 
