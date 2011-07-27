@@ -113,8 +113,8 @@ if ($source == "test_finished") {
 	echo '<br /><h3>Muchas gracias por realizar el Test. Esta información será tenida en cuenta en sus postulaciones.</h3><br /><hr><br />';
 	echo '<br /><a href="'.base_url().'Test">Continuar con el siguiente test.</a><br /><hr><br />';
 	echo '<pre>RESULTADOS: <br />';
-	echo '1era Selección: ".$c1." : ".$timer1."<br />';
-	echo '2da  Selección: ".$c2." : ".$timer2."</pre>';	
+	echo '1era Selección: '.$c1.' : '.$timer1.'<br />';
+	echo '2da  Selección: '.$c2.' : '.$timer2.'</pre>';	
 	switch($num){
 		case "1": 
 			$test = "luscher";
