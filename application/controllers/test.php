@@ -40,6 +40,9 @@ class Test extends CI_Controller {
 	function t3(){
 		$this->raven("3");
 	}
+	function t4(){
+		$this->mips("4");
+	}
 	/** METODOS SOLO PARA PRUEBAS INTERNAS **/
 	
 	function luscher($num){
@@ -574,6 +577,209 @@ class Test extends CI_Controller {
 			default :
 		 		$data['source'] = "init_test";
 				$this->load->view('view_test_d48',$data);
+		}
+	}
+	
+	
+	function mips($num){
+	$data['num'] = $num;
+		
+		$data['timer'] = '';
+		
+		/* Obtengo el valor de todas las placas */
+		$data['q1'] = $this->input->post('q1');
+		$data['q2'] = $this->input->post('q2');
+		$data['q3'] = $this->input->post('q3');
+		$data['q4'] = $this->input->post('q4');	
+		$data['q5'] = $this->input->post('q5');
+		$data['q6'] = $this->input->post('q6');
+		$data['q7'] = $this->input->post('q7');
+		$data['q8'] = $this->input->post('q8');		
+		$data['q9'] = $this->input->post('q9');	
+		$data['q10'] = $this->input->post('q10');
+		$data['q11'] = $this->input->post('q11');
+		$data['q12'] = $this->input->post('q12');
+		$data['q13'] = $this->input->post('q13');
+		$data['q14'] = $this->input->post('q14');	
+		$data['q15'] = $this->input->post('q15');
+		$data['q16'] = $this->input->post('q16');
+		$data['q17'] = $this->input->post('q17');
+		$data['q18'] = $this->input->post('q18');		
+		$data['q19'] = $this->input->post('q19');	
+		$data['q20'] = $this->input->post('q20');	
+		$data['q21'] = $this->input->post('q21');
+		$data['q22'] = $this->input->post('q22');
+		$data['q23'] = $this->input->post('q23');
+		$data['q24'] = $this->input->post('q24');	
+		$data['q25'] = $this->input->post('q25');
+		$data['q26'] = $this->input->post('q26');
+		$data['q27'] = $this->input->post('q27');
+		$data['q28'] = $this->input->post('q28');		
+		$data['q29'] = $this->input->post('q29');	
+		$data['q30'] = $this->input->post('q30');
+		$data['q31'] = $this->input->post('q31');
+		$data['q32'] = $this->input->post('q32');
+		$data['q33'] = $this->input->post('q33');
+		$data['q34'] = $this->input->post('q34');	
+		$data['q35'] = $this->input->post('q35');
+		$data['q36'] = $this->input->post('q36');
+		$data['q37'] = $this->input->post('q37');
+		$data['q38'] = $this->input->post('q38');		
+		$data['q39'] = $this->input->post('q39');	
+		$data['q40'] = $this->input->post('q40');
+		$data['q41'] = $this->input->post('q41');
+		$data['q42'] = $this->input->post('q42');
+		$data['q43'] = $this->input->post('q43');
+		$data['q44'] = $this->input->post('q44');	
+		$data['q45'] = $this->input->post('q45');
+		$data['q46'] = $this->input->post('q46');
+		$data['q47'] = $this->input->post('q47');
+		$data['q48'] = $this->input->post('q48');
+		$data['q49'] = $this->input->post('q49');
+		$data['q50'] = $this->input->post('q50');
+		$data['q51'] = $this->input->post('q51');
+		$data['q52'] = $this->input->post('q52');
+		$data['q53'] = $this->input->post('q53');
+		$data['q54'] = $this->input->post('q54');	
+		$data['q55'] = $this->input->post('q55');
+		$data['q56'] = $this->input->post('q56');
+		$data['q57'] = $this->input->post('q57');
+		$data['q58'] = $this->input->post('q58');
+		$data['q59'] = $this->input->post('q59');
+		$data['q60'] = $this->input->post('q60');
+		$data['q61'] = $this->input->post('q61');
+		$data['q62'] = $this->input->post('q62');
+		$data['q63'] = $this->input->post('q63');
+		$data['q64'] = $this->input->post('q64');	
+		$data['q65'] = $this->input->post('q65');
+		$data['q66'] = $this->input->post('q66');
+		$data['q67'] = $this->input->post('q67');
+		$data['q68'] = $this->input->post('q68');		
+		$data['q69'] = $this->input->post('q69');	
+		$data['q70'] = $this->input->post('q70');
+		$data['q71'] = $this->input->post('q71');
+		$data['q72'] = $this->input->post('q72');
+		$data['q73'] = $this->input->post('q73');
+		$data['q74'] = $this->input->post('q74');	
+		$data['q75'] = $this->input->post('q75');
+		$data['q76'] = $this->input->post('q76');
+		$data['q77'] = $this->input->post('q77');
+		$data['q78'] = $this->input->post('q78');		
+		$data['q79'] = $this->input->post('q79');	
+		$data['q80'] = $this->input->post('q80');
+		$data['q81'] = $this->input->post('q81');
+		$data['q82'] = $this->input->post('q82');
+		$data['q83'] = $this->input->post('q83');
+		$data['q84'] = $this->input->post('q84');	
+		$data['q85'] = $this->input->post('q85');
+		$data['q86'] = $this->input->post('q86');
+		$data['q87'] = $this->input->post('q87');
+		$data['q88'] = $this->input->post('q88');		
+		$data['q89'] = $this->input->post('q89');	
+		$data['q90'] = $this->input->post('q90');
+		$data['q91'] = $this->input->post('q91');
+		$data['q92'] = $this->input->post('q92');
+		$data['q93'] = $this->input->post('q93');
+		$data['q94'] = $this->input->post('q94');	
+		$data['q95'] = $this->input->post('q95');
+		$data['q96'] = $this->input->post('q96');
+		$data['q97'] = $this->input->post('q97');
+		$data['q98'] = $this->input->post('q98');		
+		$data['q99'] = $this->input->post('q99');	
+		$data['q100'] = $this->input->post('q100');
+		$data['q101'] = $this->input->post('q101');
+		$data['q102'] = $this->input->post('q102');
+		$data['q103'] = $this->input->post('q103');
+		$data['q104'] = $this->input->post('q104');	
+		$data['q105'] = $this->input->post('q105');
+		$data['q106'] = $this->input->post('q106');
+		$data['q107'] = $this->input->post('q107');
+		$data['q108'] = $this->input->post('q108');		
+		$data['q109'] = $this->input->post('q109');	
+		$data['q110'] = $this->input->post('q110');
+		$data['q111'] = $this->input->post('q111');
+		$data['q112'] = $this->input->post('q112');
+		$data['q113'] = $this->input->post('q113');
+		$data['q114'] = $this->input->post('q114');	
+		$data['q115'] = $this->input->post('q115');
+		$data['q116'] = $this->input->post('q116');
+		$data['q117'] = $this->input->post('q117');
+		$data['q118'] = $this->input->post('q118');		
+		$data['q119'] = $this->input->post('q119');	
+		$data['q120'] = $this->input->post('q120');	
+		$data['q121'] = $this->input->post('q121');
+		$data['q122'] = $this->input->post('q122');
+		$data['q123'] = $this->input->post('q123');
+		$data['q124'] = $this->input->post('q124');	
+		$data['q125'] = $this->input->post('q125');
+		$data['q126'] = $this->input->post('q126');
+		$data['q127'] = $this->input->post('q127');
+		$data['q128'] = $this->input->post('q128');		
+		$data['q129'] = $this->input->post('q129');	
+		$data['q130'] = $this->input->post('q130');
+		$data['q131'] = $this->input->post('q131');
+		$data['q132'] = $this->input->post('q132');
+		$data['q133'] = $this->input->post('q133');
+		$data['q134'] = $this->input->post('q134');	
+		$data['q135'] = $this->input->post('q135');
+		$data['q136'] = $this->input->post('q136');
+		$data['q137'] = $this->input->post('q137');
+		$data['q138'] = $this->input->post('q138');		
+		$data['q139'] = $this->input->post('q139');	
+		$data['q140'] = $this->input->post('q140');
+		$data['q141'] = $this->input->post('q141');
+		$data['q142'] = $this->input->post('q142');
+		$data['q143'] = $this->input->post('q143');
+		$data['q144'] = $this->input->post('q144');	
+		$data['q145'] = $this->input->post('q145');
+		$data['q146'] = $this->input->post('q146');
+		$data['q147'] = $this->input->post('q147');
+		$data['q148'] = $this->input->post('q148');
+		$data['q149'] = $this->input->post('q149');
+		$data['q150'] = $this->input->post('q150');
+		$data['q151'] = $this->input->post('q151');
+		$data['q152'] = $this->input->post('q152');
+		$data['q153'] = $this->input->post('q153');
+		$data['q154'] = $this->input->post('q154');	
+		$data['q155'] = $this->input->post('q155');
+		$data['q156'] = $this->input->post('q156');
+		$data['q157'] = $this->input->post('q157');
+		$data['q158'] = $this->input->post('q158');
+		$data['q159'] = $this->input->post('q159');
+		$data['q160'] = $this->input->post('q160');
+		$data['q161'] = $this->input->post('q161');
+		$data['q162'] = $this->input->post('q162');
+		$data['q163'] = $this->input->post('q163');
+		$data['q164'] = $this->input->post('q164');	
+		$data['q165'] = $this->input->post('q165');
+		$data['q166'] = $this->input->post('q166');
+		$data['q167'] = $this->input->post('q167');
+		$data['q168'] = $this->input->post('q168');		
+		$data['q169'] = $this->input->post('q169');	
+		$data['q170'] = $this->input->post('q170');
+		$data['q171'] = $this->input->post('q171');
+		$data['q172'] = $this->input->post('q172');
+		$data['q173'] = $this->input->post('q173');
+		$data['q174'] = $this->input->post('q174');	
+		$data['q175'] = $this->input->post('q175');
+		$data['q176'] = $this->input->post('q176');
+		$data['q177'] = $this->input->post('q177');
+		$data['q178'] = $this->input->post('q178');		
+		$data['q179'] = $this->input->post('q179');	
+		$data['q180'] = $this->input->post('q180');
+		switch ($this->input->post('source')) {
+			case 'init_test' :
+			 	$data['source'] = "select_questions";
+			 	$this->load->view('view_test_mips',$data);
+			break;
+			case 'select_questions' :
+		 		$data['timer'] = $this->input->post('timer');
+		 		$data['source'] = "test_finished";
+			 	$this->load->view('view_test_mips',$data);
+			break;
+			default :
+		 		$data['source'] = "init_test";
+				$this->load->view('view_test_mips',$data);
 		}
 	}
 }
