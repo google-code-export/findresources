@@ -45,7 +45,7 @@ code {
 </head>
 <body>
 
-<h1>Welcome to CodeIgniter!</h1>
+<h1>Welcome to CodeIgniter! 123</h1>
 
 <p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
 
