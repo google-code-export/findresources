@@ -45,6 +45,70 @@ class Curriculum_model extends CI_Model {
 		return 0;
 	}
 	
+	public function  getEstadosCiviles(){
+		$respuesta[0]->id = 0; 
+		$respuesta[0]->descripcion = "Soltero";
+		$respuesta[1]->id = 1; 
+		$respuesta[1]->descripcion = "Casado";
+		$respuesta[2]->id = 2; 
+		$respuesta[2]->descripcion = "Convivencia";
+		return $respuesta;
+	}
+	
+	public function  getPaises(){
+		$respuesta[0]->id = 0; 
+		$respuesta[0]->descripcion = "Argentina";
+		$respuesta[1]->id = 1; 
+		$respuesta[1]->descripcion = "Francia";
+		return $respuesta;
+	}
+	
+	public function  getProvincias($idPais){
+		$respuesta[0]->id = 0; 
+		$respuesta[0]->descripcion = "CABA";
+		$respuesta[1]->id = 1; 
+		$respuesta[1]->descripcion = "Jujuy";
+		return $respuesta;
+	}
+
+	/**
+	 * Devuelve las habilidades diponibles para seleccionar.
+	 * */
+	public function  getListadoDeIndustriasDisponibles(){
+		$respuesta[0]->id = 0; 
+		$respuesta[0]->descripcion = "Petrolera";
+		$respuesta[1]->id = 1; 
+		$respuesta[1]->descripcion = "Banca";
+		$respuesta[2]->id = 1; 
+		$respuesta[2]->descripcion = "Gobierno";
+		return $respuesta;
+	}
+
+	/**
+	 * Devuelve las habilidades diponibles para seleccionar.
+	 * */
+	public function  getRubrosDisponibles(){
+		$respuesta[0]->id = 0; 
+		$respuesta[0]->descripcion = "Informatica";
+		$respuesta[1]->id = 1; 
+		$respuesta[1]->descripcion = "Finanzas";
+		return $respuesta;
+	}
+
+	/**
+	 * Devuelve las herramientas de un determinado rubro.
+	 * Recibe por post el rubro correspondiente.
+	 * */
+	public function  getHerramientasPorRubro(){
+		$respuesta[0]->id = 1; 
+		$respuesta[0]->descripcion = "Java";
+		$respuesta[1]->id = 2; 
+		$respuesta[1]->descripcion = ".Net";
+		$respuesta[2]->id = 3; 
+		$respuesta[2]->descripcion = "Oracle";
+		return $respuesta;
+	}
+	
 	/**
 	 * Devuelve las habilidades del cv mostrando.
 	 * */
