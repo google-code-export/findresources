@@ -43,6 +43,9 @@ class Test extends CI_Controller {
 	function t4(){
 		$this->mips("4");
 	}
+	function t5(){
+		$this->rorschach("5");
+	}
 	/** METODOS SOLO PARA PRUEBAS INTERNAS **/
 	
 	function luscher($num){
@@ -782,5 +785,75 @@ class Test extends CI_Controller {
 				$this->load->view('view_test_mips',$data);
 		}
 	}
+	
+	
+	
+	function rorschach($num = 5){
+		session_start();
+
+		$data['num'] = $num;
+		$p = $this->input->post('pic');
+		
+		if($p == ""){
+		 	$pic = 1;
+		} else {
+			$pic = intval($p);
+
+		}
+		$key = "img".$pic;
+		$d = $this->input->post('del');
+		if($d != ""){
+			$del = intval($d);
+			//$array_items = array($key[$del]);
+			//$this->session->unset_userdata($array_items);
+			unset($_SESSION["img".$pic][$del]);
+
+		}
+		
+		
+		if($this->input->post('description') != ""){
+			
+			foreach($_POST as $id => $val){
+				$$id = addslashes($val);
+			}
+			
+			$tag['pictureid']  = $pic;
+			$tag['top']  = $top;
+			$tag['left']  = $left;
+			$tag['width']  = $width;
+			$tag['height']  = $height;
+			$tag['description']  = $description;
+		    
+		   $_SESSION["img".$pic][] = $tag;
+			
+		  //  $this->session->set_userdata($key[], $tag);
+
+		}
+
+		/* Obtengo el valor de todas las placas */
+		$data["session_img"] = $this->session->userdata("img".$pic);
+		$data["pic"] = $pic;
+		
+
+		
+		switch ($this->input->post('source')) {
+			case 'init_test' :
+			 	$data['source'] = "select_img";
+			 	$this->load->view('view_test_rorschach',$data);
+			break;
+			case 'select_img' :
+			 	$data['source'] = "select_img";
+			 	$this->load->view('view_test_rorschach',$data);
+			break;
+			case 'select_img_final' : 
+		 		$data['source'] = "test_finished";
+		 		$this->load->view('view_test_rorschach',$data);
+			break;
+			default :
+		 		$data['source'] = "init_test";
+				$this->load->view('view_test_rorschach',$data);
+		}
+	}
+	
 }
 ?>
