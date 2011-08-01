@@ -41,3 +41,42 @@ label.error {
 	color:#FF0000;
 }
 form.questions label.error { display: none; }
+/*[INI] RORSCHACH */
+.tagOn{
+	border:2px solid black;
+}
+#taggingArea{
+	position:relative;
+	width:auto;
+	float:left;
+	font-size:10px;
+}
+#formArea{
+	width:auto;
+	float:left;
+	font-family: verdana;
+	font-size: 8pt;
+}
+#drag{
+	position:absolute;
+	top:10px;
+	left:50px;
+	width:100px;
+	height:100px;
+	border:2px solid black;
+	background:url('blank.gif');
+	min-width:100px;
+}
+#drag_title {
+	color:black;
+}
+.label{
+	//background-color:F7B64A;
+	background-color:black;
+	color:white;
+	font-weight:bold;
+	text-align:center;
+	font-family:Tahoma;
+	font-size:12px;
+}
+/*[FIN] RORSCHACH */
