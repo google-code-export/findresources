@@ -50,32 +50,6 @@ class CI_Model {
 		return $CI->$key;
 	}
 	
-	/**
-	 * convert a cursor data to an array of object
-	 * */
-	public function decodeCursorData($cursorData){
-		foreach($cursorData as $fieldName => $aField){
-			foreach($aField as $index => $aValue){
-				$response[$index]->$fieldName = $aValue;
-			}
-		}
-		return $response;
-	}
-	
-//	/**
-//	 * @param package
-//	 * @param service
-//	 * 
-//	 * @return{
-//	 *  'response': response,
-//	 * 	'errorCode': 0 is Ok,
-//	 *  'errorDescription'
-//	 * }
-//	 * */
-//	public function oracleQuery($pName, $procedureName){
-//	
-//	}
-	
 	
 }
 // END Model Class

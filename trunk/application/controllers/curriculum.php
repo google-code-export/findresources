@@ -12,9 +12,10 @@ class Curriculum extends CI_Controller {
 	
 	public function index(){
 		//$usuario = $this->session->userdata('ID_USUARIO');
-		$usuario  = "usuario@server.com";
+		$usuario  = "juan@juan.com";
+		$idCurriculum  = 0;
 		
-		$curriculumData = $this->Curriculum_model->getCurriculum($usuario);
+		$curriculumData = $this->Curriculum_model->getCurriculum($idCurriculum);
 		$this->session->set_userdata('CV_EDITANDO', $curriculumData);
 
 		$data['curriculumData'] = $curriculumData;
@@ -41,7 +42,7 @@ class Curriculum extends CI_Controller {
 	 *      'idPais','idProvincia','partido','calle',
 	 *      'numero','piso','departamento','codigoPostal',
 	 *      'telefono1','horarioContactoDesde1','horarioContactoHasta1','telefono2',
-	 *      'horarioContactoDesde2','horarioContactoHasta2','nacionalidad','twitter','sms'
+	 *      'horarioContactoDesde2','horarioContactoHasta2','idPaisNacionalidad','twitter','sms'
 	 *      }
 	 * output 0 is Ok.
 	 * */

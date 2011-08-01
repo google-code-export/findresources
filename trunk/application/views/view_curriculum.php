@@ -9,11 +9,10 @@
 		$('#cvEditorButton').click(function(){
 
 			var curriculum = {
-				'gtalk': $('gtalk').val(),
 				'usuario':"unmail@unserver.com",
 				'estadoCivil':0,
-				'fechaNacimiento':"1998/05/31:12:00:00AM",
-				'idPais':0,
+				'fechaNacimiento':"15/05/1966",
+				'idPais':'ARG',
 				'idProvincia':0,
 				'partido':"Ramos Mejia",
 				'calle':"Calle Falsa",
@@ -21,13 +20,14 @@
 				'piso':"3",
 				'departamento':"A",
 				'codigoPostal':"CWI1417C",
-				'telefono1':$('telefono1').val(),
+				'telefono1':$('#telefono1').val(),
 				'horarioContactoDesde1':"9",
 				'horarioContactoHasta1':"18",
 				'telefono2':"4554-1235",
 				'horarioContactoDesde2':"",
 				'horarioContactoHasta2':"",
-				'nacionalidad':"Argentino",
+				'idPaisNacionalidad':'ARG',
+				gtalk:  $('#gtalk').val(),
 				'twitter': "@twitteruser",
 				'sms': "15-3838-4994"
 			};
@@ -187,10 +187,10 @@ un cv <br/>
 <div id="cvEditorForm">
 	<div>
 		<label>gtalk:</label>
-		<input type="text" id="gtalk" name="gtalk" />
+		<input type="text" id="gtalk" name="ngtalk" />
 		<br />
 		<label>telefono1:</label>
-		<input type="text" id="telefono1" name="telefono1" />
+		<input type="text" id="telefono1" name="ntelefono1" />
 	</div>
 	<input type="submit" value="actualizate" id="cvEditorButton"  />
 	<input type="submit" value="GET_PROVINCIAS" id="getProvincias"  />

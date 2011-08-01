@@ -1,5 +1,5 @@
 <?php
-class Util_model extends CI_Model {
+class Util_model extends FR_Model {
 	
 	function Util_model() 
 	{
@@ -13,10 +13,7 @@ class Util_model extends CI_Model {
 	 * @return [{id, descripcion}]
 	 * */
 	public function  getEstadosCiviles(){
-		/** LOAD DATABASE **/
-		$this->load->database();		
 		
-		//TODO debe pasarse a util.
 		$curs=NULL;
 		$n1 = NULL;
 		$n2 = NULL;
@@ -37,17 +34,12 @@ class Util_model extends CI_Model {
 				$response[$i]->id  = $dbRegistro->ESTADO_CIVIL;
 				$response[$i]->descripcion  = $dbRegistro->D_ESTADO_CIVIL;
 			}
-			
-			/** CERRAR LA CONEXIÓN A LA BASE **/ 
-		 	$this->oracledb->close();
 			return $response;
 		}
 		else{
 			
-			/** CERRAR LA CONEXIÓN A LA BASE **/ 
-		 	$this->oracledb->close();
 			//TODO exception managment.
-        	throw new Exception('Oracle error message: ' + $n2);
+        	throw new Exception('Oracle error message: ' . $n2);
 		}
 	}
 	
@@ -58,41 +50,33 @@ class Util_model extends CI_Model {
 	 * @return [{id, descripcion}]
 	 */
 	public function  getPaises(){
-		/** LOAD DATABASE **/
-		$this->load->database();		
 		
-		//TODO debe pasarse a util.
 		$curs=NULL;
 		$n1 = NULL;
 		$n2 = NULL;
 		$params = array(
-		array('name'=>':PO_SALIDA', 'value'=>&$curs, 'type'=>SQLT_RSET , 'length'=>-1),
+		array('name'=>':PO_PAISES', 'value'=>&$curs, 'type'=>SQLT_RSET , 'length'=>-1),
 		array('name'=>':PO_C_ERROR', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
 		array('name'=>':PO_D_ERROR', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
 		);
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_UTIL','pr_obtiene_paises',$params);
-		
 		if ($n1 == 0){
 			$dbRegistros = $this->oracledb->get_cursor_data();
 			$dbRegistros = $this->decodeCursorData($dbRegistros);
-			
 			//convert db data to model data.
 			foreach ($dbRegistros as $i => $dbRegistro){
 				$response[$i]->id  = $dbRegistro->PAIS;
-				$response[$i]->descripcion  = $dbRegistro->D_PAIS;
+				$response[$i]->descripcion  = $dbRegistro->DPAIS;
 			}
 			
-			/** CERRAR LA CONEXIÓN A LA BASE **/ 
-		 	$this->oracledb->close();
 			return $response;
 		}
 		else{
 			
 			/** CERRAR LA CONEXIÓN A LA BASE **/ 
-		 	$this->oracledb->close();
 			//TODO exception managment.
-        	throw new Exception('Oracle error message: ' + $n2);
+        	throw new Exception('Oracle error message: ' . $n2);
 		}
 	}
 	
@@ -106,9 +90,8 @@ class Util_model extends CI_Model {
 	public function  getProvincias($idPais){
 
 		/** LOAD DATABASE **/
-		$this->load->database();		
+//		$this->load->database();		
 		
-		//TODO debe pasarse a util.
 		$curs=NULL;
 		$n1 = NULL;
 		$n2 = NULL;
@@ -131,16 +114,12 @@ class Util_model extends CI_Model {
 				$response[$i]->descripcion  = $dbRegistro->D_PROVINCIA;
 			}
 			
-			/** CERRAR LA CONEXIÓN A LA BASE **/ 
-		 	$this->oracledb->close();
 			return $response;
 		}
 		else{
 			
-			/** CERRAR LA CONEXIÓN A LA BASE **/ 
-		 	$this->oracledb->close();
 			//TODO exception managment.
-        	throw new Exception('Oracle error message: ' + $n2);
+        	throw new Exception('Oracle error message: ' . $n2);
 		}
 	
 	}
@@ -163,10 +142,6 @@ class Util_model extends CI_Model {
 	 * */
 	public function  getRubrosDisponibles(){
 		
-		/** LOAD DATABASE **/
-		$this->load->database();		
-		
-		//TODO debe pasarse a util.
 		$curs=NULL;
 		$n1 = NULL;
 		$n2 = NULL;
@@ -188,16 +163,11 @@ class Util_model extends CI_Model {
 				$response[$i]->descripcion  = $dbRegistro->D_RUBRO;
 			}
 			
-			/** CERRAR LA CONEXIÓN A LA BASE **/ 
-		 	$this->oracledb->close();
 			return $response;
 		}
 		else{
-			
-			/** CERRAR LA CONEXIÓN A LA BASE **/ 
-		 	$this->oracledb->close();
 			//TODO exception managment.
-        	throw new Exception('Oracle error message: ' + $n2);
+        	throw new Exception('Oracle error message: ' . $n2);
 		}
 		
 	}
