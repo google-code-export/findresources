@@ -114,7 +114,10 @@ echo '</pre>';
 			$test = "raven";
 			break;
 		case "4": 
-			$test = "raven";
+			$test = "mips";
+			break;
+		case "5": 
+			$test = "rorschach";
 			break;
 	}
 	//$this->session->set_userdata($test, "DONE");
