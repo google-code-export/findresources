@@ -224,6 +224,12 @@ if ($source == "test_finished") {
 		case "3": 
 			$test = "raven";
 			break;
+		case "4": 
+			$test = "mips";
+			break;
+		case "5": 
+			$test = "rorschach";
+			break;
 	}
 	//$this->session->set_userdata($test, "DONE");
 }
