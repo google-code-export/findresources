@@ -24,10 +24,10 @@ class Curriculum extends CI_Controller {
 		$data['educacionFormalDelCv'] = $this->Curriculum_model->getEducacionFormalDelCv($curriculumData->id);
 		$data['educacionNoFormalDelCv'] = $this->Curriculum_model->getEducacionNoFormalDelCv($curriculumData->id);
 		
-		$data['estadosCiviles'] = $this->Curriculum_model->getEstadosCiviles();
-		$data['paises'] = $response = $this->Curriculum_model->getPaises();
-		$data['industriasDisponibles'] = $response = $this->Curriculum_model->getListadoDeIndustriasDisponibles();
-		$data['rubrosDisponibles'] = $this->Curriculum_model->getRubrosDisponibles();
+		$data['estadosCiviles'] = $this->Util_model->getEstadosCiviles();
+		$data['paises'] = $response = $this->Util_model->getPaises();
+		$data['industriasDisponibles'] = $response = $this->Util_model->getListadoDeIndustriasDisponibles();
+		$data['rubrosDisponibles'] = $this->Util_model->getRubrosDisponibles();
 		
 		
 		$this->load->view('view_curriculum', $data);
@@ -61,27 +61,6 @@ class Curriculum extends CI_Controller {
 		
 		echo json_encode($response);
 	}	
-	
-	/**
-	 * input: idPais
-	 * output: json array > [{id, descripcion}]
-	 */
-	public function  getProvincias(){
-		$idPais = $this->input->post('idPais');
-		$respuesta = $this->Curriculum_model->getProvincias($idPais);
-		echo json_encode($respuesta);
-	}
-
-	/**
-	 * @input:  por post el rubro correspondiente.
-	 * @output: las herramientas de un determinado rubro.
-	 * 			json array con {id, descripcion}
-	 * */
-	public function  getHerramientasPorRubro(){
-		$idRubro = $this->input->post('idRubro');
-		$respuesta = $this->Curriculum_model->getHerramientasPorRubro($idRubro);
-		echo json_encode($respuesta);
-	}
 	
 	/**
 	 * input: null
