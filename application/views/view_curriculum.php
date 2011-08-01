@@ -132,7 +132,7 @@ un cv <br/>
 	echo '<br/>';
 	echo $curriculumData->horarioContactoHasta2;
 	echo '<br/>';
-	echo $curriculumData->nacionalidad;
+	echo $curriculumData->idPaisNacionalidad;
 	echo '<br/>';
 	echo $curriculumData->twitter;
 	echo '<br/>';
