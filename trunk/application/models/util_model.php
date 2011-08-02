@@ -18,12 +18,12 @@ class Util_model extends FR_Model {
 		$n1 = NULL;
 		$n2 = NULL;
 		$params = array(
-		array('name'=>':PO_SALIDA', 'value'=>&$curs, 'type'=>SQLT_RSET , 'length'=>-1),
-		array('name'=>':PO_C_ERROR', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
-		array('name'=>':PO_D_ERROR', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
+		array('name'=>':po_salida', 'value'=>&$curs, 'type'=>SQLT_RSET , 'length'=>-1),
+		array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
+		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
 		);
 		
-		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_UTIL','pr_obtiene_estado_civil',$params);
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_util','pr_obtiene_estado_civil',$params);
 		
 		if ($n1 == 0){
 			$dbRegistros = $this->oracledb->get_cursor_data();
@@ -31,8 +31,8 @@ class Util_model extends FR_Model {
 			
 			//convert db data to model data.
 			foreach ($dbRegistros as $i => $dbRegistro){
-				$response[$i]->id  = $dbRegistro->ESTADO_CIVIL;
-				$response[$i]->descripcion  = $dbRegistro->D_ESTADO_CIVIL;
+				$response[$i]->id  = $dbRegistro->estado_civil;
+				$response[$i]->descripcion  = $dbRegistro->d_estado_civil;
 			}
 			return $response;
 		}
@@ -55,19 +55,19 @@ class Util_model extends FR_Model {
 		$n1 = NULL;
 		$n2 = NULL;
 		$params = array(
-		array('name'=>':PO_PAISES', 'value'=>&$curs, 'type'=>SQLT_RSET , 'length'=>-1),
-		array('name'=>':PO_C_ERROR', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
-		array('name'=>':PO_D_ERROR', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
+		array('name'=>':po_paises', 'value'=>&$curs, 'type'=>SQLT_RSET , 'length'=>-1),
+		array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
+		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
 		);
 		
-		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_UTIL','pr_obtiene_paises',$params);
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_util','pr_obtiene_paises',$params);
 		if ($n1 == 0){
 			$dbRegistros = $this->oracledb->get_cursor_data();
 			$dbRegistros = $this->decodeCursorData($dbRegistros);
 			//convert db data to model data.
 			foreach ($dbRegistros as $i => $dbRegistro){
-				$response[$i]->id  = $dbRegistro->PAIS;
-				$response[$i]->descripcion  = $dbRegistro->DPAIS;
+				$response[$i]->id  = $dbRegistro->pais;
+				$response[$i]->descripcion  = $dbRegistro->dpais;
 			}
 			
 			return $response;
@@ -97,12 +97,12 @@ class Util_model extends FR_Model {
 		$n2 = NULL;
 		$params = array(
 //		array('name'=>':PI_ID_PAIS', 'value'=>$idPais, 'type'=>SQLT_CHR, 'length'=>-1),
-		array('name'=>':PO_SALIDA', 'value'=>&$curs, 'type'=>SQLT_RSET , 'length'=>-1),
-		array('name'=>':PO_C_ERROR', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
-		array('name'=>':PO_D_ERROR', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
+		array('name'=>':po_salida', 'value'=>&$curs, 'type'=>SQLT_RSET , 'length'=>-1),
+		array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
+		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
 		);
 		
-		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_UTIL','pr_obtiene_provincias',$params);
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_util','pr_obtiene_provincias',$params);
 		
 		if ($n1 == 0){
 			$dbRegistros = $this->oracledb->get_cursor_data();
@@ -110,8 +110,8 @@ class Util_model extends FR_Model {
 			
 			//convert db data to model data.
 			foreach ($dbRegistros as $i => $dbRegistro){
-				$response[$i]->id  = $dbRegistro->PROVINCIA;
-				$response[$i]->descripcion  = $dbRegistro->D_PROVINCIA;
+				$response[$i]->id  = $dbRegistro->provincias;
+				$response[$i]->descripcion  = $dbRegistro->d_provincias;
 			}
 			
 			return $response;
@@ -127,31 +127,18 @@ class Util_model extends FR_Model {
 	/**
 	 * Devuelve las habilidades diponibles para seleccionar.
 	 * */
-	public function  getListadoDeIndustriasDisponibles(){
-		$respuesta[0]->id = 0; 
-		$respuesta[0]->descripcion = "Petrolera";
-		$respuesta[1]->id = 1; 
-		$respuesta[1]->descripcion = "Banca";
-		$respuesta[2]->id = 1; 
-		$respuesta[2]->descripcion = "Gobierno";
-		return $respuesta;
-	}
-
-	/**
-	 * Devuelve las habilidades diponibles para seleccionar.
-	 * */
 	public function  getRubrosDisponibles(){
 		
 		$curs=NULL;
 		$n1 = NULL;
 		$n2 = NULL;
 		$params = array(
-		array('name'=>':PO_SALIDA', 'value'=>&$curs, 'type'=>SQLT_RSET , 'length'=>-1),
-		array('name'=>':PO_C_ERROR', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
-		array('name'=>':PO_D_ERROR', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
+		array('name'=>':po_salida', 'value'=>&$curs, 'type'=>SQLT_RSET , 'length'=>-1),
+		array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
+		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
 		);
 		
-		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_UTIL','pr_obtiene_rubros',$params);
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_util','pr_obtiene_rubros',$params);
 		
 		if ($n1 == 0){
 			$dbRegistros = $this->oracledb->get_cursor_data();
@@ -159,8 +146,8 @@ class Util_model extends FR_Model {
 			
 			//convert db data to model data.
 			foreach ($dbRegistros as $i => $dbRegistro){
-				$response[$i]->id  = $dbRegistro->ID_RUBRO;
-				$response[$i]->descripcion  = $dbRegistro->D_RUBRO;
+				$response[$i]->id  = $dbRegistro->id_rubro;
+				$response[$i]->descripcion  = $dbRegistro->d_rubro;
 			}
 			
 			return $response;
@@ -175,8 +162,10 @@ class Util_model extends FR_Model {
 	/**
 	 * Devuelve las herramientas de un determinado rubro.
 	 * Recibe por post el rubro correspondiente.
+	 * @param idArea
+	 * @return[{id, descripction}]
 	 * */
-	public function  getHerramientasPorRubro(){
+	public function  getHerramientasPorArea($idArea){
 		$respuesta[0]->id = 1; 
 		$respuesta[0]->descripcion = "Java";
 		$respuesta[1]->id = 2; 
@@ -185,7 +174,79 @@ class Util_model extends FR_Model {
 		$respuesta[2]->descripcion = "Oracle";
 		return $respuesta;
 	}
-	
+
+	/**
+	 * Busca los niveles de educacion disponibles
+	 * @param
+	 * @return array with id and descripcion [{id, descripcion}]
+	 * */
+	public function  getNivelesDeEducacion(){
+		
+		$curs=NULL;
+		$n1 = NULL;
+		$n2 = NULL;
+		$params = array(
+		array('name'=>':po_niveles_educacion', 'value'=>&$curs, 'type'=>SQLT_RSET , 'length'=>-1),
+		array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
+		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_util','pr_obtiene_niveles_educacion',$params);
+		
+		if ($n1 == 0){
+			$dbRegistros = $this->oracledb->get_cursor_data();
+			$dbRegistros = $this->decodeCursorData($dbRegistros);
+			
+			//convert db data to model data.
+			foreach ($dbRegistros as $i => $dbRegistro){
+				$response[$i]->id  = $dbRegistro->nivel_educacion;
+				$response[$i]->descripcion  = $dbRegistro->d_nivel_educcacion;
+			}
+			
+			return $response;
+		}
+		else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message: ' . $n2);
+		}
+		
+	}	
+
+	/**
+	 * Devuelve las habilidades diponibles para seleccionar.
+	 * */
+	public function  getAreasDisponibles(){
+		
+		$curs=NULL;
+		$n1 = NULL;
+		$n2 = NULL;
+		$params = array(
+		array('name'=>':po_areas', 'value'=>&$curs, 'type'=>SQLT_RSET , 'length'=>-1),
+		array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
+		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_util','pr_obtiene_areas',$params);
+		
+		if ($n1 == 0){
+			$dbRegistros = $this->oracledb->get_cursor_data();
+			$dbRegistros = $this->decodeCursorData($dbRegistros);
+			
+			//convert db data to model data.
+			foreach ($dbRegistros as $i => $dbRegistro){
+				$response[$i]->id  = $dbRegistro->id_area;
+				$response[$i]->descripcion  = $dbRegistro->d_area;
+			}
+			
+			return $response;
+		}
+		else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message: ' . $n2);
+		}
+		
+	}
+
 }
 
 ?>
