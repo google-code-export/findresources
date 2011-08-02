@@ -56,21 +56,18 @@
 
 		var habilidades = [
 	     	{
+	    	 	tipoHabilidad: 0, 
 	    	 	idHabilidad: 0,
-	    	 	idHabilidadDura: 0,
-	    	 	tipoHabilidad: 0,
 	    	 	puntaje: 3
 	    	},
 	     	{
-	    	 	idHabilidad: 0,
-	    	 	idHabilidadDura: 3,
 	    	 	tipoHabilidad: 1,
+	    	 	idHabilidad: 0,
 	    	 	puntaje: 2
 	    	},
 	     	{
-	    	 	idHabilidad: 2,
-	    	 	idHabilidadDura: 2,
 	    	 	tipoHabilidad: 1,
+	    	 	idHabilidad: 2,
 	    	 	puntaje: 2
 	    	}
 	    ];

@@ -68,7 +68,8 @@ class Curriculum extends CI_Controller {
 	/**
 	 * input: null
 	 * output: las habilidades del cv mostrando.
-	 *  json array > {tipo, id, puntaje}
+	 *  json array > [{tipoHabilidad (0>industria/rubro 1>herramienta),
+	 *  	   	idHabilidad(idIndustria / idHerramienta ), puntaje}]
 	 * */
 	public function  getHabilidadesDelCV(){
 		// Process their input and login the user
@@ -79,7 +80,7 @@ class Curriculum extends CI_Controller {
 	}
 
 	/**
-	 * input: 'habilidades' json string array > [{idHabilidadDura, tipoHabilidad (0>industria/rubro 1>herramienta),
+	 * input: 'habilidades' json string array > [{tipoHabilidad (0>industria/rubro 1>herramienta),
 	 *  	   	idHabilidad(idRubro / idHerramienta ), puntaje}]
 	 * output: 0 is oK.
 	 * */
