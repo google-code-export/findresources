@@ -5,9 +5,67 @@ class Curriculum_model extends FR_Model {
 	{
 		parent::__construct();
 	}
-
+	
 	/**
+	 * retorna el cv del usuaro, proximamente la lista de cvs del usuario
 	 * @param idUsuario
+	 * @return idCurriculum.
+	 * */
+	public function getCurriculumUser($idUsuario){
+		return 0; //not working yet.		
+		
+		$rta=NULL;
+		$n1 = NULL;
+		$n2 = NULL;
+		$params = array(
+		array('name'=>':pi_usuario', 'value'=>$idCurriculum, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':po_id_curriculum', 'value'=>&$rta, 'type'=>SQLT_CHR , 'length'=>255),
+		array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
+		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_CV','pr_obtengo_id_curriculum',$params);
+		
+		if ($n1 == 0){
+			return $rta;
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message: ' . $n2);
+		}
+		
+	}
+	
+	/**
+	 * retorna el cv del usuaro, proximamente la lista de cvs del usuario
+	 * @param idUsuario
+	 * @return idCurriculum.
+	 * */
+	public function createCurriculumUser($idUsuario){
+		return 0; //not working yet.		
+		
+		$rta=NULL;
+		$n1 = NULL;
+		$n2 = NULL;
+		$params = array(
+		array('name'=>':pi_usuario', 'value'=>$idCurriculum, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':po_id_curriculum', 'value'=>&$rta, 'type'=>SQLT_CHR , 'length'=>255),
+		array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
+		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_CV','pr_crea_cv',$params);
+		
+		if ($n1 == 0){
+			return $rta;
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message: ' . $n2);
+		}
+		
+	}	
+	
+	/**
+	 * @param idCurriculum
 	 * @return {'gtalk', 'usuario', 'estadoCivil', 'fechaNacimiento':"1998/05/31:12:00:00AM",
 	 *      'idPais','idProvincia','partido','calle',
 	 *      'numero','piso','departamento','codigoPostal',
@@ -185,7 +243,7 @@ class Curriculum_model extends FR_Model {
 	
 	/**
 	 * @param: idCurriculum
-	 * @return: array with [{id, compania, idRubro, idPais, fechaDesde, fechaHasta}]
+	 * @return: array with [{id, compania, idRubro, idPais, fechaDesde, fechaHasta, logro}]
 	 */
 	public function  getExperienciaLaboralDelCv($idCurriculum){
 		$respuesta[0]->id = 0;
@@ -223,10 +281,13 @@ class Curriculum_model extends FR_Model {
 			
 			//convert db data to model data.
 			foreach ($dbRegistros as $i => $dbRegistro){
-				var_dump($dbRegistros);
-				exit;
-//				$response[$i]->id  = $dbRegistro->ESTADO_CIVIL;
-//				$response[$i]->descripcion  = $dbRegistro->D_ESTADO_CIVIL;
+				$response[$i]->id  = $dbRegistro->ID_HISTORIA_LABORAL_CV;
+				$response[$i]->compania = $dbRegistro->D_COMPANIA;
+				$response[$i]->idRubro = $dbRegistro->ID_RUBRO;
+				$response[$i]->idPais = $dbRegistro->PAIS;
+				$response[$i]->fechaDesde = $dbRegistro->F_DESDE;//formato DD/MM/YYYY
+				$response[$i]->fechaHasta = $dbRegistro->F_HASTA; //formato DD/MM/YYYY
+				$response[$i]->logro = $dbRegistro->D_LOGRO;
 			}
 			return $response;
 		}
@@ -238,11 +299,48 @@ class Curriculum_model extends FR_Model {
 		
 	}
 
+	/**
+	 * @param $idCurriculum
+	 * @param $experienciaLaboral {id, compania, idRubro, idPais, fechaDesde, fechaHasta, logro}
+ 	 * para nuevo registro, $experienciaLaboral->id debe ser nulo.
+	 * @return retorna el id de experiencia laboral.
+	 * */
 	public function  setExperienciaLaboral($idCurriculum, $experienciaLaboral){
-	
+		$rta=NULL;
+		$n1 = NULL;
+		$n2 = NULL;
+		
+		
+		$params = array(
+		
+		array('name'=>':pi_id_historia_laboral_cv', 'value'=>$experienciaLaboral->id, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':pi_id_curriculm', 'value'=>$idCurriculum, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':pi_d_compania', 'value'=>$experienciaLaboral->compania, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':pi_id_rubro', 'value'=>$experienciaLaboral->idRubro, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':pi_pais', 'value'=>$experienciaLaboral->idPais, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':pi_f_desde', 'value'=>$experienciaLaboral->fechaDesde, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':pi_f_hasta', 'value'=>$experienciaLaboral->fechaHasta, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':pi_d_logro', 'value'=>$experienciaLaboral->logro, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':po_id_historia_laboral_cv', 'value'=>&$rta, 'type'=>SQLT_CHR , 'length'=>255),
+		array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
+		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_CV','pr_actualizo_exp_laboral',$params);
+		
+		if ($n1 == 0){
+			return $rta;
+		}
+		else{
+			
+			//TODO exception managment.
+        	throw new Exception('Oracle error message: ' . $n2);
+		}		
+			
 	}
 	
 	public function  getEducacionFormalDelCv($idCurriculum){
+		
 		$respuesta[0]->id = 0;
 		$respuesta[0]->idEntidad = 0;
 		$respuesta[0]->descripcionEntidad = "en caso de otros";
@@ -264,6 +362,7 @@ class Curriculum_model extends FR_Model {
 		$respuesta[1]->fechaInicio = "01/01/1900";
 		$respuesta[1]->fechaFinalizacion = "01/01/1900";
 		$respuesta[1]->promedio = 6.89;
+		
 	}
 	
 	public function  editarEducacionFormal($idCurriculum, $educacionFormal){

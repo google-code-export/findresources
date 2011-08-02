@@ -83,8 +83,29 @@
 			"json");
 		});
 		
+		$('#setExperienciaLaboral').click(function(){
+			var experienciaLaboral = {
+					id: null, // null = nuevo
+					compania: "una compania", 
+					idRubro: 1, 
+					idPais: "ARG", 
+					fechaDesde: "05/03/1984", 
+					fechaHasta: "06/06/1986", 
+					logro: "nos hicimos ricos, muy ricos."
+			};
+			
+			$.post("curriculum/setExperienciaLaboral", {
+				'experienciaLaboral': JSON.stringify(experienciaLaboral)
+			},
+			function(data){
+				debugger;
+			},
+			"json");
+		});
 		
-
+		
+		
+		
 		
 		return false;
 	});
@@ -195,6 +216,7 @@ un cv <br/>
 	<input type="submit" value="actualizate" id="cvEditorButton"  />
 	<input type="submit" value="GET_PROVINCIAS" id="getProvincias"  />
 	<input type="submit" value="SET_HABILIDADES" id="setHabilidades"  />
+	<input type="submit" value="SET_EXPERIENCIA_LABORAL" id="setExperienciaLaboral"  />
 </div>
 
 </body>

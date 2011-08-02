@@ -13,7 +13,10 @@ class Curriculum extends CI_Controller {
 	public function index(){
 		//$usuario = $this->session->userdata('ID_USUARIO');
 		$usuario  = "juan@juan.com";
-		$idCurriculum  = 0;
+		$idCurriculum  = $this->Curriculum_model->getCurriculumUser($usuario);
+		if($idCurriculum == null || $idCurriculum == ""){
+			$idCurriculum  = $this->Curriculum_model->createCurriculumUser($usuario);
+		}
 		
 		$curriculumData = $this->Curriculum_model->getCurriculum($idCurriculum);
 		$this->session->set_userdata('CV_EDITANDO', $curriculumData);
@@ -90,7 +93,7 @@ class Curriculum extends CI_Controller {
 	
 	/**
 	 * input: null
-	 * output: json array > [{id, compania, idRubro, idPais, fechaDesde, fechaHasta}].
+	 * output: json array > [{id, compania, idRubro, idPais, fechaDesde, fechaHasta, logro}].
 	 * */	
 	public function  getExperienciaLaboralDelCv(){
 		// Process their input and login the user
@@ -101,8 +104,9 @@ class Curriculum extends CI_Controller {
 	}
 
 	/**
-	 * input: 'experiencia' json string > {id, compania, idRubro, idPais, fechaDesde, fechaHasta}
-	 * output: 0 is Ok.
+	 * input: 'experienciaLaboral' json string > {id, compania, idRubro, idPais, fechaDesde, fechaHasta, logro}
+	 * 						para nuevo registro, $experienciaLaboral->id debe ser null.
+	 * output: retorna el idEducacionFormal.
 	 * */
 	public function  setExperienciaLaboral(){
 		$currentCurriculum = $this->session->userdata('CV_EDITANDO');
@@ -132,7 +136,8 @@ class Curriculum extends CI_Controller {
 	 * 			estado: "T" terminado "A" abandobado "C" en curso 
 	 * 			fechaInicio: "01/01/1900", fechaFinalizacion, promedio: 6.89
 	 * 			}
-	 * output: 0 is Ok.
+	 * 			para nuevo registro, $experienciaLaboral->id debe ser nulo.
+	 * output: retorna el idEducacionFormal.
 	 * */
 	public function  setEducacionFormal(){
 		$currentCurriculum = $this->session->userdata('CV_EDITANDO');
@@ -159,7 +164,7 @@ class Curriculum extends CI_Controller {
 	/**
 	 * NOT COMPLEATY DEFINED YET
 	 * input: 'educacionNoFormal' json > {id, entidad, idPais, fechaDesde, fechaHasta, logro, estado : T terminado, A abandobado, C en curso}.
-	 * output: 0 is Ok.
+	 * output: retorna el idEducacionFormal.
 	 * */
 	public function  setEducacionNoFormal(){
 		$currentCurriculum = $this->session->userdata('CV_EDITANDO');
