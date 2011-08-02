@@ -26,12 +26,45 @@ class Util extends CI_Controller {
 	 * @output: las herramientas de un determinado rubro.
 	 * 			json array con {id, descripcion}
 	 * */
-	public function  getHerramientasPorRubro(){
-		$idRubro = $this->input->post('idRubro');
-		$respuesta = $this->Util_model->getHerramientasPorRubro($idRubro);
+	public function  getHerramientasPorArea(){
+		$idArea = $this->input->post('idArea');
+		$respuesta = $this->Util_model->getHerramientasPorArea($idArea);
+		echo json_encode($respuesta);
+	}
+	
+	/**
+	 * input: 
+	 * output: json array > [{id, descripcion}]
+	 */
+	public function  getNivelesDeEducacion(){
+		$respuesta = $this->Util_model->getNivelesDeEducacion();
 		echo json_encode($respuesta);
 	}
 
+	
+	/**
+	 * devuelve la lista de areas que existen donde una persona
+	 * desarrolla sus actividades.
+	 * input: 
+	 * output: json array > [{id, descripcion}]
+	 */
+	public function  getAreas(){
+		$respuesta = $this->Util_model->getAreasDisponibles();
+		echo json_encode($respuesta);
+	}
+	
+	
+	/**
+	 * devuelve los rubros de emrpesas que existen
+	 * input: 
+	 * output: json array > [{id, descripcion}]
+	 */
+	public function  getRubros(){
+		$respuesta = $this->Util_model->getRubrosDisponibles();
+		echo json_encode($respuesta);
+	}
+		
+	
 }
 
 ?>

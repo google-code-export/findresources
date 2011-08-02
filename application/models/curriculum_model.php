@@ -24,7 +24,7 @@ class Curriculum_model extends FR_Model {
 		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
 		);
 		
-		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_CV','pr_obtengo_id_curriculum',$params);
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','pr_obtengo_id_curriculum',$params);
 		
 		if ($n1 == 0){
 			return $rta;
@@ -53,7 +53,7 @@ class Curriculum_model extends FR_Model {
 		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
 		);
 		
-		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_CV','pr_crea_cv',$params);
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','pr_crea_cv',$params);
 		
 		if ($n1 == 0){
 			return $rta;
@@ -112,7 +112,7 @@ class Curriculum_model extends FR_Model {
 		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
 		);
 		
-		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_CV','pr_consulta_cv',$params);
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','pr_consulta_cv',$params);
 		echo $n1;
 		
 		if ($n1 == 0){
@@ -123,20 +123,20 @@ class Curriculum_model extends FR_Model {
 //				$response[$i]->id  = $dbRegistro->ESTADO_CIVIL;
 //				$response[$i]->descripcion  = $dbRegistro->D_ESTADO_CIVIL;
 				$response->id = $idCurriculum;
-				$response->usuario = $dbRegistros[0]->USUARIO;
-				$response->estadoCivil = $dbRegistros[0]->ESTADO_CIVIL;
+				$response->usuario = $dbRegistros[0]->usuario;
+				$response->estadoCivil = $dbRegistros[0]->estado_civil;
 				//$response->cantidadHijos = 0;
-				$response->fechaNacimiento = $dbRegistros[0]->FECHA_NACIMIENTO;
-				$response->idPais = $dbRegistros[0]->PAIS;
-				$response->idProvincia = $dbRegistros[0]->PROVINCIA;
-				$response->partido = $dbRegistros[0]->PARTIDO;
-				$response->calle = $dbRegistros[0]->CALLE;
-				$response->numero = $dbRegistros[0]->NUMERO;
-				$response->piso = $dbRegistros[0]->PISO;
-				$response->departamento = $dbRegistros[0]->DEPARTAMENTO;
-				$response->codigoPostal = $dbRegistros[0]->CODIGO_POSTAL;
-				$response->telefono1 = $dbRegistros[0]->TELEFONO_CONTACTO1;
-				$response->horarioContactoDesde1 = $dbRegistros[0]->HORARIO_CONTACTO_DESDE1;
+				$response->fechaNacimiento = $dbRegistros[0]->fecha_nacimiento;
+				$response->idPais = $dbRegistros[0]->pais;
+				$response->idProvincia = $dbRegistros[0]->provincia;
+				$response->partido = $dbRegistros[0]->partido;
+				$response->calle = $dbRegistros[0]->calle;
+				$response->numero = $dbRegistros[0]->numero;
+				$response->piso = $dbRegistros[0]->piso;
+				$response->departamento = $dbRegistros[0]->departamento;
+				$response->codigoPostal = $dbRegistros[0]->codigo_postal;
+				$response->telefono1 = $dbRegistros[0]->telefono_contacto1;
+				$response->horarioContactoDesde1 = $dbRegistros[0]->horario_contacto_desde1;
 				$response->horarioContactoHasta1 = $dbRegistros[0]->HORARIO_CONTACTO_HASTA1;
 				$response->telefono2 = $dbRegistros[0]->TELEFONO_CONTACTO2;
 				$response->horarioContactoDesde2 = $dbRegistros[0]->HORARIO_CONTACTO_DESDE2;
@@ -197,7 +197,7 @@ class Curriculum_model extends FR_Model {
 		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
 		);
 		
-		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_CV','pr_actualiza_cv',$params);
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','pr_actualiza_cv',$params);
 		echo $n1;
 		
 		if ($n1 == 0){
@@ -212,15 +212,20 @@ class Curriculum_model extends FR_Model {
 	}
 	
 	/**
-	 * Devuelve las habilidades del cv mostrando.
+	 * Ingresar la lista de habilidades.
+	 * @param idCurriculum a editar
+	 * @param habilidades [{idHabilidadDura, tipoHabilidad (0>industria/rubro 1>herramienta),
+	 *  	   	idHabilidad(idRubro / idHerramienta ), puntaje}]
 	 * */
 	public function  getHabilidadesDelCV($idCurriculum){
-		$respuesta[0]->tipo = 0; //Industria
 		$respuesta[0]->id = 0;
+		$respuesta[0]->tipo = 0; //Industria
+		$respuesta[0]->idHabilidad = 0; 
 		$respuesta[0]->puntaje = 5;
 		
-		$respuesta[1]->tipo = 1;
 		$respuesta[1]->id = 0;
+		$respuesta[1]->tipo = 1; //Herramienta
+		$respuesta[1]->idHabilidad = 0;
 		$respuesta[1]->puntaje = 2;
 				
 		return $respuesta;
@@ -228,6 +233,9 @@ class Curriculum_model extends FR_Model {
 
 	/**
 	 * Ingresar la lista de habilidades.
+	 * @param idCurriculum a editar
+	 * @param habilidades [{idHabilidadDura, tipoHabilidad (0>industria/rubro 1>herramienta),
+	 *  	   	idHabilidad(idRubro / idHerramienta ), puntaje}]
 	 * */
 	public function  setHabilidadesDelCV($idCurriculum, $habilidades){
 		$parametro = "";
@@ -236,9 +244,15 @@ class Curriculum_model extends FR_Model {
 				//Its not the first need add ;
 				$parametro = $parametro . ';'; 
 			}
-			$parametro = $parametro . $habilidad->tipoHabilidad . ';' . $habilidad->idHabilidad . ';' . $habilidad->puntajeHabilidad;
+			$parametro = $parametro . $habilidad->idHabilidadDura . ';' . 
+					$habilidad->tipoHabilidad . ';' . 
+					$habilidad->idHabilidad . ';' . 
+					$habilidad->puntaje;
 		}
+		
 		return 0;
+		
+		
 	}	
 	
 	/**
@@ -272,7 +286,7 @@ class Curriculum_model extends FR_Model {
 		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
 		);
 		
-		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_CV','pr_consulta_exp_laboral',$params);
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','pr_consulta_exp_laboral',$params);
 		echo $n1;
 		
 		if ($n1 == 0){
@@ -281,13 +295,13 @@ class Curriculum_model extends FR_Model {
 			
 			//convert db data to model data.
 			foreach ($dbRegistros as $i => $dbRegistro){
-				$response[$i]->id  = $dbRegistro->ID_HISTORIA_LABORAL_CV;
-				$response[$i]->compania = $dbRegistro->D_COMPANIA;
-				$response[$i]->idRubro = $dbRegistro->ID_RUBRO;
-				$response[$i]->idPais = $dbRegistro->PAIS;
-				$response[$i]->fechaDesde = $dbRegistro->F_DESDE;//formato DD/MM/YYYY
-				$response[$i]->fechaHasta = $dbRegistro->F_HASTA; //formato DD/MM/YYYY
-				$response[$i]->logro = $dbRegistro->D_LOGRO;
+				$response[$i]->id  = $dbRegistro->id_historia_laboral_cv;
+				$response[$i]->compania = $dbRegistro->d_compania;
+				$response[$i]->idRubro = $dbRegistro->id_rubro;
+				$response[$i]->idPais = $dbRegistro->pais;
+				$response[$i]->fechaDesde = $dbRegistro->f_desde;//formato DD/MM/YYYY
+				$response[$i]->fechaHasta = $dbRegistro->f_hasta; //formato DD/MM/YYYY
+				$response[$i]->logro = $dbRegistro->d_logro;
 			}
 			return $response;
 		}
@@ -326,7 +340,7 @@ class Curriculum_model extends FR_Model {
 		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
 		);
 		
-		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_CV','pr_actualizo_exp_laboral',$params);
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','pr_actualizo_exp_laboral',$params);
 		
 		if ($n1 == 0){
 			return $rta;
@@ -339,6 +353,13 @@ class Curriculum_model extends FR_Model {
 			
 	}
 	
+	/**
+	 * @param idCurriculum
+	 * @return array of educacionFormal = [{id, idEntidad, descripcionEntidad, titulo, idNivelEducacion, idArea, 
+	 * 			estado: "T" terminado "A" abandobado "C" en curso 
+	 * 			fechaInicio: "01/01/1900", fechaFinalizacion, promedio: 6.89
+	 * 			}]
+	 * */
 	public function  getEducacionFormalDelCv($idCurriculum){
 		
 		$respuesta[0]->id = 0;
@@ -363,13 +384,94 @@ class Curriculum_model extends FR_Model {
 		$respuesta[1]->fechaFinalizacion = "01/01/1900";
 		$respuesta[1]->promedio = 6.89;
 		
+		return $respuesta;
+		
+		$curs=NULL;
+		$n1 = NULL;
+		$n2 = NULL;
+		$params = array(
+		array('name'=>':pi_id_curriculum', 'value'=>$idCurriculum, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':po_educacion_formal', 'value'=>&$curs, 'type'=>SQLT_RSET , 'length'=>-1),
+		array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
+		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','pr_consulta_exp_laboral',$params);
+		echo $n1;
+		
+		if ($n1 == 0){
+			$dbRegistros = $this->oracledb->get_cursor_data();
+			$dbRegistros = $this->decodeCursorData($dbRegistros);
+			
+			//convert db data to model data.
+			foreach ($dbRegistros as $i => $dbRegistro){
+				$respuesta[$i]->id = $dbRegistro->id_educacion_formal_cv;
+				$respuesta[$i]->idEntidad = $dbRegistro->id_entidad_educativa;
+				$respuesta[$i]->descripcionEntidad = $dbRegistro->d_entidad;
+				$respuesta[$i]->titulo = $dbRegistro->titulo;
+				$respuesta[$i]->idNivelEducacion = $dbRegistro->id_nivel_educacion;
+				$respuesta[$i]->idArea = $dbRegistro->id_area;
+				$respuesta[$i]->estado = $dbRegistro->estado;
+				$respuesta[$i]->fechaInicio = $dbRegistro->f_inicio;
+				$respuesta[$i]->fechaFinalizacion = $dbRegistro->f_finalizacion;
+				$respuesta[$i]->promedio = $dbRegistro->promedio;
+			}
+			return $response;
+		}
+		else{
+			
+			//TODO exception managment.
+        	throw new Exception('Oracle error message: ' . $n2);
+		}						
+		
 	}
 	
-	public function  editarEducacionFormal($idCurriculum, $educacionFormal){
-	
+	/**
+	 * @param educacionFormal = [{id (null for new item), idEntidad, descripcionEntidad,
+	 * 			 titulo, idNivelEducacion, idArea, 
+	 * 			estado: "T" terminado "A" abandobado "C" en curso 
+	 * 			fechaInicio: "01/01/1900", fechaFinalizacion, promedio: 6.89
+	 * 			}]
+	 * @return idEducacionFormal
+	 * 		
+	 * */
+	public function  setEducacionFormal($idCurriculum, $educacionFormal){
+		return 1;
+		$rta=NULL;
+		$n1 = NULL;
+		$n2 = NULL;
+		
+		$params = array(
+			array('name'=>':pi_id_educacion_formal_cv', 'value'=>$educacionFormal->id, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_id_curriculm', 'value'=>$idCurriculum, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_id_entidad_educativa', 'value'=>$educacionFormal->idEntidad, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_d_entidad', 'value'=>$educacionFormal->descripcionEntidad, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_titulo', 'value'=>$educacionFormal->titulo, 'type'=>SQLT_CHR, 'length'=>-1),
+	 		array('name'=>':pi_id_nivel_educacion', 'value'=>$educacionFormal->idNivelEducacion, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_id_area', 'value'=>$educacionFormal->idArea, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_estado', 'value'=>$educacionFormal->estado, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_f_inicio', 'value'=>$educacionFormal->fechaInicio, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_f_finalizacion', 'value'=>$educacionFormal->fechaFinalizacion, 'type'=>SQLT_CHR, 'length'=>-1), //DD/MM/YYYY
+			array('name'=>':pi_promedio', 'value'=>$educacionFormal->promedio, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':po_id_educacion_formal_cv', 'value'=>&$rta, 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','pr_actualizo_edu_formal',$params);
+		
+		if ($n1 == 0){
+			return $rta;
+		}
+		else{
+			
+			//TODO exception managment.
+        	throw new Exception('Oracle error message: ' . $n2);
+		}
+			
 	}
 	
-	
+	//TBD
 	public function  getEducacionNoFormalDelCv(){
 		$respuesta[0]->id = 0;
 		$respuesta[0]->idEntidad = 0;
@@ -392,8 +494,12 @@ class Curriculum_model extends FR_Model {
 		$respuesta[1]->fechaInicio = "01/01/1900";
 		$respuesta[1]->fechaFinalizacion = "01/01/1900";
 		$respuesta[1]->promedio = 6.89;
+		
+		return $respuesta;
+		
 	}
 	
+	//TBD
 	public function  editarEducacionNoFormal(){
 	
 	}

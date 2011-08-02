@@ -57,18 +57,21 @@
 		var habilidades = [
 	     	{
 	    	 	idHabilidad: 0,
+	    	 	idHabilidadDura: 0,
 	    	 	tipoHabilidad: 0,
-	    	 	puntajeHabilidad: 3
+	    	 	puntaje: 3
 	    	},
 	     	{
 	    	 	idHabilidad: 0,
+	    	 	idHabilidadDura: 3,
 	    	 	tipoHabilidad: 1,
-	    	 	puntajeHabilidad: 2
+	    	 	puntaje: 2
 	    	},
 	     	{
 	    	 	idHabilidad: 2,
+	    	 	idHabilidadDura: 2,
 	    	 	tipoHabilidad: 1,
-	    	 	puntajeHabilidad: 2
+	    	 	puntaje: 2
 	    	}
 	    ];
     
@@ -195,14 +198,13 @@ un cv <br/>
 ?>
 	<H1>INDUSTRIAS DISPONIBLES</H1>
 <?php 
-	imprimirArrayConDescripciones($industriasDisponibles);
-?>
-
-	<H1>RUBROS DISPONIBLES</H1>
-<?php 
 	imprimirArrayConDescripciones($rubrosDisponibles);
 ?>
 
+	<H1>NIVELES DE EDUCACION DISPONIBLES</H1>
+<?php 
+	imprimirArrayConDescripciones($nivelesDeEducacion);
+?>
 
 
 <div id="cvEditorForm">

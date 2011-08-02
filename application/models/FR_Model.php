@@ -19,6 +19,8 @@ class FR_Model extends CI_Model {
 	 * */
 	public function decodeCursorData($cursorData){
 		foreach($cursorData as $fieldName => $aField){
+			//oracle return the values in caps lock, and we use lower case.
+			$fieldName = strtolower($fieldName);
 			foreach($aField as $index => $aValue){
 				$response[$index]->$fieldName = $aValue;
 			}

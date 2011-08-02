@@ -4,9 +4,6 @@ class Curriculum extends CI_Controller {
 	public function Curriculum(){
 		parent::__construct();
 		$this->view_data['base_url'] = base_url();
-//	$curriculumData = $curriculum->;
-//	
-//	$estadosCiviles = $curriculum->getEstadosCiviles();
 		
 	}
 	
@@ -30,8 +27,10 @@ class Curriculum extends CI_Controller {
 		
 		$data['estadosCiviles'] = $this->Util_model->getEstadosCiviles();
 		$data['paises'] = $response = $this->Util_model->getPaises();
-		$data['industriasDisponibles'] = $response = $this->Util_model->getListadoDeIndustriasDisponibles();
+		//$data['industriasDisponibles'] = $response = $this->Util_model->getListadoDeIndustriasDisponibles();
 		$data['rubrosDisponibles'] = $this->Util_model->getRubrosDisponibles();
+		$data['areasDisponibles'] = $this->Util_model->getAreasDisponibles();
+		$data['nivelesDeEducacion'] = $this->Util_model->getNivelesDeEducacion();
 		
 		
 		$this->load->view('view_curriculum', $data);
@@ -47,7 +46,7 @@ class Curriculum extends CI_Controller {
 	 *      'telefono1','horarioContactoDesde1','horarioContactoHasta1','telefono2',
 	 *      'horarioContactoDesde2','horarioContactoHasta2','idPaisNacionalidad','twitter','sms'
 	 *      }
-	 * output 0 is Ok.
+	 * output idCurriculum.
 	 * */
 	public function  setCurriculum(){
 		//TODO VALIDATE if the user have access to edit the cv
@@ -80,7 +79,8 @@ class Curriculum extends CI_Controller {
 	}
 
 	/**
-	 * input: 'habilidades' json string array > [{idHabilidad, tipoHabilidad, puntajeHabilidad}]
+	 * input: 'habilidades' json string array > [{idHabilidadDura, tipoHabilidad (0>industria/rubro 1>herramienta),
+	 *  	   	idHabilidad(idRubro / idHerramienta ), puntaje}]
 	 * output: 0 is oK.
 	 * */
 	public function  setHabilidadesDelCV(){
