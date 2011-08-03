@@ -20,7 +20,8 @@ class Curriculum extends CI_Controller {
 
 		$data['curriculumData'] = $curriculumData;
 
-		$data['habilidadesDelCV'] = $this->Curriculum_model->getHabilidadesDelCV($curriculumData->id);
+		$data['habilidadesIndustriasDelCV'] = $this->Curriculum_model->getHabilidadesIndustriasDelCV($curriculumData->id);
+		$data['habilidadesAreasDelCV'] = $this->Curriculum_model->getHabilidadesAreasDelCV($curriculumData->id);
 		$data['experienciaLaboralDelCv'] = $this->Curriculum_model->getExperienciaLaboralDelCv($curriculumData->id);
 		$data['educacionFormalDelCv'] = $this->Curriculum_model->getEducacionFormalDelCv($curriculumData->id);
 		$data['educacionNoFormalDelCv'] = $this->Curriculum_model->getEducacionNoFormalDelCv($curriculumData->id);
@@ -28,9 +29,10 @@ class Curriculum extends CI_Controller {
 		$data['estadosCiviles'] = $this->Util_model->getEstadosCiviles();
 		$data['paises'] = $response = $this->Util_model->getPaises();
 		//$data['industriasDisponibles'] = $response = $this->Util_model->getListadoDeIndustriasDisponibles();
-		$data['rubrosDisponibles'] = $this->Util_model->getRubrosDisponibles();
+		$data['industriasDisponibles'] = $this->Util_model->getIndustriasDisponibles();
 		$data['areasDisponibles'] = $this->Util_model->getAreasDisponibles();
 		$data['nivelesDeEducacion'] = $this->Util_model->getNivelesDeEducacion();
+		$data['entidadesEducativas'] = $this->Util_model->getEntidadesEducativas();
 		
 		
 		$this->load->view('view_curriculum', $data);
@@ -68,33 +70,76 @@ class Curriculum extends CI_Controller {
 	/**
 	 * input: null
 	 * output: las habilidades del cv mostrando.
-	 *  json array > [{tipoHabilidad (0>industria/rubro 1>herramienta),
-	 *  	   	idHabilidad(idIndustria / idHerramienta ), puntaje}]
+	 *  json array > [{idIndustria, puntos}]
 	 * */
-	public function  getHabilidadesDelCV(){
+	public function  getHabilidadesIndustriasDelCV(){
 		// Process their input and login the user
 		$unCurriculum = $this->session->userdata('CV_EDITANDO');
 		$unCurriculum->id;
-		$respuesta = $this->Curriculum_model->getHabilidadesDelCV($unCurriculum->id);
+		$respuesta = $this->Curriculum_model->getHabilidadesIndustriasDelCV($unCurriculum->id);
 		echo json_encode($respuesta);
 	}
 
 	/**
-	 * input: 'habilidades' json string array > [{tipoHabilidad (0>industria/rubro 1>herramienta),
-	 *  	   	idHabilidad(idRubro / idHerramienta ), puntaje}]
+	 * input: 'habilidadesIndustrias' json string array > [{idIndustria, puntos}]
 	 * output: 0 is oK.
 	 * */
-	public function  setHabilidadesDelCV(){
+	public function  setHabilidadesIndustriasDelCV(){
 		$currentCurriculum = $this->session->userdata('CV_EDITANDO');
-		$habilidades = $this->input->post('habilidades');
+		$habilidades = $this->input->post('habilidadesIndustrias');
 		$habilidades = json_decode($habilidades);
-		$respuesta = $this->Curriculum_model->setHabilidadesDelCV($currentCurriculum->id, $habilidades);
+		$respuesta = $this->Curriculum_model->setHabilidadesIndustriasDelCV($currentCurriculum->id, $habilidades);
+		echo json_encode($respuesta);
+	}
+	
+	
+	/**
+	 * input: null
+	 * output: las habilidades del cv mostrando.
+	 *  json array > [{idArea, idHerramienta, puntos}]
+	 * */
+	public function  getHabilidadesAreasDelCV(){
+		// Process their input and login the user
+		$unCurriculum = $this->session->userdata('CV_EDITANDO');
+		$respuesta = $this->Curriculum_model->getHabilidadesAreasDelCV($unCurriculum->id);
 		echo json_encode($respuesta);
 	}
 	
 	/**
+	 * input: 'habilidadesAreas' json string array > [{idArea, idHerramienta, puntos}]
+	 * output: 0 is oK.
+	 * */
+	public function  setHabilidadesAreasDelCV(){
+		$currentCurriculum = $this->session->userdata('CV_EDITANDO');
+		$habilidades = $this->input->post('habilidadesAreas');
+		$habilidades = json_decode($habilidades);
+		$respuesta = $this->Curriculum_model->setHabilidadesAreasDelCV($currentCurriculum->id, $habilidades);
+		echo json_encode($respuesta);
+	}
+	
+	/**
+	 * input: 'habilidadesIndustrias' json string array > [{idArea, idHerramienta, puntos}]
+	 * 		  'habilidadesAreas' json string array > [{idArea, idHerramienta, puntos}]
+	 * output: 0 is oK.
+	 * */
+	public function  setHabilidadesDelCV(){
+		$currentCurriculum = $this->session->userdata('CV_EDITANDO');
+		
+		$habilidadesAreas = $this->input->post('habilidadesAreas');
+		$habilidadesAreas = json_decode($habilidadesAreas);
+		$respuesta = $this->Curriculum_model->setHabilidadesAreasDelCV($currentCurriculum->id, $habilidadesAreas);
+
+		$habilidadesIndustrias = $this->input->post('habilidadesIndustrias');
+		$habilidadesIndustrias = json_decode($habilidadesIndustrias);
+		$respuesta = $respuesta + $this->Curriculum_model->setHabilidadesIndustriasDelCV($currentCurriculum->id, $habilidadesIndustrias);
+
+		echo json_encode($respuesta);
+	}
+	
+	
+	/**
 	 * input: null
-	 * output: json array > [{id, compania, idRubro, idPais, fechaDesde, fechaHasta, logro}].
+	 * output: json array > [{id, compania, idIndustria, idPais, fechaDesde, fechaHasta, logro}].
 	 * */	
 	public function  getExperienciaLaboralDelCv(){
 		// Process their input and login the user
@@ -133,7 +178,9 @@ class Curriculum extends CI_Controller {
 
 	
 	/**
-	 * input: 'educacionFormal' json > {id, idEntidad, descripcionEntidad, titulo, idNivelEducacion, idArea, 
+	 * input: 'educacionFormal' json > {id, idEntidad, 
+	 * 			descripcionEntidad (en caso de no existir la entidad en la lista de entidades la describe aqui.), 
+	 * 			titulo, idNivelEducacion, idArea, 
 	 * 			estado: "T" terminado "A" abandobado "C" en curso 
 	 * 			fechaInicio: "01/01/1900", fechaFinalizacion, promedio: 6.89
 	 * 			}

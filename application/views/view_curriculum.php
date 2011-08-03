@@ -1,3 +1,24 @@
+<?php 
+/**
+ * Este archivo pertenece a la vista del curriculum.
+ * El siguiente php tiene como parametros que recible del controller al cargarse 
+ * las siguientes variables>
+ * 		$curriculumData
+ * 		$habilidadesIndustriasDelCV
+ * 		$habilidadesAreasDelCV
+ * 		$experienciaLaboralDelCv
+ * 		$educacionFormalDelCv
+ * 		$educacionNoFormalDelCv
+ * 		$estadosCiviles
+ * 		$paises
+ * 		$industriasDisponibles
+ * 		$areasDisponibles
+ * 		$nivelesDeEducacion
+ * 		$entidadesEducativas
+ * */
+
+?>
+
 <!DOCTYPE unspecified PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <body>
@@ -54,33 +75,53 @@
 			"json");
 		});
 
-		var habilidades = [
-	     	{
-	    	 	tipoHabilidad: 0, 
-	    	 	idHabilidad: 0,
-	    	 	puntaje: 3
-	    	},
-	     	{
-	    	 	tipoHabilidad: 1,
-	    	 	idHabilidad: 0,
-	    	 	puntaje: 2
-	    	},
-	     	{
-	    	 	tipoHabilidad: 1,
-	    	 	idHabilidad: 2,
-	    	 	puntaje: 2
-	    	}
-	    ];
-    
-		
 		$('#setHabilidades').click(function(){
+			var habilidadesIndustrias = [
+		     	{
+		    	 	idIndustria: 0, 
+		    	 	puntos: 3
+		    	},
+		     	{
+		    	 	idIndustria: 1, 
+		    	 	puntos: 3
+		    	},
+		     	{
+		    	 	idIndustria: 2, 
+		    	 	puntos: 3
+		    	},
+		    ];
+		
+			var habilidadesAreas = [
+                  {
+                    idArea: 0, 
+                    idHerramienta: 0, 
+                  	puntos: 3
+                 },
+                  {
+                	idArea: 1, 
+                    idHerramienta: 3, 
+                  	puntos: 3
+                 },
+                 {
+                	idArea: 0, 
+                    idHerramienta: 2, 
+                  	puntos: 3
+                 },
+			];
+
+
 			$.post("curriculum/setHabilidadesDelCV", {
-				'habilidades': JSON.stringify(habilidades)
-			},
-			function(data){
-				debugger;
-			},
-			"json");
+				'habilidadesIndustrias': JSON.stringify(habilidadesIndustrias),
+				'habilidadesAreas': JSON.stringify(habilidadesAreas)
+				},
+				function(data){
+					debugger;
+				},
+				"json"
+			);
+
+
+			
 		});
 		
 		$('#setExperienciaLaboral').click(function(){
@@ -162,12 +203,20 @@ un cv <br/>
 	echo $curriculumData->sms;
 	echo '<br/>';
 ?>
-	<H1>HABILIDADES DEL CV</H1>
+	<H1>HABILIDADES INDUSTRIAS DEL CV</H1>
 <?php 
-	foreach ($habilidadesDelCV as $habilidad){
-		echo ' TIPO 0 es industria 1 herramienta>'. $habilidad->tipo . ' idIndustria/idHerramienta' . $habilidad->id . ' ' . $habilidad->puntaje . '<br/>' ;
+	foreach ($habilidadesIndustriasDelCV as $habilidad){
+		echo $habilidad->descripcionIndustria . " puntos-> ". $habilidad->puntos . '<br/>' ;
 	}
 ?>
+
+	<H1>HABILIDADES AREAS DEL CV</H1>
+<?php 
+	foreach ($habilidadesAreasDelCV as $habilidad){
+		echo $habilidad->descripcionArea . " - ". $habilidad->descripcionHerramienta . "puntos-> ". $habilidad->puntos . '<br/>' ;
+	}
+?>
+
 
 	<H1>EXPERIENCIA LABORAL DEL CV</H1>
 <?php 
@@ -195,7 +244,7 @@ un cv <br/>
 ?>
 	<H1>INDUSTRIAS DISPONIBLES</H1>
 <?php 
-	imprimirArrayConDescripciones($rubrosDisponibles);
+	imprimirArrayConDescripciones($industriasDisponibles);
 ?>
 
 	<H1>NIVELES DE EDUCACION DISPONIBLES</H1>
@@ -203,6 +252,10 @@ un cv <br/>
 	imprimirArrayConDescripciones($nivelesDeEducacion);
 ?>
 
+	<H1>ENTIDADES EDUCATIVAS DIPONIBLES </H1>
+<?php 
+	imprimirArrayConDescripciones($entidadesEducativas);
+?>
 
 <div id="cvEditorForm">
 	<div>

@@ -55,15 +55,25 @@ class Util extends CI_Controller {
 	
 	
 	/**
-	 * devuelve los rubros de emrpesas que existen
+	 * devuelve las industrias que existen
 	 * input: 
 	 * output: json array > [{id, descripcion}]
 	 */
-	public function  getRubros(){
-		$respuesta = $this->Util_model->getRubrosDisponibles();
+	public function  getIndustrias(){
+		$respuesta = $this->Util_model->getIndustriasDisponibles();
 		echo json_encode($respuesta);
 	}
 		
+	
+	/**
+	 * devuelve las entidades educativas conocidas
+	 * input: 
+	 * output: json array > [{id, descripcion}]
+	 */
+	public function  getEntidadesEducativas(){
+		$respuesta = $this->Util_model->getEntidadesEducativas();
+		echo json_encode($respuesta);
+	}
 	
 }
 

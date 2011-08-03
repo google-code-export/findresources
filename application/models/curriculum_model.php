@@ -100,7 +100,7 @@ class Curriculum_model extends FR_Model {
 		$unCurriculumn->gtalk = "usuario@gmail.com";
 		$unCurriculumn->sms = "15-3838-4994";
 		
-		return $unCurriculumn;		
+		return $unCurriculumn; //not working in the db yet.
 		
 		$curs=NULL;
 		$n1 = NULL;
@@ -167,7 +167,6 @@ class Curriculum_model extends FR_Model {
 	 * */
 	public function  setCurriculum($unCurriculum){
 		
-		$curs=NULL;
 		$n1 = NULL;
 		$n2 = NULL;
 		$params = array(
@@ -198,7 +197,6 @@ class Curriculum_model extends FR_Model {
 		);
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','pr_actualiza_cv',$params);
-		echo $n1;
 		
 		if ($n1 == 0){
 			return 0;
@@ -212,46 +210,198 @@ class Curriculum_model extends FR_Model {
 	}
 	
 	/**
-	 * Ingresar la lista de habilidades.
-	 * @param idCurriculum a editar
-	 * @param habilidades [{idHabilidadDura, tipoHabilidad (0>industria/rubro 1>herramienta),
-	 *  	   	idHabilidad(idRubro / idHerramienta ), puntaje}]
+	 * Obtiene la lista de habilidades del tipo industria del cv.
+	 * @param idCurriculum
+	 * @return habilidades [{idIndustria, puntos}]
+	 * 
 	 * */
-	public function  getHabilidadesDelCV($idCurriculum){
-		$respuesta[0]->id = 0;
-		$respuesta[0]->tipo = 0; //Industria
-		$respuesta[0]->idHabilidad = 0; 
-		$respuesta[0]->puntaje = 5;
+	public function  getHabilidadesIndustriasDelCV($idCurriculum){
+		$respuesta[0]->idIndustria = 0;
+		$respuesta[0]->descripcionIndustria = "Petrolera";
+		$respuesta[0]->puntos = 2; //Industria
 		
-		$respuesta[1]->id = 0;
-		$respuesta[1]->tipo = 1; //Herramienta
-		$respuesta[1]->idHabilidad = 0;
-		$respuesta[1]->puntaje = 2;
+		$respuesta[1]->idIndustria = 2;
+		$respuesta[1]->descripcionIndustria = "Banca";
+		$respuesta[1]->puntos = 2;
 				
-		return $respuesta;
+		return $respuesta;  //not in db yet
+		
+		
+		$curs=NULL;
+		$n1 = NULL;
+		$n2 = NULL;
+		$params = array(
+		array('name'=>':pi_id_curriculum', 'value'=>$idCurriculum, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':po_habilidades_duras_industria', 'value'=>&$curs, 'type'=>SQLT_RSET , 'length'=>-1),
+		array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
+		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','pr_obtiene_habilidades_duras_industria',$params);
+		echo $n1;
+		
+		if ($n1 == 0){
+			$dbRegistros = $this->oracledb->get_cursor_data();
+			$dbRegistros = $this->decodeCursorData($dbRegistros);
+			
+			//convert db data to model data.
+			foreach ($dbRegistros as $i => $dbRegistro){
+				$respuesta[$i]->idIndustria = $dbRegistro->id_industria;
+				$respuesta[$i]->descripcionIndustria = $dbRegistro->d_industria;
+				$respuesta[$i]->puntos = $dbRegistro->puntos;
+			}
+			return $response;
+		}
+		else{
+			
+			//TODO exception managment.
+        	throw new Exception('Oracle error message: ' . $n2);
+		}				
+		
+		
 	}
 
 	/**
-	 * Ingresar la lista de habilidades.
+	 * Ingresar la lista de habilidades del tipo industria del cv.
 	 * @param idCurriculum a editar
-	 * @param habilidades [{idHabilidadDura, tipoHabilidad (0>industria/rubro 1>herramienta),
-	 *  	   	idHabilidad(idRubro / idHerramienta ), puntaje}]
+	 * @param habilidades [{idIndustria, puntos}]
+	 * @return 
 	 * */
-	public function  setHabilidadesDelCV($idCurriculum, $habilidades){
+	public function  setHabilidadesIndustriasDelCV($idCurriculum, $habilidades){
+		
 		$parametro = "";
 		foreach ($habilidades as $habilidad){
 			if($parametro != ""){
 				//Its not the first need add ;
 				$parametro = $parametro . ';'; 
 			}
-			$parametro = $parametro . $habilidad->idHabilidadDura . ';' . 
-					$habilidad->tipoHabilidad . ';' . 
-					$habilidad->idHabilidad . ';' . 
-					$habilidad->puntaje;
+			$parametro = $parametro . 
+					$habilidad->idIndustria . ';' . 
+					$habilidad->puntos;
 		}
 		
-		return 0;
+		return 0; //not in db yet
 		
+		$n1 = NULL;
+		$n2 = NULL;
+		$params = array(
+		array('name'=>':pi_id_curriculm', 'value'=>$idCurriculum, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':pi_habilidades_duras_industria', 'value'=>$parametro, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
+		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','actualiza_habilidades_duras_industria',$params);
+		echo $n1;
+		
+		if ($n1 == 0){
+			return 0;
+		}
+		else{
+			
+			//TODO exception managment.
+        	throw new Exception('Oracle error message: ' . $n2);
+		}
+				
+		
+	}
+		
+	
+	/**
+	 * Obtiene la lista de habilidades del tipo area del cv.
+	 * @param idCurriculum a editar
+	 * @param habilidades [{idArea, idHerramienta, puntos}]
+	 * 
+	 * */
+	public function  getHabilidadesAreasDelCV($idCurriculum){
+		$respuesta[0]->idArea = 0;
+		$respuesta[0]->descripcionArea = "Informática";
+		$respuesta[0]->idHerramienta = 0;
+		$respuesta[0]->descripcionHerramienta = "Java Script";
+		$respuesta[0]->puntos = 5;
+		
+		$respuesta[1]->idArea = 0;
+		$respuesta[1]->descripcionArea = "Diseño";
+		$respuesta[1]->idHerramienta = 2;
+		$respuesta[1]->descripcionHerramienta = "Photoshop";
+		$respuesta[1]->puntos = 1;
+		
+		return $respuesta; //not in db yet
+		
+		$curs=NULL;
+		$n1 = NULL;
+		$n2 = NULL;
+		$params = array(
+		array('name'=>':pi_id_curriculum', 'value'=>$idCurriculum, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':po_habilidades_duras_industria', 'value'=>&$curs, 'type'=>SQLT_RSET , 'length'=>-1),
+		array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
+		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','pr_obtiene_habilidades_duras_areas',$params);
+		echo $n1;
+		
+		if ($n1 == 0){
+			$dbRegistros = $this->oracledb->get_cursor_data();
+			$dbRegistros = $this->decodeCursorData($dbRegistros);
+			
+			//convert db data to model data.
+			foreach ($dbRegistros as $i => $dbRegistro){
+				$respuesta[$i]->idArea = $dbRegistro->id_area;
+				$respuesta[$i]->descripcionArea = $dbRegistro->d_area;
+				$respuesta[$i]->idHerramienta = $dbRegistro->id_herramienta;
+				$respuesta[$i]->descripcionHerramienta = $dbRegistro->d_herramienta;
+				$respuesta[$i]->puntos = $dbRegistro->puntos;
+			}
+			return $response;
+		}
+		else{
+			
+			//TODO exception managment.
+        	throw new Exception('Oracle error message: ' . $n2);
+		}		
+	}	
+
+	/**
+	 * Ingresar la lista de habilidades del tipo area.
+	 * @param idCurriculum a editar
+	 * @param habilidades [{idArea, idHerramienta, puntos}]
+	 * */
+	public function  setHabilidadesAreasDelCV($idCurriculum, $habilidades){
+		$parametro = "";
+		foreach ($habilidades as $habilidad){
+			if($parametro != ""){
+				//Its not the first need add ;
+				$parametro = $parametro . ';'; 
+			}
+			$parametro = $parametro .  
+					$habilidad->idArea . ';' . 
+					$habilidad->idHerramienta . ';' . 
+					$habilidad->puntos;
+		}
+		
+		return 0; //NOT IN DB YET ////////////
+
+		$n1 = NULL;
+		$n2 = NULL;
+		$params = array(
+		array('name'=>':pi_id_curriculm', 'value'=>$idCurriculum, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':pi_habilidades_duras_areas', 'value'=>$parametro, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
+		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','actualiza_habilidades_duras_areas',$params);
+		echo $n1;
+		
+		if ($n1 == 0){
+			return 0;
+		}
+		else{
+			
+			//TODO exception managment.
+        	throw new Exception('Oracle error message: ' . $n2);
+		}
 		
 	}	
 	
@@ -274,7 +424,7 @@ class Curriculum_model extends FR_Model {
 		$respuesta[1]->fechaDesde = "01/01/1900";
 		$respuesta[1]->fechaHasta = "01/01/1900";
 		$respuesta[1]->logro = 0;
-		return $respuesta;
+		return $respuesta; //NOT IN THE DB YET.
 		
 		$curs=NULL;
 		$n1 = NULL;
@@ -319,7 +469,7 @@ class Curriculum_model extends FR_Model {
  	 * para nuevo registro, $experienciaLaboral->id debe ser nulo.
 	 * @return retorna el id de experiencia laboral.
 	 * */
-	public function  setExperienciaLaboral($idCurriculum, $experienciaLaboral){
+	public function setExperienciaLaboral($idCurriculum, $experienciaLaboral){
 		$rta=NULL;
 		$n1 = NULL;
 		$n2 = NULL;
@@ -384,7 +534,7 @@ class Curriculum_model extends FR_Model {
 		$respuesta[1]->fechaFinalizacion = "01/01/1900";
 		$respuesta[1]->promedio = 6.89;
 		
-		return $respuesta;
+		return $respuesta; //not in the db yet.
 		
 		$curs=NULL;
 		$n1 = NULL;
