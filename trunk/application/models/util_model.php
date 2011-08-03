@@ -127,7 +127,7 @@ class Util_model extends FR_Model {
 	/**
 	 * Devuelve las habilidades diponibles para seleccionar.
 	 * */
-	public function  getRubrosDisponibles(){
+	public function  getIndustriasDisponibles(){
 		
 		$curs=NULL;
 		$n1 = NULL;
@@ -172,7 +172,37 @@ class Util_model extends FR_Model {
 		$respuesta[1]->descripcion = ".Net";
 		$respuesta[2]->id = 3; 
 		$respuesta[2]->descripcion = "Oracle";
-		return $respuesta;
+		return $respuesta; ///not in the db yet.
+		
+		$curs=NULL;
+		$n1 = NULL;
+		$n2 = NULL;
+		$params = array(
+		array('name'=>':po_herramientas', 'value'=>&$curs, 'type'=>SQLT_RSET , 'length'=>-1),
+		array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
+		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_util','pr_obtiene_herramientas_por_area',$params);
+		
+		if ($n1 == 0){
+			$dbRegistros = $this->oracledb->get_cursor_data();
+			$dbRegistros = $this->decodeCursorData($dbRegistros);
+			
+			//convert db data to model data.
+			foreach ($dbRegistros as $i => $dbRegistro){
+				$response[$i]->id  = $dbRegistro->herramienta;
+				$response[$i]->descripcion  = $dbRegistro->d_herramienta;
+			}
+			
+			return $response;
+		}
+		else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message: ' . $n2);
+		}		
+		
+		
 	}
 
 	/**
@@ -246,6 +276,49 @@ class Util_model extends FR_Model {
 		}
 		
 	}
+	
+	/**
+	 * Devuelve las entidades educativas conocidas
+	 * [{id, descripcion}]
+	 * */
+	public function  getEntidadesEducativas(){
+		$respuesta[0]->id = 1; 
+		$respuesta[0]->descripcion = "Escuela de payasos Krusty";
+		$respuesta[1]->id = 2; 
+		$respuesta[1]->descripcion = "Universidad Bovina";
+		$respuesta[2]->id = 3; 
+		$respuesta[2]->descripcion = "Landa Landa Landa";
+		return $respuesta; // not yet in db
+		
+		$curs=NULL;
+		$n1 = NULL;
+		$n2 = NULL;
+		$params = array(
+		array('name'=>':po_entidades', 'value'=>&$curs, 'type'=>SQLT_RSET , 'length'=>-1),
+		array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
+		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_util','pr_obtiene_entidades_educativas',$params);
+		
+		if ($n1 == 0){
+			$dbRegistros = $this->oracledb->get_cursor_data();
+			$dbRegistros = $this->decodeCursorData($dbRegistros);
+			
+			//convert db data to model data.
+			foreach ($dbRegistros as $i => $dbRegistro){
+				$response[$i]->id  = $dbRegistro->id_entidad_educativa;
+				$response[$i]->descripcion  = $dbRegistro->d_entidad_educativa;
+			}
+			
+			return $response;
+		}
+		else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message: ' . $n2);
+		}
+		
+	}	
 
 }
 
