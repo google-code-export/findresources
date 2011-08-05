@@ -30,6 +30,7 @@ class Util_model extends FR_Model {
 			$dbRegistros = $this->decodeCursorData($dbRegistros);
 			
 			//convert db data to model data.
+			$response = array();
 			foreach ($dbRegistros as $i => $dbRegistro){
 				$response[$i]->id  = $dbRegistro->estado_civil;
 				$response[$i]->descripcion  = $dbRegistro->d_estado_civil;
@@ -39,7 +40,7 @@ class Util_model extends FR_Model {
 		else{
 			
 			//TODO exception managment.
-        	throw new Exception('Oracle error message: ' . $n2);
+        	throw new Exception('Oracle error message in getEstadosCiviles(): ' . $n2);
 		}
 	}
 	
@@ -65,6 +66,7 @@ class Util_model extends FR_Model {
 			$dbRegistros = $this->oracledb->get_cursor_data();
 			$dbRegistros = $this->decodeCursorData($dbRegistros);
 			//convert db data to model data.
+			$response = array();
 			foreach ($dbRegistros as $i => $dbRegistro){
 				$response[$i]->id  = $dbRegistro->pais;
 				$response[$i]->descripcion  = $dbRegistro->dpais;
@@ -76,7 +78,7 @@ class Util_model extends FR_Model {
 			
 			/** CERRAR LA CONEXIÓN A LA BASE **/ 
 			//TODO exception managment.
-        	throw new Exception('Oracle error message: ' . $n2);
+        	throw new Exception('Oracle error message in getPaises(): ' . $n2);
 		}
 	}
 	
@@ -109,6 +111,7 @@ class Util_model extends FR_Model {
 			$dbRegistros = $this->decodeCursorData($dbRegistros);
 			
 			//convert db data to model data.
+			$response = array();
 			foreach ($dbRegistros as $i => $dbRegistro){
 				$response[$i]->id  = $dbRegistro->provincias;
 				$response[$i]->descripcion  = $dbRegistro->d_provincias;
@@ -119,7 +122,7 @@ class Util_model extends FR_Model {
 		else{
 			
 			//TODO exception managment.
-        	throw new Exception('Oracle error message: ' . $n2);
+        	throw new Exception('Oracle error message in getProvincias(): ' . $n2);
 		}
 	
 	}
@@ -145,6 +148,7 @@ class Util_model extends FR_Model {
 			$dbRegistros = $this->decodeCursorData($dbRegistros);
 			
 			//convert db data to model data.
+			$response = array();
 			foreach ($dbRegistros as $i => $dbRegistro){
 				$response[$i]->id  = $dbRegistro->id_rubro;
 				$response[$i]->descripcion  = $dbRegistro->d_rubro;
@@ -154,7 +158,7 @@ class Util_model extends FR_Model {
 		}
 		else{
 			//TODO exception managment.
-        	throw new Exception('Oracle error message: ' . $n2);
+        	throw new Exception('Oracle error message in getIndustriasDisponibles(): ' . $n2);
 		}
 		
 	}
@@ -190,6 +194,7 @@ class Util_model extends FR_Model {
 			$dbRegistros = $this->decodeCursorData($dbRegistros);
 			
 			//convert db data to model data.
+			$response = array();
 			foreach ($dbRegistros as $i => $dbRegistro){
 				$response[$i]->id  = $dbRegistro->herramienta;
 				$response[$i]->descripcion  = $dbRegistro->d_herramienta;
@@ -199,7 +204,7 @@ class Util_model extends FR_Model {
 		}
 		else{
 			//TODO exception managment.
-        	throw new Exception('Oracle error message: ' . $n2);
+        	throw new Exception('Oracle error message in getHerramientasPorArea(): ' . $n2);
 		}		
 		
 		
@@ -228,6 +233,7 @@ class Util_model extends FR_Model {
 			$dbRegistros = $this->decodeCursorData($dbRegistros);
 			
 			//convert db data to model data.
+			$response = array();
 			foreach ($dbRegistros as $i => $dbRegistro){
 				$response[$i]->id  = $dbRegistro->nivel_educacion;
 				$response[$i]->descripcion  = $dbRegistro->d_nivel_educcacion;
@@ -237,7 +243,7 @@ class Util_model extends FR_Model {
 		}
 		else{
 			//TODO exception managment.
-        	throw new Exception('Oracle error message: ' . $n2);
+        	throw new Exception('Oracle error message in getNivelesDeEducacion(): ' . $n2);
 		}
 		
 	}	
@@ -263,6 +269,7 @@ class Util_model extends FR_Model {
 			$dbRegistros = $this->decodeCursorData($dbRegistros);
 			
 			//convert db data to model data.
+			$response = array();
 			foreach ($dbRegistros as $i => $dbRegistro){
 				$response[$i]->id  = $dbRegistro->id_area;
 				$response[$i]->descripcion  = $dbRegistro->d_area;
@@ -272,7 +279,7 @@ class Util_model extends FR_Model {
 		}
 		else{
 			//TODO exception managment.
-        	throw new Exception('Oracle error message: ' . $n2);
+        	throw new Exception('Oracle error message in getAreasDisponibles(): ' . $n2);
 		}
 		
 	}
@@ -282,14 +289,7 @@ class Util_model extends FR_Model {
 	 * [{id, descripcion}]
 	 * */
 	public function  getEntidadesEducativas(){
-		$respuesta[0]->id = 1; 
-		$respuesta[0]->descripcion = "Escuela de payasos Krusty";
-		$respuesta[1]->id = 2; 
-		$respuesta[1]->descripcion = "Universidad Bovina";
-		$respuesta[2]->id = 3; 
-		$respuesta[2]->descripcion = "Landa Landa Landa";
-		return $respuesta; // not yet in db
-		
+
 		$curs=NULL;
 		$n1 = NULL;
 		$n2 = NULL;
@@ -299,13 +299,14 @@ class Util_model extends FR_Model {
 		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
 		);
 		
-		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_util','pr_obtiene_entidades_educativas',$params);
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_util','pr_obtiene_entidad_educativa',$params);
 		
 		if ($n1 == 0){
 			$dbRegistros = $this->oracledb->get_cursor_data();
 			$dbRegistros = $this->decodeCursorData($dbRegistros);
 			
 			//convert db data to model data.
+			$response = array();
 			foreach ($dbRegistros as $i => $dbRegistro){
 				$response[$i]->id  = $dbRegistro->id_entidad_educativa;
 				$response[$i]->descripcion  = $dbRegistro->d_entidad_educativa;
@@ -315,10 +316,11 @@ class Util_model extends FR_Model {
 		}
 		else{
 			//TODO exception managment.
-        	throw new Exception('Oracle error message: ' . $n2);
+        	throw new Exception('Oracle error message in getEntidadesEducativas(): ' . $n2);
 		}
 		
 	}	
+	
 
 }
 

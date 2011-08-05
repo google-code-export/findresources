@@ -226,6 +226,18 @@ un cv <br/>
 ?>
 
 
+	<H1>EDUCACION FORMAL DEL CV</H1>
+<?php 
+	var_dump($educacionFormalDelCv);
+?>
+
+	<H1>EDUCACION NO FORMAL DEL CV (NO ESTA DEFINIDO COMPLETAMENTE ESTE PUNTO.)</H1>
+<?php 
+	var_dump($educacionNoFormalDelCv);
+?>
+
+
+
 	<H1>ESTADOS CIVILES DISPONIBLES</H1>
 <?php 
 	function imprimirArrayConDescripciones($array){
@@ -256,6 +268,13 @@ un cv <br/>
 <?php 
 	imprimirArrayConDescripciones($entidadesEducativas);
 ?>
+
+<H1>AREAS DISPONIBLES </H1>
+<?php 
+	imprimirArrayConDescripciones($areasDisponibles);
+?>
+
+
 
 <div id="cvEditorForm">
 	<div>

@@ -1,5 +1,6 @@
 <?php
 /**
+ * FindResources model.
  * this class extends form CI_Model. implements all methods of the parent
  * and add methods for this project.
  * @author martin.fox
@@ -18,6 +19,7 @@ class FR_Model extends CI_Model {
 	 * convert a cursor data to an array of object
 	 * */
 	public function decodeCursorData($cursorData){
+		$response = array(); 
 		foreach($cursorData as $fieldName => $aField){
 			//oracle return the values in caps lock, and we use lower case.
 			$fieldName = strtolower($fieldName);
