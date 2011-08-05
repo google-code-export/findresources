@@ -12,13 +12,12 @@ class Curriculum_model extends FR_Model {
 	 * @return idCurriculum.
 	 * */
 	public function getCurriculumUser($idUsuario){
-		return 0; //not working yet.		
 		
 		$rta=NULL;
 		$n1 = NULL;
 		$n2 = NULL;
 		$params = array(
-		array('name'=>':pi_usuario', 'value'=>$idCurriculum, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':pi_usuario', 'value'=>$idUsuario, 'type'=>SQLT_CHR, 'length'=>-1),
 		array('name'=>':po_id_curriculum', 'value'=>&$rta, 'type'=>SQLT_CHR , 'length'=>255),
 		array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
 		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
@@ -30,7 +29,7 @@ class Curriculum_model extends FR_Model {
 			return $rta;
 		}else{
 			//TODO exception managment.
-        	throw new Exception('Oracle error message: ' . $n2);
+        	throw new Exception('Oracle error message in getCurriculumUser('. $idUsuario .'): ' . $n2);
 		}
 		
 	}
@@ -41,13 +40,12 @@ class Curriculum_model extends FR_Model {
 	 * @return idCurriculum.
 	 * */
 	public function createCurriculumUser($idUsuario){
-		return 0; //not working yet.		
 		
 		$rta=NULL;
 		$n1 = NULL;
 		$n2 = NULL;
 		$params = array(
-		array('name'=>':pi_usuario', 'value'=>$idCurriculum, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':pi_usuario', 'value'=>$idUsuario, 'type'=>SQLT_CHR, 'length'=>-1),
 		array('name'=>':po_id_curriculum', 'value'=>&$rta, 'type'=>SQLT_CHR , 'length'=>255),
 		array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
 		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
@@ -59,7 +57,7 @@ class Curriculum_model extends FR_Model {
 			return $rta;
 		}else{
 			//TODO exception managment.
-        	throw new Exception('Oracle error message: ' . $n2);
+        	throw new Exception('Oracle error message in createCurriculumUser('. $idUsuario . ')'. $n2);
 		}
 		
 	}	
@@ -75,33 +73,6 @@ class Curriculum_model extends FR_Model {
 	 * **/
 	public function  getCurriculum($idCurriculum){
 
-
-		$unCurriculumn->id = 0;
-		$unCurriculumn->usuario = "unmail@unserver.com";
-		$unCurriculumn->estadoCivil = 0;
-		//$unCurriculumn->cantidadHijos = 0;
-		$unCurriculumn->fechaNacimiento = "15/05/1966";
-		$unCurriculumn->idPais = "Argentina";
-		$unCurriculumn->idProvincia = "CABA";
-		$unCurriculumn->partido = "Ramos Mejia";
-		$unCurriculumn->calle = "Calle Falsa";
-		$unCurriculumn->numero = "2222";
-		$unCurriculumn->piso = "3";
-		$unCurriculumn->departamento = "A";
-		$unCurriculumn->codigoPostal = "CWI1417C";
-		$unCurriculumn->telefono1 = "4554-1235";
-		$unCurriculumn->horarioContactoDesde1 = "9";
-		$unCurriculumn->horarioContactoHasta1 = "18";
-		$unCurriculumn->telefono2 = "4554-1235";
-		$unCurriculumn->horarioContactoDesde2 = "";
-		$unCurriculumn->horarioContactoHasta2 = "";
-		$unCurriculumn->idPaisNacionalidad = 0;
-		$unCurriculumn->twitter = "@twitteruser";
-		$unCurriculumn->gtalk = "usuario@gmail.com";
-		$unCurriculumn->sms = "15-3838-4994";
-		
-		return $unCurriculumn; //not working in the db yet.
-		
 		$curs=NULL;
 		$n1 = NULL;
 		$n2 = NULL;
@@ -113,45 +84,40 @@ class Curriculum_model extends FR_Model {
 		);
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','pr_consulta_cv',$params);
-		echo $n1;
 		
 		if ($n1 == 0){
 			$dbRegistros = $this->oracledb->get_cursor_data();
 			$dbRegistros = $this->decodeCursorData($dbRegistros);
-			
 			//convert db data to model data.
-//				$response[$i]->id  = $dbRegistro->ESTADO_CIVIL;
-//				$response[$i]->descripcion  = $dbRegistro->D_ESTADO_CIVIL;
-				$response->id = $idCurriculum;
-				$response->usuario = $dbRegistros[0]->usuario;
-				$response->estadoCivil = $dbRegistros[0]->estado_civil;
-				//$response->cantidadHijos = 0;
-				$response->fechaNacimiento = $dbRegistros[0]->fecha_nacimiento;
-				$response->idPais = $dbRegistros[0]->pais;
-				$response->idProvincia = $dbRegistros[0]->provincia;
-				$response->partido = $dbRegistros[0]->partido;
-				$response->calle = $dbRegistros[0]->calle;
-				$response->numero = $dbRegistros[0]->numero;
-				$response->piso = $dbRegistros[0]->piso;
-				$response->departamento = $dbRegistros[0]->departamento;
-				$response->codigoPostal = $dbRegistros[0]->codigo_postal;
-				$response->telefono1 = $dbRegistros[0]->telefono_contacto1;
-				$response->horarioContactoDesde1 = $dbRegistros[0]->horario_contacto_desde1;
-				$response->horarioContactoHasta1 = $dbRegistros[0]->HORARIO_CONTACTO_HASTA1;
-				$response->telefono2 = $dbRegistros[0]->TELEFONO_CONTACTO2;
-				$response->horarioContactoDesde2 = $dbRegistros[0]->HORARIO_CONTACTO_DESDE2;
-				$response->horarioContactoHasta2 = $dbRegistros[0]->HORARIO_CONTACTO_HASTA2;
-				$response->nacionalidad = $dbRegistros[0]->NACIONALIDAD;
-				$response->twitter = $dbRegistros[0]->TWITTER;
-				$response->gtalk = $dbRegistros[0]->GTALK;
-				$response->sms = $dbRegistros[0]->SMS;
-//			}
+			$response->id = $idCurriculum;
+			$response->usuario = $dbRegistros[0]->usuario;
+			$response->estadoCivil = $dbRegistros[0]->estado_civil;
+			//$response->cantidadHijos = 0;
+			$response->fechaNacimiento = $dbRegistros[0]->fecha_nacimiento;
+			$response->idPais = $dbRegistros[0]->pais;
+			$response->idProvincia = $dbRegistros[0]->provincia;
+			$response->partido = $dbRegistros[0]->partido;
+			$response->calle = $dbRegistros[0]->calle;
+			$response->numero = $dbRegistros[0]->numero;
+			$response->piso = $dbRegistros[0]->piso;
+			$response->departamento = $dbRegistros[0]->departamento;
+			$response->codigoPostal = $dbRegistros[0]->codigo_postal;
+			$response->telefono1 = $dbRegistros[0]->telefono_contacto1;
+			$response->horarioContactoDesde1 = $dbRegistros[0]->horario_contacto1_desde1;
+			$response->horarioContactoHasta1 = $dbRegistros[0]->horario_contacto1_hasta1;
+			$response->telefono2 = $dbRegistros[0]->telefono_contacto2;
+			$response->horarioContactoDesde2 = $dbRegistros[0]->horario_contacto2_desde;
+			$response->horarioContactoHasta2 = $dbRegistros[0]->horario_contacto2_hasta;
+			$response->idPaisNacionalidad = $dbRegistros[0]->nacionalidad;
+			$response->twitter = $dbRegistros[0]->twitter;
+			$response->gtalk = $dbRegistros[0]->gtalk;
+			$response->sms = $dbRegistros[0]->sms;
 			return $response;
 		}
 		else{
 			
 			//TODO exception managment.
-        	throw new Exception('Oracle error message: ' . $n2);
+        	throw new Exception('Oracle error message: getCurriculum('.$idCurriculum. ')' . $n2);
 		}		
 		
 	}
@@ -238,19 +204,19 @@ class Curriculum_model extends FR_Model {
 		);
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','pr_obtiene_habilidades_duras_industria',$params);
-		echo $n1;
 		
 		if ($n1 == 0){
 			$dbRegistros = $this->oracledb->get_cursor_data();
 			$dbRegistros = $this->decodeCursorData($dbRegistros);
 			
 			//convert db data to model data.
+			$respuesta = array();
 			foreach ($dbRegistros as $i => $dbRegistro){
 				$respuesta[$i]->idIndustria = $dbRegistro->id_industria;
 				$respuesta[$i]->descripcionIndustria = $dbRegistro->d_industria;
 				$respuesta[$i]->puntos = $dbRegistro->puntos;
 			}
-			return $response;
+			return $respuesta;
 		}
 		else{
 			
@@ -292,7 +258,6 @@ class Curriculum_model extends FR_Model {
 		);
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','actualiza_habilidades_duras_industria',$params);
-		echo $n1;
 		
 		if ($n1 == 0){
 			return 0;
@@ -339,13 +304,13 @@ class Curriculum_model extends FR_Model {
 		);
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','pr_obtiene_habilidades_duras_areas',$params);
-		echo $n1;
 		
 		if ($n1 == 0){
 			$dbRegistros = $this->oracledb->get_cursor_data();
 			$dbRegistros = $this->decodeCursorData($dbRegistros);
 			
 			//convert db data to model data.
+			$respuesta = array();
 			foreach ($dbRegistros as $i => $dbRegistro){
 				$respuesta[$i]->idArea = $dbRegistro->id_area;
 				$respuesta[$i]->descripcionArea = $dbRegistro->d_area;
@@ -353,7 +318,7 @@ class Curriculum_model extends FR_Model {
 				$respuesta[$i]->descripcionHerramienta = $dbRegistro->d_herramienta;
 				$respuesta[$i]->puntos = $dbRegistro->puntos;
 			}
-			return $response;
+			return $respuesta;
 		}
 		else{
 			
@@ -392,7 +357,6 @@ class Curriculum_model extends FR_Model {
 		);
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','actualiza_habilidades_duras_areas',$params);
-		echo $n1;
 		
 		if ($n1 == 0){
 			return 0;
@@ -410,21 +374,6 @@ class Curriculum_model extends FR_Model {
 	 * @return: array with [{id, compania, idRubro, idPais, fechaDesde, fechaHasta, logro}]
 	 */
 	public function  getExperienciaLaboralDelCv($idCurriculum){
-		$respuesta[0]->id = 0;
-		$respuesta[0]->compania = "netsol";
-		$respuesta[0]->idRubro = 0;
-		$respuesta[0]->idPais = 0;
-		$respuesta[0]->fechaDesde = "01/01/1900";
-		$respuesta[0]->fechaHasta = "01/01/1900";
-		$respuesta[0]->logro = " un logro ";
-		$respuesta[1]->id = 0;
-		$respuesta[1]->compania = 0;
-		$respuesta[1]->idRubro = 0;
-		$respuesta[1]->idPais = 0;
-		$respuesta[1]->fechaDesde = "01/01/1900";
-		$respuesta[1]->fechaHasta = "01/01/1900";
-		$respuesta[1]->logro = 0;
-		return $respuesta; //NOT IN THE DB YET.
 		
 		$curs=NULL;
 		$n1 = NULL;
@@ -437,13 +386,13 @@ class Curriculum_model extends FR_Model {
 		);
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','pr_consulta_exp_laboral',$params);
-		echo $n1;
 		
 		if ($n1 == 0){
 			$dbRegistros = $this->oracledb->get_cursor_data();
 			$dbRegistros = $this->decodeCursorData($dbRegistros);
 			
 			//convert db data to model data.
+			$response = array();
 			foreach ($dbRegistros as $i => $dbRegistro){
 				$response[$i]->id  = $dbRegistro->id_historia_laboral_cv;
 				$response[$i]->compania = $dbRegistro->d_compania;
@@ -511,31 +460,6 @@ class Curriculum_model extends FR_Model {
 	 * 			}]
 	 * */
 	public function  getEducacionFormalDelCv($idCurriculum){
-		
-		$respuesta[0]->id = 0;
-		$respuesta[0]->idEntidad = 0;
-		$respuesta[0]->descripcionEntidad = "en caso de otros";
-		$respuesta[0]->titulo = "titulo";
-		$respuesta[0]->idNivelEducacion = 0;
-		$respuesta[0]->idArea = 0;
-		$respuesta[0]->estado = "T";
-		$respuesta[0]->fechaInicio = "01/01/1900";
-		$respuesta[0]->fechaFinalizacion = "01/01/1900";
-		$respuesta[0]->promedio = 6.89;
-		
-		$respuesta[1]->id = 0;
-		$respuesta[1]->idEntidad = 0;
-		$respuesta[1]->descripcionEntidad = "en caso de otros";
-		$respuesta[1]->titulo = "titulo";
-		$respuesta[1]->idNivelEducacion = 0;
-		$respuesta[1]->idArea = 0;
-		$respuesta[1]->estado = "T";
-		$respuesta[1]->fechaInicio = "01/01/1900";
-		$respuesta[1]->fechaFinalizacion = "01/01/1900";
-		$respuesta[1]->promedio = 6.89;
-		
-		return $respuesta; //not in the db yet.
-		
 		$curs=NULL;
 		$n1 = NULL;
 		$n2 = NULL;
@@ -546,14 +470,15 @@ class Curriculum_model extends FR_Model {
 		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
 		);
 		
-		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','pr_consulta_exp_laboral',$params);
-		echo $n1;
-		
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','pr_consulta_edu_formal',$params);
+
 		if ($n1 == 0){
+			
 			$dbRegistros = $this->oracledb->get_cursor_data();
 			$dbRegistros = $this->decodeCursorData($dbRegistros);
-			
+
 			//convert db data to model data.
+			$respuesta = array();
 			foreach ($dbRegistros as $i => $dbRegistro){
 				$respuesta[$i]->id = $dbRegistro->id_educacion_formal_cv;
 				$respuesta[$i]->idEntidad = $dbRegistro->id_entidad_educativa;
@@ -566,7 +491,7 @@ class Curriculum_model extends FR_Model {
 				$respuesta[$i]->fechaFinalizacion = $dbRegistro->f_finalizacion;
 				$respuesta[$i]->promedio = $dbRegistro->promedio;
 			}
-			return $response;
+			return $respuesta;
 		}
 		else{
 			
@@ -586,7 +511,6 @@ class Curriculum_model extends FR_Model {
 	 * 		
 	 * */
 	public function  setEducacionFormal($idCurriculum, $educacionFormal){
-		return 1;
 		$rta=NULL;
 		$n1 = NULL;
 		$n2 = NULL;
