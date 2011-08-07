@@ -471,10 +471,10 @@ class Curriculum_model extends FR_Model {
 		);
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','pr_consulta_edu_formal',$params);
-
 		if ($n1 == 0){
 			
 			$dbRegistros = $this->oracledb->get_cursor_data();
+//			var_dump($dbRegistros);
 			$dbRegistros = $this->decodeCursorData($dbRegistros);
 
 			//convert db data to model data.
@@ -502,11 +502,12 @@ class Curriculum_model extends FR_Model {
 	}
 	
 	/**
-	 * @param educacionFormal = [{id (null for new item), idEntidad, descripcionEntidad,
+	 * @param $idCurriculum
+	 * @param $educacionFormal = {id (null for new item), idEntidad, descripcionEntidad,
 	 * 			 titulo, idNivelEducacion, idArea, 
 	 * 			estado: "T" terminado "A" abandobado "C" en curso 
 	 * 			fechaInicio: "01/01/1900", fechaFinalizacion, promedio: 6.89
-	 * 			}]
+	 * 			}
 	 * @return idEducacionFormal
 	 * 		
 	 * */
@@ -545,37 +546,80 @@ class Curriculum_model extends FR_Model {
 			
 	}
 	
-	//TBD
-	public function  getEducacionNoFormalDelCv(){
-		$respuesta[0]->id = 0;
-		$respuesta[0]->idEntidad = 0;
-		$respuesta[0]->descripcionEntidad = "en caso de otros";
-		$respuesta[0]->titulo = "titulo";
-		$respuesta[0]->idNivelEducacion = 0;
-		$respuesta[0]->idArea = 0;
-		$respuesta[0]->estado = "T";
-		$respuesta[0]->fechaInicio = "01/01/1900";
-		$respuesta[0]->fechaFinalizacion = "01/01/1900";
-		$respuesta[0]->promedio = 6.89;
+	/**
+	 * @param $idCurriculum
+	 * @return educacionNoFormal = [{id, idTipoEducacionNoFormal, 
+	 * 			descripcion, duracion}]
+	 * 		
+	 * */
+    public function  getEducacionNoFormalDelCv($idCurriculum){
+		$curs=NULL;
+		$n1 = NULL;
+		$n2 = NULL;
+		$params = array(
+		array('name'=>':pi_id_curriculum', 'value'=>$idCurriculum, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':po_educacion_formal', 'value'=>&$curs, 'type'=>SQLT_RSET , 'length'=>-1),
+		array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
+		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
+		);
 		
-		$respuesta[1]->id = 0;
-		$respuesta[1]->idEntidad = 0;
-		$respuesta[1]->descripcionEntidad = "en caso de otros";
-		$respuesta[1]->titulo = "titulo";
-		$respuesta[1]->idNivelEducacion = 0;
-		$respuesta[1]->idArea = 0;
-		$respuesta[1]->estado = "T";
-		$respuesta[1]->fechaInicio = "01/01/1900";
-		$respuesta[1]->fechaFinalizacion = "01/01/1900";
-		$respuesta[1]->promedio = 6.89;
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','pr_consulta_edu_no_formal',$params);
 		
-		return $respuesta;
-		
+		if ($n1 == 0){
+			
+			$dbRegistros = $this->oracledb->get_cursor_data();
+			$dbRegistros = $this->decodeCursorData($dbRegistros);
+
+			//convert db data to model data.
+			$respuesta = array();
+			foreach ($dbRegistros as $i => $dbRegistro){
+				
+				$respuesta[$i]->id = $dbRegistro->id_educacion_no_formal;
+				$respuesta[$i]->idTipoEducacionNoFormal = $dbRegistro->tipo_educacion_no_formal;
+				$respuesta[$i]->descripcion = $dbRegistro->d_educacion_no_formal;
+				$respuesta[$i]->duracion = $dbRegistro->d_duracion;
+			}
+			return $respuesta;
+		}
+		else{
+			
+			//TODO exception managment.
+        	throw new Exception('Oracle error message: ' . $n2);
+		}						
 	}
 	
-	//TBD
-	public function  editarEducacionNoFormal(){
-	
+	/**
+	 * @param $idCurriculum
+	 * @param $educacionNoFormal {id (null for new item), idTipoEducacionNoFormal, 
+	 * 			descripcion, duracion}
+	 * @return $idEducacionNoFormal
+	 * */
+	public function setEducacionNoFormal($idCurriculum, $educacionNoFormal){
+		$rta=NULL;
+		$n1 = NULL;
+		$n2 = NULL;
+		
+		$params = array(
+			array('name'=>':pi_id_educacion_no_formal', 'value'=>$educacionNoFormal->id, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_id_curriculm', 'value'=>$idCurriculum, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_tipo_educacion_no_formal', 'value'=>$educacionNoFormal->idTipoEducacionNoFormal, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_d_educacion_no_formal', 'value'=>$educacionNoFormal->descripcionEntidad, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_d_duracion', 'value'=>$educacionNoFormal->duracion, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':po_id_educacion_no_formal', 'value'=>&$rta, 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','pr_actualizo_edu_formal',$params);
+		
+		if ($n1 == 0){
+			return $rta;
+		}
+		else{
+			
+			//TODO exception managment.
+        	throw new Exception('Oracle error message: ' . $n2);
+		}	
 	}
 	
 	

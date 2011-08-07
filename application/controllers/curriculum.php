@@ -33,6 +33,8 @@ class Curriculum extends CI_Controller {
 		$data['areasDisponibles'] = $this->Util_model->getAreasDisponibles();
 		$data['nivelesDeEducacion'] = $this->Util_model->getNivelesDeEducacion();
 		$data['entidadesEducativas'] = $this->Util_model->getEntidadesEducativas();
+		$data['tiposDeEducacionNoFormal'] = $this->Util_model->getTiposDeEducacionNoFormal();
+		
 		
 		
 		$this->load->view('view_curriculum', $data);
@@ -197,9 +199,8 @@ class Curriculum extends CI_Controller {
 	
 	
 	/**
-	 * NOT COMPLEATY DEFINED YET
 	 * input: null
-	 * output: json array > [{id, entidad, pais, fechaDesde, fechaHasta, logro, estado : T terminado, A abandobado, C en curso}].
+	 * output: json array > [{id, idTipoEducacionNoFormal, descripcion, duracion}].
 	 * */
 	public function  getEducacionNoFormalDelCv(){
 		// Process their input and login the user
@@ -210,8 +211,7 @@ class Curriculum extends CI_Controller {
 	}
 
 	/**
-	 * NOT COMPLEATY DEFINED YET
-	 * input: 'educacionNoFormal' json > {id, entidad, idPais, fechaDesde, fechaHasta, logro, estado : T terminado, A abandobado, C en curso}.
+	 * input: 'educacionNoFormal' json > {id, idTipoEducacionNoFormal, descripcion, duracion}.
 	 * output: retorna el idEducacionFormal.
 	 * */
 	public function  setEducacionNoFormal(){
