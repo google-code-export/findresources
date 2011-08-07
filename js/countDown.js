@@ -26,9 +26,9 @@ function s(obj) {
 function dis(mins,secs) {
  	var disp;
  	if(mins <= 9) {
-  		disp = " 0";
+  		disp = "0";
  	} else {
-  		disp = " ";
+  		disp = "";
  	}
  	disp += mins + ":";
  	if(secs <= 9) {
