@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
 <meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type"/>
+<script type="text/javascript" src=" <?php echo site_url('js/jquery-1.6.2.min.js')?>"></script>
+<script type="text/javascript" src=" <?php echo site_url('js/json2.js')?>"></script>
+
 <title>Find Resources</title>
 
 <style type="text/css">
@@ -47,6 +50,62 @@ code {
 
 
 </style>
+
+<script type="text/javascript">
+	$(function(){
+		$('#crearNuevoUsuario').click(function(){
+
+			var usuario = {
+				'email':"unmail6@unserver.com",
+				'clave': "1234567890",
+				'nombre':"asdfadf",
+				'apellido':'fdsfdsf',
+				'razonSocial':'Nintendo',
+				'idIndustria': '1',
+				'idTipoDocumento':"CUIL",
+				'numeroDocumento':"22.444.666",
+				'telefono':"54 911-1441-2444",
+				'idPais':"ARG",
+				'tipoUsuario':"C"
+			};
+			
+			$.post("login/crearNuevoUsuario", {
+					'usuario': JSON.stringify(usuario)
+				},
+			function(response){
+				debugger;
+				//response == 0 is ok
+				
+			},
+			"json");
+			
+		});
+		
+		$('#doLogin').click(function(){
+
+			var usuario = {
+				'email':"unmail7@unserver.com",
+				'clave': "1234567890"
+			};
+			
+			$.post("login/doLogin", {
+					'usuario': JSON.stringify(usuario)
+				},
+			function(response){
+				if(response == -1){
+					alert("usuario invalido");
+				}else{
+					window.location="home";
+				}
+			},
+			"json");
+			
+		});
+		
+		return false;
+	});
+</script>		
+
 </head>
 <body>
 
@@ -57,35 +116,26 @@ code {
 
 <p>Ingrese nombre de usuario y contraseña.</p>
 
-<p>Para ingresar como candidato: cadidato/candidato.</p>
-<p>Para ingresar como empresa: empresa/empresa.</p>
-<p>Para ingresar como psicologo: psicologo/psicologo.</p>
-
-
-<?php echo form_open(base_url() . 'user/login'); ?>
-	<div>
-		<label>User:</label>
-		<?php echo form_input(array('id' => 'username', 'name' => 'username'))?>		
-		<p/>
-		<label>Pass:</label>
-		<?php echo form_password(array('id' => 'password', 'name' => 'password'))?>		
-	</div>
-	<p/>
-	<?php 
-	
-	if ($this->session->flashdata('login_error'))
-	{
-		echo 'You entered an incorrect username or password';
-	}
-	echo validation_errors();?>
-
-	<?php echo form_submit(array('name' => 'submit'), 'Login');?>
-
-<?php echo form_close();?>
-
+	<H1>TIPOS DE INDUSTRIAS DISPONIBELES</H1>
 <?php 
-	echo anchor('user/register', 'Registrarse', 'title="Crear nuevo usuario"');
+	var_dump($industriasDisponibles);
 ?>
+
+	<H1>TIPOS DE DOCUMENTOS DISPONIBELES</H1>
+<?php 
+	var_dump($tiposDeDocumentos);
+?>
+
+<p>
+previmente a crear al chabon debimos haber comprobado que el email no existia
+	<input type="submit" value="CREAR USUARIO NUEVO" id="crearNuevoUsuario"  />
+</p>
+
+<p>
+	<input type="submit" value="HACE EL LOGIN CHABON" id="doLogin"  />
+</p>
+
+
 
 </body>
 </html>

@@ -1,13 +1,25 @@
 <?php 
-class Util extends CI_Controller {
+class Home extends CI_Controller {
 	
-	public function Util(){
+	public function Home(){
 		parent::__construct();
 		$this->view_data['base_url'] = base_url();
 		
 	}
 	
 	public function index(){
+		$idUsuario = $this->session->userdata('ID_USUARIO');
+		if(!$idUsuario){
+			redirect('login');
+		}
+		echo 'we are at home baby' . $idUsuario;
+		
+		$data['industriasDisponibles'] = $this->Util_model->getIndustriasDisponibles();
+		$data['tiposDeDocumentos'] =  $this->Util_model->getTiposDeDocumentos();
+		
+		$idUsuario = $this->session->userdata('ID_USUARIO');
+		
+		
 	}
 	
 	
@@ -23,16 +35,6 @@ class Util extends CI_Controller {
 		echo json_encode($respuesta);
 	}
 
-	/**
-	 * @input:  por post el rubro correspondiente.
-	 * @output: las herramientas de un determinado rubro.
-	 * 			json array con {id, descripcion}
-	 * */
-	public function  getHerramientasPorArea(){
-		$idArea = $this->input->post('idArea');
-		$respuesta = $this->Util_model->getHerramientasPorArea($idArea);
-		echo json_encode($respuesta);
-	}
 	
 }
 

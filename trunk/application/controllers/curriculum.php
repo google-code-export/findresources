@@ -8,8 +8,18 @@ class Curriculum extends CI_Controller {
 	}
 	
 	public function index(){
-		//$usuario = $this->session->userdata('ID_USUARIO');
-		$usuario  = "juan@juan.com";
+		$usuario = $this->session->userdata('ID_USUARIO');
+
+		/////////////HARDCODED//////////////////////////
+		/////////////HARDCODED//////////////////////////
+		$usuario = "juan@juan.com";
+		/////////////HARDCODED//////////////////////////
+		/////////////HARDCODED//////////////////////////
+				
+		if(!$usuario){
+			redirect('login');
+		}
+		
 		$idCurriculum  = $this->Curriculum_model->getCurriculumUser($usuario);
 		if($idCurriculum == null || $idCurriculum == ""){
 			$idCurriculum  = $this->Curriculum_model->createCurriculumUser($usuario);
