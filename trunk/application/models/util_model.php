@@ -129,6 +129,7 @@ class Util_model extends FR_Model {
 
 	/**
 	 * Devuelve las habilidades diponibles para seleccionar.
+	 * @return [{id, descripcion}]
 	 * */
 	public function  getIndustriasDisponibles(){
 		
@@ -250,6 +251,7 @@ class Util_model extends FR_Model {
 
 	/**
 	 * Devuelve las habilidades diponibles para seleccionar.
+	 * @return [{id, descripcion}]
 	 * */
 	public function  getAreasDisponibles(){
 		
@@ -286,7 +288,7 @@ class Util_model extends FR_Model {
 	
 	/**
 	 * Devuelve las entidades educativas conocidas
-	 * [{id, descripcion}]
+	 * @return [{id, descripcion}]
 	 * */
 	public function  getEntidadesEducativas(){
 
@@ -321,6 +323,45 @@ class Util_model extends FR_Model {
 		
 	}	
 	
+	
+	
+	/**
+	 * Devuelve los tipos de educacion no formal disponibles
+	 * @return [{id, descripcion}]
+	 * */
+	
+	public function  getTiposDeEducacionNoFormal(){
+
+		$curs=NULL;
+		$n1 = NULL;
+		$n2 = NULL;
+		$params = array(
+		array('name'=>':po_tipo_edu_no_formal', 'value'=>&$curs, 'type'=>SQLT_RSET , 'length'=>-1),
+		array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
+		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_util','pr_obtiene_tipo_edu_no_formal',$params);
+		
+		if ($n1 == 0){
+			$dbRegistros = $this->oracledb->get_cursor_data();
+			$dbRegistros = $this->decodeCursorData($dbRegistros);
+			
+			//convert db data to model data.
+			$response = array();
+			foreach ($dbRegistros as $i => $dbRegistro){
+				$response[$i]->id  = $dbRegistro->tipo_educacion_no_formal;
+				$response[$i]->descripcion  = $dbRegistro->d_tipo_educacion_no_formal;
+			}
+			
+			return $response;
+		}
+		else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in getEntidadesEducativas(): ' . $n2);
+		}
+		
+	}		
 
 }
 

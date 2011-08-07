@@ -15,6 +15,7 @@
  * 		$areasDisponibles
  * 		$nivelesDeEducacion
  * 		$entidadesEducativas
+ * 		$tiposDeEducacionNoFormal
  * */
 
 ?>
@@ -231,7 +232,7 @@ un cv <br/>
 	var_dump($educacionFormalDelCv);
 ?>
 
-	<H1>EDUCACION NO FORMAL DEL CV (NO ESTA DEFINIDO COMPLETAMENTE ESTE PUNTO.)</H1>
+	<H1>EDUCACION NO FORMAL DEL CV</H1>
 <?php 
 	var_dump($educacionNoFormalDelCv);
 ?>
@@ -273,6 +274,12 @@ un cv <br/>
 <?php 
 	imprimirArrayConDescripciones($areasDisponibles);
 ?>
+
+<H1>TIPOS DE EDUCACION NO FORMAL </H1>
+<?php 
+	imprimirArrayConDescripciones($tiposDeEducacionNoFormal);
+?>
+
 
 
 
