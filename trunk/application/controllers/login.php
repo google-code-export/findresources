@@ -39,7 +39,16 @@ class Login extends CI_Controller {
 		$usuario = json_decode($usuario);
 		$usuario->clave = md5($usuario->clave);
 		$respuesta = $this->Usuario_model->crearNuevoUsuario($usuario);
+		
+		//email confirmation
+		$this->email->from('registracion@findresources.com.ar', 'Findresources');
+		$this->email->to($usuario->email);
+		$this->email->subject('FindResources - Confirmacion de Registración');
+		$this->email->message('Porfavor clickee este link para confirmar su registración. ' . anchor('http://localhost/FindResources/autenticacion?autCode=' . $respuesta, 'Confirme registracion'));
+//		$this->email->send();
+		
 		//ENVIAR EMAIL.
+		
 		//http://localhost/FindResources/autenticacion?autCode={$respuesta}
 		echo json_encode($respuesta);
 	}

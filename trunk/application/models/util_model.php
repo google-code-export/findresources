@@ -171,24 +171,25 @@ class Util_model extends FR_Model {
 	 * @return[{id, descripction}]
 	 * */
 	public function  getHerramientasPorArea($idArea){
-		$respuesta[0]->id = 1; 
-		$respuesta[0]->descripcion = "Java";
-		$respuesta[1]->id = 2; 
-		$respuesta[1]->descripcion = ".Net";
-		$respuesta[2]->id = 3; 
-		$respuesta[2]->descripcion = "Oracle";
-		return $respuesta; ///not in the db yet.
-		
+//		$respuesta[0]->id = 1; 
+//		$respuesta[0]->descripcion = "Java";
+//		$respuesta[1]->id = 2; 
+//		$respuesta[1]->descripcion = ".Net";
+//		$respuesta[2]->id = 3; 
+//		$respuesta[2]->descripcion = "Oracle";
+//		return $respuesta; ///not in the db yet.
+//		
 		$curs=NULL;
 		$n1 = NULL;
 		$n2 = NULL;
 		$params = array(
+		array('name'=>':pi_area', 'value'=>$idArea, 'type'=>SQLT_CHR, 'length'=>-1),
 		array('name'=>':po_herramientas', 'value'=>&$curs, 'type'=>SQLT_RSET , 'length'=>-1),
 		array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
 		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
 		);
 		
-		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_util','pr_obtiene_herramientas_por_area',$params);
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_util','pr_obtiene_herramientas',$params);
 		
 		if ($n1 == 0){
 			$dbRegistros = $this->oracledb->get_cursor_data();
@@ -197,7 +198,7 @@ class Util_model extends FR_Model {
 			//convert db data to model data.
 			$response = array();
 			foreach ($dbRegistros as $i => $dbRegistro){
-				$response[$i]->id  = $dbRegistro->herramienta;
+				$response[$i]->id  = $dbRegistro->id_herramienta;
 				$response[$i]->descripcion  = $dbRegistro->d_herramienta;
 			}
 			

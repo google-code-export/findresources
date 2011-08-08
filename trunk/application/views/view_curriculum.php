@@ -144,7 +144,19 @@
 			},
 			"json");
 		});
+
 		
+		
+		$('#getHerramientasPorArea').click(function(){
+
+			$.post("util/getHerramientasPorArea", {
+				'idArea': '1'
+			},
+			function(data){
+				console.log(data);
+			},
+			"json");
+		});
 		
 		
 		
@@ -295,6 +307,7 @@ un cv <br/>
 	<input type="submit" value="GET_PROVINCIAS" id="getProvincias"  />
 	<input type="submit" value="SET_HABILIDADES" id="setHabilidades"  />
 	<input type="submit" value="SET_EXPERIENCIA_LABORAL" id="setExperienciaLaboral"  />
+	<input type="submit" value="getHerramientasPorArea" id="getHerramientasPorArea"  />
 </div>
 
 </body>
