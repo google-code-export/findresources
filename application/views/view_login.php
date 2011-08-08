@@ -53,7 +53,21 @@ code {
 
 <script type="text/javascript">
 	$(function(){
+		$('#chequeaNombreDeUsuario').click(function(){
+			var usuario = "unmail6@unserver.com";
+			$.post("login/getExisteUsuario", {
+				'usuario': usuario
+			},
+			function(response){
+				alert(response);
+			},
+			"json");
+					
+		});
+		
+		
 		$('#crearNuevoUsuario').click(function(){
+			
 
 			var usuario = {
 				'email':"unmail6@unserver.com",
@@ -63,7 +77,7 @@ code {
 				'razonSocial':'Nintendo',
 				'idIndustria': '1',
 				'idTipoDocumento':"CUIL",
-				'numeroDocumento':"22.444.666",
+				'numeroDocumento':"308212786", //Sin puntos ni guiones!.
 				'telefono':"54 911-1441-2444",
 				'idPais':"ARG",
 				'tipoUsuario':"C"
@@ -82,7 +96,7 @@ code {
 		});
 		
 		$('#doLogin').click(function(){
-
+			///TODO Esta llamada debe ser segura, hay que investigar eso!
 			var usuario = {
 				'email':"unmail7@unserver.com",
 				'clave': "1234567890"
@@ -92,10 +106,10 @@ code {
 					'usuario': JSON.stringify(usuario)
 				},
 			function(response){
-				if(response == -1){
-					alert("usuario invalido");
-				}else{
+				if(response){
 					window.location="home";
+				}else{
+					alert("usuario invalido");
 				}
 			},
 			"json");
@@ -104,6 +118,7 @@ code {
 		
 		return false;
 	});
+	
 </script>		
 
 </head>
@@ -128,6 +143,7 @@ code {
 
 <p>
 previmente a crear al chabon debimos haber comprobado que el email no existia
+	<input type="submit" value="Chequear si usuario existe" id="chequeaNombreDeUsuario"  />
 	<input type="submit" value="CREAR USUARIO NUEVO" id="crearNuevoUsuario"  />
 </p>
 

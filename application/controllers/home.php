@@ -12,29 +12,19 @@ class Home extends CI_Controller {
 		if(!$idUsuario){
 			redirect('login');
 		}
-		echo 'we are at home baby' . $idUsuario;
+		$data = array();
 		
-		$data['industriasDisponibles'] = $this->Util_model->getIndustriasDisponibles();
-		$data['tiposDeDocumentos'] =  $this->Util_model->getTiposDeDocumentos();
-		
-		$idUsuario = $this->session->userdata('ID_USUARIO');
-		
+		$this->load->view('view_home', $data);
 		
 	}
 	
-	
-	/**
-	 * input: json 'usuario' {email, clave, nombre, apellido, razonSocial, idIndustria, idTipoDocumento, 
-	 * 			numeroDocumento, telefono, idPais, tipoUsuario: "E">empresa "C">candidato}
-	 * output: 
-	 */
-	public function  crearNuevoUsuario(){
-		$usuario = $this->input->post('usuario');
-		$codigoAutenticacion = $this->Usuario_model->crearNuevoUsuario($usuario);
-		//ENVIAR EMAIL.
-		echo json_encode($respuesta);
+	public function doLogout(){
+		$this->session->sess_destroy();
+		echo "done";
 	}
-
+	
+	
+	
 	
 }
 
