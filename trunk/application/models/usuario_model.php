@@ -116,43 +116,14 @@ class Usuario_model extends FR_Model {
 	 * @return respuesta boolean true: tiene acceso false: no tiene acceso.
 	 * */
 	public function  canLogin($usuario, $clave){
-		$rta=NULL;
-		$n1 = NULL;
-		$n2 = NULL;
-		$params = array(
-		array('name'=>':pi_usuario', 'value'=>$usuario, 'type'=>SQLT_CHR, 'length'=>-1),
-		array('name'=>':pi_clave', 'value'=>$clave, 'type'=>SQLT_CHR, 'length'=>-1),
-		array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
-		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
-		);
+		$query = $this->db->query('SELECT PKG_USUARIO.FU_INGRESO(\''. $usuario. '\',\''. $clave . '\') AS RESPONSE FROM DUAL');
+		$row = $query->row_array();
 		
-		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_usuario','fu_ingreso',$params);
-		
-		if ($n1 == 0){
-			//////HARD CODEDDDD //////////////////
-			//////HARD CODEDDDD //////////////////
-			//////HARD CODEDDDD //////////////////
-			//////HARD CODEDDDD //////////////////
-			$rta = 0;
-			//////HARD CODEDDDD //////////////////
-			//////HARD CODEDDDD //////////////////
-			//////HARD CODEDDDD //////////////////
-			//////HARD CODEDDDD //////////////////
-			
-			///0 -> Tiene acceso  1 -> no tiene acceso
-			if($rta == 0){
-				return true;
-			} else{
-				return false;
-			}
-			
+		if ($row['RESPONSE'] == 0){
+			return true;
+		} else{
+			return false;
 		}
-		else{
-			
-			//TODO exception managment.
-        	throw new Exception('Oracle error in canLogin(' . $usuario . ',' .  $clave . ') message: ' . $n2);
-		}		
-		
 	}	
 	
 	/**
@@ -242,27 +213,16 @@ class Usuario_model extends FR_Model {
 	 * @return boolean true> existe el usuario  false>no existe.
 	 * */
 	public function  getExisteUsuario($idUsuario){
+
+		$query = $this->db->query('SELECT PKG_USUARIO.FU_EXISTE_USUARIO(\''. $idUsuario. '\') AS RESPONSE FROM DUAL');
+		$row = $query->row_array();
 		
-		$rta=NULL;
-		$n1 = NULL;
-		$n2 = NULL;
-		$params = array(
-		array('name'=>':pi_usuario', 'value'=>$idUsuario, 'type'=>SQLT_CHR, 'length'=>-1),
-		array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
-		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
-		);
-		
-		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_usuario','existe_usuario',$params);
-		
-		if ($n1 == 0){
-			$rta = ($rta != 0); ///0 -> No existe usuario con ese email 1 -> Existe usuario con ese email!.
-			return $rta;
+		if ($row['RESPONSE'] == 0){
+			return true;
+		} else{
+			return false;
 		}
-		else{
-			//TODO exception managment.
-        	throw new Exception('Oracle error in activarUsuario(' . $idUsuario . ',' .  $codigoAutenticacion . ') message: ' . $n2);
-		}		
-		
+
 	}	
 	
 	

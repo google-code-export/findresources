@@ -9,7 +9,6 @@ class Login extends CI_Controller {
 	
 	public function index(){
 		
-		
 		$data['industriasDisponibles'] = $this->Util_model->getIndustriasDisponibles();
 		$data['tiposDeDocumentos'] =  $this->Util_model->getTiposDeDocumentos();
 
@@ -49,6 +48,7 @@ class Login extends CI_Controller {
 	 * Realiza el login.
 	 * input: json 'usuario' {email, clave}
 	 * output: true si esta logged in, false si user/password son invalidas
+	 * TODO Esta llamada debe ser segura, investigar este tema.
 	 */
 	public function  doLogin(){
 		$usuario = $this->input->post('usuario');
@@ -56,6 +56,7 @@ class Login extends CI_Controller {
 		$clave = md5($usuario->clave);
 		$isLoggued = $this->Usuario_model->canLogin($usuario->email, $clave);
 		if($isLoggued){
+			$this->session->sess_destroy();
 			$this->session->set_userdata('ID_USUARIO', $usuario->email);
 			echo "true";
 		}else{
@@ -63,6 +64,20 @@ class Login extends CI_Controller {
 		}
 	}
 	
+	/**
+	 * Realiza el login.
+	 * input: json 'usuario' con el email que ingresó.
+	 * output: true si existe el usuario, false si el nombre de usuario esta disponible.
+	 */
+	public function getExisteUsuario(){
+		$usuario = $this->input->post('usuario');
+		$existe = $this->Usuario_model->getExisteUsuario($usuario);
+		if($existe){
+			echo "true";
+		} else{
+			echo "false";
+		}
+	}
 	
 	
 }
