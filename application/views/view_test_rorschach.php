@@ -48,8 +48,10 @@ if($pic == 10) {	$source = "select_img_final"; }
    </div>
 	</div>
 	<?php
-		if(isset($_SESSION["img".$pic]) AND count($_SESSION["img".$pic]) > 0){
-        foreach($_SESSION["img".$pic] as $clave => $resTags) {
+		//if(isset($_SESSION["img".$pic]) AND count($_SESSION["img".$pic]) > 0){
+		if(is_array($session_img) AND count($session_img) > 0){
+        //foreach($_SESSION["img".$pic] as $clave => $resTags) {
+		foreach($session_img as $clave => $resTags) {
 	?>
 				<div class=tag style="position:absolute;width:<?php echo $resTags['width'];?>px;height:<?php echo $resTags['height'];?>px;top:<?php echo $resTags['top'];?>;left:<?php echo $resTags['left'];?>;">
 					<div class="label"><?php echo $resTags['description'];?></div>
@@ -73,8 +75,10 @@ if($pic == 10) {	$source = "select_img_final"; }
 
 
 	<?php
-	if(isset($_SESSION["img".$pic]) AND count($_SESSION["img".$pic]) > 0){
-       foreach($_SESSION["img".$pic] as $clave => $resTags) {
+	//if(isset($_SESSION["img".$pic]) AND count($_SESSION["img".$pic]) > 0){
+	if(is_array($session_img) AND count($session_img) > 0){
+    //   foreach($_SESSION["img".$pic] as $clave => $resTags) {
+		foreach($session_img as $clave => $resTags) {
        	?>
 		<form method=post>
 		<input type=hidden name=pic value="<?php echo $pic;?>">
@@ -101,7 +105,8 @@ if ($source == "test_finished") {
 	echo '<a href="'.base_url().'Test">Continuar con el siguiente test.</a><br /><hr><br />';
 	echo '<pre>RESULTADOS:<br />';
 	
-	print_r($_SESSION);
+	//print_r($_SESSION);
+	print_r($session);
 echo '</pre>';
 	switch($num){
 		case "1": 

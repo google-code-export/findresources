@@ -278,7 +278,7 @@ $i++;
 if ($source == "test_finished") {
 	echo '<br /><h3>Muchas gracias por realizar el Test. Esta información será tenida en cuenta en sus postulaciones.</h3><br /><hr>';
 	echo '<a href="'.base_url().'Test">Continuar con el siguiente test.</a><br /><hr><br />';
-	echo '<pre>RESULTADOS:<br />
+	/*echo '<pre>RESULTADOS:<br />
 	 Pregunta 1: '.	$q1.'<br />
 	 Pregunta 2: '.	$q2.'<br />
 	 Pregunta 3: '.	$q3.'<br />
@@ -459,8 +459,10 @@ if ($source == "test_finished") {
 	 Pregunta 178: '.$q178.'<br />
 	 Pregunta 179: '.$q179.'<br />
 	 Pregunta 180: '.$q180.'<br />
-	Tiempo:  '.$timer.'<br />';
+	Tiempo:  '.$timer.'<br />';*/
 
+	echo $result;
+	
 	switch($num){
 		case "1": 
 			$test = "luscher";
