@@ -7,7 +7,7 @@
     <meta name="keywords" content="personality test images psychology mips intelligence" /> 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script type="text/javascript" src="<?php echo base_url();?>js/countDown.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+    <script src="<?php echo base_url();?>js/jquery-1.6.2.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url();?>js/jquery.validate.js"></script>
     <script type="text/javascript" src="<?php echo base_url();?>js/jquery.metadata.js" ></script>
     <link rel="stylesheet" href="<?php echo base_url();?>css/style.css">
