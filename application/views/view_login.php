@@ -70,7 +70,7 @@ code {
 			
 
 			var usuario = {
-				'email':"unmail6@unserver.com",
+				'email':$('#email').val(),
 				'clave': "1234567890",
 				'nombre':"asdfadf",
 				'apellido':'fdsfdsf',
@@ -141,11 +141,14 @@ code {
 	var_dump($tiposDeDocumentos);
 ?>
 
-<p>
+<p/>
 previmente a crear al chabon debimos haber comprobado que el email no existia
 	<input type="submit" value="Chequear si usuario existe" id="chequeaNombreDeUsuario"  />
+<p/>
+EMAIL NUEVO USUARIO: 
+<input type="text" id="email" name="email" value="unmail6@unserver.com"/>
 	<input type="submit" value="CREAR USUARIO NUEVO" id="crearNuevoUsuario"  />
-</p>
+<p/>
 
 <p>
 	<input type="submit" value="HACE EL LOGIN CHABON" id="doLogin"  />
