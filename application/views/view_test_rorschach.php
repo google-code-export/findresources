@@ -6,7 +6,9 @@
     <meta name="description" content="FindResources - Choose best people" /> 
     <meta name="keywords" content="personality test images psychology d48 intelligence rorschach" /> 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!-- <script src="<?php echo base_url();?>js/jquery-1.6.2.js" type="text/javascript"></script>-->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+    <?php /*NO SACAR ESTA VERSION DE JQUERY PORQUE SINO NO FUNCIONA*/?>
 	<script src="<?php echo base_url();?>js/jquery-ui-1.8.15.custom.min.js" language="JavaScript" type="text/javascript"></script>
 	<script src="<?php echo base_url();?>js/rorschach.js" language="JavaScript" type="text/javascript"></script>
     <link rel="stylesheet" href="<?php echo base_url();?>css/style.css">
@@ -67,8 +69,9 @@ if($pic == 10) {	$source = "select_img_final"; }
 		<input type=hidden name=width id=width>
 		<input type=hidden name=height id=height>
 		<input type=hidden name=top id=top>
-		<input type=hidden name=left id=left>
-		Escribe en una palabra lo que vés :<br /><input type=text name=description>
+		<input type=hidden name=left id=left> 	
+		Escribe en una palabra lo que vés :<br />
+		<input type=text name=description id="description">
 		<input type=submit value="Etiquetar área">
 		<input type="hidden" name="source" value="<?php echo $source;?>" />
 	</form>
