@@ -12,11 +12,10 @@ class Login extends CI_Controller {
 		$data['industriasDisponibles'] = $this->Util_model->getIndustriasDisponibles();
 		$data['tiposDeDocumentos'] =  $this->Util_model->getTiposDeDocumentos();
 
-		$idUsuario = $this->session->userdata('ID_USUARIO');
-		
+		$idUsuario = $this->session->userdata(SESSION_ID_USUARIO);
+		//echo $this->session->userdata('session_id');;
 		if($idUsuario){
 			//user is already logged in.
-			//$this->load->view('view_home', $data);
 			redirect('home');
 			
 		}else{
@@ -39,17 +38,14 @@ class Login extends CI_Controller {
 		$usuario = json_decode($usuario);
 		$usuario->clave = md5($usuario->clave);
 		$respuesta = $this->Usuario_model->crearNuevoUsuario($usuario);
-		
 		//email confirmation
-		$this->email->from('registracion@findresources.com.ar', 'Findresources');
+		$this->email->from('noreply@gmail.com', 'Findresources');
 		$this->email->to($usuario->email);
 		$this->email->subject('FindResources - Confirmacion de Registración');
-		$this->email->message('Porfavor clickee este link para confirmar su registración. ' . anchor('http://localhost/FindResources/autenticacion?autCode=' . $respuesta, 'Confirme registracion'));
-//		$this->email->send();
-		
+		$this->email->message('Porfavor clickee este link para confirmar su registración: ' . anchor(base_url() .'autenticacion?autCode=' . $respuesta, 'Confirme registracion'));
 		//ENVIAR EMAIL.
-		
-		//http://localhost/FindResources/autenticacion?autCode={$respuesta}
+		$emailSent = $this->email->send();
+
 		echo json_encode($respuesta);
 	}
 
@@ -66,7 +62,7 @@ class Login extends CI_Controller {
 		$isLoggued = $this->Usuario_model->canLogin($usuario->email, $clave);
 		if($isLoggued){
 			$this->session->sess_destroy();
-			$this->session->set_userdata('ID_USUARIO', $usuario->email);
+			$this->session->set_userdata(SESSION_ID_USUARIO, $usuario->email);
 			echo "true";
 		}else{
 			echo "false";

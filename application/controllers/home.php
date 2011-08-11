@@ -8,12 +8,16 @@ class Home extends CI_Controller {
 	}
 	
 	public function index(){
-		$idUsuario = $this->session->userdata('ID_USUARIO');
+		$idUsuario = $this->session->userdata(SESSION_ID_USUARIO);
 		if(!$idUsuario){
 			redirect('login');
 		}
-		$data = array();
+		//get usuario data.
+		$dataUsuario = $this->Usuario_model->getUsuario($idUsuario);
 		
+		$data['dataUsuario'] = $dataUsuario;
+				
+		/////////////echo $this->session->userdata('session_id');
 		$this->load->view('view_home', $data);
 		
 	}

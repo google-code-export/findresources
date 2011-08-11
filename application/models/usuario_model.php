@@ -98,6 +98,10 @@ class Usuario_model extends FR_Model {
 		);
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_usuario','pr_modificacion_usuario',$params);
+
+		//remove it from session to update it in the next GET.
+		$this->session->unset_userdata('DATA_USUARIO');
+
 		
 		if ($n1 == 0){
 			return 0;
@@ -135,6 +139,12 @@ class Usuario_model extends FR_Model {
 	 * 				descripcionUsuario}
 	 * */
 	public function  getUsuario($idUsuario){
+		
+		$dataUsuario = $this->session->userdata('DATA_USUARIO');
+		if($dataUsuario != null){
+			return $dataUsuario;
+		}
+		
 		$curs=NULL;
 		$n1 = NULL;
 		$n2 = NULL;
@@ -145,7 +155,7 @@ class Usuario_model extends FR_Model {
 			array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
 		);
 		
-		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_util','pr_consulta_usuario',$params);
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_usuario','pr_consulta_usuario',$params);
 		
 		if ($n1 == 0){
 			$dbRegistros = $this->oracledb->get_cursor_data();
@@ -153,8 +163,7 @@ class Usuario_model extends FR_Model {
 			
 			//convert db data to model data.
 			$dbRegistro = $dbRegistros[0];
-			
-			if($dbRegistro != null){
+			if($dbRegistro == null){
 	        	throw new Exception('User not found: getUsuario('. $idUsuario .')' . $n2);
 			}
 			
@@ -169,6 +178,7 @@ class Usuario_model extends FR_Model {
 			$response->descripcionPais  = $dbRegistro->dpais;
 			$response->idTipoUsuario = $dbRegistro->t_usuario;
 			$response->descripcionUsuario  = $dbRegistro->d_t_usuario;
+			$this->session->set_userdata('DATA_USUARIO', $response);
 			
 			return $response;
 		}

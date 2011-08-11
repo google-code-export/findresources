@@ -1,3 +1,11 @@
+<?php 
+/**
+ * Este archivo pertenece a la vista del home.
+ * El siguiente php tiene como parametros que recible del controller al cargarse 
+ * las siguientes variables>
+ * 		$dataUsuario
+ * */
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en">
 <head>
@@ -53,20 +61,12 @@ code {
 
 <script type="text/javascript">
 	$(function(){
-//		$('#desloguear').click(function(){
-//
-//			$.post("home/doLogout",null,
-//			function(response){
-//				alert("we are out baby");
-//				window.location="login";
-//			},
-//			"json");
-//			
-//		});
+		
 		$('#desloguear').click(function(){
 						
 			$.post("home/doLogout", null,
 			function(response){
+				debugger; //TODO FIX PORQUE NO SE REDIRIJE AL LOGIN :(? en este punto?
 				window.location="login";
 			},
 			"json");
@@ -84,6 +84,8 @@ code {
 
 </head>
 <body>
+<?php include("toolbar.php"); ?>
+
 
 <h1>Bienvenido a FindResources</h1>
 <div class="company_logo">
@@ -91,13 +93,21 @@ code {
 </div>
 
 <H1>ESTAS ADENTRO NENE!</H1>
+Welcome to the find resources tool
+AQUI VAMOS A VER ALGO NOSE QUE.
+
+
 
 <p>
 	<input type="submit" value="A VER EL CV QUE ONDA?" id="irACurriculum"  />
 	<input type="submit" value="DESLOGUIAME YA!" id="desloguear"  />
 </p>
 
+<?php 
+	var_dump($dataUsuario);
+?>
 
+<?php include("footer.php"); ?>
 
 </body>
 </html>

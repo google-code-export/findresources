@@ -8,16 +8,24 @@ class Curriculum extends CI_Controller {
 	}
 	
 	public function index(){
-		$usuario = $this->session->userdata('ID_USUARIO');
-
-		/////////////HARDCODED//////////////////////////
-		/////////////HARDCODED//////////////////////////
-		$usuario = "juan@juan.com";
-		/////////////HARDCODED//////////////////////////
-		/////////////HARDCODED//////////////////////////
+		/////////////echo $this->session->userdata('session_id');
+		$usuario = $this->session->userdata(SESSION_ID_USUARIO);
+	
+		/////////////echo $usuario ;
 				
 		if(!$usuario){
-			redirect('login');
+		/////////////exit;
+			/////////////HARDCODED//////////////////////////
+			/////////////HARDCODED//////////////////////////
+			$usuario = "juan@juan.com";
+			/////////////HARDCODED//////////////////////////
+			/////////////HARDCODED//////////////////////////
+			
+			///////////DEVELOPING//UNCOMMENT//THIS////////////////
+			///////////DEVELOPING//UNCOMMENT//THIS////////////////
+			//redirect('login');
+			///////////DEVELOPING//UNCOMMENT//THIS////////////////
+			///////////DEVELOPING//UNCOMMENT//THIS////////////////
 		}
 		
 		$idCurriculum  = $this->Curriculum_model->getCurriculumUser($usuario);
