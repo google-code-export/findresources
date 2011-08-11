@@ -106,7 +106,8 @@ code {
 					'usuario': JSON.stringify(usuario)
 				},
 			function(response){
-				if(response){
+					debugger;
+				if(response == true){
 					window.location="home";
 				}else{
 					alert("usuario invalido");

@@ -142,7 +142,7 @@ class Util_model extends FR_Model {
 		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
 		);
 		
-		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_util','pr_obtiene_rubros',$params);
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_util','pr_obtiene_industrias',$params);
 		
 		if ($n1 == 0){
 			$dbRegistros = $this->oracledb->get_cursor_data();
@@ -151,8 +151,8 @@ class Util_model extends FR_Model {
 			//convert db data to model data.
 			$response = array();
 			foreach ($dbRegistros as $i => $dbRegistro){
-				$response[$i]->id  = $dbRegistro->id_rubro;
-				$response[$i]->descripcion  = $dbRegistro->d_rubro;
+				$response[$i]->id  = $dbRegistro->id_industria;
+				$response[$i]->descripcion  = $dbRegistro->d_industria;
 			}
 			
 			return $response;

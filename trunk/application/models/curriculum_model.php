@@ -72,7 +72,11 @@ class Curriculum_model extends FR_Model {
 	 *      }
 	 * **/
 	public function  getCurriculum($idCurriculum){
-
+		$dataCurriculum = $this->session->userdata('DATA_CURRICULUM');
+		if($dataCurriculum != null){
+			return $dataCurriculum;
+		}
+		
 		$curs=NULL;
 		$n1 = NULL;
 		$n2 = NULL;
@@ -112,6 +116,10 @@ class Curriculum_model extends FR_Model {
 			$response->twitter = $dbRegistros[0]->twitter;
 			$response->gtalk = $dbRegistros[0]->gtalk;
 			$response->sms = $dbRegistros[0]->sms;
+			
+			$this->session->set_userdata('DATA_CURRICULUM', $response);
+			
+			
 			return $response;
 		}
 		else{
@@ -163,6 +171,9 @@ class Curriculum_model extends FR_Model {
 		);
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','pr_actualiza_cv',$params);
+		
+		//remove it from session to update it in the next GET.
+		$this->session->unset_userdata('DATA_CURRICULUM');
 		
 		if ($n1 == 0){
 			return 0;

@@ -37,5 +37,17 @@ define('FOPEN_WRITE_CREATE_STRICT',				'xb');
 define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
 
+/*
+|--------------------------------------------------------------------------
+| Find Resources
+|--------------------------------------------------------------------------
+|
+| CONSTANTES PROPIAS DE FIND RESOURCES
+|
+*/
+define('SESSION_ID_USUARIO',		'SESSION_ID_USUARIO');
+
+
+
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */
