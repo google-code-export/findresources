@@ -8,7 +8,8 @@ class Home extends CI_Controller {
 	}
 	
 	public function index(){
-		$idUsuario = $this->session->userdata(SESSION_ID_USUARIO);
+		$idUsuario = @$_SESSION[SESSION_ID_USUARIO];
+		var_dump($idUsuario);
 		if(!$idUsuario){
 			redirect('login');
 		}
@@ -17,13 +18,12 @@ class Home extends CI_Controller {
 		
 		$data['dataUsuario'] = $dataUsuario;
 				
-		/////////////echo $this->session->userdata('session_id');
 		$this->load->view('view_home', $data);
 		
 	}
 	
 	public function doLogout(){
-		$this->session->sess_destroy();
+		session_destroy();
 		echo "done";
 	}
 	

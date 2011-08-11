@@ -8,13 +8,8 @@ class Curriculum extends CI_Controller {
 	}
 	
 	public function index(){
-		/////////////echo $this->session->userdata('session_id');
-		$usuario = $this->session->userdata(SESSION_ID_USUARIO);
-	
-		/////////////echo $usuario ;
-				
+		$usuario = @$_SESSION[SESSION_ID_USUARIO];
 		if(!$usuario){
-		/////////////exit;
 			/////////////HARDCODED//////////////////////////
 			/////////////HARDCODED//////////////////////////
 			$usuario = "juan@juan.com";
@@ -34,8 +29,9 @@ class Curriculum extends CI_Controller {
 		}
 		
 		$curriculumData = $this->Curriculum_model->getCurriculum($idCurriculum);
-		$this->session->set_userdata('CV_EDITANDO', $curriculumData);
 
+		$_SESSION[SESSION_CV_EDITANDO] = $curriculumData;
+		
 		$data['curriculumData'] = $curriculumData;
 
 		$data['habilidadesIndustriasDelCV'] = $this->Curriculum_model->getHabilidadesIndustriasDelCV($curriculumData->id);
@@ -73,7 +69,7 @@ class Curriculum extends CI_Controller {
 	public function  setCurriculum(){
 		//TODO VALIDATE if the user have access to edit the cv
 		
-		$currentCurriculum = $this->session->userdata('CV_EDITANDO');
+		$currentCurriculum = @$_SESSION[SESSION_CV_EDITANDO];
 		$unCurriculum = $this->input->post('curriculum');
 		$unCurriculum = json_decode($unCurriculum);
 		$unCurriculum->id = $currentCurriculum->id;
@@ -81,7 +77,7 @@ class Curriculum extends CI_Controller {
 		
 		if($response == 0){
 			//oK set the new curriculum in session.
-			$this->session->set_userdata('CV_EDITANDO', $unCurriculum);
+			$_SESSION[SESSION_CV_EDITANDO] = $unCurriculum;
 		}
 		
 		echo json_encode($response);
@@ -94,7 +90,7 @@ class Curriculum extends CI_Controller {
 	 * */
 	public function  getHabilidadesIndustriasDelCV(){
 		// Process their input and login the user
-		$unCurriculum = $this->session->userdata('CV_EDITANDO');
+		$unCurriculum = @$_SESSION[SESSION_CV_EDITANDO];
 		$unCurriculum->id;
 		$respuesta = $this->Curriculum_model->getHabilidadesIndustriasDelCV($unCurriculum->id);
 		echo json_encode($respuesta);
@@ -105,7 +101,7 @@ class Curriculum extends CI_Controller {
 	 * output: 0 is oK.
 	 * */
 	public function  setHabilidadesIndustriasDelCV(){
-		$currentCurriculum = $this->session->userdata('CV_EDITANDO');
+		$currentCurriculum = @$_SESSION[SESSION_CV_EDITANDO];
 		$habilidades = $this->input->post('habilidadesIndustrias');
 		$habilidades = json_decode($habilidades);
 		$respuesta = $this->Curriculum_model->setHabilidadesIndustriasDelCV($currentCurriculum->id, $habilidades);
@@ -120,7 +116,7 @@ class Curriculum extends CI_Controller {
 	 * */
 	public function  getHabilidadesAreasDelCV(){
 		// Process their input and login the user
-		$unCurriculum = $this->session->userdata('CV_EDITANDO');
+		$unCurriculum = @$_SESSION[SESSION_CV_EDITANDO];
 		$respuesta = $this->Curriculum_model->getHabilidadesAreasDelCV($unCurriculum->id);
 		echo json_encode($respuesta);
 	}
@@ -130,7 +126,7 @@ class Curriculum extends CI_Controller {
 	 * output: 0 is oK.
 	 * */
 	public function  setHabilidadesAreasDelCV(){
-		$currentCurriculum = $this->session->userdata('CV_EDITANDO');
+		$currentCurriculum = @$_SESSION[SESSION_CV_EDITANDO];
 		$habilidades = $this->input->post('habilidadesAreas');
 		$habilidades = json_decode($habilidades);
 		$respuesta = $this->Curriculum_model->setHabilidadesAreasDelCV($currentCurriculum->id, $habilidades);
@@ -143,7 +139,7 @@ class Curriculum extends CI_Controller {
 	 * output: 0 is oK.
 	 * */
 	public function  setHabilidadesDelCV(){
-		$currentCurriculum = $this->session->userdata('CV_EDITANDO');
+		$currentCurriculum = @$_SESSION[SESSION_CV_EDITANDO];
 		
 		$habilidadesAreas = $this->input->post('habilidadesAreas');
 		$habilidadesAreas = json_decode($habilidadesAreas);
@@ -163,7 +159,7 @@ class Curriculum extends CI_Controller {
 	 * */	
 	public function  getExperienciaLaboralDelCv(){
 		// Process their input and login the user
-		$unCurriculum = $this->session->userdata('CV_EDITANDO');
+		$unCurriculum = @$_SESSION[SESSION_CV_EDITANDO];
 		$unCurriculum->id;
 		$respuesta = $this->Curriculum_model->getExperienciaLaboralDelCv($unCurriculum->id);
 		echo json_encode($respuesta);
@@ -175,7 +171,7 @@ class Curriculum extends CI_Controller {
 	 * output: retorna el idEducacionFormal.
 	 * */
 	public function  setExperienciaLaboral(){
-		$currentCurriculum = $this->session->userdata('CV_EDITANDO');
+		$currentCurriculum = @$_SESSION[SESSION_CV_EDITANDO];
 		$experienciaLaboral = $this->input->post('experienciaLaboral');
 		$experienciaLaboral = json_decode($experienciaLaboral);
 		$respuesta = $this->Curriculum_model->setExperienciaLaboral($currentCurriculum->id, $experienciaLaboral);
@@ -191,7 +187,7 @@ class Curriculum extends CI_Controller {
 	 * */
 	public function  getEducacionFormalDelCv(){
 		// Process their input and login the user
-		$unCurriculum = $this->session->userdata('CV_EDITANDO');
+		$unCurriculum = @$_SESSION[SESSION_CV_EDITANDO];
 		$respuesta = $this->Curriculum_model->getEducacionFormalDelCv($unCurriculum->id);
 		echo json_encode($respuesta);
 	}
@@ -208,7 +204,7 @@ class Curriculum extends CI_Controller {
 	 * output: retorna el idEducacionFormal.
 	 * */
 	public function  setEducacionFormal(){
-		$currentCurriculum = $this->session->userdata('CV_EDITANDO');
+		$currentCurriculum = @$_SESSION[SESSION_CV_EDITANDO];
 		$educacionFormal = $this->input->post('educacionFormal');
 		$educacionFormal = json_decode($educacionFormal);
 		$respuesta = $this->Curriculum_model->setEducacionFormal($currentCurriculum->id, $educacionFormal);
@@ -222,7 +218,7 @@ class Curriculum extends CI_Controller {
 	 * */
 	public function  getEducacionNoFormalDelCv(){
 		// Process their input and login the user
-		$unCurriculum = $this->session->userdata('CV_EDITANDO');
+		$unCurriculum = @$_SESSION[SESSION_CV_EDITANDO];
 		$unCurriculum->id;
 		$respuesta = $this->Curriculum_model->getEducacionNoFormalDelCv($unCurriculum->id);
 		echo json_encode($respuesta);
@@ -233,7 +229,7 @@ class Curriculum extends CI_Controller {
 	 * output: retorna el idEducacionFormal.
 	 * */
 	public function  setEducacionNoFormal(){
-		$currentCurriculum = $this->session->userdata('CV_EDITANDO');
+		$currentCurriculum = @$_SESSION[SESSION_CV_EDITANDO];
 		$educacionNoFormal = $this->input->post('educacionNoFormal');
 		$educacionNoFormal = json_decode($educacionNoFormal);
 		$respuesta = $this->Curriculum_model->setEducacionNoFormal($currentCurriculum->id, $educacionNoFormal);

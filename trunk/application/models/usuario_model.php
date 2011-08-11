@@ -99,8 +99,6 @@ class Usuario_model extends FR_Model {
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_usuario','pr_modificacion_usuario',$params);
 
-		//remove it from session to update it in the next GET.
-		$this->session->unset_userdata('DATA_USUARIO');
 
 		
 		if ($n1 == 0){
@@ -140,11 +138,6 @@ class Usuario_model extends FR_Model {
 	 * */
 	public function  getUsuario($idUsuario){
 		
-		$dataUsuario = $this->session->userdata('DATA_USUARIO');
-		if($dataUsuario != null){
-			return $dataUsuario;
-		}
-		
 		$curs=NULL;
 		$n1 = NULL;
 		$n2 = NULL;
@@ -178,8 +171,6 @@ class Usuario_model extends FR_Model {
 			$response->descripcionPais  = $dbRegistro->dpais;
 			$response->idTipoUsuario = $dbRegistro->t_usuario;
 			$response->descripcionUsuario  = $dbRegistro->d_t_usuario;
-			$this->session->set_userdata('DATA_USUARIO', $response);
-			
 			return $response;
 		}
 		else{

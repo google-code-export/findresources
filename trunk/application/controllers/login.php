@@ -11,9 +11,8 @@ class Login extends CI_Controller {
 		
 		$data['industriasDisponibles'] = $this->Util_model->getIndustriasDisponibles();
 		$data['tiposDeDocumentos'] =  $this->Util_model->getTiposDeDocumentos();
-
-		$idUsuario = $this->session->userdata(SESSION_ID_USUARIO);
-		//echo $this->session->userdata('session_id');;
+		
+		$idUsuario = @$_SESSION[SESSION_ID_USUARIO];
 		if($idUsuario){
 			//user is already logged in.
 			redirect('home');
@@ -61,8 +60,9 @@ class Login extends CI_Controller {
 		$clave = md5($usuario->clave);
 		$isLoggued = $this->Usuario_model->canLogin($usuario->email, $clave);
 		if($isLoggued){
-			$this->session->sess_destroy();
-			$this->session->set_userdata(SESSION_ID_USUARIO, $usuario->email);
+			session_destroy();
+			session_start();
+			$_SESSION[SESSION_ID_USUARIO] = $usuario->email;
 			echo "true";
 		}else{
 			echo "false";
