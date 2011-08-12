@@ -86,15 +86,18 @@ class Test extends CI_Controller {
 		 		$codError = NULL;
 				$descError = NULL;
 				$usuario = "juan@juan.com";
-				//$seleccion_luscher1 = $this->input->post('colors1').$this->sep.$this->input->post('timer1');
-				//$seleccion_luscher2 = $this->input->post('colors2').$this->sep.$this->input->post('timer');
+				$tiempo1 = $this->input->post('timer1');
+				$tiempo2 = $this->input->post('timer');
 				$seleccion_luscher1 = $this->input->post('colors1');
 				$seleccion_luscher2 = $this->input->post('colors2');
+				
 				/* Guardo los resultados del test*/
 				$params = array(
 				array('name'=>':PI_USUARIO', 'value'=>$usuario, 'type'=>SQLT_CHR , 'length'=>-1),
 				array('name'=>':PI_SELECCION_LUSCHER1', 'value'=>$seleccion_luscher1, 'type'=>SQLT_CHR , 'length'=>-1),
 				array('name'=>':PI_SELECCION_LUSCHER2', 'value'=>$seleccion_luscher2, 'type'=>SQLT_CHR , 'length'=>-1),
+				array('name'=>':PI_TIEMPO1', 'value'=>$tiempo1, 'type'=>SQLT_CHR , 'length'=>-1),
+				array('name'=>':PI_TIEMPO2', 'value'=>$tiempo2, 'type'=>SQLT_CHR , 'length'=>-1),
 				array('name'=>':PO_C_ERROR', 'value'=>&$codError, 'type'=>SQLT_CHR , 'length'=>255),
 				array('name'=>':PO_D_ERROR', 'value'=>&$descError, 'type'=>SQLT_CHR, 'length'=>255)
 				);
@@ -220,7 +223,6 @@ class Test extends CI_Controller {
 			 	$this->load->view('view_test_mips',$data);
 			break;
 			case 'select_questions' :
-		 		$data['timer'] = $this->input->post('timer');
 		 		
 		 		$codError = NULL;
 				$descError = NULL;
@@ -231,7 +233,7 @@ class Test extends CI_Controller {
 				$id = 2;
 				while ($id <= 180) {
 					//$data['q'.$id] = $this->input->post('q'.$id);
-					$seleccion_mips .= $this->sep.$this->input->post('q'.$id);
+					$seleccion_mips .= $this->input->post('q'.$id);
 			    	$id++;  
 				}
 				/* Guardo los resultados del test*/
