@@ -23,7 +23,7 @@ Para la realización de este test usted deberá seleccionar 8 colores en el orden 
 <input type="hidden" name="source" value="init_test" />
 <input type="hidden" name="colors1" value="" />
 <input type="hidden" name="colors2" value="" />
-<input type=submit value="Comenzar el test"> 
+<a href="javascript:document.quiz_form.submit();" class="button">Comenzar el test</a>
 </form> 
 </center>
 <?php 

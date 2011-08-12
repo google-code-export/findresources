@@ -6,7 +6,6 @@
     <meta name="description" content="FindResources - Choose best people" /> 
     <meta name="keywords" content="personality test images psychology mips intelligence" /> 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <script type="text/javascript" src="<?php echo base_url();?>js/countDown.js"></script>
     <script src="<?php echo base_url();?>js/jquery-1.6.2.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url();?>js/jquery.validate.js"></script>
     <script type="text/javascript" src="<?php echo base_url();?>js/jquery.metadata.js" ></script>
@@ -31,23 +30,15 @@ if ($source== "init_test"){
 <h1 style="text-align:center;">Test de MIPS</h1> 
 Responda a las siguientes 180 preguntas por Verdadero o Falso. 
 <br /><br />
-Disponés de 45 minutos para realizar el test. 
-<br /><br />
 <form method="POST" id="quiz_form" name="quiz_form">
 <input type="hidden" name="source" value="init_test" />
-<input type=submit value="Comenzar el test"> 
+<a href="javascript:document.quiz_form.submit();" class="button">Comenzar el test</a>
 </form> 
 </center>
 <?php 
 }
 /** PAGINA DE SELECCION DE FICHAS DEL TEST **/
 if ($source == "select_questions"){
-//$minutos = "45";
-//$segundos = "01";
-if($timer == "") {	$timer = "45:01"; }
-$time = explode(':',$timer,2);
-$minutos = $time[0];
-$segundos = $time[1];
 
 /** LISTADO DE PREGUNTAS **/
 $preguntas[1] = "Soy una persona tranquila y colaboradora";
@@ -232,7 +223,6 @@ $preguntas[179] = "Estoy motivado para llegar a ser uno de los mejores en micamp
 $preguntas[180] = "Tengo una forma de ser que lograr que la gente enseguidaguste de mí.";
 
 ?>
-<script type="text/javascript">function init() {cd('<?php echo $minutos;?>', '<?php echo $segundos;?>');}window.onload = init;</script>
 <center>
 <h1>Test de MIPS</h1>
 <h3>Preguntas</h3>
@@ -264,9 +254,10 @@ $i++;
 ?>
 	<tr>
 		<td>
-		<input type="hidden" name="source" value="<?php echo $source;?>" />
-		<input type="text" name="timer" id="timer" value="<?php echo $timer;?>" border="0" READONLY/><br /><br />
+		<input type="hidden" name="source" value="<?php echo $source;?>" /><br /><br />
 		<input type=submit value="Finalizar Test"> 
+		<!-- <a href="javascript:document.quiz_form.submit();" class="button save">Finalizar Test</a>-->
+		<?php //Resolver tema de que no ejecuta la validación del form ?> 
 		</td>
 	</tr>
 </table>
@@ -458,8 +449,7 @@ if ($source == "test_finished") {
 	 Pregunta 177: '.$q177.'<br />
 	 Pregunta 178: '.$q178.'<br />
 	 Pregunta 179: '.$q179.'<br />
-	 Pregunta 180: '.$q180.'<br />
-	Tiempo:  '.$timer.'<br />';*/
+	 Pregunta 180: '.$q180.'<br />';*/
 
 	echo $result;
 	

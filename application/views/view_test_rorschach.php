@@ -29,7 +29,7 @@ Observe bien las manchas y seleccione el área donde ve una imagen ajustando el t
 <br /><br />
 <form method="POST" id="quiz_form" name="quiz_form">
 <input type="hidden" name="source" value="init_test" />
-<input type=submit value="Comenzar el test"> 
+<a href="javascript:document.quiz_form.submit();" class="button">Comenzar el test</a>
 </form> 
 </center>
 <?php 
@@ -64,7 +64,7 @@ if($pic == 10) {	$source = "select_img_final"; }
 	?>
 </div>
 <div id="formArea">
-	<form method=post>
+	<form method=post name="tag_form">
 		<input type=hidden name=pic value="<?php echo $pic;?>">
 		<input type=hidden name=width id=width>
 		<input type=hidden name=height id=height>
@@ -72,7 +72,7 @@ if($pic == 10) {	$source = "select_img_final"; }
 		<input type=hidden name=left id=left> 	
 		Escribe en una palabra lo que vés :<br />
 		<input type=text name=description id="description">
-		<input type=submit value="Etiquetar área">
+		<a href="javascript:document.tag_form.submit();" class="button add">Etiquetar área</a>
 		<input type="hidden" name="source" value="<?php echo $source;?>" />
 	</form>
 
@@ -81,23 +81,27 @@ if($pic == 10) {	$source = "select_img_final"; }
 	//if(isset($_SESSION["img".$pic]) AND count($_SESSION["img".$pic]) > 0){
 	if(is_array($session_img) AND count($session_img) > 0){
     //   foreach($_SESSION["img".$pic] as $clave => $resTags) {
+    	$i = 0;
 		foreach($session_img as $clave => $resTags) {
        	?>
-		<form method=post>
+		<form method=post name="del_form<?php echo $i;?>">
 		<input type=hidden name=pic value="<?php echo $pic;?>">
 		<input type=hidden name=del value="<?php echo $clave;?>">
 		<input type="hidden" name="source" value="<?php echo $source;?>" />
-		* Etiqueta <?php echo ($clave+1);?> : <?php echo $resTags['description'];?> <input type=submit value="X">
+		<a href="#" class="button flag"><?php echo $resTags['description'];?></a><a href="javascript:document.del_form<?php echo $i;?>.submit();" class="button">X</a>
+		
 		</form>
        	<?php 
+       	$i++;
 		}
 	}
 	?>
 	<br />
-	<form method=post>
+	<form method=post name="pic_form">
 	<input type=hidden name=pic value="<?php echo $pic+1;?>">
 	<input type="hidden" name="source" value="<?php echo $source;?>" />
-	<input type=submit value="Siguiente imagen >>">
+	<a href="javascript:document.pic_form.submit();" class="button save">Siguiente imagen >></a>
+	<!-- <input type=submit value="Siguiente imagen >>">-->
 	</form>
 </div>
  <?php 
