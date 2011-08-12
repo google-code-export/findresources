@@ -25,7 +25,7 @@ Disponés de 45 minutos para resolver las 60 placas del test.
 <form method="POST" id="quiz_form" name="quiz_form">
 <input type="hidden" name="source" value="init_test" />
 <input type="hidden" name="placa" value="0" />
-<input type=submit value="Comenzar el test"> 
+<a href="javascript:document.quiz_form.submit();" class="button">Comenzar el test</a>
 </form> 
 </center>
 <?php 
@@ -141,7 +141,7 @@ $(document).ready(function(){
 <input type="hidden" name="s60" value="<?php echo $s60;?>"/>
 <input type="hidden" name="placa" value="<?php echo $placa;?>"/>
 <input type="text" name="timer" id="timer" value="<?php echo $timer;?>" border="0" READONLY/><br /><br />
-<input type=submit value="Siguiente"> 
+<a href="javascript:document.quiz_form.submit();" class="button save">Siguiente</a>
 </form>
 </center>
  <?php 
