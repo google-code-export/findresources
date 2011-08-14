@@ -183,28 +183,18 @@ class Curriculum_model extends FR_Model {
 	 * 
 	 * */
 	public function  getHabilidadesIndustriasDelCV($idCurriculum){
-		$respuesta[0]->idIndustria = 0;
-		$respuesta[0]->descripcionIndustria = "Petrolera";
-		$respuesta[0]->puntos = 2; //Industria
-		
-		$respuesta[1]->idIndustria = 2;
-		$respuesta[1]->descripcionIndustria = "Banca";
-		$respuesta[1]->puntos = 2;
-				
-		return $respuesta;  //not in db yet
-		
 		
 		$curs=NULL;
 		$n1 = NULL;
 		$n2 = NULL;
 		$params = array(
 		array('name'=>':pi_id_curriculum', 'value'=>$idCurriculum, 'type'=>SQLT_CHR, 'length'=>-1),
-		array('name'=>':po_habilidades_duras_industria', 'value'=>&$curs, 'type'=>SQLT_RSET , 'length'=>-1),
+		array('name'=>':po_industrias_cv', 'value'=>&$curs, 'type'=>SQLT_RSET , 'length'=>-1),
 		array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
 		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
 		);
 		
-		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','pr_obtiene_habilidades_duras_industria',$params);
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','pr_consulta_industria',$params);
 		
 		if ($n1 == 0){
 			$dbRegistros = $this->oracledb->get_cursor_data();
@@ -214,8 +204,8 @@ class Curriculum_model extends FR_Model {
 			$respuesta = array();
 			foreach ($dbRegistros as $i => $dbRegistro){
 				$respuesta[$i]->idIndustria = $dbRegistro->id_industria;
-				$respuesta[$i]->descripcionIndustria = $dbRegistro->d_industria;
-				$respuesta[$i]->puntos = $dbRegistro->puntos;
+				$respuesta[$i]->descripcionIndustria = "descripcion".$dbRegistro->id_industria; //$dbRegistro->d_industria;
+				$respuesta[$i]->puntos = $dbRegistro->valoracion;
 			}
 			return $respuesta;
 		}
@@ -238,27 +228,28 @@ class Curriculum_model extends FR_Model {
 		
 		$parametro = "";
 		foreach ($habilidades as $habilidad){
-			if($parametro != ""){
-				//Its not the first need add ;
-				$parametro = $parametro . ';'; 
-			}
+//			if($parametro != ""){
+//				//Its not the first need add ;
+//				$parametro = $parametro . ';'; 
+//			}
 			$parametro = $parametro . 
 					$habilidad->idIndustria . ';' . 
-					$habilidad->puntos;
+					$habilidad->puntos . ';';
 		}
 		
-		return 0; //not in db yet
-		
+//		return 0; //not in db yet
+		echo " <". $idCurriculum. "   ". $parametro . "         >" ;
+		return 0;
 		$n1 = NULL;
 		$n2 = NULL;
 		$params = array(
 		array('name'=>':pi_id_curriculm', 'value'=>$idCurriculum, 'type'=>SQLT_CHR, 'length'=>-1),
-		array('name'=>':pi_habilidades_duras_industria', 'value'=>$parametro, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':pi_industria_cv', 'value'=>$parametro, 'type'=>SQLT_CHR, 'length'=>-1),
 		array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
 		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
 		);
 		
-		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','actualiza_habilidades_duras_industria',$params);
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','pr_actualiza_industria',$params);
 		
 		if ($n1 == 0){
 			return 0;
@@ -336,14 +327,14 @@ class Curriculum_model extends FR_Model {
 	public function  setHabilidadesAreasDelCV($idCurriculum, $habilidades){
 		$parametro = "";
 		foreach ($habilidades as $habilidad){
-			if($parametro != ""){
-				//Its not the first need add ;
-				$parametro = $parametro . ';'; 
-			}
+//			if($parametro != ""){
+//				//Its not the first need add ;
+//				$parametro = $parametro . ';'; 
+//			}
 			$parametro = $parametro .  
 					$habilidad->idArea . ';' . 
 					$habilidad->idHerramienta . ';' . 
-					$habilidad->puntos;
+					$habilidad->puntos  . ';';
 		}
 		
 		return 0; //NOT IN DB YET ////////////
@@ -372,7 +363,7 @@ class Curriculum_model extends FR_Model {
 	
 	/**
 	 * @param: idCurriculum
-	 * @return: array with [{id, compania, idRubro, idPais, fechaDesde, fechaHasta, logro}]
+	 * @return: array with [{id, compania, idIndustria, idPais, fechaDesde, fechaHasta, logro}]
 	 */
 	public function  getExperienciaLaboralDelCv($idCurriculum){
 		
@@ -397,7 +388,7 @@ class Curriculum_model extends FR_Model {
 			foreach ($dbRegistros as $i => $dbRegistro){
 				$response[$i]->id  = $dbRegistro->id_historia_laboral_cv;
 				$response[$i]->compania = $dbRegistro->d_compania;
-				$response[$i]->idRubro = $dbRegistro->id_rubro;
+				$response[$i]->idIndustria = $dbRegistro->id_industria;
 				$response[$i]->idPais = $dbRegistro->pais;
 				$response[$i]->fechaDesde = $dbRegistro->f_desde;//formato DD/MM/YYYY
 				$response[$i]->fechaHasta = $dbRegistro->f_hasta; //formato DD/MM/YYYY
@@ -415,7 +406,7 @@ class Curriculum_model extends FR_Model {
 
 	/**
 	 * @param $idCurriculum
-	 * @param $experienciaLaboral {id, compania, idRubro, idPais, fechaDesde, fechaHasta, logro}
+	 * @param $experienciaLaboral {id, compania, idIndustria, idPais, fechaDesde, fechaHasta, logro}
  	 * para nuevo registro, $experienciaLaboral->id debe ser nulo.
 	 * @return retorna el id de experiencia laboral.
 	 * */
@@ -430,7 +421,7 @@ class Curriculum_model extends FR_Model {
 		array('name'=>':pi_id_historia_laboral_cv', 'value'=>$experienciaLaboral->id, 'type'=>SQLT_CHR, 'length'=>-1),
 		array('name'=>':pi_id_curriculm', 'value'=>$idCurriculum, 'type'=>SQLT_CHR, 'length'=>-1),
 		array('name'=>':pi_d_compania', 'value'=>$experienciaLaboral->compania, 'type'=>SQLT_CHR, 'length'=>-1),
-		array('name'=>':pi_id_rubro', 'value'=>$experienciaLaboral->idRubro, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':pi_id_industria', 'value'=>$experienciaLaboral->idIndustria, 'type'=>SQLT_CHR, 'length'=>-1),
 		array('name'=>':pi_pais', 'value'=>$experienciaLaboral->idPais, 'type'=>SQLT_CHR, 'length'=>-1),
 		array('name'=>':pi_f_desde', 'value'=>$experienciaLaboral->fechaDesde, 'type'=>SQLT_CHR, 'length'=>-1),
 		array('name'=>':pi_f_hasta', 'value'=>$experienciaLaboral->fechaHasta, 'type'=>SQLT_CHR, 'length'=>-1),
