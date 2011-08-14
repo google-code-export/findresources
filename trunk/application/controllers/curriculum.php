@@ -134,7 +134,7 @@ class Curriculum extends CI_Controller {
 	}
 	
 	/**
-	 * input: 'habilidadesIndustrias' json string array > [{idArea, idHerramienta, puntos}]
+	 * input: 'habilidadesIndustrias' json string array > [{idIndustria, puntos}]
 	 * 		  'habilidadesAreas' json string array > [{idArea, idHerramienta, puntos}]
 	 * output: 0 is oK.
 	 * */
@@ -166,7 +166,7 @@ class Curriculum extends CI_Controller {
 	}
 
 	/**
-	 * input: 'experienciaLaboral' json string > {id, compania, idRubro, idPais, fechaDesde, fechaHasta, logro}
+	 * input: 'experienciaLaboral' json string > {id, compania, idIndustria, idPais, fechaDesde, fechaHasta, logro}
 	 * 						para nuevo registro, $experienciaLaboral->id debe ser null.
 	 * output: retorna el idEducacionFormal.
 	 * */

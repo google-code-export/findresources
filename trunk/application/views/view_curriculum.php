@@ -79,16 +79,16 @@
 		$('#setHabilidades').click(function(){
 			var habilidadesIndustrias = [
 		     	{
-		    	 	idIndustria: 0, 
-		    	 	puntos: 3
-		    	},
-		     	{
 		    	 	idIndustria: 1, 
-		    	 	puntos: 3
+		    	 	puntos: 5
 		    	},
 		     	{
 		    	 	idIndustria: 2, 
-		    	 	puntos: 3
+		    	 	puntos: 5
+		    	},
+		     	{
+		    	 	idIndustria: 3, 
+		    	 	puntos: 5
 		    	},
 		    ];
 		
@@ -129,7 +129,7 @@
 			var experienciaLaboral = {
 					id: null, // null = nuevo
 					compania: "una compania", 
-					idRubro: 1, 
+					idIndustria: 1, 
 					idPais: "ARG", 
 					fechaDesde: "05/03/1984", 
 					fechaHasta: "06/06/1986", 
@@ -234,7 +234,7 @@ un cv <br/>
 	<H1>EXPERIENCIA LABORAL DEL CV</H1>
 <?php 
 	foreach ($experienciaLaboralDelCv as $experiencia){
-		echo $experiencia->id . ' ' . $experiencia->compania . ' ' . $experiencia->idRubro . ' ' . $experiencia->idPais . ' ' .  $experiencia->fechaDesde . ' ' .  $experiencia->fechaHasta . ' ' .  $experiencia->logro;
+		echo $experiencia->id . ' ' . $experiencia->compania . ' ' . $experiencia->idIndustria . ' ' . $experiencia->idPais . ' ' .  $experiencia->fechaDesde . ' ' .  $experiencia->fechaHasta . ' ' .  $experiencia->logro;
 	}
 ?>
 
