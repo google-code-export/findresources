@@ -111,7 +111,7 @@ class Test extends CI_Controller {
 		/* Obtengo el valor de todas las fichas */
 		$id = 1;
 		while ($id <= 60) {
-			$data['s'.$id] = $this->input->post('s'.$id);
+			$data['s'.$id] = intval($this->input->post('s'.$id));
 	    	$id++;  
 		}
 
@@ -137,6 +137,7 @@ class Test extends CI_Controller {
 		 		$data['timer'] = $this->input->post('timer');
 		 		$data['source'] = "test_finished";
 				$correctAnswers = $this->Test_model->getRavenCorrectAnswers($data);
+				$usuario = $this->session->userdata('usuario');
 		 		$result = $this->Test_model->setRavenResults($usuario,$correctAnswers);
 				if ($result["error"] == 0 )
 					$data["result"] = "Test completado correctamente";
@@ -192,6 +193,7 @@ class Test extends CI_Controller {
 		 		$data['source'] = "test_finished";
 		 		
 				$correctAnswers = $this->Test_model->getD48CorrectAnswers($data);
+				$usuario = $this->session->userdata('usuario');
 		 		$result = $this->Test_model->setD48Results($usuario,$correctAnswers);
 				if ($result["error"] == 0 )
 					$data["result"] = "Test completado correctamente";
@@ -334,7 +336,9 @@ class Test extends CI_Controller {
 		 		$data['source'] = "test_finished";
 		 		//$data['session'] = $this->session->userdata('RORSCHACH_DATA');
 				$answers = $this->session->userdata('RORSCHACH_DATA');
+				$usuario = $this->session->userdata('usuario');
 		 		$result = $this->Test_model->setRorschachResults($usuario,$answers);
+		 		print_r($answers);
 				if ($result["error"] == 0 )
 					$data["result"] = "Test completado correctamente";
 				else 			
