@@ -90,7 +90,7 @@ $(document).ready(function(){
 <tr><td><input type="text" name="item1" value="" maxlength="1" id="d48_input" /></td></tr>
 <tr><td><input type="text" name="item2" value="" maxlength="1" id="d48_input" /></td></tr>
 </table>
-<input type="hidden" name="source" value="<?php echo $source;?>" />
+<input type="hidden" id="source" name="source" value="<?php echo $source;?>" />
 <input type="hidden" name="s1" value="<?php echo $s1;?>"/>
 <input type="hidden" name="s2" value="<?php echo $s2;?>"/>
 <input type="hidden" name="s3" value="<?php echo $s3;?>"/>
