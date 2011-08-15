@@ -133,7 +133,8 @@ class Test extends CI_Controller {
 			 	$data['source'] = "select_pieza";
 			 	$this->load->view('view_test_raven',$data);
 			break;
-			case 'select_pieza_final' : 
+			case 'select_pieza_final' :
+			case 'timeout' :  
 		 		$data['timer'] = $this->input->post('timer');
 		 		$data['source'] = "test_finished";
 				$correctAnswers = $this->Test_model->getRavenCorrectAnswers($data);
@@ -189,6 +190,7 @@ class Test extends CI_Controller {
 			 	$this->load->view('view_test_d48',$data);
 			break;
 			case 'select_ficha_final' : 
+			case 'timeout' :  
 		 		$data['timer'] = $this->input->post('timer');
 		 		$data['source'] = "test_finished";
 		 		
