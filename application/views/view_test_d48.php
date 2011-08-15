@@ -150,7 +150,7 @@ $(document).ready(function(){
 if ($source == "test_finished") {
 	echo '<br /><h3>Muchas gracias por realizar el Test. Esta información será tenida en cuenta en sus postulaciones.</h3><br /><hr>';
 	echo '<a href="'.base_url().'Test">Continuar con el siguiente test.</a><br /><hr><br />';
-	echo '<pre>RESULTADOS:<br />
+	/*echo '<pre>RESULTADOS:<br />
 	Placa 1: '.	$s1.'<br />
 	Placa 2: '.	$s2.'<br />
 	Placa 3: '.	$s3.'<br />
@@ -199,25 +199,9 @@ if ($source == "test_finished") {
 	Placa 46: '.$s46.'<br />
 	Placa 47: '.$s47.'<br />
 	Placa 48: '.$s48.'<br />
-	Tiempo:  '.$timer.'<br />';
+	Tiempo:  '.$timer.'<br />';*/
 
-	switch($num){
-		case "1": 
-			$test = "luscher";
-			break;
-		case "2": 
-			$test = "d48";
-			break;
-		case "3": 
-			$test = "raven";
-			break;
-		case "4": 
-			$test = "mips";
-			break;
-		case "5": 
-			$test = "rorschach";
-			break;
-	}
+ 	echo $result;
 	//$this->session->set_userdata($test, "DONE");
 }
 ?>

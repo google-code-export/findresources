@@ -6,7 +6,6 @@
     <meta name="description" content="FindResources - Choose best people" /> 
     <meta name="keywords" content="personality test color psychology luscher colour" /> 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <script type="text/javascript" src="<?php echo base_url();?>js/countDown.js"></script>
     <link rel="stylesheet" href="<?php echo base_url();?>css/style.css">
 </head> 
 <body> 
@@ -39,17 +38,11 @@ if ($source == "select_colors2" ) {
 	$color ="colors2";
 	$title = "Selecciona nuevamente los colores en el orden que prefieras.";
 }
-$minutos = "1";
-$segundos = "01";
 ?>
-<script type="text/javascript">function init() {cd('<?php echo $minutos;?>', '<?php echo $segundos;?>');}window.onload = init;</script>
 <form method="POST" id="quiz_form" name="quiz_form">
 <input type="hidden" name="source" value="<?php echo $source;?>" />
 <input type="hidden" name="colors1" value="<?php echo $c1;?>" />
 <input type="hidden" name="colors2" value="<?php echo $c2;?>" />
-<input type="hidden" name="timer1" value="<?php echo $timer1;?>" />
-<input type="hidden" name="timer2" value="<?php echo $timer2;?>" />
-<input type="text" name="timer" id="timer" value="1:00" border="0" READONLY/>
 </form>
 <script> 
 var total = 0;
@@ -117,23 +110,7 @@ if ($source == "test_finished") {
 	//echo '2da  Selección: '.$c2.$sep.$timer2.'</pre>';	
 	echo $result;
 	
-	switch($num){
-		case "1": 
-			$test = "luscher";
-			break;
-		case "2": 
-			$test = "d48";
-			break;
-		case "3": 
-			$test = "raven";
-			break;
-		case "4": 
-			$test = "mips";
-			break;
-		case "5": 
-			$test = "rorschach";
-			break;
-	}
+
 	//$this->session->set_userdata($test, "DONE");
 }
 ?>
