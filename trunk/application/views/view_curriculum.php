@@ -165,7 +165,12 @@
 	});
 </script>
 
-un cv <br/>
+<h1>DATOS DE USUARIO</h1>
+<?php var_dump($usuarioData);
+?>
+
+<h1>DATOS DE CV</h1>
+
 <?php 
 	echo $curriculumData->id;
 	echo '<br/>';
