@@ -8,11 +8,11 @@ class Usuario_model extends FR_Model {
 	
 	/**
 	 * @param usuario: {email, clave, nombre, apellido, razonSocial, idIndustria, idTipoDocumento, numeroDocumento, telefono, idPais, tipoUsuario: "E">empresa "C">candidato}
-	 * @return codigoAutenticacion
+	 * @param activationCode
+	 * @return 
 	 * */
-	public function  crearNuevoUsuario($usuario){
+	public function  crearNuevoUsuario($usuario, $activationCode){
 		
-		$rta=NULL;
 		$n1 = NULL;
 		$n2 = NULL;
 		$params = array(
@@ -27,20 +27,19 @@ class Usuario_model extends FR_Model {
 		array('name'=>':pi_telefono', 'value'=>$usuario->telefono, 'type'=>SQLT_CHR, 'length'=>-1),
 		array('name'=>':pi_pais', 'value'=>$usuario->idPais, 'type'=>SQLT_CHR, 'length'=>-1),
 		array('name'=>':pi_t_usuario', 'value'=>$usuario->tipoUsuario, 'type'=>SQLT_CHR, 'length'=>-1),
-		array('name'=>':po_id_autentificacion', 'value'=>&$rta, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':pi_id_autentificacion', 'value'=>$activationCode, 'type'=>SQLT_CHR, 'length'=>-1),
 		array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
 		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
 		);
-		
 		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_usuario','pr_creacion_usuario',$params);
 		
 		if ($n1 == 0){
-			return $rta;
+			return 0;
 		}
 		else{
 			
 			//TODO exception managment.
-        	throw new Exception('Oracle error in crearNuevoUsuario ('. var_export($usuario) .') message in : ' . $n2);
+        	throw new Exception('Oracle error in crearNuevoUsuario ('. $usuario->email .') message in : ' . $n2);
 		}		
 		
 	}	
@@ -107,7 +106,7 @@ class Usuario_model extends FR_Model {
 		else{
 			
 			//TODO exception managment.
-        	throw new Exception('Oracle error in modificarUsuario(' . var_export($usuario) . ') message: ' . $n2);
+        	throw new Exception('Oracle error in modificarUsuario(' . $usuario->email . ') message: ' . $n2);
 		}		
 		
 	}	
@@ -184,14 +183,15 @@ class Usuario_model extends FR_Model {
 	/**
 	 * Esta funcion activa un usuario
 	 * @param  $codigoAutenticacion
+	 * @param  $idUsuario
 	 * @return true si fue activado.
 	 * */
-	public function  activarUsuario($codigoAutenticacion){
-		$rta=NULL;
+	public function  activarUsuario($codigoAutenticacion, $idUsuario){
 		$n1 = NULL;
 		$n2 = NULL;
 		$params = array(
 		array('name'=>':pi_id_autentificacion', 'value'=>$codigoAutenticacion, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':pi_usuario', 'value'=>$idUsuario, 'type'=>SQLT_CHR, 'length'=>-1),
 		array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
 		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
 		);
@@ -202,7 +202,7 @@ class Usuario_model extends FR_Model {
 		}
 		else{
 			//TODO exception managment.
-        	throw new Exception('Oracle error in activarUsuario(' . $codigoAutenticacion . ') message: ' . $n2);
+        	throw new Exception('Oracle error in activarUsuario(' . $codigoAutenticacion . ','. $idUsuario . ') message: ' . $n2);
 		}		
 		
 	}	
@@ -211,19 +211,33 @@ class Usuario_model extends FR_Model {
 	/**
 	 * Esta funcion activa un usuario
 	 * @param  $idUsuario (email del usuario)
-	 * @return boolean true> existe el usuario  false>no existe.
+	 * @return retorna el estado del usuario, 0 no existe - 1 existe pero no autenticado - 2 usuario activo y autenticado - 3 usuario inactivo.
 	 * */
-	public function  getExisteUsuario($idUsuario){
+	public function  getEstadoUsuario($idUsuario){
 
-		$query = $this->db->query('SELECT PKG_USUARIO.FU_EXISTE_USUARIO(\''. $idUsuario. '\') AS RESPONSE FROM DUAL');
-		$row = $query->row_array();
+		$rta=NULL;
+		$n1 = NULL;
+		$n2 = NULL;
+		$params = array(
+			array('name'=>':pi_usuario', 'value'=>$idUsuario, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':po_estado', 'value'=>&$rta, 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
+		);
 		
-		if ($row['RESPONSE'] == 0){
-			return true;
-		} else{
-			return false;
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_usuario','pr_estado_usuario',$params);
+		var_dump($rta);
+		if ($n1 == 0){
+			return $rta;
 		}
-
+		else{
+			
+			//TODO exception managment.
+        	throw new Exception('Oracle error in getEstadoUsuario(' . $idUsuario  . ') message: ' . $n2);
+		}
+		
+		
+		
 	}	
 	
 	

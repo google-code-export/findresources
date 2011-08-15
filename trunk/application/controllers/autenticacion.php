@@ -10,16 +10,17 @@ class Autenticacion extends CI_Controller {
 	public function index(){
 		
 		$codigoAutenticacion = $this->input->get('autCode');
-
-		$idUsuario = $this->session->userdata('ID_USUARIO');
+		$userId = $this->input->get('email');
 		
+		$idUsuario = @$_SESSION[SESSION_ID_USUARIO];
+				
 		if($idUsuario){
 			//user is already logged in.
 			redirect('home');
 			
 		}else{
 			
-			$data['autenticado'] =  $this->Usuario_model->activarUsuario($codigoAutenticacion);
+			$data['autenticado'] =  $this->Usuario_model->activarUsuario($codigoAutenticacion, $userId);
 			//user is already logged in.
 			$this->load->view('view_autenticacion', $data);
 		}
