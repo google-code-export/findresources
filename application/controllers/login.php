@@ -36,15 +36,16 @@ class Login extends CI_Controller {
 		$usuario = $this->input->post('usuario');
 		$usuario = json_decode($usuario);
 		$usuario->clave = md5($usuario->clave);
-		$respuesta = $this->Usuario_model->crearNuevoUsuario($usuario);
+		$activationCode = $this->randomString(32);
+		$respuesta = $this->Usuario_model->crearNuevoUsuario($usuario, $activationCode);
 		//email confirmation
 		$this->email->from('noreply@gmail.com', 'Findresources');
 		$this->email->to($usuario->email);
 		$this->email->subject('FindResources - Confirmacion de Registración');
-		$this->email->message('Porfavor clickee este link para confirmar su registración: ' . anchor(base_url() .'autenticacion?autCode=' . $respuesta, 'Confirme registracion'));
+		$this->email->message('Porfavor clickee este link para confirmar su registración: ' . anchor(base_url() .'autenticacion?autCode=' . $activationCode . '&email='. $usuario->email, 'Confirme registracion'));
 		//ENVIAR EMAIL.
 		$emailSent = $this->email->send();
-
+		
 		echo json_encode($respuesta);
 	}
 
@@ -76,14 +77,28 @@ class Login extends CI_Controller {
 	 */
 	public function getExisteUsuario(){
 		$usuario = $this->input->post('usuario');
-		$existe = $this->Usuario_model->getExisteUsuario($usuario);
-		if($existe){
-			echo "true";
-		} else{
+		$estado = $this->Usuario_model->getEstadoUsuario($usuario);
+		if($estado == 0){
 			echo "false";
+		} else{
+			echo "true";
 		}
 	}
 	
+	//TODO send this function to a class called String_helper
+	function randomString($length)
+	{
+		$len = $length;
+		$base = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890';
+		$max = strlen($base) -1;
+		$activatecode = '';
+		mt_srand((double)microtime()*1000000);
+		while (	strlen($activatecode)< $len ){
+			$activatecode.= $base{mt_rand(0, $max)};
+		}
+		
+		return $activatecode;
+	}
 	
 }
 

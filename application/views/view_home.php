@@ -66,7 +66,7 @@ code {
 						
 			$.post("home/doLogout", null,
 			function(response){
-				debugger; //TODO FIX PORQUE NO SE REDIRIJE AL LOGIN :(? en este punto?
+//				debugger; //TODO FIX PORQUE NO SE REDIRIJE AL LOGIN :(? en este punto?
 				window.location="login";
 			},
 			"json");
