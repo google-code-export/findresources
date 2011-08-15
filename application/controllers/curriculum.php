@@ -33,7 +33,8 @@ class Curriculum extends CI_Controller {
 		$_SESSION[SESSION_CV_EDITANDO] = $curriculumData;
 		
 		$data['curriculumData'] = $curriculumData;
-
+		$data['usuarioData'] = $this->Usuario_model->getUsuario($usuario);
+		
 		$data['habilidadesIndustriasDelCV'] = $this->Curriculum_model->getHabilidadesIndustriasDelCV($curriculumData->id);
 		$data['habilidadesAreasDelCV'] = $this->Curriculum_model->getHabilidadesAreasDelCV($curriculumData->id);
 		$data['experienciaLaboralDelCv'] = $this->Curriculum_model->getExperienciaLaboralDelCv($curriculumData->id);
