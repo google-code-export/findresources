@@ -19,6 +19,10 @@ class Test extends CI_Controller {
 		/** REALIZAR VALIDACION DE LOS TESTS A REALIZAR POR EL USUARIO**/
 		/** E IR LLAMANDO A LOS TESTS QUE CORRESPONDAN VALIDANDO CON **/
 		/** LO QUE LE FALTA REALIZAR SEGÚN LA INFO OBTENIDA DE LA BD **/
+		
+		/* USUARIO DE PRUEBA HASTA PODER TOMAR EL USUARIO REAL GUARDADO EN SESION */
+		$this->session->set_userdata('usuario', "juan@juan.com");
+
 
 		$luscher_state = ($this->session->userdata('luscher')) ? $this->session->userdata('luscher') : "PEND";
 		$d48_state = ($this->session->userdata('d48')) ? $this->session->userdata('d48') : "PEND";
@@ -59,14 +63,13 @@ class Test extends CI_Controller {
 	/**
 	 * Test de Luscher
 	 */
-	function luscher($num){
+	function luscher($num = 1){
 		//echo $num;
 		$data['num'] = $num;
 		$data['c1'] = '';
 		$data['c2'] = '';
-		$data['timer1'] = '';
-		$data['timer2'] = '';
 		$data['sep'] = $this->sep;
+		
 		switch ($this->input->post('source')) {
 			case 'init_test' :
 			 	$data['source'] = "select_colors1";
@@ -74,39 +77,18 @@ class Test extends CI_Controller {
 			break;
 			case 'select_colors1' :
 		 		$data['c1'] = $this->input->post('colors1');
-		 		$data['timer1'] = $this->input->post('timer');
 			 	$data['source'] = "select_colors2";
 			 	$this->load->view('view_test_luscher',$data);
 			break;
 			case 'select_colors2' : 
-		 		//$data['c1'] = $this->input->post('colors1');
-		 		//$data['c2'] = $this->input->post('colors2');
-		 		//$data['timer1'] = $this->input->post('timer1');
-		 		//$data['timer2'] = $this->input->post('timer');
-		 		$codError = NULL;
-				$descError = NULL;
-				$usuario = "juan@juan.com";
-				$tiempo1 = $this->input->post('timer1');
-				$tiempo2 = $this->input->post('timer');
+				$usuario = $this->session->userdata('usuario');
 				$seleccion_luscher1 = $this->input->post('colors1');
 				$seleccion_luscher2 = $this->input->post('colors2');
-				
-				/* Guardo los resultados del test*/
-				$params = array(
-				array('name'=>':PI_USUARIO', 'value'=>$usuario, 'type'=>SQLT_CHR , 'length'=>-1),
-				array('name'=>':PI_SELECCION_LUSCHER1', 'value'=>$seleccion_luscher1, 'type'=>SQLT_CHR , 'length'=>-1),
-				array('name'=>':PI_SELECCION_LUSCHER2', 'value'=>$seleccion_luscher2, 'type'=>SQLT_CHR , 'length'=>-1),
-				array('name'=>':PI_TIEMPO1', 'value'=>$tiempo1, 'type'=>SQLT_CHR , 'length'=>-1),
-				array('name'=>':PI_TIEMPO2', 'value'=>$tiempo2, 'type'=>SQLT_CHR , 'length'=>-1),
-				array('name'=>':PO_C_ERROR', 'value'=>&$codError, 'type'=>SQLT_CHR , 'length'=>255),
-				array('name'=>':PO_D_ERROR', 'value'=>&$descError, 'type'=>SQLT_CHR, 'length'=>255)
-				);
-				$this->oracledb->stored_procedure($this->db->conn_id,'PKG_TEST','PR_LUSCHER_USUARIO',$params);
-				//var_dump($this->oracledb->get_cursor_data());
-				if ($codError == 0) 	
+				$result = $this->Test_model->setLuscherResults($usuario,$seleccion_luscher1,$seleccion_luscher2);
+				if ($result["error"] == 0 )
 					$data["result"] = "Test completado correctamente";
 				else 			
-					$data["result"] = "ERROR (".$codError.") :".$descError;
+					$data["result"] = "ERROR (".$result["error"].") :".$result["desc"];
 		 		$data['source'] = "test_finished";
 		 		$this->load->view('view_test_luscher',$data);
 			break;
@@ -114,12 +96,13 @@ class Test extends CI_Controller {
 		 		$data['source'] = "init_test";
 				$this->load->view('view_test_luscher',$data);
 		}
+		
 	}
 
 	/**
 	 * Test de Raven
 	 */
-	function raven($num){
+	function raven($num = 3){
 		
 		$data['num'] = $num;
 		
@@ -153,6 +136,13 @@ class Test extends CI_Controller {
 			case 'select_pieza_final' : 
 		 		$data['timer'] = $this->input->post('timer');
 		 		$data['source'] = "test_finished";
+				$correctAnswers = $this->Test_model->getRavenCorrectAnswers($data);
+		 		$result = $this->Test_model->setRavenResults($usuario,$correctAnswers);
+				if ($result["error"] == 0 )
+					$data["result"] = "Test completado correctamente";
+				else 			
+					$data["result"] = "ERROR (".$result["error"].") :".$result["desc"];
+					
 		 		$this->load->view('view_test_raven',$data);
 			break;
 			default :
@@ -164,7 +154,7 @@ class Test extends CI_Controller {
 	/**
 	 * Test de Domino D48
 	 */
-	function d48($num){
+	function d48($num = 2){
 		
 		$data['num'] = $num;
 		
@@ -200,6 +190,14 @@ class Test extends CI_Controller {
 			case 'select_ficha_final' : 
 		 		$data['timer'] = $this->input->post('timer');
 		 		$data['source'] = "test_finished";
+		 		
+				$correctAnswers = $this->Test_model->getD48CorrectAnswers($data);
+		 		$result = $this->Test_model->setD48Results($usuario,$correctAnswers);
+				if ($result["error"] == 0 )
+					$data["result"] = "Test completado correctamente";
+				else 			
+					$data["result"] = "ERROR (".$result["error"].") :".$result["desc"];
+					
 		 		$this->load->view('view_test_d48',$data);
 			break;
 			default :
@@ -211,7 +209,7 @@ class Test extends CI_Controller {
 	/**
 	 * Test de MIPS
 	 */
-	function mips($num){
+	function mips($num = 4){
 		
 		$data['num'] = $num;
 		
@@ -226,29 +224,24 @@ class Test extends CI_Controller {
 		 		
 		 		$codError = NULL;
 				$descError = NULL;
-				$usuario = "juan@juan.com";
+				$usuario = $this->session->userdata('usuario');
 				
 				/* Obtengo el valor de todas las placas */
 				$seleccion_mips = $this->input->post('q1');
 				$id = 2;
 				while ($id <= 180) {
-					//$data['q'.$id] = $this->input->post('q'.$id);
-					$seleccion_mips .= $this->input->post('q'.$id);
+					$data['q'.$id] = $this->input->post('q'.$id);
+					//$seleccion_mips .= $this->input->post('q'.$id);
 			    	$id++;  
 				}
-				/* Guardo los resultados del test*/
-				$params = array(
-				array('name'=>':PI_USUARIO', 'value'=>$usuario, 'type'=>SQLT_CHR , 'length'=>-1),
-				array('name'=>':PI_SELECCION_MIPS', 'value'=>$seleccion_mips, 'type'=>SQLT_CHR , 'length'=>-1),
-				array('name'=>':PO_C_ERROR', 'value'=>&$codError, 'type'=>SQLT_CHR , 'length'=>255),
-				array('name'=>':PO_D_ERROR', 'value'=>&$descError, 'type'=>SQLT_CHR, 'length'=>255)
-				);
-				$this->oracledb->stored_procedure($this->db->conn_id,'PKG_TEST','PR_MIPS_USUARIO',$params);
-				
-				if ($codError == 0) 	
+					
+				$correctAnswers = $this->Test_model->getMIPSCorrectAnswers($data);
+		 		$result = $this->Test_model->setMIPSResults($usuario,$correctAnswers);
+				if ($result["error"] == 0 )
 					$data["result"] = "Test completado correctamente";
 				else 			
-					$data["result"] = "ERROR (".$codError.") :".$descError;
+					$data["result"] = "ERROR (".$result["error"].") :".$result["desc"];
+
 					
 		 		$data['source'] = "test_finished";
 			 	$this->load->view('view_test_mips',$data);
@@ -339,7 +332,14 @@ class Test extends CI_Controller {
 			break;
 			case 'select_img_final' : 
 		 		$data['source'] = "test_finished";
-		 		$data['session'] = $this->session->userdata('RORSCHACH_DATA');
+		 		//$data['session'] = $this->session->userdata('RORSCHACH_DATA');
+				$answers = $this->session->userdata('RORSCHACH_DATA');
+		 		$result = $this->Test_model->setRorschachResults($usuario,$answers);
+				if ($result["error"] == 0 )
+					$data["result"] = "Test completado correctamente";
+				else 			
+					$data["result"] = "ERROR (".$result["error"].") :".$result["desc"];
+					
 		 		$this->session->sess_destroy();
 		 		$this->load->view('view_test_rorschach',$data);
 			break;
