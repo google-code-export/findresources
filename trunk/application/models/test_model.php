@@ -87,13 +87,13 @@ class Test_model extends CI_Model {
 		$answer[60] ="";
 		
 		/* ANALIS DE LOS RESULTADOS DE RAVEN*/
-		$result = NULL;
+		$result = "";
 		$i = 1;
 		while($i <= 60) {
 			if ($ravenAnswers["s".$i] == $answer[$i])
-				$result[$i] .= "B";
+				$result .= "B";
 			else
-				$result[$i] .= "M"; 
+				$result .= "M"; 
 			$i++;
 		}
 		return $result;
@@ -169,13 +169,13 @@ class Test_model extends CI_Model {
 
 		
 		/* ANALIS DE LOS RESULTADOS DE D48*/
-		$result = NULL;
+		$result = "";
 		$i = 1;
 		while($i <= 48) {
 			if ($ravenAnswers["s".$i] == $answer[$i])
-				$result[$i] .= "B";
+				$result .= "B";
 			else
-				$result[$i] .= "M"; 
+				$result .= "M"; 
 			$i++;
 		}
 		return $result;
@@ -381,13 +381,13 @@ class Test_model extends CI_Model {
 		$answer[179] ="";
 		$answer[180] ="";
 		/* ANALIS DE LOS RESULTADOS DE MIPS*/
-		$result = NULL;
+		$result = "";
 		$i = 1;
 		while($i <= 180) {
 			if ($ravenAnswers["q".$i] == $answer[$i])
-				$result[$i] .= "B";
+				$result .= "B";
 			else
-				$result[$i] .= "M"; 
+				$result .= "M"; 
 			$i++;
 		}
 		return $result;
@@ -409,6 +409,7 @@ class Test_model extends CI_Model {
 		return $result;
 
 	}
+	
 	public function setRorschachResults($usuario,$answers){
 		$result["error"] = NULL;
 		$result["desc"] = NULL;
