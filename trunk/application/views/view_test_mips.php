@@ -453,23 +453,6 @@ if ($source == "test_finished") {
 
 	echo $result;
 	
-	switch($num){
-		case "1": 
-			$test = "luscher";
-			break;
-		case "2": 
-			$test = "d48";
-			break;
-		case "3": 
-			$test = "raven";
-			break;
-		case "4": 
-			$test = "mips";
-			break;
-		case "5": 
-			$test = "rorschach";
-			break;
-	}
 	//$this->session->set_userdata($test, "DONE");
 }
 ?>
