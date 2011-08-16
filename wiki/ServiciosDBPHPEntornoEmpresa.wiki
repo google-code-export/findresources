@@ -19,46 +19,46 @@ procedures de búsquedas.
 
 
 == nuevacarpeta == 
-	input idPadre, nombre de carpeta
-	output idCarpeta
+	* input idPadre, nombre de carpeta
+	* output idCarpeta
 
 == actualizar_nombre_de_busqueda== 
-	input (idBusqueda, nuevo_nombre)
+	* input (idBusqueda, nuevo_nombre)
 	
 
 == obtiene_busquedas_por_usuario== 
-	input idUsuario
-	output recorset con las busquedas.
+	* input idUsuario
+	* output recorset con las busquedas.
 
 
 == obtiene_habilidades_duras_de_busqueda== 
-	input idBusqueda
-	output LAS HABILIDADES DURAS
+	* input idBusqueda
+	* output LAS HABILIDADES DURAS
 
 == obtiene_habilidades_blandas_de_busqueda== 
-	input idBusqueda
-	output LAS HABILIDADES DURAS
+	* input idBusqueda
+	* output LAS HABILIDADES DURAS
 
 == obtiene_experiencia_laboral_de_busqueda== 
-	input idBusqueda
-	output LAS experiencias laborales.
+	* input idBusqueda
+	* output LAS experiencias laborales.
 
 == obtiene_edu_formal de busqueda== 
-	input idBusqueda
-	output EDUS FORMALES.
+	* input idBusqueda
+	* output EDUS FORMALES.
 
 
 == obtiene_edu_no_formal de busqueda== 
-	input idBusqueda
-	output EDUS NO FORMALES.
+	* input idBusqueda
+	* output EDUS NO FORMALES.
 
 
 == obtiene datos personales de busqueda== 
-	Edad (rango),  sexo (masc, fem, indistinto), provincia en la que vive, localidad en la que vive,  tiene twitter, tiene sms.
+	* Edad (rango),  sexo (masc, fem, indistinto), provincia en la que vive, localidad en la que vive,  tiene twitter, tiene sms.
 
 
 == obtiene_Otros_criterios == 
-	(no entiendo este item todavia, VER CUS)
+	* (no entiendo este item todavia, VER CUS)
 
 
 *de todos los obtiene debe tener tambien los actualiza correspondientes.*
