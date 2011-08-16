@@ -65,5 +65,5 @@ procedures de búsquedas.
 
 
 == ejecutar_busqueda== 
-	input idBusqueda
-	output recorset de EL_RESULTADO_DE_LA_BUSQUEDA
+	* input idBusqueda
+	* output recorset de EL_RESULTADO_DE_LA_BUSQUEDA
