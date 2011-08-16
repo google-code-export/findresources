@@ -14,8 +14,8 @@
 procedures de búsquedas.
 
 == nuevabusqueda== 
-	input (nombre de busqueda, carpeta padre).
-	ouput idBusqueda.
+	* input (nombre de busqueda, carpeta padre).
+	* ouput idBusqueda.
 
 
 == nuevacarpeta == 
