@@ -20,12 +20,13 @@
 
 ?>
 
-<!DOCTYPE unspecified PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<body>
-<script type="text/javascript" src=" <?php echo site_url('js/jquery-1.6.2.min.js')?>"></script>
-<script type="text/javascript" src=" <?php echo site_url('js/json2.js')?>"></script>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="css/global.css" />
+<script type="text/javascript" src="<?php site_url('js/jquery-1.6.2.min.js')?>"></script>
+<script type="text/javascript" src="<?php site_url('js/json2.js')?>"></script>
 <script type="text/javascript">
 	$(function(){
 		$('#cvEditorButton').click(function(){
@@ -110,7 +111,6 @@
                  },
 			];
 
-
 			$.post("curriculum/setHabilidadesDelCV", {
 				'habilidadesIndustrias': JSON.stringify(habilidadesIndustrias),
 				'habilidadesAreas': JSON.stringify(habilidadesAreas)
@@ -121,8 +121,6 @@
 				"json"
 			);
 
-
-			
 		});
 		
 		$('#setExperienciaLaboral').click(function(){
@@ -144,8 +142,6 @@
 			},
 			"json");
 		});
-
-		
 		
 		$('#getHerramientasPorArea').click(function(){
 
@@ -159,19 +155,103 @@
 		});
 		
 		
-		
-		
 		return false;
 	});
 </script>
+</head>
+<body>
 
-<h1>DATOS DE USUARIO</h1>
-<?php var_dump($usuarioData);
-?>
-
-<h1>DATOS DE CV</h1>
+<div class="layout">
+	
+	<!-- HEADER -->
+	<div class="hd">
+		
+	</div>
+	<!-- end HEADER -->
+	
+	<!-- CONTENT -->
+	<div class="content">
+		<div class="CL">
+			
+			<div class="info clearfix">
+				<div class="photo">
+					<img src="img/face.jpg" alt="Nombre" />
+				</div>
+				<div class="right">
+					<h3><?php echo $usuarioData->nombre ?> <?php echo $usuarioData->apellido ?><a href="#">Edit</a></h3>
+					<p>Java developer at Network Solutions</p>
+					<p class="grey"><span class="country"><?php echo $usuarioData->descripcionPais ?></span><i>|</i><span class="title">Information Technology and Services</span></p>
+				</div>
+			</div>
+			
+			<div class="block">
+				<h2>Caracterisiticas Duras <a href="#">Edit</a></h2>
+				<div class="inblock">
+					<h4>Industrias</h4>
+					<ul>
+					<?php foreach ($habilidadesIndustriasDelCV as $habilidad){ ?>
+						<li><?php echo $habilidad->descripcionIndustria ?>: <?php echo $habilidad->puntos ?></li>
+					<?php } ?>
+					</ul>
+					
+					<h4>Areas</h4>
+					<ul>
+					<?php foreach ($habilidadesAreasDelCV as $habilidad){ ?>
+						<li><?php echo $habilidad->descripcionArea ?> - <?php echo $habilidad->descripcionHerramienta ?>: <?php echo $habilidad->puntos ?></li>
+					<?php } ?>
+					</ul>
+				</div>
+			</div>
+			
+			<div class="block">
+				<h2>Experiencia Laboral <a class="addpos" href="#">+ <b>Add</b> a position</a></h2>
+				<?php foreach ($experienciaLaboralDelCv as $experiencia){ ?>
+				<div class="job">
+					<h5>Java Developer <a href="#">Edit</a></h5>
+					<p class="company"><?php echo $experiencia->compania ?></p>
+					
+					<p class="industry"><?php echo $experiencia->idIndustria ?></p>
+					
+					<p class="when"><?php echo $experiencia->fechaDesde ?> – <?php echo $experiencia->fechaHasta ?></p>
+					
+					<p class="text"><?php echo $experiencia->logro ?></p>
+					
+					<p class="recommendations">No recommendations for this position<a href="#">Ask for a recommendation</a></p>
+				</div>
+				<?php } ?>
+			</div>
+			
+			<div class="block">
+				<h2>Educaci&oacute;n Formal <a class="addpos" href="#">+ <b>Add</b> a school</a></h2>
+				<div class="study">
+					<h5>Universidad Tecnológica Nacional <a href="#">Edit</a></h5>
+					<p class="type">Engineering, Tecnology (on course)</p>
+					<p class="when">2002 – 2012 (expected)</p>
+					<p class="text">
+					University:<br />
+					5th. year on course of the career Information System Engineer
+					26 subjects passed of 40 with an average 6.33
+					</p>
+					<p class="addActivity">You can <a href="#">add activities and societies</a> you participated in at this school.</p>
+					<p class="recommendations">No recommendations for this position<a href="#">Ask for a recommendation</a></p>
+				</div>
+			</div>
+			
+		</div>
+	
+	</div>
+	<!-- end CONTENT -->
+	
+	<!-- FOOTER -->
+	<div class="ft">
+		
+	</div>
+	<!-- end FOOTER -->
+	
+</div>
 
 <?php 
+	var_dump($usuarioData);
 	echo $curriculumData->id;
 	echo '<br/>';
 	echo $curriculumData->usuario;
@@ -221,20 +301,6 @@
 	echo $curriculumData->sms;
 	echo '<br/>';
 ?>
-	<H1>HABILIDADES INDUSTRIAS DEL CV</H1>
-<?php 
-	foreach ($habilidadesIndustriasDelCV as $habilidad){
-		echo $habilidad->descripcionIndustria . " puntos-> ". $habilidad->puntos . '<br/>' ;
-	}
-?>
-
-	<H1>HABILIDADES AREAS DEL CV</H1>
-<?php 
-	foreach ($habilidadesAreasDelCV as $habilidad){
-		echo $habilidad->descripcionArea . " - ". $habilidad->descripcionHerramienta . "puntos-> ". $habilidad->puntos . '<br/>' ;
-	}
-?>
-
 
 	<H1>EXPERIENCIA LABORAL DEL CV</H1>
 <?php 
@@ -242,7 +308,6 @@
 		echo $experiencia->id . ' ' . $experiencia->compania . ' ' . $experiencia->idIndustria . ' ' . $experiencia->idPais . ' ' .  $experiencia->fechaDesde . ' ' .  $experiencia->fechaHasta . ' ' .  $experiencia->logro;
 	}
 ?>
-
 
 	<H1>EDUCACION FORMAL DEL CV</H1>
 <?php 
@@ -253,8 +318,6 @@
 <?php 
 	var_dump($educacionNoFormalDelCv);
 ?>
-
-
 
 	<H1>ESTADOS CIVILES DISPONIBLES</H1>
 <?php 
@@ -268,6 +331,7 @@
 	}
 	imprimirArrayConDescripciones($estadosCiviles);
 ?>
+
 	<H1>PAISES</H1>
 <?php 
 	imprimirArrayConDescripciones($paises);
@@ -296,9 +360,6 @@
 <?php 
 	imprimirArrayConDescripciones($tiposDeEducacionNoFormal);
 ?>
-
-
-
 
 <div id="cvEditorForm">
 	<div>
