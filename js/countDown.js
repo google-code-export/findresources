@@ -48,6 +48,7 @@ function redo() {
  	document.quiz_form.timer.value = dis(mins,secs); // setup additional displays here.
  	if((mins == 0) && (secs == 0)) {
   		window.alert("El tiempo disponible para realizar el test se ha agotado."); // change timeout message as required
+  		document.getElementById('source').value = "timeout";
   		document.quiz_form.submit();// window.location = "yourpage.htm" // redirects to specified page once timer ends and ok button is pressed
  	} else {
  		cd = setTimeout("redo()",1000);
