@@ -25,66 +25,67 @@ class Test_model extends CI_Model {
 	
 	public function getRavenCorrectAnswers($ravenAnswers){
 		/* LISTADO DE LOS RESULTADOS DE RAVEN*/
-		$answer[1] ="";
-		$answer[2] ="";
-		$answer[3] ="";
-		$answer[4] ="";
-		$answer[5] ="";
-		$answer[6] ="";
-		$answer[7] ="";
-		$answer[8] ="";
-		$answer[9] ="";
-		$answer[10] ="";
-		$answer[11] ="";
-		$answer[12] ="";
-		$answer[13] ="";
-		$answer[14] ="";
-		$answer[15] ="";
-		$answer[16] ="";
-		$answer[17] ="";
-		$answer[18] ="";
-		$answer[19] ="";
-		$answer[20] ="";
-		$answer[21] ="";
-		$answer[22] ="";
-		$answer[23] ="";
-		$answer[24] ="";
-		$answer[25] ="";
-		$answer[26] ="";
-		$answer[27] ="";
-		$answer[28] ="";
-		$answer[29] ="";
-		$answer[30] ="";
-		$answer[31] ="";
-		$answer[32] ="";
-		$answer[33] ="";
-		$answer[34] ="";
-		$answer[35] ="";
-		$answer[36] ="";
-		$answer[37] ="";
-		$answer[38] ="";
-		$answer[39] ="";
-		$answer[40] ="";
-		$answer[41] ="";
-		$answer[42] ="";
-		$answer[43] ="";
-		$answer[44] ="";
-		$answer[45] ="";
-		$answer[46] ="";
-		$answer[47] ="";
-		$answer[48] ="";
-		$answer[49] ="";
-		$answer[50] ="";
-		$answer[51] ="";
-		$answer[52] ="";
-		$answer[53] ="";
-		$answer[54] ="";
-		$answer[55] ="";
-		$answer[56] ="";
-		$answer[57] ="";
-		$answer[58] ="";
-		$answer[59] ="";
-		$answer[60] ="";
+		
+		$answer[1] ="4";
+		$answer[2] ="5";
+		$answer[3] ="1";
+		$answer[4] ="2";
+		$answer[5] ="6";
+		$answer[6] = "3";
+		$answer[7] = "6";
+		$answer[8] = "2";
+		$answer[9] = "1";
+		$answer[10] = "3";
+		$answer[11] = "5";
+		$answer[12] = "4";
+		$answer[13] = "2";
+		$answer[14] = "6";
+		$answer[15] = "1";
+		$answer[16] = "2";
+		$answer[17] = "1";
+		$answer[18] = "3";
+		$answer[19] = "5";
+		$answer[20] = "6";
+		$answer[21] = "4";
+		$answer[22] = "3";
+		$answer[23] = "4";
+		$answer[24] = "5";
+		$answer[25] = "8";
+		$answer[26] = "2";
+		$answer[27] = "3";
+		$answer[28] = "8";
+		$answer[29] = "7";
+		$answer[30] = "4";
+		$answer[31] = "5";
+		$answer[32] = "1";
+		$answer[33] = "7";
+		$answer[34] = "6";
+		$answer[35] = "1";
+		$answer[36] = "2";
+		$answer[37] = "3";
+		$answer[38] = "4";
+		$answer[39] = "3";
+		$answer[40] = "7";
+		$answer[41] = "8";
+		$answer[42] = "6";
+		$answer[43] = "5";
+		$answer[44] = "4";
+		$answer[45] = "1";
+		$answer[46] = "2";
+		$answer[47] = "5";
+		$answer[48] = "6";
+		$answer[49] = "7";
+		$answer[50] = "6";
+		$answer[51] = "8";
+		$answer[52] = "2";
+		$answer[53] = "1";
+		$answer[54] = "5";
+		$answer[55] = "2";
+		$answer[56] = "4";
+		$answer[57] = "1";
+		$answer[58] = "6";
+		$answer[59] = "3";
+		$answer[60] = "5";
 		
 		/* ANALIS DE LOS RESULTADOS DE RAVEN*/
 		$result = "";
@@ -416,7 +417,7 @@ class Test_model extends CI_Model {
 		/* Guardo los resultados del test*/
 		$params = array(
 		array('name'=>':PI_USUARIO', 'value'=>$usuario, 'type'=>SQLT_CHR , 'length'=>-1),
-		array('name'=>':PI_SELECCION_MIPS', 'value'=>$answers, 'type'=>SQLT_CHR , 'length'=>-1),
+		array('name'=>':PI_SELECCION_RORSCHACH', 'value'=>$answers, 'type'=>SQLT_CHR , 'length'=>-1),
 		array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
 		array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
 		);
