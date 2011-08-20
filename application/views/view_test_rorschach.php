@@ -41,13 +41,13 @@ if($pic == 10) {	$source = "select_img_final"; }
 ?>
 <center><h1>Test de Rorschach</h1>
 <h3>Mancha Nº<?php echo $pic;?></h3>
-<h4>Etiquete la mancha con las imágenes que vé: </h4><br /></center><br /><br />
+<h4>Etiquete la mancha con las imágenes que vé: </h4><br /></center><br />
 <div id="taggingArea">
 	<img src="<?php echo base_url();?>images/rorschach/img<?php echo $pic;?>.jpg" width="800px"/>
 	<div id="drag" class="ui-widget ui-widget-content ui-corner-all">
-   <div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" id="drag_title">
+   <!-- <div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" id="drag_title">
       <span class="ui-dialog-title">Seleccionar área</span>
-   </div>
+   </div>-->
 	</div>
 	<?php
 		//if(isset($_SESSION["img".$pic]) AND count($_SESSION["img".$pic]) > 0){
