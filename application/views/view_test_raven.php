@@ -34,7 +34,7 @@ Disponés de 45 minutos para resolver las 60 placas del test.
 if ($source == "select_pieza"){
 //$minutos = "45";
 //$segundos = "01";
-if($timer == "") {	$timer = "01:01"; }
+if($timer == "") {	$timer = "40:01"; }
 $time = explode(':',$timer,2);
 $minutos = $time[0];
 $segundos = $time[1];
@@ -42,11 +42,12 @@ $segundos = $time[1];
 if($placa == 60) {	$source = "select_pieza_final"; }
 ?>
 <script>
+//document.selection.empty();
 $(document).ready(function(){
-	$('input[name="item1"]').focus();
-	$('input[name="item1"]').keyup(function(e){
+	$('input[name="item"]').focus();
+	$('input[name="item"]').keyup(function(e){
 	    this.value = this.value.replace(/\D/g,'');
-	    if(this.value > 6)	this.value = '';
+	    //if(this.value > 6)	this.value = '';
 	});
 });
 </script>
@@ -57,8 +58,9 @@ $(document).ready(function(){
 <img src="<?php echo base_url();?>images/raven/<?php echo $placa;?>.jpg" />
 <h4>Selecciona la pieza que corresponda: </h4><br />
 <form method="POST" id="quiz_form" name="quiz_form">
-<p>
-<b>1</b>:
+<input type="text" name="item" maxlength="1" id="raven_input" value="<?php echo ($placa == "1")? "?" : "" ?>">
+<!-- 
+<p><b>1</b>:
 <input type="radio" name="item" value="1"/>
 <b>2</b>:
 <input type="radio" name="item" value="2"/>
@@ -72,12 +74,8 @@ $(document).ready(function(){
 <input type="radio" name="item" value="5"/>
 <b>6</b>:
 <input type="radio" name="item" value="6"/>
-</p>
+</p>-->
 
-<!-- <table id="d48_ficha">
-<tr><td><input type="text" name="item1" value="" maxlength="1" id="d48_input" /></td></tr>
-<tr><td><input type="text" name="item2" value="" maxlength="1" id="d48_input" /></td></tr>
-</table>-->
 <input type="hidden" id="source" name="source" value="<?php echo $source;?>" />
 <input type="hidden" name="s1" value="<?php echo $s1;?>"/>
 <input type="hidden" name="s2" value="<?php echo $s2;?>"/>
