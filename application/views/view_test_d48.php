@@ -59,7 +59,7 @@ Haga clic en la ficha blanca para ver el resultado.
 if ($source == "select_ficha"){
 //$minutos = "45";
 //$segundos = "01";
-if($timer == "") {	$timer = "45:01"; }
+if($timer == "") {	$timer = "40:01"; }
 $time = explode(':',$timer,2);
 $minutos = $time[0];
 $segundos = $time[1];
