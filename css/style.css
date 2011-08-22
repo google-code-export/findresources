@@ -142,6 +142,15 @@ a.down-big {
   right: 20px;
   width: 60px;	
 }
+.luscher_color {
+border-color:black;
+border-width:1px;
+border-style:solid;
+height:95px;
+width:95px;
+cursor:hand;
+	}
+
 /*[INI] D48 */
 #d48_ficha {
 	border-width: 1px;
@@ -219,3 +228,14 @@ form.questions label.error { display: none; }
 	font-size:12px;
 }
 /*[FIN] RORSCHACH */
+/*[INI] RAVEN */
+#raven_input {
+	text-align:center;
+	padding:0.4em;
+	border:2px;
+	font-weight:bold;
+	font-size:1em;
+	width:35px;
+	border-style: solid;
+}
+/*[FIN] RAVEN */
