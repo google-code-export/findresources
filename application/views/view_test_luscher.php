@@ -6,6 +6,7 @@
     <meta name="description" content="FindResources - Choose best people" /> 
     <meta name="keywords" content="personality test color psychology luscher colour" /> 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="<?php echo base_url();?>js/jquery-1.6.2.min.js"></script>
     <link rel="stylesheet" href="<?php echo base_url();?>css/style.css">
 </head> 
 <body> 
@@ -47,19 +48,22 @@ if ($source == "select_colors2" ) {
 <script> 
 var total = 0;
 var quiz_form = document.getElementById('quiz_form');
-clicked = function(id) {
+setColor = function(id) {
   //replace image
-  document.getElementById('image'+id).src = '<?php echo base_url();?>images/luscher/blank.gif';
-  document.getElementById('image'+id).parentNode.onmousedown = function() {
-    return false;
-  }
+  $('#image'+id).fadeOut(400);
+  //document.getElementById('image'+id).src = '<?php echo base_url();?>images/luscher/blank.gif';
+  //document.getElementById('image'+id).parentNode.onmousedown = function() {
+//    return false;
+//  }
  
   //save data
-  quiz_form.<?php echo $color;?>.value += id;
+//var prev =  $('[input=[@name=#<?php echo $color;?>').val();
+ //  $('#<?php echo $color;?>').val(prev+id);
+ quiz_form.<?php echo $color;?>.value += id;
   
   //check if finished
   total++;
-  if(8 == total) {
+  if(total == 8) {
     quiz_form.submit();
   } else {
 	  quiz_form.<?php echo $color;?>.value += '<?php echo $sep;?>';
@@ -71,30 +75,22 @@ clicked = function(id) {
 <h1 style="text-align:center;">Test de Lüscher</h1> 
 <h3><?php echo $title;?></h3> 
 <table> 
-<tr> 
-<td> 
-  <a href="javascript:void(0);" OnMouseDown="clicked(3);return false;"><img id="image3" src="<?php echo base_url();?>images/luscher/3.jpg" width="100" height="100"></a> 
-</td> 
-<td> 
-  <a href="javascript:void(0);" OnMouseDown="clicked(7);return false;"><img id="image7" src="<?php echo base_url();?>images/luscher/7.jpg" width="100" height="100"></a> 
-</td> 
-<td> 
-  <a href="javascript:void(0);" OnMouseDown="clicked(5);return false;"><img id="image5" src="<?php echo base_url();?>images/luscher/5.jpg" width="100" height="100"></a> 
-</td> 
-<td> 
-  <a href="javascript:void(0);" OnMouseDown="clicked(0);return false;"><img id="image0" src="<?php echo base_url();?>images/luscher/0.jpg" width="100" height="100"></a> 
-</td> 
-<td> 
-  <a href="javascript:void(0);" OnMouseDown="clicked(2);return false;"><img id="image2" src="<?php echo base_url();?>images/luscher/2.jpg" width="100" height="100"></a> 
-</td> 
-<td> 
-  <a href="javascript:void(0);" OnMouseDown="clicked(1);return false;"><img id="image1" src="<?php echo base_url();?>images/luscher/1.jpg" width="100" height="100"></a> 
-</td> 
-<td> 
-  <a href="javascript:void(0);" OnMouseDown="clicked(4);return false;"><img id="image4" src="<?php echo base_url();?>images/luscher/4.jpg" width="100" height="100"></a> 
-</td> 
-<td> 
-  <a href="javascript:void(0);" OnMouseDown="clicked(6);return false;"><img id="image6" src="<?php echo base_url();?>images/luscher/6.jpg" width="100" height="100"></a> 
+<tr> <!-- rojo -->
+<td style="background-color:#D32727;" class="luscher_color" id="image3" onclick="setColor(3)"> 
+</td> <!-- negro -->
+<td style="background-color:#000000;" class="luscher_color" id="image7" onclick="setColor(7)"> 
+</td> <!-- violeta -->
+<td style="background-color:#7B125C;" class="luscher_color" id="image5" onclick="setColor(5)"> 
+</td> <!-- gris -->
+<td style="background-color:#5F5C5C;" class="luscher_color" id="image0" onclick="setColor(0)"> 
+</td> <!-- verde -->
+<td style="background-color:#346F12;" class="luscher_color" id="image2" onclick="setColor(2)"> 
+</td> <!-- azul -->
+<td style="background-color:#102292;" class="luscher_color" id="image1" onclick="setColor(1)"> 
+</td> <!-- amarillo -->
+<td style="background-color:#E8E82E;" class="luscher_color" id="image4" onclick="setColor(4)"> 
+</td> <!-- marrón -->
+<td style="background-color:#6A490F;" class="luscher_color" id="image6" onclick="setColor(6)"> 
 </td> 
 </tr> 
 </table> 
