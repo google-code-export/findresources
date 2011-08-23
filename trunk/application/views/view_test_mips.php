@@ -11,12 +11,20 @@
     <script type="text/javascript" src="<?php echo base_url();?>js/jquery.metadata.js" ></script>
     <link rel="stylesheet" href="<?php echo base_url();?>css/style.css">
 	<script type="text/javascript">
-	
+	/*
 	$.metadata.setType("attr", "validate");
 	
 	$(document).ready(function() {
 		$("#quiz_form").validate();
 	});
+	*/
+	function show(num){
+		$('#fila'+num).fadeIn('slow');
+		//$('body').animate({scrollTop: $('#bottom').offset().top}, 1000);
+		//$(window).scrollTop($(document).height());
+        $('body').animate({scrollTop: $('body').height()}, 800);
+
+	}
 	</script>
 </head> 
 <body> 
@@ -236,33 +244,36 @@ $i=0;
 foreach ($preguntas as $pregunta) {
 $i++;
 ?>
-	<tr>
+	<tr id="<?php echo "fila".$i;?>" style="<?php echo ($i==1)? "": "display:none";?>">
 		<td width="800px">
 			<img src="<?php echo base_url();?>/images/mips/square_bullet_green.gif" /> <b><?php echo $i.". ".$pregunta;?></b>
 			<label for="q<?php echo $i;?>" class="error">Por favor completar</label>
 		</td>
 		<td width="100px">
-		<input type="radio" name="q<?php echo $i;?>" value="V" validate="required:true"/> Verdadero<br />
-		<input type="radio" name="q<?php echo $i;?>" value="F" /> Falso<br />
+		<input type="radio" id=cb name="q<?php echo $i;?>" value="V" validate="required:true" onclick="<?php echo ($i == 180)? "$('form:first').submit();" : "show(".($i+1).")";?>" /> Verdadero<br />
+		<input type="radio" id=cb name="q<?php echo $i;?>" value="F" onclick="<?php echo ($i == 180)? "$('#quiz_form').submit();" : "show(".($i+1).")";?>" /> Falso<br />
 		</td>
 	</tr>
-	<tr>
+	<!-- <tr id="<?php echo "fila".$i;?>" style="<?php echo ($i==1)? "": "display:none";?>">
 		<td colspan="2"><hr></td>
-	</tr>
+	</tr>-->
 <?php 
 }
 ?>
 	<tr>
 		<td>
 		<input type="hidden" name="source" value="<?php echo $source;?>" /><br /><br />
-		<input type=submit value="Finalizar Test"> 
-		<!-- <a href="javascript:document.quiz_form.submit();" class="button save">Finalizar Test</a>-->
+		<!-- <input type=submit value="Finalizar Test">-->	 
 		<?php //Resolver tema de que no ejecuta la validación del form ?> 
 		</td>
 	</tr>
 </table>
 </form>
-
+<br />
+<br />
+<br />
+<br />
+<br />
  <?php 
 }
 /** PAGINA FINAL DEL TEST **/
