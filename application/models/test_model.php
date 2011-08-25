@@ -112,7 +112,7 @@ class Test_model extends CI_Model {
 		array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
 		);
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_TEST','PR_RAVEN_USUARIO',$params);
-			
+
 		return $result;
 
 	}
@@ -194,7 +194,6 @@ class Test_model extends CI_Model {
 		array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
 		);
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_TEST','PR_D48_USUARIO',$params);
-			
 		return $result;
 
 	}
@@ -311,7 +310,7 @@ class Test_model extends CI_Model {
 		$answer[108] ="";
 		$answer[109] ="";
 		$answer[110] ="";
-		$answer[101] ="";
+		$answer[111] ="";
 		$answer[112] ="";
 		$answer[113] ="";
 		$answer[114] ="";
