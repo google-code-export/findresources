@@ -44,18 +44,23 @@ class Test extends CI_Controller {
 	}
 	/** METODOS SOLO PARA PRUEBAS INTERNAS **/
 	function t1(){
+		$this->session->set_userdata('usuario', "juan@juan.com");
 		$this->luscher("1");
 	}
 	function t2(){
+		$this->session->set_userdata('usuario', "juan@juan.com");
 		$this->d48("2");
 	}
 	function t3(){
+		$this->session->set_userdata('usuario', "juan@juan.com");
 		$this->raven("3");
 	}
 	function t4(){
+		$this->session->set_userdata('usuario', "juan@juan.com");
 		$this->mips("4");
 	}
 	function t5(){
+		$this->session->set_userdata('usuario', "juan@juan.com");
 		$this->rorschach("5");
 	}
 	/** METODOS SOLO PARA PRUEBAS INTERNAS **/
@@ -231,7 +236,7 @@ class Test extends CI_Controller {
 				$usuario = $this->session->userdata('usuario');
 				
 				/* Obtengo el valor de todas las placas */
-				$seleccion_mips = $this->input->post('q1');
+				$data['q1'] = $this->input->post('q1');
 				$id = 2;
 				while ($id <= 180) {
 					$data['q'.$id] = $this->input->post('q'.$id);
@@ -339,8 +344,22 @@ class Test extends CI_Controller {
 		 		//$data['session'] = $this->session->userdata('RORSCHACH_DATA');
 				$answers = $this->session->userdata('RORSCHACH_DATA');
 				$usuario = $this->session->userdata('usuario');
-		 		$result = $this->Test_model->setRorschachResults($usuario,$answers);
-		 		print_r($answers);
+
+				foreach($answers as $tags){
+					foreach($tags as $tag){
+							$tagdata = $tag['pictureid'].$this->sep;
+							$tagdata .= $tag['top'].$this->sep;
+							$tagdata .= $tag['left'].$this->sep;
+							$tagdata .= $tag['width'].$this->sep;
+							$tagdata .= $tag['height'].$this->sep;
+							$tagdata .= $tag['description'];
+							echo $tagdata;
+							$result = $this->Test_model->setRorschachResults($usuario,$tagdata);			
+						
+					}
+				}
+		 		
+		 		
 				if ($result["error"] == 0 )
 					$data["result"] = "Test completado correctamente";
 				else 			
