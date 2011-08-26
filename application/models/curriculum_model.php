@@ -204,7 +204,7 @@ class Curriculum_model extends FR_Model {
 			$respuesta = array();
 			foreach ($dbRegistros as $i => $dbRegistro){
 				$respuesta[$i]->idIndustria = $dbRegistro->id_industria;
-				$respuesta[$i]->descripcionIndustria = "descripcion".$dbRegistro->id_industria; //$dbRegistro->d_industria;
+				$respuesta[$i]->descripcionIndustria = $dbRegistro->d_industria; 
 				$respuesta[$i]->puntos = $dbRegistro->valoracion;
 			}
 			return $respuesta;
@@ -295,7 +295,7 @@ class Curriculum_model extends FR_Model {
 		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
 		);
 		
-		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','pr_obtiene_habilidades_duras_areas',$params);
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','pr_consulta_herramientas',$params);
 		
 		if ($n1 == 0){
 			$dbRegistros = $this->oracledb->get_cursor_data();
@@ -308,7 +308,7 @@ class Curriculum_model extends FR_Model {
 				$respuesta[$i]->descripcionArea = $dbRegistro->d_area;
 				$respuesta[$i]->idHerramienta = $dbRegistro->id_herramienta;
 				$respuesta[$i]->descripcionHerramienta = $dbRegistro->d_herramienta;
-				$respuesta[$i]->puntos = $dbRegistro->puntos;
+				$respuesta[$i]->puntos = $dbRegistro->valor_herramienta;
 			}
 			return $respuesta;
 		}
@@ -327,28 +327,21 @@ class Curriculum_model extends FR_Model {
 	public function  setHabilidadesAreasDelCV($idCurriculum, $habilidades){
 		$parametro = "";
 		foreach ($habilidades as $habilidad){
-//			if($parametro != ""){
-//				//Its not the first need add ;
-//				$parametro = $parametro . ';'; 
-//			}
 			$parametro = $parametro .  
-					$habilidad->idArea . ';' . 
 					$habilidad->idHerramienta . ';' . 
 					$habilidad->puntos  . ';';
 		}
 		
-		return 0; //NOT IN DB YET ////////////
-
 		$n1 = NULL;
 		$n2 = NULL;
 		$params = array(
 		array('name'=>':pi_id_curriculm', 'value'=>$idCurriculum, 'type'=>SQLT_CHR, 'length'=>-1),
-		array('name'=>':pi_habilidades_duras_areas', 'value'=>$parametro, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':pi_herramientas', 'value'=>$parametro, 'type'=>SQLT_CHR, 'length'=>-1),
 		array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
 		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
 		);
 		
-		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','actualiza_habilidades_duras_areas',$params);
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','pr_actualiza_herramientas',$params);
 		
 		if ($n1 == 0){
 			return 0;
