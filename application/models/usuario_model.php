@@ -12,7 +12,7 @@ class Usuario_model extends FR_Model {
 	 * @return 
 	 * */
 	public function  crearNuevoUsuario($usuario, $activationCode){
-		
+
 		$n1 = NULL;
 		$n2 = NULL;
 		$params = array(
@@ -211,7 +211,7 @@ class Usuario_model extends FR_Model {
 	/**
 	 * Esta funcion activa un usuario
 	 * @param  $idUsuario (email del usuario)
-	 * @return retorna el estado del usuario, 0 no existe - 1 existe pero no autenticado - 2 usuario activo y autenticado - 3 usuario inactivo.
+	 * @return retorna el estado del usuario, 0 no existe, 1 existe pero no autenticado, 2 usuario activo y autenticado, 3 usuario inactivo.
 	 * */
 	public function  getEstadoUsuario($idUsuario){
 
@@ -226,7 +226,6 @@ class Usuario_model extends FR_Model {
 		);
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_usuario','pr_estado_usuario',$params);
-		var_dump($rta);
 		if ($n1 == 0){
 			return $rta;
 		}

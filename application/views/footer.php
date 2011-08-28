@@ -3,7 +3,14 @@
 
 <?php 	
 	
-	switch ($dataUsuario->idTipoUsuario) {
+	$tipoUsuario = "";
+	
+	if(isset($dataUsuario) && $dataUsuario->idTipoUsuario){
+		$tipoUsuario = $dataUsuario->idTipoUsuario;
+	}
+	
+
+	switch ($tipoUsuario) {
 	    case "E": //EMPRESA
 ?>
 

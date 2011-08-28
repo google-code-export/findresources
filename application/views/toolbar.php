@@ -39,7 +39,8 @@
 ?>
 			ERROR EN TIPO DE USUARIO.
 <?php 
-    		
+		break;
+
 	} //end switch
 		
 ?>

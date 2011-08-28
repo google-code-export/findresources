@@ -32,18 +32,6 @@ $(document).ready(function() {
 });  
 
 $(function(){
-	$('#chequeaNombreDeUsuario').click(function(){
-		var usuario = "unmail6@unserver.com";
-		$.post("login/getExisteUsuario", {
-			'usuario': usuario
-		},
-		function(response){
-			alert(response);
-		},
-		"json");
-				
-	});
-	
 	
 	$('#do_register_button').click(function(){
 		
@@ -51,9 +39,9 @@ $(function(){
 		var isCandidate = userType == "C";
 		
 		var idNumber = (isCandidate)? $('#register_id_number_input').val() : $('#register_company_id_input').val();
-		idNumber = idNumber.trim();
+		idNumber = idNumber.replace(/ /gi,"");
 		idNumber = idNumber.replace(/-/gi,"");
-		idNumber = idNumber.replace(/./gi,"");
+		//idNumber = idNumber.replace(/./gi,"");
 		
 		var usuario = {
 			'email':$('#register_email_input').val(),
@@ -63,21 +51,30 @@ $(function(){
 			'apellido':(isCandidate)? $('#register_lastname_input').val() : "",
 			'razonSocial':(!isCandidate)? $('#register_companyname_input').val() : "",
 			'idIndustria':(!isCandidate)? $('#register_id_type_select').val() : "",
-			'idTipoDocumento':(isCandidate)? $('#register_id_number_input').val() : "CUIT",
+			'idTipoDocumento':(isCandidate)? $('#register_id_type_select').val() : "CUIT",
 			'numeroDocumento':idNumber,
 			'telefono':(isCandidate)? $('#register_phone_number_input').val() : $('#register_company_phone_input').val(),
-			'idPais':(isCandidate)? $('#register_phone_number_input').val() : $('#register_company_phone_input').val()
+			'idPais':(isCandidate)? $('#register_country_select').val() : $('#register_company_country_select').val()
 		};
 		
-		$.post("login/crearNuevoUsuario", {
+		$.ajax({
+		      url: "login/crearNuevoUsuario",
+		      global: false,
+		      type: "POST",
+		      data: {
 				'usuario': JSON.stringify(usuario)
-			},
-		function(response){
-			debugger;
-			//response == 0 is ok
-			
-		},
-		"json");
+			  },
+		      dataType: "json",
+		      async:true,
+		      success: function(response){
+		      		alert("Un mail fue enviado a su casilla para autenticar su usuario.");
+			  },
+			  error: function(response){
+					alert(response);
+			  }
+		   }
+		);
+		
 		
 	});
 	
@@ -88,18 +85,27 @@ $(function(){
 			'clave': $('#login_password_input').val()
 		};
 		
-		$.post("login/doLogin", {
+		$.ajax({
+		      url: "login/doLogin",
+		      global: false,
+		      type: "POST",
+		      data: {
 				'usuario': JSON.stringify(usuario)
-			},
-		function(response){
-			if(response == true){
-				window.location="home";
-			}else{
-				alert("usuario invalido");
-			}
-		},
-		"json");
-		
+			  },
+		      dataType: "json",
+		      async:true,
+		      success: function(response){
+					if(response == true){
+						window.location="home";
+					}else{
+						alert("usuario invalido");
+					}
+			  },
+			  error: function(response){
+					alert(response);
+			  }
+		   }
+		);
 	});
 	
 	$('#register_type_select').change(function(){
@@ -110,16 +116,49 @@ $(function(){
 			$('#user_data').css('display','inline');
 			if(value == "C"){
 				$('#cadidate_fields').css('display','inline');
-				$('#copany_fields').css('display','none');
+				$('#company_fields').css('display','none');
 			
 			}else if(value == "E"){
 				$('#cadidate_fields').css('display','none');
-				$('#copany_fields').css('display','inline');
+				$('#company_fields').css('display','inline');
 			}
 		}
 		
 	});
 	
+	$('#register_email_input').blur(function(){
+		/*
+		var usuario = $('#login_email_input').val();
+		$.post("", {
+			'usuario': usuario
+		},
+		"json");*/
+		$('#do_register_button').attr("disabled", true);
+		$('#login_error_msg').css("display", "none");
+		
+		var usuario = $('#register_email_input').val();
+		
+		$.ajax({
+		      url: "login/getExisteUsuario",
+		      global: false,
+		      type: "POST",
+		      data: {
+					'usuario': usuario
+			  },
+		      dataType: "json",
+		      async:true,
+		      success: function(existe){
+					$('#do_register_button').attr("disabled", existe == true);
+					$('#login_error_msg').css("display", (existe == true)?"inline":"none");
+			  },
+			  error: function(response){
+					alert(response);
+			  }
+		   }
+		);
+				
+		
+	});
 	return false;
 });
 
