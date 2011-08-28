@@ -1,0 +1,138 @@
+
+body {
+ background-color: #fff;
+ margin: auto;
+ font-family: Lucida Grande, Verdana, Sans-serif;
+ font-size: 14px;
+ color: #4F5155;
+ text-align: center;
+ width: 960px;
+}
+
+a {
+ color: #003399;
+ background-color: transparent;
+ font-weight: normal;
+}
+
+h1 {
+ color: #444;
+ background-color: transparent;
+ border-bottom: 1px solid #D0D0D0;
+ font-size: 16px;
+ font-weight: bold;
+ margin: 24px 0 2px 0;
+ padding: 5px 0 6px 0;
+}
+
+code {
+ font-family: Monaco, Verdana, Sans-serif;
+ font-size: 12px;
+ background-color: #f9f9f9;
+ border: 1px solid #D0D0D0;
+ color: #002166;
+ display: block;
+ margin: 14px 0 14px 0;
+ padding: 12px 10px 12px 10px;
+}
+
+.company_logo{
+}
+
+#home {
+ 	/*background: url("../images/home_background.png") no-repeat scroll 0 0 transparent;;*/
+	width: 960px;
+	height: 720px;
+	margin: auto;
+}
+
+#home_fr_logo {
+	background: url("../images/argentina_soft_logo.png") no-repeat scroll 0 0 transparent;;
+	float:left;
+	height: 50px;
+    margin: 25px;
+    width: 76px;
+}
+
+#home_fr_company{
+}
+
+#home_fr_company_name {
+	color: blue; 
+	font-size: 25px; 
+	margin-top: 25px;
+}
+
+#home_fr_company_slogan {
+
+} 
+
+#home_fr_lenguage{
+	float: right;
+	margin-right: 25px;
+}
+
+#home_header {
+	height: 100px;
+}
+
+#home_body {
+	height: 550px;
+}
+
+#home_wellcome {
+	width: 500px;
+	float: left;
+}
+
+#home_tabs {
+	width: 450px;
+	float: right;
+	margin-right: 20px;
+	height: 412px;
+}
+
+.label {
+	text-align: left;
+	width: 130px;
+}
+
+.control {
+	width: 250px;
+}
+
+.control input {
+	width: 150px;
+}
+
+.control select{
+	width: 156px;
+}
+.field {
+	width: 100%;
+	margin-top: 15px;
+}
+
+.field div {
+	float: left;
+	margin-top: 24px;
+}
+
+#home_tabs .tab_content {
+	height:350px;
+	overflow: auto;
+}
+
+#login_button_div {
+	float: right;
+	margin-right: 20px;
+	margin-top: 30px;
+}
+
+#register_id_type_select {
+	width: 50px;
+}
+
+#register_id_number_input {
+	width: 95px;
+}
