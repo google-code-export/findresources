@@ -16,147 +16,165 @@
  * 		$nivelesDeEducacion
  * 		$entidadesEducativas
  * 		$tiposDeEducacionNoFormal
- * */
-
+ **/
 ?>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<link rel="stylesheet" type="text/css" href="css/global.css" />
-<script type="text/javascript" src="<?php site_url('js/jquery-1.6.2.min.js')?>"></script>
-<script type="text/javascript" src="<?php site_url('js/json2.js')?>"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo site_url('css/view_curriculum.css')?>" />
+<script type="text/javascript" src="<?php echo site_url('js/jquery-1.6.2.min.js')?>"></script>
+<script type="text/javascript" src="<?php echo site_url('js/json2.js')?>"></script>
 <script type="text/javascript">
-	$(function(){
-		$('#cvEditorButton').click(function(){
+function showPopUp()
+{
+	$('.opacity').show().animate({opacity:'0.7'},500);
+	$('.popup').show().animate({opacity:'1'},500);
+}
 
-			var curriculum = {
-				'usuario':"unmail@unserver.com",
-				'estadoCivil':0,
-				'fechaNacimiento':"15/05/1966",
-				'idPais':'ARG',
-				'idProvincia':0,
-				'partido':"Ramos Mejia",
-				'calle':"Calle Falsa",
-				'numero':"2222",
-				'piso':"3",
-				'departamento':"A",
-				'codigoPostal':"CWI1417C",
-				'telefono1':$('#telefono1').val(),
-				'horarioContactoDesde1':"9",
-				'horarioContactoHasta1':"18",
-				'telefono2':"4554-1235",
-				'horarioContactoDesde2':"",
-				'horarioContactoHasta2':"",
-				'idPaisNacionalidad':'ARG',
-				gtalk:  $('#gtalk').val(),
-				'twitter': "@twitteruser",
-				'sms': "15-3838-4994"
-			};
-			
-			$.post("curriculum/setCurriculum", {
-					'curriculum': JSON.stringify(curriculum)
-				},
-			function(response){
-				debugger;
-				//response == 0 is ok
-			},
-			"json");
-			
-		});
-		
-		$('#getProvincias').click(function(){
-			$.post("curriculum/getProvincias", {
-				'idPais': 0
-			},
-			function(provincias){
-				debugger;
-				alert(provincias[0].descripcion);
-			},
-			"json");
-		});
+function hidePopUp()
+{
+	$('.opacity').animate({opacity:'0'},500,function(){$(this).hide()});
+	$('.popup').animate({opacity:'0'},500,function(){$(this).hide()});
+}
 
-		$('#setHabilidades').click(function(){
-			var habilidadesIndustrias = [
-		     	{
-		    	 	idIndustria: 1, 
-		    	 	puntos: 5
-		    	},
-		     	{
-		    	 	idIndustria: 2, 
-		    	 	puntos: 5
-		    	},
-		     	{
-		    	 	idIndustria: 3, 
-		    	 	puntos: 5
-		    	},
-		    ];
-		
-			var habilidadesAreas = [
-                  {
-                    idArea: 0, 
-                    idHerramienta: 0, 
-                  	puntos: 3
-                 },
-                  {
-                	idArea: 1, 
-                    idHerramienta: 3, 
-                  	puntos: 3
-                 },
-                 {
-                	idArea: 0, 
-                    idHerramienta: 2, 
-                  	puntos: 3
-                 },
-			];
-
-			$.post("curriculum/setHabilidadesDelCV", {
-				'habilidadesIndustrias': JSON.stringify(habilidadesIndustrias),
-				'habilidadesAreas': JSON.stringify(habilidadesAreas)
-				},
-				function(data){
-					debugger;
-				},
-				"json"
-			);
-
-		});
-		
-		$('#setExperienciaLaboral').click(function(){
-			var experienciaLaboral = {
-					id: null, // null = nuevo
-					compania: "una compania", 
-					idIndustria: 1, 
-					idPais: "ARG", 
-					fechaDesde: "05/03/1984", 
-					fechaHasta: "06/06/1986", 
-					logro: "nos hicimos ricos, muy ricos."
-			};
-			
-			$.post("curriculum/setExperienciaLaboral", {
-				'experienciaLaboral': JSON.stringify(experienciaLaboral)
-			},
-			function(data){
-				debugger;
-			},
-			"json");
-		});
-		
-		$('#getHerramientasPorArea').click(function(){
-
-			$.post("util/getHerramientasPorArea", {
-				'idArea': '1'
-			},
-			function(data){
-				console.log(data);
-			},
-			"json");
-		});
-		
-		
-		return false;
+$(function(){
+	
+	$('.popup .closePopUp').click(function(){
+		hidePopUp();
 	});
+	
+	$('.editFields').click(function(){
+		showPopUp();
+	});
+
+	$('#cvEditorButton').click(function(){
+
+		var curriculum = {
+			'usuario':"unmail@unserver.com",
+			'estadoCivil':0,
+			'fechaNacimiento':"15/05/1966",
+			'idPais':'ARG',
+			'idProvincia':0,
+			'partido':"Ramos Mejia",
+			'calle':"Calle Falsa",
+			'numero':"2222",
+			'piso':"3",
+			'departamento':"A",
+			'codigoPostal':"CWI1417C",
+			'telefono1':$('#telefono1').val(),
+			'horarioContactoDesde1':"9",
+			'horarioContactoHasta1':"18",
+			'telefono2':"4554-1235",
+			'horarioContactoDesde2':"",
+			'horarioContactoHasta2':"",
+			'idPaisNacionalidad':'ARG',
+			gtalk:  $('#gtalk').val(),
+			'twitter': "@twitteruser",
+			'sms': "15-3838-4994"
+		};
+		
+		$.post("curriculum/setCurriculum", {
+				'curriculum': JSON.stringify(curriculum)
+			},
+		function(response){
+			debugger;
+			//response == 0 is ok
+		},
+		"json");
+		
+	});
+	
+	$('#getProvincias').click(function(){
+		$.post("curriculum/getProvincias", {
+			'idPais': 0
+		},
+		function(provincias){
+			debugger;
+			alert(provincias[0].descripcion);
+		},
+		"json");
+	});
+
+	$('#setHabilidades').click(function(){
+		var habilidadesIndustrias = [
+			{
+				idIndustria: 1, 
+				puntos: 5
+			},
+			{
+				idIndustria: 2, 
+				puntos: 5
+			},
+			{
+				idIndustria: 3, 
+				puntos: 5
+			},
+		];
+	
+		var habilidadesAreas = [
+			  {
+				idArea: 0, 
+				idHerramienta: 0, 
+				puntos: 3
+			 },
+			  {
+				idArea: 1, 
+				idHerramienta: 3, 
+				puntos: 3
+			 },
+			 {
+				idArea: 0, 
+				idHerramienta: 2, 
+				puntos: 3
+			 },
+		];
+
+		$.post("curriculum/setHabilidadesDelCV", {
+			'habilidadesIndustrias': JSON.stringify(habilidadesIndustrias),
+			'habilidadesAreas': JSON.stringify(habilidadesAreas)
+			},
+			function(data){
+				debugger;
+			},
+			"json"
+		);
+
+	});
+	
+	$('#setExperienciaLaboral').click(function(){
+		var experienciaLaboral = {
+				id: null, // null = nuevo
+				compania: "una compania", 
+				idIndustria: 1, 
+				idPais: "ARG", 
+				fechaDesde: "05/03/1984", 
+				fechaHasta: "06/06/1986", 
+				logro: "nos hicimos ricos, muy ricos."
+		};
+		
+		$.post("curriculum/setExperienciaLaboral", {
+			'experienciaLaboral': JSON.stringify(experienciaLaboral)
+		},
+		function(data){
+			debugger;
+		},
+		"json");
+	});
+	
+	$('#getHerramientasPorArea').click(function(){
+
+		$.post("util/getHerramientasPorArea", {
+			'idArea': '1'
+		},
+		function(data){
+			console.log(data);
+		},
+		"json");
+	});
+	
+	return false;
+});
 </script>
 </head>
 <body>
@@ -178,14 +196,14 @@
 					<img src="img/face.jpg" alt="Nombre" />
 				</div>
 				<div class="right">
-					<h3><?php echo $usuarioData->nombre ?> <?php echo $usuarioData->apellido ?><a href="#">Edit</a></h3>
+					<h3><?php echo $usuarioData->nombre ?> <?php echo $usuarioData->apellido ?><a href="javascript:;" class="editFields">Edit</a></h3>
 					<p>Java developer at Network Solutions</p>
 					<p class="grey"><span class="country"><?php echo $usuarioData->descripcionPais ?></span><i>|</i><span class="title">Information Technology and Services</span></p>
 				</div>
 			</div>
 			
 			<div class="block">
-				<h2>Caracterisiticas Duras <a href="#">Edit</a></h2>
+				<h2>Caracterisiticas Duras <a href="javascript:;" class="editFields">Edit</a></h2>
 				<div class="inblock">
 					<h4>Industrias</h4>
 					<ul>
@@ -207,7 +225,7 @@
 				<h2>Experiencia Laboral <a class="addpos" href="#">+ <b>Add</b> a position</a></h2>
 				<?php foreach ($experienciaLaboralDelCv as $experiencia){ ?>
 				<div class="job">
-					<h5>Java Developer <a href="#">Edit</a></h5>
+					<h5>Java Developer <a href="javascript:;" class="editFields">Edit</a></h5>
 					<p class="company"><?php echo $experiencia->compania ?></p>
 					
 					<p class="industry"><?php echo $experiencia->idIndustria ?></p>
@@ -224,7 +242,7 @@
 			<div class="block">
 				<h2>Educaci&oacute;n Formal <a class="addpos" href="#">+ <b>Add</b> a school</a></h2>
 				<div class="study">
-					<h5>Universidad Tecnológica Nacional <a href="#">Edit</a></h5>
+					<h5>Universidad Tecnológica Nacional <a href="javascript:;" class="editFields">Edit</a></h5>
 					<p class="type">Engineering, Tecnology (on course)</p>
 					<p class="when">2002 – 2012 (expected)</p>
 					<p class="text">
@@ -375,6 +393,18 @@
 	<input type="submit" value="SET_EXPERIENCIA_LABORAL" id="setExperienciaLaboral"  />
 	<input type="submit" value="getHerramientasPorArea" id="getHerramientasPorArea"  />
 </div>
+
+<div class="opacity" style="display:none;"></div>
+<div class="popup" style="display:none;">
+<table cellspacing="0" cellpadding="0" align="center">
+<tr><td>
+	<div class="in">
+		<a href="javascript:;" class="closePopUp">Close</a>
+		
+	</div>
+</td></tr>
+</table>
+</div
 
 </body>
 </html>
