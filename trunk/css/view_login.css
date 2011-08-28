@@ -50,17 +50,17 @@ code {
 	background: url("../images/argentina_soft_logo.png") no-repeat scroll 0 0 transparent;;
 	float:left;
 	height: 50px;
-    margin: 25px;
     width: 76px;
 }
 
 #home_fr_company{
+	float:left;
+	width:760px;
 }
 
 #home_fr_company_name {
 	color: blue; 
 	font-size: 25px; 
-	margin-top: 25px;
 }
 
 #home_fr_company_slogan {
@@ -69,7 +69,7 @@ code {
 
 #home_fr_lenguage{
 	float: right;
-	margin-right: 25px;
+	margin-top: 20px;
 }
 
 #home_header {
@@ -109,7 +109,6 @@ code {
 	width: 156px;
 }
 .field {
-	width: 100%;
 	margin-top: 15px;
 }
 
@@ -135,4 +134,11 @@ code {
 
 #register_id_number_input {
 	width: 95px;
+}
+
+.error_msg {
+	margin-top: 3px;
+	color: red;
+	font-size: 9px;
+	margin-left: 53px;
 }

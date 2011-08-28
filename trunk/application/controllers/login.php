@@ -11,6 +11,7 @@ class Login extends CI_Controller {
 		
 		$data['industriasDisponibles'] = $this->Util_model->getIndustriasDisponibles();
 		$data['tiposDeDocumentos'] =  $this->Util_model->getTiposDeDocumentos();
+		$data['paises'] = $this->Util_model->getPaises();
 		
 		$idUsuario = @$_SESSION[SESSION_ID_USUARIO];
 		if($idUsuario){

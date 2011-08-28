@@ -9,6 +9,7 @@
 <title>Find Resources</title>
 
 <link rel=StyleSheet href="css/tabs.css"/>
+<link rel=StyleSheet href="css/global.css"/>
 <link rel=StyleSheet href="css/view_login.css"/>
 
 
@@ -39,16 +40,16 @@
 			  
 			<div class="tab_container">  
 			    <div id="tab1" class="tab_content">  
-			        <div class="field">
+			        <div class="field clearfix">
 			        	<div class="label">Email</div>
 			        	<div class="control">
-			        			<input type="text" id="login_email_input" name="email" />
+			        			<input type="text" id="login_email_input" name="email" value="unmail7@unserver.com"/>
 						</div>
 			        </div>
-			        <div class="field">
+					<div class="field clearfix">
 			        	<div class="label">Contraseña</div>
 			        	<div class="control">
-			        			<input type="password" id="login_password_input" name="email" />
+			        			<input type="password" id="login_password_input" name="email" value="1234567890"/>
 						</div>
 			        </div>
 			        <div id="login_button_div">
@@ -63,6 +64,9 @@
 			        			<input type="text" id="register_email_input" name="email" />
 						</div>
 			        </div>
+					<div id="login_error_msg" class="field error_msg" style="display:none">
+						*El usuario ya existe 
+					</div>
 			        <div class="field">
 			        	<div class="label">Contraseña</div>
 			        	<div class="control">
@@ -98,8 +102,11 @@
 					        	<div class="label">Documento:</div>
 					        	<div class="control">
 									<select id="register_id_type_select"> 
-									   <option value="DNI">DNI</option> 
-									   <option value="LC">LC</option> 
+									   <?php foreach ($tiposDeDocumentos as $tipo){ ?>
+									   			<option value="<?php echo $tipo->id?>">
+													<?php echo $tipo->id?>
+												</option> 
+									   <?php } ?>
 									</select>
 					        		<input type="text" id="register_id_number_input" />
 								</div>
@@ -114,8 +121,15 @@
 					        	<div class="label">Pais:</div>
 					        	<div class="control">
 									<select id="register_country_select"> 
-									   <option value="ARG">ARG</option> 
-									   <option value="BRA">BRA</option> 
+									   <?php  
+									   		foreach ($paises as $pais){
+									   ?>
+									   			<option value="<?php echo $pais->id?>">
+													<?php echo $pais->descripcion?>
+												</option> 
+									   <?php  
+									   		}
+									   ?>
 									</select>
 								</div>
 					        </div>
@@ -131,8 +145,11 @@
 					        	<div class="label">Industria:</div>
 					        	<div class="control">
 									<select id="register_industry_select"> 
-									   <option value="1">Tecnlogia</option> 
-									   <option value="2">Petrolera</option> 
+									   <?php foreach ($industriasDisponibles as $unaIndustria){?>
+									   			<option value="<?php echo $unaIndustria->id?>">
+													<?php echo $unaIndustria->descripcion?>
+												</option> 
+									   <?php } ?>
 									</select>
 								</div>
 					        </div>
@@ -148,10 +165,22 @@
 					        			<input type="text" id="register_company_phone_input" />
 								</div>
 					        </div>
+					        <div class="field">
+					        	<div class="label">Pais:</div>
+					        	<div class="control">
+									<select id="register_company_country_select"> 
+									   <?php foreach ($paises as $pais){ ?>
+									   			<option value="<?php echo $pais->id?>">
+													<?php echo $pais->descripcion?>
+												</option> 
+									   <?php } ?>
+									</select>
+								</div>
+					        </div>
 				      	
 				      	</div>
 				        <div id="login_button_div">
-					        <input type="submit" value="Registrarse" id="do_register_button"  />
+					        <input type="submit" value="Registrarse" id="do_register_button" disabled="disabled"/>
 				        </div>
 				      	
 			        </div>
@@ -164,39 +193,6 @@
 	</div>
 	
 </div>
-
-
-<!-- h1>Bienvenido a FindResources</h1>
-<div class="company_logo">
-	<img src="images/argentina_soft_logo.png"/>
-</div>
-
-<p>Ingrese nombre de usuario y contraseña.</p>
-
-	<H1>TIPOS DE INDUSTRIAS DISPONIBELES</H1>
-<--?php 
-	var_dump($industriasDisponibles);
-?>
-
-	<H1>TIPOS DE DOCUMENTOS DISPONIBELES</H1>
-<--?php 
-	var_dump($tiposDeDocumentos);
-?>
-
-<p/>
-previmente a crear al chabon debimos haber comprobado que el email no existia
-	<input type="submit" value="Chequear si usuario existe" id="chequeaNombreDeUsuario"  />
-<p/>
-EMAIL NUEVO USUARIO: 
-<input type="text" id="email" name="email" value="unmail6@unserver.com"/>
-	<input type="submit" value="CREAR USUARIO NUEVO" id="crearNuevoUsuario"  />
-<p/>
-
-<p>
-	<input type="submit" value="HACE EL LOGIN CHABON" id="doLogin"  />
-</p-->
-
-
 
 </body>
 </html>
