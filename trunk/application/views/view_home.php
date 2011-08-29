@@ -110,7 +110,7 @@ AQUI VAMOS A VER ALGO NOSE QUE.
 </p>
 
 <?php 
-	var_dump($dataUsuario);
+	var_dump($usuarioData);
 ?>
 
 <?php include("footer.php"); ?>
