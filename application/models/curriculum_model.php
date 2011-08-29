@@ -84,7 +84,6 @@ class Curriculum_model extends FR_Model {
 		);
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','pr_consulta_cv',$params);
-		
 		if ($n1 == 0){
 			$dbRegistros = $this->oracledb->get_cursor_data();
 			$dbRegistros = $this->decodeCursorData($dbRegistros);
@@ -96,7 +95,7 @@ class Curriculum_model extends FR_Model {
 			$response->fechaNacimiento = $dbRegistros[0]->fecha_nacimiento;
 			$response->idPais = $dbRegistros[0]->pais;
 			$response->idProvincia = $dbRegistros[0]->provincia;
-			$response->partido = $dbRegistros[0]->partido;
+//			$response->partido = $dbRegistros[0]->partido;
 			$response->calle = $dbRegistros[0]->calle;
 			$response->numero = $dbRegistros[0]->numero;
 			$response->piso = $dbRegistros[0]->piso;
@@ -228,18 +227,11 @@ class Curriculum_model extends FR_Model {
 		
 		$parametro = "";
 		foreach ($habilidades as $habilidad){
-//			if($parametro != ""){
-//				//Its not the first need add ;
-//				$parametro = $parametro . ';'; 
-//			}
 			$parametro = $parametro . 
 					$habilidad->idIndustria . ';' . 
 					$habilidad->puntos . ';';
 		}
 		
-//		return 0; //not in db yet
-		echo " <". $idCurriculum. "   ". $parametro . "         >" ;
-		return 0;
 		$n1 = NULL;
 		$n2 = NULL;
 		$params = array(
@@ -271,6 +263,7 @@ class Curriculum_model extends FR_Model {
 	 * 
 	 * */
 	public function  getHabilidadesAreasDelCV($idCurriculum){
+		/*
 		$respuesta[0]->idArea = 0;
 		$respuesta[0]->descripcionArea = "Informática";
 		$respuesta[0]->idHerramienta = 0;
@@ -284,7 +277,7 @@ class Curriculum_model extends FR_Model {
 		$respuesta[1]->puntos = 1;
 		
 		return $respuesta; //not in db yet
-		
+		*/
 		$curs=NULL;
 		$n1 = NULL;
 		$n2 = NULL;
