@@ -73,7 +73,24 @@ $(function(){
 			'twitter': "@twitteruser",
 			'sms': "15-3838-4994"
 		};
-		
+		$.ajax({
+		      url: "curriculum/setCurriculum",
+		      global: false,
+		      type: "POST",
+		      data: {
+				'curriculum': JSON.stringify(curriculum)
+			  },
+		      dataType: "json",
+		      async:true,
+		      success: function(response){
+		      		alert("Se han guardado los datos");
+			  },
+			  error: function(response){
+					alert(response);
+			  }
+		   }
+		);
+		/*
 		$.post("curriculum/setCurriculum", {
 				'curriculum': JSON.stringify(curriculum)
 			},
@@ -82,6 +99,7 @@ $(function(){
 			//response == 0 is ok
 		},
 		"json");
+		*/
 		
 	});
 	
@@ -380,13 +398,7 @@ $(function(){
 ?>
 
 <div id="cvEditorForm">
-	<div>
-		<label>gtalk:</label>
-		<input type="text" id="gtalk" name="ngtalk" />
-		<br />
-		<label>telefono1:</label>
-		<input type="text" id="telefono1" name="ntelefono1" />
-	</div>
+	
 	<input type="submit" value="actualizate" id="cvEditorButton"  />
 	<input type="submit" value="GET_PROVINCIAS" id="getProvincias"  />
 	<input type="submit" value="SET_HABILIDADES" id="setHabilidades"  />
@@ -395,16 +407,39 @@ $(function(){
 </div>
 
 <div class="opacity" style="display:none;"></div>
-<div class="popup" style="display:none;">
+
+<div class="popup" id="hardPropertiesPopUp" style="display:none;">
 <table cellspacing="0" cellpadding="0" align="center">
 <tr><td>
 	<div class="in">
 		<a href="javascript:;" class="closePopUp">Close</a>
-		
+		<div class="inside">
+			<div>
+				<label>gtalk:</label>
+				<input type="text" id="gtalk" name="ngtalk" />
+				<br />
+				<label>telefono1:</label>
+				<input type="text" id="telefono1" name="ntelefono1" />
+			</div>
+			<input type="submit" value="Guardar" id="cvEditorButton"  />
+		</div>
 	</div>
 </td></tr>
 </table>
-</div
+</div>
+
+<div class="popup" id="workExperiencePopUp" style="display:none;">
+<table cellspacing="0" cellpadding="0" align="center">
+<tr><td>
+	<div class="in">
+		<a href="javascript:;" class="closePopUp">Close</a>
+		<div class="inside">
+			
+		</div>
+	</div>
+</td></tr>
+</table>
+</div>
 
 </body>
 </html>
