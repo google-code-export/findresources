@@ -63,14 +63,20 @@ code {
 	$(function(){
 		
 		$('#desloguear').click(function(){
-						
-			$.post("home/doLogout", null,
-			function(response){
-//				debugger; //TODO FIX PORQUE NO SE REDIRIJE AL LOGIN :(? en este punto?
-				window.location="login";
-			},
-			"json");
-			
+
+			$.ajax({
+			      url: "home/doLogout",
+			      global: false,
+			      type: "POST",
+			      dataType: "json",
+			      async:true,
+			      success: function(response){
+						window.location="login";
+				  },
+				  error: function(response){
+						alert(response);
+				  }
+		    });
 		});
 		
 		$('#irACurriculum').click(function(){
@@ -99,7 +105,7 @@ AQUI VAMOS A VER ALGO NOSE QUE.
 
 
 <p>
-	<input type="submit" value="A VER EL CV QUE ONDA?" id="irACurriculum"  />
+	<input type="submit" value="CV" id="irACurriculum"  />
 	<input type="submit" value="DESLOGUIAME YA!" id="desloguear"  />
 </p>
 
