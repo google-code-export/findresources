@@ -3,12 +3,12 @@
  * Este archivo dibuja la toolbar de los usuarios.
  * El siguiente php tiene como parametros que recible del controller al cargarse 
  * las siguientes variables>
- * 		$dataUsuario
+ * 		$usuarioData
  * */
 ?>
 <?php 	
 	
-	switch ($dataUsuario->idTipoUsuario) {
+	switch ($usuarioData->idTipoUsuario) {
 		case "C": //CANDIDATO
 ?>
 	HOME - CURRICULUM - DATOS PERSONALES - COMPLETAR TEST PSICOTECNICO

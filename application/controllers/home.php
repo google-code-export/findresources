@@ -16,7 +16,7 @@ class Home extends CI_Controller {
 		//get usuario data.
 		$dataUsuario = $this->Usuario_model->getUsuario($idUsuario);
 		
-		$data['dataUsuario'] = $dataUsuario;
+		$data['usuarioData'] = $dataUsuario;
 				
 		$this->load->view('view_home', $data);
 		
