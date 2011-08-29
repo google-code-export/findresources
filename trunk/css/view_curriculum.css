@@ -1,6 +1,68 @@
-body{background-color:#fff;margin:0 auto;font-family: Lucida Grande, Verdana, Sans-serif;font-size: 14px;color: #4F5155;width:960px;}
+html, body, div, h1, h2, h3, h4, h5, h6, ul, li, ol, p, form, dd, dl, dt, label{margin:0;padding:0;list-style:none;font-weight:normal;}
+body{margin:0;font:12px/15px Arial, Helvetica, sans-serif;background:#FEFEFE;width:100%;}
+img{border:0;}
+a{text-decoration:none;color:#069;}
+a:hover{text-decoration:underline;}
+input, select, textarea{font:12px Arial, Helvetica, sans-serif;}
+ul,ol{position:relative;}
+span.dn{display:none;}
 
+/*CLEARFIX*/
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+.clearfix{display:inline-block;}
+* html .clearfix{height:1%;}
+.clearfix{display:block;}
+.clear{clear:both;font-size:0;}
+
+/*GENERAL*/
+
+/*HEADER*/
+.hd{}
+
+/*FOOTER*/
+.ft{}
+
+/*CONTENT*/
+.content{width:1000px;margin:0 auto;}
+.content .CL{width:500px;float:left;}
+.content .CR{width:400px;float:left;}
+.content .CL .block{border-bottom:2px solid #DDD;padding:12px 0 0;}
+.content .CL .block h2{font-size:18px;color:#555;padding:0 0 0px;}
+.content .CL .block h2 a{font-size:11px;}
+.content .CL .block h2 a.addpos{float:right;}
+.content .CL .block .inblock{padding:12px 0 2px;}
+.content .CL .block .job{padding:12px 0 2px;border-bottom:1px dotted #666;width:auto;margin-left:26px;}
+.content .CL .block .job:last-child{border:none;}
+.content .CL .block .study{padding:12px 0 2px;border-bottom:1px dotted #666;width:auto;margin-left:26px;}
+.content .CL .block .study:last-child{border:none;}
+.content .CL .block h4{font:bold 14px Arial, Helvetica, sans-serif;color:#555;padding:0 0 6px;}
+.content .CL .block ul{padding:0 0 6px;}
+.content .CL .block ul li{}
+.content .CL .block h5{font:bold 14px Arial, Helvetica, sans-serif;padding:0 0 6px;}
+.content .CL .block h5 a{font-size:11px;font-weight:normal;padding:0 0 0 4px;}
+.content .CL .block p.company{font-size:12px;font-weight:bold;padding:0 0 2px;}
+.content .CL .block p.industry{font-size:11px;color:#999;}
+.content .CL .block p.when{color:#555;padding:0 0 6px;}
+.content .CL .block p.text{padding:0 0 6px;}
+.content .CL .block p.recommendations{color:#666;font-size:11px;font-style:italic;padding:0 0 6px;}
+.content .CL .block p.recommendations a{font-style:normal;padding:0 0 0 6px;}
+.content .CL .block p.addActivity{padding:0 0 6px;}
+.content .info{background:#DDF0F8;padding:10px;margin:0 0 10px;}
+.content .info .photo{float:left;}
+.content .info .photo img{padding:5px;background:#FFF;}
+.content .info .right{float:left;width:300px;padding:0 0 0 10px;}
+.content .info .right h3{font:16px Arial, Helvetica, sans-serif;padding:0 0 12px;}
+.content .info .right p{padding:0 0 10px;}
+.content .info .right .grey{color:#666;}
+.content .info .right .grey i{padding:0 4px;font-size:12px;line-height:12px;color:#999;font-style:normal;}
+.content .info .right h3 a{font-size:11px;padding:0 0 0 4px;}
+.content{}
+.content{}
+.content{}
+
+/*OPACITY*/
 .opacity{position:fixed;top:0px;left:0px;width:100%;height:100%;opacity:0;background:#000;z-index:997;}
+/*POPUP*/
 .popup{width:100%;position:absolute;top:50px;left:0;z-index:998;opacity:0;}
 .popup .in{width:400px;height:400px;background:#FFF;position:relative;}
 .popup .in .closePopUp{position:absolute;top:5px;right:5px;}
