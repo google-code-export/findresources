@@ -304,8 +304,6 @@ $(function(){
 	echo '<br/>';
 	echo $curriculumData->idProvincia;
 	echo '<br/>';
-	echo $curriculumData->partido;
-	echo '<br/>';
 	echo $curriculumData->calle;
 	echo '<br/>';
 	echo $curriculumData->numero;
