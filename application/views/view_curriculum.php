@@ -106,7 +106,8 @@
 					<p class="text">
 					<?php echo $educacion->idNivelEducacion?> 
 					area: <?php echo $educacion->idArea?> <br/>
-					estado: <?php 
+					estado:
+					<?php 
 						switch ($educacion->estado){
 							case "T":
 								echo "Terminado";
@@ -121,15 +122,15 @@
 								echo "";
 							break;
 						}
-					?> <br />
-
-					
-					<br/>Promedio <?php echo $educacion->promedio?>
+					?>
+					<br /><br/>
+					Promedio <?php echo $educacion->promedio ?>
 					</p>
 					<p class="addActivity">You can <a href="#">add activities and societies</a> you participated in at this school.</p>
 					<p class="recommendations">No recommendations for this position<a href="#">Ask for a recommendation</a></p>
 				</div>
 				
+				<?php } ?>
 				
 			</div>
 			
@@ -143,6 +144,8 @@
 					<p class="type"><?php echo $educacion->idTipoEducacionNoFormal?> </p>
 					<p class="when">duracion <?php echo $educacion->fechaInicio?> – <?php echo $educacion->duracion?> </p>
 				</div>
+				
+				<?php } ?>
 			</div>
 			
 		</div>
