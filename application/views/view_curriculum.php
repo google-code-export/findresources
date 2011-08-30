@@ -96,17 +96,52 @@
 			
 			<div class="block">
 				<h2>Educaci&oacute;n Formal <a class="addpos" href="#">+ <b>Add</b> a school</a></h2>
+				
+				<?php foreach ($educacionFormalDelCv as $educacion){ ?>
+				
 				<div class="study">
-					<h5>Universidad Tecnológica Nacional <a href="javascript:;" class="editFields">Edit</a></h5>
-					<p class="type">Engineering, Tecnology (on course)</p>
-					<p class="when">2002 – 2012 (expected)</p>
+					<h5><?php echo $educacion->descripcionEntidad?> <a href="javascript:;" class="editFields">Edit</a></h5>
+					<p class="type"><?php echo $educacion->titulo?> </p>
+					<p class="when"><?php echo $educacion->fechaInicio?> – <?php echo $educacion->fechaFinalizacion?> </p>
 					<p class="text">
-					University:<br />
-					5th. year on course of the career Information System Engineer
-					26 subjects passed of 40 with an average 6.33
+					<?php echo $educacion->idNivelEducacion?> 
+					area: <?php echo $educacion->idArea?> <br/>
+					estado: <?php 
+						switch ($educacion->estado){
+							case "T":
+								echo "Terminado";
+							break;
+							case "A":
+								echo "Abandonado";
+							break;
+							case "C":
+								echo "En Curso";
+							break;
+							default:
+								echo "";
+							break;
+						}
+					?> <br />
+
+					
+					<br/>Promedio <?php echo $educacion->promedio?>
 					</p>
 					<p class="addActivity">You can <a href="#">add activities and societies</a> you participated in at this school.</p>
 					<p class="recommendations">No recommendations for this position<a href="#">Ask for a recommendation</a></p>
+				</div>
+				
+				
+			</div>
+			
+			<div class="block">
+				<h2>Educaci&oacute;n No Formal <a class="addpos" href="#">+ <b>Agregar</b> institucion</a></h2>
+				
+				<?php foreach ($educacionFormalDelCv as $educacion){ ?>
+				
+				<div class="study">
+					<h5><?php echo $educacion->descripcionEntidad?> <a href="javascript:<?php echo $educacion->id?>;" class="editFields">Edit</a></h5>
+					<p class="type"><?php echo $educacion->idTipoEducacionNoFormal?> </p>
+					<p class="when">duracion <?php echo $educacion->fechaInicio?> – <?php echo $educacion->duracion?> </p>
 				</div>
 			</div>
 			
