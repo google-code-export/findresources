@@ -84,8 +84,9 @@
 					
 					<p class="company"><?php echo $experiencia->compania ?></p>
 					<p class="industry"><?php echo $experiencia->idIndustria ?></p>
-					<p class="when"><?php echo $experiencia->fechaDesde ?> – <?php echo $experiencia->fechaHasta ?></p>
-					<p class="text"><?php echo $experiencia->logro ?></p>
+					<p class="country"><?php echo $experiencia->idPais ?></p>
+					<p class="when"><span class="dateFrom"><?php echo $experiencia->fechaDesde ?></span> – <span class="dateTo"><?php echo $experiencia->fechaHasta ?></span></p>
+					<p class="logro"><?php echo $experiencia->logro ?></p>
 					<p class="recommendations">No recommendations for this position<a href="#">Ask for a recommendation</a></p>
 					
 				</div>
@@ -270,22 +271,22 @@
 		<div class="inside">
 			<div>
 				<label>Empresa:</label>
-				<input type="text" id="workExperienceEmpresa" value="" />
+				<input type="text" id="workExperienceCompany" value="" />
 				<br />
 				<label>Industria:</label>
-				<input type="text" id="workExperienceIndustria" value="" />
+				<input type="text" id="workExperienceIndustry" value="" />
 				<br />
 				<label>Pais:</label>
-				<input type="text" id="workExperiencePais" value="" />
+				<input type="text" id="workExperienceCountry" value="" />
 				<br />
 				<label>Fecha Desde:</label>
-				<input type="text" id="workExperienceFechaDesde" value="" />
+				<input type="text" id="workExperienceDateFrom" value="" />
 				<br />
 				<label>Fecha Hasta:</label>
-				<input type="text" id="workExperienceFechaHasta" value="" />
+				<input type="text" id="workExperienceDateTo" value="" />
 				<br />
 				<label>Logro:</label>
-				<input type="text" id="workExperienceLogro" value="" />
+				<input type="text" id="workExperienceGoal" value="" />
 			</div>
 			<input type="submit" value="Guardar" class="sendButton" />
 		</div>

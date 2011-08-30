@@ -21,6 +21,16 @@ function getBlockID(este)
 	return ID;
 }
 
+function getWorkExperience(blockID)
+{
+	$('#'+blockID+'Company').val($('#'+blockID+' .company').text());
+	$('#'+blockID+'Industry').val($('#'+blockID+' .industry').text());
+	$('#'+blockID+'Country').val($('#'+blockID+' .country').text());
+	$('#'+blockID+'DateFrom').val($('#'+blockID+' .dateFrom').text());
+	$('#'+blockID+'DateTo').val($('#'+blockID+' .dateTo').text());
+	$('#'+blockID+'Goal').val($('#'+blockID+' .logro').text());
+}
+
 /*WINDOW ONLOAD*/
 $(function(){
 	
@@ -31,19 +41,9 @@ $(function(){
 	$('.editFields').click(function(){
 		showPopUp('#'+getBlockID($(this))+'PopUp');
 		if(getBlockID($(this))=='workExperience'){
-			getWorkExperience()
+			getWorkExperience('workExperience');
 		}
 	});
-	
-	function getWorkExperience(blockID)
-	{
-		$(blockID+'Empresa').val($(blockID+' .company').text());
-		$(blockID+'Industria').val($(blockID+' .company').text());
-		$(blockID+'Pais').val($(blockID+' .company').text());
-		$(blockID+'FechaDesde').val($(blockID+' .company').text());
-		$(blockID+'FechaHasta').val($(blockID+' .company').text());
-		$(blockID+'Logro').val($(blockID+' .company').text());
-	}
 
 	$('#hardPropertiesPopUp .sendButton').click(function(){
 
@@ -93,12 +93,12 @@ $(function(){
 	$('#workExperiencePopUp .sendButton').click(function(){
 		var experienciaLaboral = {
 			id: null, // null = nuevo
-			compania: $('workExperienceEmpresa').val(), 
-			idIndustria: $('workExperienceIndustria').val(),
-			idPais: $('workExperiencePais').val(), 
-			fechaDesde: $('workExperienceFechaDesde').val(),
-			fechaHasta: $('workExperienceFechaHasta').val(),
-			logro: $('workExperienceLogro').val(),
+			compania: $('#workExperienceCompany').val(), 
+			idIndustria: $('#workExperienceIndustry').val(),
+			idPais: $('#workExperienceCountry').val(), 
+			fechaDesde: $('#workExperienceDateFrom').val(),
+			fechaHasta: $('#workExperienceDateTo').val(),
+			logro: $('#workExperienceGoal').val(),
 		};
 		$.ajax({
 			url: "curriculum/setExperienciaLaboral",
