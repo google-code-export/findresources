@@ -9,7 +9,7 @@ class Home extends CI_Controller {
 	
 	public function index(){
 		$idUsuario = @$_SESSION[SESSION_ID_USUARIO];
-		var_dump($idUsuario);
+
 		if(!$idUsuario){
 			redirect('login');
 		}
