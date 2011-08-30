@@ -50,7 +50,7 @@ $(function(){
 			'nombre':(isCandidate)? $('#register_firstname_input').val() : "",
 			'apellido':(isCandidate)? $('#register_lastname_input').val() : "",
 			'razonSocial':(!isCandidate)? $('#register_companyname_input').val() : "",
-			'idIndustria':(!isCandidate)? $('#register_id_type_select').val() : "",
+			'idIndustria':(!isCandidate)? $('#register_industry_select').val() : "",
 			'idTipoDocumento':(isCandidate)? $('#register_id_type_select').val() : "CUIT",
 			'numeroDocumento':idNumber,
 			'telefono':(isCandidate)? $('#register_phone_number_input').val() : $('#register_company_phone_input').val(),

@@ -68,7 +68,6 @@ code {
 			      url: "home/doLogout",
 			      global: false,
 			      type: "POST",
-			      dataType: "json",
 			      async:true,
 			      success: function(response){
 						window.location="login";
@@ -102,12 +101,6 @@ code {
 Welcome to the find resources tool
 AQUI VAMOS A VER ALGO NOSE QUE.
 
-
-
-<p>
-	<input type="submit" value="CV" id="irACurriculum"  />
-	<input type="submit" value="DESLOGUIAME YA!" id="desloguear"  />
-</p>
 
 <?php 
 	var_dump($usuarioData);

@@ -6,12 +6,31 @@
  * 		$usuarioData
  * */
 ?>
-<?php 	
+<script type="text/javascript">
+	function logout (){
+		$.ajax({
+		      url: "home/doLogout",
+		      global: false,
+		      type: "POST",
+		      async:true,
+		      success: function(response){
+					window.location="login";
+			  },
+			  error: function(response){
+					alert(response);
+			  }
+	    });
+	}
+
 	
+</script>
+
+<?php 	
 	switch ($usuarioData->idTipoUsuario) {
 		case "C": //CANDIDATO
 ?>
-	HOME - CURRICULUM - DATOS PERSONALES - COMPLETAR TEST PSICOTECNICO
+	<a href="home">HOME</a> - <a href="curriculum"> CURRICULUM </a> - DATOS PERSONALES - <a href="test_luscher"> COMPLETAR TEST PSICOTECNICO </a> -  <a href="javascript:logout()"> LOG OUT </a>
+	
 
 <?php 	
         break;
