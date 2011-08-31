@@ -39,53 +39,24 @@ code {
 .company_logo{
 }
 
-#home {
+#login {
  	/*background: url("../images/home_background.png") no-repeat scroll 0 0 transparent;;*/
 	width: 960px;
 	height: 720px;
-	margin: auto;
 }
 
-#home_fr_logo {
-	background: url("../images/argentina_soft_logo.png") no-repeat scroll 0 0 transparent;;
-	float:left;
-	height: 50px;
-    width: 76px;
-}
 
-#home_fr_company{
-	float:left;
-	width:760px;
-}
 
-#home_fr_company_name {
-	color: blue; 
-	font-size: 25px; 
-}
-
-#home_fr_company_slogan {
-
-} 
-
-#home_fr_lenguage{
-	float: right;
-	margin-top: 20px;
-}
-
-#home_header {
-	height: 100px;
-}
-
-#home_body {
+#login_body {
 	height: 550px;
 }
 
-#home_wellcome {
+#login_wellcome {
 	width: 500px;
 	float: left;
 }
 
-#home_tabs {
+#login_tabs {
 	width: 450px;
 	float: right;
 	margin-right: 20px;
@@ -117,7 +88,7 @@ code {
 	margin-top: 24px;
 }
 
-#home_tabs .tab_content {
+#login_tabs .tab_content {
 	height:350px;
 	overflow: auto;
 }

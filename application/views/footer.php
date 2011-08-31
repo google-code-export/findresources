@@ -1,3 +1,4 @@
+<div class="clearfix">
 <a href="docs/sobrenosotros.html">Sobre nosotros</a>
 
 
@@ -39,3 +40,6 @@
 
 	<a href="docs/terminos.html">Terminos</a>
 	Derechos Reservados (C)
+	
+</div>
+	
