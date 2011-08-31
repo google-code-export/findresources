@@ -28,6 +28,7 @@
 <div id="searchBody" class="clearfix">
 	<h2>Razón Social: <?php echo $usuarioData->razonSocial;?></h2>
 	SEARCH BODY :)
+	<?php echo var_export($busquedasDelUsuario);?>
 </div>
 
 
