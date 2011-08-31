@@ -101,10 +101,9 @@
 				
 				<div class="study">
 					<h5><?php echo $educacion->descripcionEntidad?> <a href="javascript:;" class="editFields">Edit</a></h5>
-					<p class="type"><?php echo $educacion->titulo?> </p>
-					<p class="when"><?php echo $educacion->fechaInicio?> – <?php echo $educacion->fechaFinalizacion?> </p>
-					<p class="text">
-					<?php echo $educacion->idNivelEducacion?> 
+					<p class="title"><?php echo $educacion->titulo?> </p>
+					<p class="when"><span class="dateFrom"><?php echo $educacion->fechaInicio?></span> – <span class="dateTo"><?php echo $educacion->fechaFinalizacion?></span></p>
+					<p class="eduLevel"><?php echo $educacion->idNivelEducacion?> 
 					area: <?php echo $educacion->idArea?> <br/>
 					estado:
 					<?php 
