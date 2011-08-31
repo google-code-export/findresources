@@ -2,8 +2,9 @@
 #toolbar_fr_logo {
 	background: url("../images/argentina_soft_logo.png") no-repeat scroll 0 0 transparent;
 	float:left;
-	height: 50px;
+	padding-top: 55px;
     width: 76px;
+	height; 25px;    
 }
 
 #toolbar_fr_company{
