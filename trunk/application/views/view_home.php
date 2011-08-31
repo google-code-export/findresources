@@ -13,51 +13,11 @@
 <script type="text/javascript" src=" <?php echo site_url('js/jquery-1.6.2.min.js')?>"></script>
 <script type="text/javascript" src=" <?php echo site_url('js/json2.js')?>"></script>
 
+<link rel=StyleSheet href="css/global.css"/>
+<link rel=StyleSheet href="css/view_home.css"/>
+
 <title>Find Resources</title>
 
-<style type="text/css">
-
-body {
- background-color: #fff;
- margin: 40px;
- font-family: Lucida Grande, Verdana, Sans-serif;
- font-size: 14px;
- color: #4F5155;
- text-align: center;
-}
-
-a {
- color: #003399;
- background-color: transparent;
- font-weight: normal;
-}
-
-h1 {
- color: #444;
- background-color: transparent;
- border-bottom: 1px solid #D0D0D0;
- font-size: 16px;
- font-weight: bold;
- margin: 24px 0 2px 0;
- padding: 5px 0 6px 0;
-}
-
-code {
- font-family: Monaco, Verdana, Sans-serif;
- font-size: 12px;
- background-color: #f9f9f9;
- border: 1px solid #D0D0D0;
- color: #002166;
- display: block;
- margin: 14px 0 14px 0;
- padding: 12px 10px 12px 10px;
-}
-
-.company_logo{
-}
-
-
-</style>
 
 <script type="text/javascript">
 	$(function(){
@@ -93,19 +53,80 @@ code {
 
 
 <h1>Bienvenido a FindResources</h1>
-<div class="company_logo">
-	<img src="images/argentina_soft_logo.png"/>
-</div>
+<div id="homeBody" class="clearfix">
 
-<H1>ESTAS ADENTRO NENE!</H1>
-Welcome to the find resources tool
-AQUI VAMOS A VER ALGO NOSE QUE.
+<?php 	
+	switch ($usuarioData->idTipoUsuario) {
+		case "C": //CANDIDATO
+?>
+	<div id="homeCandidatePersonalData">
+	
+			<h2>Datos Personales:</h2>
+			<div class="row clearfix">
+				<div class="label" > Nombre: </div><div class="field"> <?php echo $usuarioData->nombre;?></div>
+			</div>
+			<div class="row clearfix">
+				<div class="label" > Apellido: </div><div class="field"> <?php echo $usuarioData->apellido;?></div>
+			</div>
 
+			<div class="row clearfix">
+				<div class="label" > <?php echo $usuarioData->idTipoDocumento;?> : </div> <div class="field"><?php echo $usuarioData->numeroDocumento;?></div>
+			</div>
 
-<?php 
-	var_dump($usuarioData);
+			<div class="row clearfix">
+				<div class="label" > Teléfono </div><div class="field"> <?php echo $usuarioData->telefono;?></div>
+			</div>
+
+			<div class="row clearfix">
+				<div class="label" > Pais </div><div class="field"> <?php echo $usuarioData->descripcionPais;?></div>
+			</div>
+	</div>
+	<div id="homeCandidateLinks">
+		<div id="homeCurriculumLink" class="clearfix">
+			<a href="curriculum"> 
+				CURRICULUM 
+			</a>
+		</div>
+		<div id="homeTestLink" class="clearfix">
+			<a href="test_luscher"> 
+				COMPLETAR TEST PSICOTECNICO 
+			</a>
+		</div>
+	</div>
+	
+
+<?php 	
+        break;
+	    case "E": //EMPRESA
 ?>
 
+	HOME - TICKETS - BUSQUEDAS - DATOS DE LA EMPRESA
+
+<?php 
+        break;
+	    case "P": //EXPERTO
+
+?>
+	HOME - Feedback Test  - Feedback Informe Final
+
+<?php 
+        break;
+	    case "A": //ADMINISTRADOR
+
+?>
+		HOME - Alta de Usuario Experto
+<?php 
+		break;
+    	default:
+?>
+			ERROR EN TIPO DE USUARIO.
+<?php 
+		break;
+
+	} //end switch
+		
+?>
+</div>
 <?php include("footer.php"); ?>
 
 </body>

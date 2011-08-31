@@ -1,0 +1,35 @@
+@CHARSET "ISO-8859-1";
+#toolbar_fr_logo {
+	background: url("../images/argentina_soft_logo.png") no-repeat scroll 0 0 transparent;
+	float:left;
+	height: 50px;
+    width: 76px;
+}
+
+#toolbar_fr_company{
+	float:left;
+	width:760px;
+}
+
+#toolbar_fr_company_name {
+	color: blue; 
+	font-size: 25px; 
+}
+
+#toolbar_fr_company_slogan {
+
+} 
+
+#toolbar_session{
+	float: right;
+	margin-top: 20px;
+}
+
+#toolbar_header {
+	height: 100px;
+	text-align: center;
+}
+
+#login #toolbar_logout{
+	display:none;
+}

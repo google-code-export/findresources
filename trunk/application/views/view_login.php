@@ -14,25 +14,19 @@
 
 
 
-
 </head>
 <body>
-<div id="home">
-	<div id="home_header">
-		<div id="home_fr_logo"></div>
-		<div id="home_fr_company">
-	    	<div id="home_fr_company_name">find resources</div>
-	        <div id="home_fr_company_slogan">Donde encontrás el trabajo que te gusta </div>
-		</div>
-		<div id="home_fr_lenguage">
-			English / Español
-		</div>
-	</div>
-	<div id="home_body">
-		<div id="home_wellcome">
+
+
+
+<div id="login">
+	<?php include("toolbar.php"); ?>
+
+	<div id="login_body">
+		<div id="login_wellcome">
 			ACA VA EL WELLCOME
 		</div>
-		<div id="home_tabs">
+		<div id="login_tabs">
 			<ul class="tabs">  
 			    <li><a href="#tab1">Ingresar</a></li>  
 			    <li><a href="#tab2">Registrate</a></li>  
@@ -188,7 +182,7 @@
 			</div>  
 		</div>
 	</div>
-	<div id="home_footer">
+	<div id="login_footer">
 		<?php include("footer.php"); ?>
 	</div>
 	
