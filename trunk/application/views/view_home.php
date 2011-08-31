@@ -19,34 +19,6 @@
 <title>Find Resources</title>
 
 
-<script type="text/javascript">
-	$(function(){
-		
-		$('#desloguear').click(function(){
-
-			$.ajax({
-			      url: "home/doLogout",
-			      global: false,
-			      type: "POST",
-			      async:true,
-			      success: function(response){
-						window.location="login";
-				  },
-				  error: function(response){
-						alert(response);
-				  }
-		    });
-		});
-		
-		$('#irACurriculum').click(function(){
-			window.location="curriculum";
-		});
-		
-		return false;
-	});
-	
-</script>		
-
 </head>
 <body>
 <?php include("toolbar.php"); ?>
@@ -100,7 +72,12 @@
 	    case "E": //EMPRESA
 ?>
 
-	HOME - TICKETS - BUSQUEDAS - DATOS DE LA EMPRESA
+	HOME - TICKETS - - DATOS DE LA EMPRESA
+	<div class="clearfix">
+		<a href="busquedas"> 
+			BUSQUEDAS 
+		</a>
+	</div>
 
 <?php 
         break;

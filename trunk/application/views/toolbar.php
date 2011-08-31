@@ -25,7 +25,7 @@
 <link rel=StyleSheet href="css/toolbar.css"/>
 
 <div id="toolbar_header">
-	<a id="toolbar_fr_logo" href="home"></a>
+	<a id="toolbar_fr_logo" href="home"> inicio </a>
 	<div id="toolbar_fr_company">
     	<div id="toolbar_fr_company_name">find resources</div>
         <div id="toolbar_fr_company_slogan">Donde encontrás el trabajo que te gusta </div>
