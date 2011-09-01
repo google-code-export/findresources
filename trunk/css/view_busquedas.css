@@ -33,6 +33,8 @@
 .label {
 	font-weight: bold;
 	float:left;
+	text-align: left;
+	width: 130px;
 }
 
 .field {
@@ -41,4 +43,46 @@
 
 .row {
   margin: 10px;
+}
+
+#busquedas {
+ 	/*background: url("../images/home_background.png") no-repeat scroll 0 0 transparent;;*/
+	width: 960px;
+	height: 820px;
+	margin: auto;
+}
+
+
+
+#busquedas_tabs {
+	width: 950px;
+	float: right;
+	margin-right: 20px;
+
+}
+
+
+.control {
+	width: 250px;
+}
+
+.control input {
+	width: 150px;
+}
+
+.control select{
+	width: 156px;
+}
+.field {
+	margin-top: 15px;
+}
+
+.field div {
+	float: left;
+	margin-top: 24px;
+}
+
+#busquedas_tabs .tab_content {
+	height:620px;
+	overflow: auto;
 }
