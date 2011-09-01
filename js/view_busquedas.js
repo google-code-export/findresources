@@ -32,7 +32,7 @@ $(document).ready(function() {
 });  
 
 $(function(){
-	/*
+	
 	$('#do_register_button').click(function(){
 		
 		var userType = $('#register_type_select').val();
@@ -41,6 +41,7 @@ $(function(){
 		var idNumber = (isCandidate)? $('#register_id_number_input').val() : $('#register_company_id_input').val();
 		idNumber = idNumber.replace(/ /gi,"");
 		idNumber = idNumber.replace(/-/gi,"");
+		//idNumber = idNumber.replace(/./gi,"");
 		
 		var usuario = {
 			'email':$('#register_email_input').val(),
@@ -76,7 +77,88 @@ $(function(){
 		
 		
 	});
-	*/
+	
+	$('#do_login_button').click(function(){
+		/**TODO Esta llamada debe ser segura, hay que investigar eso!**/
+		var usuario = {
+			'email': $('#login_email_input').val(),
+			'clave': $('#login_password_input').val()
+		};
+		
+		$.ajax({
+		      url: "login/doLogin",
+		      global: false,
+		      type: "POST",
+		      data: {
+				'usuario': JSON.stringify(usuario)
+			  },
+		      dataType: "json",
+		      async:true,
+		      success: function(response){
+					if(response == true){
+						window.location="home";
+					}else{
+						alert("usuario invalido");
+					}
+			  },
+			  error: function(response){
+					alert(response);
+			  }
+		   }
+		);
+	});
+	
+	$('#register_type_select').change(function(){
+		var value = $('#register_type_select').val();
+		if(value == "-1"){
+			$('#user_data').css('display','none');
+		}else {
+			$('#user_data').css('display','inline');
+			if(value == "C"){
+				$('#cadidate_fields').css('display','inline');
+				$('#company_fields').css('display','none');
+			
+			}else if(value == "E"){
+				$('#cadidate_fields').css('display','none');
+				$('#company_fields').css('display','inline');
+			}
+		}
+		
+	});
+	
+	$('#register_email_input').blur(function(){
+		/*
+		var usuario = $('#login_email_input').val();
+		$.post("", {
+			'usuario': usuario
+		},
+		"json");*/
+		$('#do_register_button').attr("disabled", true);
+		$('#login_error_msg').css("display", "none");
+		
+		var usuario = $('#register_email_input').val();
+		
+		$.ajax({
+		      url: "login/getExisteUsuario",
+		      global: false,
+		      type: "POST",
+		      data: {
+					'usuario': usuario
+			  },
+		      dataType: "json",
+		      async:true,
+		      success: function(existe){
+					$('#do_register_button').attr("disabled", existe == true);
+					$('#login_error_msg').css("display", (existe == true)?"inline":"none");
+			  },
+			  error: function(response){
+					alert(response);
+			  }
+		   }
+		);
+				
+		
+	});
 	return false;
 });
 
