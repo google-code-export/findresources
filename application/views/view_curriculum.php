@@ -103,9 +103,10 @@
 					<h5><?php echo $educacion->descripcionEntidad?> <a href="javascript:;" class="editFields">Edit</a></h5>
 					<p class="title"><?php echo $educacion->titulo?> </p>
 					<p class="when"><span class="dateFrom"><?php echo $educacion->fechaInicio?></span> – <span class="dateTo"><?php echo $educacion->fechaFinalizacion?></span></p>
-					<p class="eduLevel"><?php echo $educacion->idNivelEducacion?> 
-					area: <?php echo $educacion->idArea?> <br/>
-					estado:
+					<p class="eduLevel"><?php echo $educacion->idNivelEducacion?></p>
+					<p>Area: <span class="area"><?php echo $educacion->idArea?></span></p>
+					<p>Estado: 
+					<span class="state">
 					<?php 
 						switch ($educacion->estado){
 							case "T":
@@ -121,10 +122,8 @@
 								echo "";
 							break;
 						}
-					?>
-					<br /><br/>
-					Promedio <?php echo $educacion->promedio ?>
-					</p>
+					?></span></p>
+					<p class="promedy">Promedio <?php echo $educacion->promedio ?></p>
 					<p class="addActivity">You can <a href="#">add activities and societies</a> you participated in at this school.</p>
 					<p class="recommendations">No recommendations for this position<a href="#">Ask for a recommendation</a></p>
 				</div>
@@ -136,29 +135,16 @@
 			<div class="block">
 				<h2>Educaci&oacute;n No Formal <a class="addpos" href="#">+ <b>Agregar</b> institucion</a></h2>
 				
-				<?php foreach ($educacionFormalDelCv as $educacion){ ?>
+				<?php foreach ($educacionNoFormalDelCv as $educacion){ ?>
 				
 				<div class="study">
-					<h5><?php echo $educacion->descripcionEntidad?> <a href="javascript:<?php echo $educacion->id?>;" class="editFields">Edit</a></h5>
+					<h5><?php echo $educacion->descripcion?> <a href="javascript:<?php echo $educacion->id?>;" class="editFields">Edit</a></h5>
 					<p class="type"><?php echo $educacion->idTipoEducacionNoFormal?> </p>
-					<p class="when">duracion <?php echo $educacion->fechaInicio?> – <?php echo $educacion->duracion?> </p>
+					<p class="when">Duracion: <?php echo $educacion->duracion?> </p>
 				</div>
 				
 				<?php } ?>
 			</div>
-			
-		</div>
-	
-	</div>
-	<!-- end CONTENT -->
-	
-	<!-- FOOTER -->
-	<div class="ft">
-		
-	</div>
-	<!-- end FOOTER -->
-	
-</div>
 
 <?php 
 	var_dump($usuarioData);
@@ -210,23 +196,6 @@
 	echo '<br/>';
 ?>
 
-	<H1>EXPERIENCIA LABORAL DEL CV</H1>
-<?php 
-	foreach ($experienciaLaboralDelCv as $experiencia){
-		echo $experiencia->id . ' ' . $experiencia->compania . ' ' . $experiencia->idIndustria . ' ' . $experiencia->idPais . ' ' .  $experiencia->fechaDesde . ' ' .  $experiencia->fechaHasta . ' ' .  $experiencia->logro;
-	}
-?>
-
-	<H1>EDUCACION FORMAL DEL CV</H1>
-<?php 
-	var_dump($educacionFormalDelCv);
-?>
-
-	<H1>EDUCACION NO FORMAL DEL CV</H1>
-<?php 
-	var_dump($educacionNoFormalDelCv);
-?>
-
 	<H1>ESTADOS CIVILES DISPONIBLES</H1>
 <?php 
 	function imprimirArrayConDescripciones($array){
@@ -268,6 +237,20 @@
 <?php 
 	imprimirArrayConDescripciones($tiposDeEducacionNoFormal);
 ?>
+	
+		</div>
+	
+	</div>
+	<!-- end CONTENT -->
+	
+	<!-- FOOTER -->
+	<div class="ft">
+		
+	</div>
+	<!-- end FOOTER -->
+	
+</div>
+
 
 <div id="cvEditorForm">
 	
