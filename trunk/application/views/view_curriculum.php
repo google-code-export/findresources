@@ -23,6 +23,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/view_curriculum.css')?>" />
+<script type="text/javascript">
+	var availableIndustries = new Array();
+	<?php foreach ($industriasDisponibles as $industria){ ?>
+		availableIndustries[<?php echo $industria->id; ?>] = "<?php echo $industria->descripcion;?>";
+	<?php } ?>
+
+	var availableAreas = new Array();
+	<?php foreach ($areasDisponibles as $area){ ?>
+		availableAreas[<?php echo $area->id; ?>] = "<?php echo $area->descripcion;?>";
+	<?php } ?>
+
+	var availableTools = new Array(); //fill in $('#availableAreasSelect').change();	
+
+</script>
 <script type="text/javascript" src="<?php echo site_url('js/jquery-1.6.2.min.js')?>"></script>
 <script type="text/javascript" src="<?php echo site_url('js/json2.js')?>"></script>
 <script type="text/javascript" src="<?php echo site_url('js/view_curriculum.js')?>"></script>
@@ -55,7 +69,7 @@
 			</div>
 			
 			<div class="block" id="hardProperties">
-				<h2>Caracterisiticas Duras <a href="javascript:;" class="editFields">Edit</a></h2>
+				<h2>Caracterisiticas Duras <a href="javascript:;" class="editFields">Editar</a></h2>
 				<div class="inblock">
 					<h4>Industrias</h4>
 					<ul>
@@ -268,15 +282,54 @@
 <tr><td>
 	<div class="in">
 		<a href="javascript:;" class="closePopUp">Close</a>
+		
 		<div class="inside">
+			<h4>Industrias</h4>
 			<div>
-				<label>gtalk:</label>
-				<input type="text" id="gtalk" name="ngtalk" />
-				<br />
-				<label>telefono1:</label>
-				<input type="text" id="telefono1" name="ntelefono1" />
+				<select id="availableIndustriesSelect">
+					<?php foreach ($industriasDisponibles as $industria){ ?>
+						<option value="<?php echo $industria->id; ?>"><?php echo $industria->descripcion;?></option> 
+					<?php } ?>
+				</select>
+
+				<a href="javascript:addIndustry();"> + Agregar</a>
 			</div>
-			<input type="submit" value="Guardar" class="sendButton" />
+
+
+			<ul id="editItemIndustryList">
+			<?php foreach ($habilidadesIndustriasDelCV as $habilidad){ ?>
+				<li id="editItemIndustry<?php echo $habilidad->idIndustria ?>" class="industryItem">
+					<?php echo $habilidad->descripcionIndustria ?>: 
+					<input type="text" class="pointsInput" value="<?php echo $habilidad->puntos ?>"/>
+					<a href="javascript:removeIndustry(<?php echo $habilidad->idIndustria ?>);">X</a>
+				</li>
+			<?php } ?>
+			</ul>
+			
+			<h4>Areas</h4>
+			<div>
+				<select id="availableAreasSelect">
+					<option id="availableAreasDefaultOption" value="-1" selected="selected">Areas</option>
+					<?php foreach ($areasDisponibles as $area){ ?>
+						<option value="<?php echo $area->id; ?>"><?php echo $area->descripcion;?></option> 
+					<?php } ?>
+				</select>
+				<select id="availableToolsSelect">
+					<option value="0">Herramientas</option> 
+				</select>
+				<a href="javascript:addTool();"> + Agregar</a>
+			</div>
+			
+			<ul id="editItemToolList">
+			<?php foreach ($habilidadesAreasDelCV as $habilidad){ ?>
+				<li id="editItemTool<?php echo $habilidad->idHerramienta ?>" area="<?php echo $habilidad->idArea ?>" class="toolItem">
+					<?php echo $habilidad->descripcionArea ?> - <?php echo $habilidad->descripcionHerramienta ?>: 
+	        		<input type="text" class="pointsInput" value="<?php echo $habilidad->puntos ?>"/>
+					<a href="javascript:removeTool(<?php echo $habilidad->idHerramienta ?>);">X</a>
+				</li>
+			<?php } ?>
+			</ul>
+			<input type="submit" value="Guardar" class="sendButton"/>
 		</div>
 	</div>
 </td></tr>

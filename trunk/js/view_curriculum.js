@@ -31,6 +31,61 @@ function getWorkExperience(blockID)
 	$('#'+blockID+'Goal').val($('#'+blockID+' .logro').text());
 }
 
+function removeIndustry(idIndustria){
+	$('#editItemIndustry' + idIndustria).remove();
+}
+
+function removeTool(idHerramienta){
+	$('#editItemTool' + idHerramienta).remove();
+}
+
+function addIndustry(){
+	var selectedIndustry = $('#availableIndustriesSelect').val();
+	
+	
+	if($('#editItemIndustry' + selectedIndustry).length == 0){
+		
+		var industryLi = "<li id=\"editItemIndustry" + selectedIndustry  + "\" class=\"industryItem\">"+
+					availableIndustries[selectedIndustry] +
+					":<input type=\"text\" class=\"pointsInput\" value=\"0\"/>" + 
+					"<a href=\"javascript:removeIndustry(" + selectedIndustry + ");\">X</a>" + 
+				"</li>"
+
+		$('#editItemIndustryList').append(industryLi);
+		
+	}else {
+		//it is already selected.
+		alert("Ya tiene esa industria seleccionada");
+	}
+	
+}
+
+function addTool(){
+
+	var selectedArea = $('#availableAreasSelect').val();
+	var selectedTool = $('#availableToolsSelect').val();
+	
+//availableTools[response[tool].id]
+
+	if($('#editItemTool' + selectedTool).length == 0){
+		
+		var toolLi = "<li id=\"editItemTool" + selectedTool  + "\" class=\"toolItem\">"+
+					 availableAreas[selectedArea] +" - " + availableTools[selectedTool] +
+					":<input type=\"text\" class=\"pointsInput\" value=\"0\"/>" + 
+					"<a href=\"javascript:removeTool(" + selectedTool + ");\">X</a>" + 
+				"</li>"
+
+		$('#editItemToolList').append(toolLi);
+		
+	}else {
+		//it is already selected.
+		alert("Ya tiene esa herramienta seleccionada");
+	}
+	
+	
+}
+
+
 /*WINDOW ONLOAD*/
 $(function(){
 	
@@ -46,36 +101,42 @@ $(function(){
 	});
 
 	$('#hardPropertiesPopUp .sendButton').click(function(){
+		debugger;
+		var habilidadesIndustrias = new Array();
+		var startIndex = (new String("editItemIndustry")).length;
+		$('.industryItem').each(function(i,element){
+			var itemId = $(element).attr("id");
+			var id = itemId.substring(startIndex);
+			var points = $('#' + itemId + ' .pointsInput').val();
+			habilidadesIndustrias.push({
+				idIndustria: id,
+				puntos: points
+			});
+		});
+		
+		
 
-		var curriculum = {
-			'usuario':"unmail@unserver.com",
-			'estadoCivil':0,
-			'fechaNacimiento':"15/05/1966",
-			'idPais':'ARG',
-			'idProvincia':0,
-			'partido':"Ramos Mejia",
-			'calle':"Calle Falsa",
-			'numero':"2222",
-			'piso':"3",
-			'departamento':"A",
-			'codigoPostal':"CWI1417C",
-			'telefono1':$('#telefono1').val(),
-			'horarioContactoDesde1':"9",
-			'horarioContactoHasta1':"18",
-			'telefono2':"4554-1235",
-			'horarioContactoDesde2':"",
-			'horarioContactoHasta2':"",
-			'idPaisNacionalidad':'ARG',
-			gtalk:  $('#gtalk').val(),
-			'twitter': "@twitteruser",
-			'sms': "15-3838-4994"
-		};
+		var habilidadesAreas = new Array();
+		startIndex = (new String("editItemTool")).length;
+		$('.toolItem').each(function(i,element){
+			var itemId = $(element).attr("id");
+			var id = itemId.substring(startIndex);
+			var idArea = $(element).attr("area");
+			var points = $('#' + itemId + ' .pointsInput').val();
+			habilidadesAreas.push({
+				idArea: idArea,
+				idHerramienta: id,
+				puntos: points
+			});
+		});
+		
 		$.ajax({
-			url: "curriculum/setCurriculum",
+			url: "curriculum/setHabilidadesDelCV",
 			global: false,
 			type: "POST",
 			data: {
-				'curriculum': JSON.stringify(curriculum)
+				'habilidadesIndustrias': JSON.stringify(habilidadesIndustrias),
+				'habilidadesAreas': JSON.stringify(habilidadesAreas)
 			},
 			dataType: "json",
 			async: true,
@@ -98,7 +159,7 @@ $(function(){
 			idPais: $('#workExperienceCountry').val(), 
 			fechaDesde: $('#workExperienceDateFrom').val(),
 			fechaHasta: $('#workExperienceDateTo').val(),
-			logro: $('#workExperienceGoal').val(),
+			logro: $('#workExperienceGoal').val()
 		};
 		$.ajax({
 			url: "curriculum/setExperienciaLaboral",
@@ -142,7 +203,7 @@ $(function(){
 			{
 				idIndustria: 3, 
 				puntos: 5
-			},
+			}
 		];
 	
 		var habilidadesAreas = [
@@ -160,7 +221,7 @@ $(function(){
 				idArea: 0, 
 				idHerramienta: 2, 
 				puntos: 3
-			 },
+			 }
 		];
 
 		$.post("curriculum/setHabilidadesDelCV", {
@@ -184,6 +245,38 @@ $(function(){
 			console.log(data);
 		},
 		"json");
+	});
+	
+	
+	$('#availableAreasSelect').change(function(){
+		$.ajax({
+			url: "util/getHerramientasPorArea",
+			global: false,
+			type: "POST",
+			data: {
+				'idArea': $('#availableAreasSelect').val()
+			},
+			dataType: "json",
+			async: true,
+			success: function(response){
+				$('#availableToolsSelect').empty();
+				//.children("option").remove();
+				var options = ""; 
+				
+				for (tool in response)
+				{ 
+					availableTools[response[tool].id] = response[tool].descripcion;
+					options += "<option value=\"" + response[tool].id + "\">" + response[tool].descripcion + "</option>";
+				}					
+				$('#availableToolsSelect').append(options);
+				/*debugger;
+				alert(response)*/
+			},
+			error: function(response){
+				alert(response);
+			}
+		});
+		
 	});
 	
 	return false;
