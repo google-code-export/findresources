@@ -67,3 +67,8 @@ span.dn{display:none;}
 .popup .in{width:400px;height:400px;background:#FFF;position:relative;}
 .popup .in .closePopUp{position:absolute;top:5px;right:5px;}
 .popup .in{}
+.popup .inside {
+	padding: 20px;
+}
+
+

@@ -184,6 +184,7 @@ class Util_model extends FR_Model {
 		$n2 = NULL;
 		$params = array(
 		array('name'=>':pi_area', 'value'=>$idArea, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':pi_id_herramienta', 'value'=>null, 'type'=>SQLT_CHR, 'length'=>-1),
 		array('name'=>':po_herramientas', 'value'=>&$curs, 'type'=>SQLT_RSET , 'length'=>-1),
 		array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
 		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
