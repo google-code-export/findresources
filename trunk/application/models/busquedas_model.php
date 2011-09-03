@@ -25,27 +25,62 @@ class Busquedas_model extends CI_Model {
 		return $result;
 
 	}
-	
-	public function nuevaBusqueda($idEmpresa,$caracteristicasDuras,$caracteristicasBlandas,$descripcion,$otrosCriterios){
+	/** CREA O MODIFICA BUSQUEDAS **/
+	public function setBusqueda($idBusqueda,$idUsuario,$descripcionBusqueda,$fechaHasta,$cantidadRecursos){
 		$result["idBusqueda"] = NULL;
 		$result["error"] = NULL;
 		$result["desc"] = NULL;
 		
 		$params = array(
-		array('name'=>':PI_EMPRESA', 'value'=>$idEmpresa, 'type'=>SQLT_CHR , 'length'=>-1),
-		array('name'=>':PI_CARDURAS', 'value'=>$catacteristicasDuras, 'type'=>SQLT_CHR , 'length'=>-1),
-		array('name'=>':PI_CARBLANDAS', 'value'=>$catacteristicasBlandas, 'type'=>SQLT_CHR , 'length'=>-1),
-		array('name'=>':PI_DESCRIPCION', 'value'=>$descripcion, 'type'=>SQLT_CHR , 'length'=>-1),
-		array('name'=>':PI_OTROSCRITERIOS', 'value'=>$otrosCriterios, 'type'=>SQLT_CHR , 'length'=>-1),
-		array('name'=>':PO_C_BUSQUEDA', 'value'=>&$result["idBusqueda"], 'type'=>SQLT_CHR , 'length'=>255),
+		array('name'=>':PI_ID_BUSQUEDA', 'value'=>$idBusqueda, 'type'=>SQLT_CHR , 'length'=>-1),
+		array('name'=>':PI_USUARIO', 'value'=>$idUsuario, 'type'=>SQLT_CHR , 'length'=>-1),
+		array('name'=>':PI_D_BUSQUEDA', 'value'=>$descripcionBusqueda, 'type'=>SQLT_CHR , 'length'=>-1),
+		array('name'=>':PI_F_HASTA', 'value'=>$fechaHasta, 'type'=>SQLT_CHR , 'length'=>-1),
+		array('name'=>':PI_CANTIDAD_RECURSOS', 'value'=>$cantidadRecursos, 'type'=>SQLT_CHR , 'length'=>-1),
+		array('name'=>':PO_ID_BUSQUEDA', 'value'=>&$result["idBusqueda"], 'type'=>SQLT_CHR , 'length'=>255),
 		array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
 		array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
 		);
-		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDADS','PR_NUEVABUSQUEDA',$params);
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_BUSQUEDA',$params);
 			
 		return $result;
 
 	}	
+	/** CREO O MODIFICO LA EDUCACION FORMAL DE UNA BUSQUEDA **/
+	public function  setEducacionFormalDeBusqueda($idBusqueda, $educacionFormal){
+		$result["idEducacionFormal"] = NULL;
+		$result["error"] = NULL;
+		$result["desc"] = NULL;
+		
+		$params = array(
+			array('name'=>':pi_id_educacion_formal_cv', 'value'=>$educacionFormal['id'], 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_id_busqueda', 'value'=>$idBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_id_entidad_educativa', 'value'=>$educacionFormal['idEntidad'], 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_d_entidad', 'value'=>$educacionFormal['descripcionEntidad'], 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_c_modo_entidad', 'value'=>$educacionFormal['modoEntidad'], 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_titulo', 'value'=>$educacionFormal['titulo'], 'type'=>SQLT_CHR, 'length'=>-1),
+	 		array('name'=>':pi_c_modo_titulo', 'value'=>$educacionFormal['modoTitulo'], 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_id_nivel_educacion', 'value'=>$educacionFormal['idNivelEducacion'], 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_c_modo_nivel_educacion', 'value'=>$educacionFormal['modoNivelEducacion'], 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_id_area', 'value'=>$educacionFormal['idArea'], 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_c_modo_area', 'value'=>$educacionFormal['modoArea'], 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_estado', 'value'=>$educacionFormal['estado'], 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_c_modo_estado', 'value'=>$educacionFormal['modoEstado'], 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_promedio_desde', 'value'=>$educacionFormal['promedioDesde'], 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_promedio_hasta', 'value'=>$educacionFormal['promedioHasta'], 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_c_modo_promedio', 'value'=>$educacionFormal['modoPromedio'], 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_c_baja', 'value'=>$educacionFormal['baja'], 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':po_id_bus_edu_formal', 'value'=>&$result["idEducacionFormal"], 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_BUS_EDUCACION_FORMAL',$params);
+		
+		return $result;
+			
+	}
+	
 	
 	public function getBusquedas($idEmpresa){
 		$result["idBusqueda"] = NULL;
@@ -86,27 +121,7 @@ class Busquedas_model extends CI_Model {
 
 	}		
 	
-	public function setBusqueda($idEmpresa,$idBusqueda){
-		$result["idEmpresa"] = NULL;
-		$result["idBusqueda"] = NULL;
-		$result["error"] = NULL;
-		$result["desc"] = NULL;
 		
-		$params = array(
-		array('name'=>':PI_C_EMPRESA', 'value'=>$idEmpresa, 'type'=>SQLT_CHR , 'length'=>-1),
-		array('name'=>':PI_C_BUSQUEDA', 'value'=>$idBusqueda, 'type'=>SQLT_CHR , 'length'=>-1),
-		array('name'=>':PO_CARDURAS', 'value'=>&$result["catacteristicasDuras"], 'type'=>SQLT_CHR , 'length'=>255),
-		array('name'=>':PO_CARBLANDAS', 'value'=>&$result["catacteristicasBlandas"], 'type'=>SQLT_CHR , 'length'=>255),
-		array('name'=>':PO_DESCRIPCION', 'value'=>&$result["descripcion"], 'type'=>SQLT_CHR , 'length'=>255),
-		array('name'=>':PO_OTROSCRITERIOS', 'value'=>&$result["otrosCriterios"], 'type'=>SQLT_CHR , 'length'=>255),
-		array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
-		array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
-		);
-		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDADS','PR_SETBUSQUEDA',$params);
-			
-		return $result;
-
-	}			
 	
 	
 	public function getCandidatos($idEmpresa, $idBusqueda){
