@@ -2,6 +2,7 @@ function showPopUp(id)
 {
 	$('.opacity').show().animate({opacity:'0.7'},500);
 	$('.popup#'+id).show().animate({opacity:'1'},500);
+	window.scroll(0,0);
 }
 
 function hidePopUp()
@@ -21,7 +22,7 @@ function getBlockID(este)
 	return ID;
 }
 
-function getWorkExperience(blockID)
+/*function getWorkExperience(blockID)
 {
 	$('#'+blockID+'Company').val($('#'+blockID+' .company').text());
 	$('#'+blockID+'Industry').val($('#'+blockID+' .industry').text());
@@ -29,7 +30,7 @@ function getWorkExperience(blockID)
 	$('#'+blockID+'DateFrom').val($('#'+blockID+' .dateFrom').text());
 	$('#'+blockID+'DateTo').val($('#'+blockID+' .dateTo').text());
 	$('#'+blockID+'Goal').val($('#'+blockID+' .logro').text());
-}
+}*/
 
 function removeIndustry(idIndustria){
 	$('#editItemIndustry' + idIndustria).remove();
@@ -84,7 +85,74 @@ function addTool(){
 	
 	
 }
+function addWorkExperience(){
+	$('#workExperienceEditorId').val("");
+	$('#workExperienceEditorCompany').val("");
+	$('#workExperienceEditorIndustry').val("");
+	$('#workExperienceEditorCountry').val("");
+	$('#workExperienceEditorDateFrom').val("");
+	$('#workExperienceEditorDateTo').val("");
+	$('#workExperienceEditorGoal').val("");
+	$('#workExperienceEditorDescription').val("");
+	$('#workExperienceEditorTitle').val("");
+	showPopUp('#workExperiencePopUp');
+}
 
+function addFormalEducation(){
+	$('#formalEducationEditorId').val("");
+	$('#formalEducationEditorInstitution').val("");
+	$('#formalEducationEditorInstitutionDescription').val("");
+	checkInstitutionDescriptionDisabled();
+	$('#formalEducationEditorTitle').val("");
+	$('#formalEducationEditorEducationLevel').val("");
+	$('#formalEducationEditorArea').val("");
+	$('#formalEducationEditorStatus').val("");
+	$('#formalEducationEditorDateFrom').val("");
+	$('#formalEducationEditorDateTo').val("");
+	$('#formalEducationEditorAverage').val("");
+	showPopUp('#formalEducationPopUp');
+}
+
+function editWorkExperience(idExperience){
+	$('#workExperienceEditorId').val(idExperience);
+	$('#workExperienceEditorCompany').val(workExperiences[idExperience].company);
+	$('#workExperienceEditorIndustry').val(workExperiences[idExperience].idIndustry);
+	$('#workExperienceEditorCountry').val(workExperiences[idExperience].idCountry);
+	$('#workExperienceEditorDateFrom').val(workExperiences[idExperience].dateFrom);
+	$('#workExperienceEditorDateTo').val(workExperiences[idExperience].dateTo);
+	$('#workExperienceEditorGoal').val(workExperiences[idExperience].goal);
+	$('#workExperienceEditorDescription').val(workExperiences[idExperience].description);
+	$('#workExperienceEditorTitle').val(workExperiences[idExperience].title);
+	showPopUp('#workExperiencePopUp');
+}
+
+function editHardProperties(){
+	showPopUp('#hardPropertiesPopUp');
+}
+
+
+
+function editFormalEducation(idEducation){
+	$('#formalEducationEditorId').val(idEducation);
+	$('#formalEducationEditorInstitution').val(formalEducation[idEducation].idInstitution);
+	$('#formalEducationEditorInstitutionDescription').val(formalEducation[idEducation].descriptionInstitution);
+	checkInstitutionDescriptionDisabled();
+	
+	$('#formalEducationEditorTitle').val(formalEducation[idEducation].title);
+	$('#formalEducationEditorEducationLevel').val(formalEducation[idEducation].idEducationLevel);
+	$('#formalEducationEditorArea').val(formalEducation[idEducation].idArea);
+	$('#formalEducationEditorStatus').val(formalEducation[idEducation].status);
+	$('#formalEducationEditorDateFrom').val(formalEducation[idEducation].dateFrom);
+	$('#formalEducationEditorDateTo').val(formalEducation[idEducation].dateTo);
+	$('#formalEducationEditorAverage').val(formalEducation[idEducation].average);
+
+	showPopUp('#formalEducationPopUp');
+}
+
+function checkInstitutionDescriptionDisabled(){
+	$('#formalEducationEditorInstitutionDescription').attr("disabled", 
+			($('#formalEducationEditorInstitution').val() != ""));
+}
 
 /*WINDOW ONLOAD*/
 $(function(){
@@ -93,15 +161,15 @@ $(function(){
 		hidePopUp();
 	});
 	
-	$('.editFields').click(function(){
+/*	$('.editFields').click(function(){
 		showPopUp('#'+getBlockID($(this))+'PopUp');
 		if(getBlockID($(this))=='workExperience'){
 			getWorkExperience('workExperience');
 		}
 	});
-
+*/
 	$('#hardPropertiesPopUp .sendButton').click(function(){
-		debugger;
+
 		var habilidadesIndustrias = new Array();
 		var startIndex = (new String("editItemIndustry")).length;
 		$('.industryItem').each(function(i,element){
@@ -143,6 +211,8 @@ $(function(){
 			success: function(response){
 				alert("Se han guardado los datos");
 				hidePopUp();
+				//TODO this is so ugly we shouldnt reload all the page.
+				window.location.reload();
 			},
 			error: function(response){
 				alert(response);
@@ -153,13 +223,16 @@ $(function(){
 	
 	$('#workExperiencePopUp .sendButton').click(function(){
 		var experienciaLaboral = {
-			id: null, // null = nuevo
-			compania: $('#workExperienceCompany').val(), 
-			idIndustria: $('#workExperienceIndustry').val(),
-			idPais: $('#workExperienceCountry').val(), 
-			fechaDesde: $('#workExperienceDateFrom').val(),
-			fechaHasta: $('#workExperienceDateTo').val(),
-			logro: $('#workExperienceGoal').val()
+			id: $('#workExperienceEditorId').val(), // null = nuevo
+			titulo: $('#workExperienceEditorTitle').val(),
+			compania: $('#workExperienceEditorCompany').val(), 
+			idIndustria: $('#workExperienceEditorIndustry').val(),
+			idPais: $('#workExperienceEditorCountry').val(), 
+			fechaDesde: $('#workExperienceEditorDateFrom').val(),
+			fechaHasta: $('#workExperienceEditorDateTo').val(),
+			logro: $('#workExperienceEditorGoal').val(),
+			descripcion: $('#workExperienceEditorDescription').val()
+			
 		};
 		$.ajax({
 			url: "curriculum/setExperienciaLaboral",
@@ -172,6 +245,7 @@ $(function(){
 			async: true,
 			success: function(response){
 				hidePopUp();
+				window.location.reload();
 			},
 			error: function(response){
 				alert(response);
@@ -179,74 +253,40 @@ $(function(){
 		});
 	});
 	
-	$('#getProvincias').click(function(){
-		$.post("curriculum/getProvincias", {
-			'idPais': 0
-		},
-		function(provincias){
-			debugger;
-			alert(provincias[0].descripcion);
-		},
-		"json");
-	});
-
-	$('#setHabilidades').click(function(){
-		var habilidadesIndustrias = [
-			{
-				idIndustria: 1, 
-				puntos: 5
+	$('#formalEducationPopUp .sendButton').click(function(){
+		var educacionFormal = {
+			id: $('#formalEducationEditorId').val(), // null = nuevo
+			idEntidad: $('#formalEducationEditorInstitution').val(),
+			descripcionEntidad: ($('#formalEducationEditorInstitution').val() == "")?
+					$('#formalEducationEditorInstitutionDescription').val():"", 
+			
+			titulo: $('#formalEducationEditorTitle').val(),
+			idNivelEducacion: $('#formalEducationEditorEducationLevel').val(), 
+			idArea: $('#formalEducationEditorArea').val(),
+			estado: $('#formalEducationEditorStatus').val(),
+			fechaInicio: $('#formalEducationEditorDateFrom').val(),
+			fechaFinalizacion: $('#formalEducationEditorDateTo').val(),
+			promedio: $('#formalEducationEditorAverage').val()
+			
+		};
+		$.ajax({
+			url: "curriculum/setEducacionFormal",
+			global: false,
+			type: "POST",
+			data: {
+				'educacionFormal': JSON.stringify(educacionFormal)
 			},
-			{
-				idIndustria: 2, 
-				puntos: 5
+			dataType: "json",
+			async: true,
+			success: function(response){
+				hidePopUp();
+				window.location.reload();
 			},
-			{
-				idIndustria: 3, 
-				puntos: 5
+			error: function(response){
+				alert(response);
 			}
-		];
-	
-		var habilidadesAreas = [
-			  {
-				idArea: 0, 
-				idHerramienta: 0, 
-				puntos: 3
-			 },
-			  {
-				idArea: 1, 
-				idHerramienta: 3, 
-				puntos: 3
-			 },
-			 {
-				idArea: 0, 
-				idHerramienta: 2, 
-				puntos: 3
-			 }
-		];
-
-		$.post("curriculum/setHabilidadesDelCV", {
-			'habilidadesIndustrias': JSON.stringify(habilidadesIndustrias),
-			'habilidadesAreas': JSON.stringify(habilidadesAreas)
-			},
-			function(data){
-				debugger;
-			},
-			"json"
-		);
-
+		});
 	});
-	
-	$('#getHerramientasPorArea').click(function(){
-
-		$.post("util/getHerramientasPorArea", {
-			'idArea': '1'
-		},
-		function(data){
-			console.log(data);
-		},
-		"json");
-	});
-	
 	
 	$('#availableAreasSelect').change(function(){
 		$.ajax({
@@ -258,15 +298,15 @@ $(function(){
 			},
 			dataType: "json",
 			async: true,
-			success: function(response){
+			success: function(tools){
 				$('#availableToolsSelect').empty();
 				//.children("option").remove();
 				var options = ""; 
 				
-				for (tool in response)
+				for (id in tools)
 				{ 
-					availableTools[response[tool].id] = response[tool].descripcion;
-					options += "<option value=\"" + response[tool].id + "\">" + response[tool].descripcion + "</option>";
+					availableTools[id] = tools[id];
+					options += "<option value=\"" + id + "\">" + tools[id] + "</option>";
 				}					
 				$('#availableToolsSelect').append(options);
 				/*debugger;
@@ -277,6 +317,10 @@ $(function(){
 			}
 		});
 		
+	});
+
+	$('#formalEducationEditorInstitution').change(function(){
+		checkInstitutionDescriptionDisabled();
 	});
 	
 	return false;

@@ -263,21 +263,6 @@ class Curriculum_model extends FR_Model {
 	 * 
 	 * */
 	public function  getHabilidadesAreasDelCV($idCurriculum){
-		/*
-		$respuesta[0]->idArea = 0;
-		$respuesta[0]->descripcionArea = "Informática";
-		$respuesta[0]->idHerramienta = 0;
-		$respuesta[0]->descripcionHerramienta = "Java Script";
-		$respuesta[0]->puntos = 5;
-		
-		$respuesta[1]->idArea = 0;
-		$respuesta[1]->descripcionArea = "Diseño";
-		$respuesta[1]->idHerramienta = 2;
-		$respuesta[1]->descripcionHerramienta = "Photoshop";
-		$respuesta[1]->puntos = 1;
-		
-		return $respuesta; //not in db yet
-		*/
 		$curs=NULL;
 		$n1 = NULL;
 		$n2 = NULL;
@@ -324,7 +309,7 @@ class Curriculum_model extends FR_Model {
 					$habilidad->idHerramienta . ';' . 
 					$habilidad->puntos  . ';';
 		}
-		
+
 		$n1 = NULL;
 		$n2 = NULL;
 		$params = array(
@@ -349,7 +334,7 @@ class Curriculum_model extends FR_Model {
 	
 	/**
 	 * @param: idCurriculum
-	 * @return: array with [{id, compania, idIndustria, idPais, fechaDesde, fechaHasta, logro}]
+	 * @return: array[id] with [{compania, idIndustria, idPais, fechaDesde, fechaHasta, logro, descripcion, titulo}]
 	 */
 	public function  getExperienciaLaboralDelCv($idCurriculum){
 		
@@ -372,13 +357,14 @@ class Curriculum_model extends FR_Model {
 			//convert db data to model data.
 			$response = array();
 			foreach ($dbRegistros as $i => $dbRegistro){
-				$response[$i]->id  = $dbRegistro->id_historia_laboral_cv;
-				$response[$i]->compania = $dbRegistro->d_compania;
-				$response[$i]->idIndustria = $dbRegistro->id_industria;
-				$response[$i]->idPais = $dbRegistro->pais;
-				$response[$i]->fechaDesde = $dbRegistro->f_desde;//formato DD/MM/YYYY
-				$response[$i]->fechaHasta = $dbRegistro->f_hasta; //formato DD/MM/YYYY
-				$response[$i]->logro = $dbRegistro->d_logro;
+				$response[$dbRegistro->id_historia_laboral_cv]->compania = $dbRegistro->d_compania;
+				$response[$dbRegistro->id_historia_laboral_cv]->idIndustria = $dbRegistro->id_industria;
+				$response[$dbRegistro->id_historia_laboral_cv]->idPais = $dbRegistro->pais;
+				$response[$dbRegistro->id_historia_laboral_cv]->fechaDesde = $dbRegistro->f_desde;//formato DD/MM/YYYY
+				$response[$dbRegistro->id_historia_laboral_cv]->fechaHasta = $dbRegistro->f_hasta; //formato DD/MM/YYYY
+				$response[$dbRegistro->id_historia_laboral_cv]->logro = $dbRegistro->d_logro;
+				$response[$dbRegistro->id_historia_laboral_cv]->descripcion = $dbRegistro->d_descripcion;
+				$response[$dbRegistro->id_historia_laboral_cv]->titulo = $dbRegistro->d_titulo;
 			}
 			return $response;
 		}
@@ -392,7 +378,7 @@ class Curriculum_model extends FR_Model {
 
 	/**
 	 * @param $idCurriculum
-	 * @param $experienciaLaboral {id, compania, idIndustria, idPais, fechaDesde, fechaHasta, logro}
+	 * @param $experienciaLaboral {id, compania, idIndustria, idPais, fechaDesde, fechaHasta, logro, descripcion, titulo}
  	 * para nuevo registro, $experienciaLaboral->id debe ser nulo.
 	 * @return retorna el id de experiencia laboral.
 	 * */
@@ -411,6 +397,8 @@ class Curriculum_model extends FR_Model {
 		array('name'=>':pi_pais', 'value'=>$experienciaLaboral->idPais, 'type'=>SQLT_CHR, 'length'=>-1),
 		array('name'=>':pi_f_desde', 'value'=>$experienciaLaboral->fechaDesde, 'type'=>SQLT_CHR, 'length'=>-1),
 		array('name'=>':pi_f_hasta', 'value'=>$experienciaLaboral->fechaHasta, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':pi_titulo', 'value'=>$experienciaLaboral->titulo, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':pi_descripcion', 'value'=>$experienciaLaboral->descripcion, 'type'=>SQLT_CHR, 'length'=>-1),
 		array('name'=>':pi_d_logro', 'value'=>$experienciaLaboral->logro, 'type'=>SQLT_CHR, 'length'=>-1),
 		array('name'=>':po_id_historia_laboral_cv', 'value'=>&$rta, 'type'=>SQLT_CHR , 'length'=>255),
 		array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
@@ -432,7 +420,7 @@ class Curriculum_model extends FR_Model {
 	
 	/**
 	 * @param idCurriculum
-	 * @return array of educacionFormal = [{id, idEntidad, descripcionEntidad, titulo, idNivelEducacion, idArea, 
+	 * @return array[id] of educacionFormal = [{id, idEntidad, descripcionEntidad, titulo, idNivelEducacion, idArea, 
 	 * 			estado: "T" terminado "A" abandobado "C" en curso 
 	 * 			fechaInicio: "01/01/1900", fechaFinalizacion, promedio: 6.89
 	 * 			}]
@@ -458,16 +446,15 @@ class Curriculum_model extends FR_Model {
 			//convert db data to model data.
 			$respuesta = array();
 			foreach ($dbRegistros as $i => $dbRegistro){
-				$respuesta[$i]->id = $dbRegistro->id_educacion_formal_cv;
-				$respuesta[$i]->idEntidad = $dbRegistro->id_entidad_educativa;
-				$respuesta[$i]->descripcionEntidad = $dbRegistro->d_entidad;
-				$respuesta[$i]->titulo = $dbRegistro->titulo;
-				$respuesta[$i]->idNivelEducacion = $dbRegistro->id_nivel_educacion;
-				$respuesta[$i]->idArea = $dbRegistro->id_area;
-				$respuesta[$i]->estado = $dbRegistro->estado;
-				$respuesta[$i]->fechaInicio = $dbRegistro->f_inicio;
-				$respuesta[$i]->fechaFinalizacion = $dbRegistro->f_finalizacion;
-				$respuesta[$i]->promedio = $dbRegistro->promedio;
+				$respuesta[$dbRegistro->id_educacion_formal_cv]->idEntidad = $dbRegistro->id_entidad_educativa;
+				$respuesta[$dbRegistro->id_educacion_formal_cv]->descripcionEntidad = $dbRegistro->d_entidad;
+				$respuesta[$dbRegistro->id_educacion_formal_cv]->titulo = $dbRegistro->titulo;
+				$respuesta[$dbRegistro->id_educacion_formal_cv]->idNivelEducacion = $dbRegistro->id_nivel_educacion;
+				$respuesta[$dbRegistro->id_educacion_formal_cv]->idArea = $dbRegistro->id_area;
+				$respuesta[$dbRegistro->id_educacion_formal_cv]->estado = $dbRegistro->estado;
+				$respuesta[$dbRegistro->id_educacion_formal_cv]->fechaInicio = $dbRegistro->f_inicio;
+				$respuesta[$dbRegistro->id_educacion_formal_cv]->fechaFinalizacion = $dbRegistro->f_finalizacion;
+				$respuesta[$dbRegistro->id_educacion_formal_cv]->promedio = $dbRegistro->promedio;
 			}
 			return $respuesta;
 		}
@@ -526,7 +513,7 @@ class Curriculum_model extends FR_Model {
 	
 	/**
 	 * @param $idCurriculum
-	 * @return educacionNoFormal = [{id, idTipoEducacionNoFormal, 
+	 * @return educacionNoFormal array[id] = [{ idTipoEducacionNoFormal, 
 	 * 			descripcion, duracion}]
 	 * 		
 	 * */
@@ -551,11 +538,9 @@ class Curriculum_model extends FR_Model {
 			//convert db data to model data.
 			$respuesta = array();
 			foreach ($dbRegistros as $i => $dbRegistro){
-				
-				$respuesta[$i]->id = $dbRegistro->id_educacion_no_formal;
-				$respuesta[$i]->idTipoEducacionNoFormal = $dbRegistro->tipo_educacion_no_formal;
-				$respuesta[$i]->descripcion = $dbRegistro->d_educacion_no_formal;
-				$respuesta[$i]->duracion = $dbRegistro->d_duracion;
+				$respuesta[$dbRegistro->id_educacion_no_formal]->idTipoEducacionNoFormal = $dbRegistro->tipo_educacion_no_formal;
+				$respuesta[$dbRegistro->id_educacion_no_formal]->descripcion = $dbRegistro->d_educacion_no_formal;
+				$respuesta[$dbRegistro->id_educacion_no_formal]->duracion = $dbRegistro->d_duracion;
 			}
 			return $respuesta;
 		}
