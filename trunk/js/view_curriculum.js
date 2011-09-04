@@ -113,6 +113,14 @@ function addFormalEducation(){
 	showPopUp('#formalEducationPopUp');
 }
 
+function addInformalEducation(){
+	$('#informalEducationEditorId').val("");
+	$('#informalEducationEditorDescription').val("");
+	$('#informalEducationEditorType').val("");
+	$('#informalEducationEditorDuration').val("");
+	showPopUp('#informalEducationPopUp');
+}
+
 function editWorkExperience(idExperience){
 	$('#workExperienceEditorId').val(idExperience);
 	$('#workExperienceEditorCompany').val(workExperiences[idExperience].company);
@@ -149,6 +157,16 @@ function editFormalEducation(idEducation){
 	showPopUp('#formalEducationPopUp');
 }
 
+function editInformalEducation(idEducation){
+	$('#informalEducationEditorId').val(idEducation);
+	$('#informalEducationEditorType').val(informalEducation[idEducation].idType);
+	$('#informalEducationEditorDescription').val(informalEducation[idEducation].description);
+	$('#informalEducationEditorDuration').val(informalEducation[idEducation].duration);
+
+	showPopUp('#informalEducationPopUp');
+}
+
+
 function checkInstitutionDescriptionDisabled(){
 	$('#formalEducationEditorInstitutionDescription').attr("disabled", 
 			($('#formalEducationEditorInstitution').val() != ""));
@@ -160,14 +178,7 @@ $(function(){
 	$('.popup .closePopUp').click(function(){
 		hidePopUp();
 	});
-	
-/*	$('.editFields').click(function(){
-		showPopUp('#'+getBlockID($(this))+'PopUp');
-		if(getBlockID($(this))=='workExperience'){
-			getWorkExperience('workExperience');
-		}
-	});
-*/
+
 	$('#hardPropertiesPopUp .sendButton').click(function(){
 
 		var habilidadesIndustrias = new Array();
@@ -287,6 +298,32 @@ $(function(){
 			}
 		});
 	});
+	
+	$('#informalEducationPopUp .sendButton').click(function(){
+		var educacionFormal = {
+			id: $('#informalEducationEditorId').val(), // null = nuevo
+			idTipoEducacionNoFormal: $('#informalEducationEditorType').val(), 
+	 		descripcion:$('#informalEducationEditorDescription').val(), 
+	 		duracion:$('#informalEducationEditorDuration').val()
+		};
+		$.ajax({
+			url: "curriculum/setEducacionNoFormal",
+			global: false,
+			type: "POST",
+			data: {
+				'educacionNoFormal': JSON.stringify(educacionFormal)
+			},
+			dataType: "json",
+			async: true,
+			success: function(response){
+				hidePopUp();
+				window.location.reload();
+			},
+			error: function(response){
+				alert(response);
+			}
+		});
+	});	
 	
 	$('#availableAreasSelect').change(function(){
 		$.ajax({
