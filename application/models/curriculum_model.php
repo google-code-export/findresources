@@ -566,14 +566,14 @@ class Curriculum_model extends FR_Model {
 			array('name'=>':pi_id_educacion_no_formal', 'value'=>$educacionNoFormal->id, 'type'=>SQLT_CHR, 'length'=>-1),
 			array('name'=>':pi_id_curriculm', 'value'=>$idCurriculum, 'type'=>SQLT_CHR, 'length'=>-1),
 			array('name'=>':pi_tipo_educacion_no_formal', 'value'=>$educacionNoFormal->idTipoEducacionNoFormal, 'type'=>SQLT_CHR, 'length'=>-1),
-			array('name'=>':pi_d_educacion_no_formal', 'value'=>$educacionNoFormal->descripcionEntidad, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_d_educacion_no_formal', 'value'=>$educacionNoFormal->descripcion, 'type'=>SQLT_CHR, 'length'=>-1),
 			array('name'=>':pi_d_duracion', 'value'=>$educacionNoFormal->duracion, 'type'=>SQLT_CHR, 'length'=>-1),
 			array('name'=>':po_id_educacion_no_formal', 'value'=>&$rta, 'type'=>SQLT_CHR , 'length'=>255),
 			array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
 			array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
 		);
 		
-		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','pr_actualizo_edu_formal',$params);
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','pr_actualizo_edu_no_formal',$params);
 		
 		if ($n1 == 0){
 			return $rta;

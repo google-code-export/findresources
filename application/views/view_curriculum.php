@@ -72,7 +72,7 @@
 	
 	var informalEducation = new Array();
 	<?php foreach ($educacionNoFormalDelCv as $id => $educacion){ ?>
-		formalEducation[<?php echo $id; ?>] = {
+		informalEducation[<?php echo $id; ?>] = {
 				idType:  "<?php echo $educacion->idTipoEducacionNoFormal;?>",
 				description: "<?php echo $educacion->descripcion;?>",
 				duration:  "<?php echo $educacion->duracion;?>"
@@ -213,14 +213,13 @@
 			</div>
 			
 			<div class="block">
-				<h2>Educaci&oacute;n No Formal <a class="addpos" href="#">+ <b>Agregar</b> educación</a></h2>
+				<h2>Educaci&oacute;n No Formal <a href="javascript:addInformalEducation();">+ <b>Agregar</b> educación</a></h2>
 				
-				<?php foreach ($educacionNoFormalDelCv as $educacion){ ?>
-				
+				<?php foreach ($educacionNoFormalDelCv as $id => $educacion){ ?>
 				<div class="study">
-					<h5><?php echo $educacion->descripcion?> <a href="javascript:<?php echo $educacion->id?>;" class="editFields">Edit</a></h5>
-					<p class="type"><?php echo $educacion->idTipoEducacionNoFormal?> </p>
-					<p class="when">Duracion: <?php echo $educacion->duracion?> </p>
+					<h5><?php echo $educacion->descripcion?> <a href="javascript:editInformalEducation(<?php echo $id?>);" class="editFields">Edit</a></h5>
+					<p class="type"><?php echo $tiposDeEducacionNoFormal[$educacion->idTipoEducacionNoFormal];?> </p>
+					<p class="when">Duración: <?php echo $educacion->duracion?> </p>
 				</div>
 				
 				<?php } ?>
@@ -232,7 +231,7 @@
 	
 	<!-- FOOTER -->
 	<div class="ft">
-		
+		<!-- ?php include("footer.php"); ?-->
 	</div>
 	<!-- end FOOTER -->
 	
@@ -359,82 +358,119 @@
 
 
 <div class="popup" id="formalEducationPopUp" style="display:none;">
-<table cellspacing="0" cellpadding="0" align="center">
-<tr><td>
-	<div class="in">
-		<a href="javascript:;" class="closePopUp">Close</a>
-		<div class="inside">
-			<div>	
-				<input id="formalEducationEditorId" type="hidden" value="" name="" />
-				<label>Institución:</label>
-				<select id="formalEducationEditorInstitution">
-				   <option value="">Otra</option>
-				   <?php foreach ($entidadesEducativas as $id => $desc){ ?>
-				   			<option value="<?php echo $id;?>">
-								<?php echo $desc;?>
-							</option> 
-				   <?php } ?>
-				</select>
-				<br />
-
-				<label>Otra:</label>
-				<input type="text" id="formalEducationEditorInstitutionDescription" disabled="disabled"/>
-				<br />
-
-				<label>Titulo:</label>
-				<input type="text" id="formalEducationEditorTitle"/>
-				<br />
-
-				<label>Nivel:</label>
-				<select id="formalEducationEditorEducationLevel">
-				   <?php foreach ($nivelesDeEducacion as $id => $desc){ ?>
-				   			<option value="<?php echo $id;?>">
-								<?php echo $desc;?>
-							</option> 
-				   <?php } ?>
-				</select>
-				<br />
-
-
-				<label>Area:</label>
-				<select id="formalEducationEditorArea">
-				   <?php foreach ($areasDisponibles as $id => $desc){ ?>
-				   			<option value="<?php echo $id;?>">
-								<?php echo $desc;?>
-							</option> 
-				   <?php } ?>
-				</select>
-				<br />
-
-				<label>Estado:</label>
-				<select id="formalEducationEditorStatus">
-		   			<option value="T">Terminado</option> 
-		   			<option value="A">Abandonado</option> 
-		   			<option value="C">En Curso</option> 
-				</select>
-				<br />
-
-				<label>Desde:</label>
-				<input type="text" id="formalEducationEditorDateFrom"/>
-				<br />
-
-				<label>Hasta:</label>
-				<input type="text" id="formalEducationEditorDateTo"/>
-				<br />
-
-				<label>Promedio:</label>
-				<input type="text" id="formalEducationEditorAverage"/>
-				<br />
-
-
-
+	<table cellspacing="0" cellpadding="0" align="center">
+	<tr><td>
+		<div class="in">
+			<a href="javascript:;" class="closePopUp">Close</a>
+			<div class="inside">
+				<div>	
+					<input id="formalEducationEditorId" type="hidden" value="" name="" />
+					<label>Institución:</label>
+					<select id="formalEducationEditorInstitution">
+					   <option value="">Otra</option>
+					   <?php foreach ($entidadesEducativas as $id => $desc){ ?>
+					   			<option value="<?php echo $id;?>">
+									<?php echo $desc;?>
+								</option> 
+					   <?php } ?>
+					</select>
+					<br />
+	
+					<label>Otra:</label>
+					<input type="text" id="formalEducationEditorInstitutionDescription" disabled="disabled"/>
+					<br />
+	
+					<label>Titulo:</label>
+					<input type="text" id="formalEducationEditorTitle"/>
+					<br />
+	
+					<label>Nivel:</label>
+					<select id="formalEducationEditorEducationLevel">
+					   <?php foreach ($nivelesDeEducacion as $id => $desc){ ?>
+					   			<option value="<?php echo $id;?>">
+									<?php echo $desc;?>
+								</option> 
+					   <?php } ?>
+					</select>
+					<br />
+	
+	
+					<label>Area:</label>
+					<select id="formalEducationEditorArea">
+					   <?php foreach ($areasDisponibles as $id => $desc){ ?>
+					   			<option value="<?php echo $id;?>">
+									<?php echo $desc;?>
+								</option> 
+					   <?php } ?>
+					</select>
+					<br />
+	
+					<label>Estado:</label>
+					<select id="formalEducationEditorStatus">
+			   			<option value="T">Terminado</option> 
+			   			<option value="A">Abandonado</option> 
+			   			<option value="C">En Curso</option> 
+					</select>
+					<br />
+	
+					<label>Desde:</label>
+					<input type="text" id="formalEducationEditorDateFrom"/>
+					<br />
+	
+					<label>Hasta:</label>
+					<input type="text" id="formalEducationEditorDateTo"/>
+					<br />
+	
+					<label>Promedio:</label>
+					<input type="text" id="formalEducationEditorAverage"/>
+					<br />
+	
+	
+	
+				</div>
+				<input type="submit" value="Guardar" class="sendButton" />
 			</div>
-			<input type="submit" value="Guardar" class="sendButton" />
 		</div>
-	</div>
-</td></tr>
-</table>
+	</td></tr>
+	</table>
 </div>
+
+<div class="popup" id="informalEducationPopUp" style="display:none;">
+	<table cellspacing="0" cellpadding="0" align="center">
+	<tr><td>
+		<div class="in">
+			<a href="javascript:;" class="closePopUp">Close</a>
+			<div class="inside">
+				<div>	
+					<input id="informalEducationEditorId" type="hidden" value="" name="" />
+					
+					
+					<label>Descripción:</label>
+					<input type="text" id="informalEducationEditorDescription"/>
+					<br />
+
+					<label>Tipo:</label>
+					<select id="informalEducationEditorType">
+					   <?php foreach ($tiposDeEducacionNoFormal as $id => $desc){ ?>
+					   			<option value="<?php echo $id;?>">
+									<?php echo $desc;?>
+								</option> 
+					   <?php } ?>
+					</select>
+					<br />
+	
+					<label>Duración:</label>
+					<input type="text" id="informalEducationEditorDuration"/>
+					<br />
+	
+				</div>
+				<input type="submit" value="Guardar" class="sendButton" />
+			</div>
+		</div>
+	</td></tr>
+	</table>
+</div>
+
 </body>
 </html>
 
