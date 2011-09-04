@@ -7,12 +7,9 @@ input, select, textarea{font:12px Arial, Helvetica, sans-serif;}
 ul,ol{position:relative;}
 span.dn{display:none;}
 
-/*CLEARFIX*/
-.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
-.clearfix{display:inline-block;}
-* html .clearfix{height:1%;}
-.clearfix{display:block;}
-.clear{clear:both;font-size:0;}
+body{
+	text-align: left;
+}
 
 /*GENERAL*/
 
@@ -69,6 +66,49 @@ span.dn{display:none;}
 .popup .in{}
 .popup .inside {
 	padding: 20px;
+ 	height: 360px;
+ 	overflow: auto;
+ }
+
+
+.curriculumFooter{
+	float: left; 
+	margin:auto; 
+	width:100%;
+}
+
+.label {
+	float:left;
+	width: 100px
+}
+
+.field {
+	margin: 7px;
+}
+
+.field input,
+.field textarea{
+	width: 140px;
+}
+
+.field select{
+	width: 147px;
 }
 
 
+#hardPropertiesPopUp input[type=text]{
+	width: 10px;
+ 	margin-right: 20px;
+}
+
+#hardPropertiesPopUp h4{
+	font-weight: bold;
+}
+
+#hardPropertiesPopUp select{
+	margin:6px;
+}
+
+#hardPropertiesPopUp .label {
+	width: 200px;
+}

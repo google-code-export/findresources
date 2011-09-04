@@ -47,10 +47,11 @@ function addIndustry(){
 	if($('#editItemIndustry' + selectedIndustry).length == 0){
 		
 		var industryLi = "<li id=\"editItemIndustry" + selectedIndustry  + "\" class=\"industryItem\">"+
-					availableIndustries[selectedIndustry] +
-					":<input type=\"text\" class=\"pointsInput\" value=\"0\"/>" + 
+					"<div class=\"field\">"+
+					"<div class=\"label\" >" + availableIndustries[selectedIndustry] + ":</div>" +
+					"<input type=\"text\" class=\"pointsInput\" value=\"0\"/>" + 
 					"<a href=\"javascript:removeIndustry(" + selectedIndustry + ");\">X</a>" + 
-				"</li>"
+				"</div></li>"
 
 		$('#editItemIndustryList').append(industryLi);
 		
@@ -70,10 +71,14 @@ function addTool(){
 
 	if($('#editItemTool' + selectedTool).length == 0){
 		
-		var toolLi = "<li id=\"editItemTool" + selectedTool  + "\" class=\"toolItem\">"+
-					 availableAreas[selectedArea] +" - " + availableTools[selectedTool] +
-					":<input type=\"text\" class=\"pointsInput\" value=\"0\"/>" + 
-					"<a href=\"javascript:removeTool(" + selectedTool + ");\">X</a>" + 
+		var toolLi = "<li id=\"editItemTool" + selectedTool  + "\" class=\"toolItem\" area=\""+ selectedArea + "\" >"+
+					"<div class=\"field\">" +
+						"<div class=\"label\">" +
+							availableAreas[selectedArea] +" - " + availableTools[selectedTool] +
+						":</div>" +
+						"<input type=\"text\" class=\"pointsInput\" value=\"0\"/>" + 
+						"<a href=\"javascript:removeTool(" + selectedTool + ");\">X</a>" + 
+					"</div>" +
 				"</li>"
 
 		$('#editItemToolList').append(toolLi);

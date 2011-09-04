@@ -65,3 +65,9 @@ code {
 .company_logo {
 	
 }
+
+.frFooter{ 
+	text-align: center; 
+	width: 100%;
+	float: left;
+}

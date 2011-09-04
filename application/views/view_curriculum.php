@@ -22,6 +22,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="<?php echo site_url('css/global.css')?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/view_curriculum.css')?>" />
 <script type="text/javascript">
 	var availableIndustries = new Array();
@@ -243,11 +244,10 @@
 <table cellspacing="0" cellpadding="0" align="center">
 <tr><td>
 	<div class="in">
-		<a href="javascript:;" class="closePopUp">Close</a>
-		
+		<a href="javascript:;" class="closePopUp">Cerrar</a>
 		<div class="inside">
 			<h4>Industrias</h4>
-			<div>
+			<div class="clearfix">
 				<select id="availableIndustriesSelect">
 					<?php foreach ($industriasDisponibles as $id => $industria){ ?>
 						<option value="<?php echo $id; ?>"><?php echo $industria;?></option> 
@@ -257,13 +257,14 @@
 				<a href="javascript:addIndustry();"> + Agregar</a>
 			</div>
 
-
 			<ul id="editItemIndustryList">
 			<?php foreach ($habilidadesIndustriasDelCV as $habilidad){ ?>
 				<li id="editItemIndustry<?php echo $habilidad->idIndustria ?>" class="industryItem">
-					<?php echo $habilidad->descripcionIndustria ?>: 
-					<input type="text" class="pointsInput" value="<?php echo $habilidad->puntos ?>"/>
-					<a href="javascript:removeIndustry(<?php echo $habilidad->idIndustria ?>);">X</a>
+					<div class="field">
+						<div class="label"><?php echo $habilidad->descripcionIndustria ?>:</div> 
+						<input type="text" class="pointsInput" value="<?php echo $habilidad->puntos ?>"/>
+						<a href="javascript:removeIndustry(<?php echo $habilidad->idIndustria ?>);">X</a>
+					</div>
 				</li>
 			<?php } ?>
 			</ul>
@@ -285,9 +286,13 @@
 			<ul id="editItemToolList">
 			<?php foreach ($habilidadesAreasDelCV as $habilidad){ ?>
 				<li id="editItemTool<?php echo $habilidad->idHerramienta ?>" area="<?php echo $habilidad->idArea ?>" class="toolItem">
-					<?php echo $habilidad->descripcionArea ?> - <?php echo $habilidad->descripcionHerramienta ?>: 
-	        		<input type="text" class="pointsInput" value="<?php echo $habilidad->puntos ?>"/>
-					<a href="javascript:removeTool(<?php echo $habilidad->idHerramienta ?>);">X</a>
+					<div class="field">
+						<div class="label">
+							<?php echo $habilidad->descripcionArea ?> - <?php echo $habilidad->descripcionHerramienta ?>: 
+						</div>
+		        		<input type="text" class="pointsInput" value="<?php echo $habilidad->puntos ?>"/>
+						<a href="javascript:removeTool(<?php echo $habilidad->idHerramienta ?>);">X</a>
+					</div>
 				</li>
 			<?php } ?>
 			</ul>
@@ -302,52 +307,67 @@
 <table cellspacing="0" cellpadding="0" align="center">
 <tr><td>
 	<div class="in">
-		<a href="javascript:;" class="closePopUp">Close</a>
+		<a href="javascript:;" class="closePopUp">Cerrar</a>
 		<div class="inside">
 			<div>	
 				<input id="workExperienceEditorId" type="hidden" value="" name="" />
-				<label>Titulo:</label>
-				<input type="text" id="workExperienceEditorTitle" value="" />
-				<br />
-				<label>Empresa:</label>
-				<input type="text" id="workExperienceEditorCompany" value="" />
-				<br />
-				<label>Industria:</label>
-				<select id="workExperienceEditorIndustry">
-				   <?php foreach ($industriasDisponibles as $id => $unaIndustria){?>
-				   			<option value="<?php echo $id?>">
-								<?php echo $unaIndustria?>
-							</option> 
-				   <?php } ?>
-				</select>
 				
-				<br />
-				<label>Pais:</label>
-				<select id="workExperienceEditorCountry"> 
-				   <?php  
-				   		foreach ($paises as $id => $pais){
-				   ?>
-				   			<option value="<?php echo $id?>">
-								<?php echo $pais?>
-							</option> 
-				   <?php  
-				   		}
-				   ?>
-				</select>
-				<br />
-				<label>Fecha Desde:</label>
-				<input type="text" id="workExperienceEditorDateFrom" value="" />
-				<br />
-				<label>Fecha Hasta:</label>
-				<input type="text" id="workExperienceEditorDateTo" value="" />
-				<br />
-				<label>Logro:</label>
-				<input type="text" id="workExperienceEditorGoal" value="" />
-				<br />
+				<div class="field clearfix">
+					<div class="label">Titulo:</div>
+					<input type="text" id="workExperienceEditorTitle" value="" />
+				</div>
+				
+				<div class="field clearfix">
+					<div class="label">Empresa:</div>
+					<input type="text" id="workExperienceEditorCompany" value="" />
+				</div>
 
-				<label>Descripcion:</label>
-				<input type="text" id="workExperienceEditorDescription" value="" />
-				<br />
+				<div class="field clearfix">
+					<div class="label">Industria:</div>
+					<select id="workExperienceEditorIndustry">
+					   <?php foreach ($industriasDisponibles as $id => $unaIndustria){?>
+					   			<option value="<?php echo $id?>">
+									<?php echo $unaIndustria?>
+								</option> 
+					   <?php } ?>
+					</select>
+				</div>
+				
+				<div class="field clearfix">
+					<div class="label">Pais:</div>
+					<select id="workExperienceEditorCountry"> 
+					   <?php  
+					   		foreach ($paises as $id => $pais){
+					   ?>
+					   			<option value="<?php echo $id?>">
+									<?php echo $pais?>
+								</option> 
+					   <?php  
+					   		}
+					   ?>
+					</select>
+				</div>
+				
+
+				<div class="field clearfix">
+					<div class="label">Fecha Desde:</div>
+					<input type="text" id="workExperienceEditorDateFrom" value="" />
+				</div>
+				
+				<div class="field clearfix">
+					<div class="label">Fecha Hasta:</div>
+					<input type="text" id="workExperienceEditorDateTo" value="" />
+				</div>
+				
+				<div class="field clearfix">
+					<div class="label">Logro:</div>
+					<input type="text" id="workExperienceEditorGoal" value="" />
+				</div>
+
+				<div class="field clearfix">
+					<div class="label">Descripcion:</div>
+					<textarea id="workExperienceEditorDescription"></textarea>
+				</div>
 			</div>
 			<input type="submit" value="Guardar" class="sendButton" />
 		</div>
@@ -361,72 +381,79 @@
 	<table cellspacing="0" cellpadding="0" align="center">
 	<tr><td>
 		<div class="in">
-			<a href="javascript:;" class="closePopUp">Close</a>
+			<a href="javascript:;" class="closePopUp">Cerrar</a>
 			<div class="inside">
 				<div>	
 					<input id="formalEducationEditorId" type="hidden" value="" name="" />
-					<label>Institución:</label>
-					<select id="formalEducationEditorInstitution">
-					   <option value="">Otra</option>
-					   <?php foreach ($entidadesEducativas as $id => $desc){ ?>
-					   			<option value="<?php echo $id;?>">
-									<?php echo $desc;?>
-								</option> 
-					   <?php } ?>
-					</select>
-					<br />
+					<div class="field clearfix">
+						<div class="label">Institución:</div>
+						<select id="formalEducationEditorInstitution">
+						   <option value="">Otra</option>
+						   <?php foreach ($entidadesEducativas as $id => $desc){ ?>
+						   			<option value="<?php echo $id;?>">
+										<?php echo $desc;?>
+									</option> 
+						   <?php } ?>
+						</select>
+					</div>
 	
-					<label>Otra:</label>
-					<input type="text" id="formalEducationEditorInstitutionDescription" disabled="disabled"/>
-					<br />
+					<div class="field clearfix">
+						<div class="label">Otra:</div>
+						<input type="text" id="formalEducationEditorInstitutionDescription" disabled="disabled"/>
+					</div>
 	
-					<label>Titulo:</label>
-					<input type="text" id="formalEducationEditorTitle"/>
-					<br />
+					<div class="field clearfix">
+						<div class="label">Titulo:</div>
+						<input type="text" id="formalEducationEditorTitle"/>
+					</div>
 	
-					<label>Nivel:</label>
-					<select id="formalEducationEditorEducationLevel">
-					   <?php foreach ($nivelesDeEducacion as $id => $desc){ ?>
-					   			<option value="<?php echo $id;?>">
-									<?php echo $desc;?>
-								</option> 
-					   <?php } ?>
-					</select>
-					<br />
-	
-	
-					<label>Area:</label>
-					<select id="formalEducationEditorArea">
-					   <?php foreach ($areasDisponibles as $id => $desc){ ?>
-					   			<option value="<?php echo $id;?>">
-									<?php echo $desc;?>
-								</option> 
-					   <?php } ?>
-					</select>
-					<br />
-	
-					<label>Estado:</label>
-					<select id="formalEducationEditorStatus">
-			   			<option value="T">Terminado</option> 
-			   			<option value="A">Abandonado</option> 
-			   			<option value="C">En Curso</option> 
-					</select>
-					<br />
-	
-					<label>Desde:</label>
-					<input type="text" id="formalEducationEditorDateFrom"/>
-					<br />
-	
-					<label>Hasta:</label>
-					<input type="text" id="formalEducationEditorDateTo"/>
-					<br />
-	
-					<label>Promedio:</label>
-					<input type="text" id="formalEducationEditorAverage"/>
-					<br />
+					<div class="field clearfix">
+						<div class="label">Nivel:</div>
+						<select id="formalEducationEditorEducationLevel">
+						   <?php foreach ($nivelesDeEducacion as $id => $desc){ ?>
+						   			<option value="<?php echo $id;?>">
+										<?php echo $desc;?>
+									</option> 
+						   <?php } ?>
+						</select>
+					</div>
 	
 	
+					<div class="field clearfix">
+						<div class="label">Area:</div>
+						<select id="formalEducationEditorArea">
+						   <?php foreach ($areasDisponibles as $id => $desc){ ?>
+						   			<option value="<?php echo $id;?>">
+										<?php echo $desc;?>
+									</option> 
+						   <?php } ?>
+						</select>
+					</div>
 	
+					<div class="field clearfix">
+						<div class="label">Estado:</div>
+						<select id="formalEducationEditorStatus">
+				   			<option value="T">Terminado</option> 
+				   			<option value="A">Abandonado</option> 
+				   			<option value="C">En Curso</option> 
+						</select>
+					</div>
+	
+					<div class="field clearfix">
+						<div class="label">Desde:</div>
+						<input type="text" id="formalEducationEditorDateFrom"/>
+					</div>
+	
+					<div class="field clearfix">
+						<div class="label">Hasta:</div>
+						<input type="text" id="formalEducationEditorDateTo"/>
+					</div>
+	
+					<div class="field clearfix">
+						<div class="label">Promedio:</div>
+						<input type="text" id="formalEducationEditorAverage"/>
+					</div>
+
 				</div>
 				<input type="submit" value="Guardar" class="sendButton" />
 			</div>
@@ -439,29 +466,32 @@
 	<table cellspacing="0" cellpadding="0" align="center">
 	<tr><td>
 		<div class="in">
-			<a href="javascript:;" class="closePopUp">Close</a>
+			<a href="javascript:;" class="closePopUp">Cerrar</a>
 			<div class="inside">
 				<div>	
 					<input id="informalEducationEditorId" type="hidden" value="" name="" />
 					
 					
-					<label>Descripción:</label>
-					<input type="text" id="informalEducationEditorDescription"/>
-					<br />
+					<div class="field clearfix">
+						<div class="label">Descripción:</div>
+						<textarea id="informalEducationEditorDescription"></textarea>
+					</div>
 
-					<label>Tipo:</label>
-					<select id="informalEducationEditorType">
-					   <?php foreach ($tiposDeEducacionNoFormal as $id => $desc){ ?>
-					   			<option value="<?php echo $id;?>">
-									<?php echo $desc;?>
-								</option> 
-					   <?php } ?>
-					</select>
-					<br />
+					<div class="field clearfix">
+						<div class="label">Tipo:</div>
+						<select id="informalEducationEditorType">
+						   <?php foreach ($tiposDeEducacionNoFormal as $id => $desc){ ?>
+						   			<option value="<?php echo $id;?>">
+										<?php echo $desc;?>
+									</option> 
+						   <?php } ?>
+						</select>
+					</div>
 	
-					<label>Duración:</label>
-					<input type="text" id="informalEducationEditorDuration"/>
-					<br />
+					<div class="field clearfix">
+						<div class="label">Duración:</div>
+						<input type="text" id="informalEducationEditorDuration"/>
+					</div>
 	
 				</div>
 				<input type="submit" value="Guardar" class="sendButton" />
@@ -471,6 +501,7 @@
 	</table>
 </div>
 
+<?php include("footer.php"); ?>
 </body>
 </html>
 
