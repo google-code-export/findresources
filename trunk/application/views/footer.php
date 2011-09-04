@@ -1,4 +1,4 @@
-<div class="clearfix">
+<div class="frFooter">
 <a href="docs/sobrenosotros.html">Sobre nosotros</a>
 
 
