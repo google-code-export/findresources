@@ -10,7 +10,7 @@ class Util_model extends FR_Model {
 	 * Busca en la db los estados civiles disponibles.
 	 * @author martin.fox
 	 * @param
-	 * @return [{id, descripcion}]
+	 * @return array[id] = [{descripcion}]
 	 * */
 	public function  getEstadosCiviles(){
 		
@@ -32,8 +32,7 @@ class Util_model extends FR_Model {
 			//convert db data to model data.
 			$response = array();
 			foreach ($dbRegistros as $i => $dbRegistro){
-				$response[$i]->id  = $dbRegistro->estado_civil;
-				$response[$i]->descripcion  = $dbRegistro->d_estado_civil;
+				$response[$dbRegistro->estado_civil] = $dbRegistro->d_estado_civil;
 			}
 			return $response;
 		}
@@ -48,7 +47,7 @@ class Util_model extends FR_Model {
 	 * Busca en la db los paises disponibles.
 	 * @author martin.fox
 	 * @param
-	 * @return [{id, descripcion}]
+	 * @return array[id]  [{descripcion}]
 	 */
 	public function  getPaises(){
 		
@@ -68,8 +67,7 @@ class Util_model extends FR_Model {
 			//convert db data to model data.
 			$response = array();
 			foreach ($dbRegistros as $i => $dbRegistro){
-				$response[$i]->id  = $dbRegistro->pais;
-				$response[$i]->descripcion  = $dbRegistro->dpais;
+				$response[$dbRegistro->pais] = $dbRegistro->dpais;
 			}
 			
 			return $response;
@@ -87,7 +85,7 @@ class Util_model extends FR_Model {
 	 * Busca en la db las provincias de un pais.
 	 * @author martin.fox
 	 * @param idPais
-	 * @return [{id, descripcion}]
+	 * @return array[id] =  [{descripcion}]
 	 */
 	public function  getProvincias($idPais){
 
@@ -113,8 +111,7 @@ class Util_model extends FR_Model {
 			//convert db data to model data.
 			$response = array();
 			foreach ($dbRegistros as $i => $dbRegistro){
-				$response[$i]->id  = $dbRegistro->provincias;
-				$response[$i]->descripcion  = $dbRegistro->d_provincias;
+				$response[$dbRegistro->provincias] = $dbRegistro->d_provincias;
 			}
 			
 			return $response;
@@ -129,7 +126,7 @@ class Util_model extends FR_Model {
 
 	/**
 	 * Devuelve las habilidades diponibles para seleccionar.
-	 * @return [{id, descripcion}]
+	 * @return array[id] = [{descripcion}]
 	 * */
 	public function  getIndustriasDisponibles(){
 		
@@ -151,8 +148,7 @@ class Util_model extends FR_Model {
 			//convert db data to model data.
 			$response = array();
 			foreach ($dbRegistros as $i => $dbRegistro){
-				$response[$i]->id  = $dbRegistro->id_industria;
-				$response[$i]->descripcion  = $dbRegistro->d_industria;
+				$response[$dbRegistro->id_industria] = $dbRegistro->d_industria;
 			}
 			
 			return $response;
@@ -168,7 +164,7 @@ class Util_model extends FR_Model {
 	 * Devuelve las herramientas de un determinado rubro.
 	 * Recibe por post el rubro correspondiente.
 	 * @param idArea
-	 * @return[{id, descripction}]
+	 * @return array[id] = [descripction}]
 	 * */
 	public function  getHerramientasPorArea($idArea){
 //		$respuesta[0]->id = 1; 
@@ -199,8 +195,7 @@ class Util_model extends FR_Model {
 			//convert db data to model data.
 			$response = array();
 			foreach ($dbRegistros as $i => $dbRegistro){
-				$response[$i]->id  = $dbRegistro->id_herramienta;
-				$response[$i]->descripcion  = $dbRegistro->d_herramienta;
+				$response[$dbRegistro->id_herramienta] = $dbRegistro->d_herramienta;
 			}
 			
 			return $response;
@@ -216,7 +211,7 @@ class Util_model extends FR_Model {
 	/**
 	 * Busca los niveles de educacion disponibles
 	 * @param
-	 * @return array with id and descripcion [{id, descripcion}]
+	 * @return array with id and descripcion array[id] [{descripcion}]
 	 * */
 	public function  getNivelesDeEducacion(){
 		
@@ -238,8 +233,7 @@ class Util_model extends FR_Model {
 			//convert db data to model data.
 			$response = array();
 			foreach ($dbRegistros as $i => $dbRegistro){
-				$response[$i]->id  = $dbRegistro->nivel_educacion;
-				$response[$i]->descripcion  = $dbRegistro->d_nivel_educcacion;
+				$response[$dbRegistro->nivel_educacion] = $dbRegistro->d_nivel_educcacion;
 			}
 			
 			return $response;
@@ -275,8 +269,7 @@ class Util_model extends FR_Model {
 			//convert db data to model data.
 			$response = array();
 			foreach ($dbRegistros as $i => $dbRegistro){
-				$response[$i]->id  = $dbRegistro->id_area;
-				$response[$i]->descripcion  = $dbRegistro->d_area;
+				$response[$dbRegistro->id_area] = $dbRegistro->d_area;
 			}
 			
 			return $response;
@@ -312,8 +305,7 @@ class Util_model extends FR_Model {
 			//convert db data to model data.
 			$response = array();
 			foreach ($dbRegistros as $i => $dbRegistro){
-				$response[$i]->id  = $dbRegistro->id_entidad_educativa;
-				$response[$i]->descripcion  = $dbRegistro->d_entidad_educativa;
+				$response[$dbRegistro->id_entidad_educativa] = $dbRegistro->d_entidad_educativa;
 			}
 			
 			return $response;
@@ -329,7 +321,7 @@ class Util_model extends FR_Model {
 	
 	/**
 	 * Devuelve los tipos de educacion no formal disponibles
-	 * @return [{id, descripcion}]
+	 * @return array[id] = [descripcion]
 	 * */
 	public function  getTiposDeEducacionNoFormal(){
 
@@ -351,8 +343,7 @@ class Util_model extends FR_Model {
 			//convert db data to model data.
 			$response = array();
 			foreach ($dbRegistros as $i => $dbRegistro){
-				$response[$i]->id  = $dbRegistro->tipo_educacion_no_formal;
-				$response[$i]->descripcion  = $dbRegistro->d_tipo_educacion_no_formal;
+				$response[$dbRegistro->tipo_educacion_no_formal] = $dbRegistro->d_tipo_educacion_no_formal;
 			}
 			
 			return $response;
@@ -367,7 +358,7 @@ class Util_model extends FR_Model {
 
 	/**
 	 * Devuelve los tipos de educacion no formal disponibles
-	 * @return [{id, descripcion}]
+	 * @return array [id] = [{descripcion}]
 	 * */
 	
 	public function  getTiposDeDocumentos(){
@@ -390,8 +381,7 @@ class Util_model extends FR_Model {
 			//convert db data to model data.
 			$response = array();
 			foreach ($dbRegistros as $i => $dbRegistro){
-				$response[$i]->id  = $dbRegistro->tipodocumento;
-				$response[$i]->descripcion  = $dbRegistro->dtipodocumneto;
+				$response[$dbRegistro->tipodocumento] = $dbRegistro->dtipodocumneto;
 			}
 			
 			return $response;

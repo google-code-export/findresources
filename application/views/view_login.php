@@ -96,9 +96,9 @@
 					        	<div class="label">Documento:</div>
 					        	<div class="control">
 									<select id="register_id_type_select"> 
-									   <?php foreach ($tiposDeDocumentos as $tipo){ ?>
-									   			<option value="<?php echo $tipo->id?>">
-													<?php echo $tipo->id?>
+									   <?php foreach ($tiposDeDocumentos as $id => $tipo){ ?>
+									   			<option value="<?php echo $id?>">
+													<?php echo $id?>
 												</option> 
 									   <?php } ?>
 									</select>
@@ -116,10 +116,10 @@
 					        	<div class="control">
 									<select id="register_country_select"> 
 									   <?php  
-									   		foreach ($paises as $pais){
+									   		foreach ($paises as $id => $pais){
 									   ?>
-									   			<option value="<?php echo $pais->id?>">
-													<?php echo $pais->descripcion?>
+									   			<option value="<?php echo $id?>">
+													<?php echo $pais?>
 												</option> 
 									   <?php  
 									   		}
@@ -139,9 +139,9 @@
 					        	<div class="label">Industria:</div>
 					        	<div class="control">
 									<select id="register_industry_select"> 
-									   <?php foreach ($industriasDisponibles as $unaIndustria){?>
-									   			<option value="<?php echo $unaIndustria->id?>">
-													<?php echo $unaIndustria->descripcion?>
+									   <?php foreach ($industriasDisponibles as $id => $unaIndustria){?>
+									   			<option value="<?php echo $id?>">
+													<?php echo $unaIndustria?>
 												</option> 
 									   <?php } ?>
 									</select>
@@ -163,9 +163,9 @@
 					        	<div class="label">Pais:</div>
 					        	<div class="control">
 									<select id="register_company_country_select"> 
-									   <?php foreach ($paises as $pais){ ?>
-									   			<option value="<?php echo $pais->id?>">
-													<?php echo $pais->descripcion?>
+									   <?php foreach ($paises as $id => $pais){ ?>
+									   			<option value="<?php echo $id?>">
+													<?php echo $pais?>
 												</option> 
 									   <?php } ?>
 									</select>

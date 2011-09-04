@@ -156,7 +156,7 @@ class Curriculum extends CI_Controller {
 	
 	/**
 	 * input: null
-	 * output: json array > [{id, compania, idIndustria, idPais, fechaDesde, fechaHasta, logro}].
+	 * output: json array[id] > [{compania, idIndustria, idPais, fechaDesde, fechaHasta, logro, descripcion, titulo}].
 	 * */	
 	public function  getExperienciaLaboralDelCv(){
 		// Process their input and login the user
@@ -167,7 +167,7 @@ class Curriculum extends CI_Controller {
 	}
 
 	/**
-	 * input: 'experienciaLaboral' json string > {id, compania, idIndustria, idPais, fechaDesde, fechaHasta, logro}
+	 * input: 'experienciaLaboral' json string > {id, compania, idIndustria, idPais, fechaDesde, fechaHasta, logro, descripcion, titulo}
 	 * 						para nuevo registro, $experienciaLaboral->id debe ser null.
 	 * output: retorna el idEducacionFormal.
 	 * */
@@ -181,7 +181,7 @@ class Curriculum extends CI_Controller {
 
 	/**
 	 * input: null
-	 * output: json array > [{id, idEntidad, descripcionEntidad, titulo, idNivelEducacion, idArea, 
+	 * output: json array[id] > [{idEntidad, descripcionEntidad, titulo, idNivelEducacion, idArea, 
 	 * 			estado: "T" terminado "A" abandobado "C" en curso 
 	 * 			fechaInicio: "01/01/1900", fechaFinalizacion, promedio: 6.89
 	 * 			}].
@@ -215,7 +215,7 @@ class Curriculum extends CI_Controller {
 	
 	/**
 	 * input: null
-	 * output: json array > [{id, idTipoEducacionNoFormal, descripcion, duracion}].
+	 * output: json array[id] > [{idTipoEducacionNoFormal, descripcion, duracion}].
 	 * */
 	public function  getEducacionNoFormalDelCv(){
 		// Process their input and login the user
@@ -236,6 +236,8 @@ class Curriculum extends CI_Controller {
 		$respuesta = $this->Curriculum_model->setEducacionNoFormal($currentCurriculum->id, $educacionNoFormal);
 		echo json_encode($respuesta);
 	}
+	
+	
 }
 
 ?>
