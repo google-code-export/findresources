@@ -126,16 +126,40 @@ function addInformalEducation(){
 	showPopUp('#informalEducationPopUp');
 }
 
+function editCVData(){
+	$('#cvDataEditorMaritalStatus').val(cvData.estadoCivil);
+	$('#cvDataEditorBirthDay').val(cvData.fechaNacimiento);
+	$('#cvDataEditorAddressStreet').val(cvData.calle);
+	$('#cvDataEditorAddressNumber').val(cvData.numero);
+	$('#cvDataEditorAddressFloor').val(cvData.piso);
+	$('#cvDataEditorAddressApt').val(cvData.departamento);
+	$('#cvDataEditorZipCode').val(cvData.codigoPostal);
+	$('#cvDataEditorState').val(cvData.idProvincia);
+	$('#cvDataEditorCountry').val(cvData.idPais);
+	$('#cvDataEditorPhone1').val(cvData.telefono1);
+	$('#cvDataEditorContactFrom1').val(cvData.horarioContactoDesde1);
+	$('#cvDataEditorContactTo1').val(cvData.horarioContactoHasta1);
+	$('#cvDataEditorPhone2').val(cvData.telefono2);
+	$('#cvDataEditorContactFrom2').val(cvData.horarioContactoDesde2);
+	$('#cvDataEditorContactTo2').val(cvData.horarioContactoHasta2);
+	$('#cvDataEditorNationality').val(cvData.idPaisNacionalidad);
+	$('#cvDataEditorTwitter').val(cvData.twitter);
+	$('#cvDataEditorGTalk').val(cvData.gtalk);
+	$('#cvDataEditorSMS').val(cvData.sms);
+	
+	showPopUp('#cvDataPopUp');
+}
+
 function editWorkExperience(idExperience){
 	$('#workExperienceEditorId').val(idExperience);
-	$('#workExperienceEditorCompany').val(workExperiences[idExperience].company);
-	$('#workExperienceEditorIndustry').val(workExperiences[idExperience].idIndustry);
-	$('#workExperienceEditorCountry').val(workExperiences[idExperience].idCountry);
-	$('#workExperienceEditorDateFrom').val(workExperiences[idExperience].dateFrom);
-	$('#workExperienceEditorDateTo').val(workExperiences[idExperience].dateTo);
-	$('#workExperienceEditorGoal').val(workExperiences[idExperience].goal);
-	$('#workExperienceEditorDescription').val(workExperiences[idExperience].description);
-	$('#workExperienceEditorTitle').val(workExperiences[idExperience].title);
+	$('#workExperienceEditorCompany').val(workExperiences[idExperience].compania);
+	$('#workExperienceEditorIndustry').val(workExperiences[idExperience].idIndustria);
+	$('#workExperienceEditorCountry').val(workExperiences[idExperience].idPais);
+	$('#workExperienceEditorDateFrom').val(workExperiences[idExperience].fechaDesde);
+	$('#workExperienceEditorDateTo').val(workExperiences[idExperience].fechaHasta);
+	$('#workExperienceEditorGoal').val(workExperiences[idExperience].logro);
+	$('#workExperienceEditorDescription').val(workExperiences[idExperience].descripcion);
+	$('#workExperienceEditorTitle').val(workExperiences[idExperience].titulo);
 	showPopUp('#workExperiencePopUp');
 }
 
@@ -147,26 +171,26 @@ function editHardProperties(){
 
 function editFormalEducation(idEducation){
 	$('#formalEducationEditorId').val(idEducation);
-	$('#formalEducationEditorInstitution').val(formalEducation[idEducation].idInstitution);
-	$('#formalEducationEditorInstitutionDescription').val(formalEducation[idEducation].descriptionInstitution);
+	$('#formalEducationEditorInstitution').val(formalEducation[idEducation].idEntidad);
+	$('#formalEducationEditorInstitutionDescription').val(formalEducation[idEducation].descripcionEntidad);
 	checkInstitutionDescriptionDisabled();
 	
-	$('#formalEducationEditorTitle').val(formalEducation[idEducation].title);
-	$('#formalEducationEditorEducationLevel').val(formalEducation[idEducation].idEducationLevel);
+	$('#formalEducationEditorTitle').val(formalEducation[idEducation].titulo);
+	$('#formalEducationEditorEducationLevel').val(formalEducation[idEducation].idNivelEducacion);
 	$('#formalEducationEditorArea').val(formalEducation[idEducation].idArea);
-	$('#formalEducationEditorStatus').val(formalEducation[idEducation].status);
-	$('#formalEducationEditorDateFrom').val(formalEducation[idEducation].dateFrom);
-	$('#formalEducationEditorDateTo').val(formalEducation[idEducation].dateTo);
-	$('#formalEducationEditorAverage').val(formalEducation[idEducation].average);
+	$('#formalEducationEditorStatus').val(formalEducation[idEducation].estado);
+	$('#formalEducationEditorDateFrom').val(formalEducation[idEducation].fechaInicio);
+	$('#formalEducationEditorDateTo').val(formalEducation[idEducation].fechaFinalizacion);
+	$('#formalEducationEditorAverage').val(formalEducation[idEducation].promedio);
 
 	showPopUp('#formalEducationPopUp');
 }
 
 function editInformalEducation(idEducation){
 	$('#informalEducationEditorId').val(idEducation);
-	$('#informalEducationEditorType').val(informalEducation[idEducation].idType);
-	$('#informalEducationEditorDescription').val(informalEducation[idEducation].description);
-	$('#informalEducationEditorDuration').val(informalEducation[idEducation].duration);
+	$('#informalEducationEditorType').val(informalEducation[idEducation].idTipoEducacionNoFormal);
+	$('#informalEducationEditorDescription').val(informalEducation[idEducation].descripcion);
+	$('#informalEducationEditorDuration').val(informalEducation[idEducation].duracion);
 
 	showPopUp('#informalEducationPopUp');
 }
@@ -329,6 +353,49 @@ $(function(){
 			}
 		});
 	});	
+	
+	$('#cvDataPopUp .sendButton').click(function(){
+		var curriculum = {
+			estadoCivil: $('#cvDataEditorMaritalStatus').val(),
+			fechaNacimiento: $('#cvDataEditorBirthDay').val(),
+			calle: $('#cvDataEditorAddressStreet').val(),
+			numero: $('#cvDataEditorAddressNumber').val(),
+			piso: $('#cvDataEditorAddressFloor').val(),
+			departamento: $('#cvDataEditorAddressApt').val(),
+			codigoPostal: $('#cvDataEditorZipCode').val(),
+			idProvincia: $('#cvDataEditorState').val(),
+			idPais: $('#cvDataEditorCountry').val(),
+			telefono1: $('#cvDataEditorPhone1').val(),
+			horarioContactoDesde1: $('#cvDataEditorContactFrom1').val(),
+			horarioContactoHasta1: $('#cvDataEditorContactTo1').val(),
+			telefono2: $('#cvDataEditorPhone2').val(),
+			horarioContactoDesde2: $('#cvDataEditorContactFrom2').val(),
+			horarioContactoHasta2: $('#cvDataEditorContactTo2').val(),
+			idPaisNacionalidad: $('#cvDataEditorNationality').val(),
+			twitter: $('#cvDataEditorTwitter').val(),
+			gtalk: $('#cvDataEditorGTalk').val(),
+			sms: $('#cvDataEditorSMS').val()
+		};
+		$.ajax({
+			url: "curriculum/setCurriculum",
+			global: false,
+			type: "POST",
+			data: {
+				'curriculum': JSON.stringify(curriculum)
+			},
+			dataType: "json",
+			async: true,
+			success: function(response){
+				hidePopUp();
+				window.location.reload();
+			},
+			error: function(response){
+				alert(response);
+			}
+		});
+	});	
+	
+		
 	
 	$('#availableAreasSelect').change(function(){
 		$.ajax({

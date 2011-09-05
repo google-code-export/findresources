@@ -64,7 +64,7 @@ class Curriculum_model extends FR_Model {
 	
 	/**
 	 * @param idCurriculum
-	 * @return {'gtalk', 'usuario', 'estadoCivil', 'fechaNacimiento':"1998/05/31:12:00:00AM",
+	 * @return {'usuario', 'estadoCivil', 'fechaNacimiento':"1998/05/31:12:00:00AM",
 	 *      'idPais','idProvincia','partido','calle',
 	 *      'numero','piso','departamento','codigoPostal',
 	 *      'telefono1','horarioContactoDesde1','horarioContactoHasta1','telefono2',
@@ -142,7 +142,7 @@ class Curriculum_model extends FR_Model {
 		array('name'=>':pi_fecha_nacimiento', 'value'=>$unCurriculum->fechaNacimiento, 'type'=>SQLT_CHR, 'length'=>-1),
 		array('name'=>':pi_pais', 'value'=>$unCurriculum->idPais, 'type'=>SQLT_CHR, 'length'=>-1),
 		array('name'=>':pi_provincia', 'value'=>$unCurriculum->idProvincia, 'type'=>SQLT_CHR, 'length'=>-1),
-		array('name'=>':pi_partido', 'value'=>$unCurriculum->partido, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':pi_partido', 'value'=>0/*$unCurriculum->partido*/, 'type'=>SQLT_CHR, 'length'=>-1),
 		array('name'=>':pi_calle', 'value'=>$unCurriculum->calle, 'type'=>SQLT_CHR, 'length'=>-1),
 		array('name'=>':pi_numero', 'value'=>$unCurriculum->numero, 'type'=>SQLT_CHR, 'length'=>-1),
 		array('name'=>':pi_piso', 'value'=>$unCurriculum->piso, 'type'=>SQLT_CHR, 'length'=>-1),
