@@ -25,86 +25,29 @@
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/global.css')?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/view_curriculum.css')?>" />
 <script type="text/javascript">
-	var availableIndustries = new Array();
-	<?php foreach ($industriasDisponibles as  $id => $industria){ ?>
-		availableIndustries[<?php echo $id; ?>] = "<?php echo $industria;?>";
-	<?php } ?>
+	var availableIndustries = <?php  echo json_encode($industriasDisponibles); ?>;
 
-	var availableAreas = new Array();
-	<?php foreach ($areasDisponibles as $id => $area){ ?>
-		availableAreas[<?php echo $id; ?>] = "<?php echo $area;?>";
-	<?php } ?>
+	var availableAreas = <?php  echo json_encode($areasDisponibles); ?>;
 
 	var availableTools = new Array(); //fill in $('#availableAreasSelect').change();	
 
-	var availableCountries = new Array();
-	<?php foreach ($paises as $id => $pais){ ?>
-		availableCountries["<?php echo $id; ?>"] = "<?php echo $pais;?>";
-	<?php } ?>
+	var availableCountries = <?php  echo json_encode($paises); ?>;
 
-	var workExperiences = new Array();
-	<?php foreach ($experienciaLaboralDelCv as $id => $experiencia){ ?>
-		workExperiences[<?php echo $id; ?>] = {
-				company:  "<?php echo $experiencia->compania;?>",
-				idIndustry: "<?php echo $experiencia->idIndustria;?>",
-				idCountry:  "<?php echo $experiencia->idPais;?>",
-				dateFrom:  "<?php echo $experiencia->fechaDesde;?>",
-				dateTo:  "<?php echo $experiencia->fechaHasta;?>",
-				goal:  "<?php echo $experiencia->logro;?>",
-				description:  "<?php 
-				
-				
-				echo strtr($experiencia->descripcion,  array(chr(10) => "</br>"));?>",
-				title:  "<?php echo $experiencia->titulo;?>"
-		};
-	<?php } ?>
+	var workExperiences = <?php  echo json_encode($experienciaLaboralDelCv); ?>;
 
-	var formalEducation = new Array();
-	<?php foreach ($educacionFormalDelCv as $id => $educacion){ ?>
-		formalEducation[<?php echo $id; ?>] = {
-				idInstitution:  "<?php echo $educacion->idEntidad;?>",
-				descriptionInstitution: "<?php echo $educacion->descripcionEntidad;?>",
-				title:  "<?php echo $educacion->titulo;?>",
-				idEducationLevel:  "<?php echo $educacion->idNivelEducacion;?>",
-				idArea:  "<?php echo $educacion->idArea;?>",
-				status:  "<?php echo $educacion->estado;?>",
-				dateFrom:  "<?php echo $educacion->fechaInicio;?>",
-				dateTo:  "<?php echo $educacion->fechaFinalizacion;?>",
-				average:  "<?php echo $educacion->promedio;?>"
-		};
-	<?php } ?>
+	var formalEducation = <?php  echo json_encode($educacionFormalDelCv); ?>;
 	
-	var informalEducation = new Array();
-	<?php foreach ($educacionNoFormalDelCv as $id => $educacion){ ?>
-		informalEducation[<?php echo $id; ?>] = {
-				idType:  "<?php echo $educacion->idTipoEducacionNoFormal;?>",
-				description:  "<?php echo str_replace("&#10;", "\n", $educacion->descripcion);?>",
-				duration:  "<?php echo $educacion->duracion;?>"
-		};
-	<?php } ?>
+	var informalEducation = <?php  echo json_encode($educacionNoFormalDelCv); ?>;
 
-	var educationAvailableAreas = new Array();
-	<?php foreach ($areasDisponibles as $id => $desc){ ?>
-		educationAvailableAreas[<?php echo $id; ?>] = "<?php echo $desc?>";
-	<?php } ?>
+	var educationAvailableAreas = <?php  echo json_encode($areasDisponibles); ?>;
 
+	var educationAvailableLevels = <?php  echo json_encode($nivelesDeEducacion); ?>;
+
+	var educationAvailableInstitutions = <?php  echo json_encode($entidadesEducativas); ?>;
 	
-	var educationAvailableLevels = new Array();
-	<?php foreach ($nivelesDeEducacion as $id => $desc){ ?>
-		educationAvailableLevels[<?php echo $id; ?>] = "<?php echo $desc?>";
-	<?php } ?>
+	var informalEducationTypes = <?php  echo json_encode($tiposDeEducacionNoFormal); ?>;
 
-	var educationAvailableInstitutions = new Array();
-	<?php foreach ($entidadesEducativas as $id => $desc){ ?>
-		educationAvailableInstitutions[<?php echo $id; ?>] = "<?php echo $desc?>";
-	<?php } ?>
-
-	
-	var informalEducationTypes = new Array();
-	<?php foreach ($tiposDeEducacionNoFormal as $id => $type){ ?>
-		informalEducationTypes[<?php echo $id; ?>] = "<?php echo $type;?>";
-	<?php } ?>
-	
+	var cvData = <?php echo json_encode($curriculumData);?>;
 	
 </script>
 <script type="text/javascript" src="<?php echo site_url('js/jquery-1.6.2.min.js')?>"></script>
@@ -127,15 +70,47 @@
 	<div class="content">
 		<div class="CL">
 			
-			<div class="info clearfix">
-				<div class="photo">
+			<div class="info clearfix block">
+				<!-- div class="photo"-->
 					<!--img src="img/face.jpg" alt="Nombre" /-->
-				</div>
-				<div class="right">
-					<h3><?php echo $usuarioData->nombre; ?> <?php echo $usuarioData->apellido; ?><a href="javascript:;" class="editFields">Edit</a></h3>
-					<p>Java developer at Network Solutions</p>
-					<p class="grey"><span class="country"><?php echo $usuarioData->descripcionPais; ?></span><i>|</i><span class="title">Information Technology and Services</span></p>
-				</div>
+				<!--/div>
+				<div class="right"-->
+					<h2>Información Personal <a href="javascript:editCVData();" class="editFields">Editar</a></h2>
+					<div class="row clearfix">
+						<div><?php echo ($curriculumData->estadoCivil == "") ? "" : $estadosCiviles[$curriculumData->estadoCivil]?>&nbsp;</div>
+						<div><?php echo $curriculumData->fechaNacimiento?></div>
+					</div>
+					<div class="row clearfix">
+						<!-- div><!--?php echo $curriculumData->partido?></div-->					
+						<div><?php echo $curriculumData->calle?>&nbsp;</div> 
+						<div><?php echo $curriculumData->numero?>&nbsp;</div>
+						<div><?php echo $curriculumData->piso?>&nbsp;</div>
+						<div><?php echo $curriculumData->departamento?></div>					
+					</div>
+					<div class="row clearfix">
+						<div><?php echo $curriculumData->codigoPostal?>&nbsp;</div>					
+						<div><?php echo $curriculumData->idProvincia?>&nbsp;</div>			
+						<div><?php echo ($curriculumData->idPais=="") ? ""  :  $paises[$curriculumData->idPais]?></div>
+					</div>
+	
+					<div class="row clearfix">
+						<div>Tel:&nbsp;<?php echo $curriculumData->telefono1?>&nbsp;</div>					
+						<div><?php echo $curriculumData->horarioContactoDesde1?>&nbsp;a&nbsp;</div>					
+						<div><?php echo $curriculumData->horarioContactoHasta1?></div>					
+					</div>
+	
+					<div class="row clearfix">
+						<div>Tel:&nbsp;<?php echo $curriculumData->telefono2?>&nbsp;</div>	
+						<div><?php echo $curriculumData->horarioContactoDesde2?>&nbsp; a &nbsp;</div>
+						<div><?php echo $curriculumData->horarioContactoHasta2?></div>					
+					</div>
+
+					<div><?php echo ($curriculumData->idPaisNacionalidad == "")? ""  :   $paises[$curriculumData->idPaisNacionalidad]?>&nbsp;</div>
+					<div><?php echo $curriculumData->twitter?>&nbsp;</div>
+					<div><?php echo $curriculumData->gtalk?>&nbsp;</div>
+					<div><?php echo $curriculumData->sms?></div>
+
+				<!--/div-->
 			</div>
 			
 			<div class="block" id="hardProperties">
@@ -242,6 +217,119 @@
 </div>
 
 <div class="opacity" style="display:none;"></div>
+
+<div class="popup" id="cvDataPopUp" style="display:none;">
+<table cellspacing="0" cellpadding="0" align="center">
+<tr><td>
+	<div class="in">
+		<div class="popuptitle"> Información Personal </div>
+		<a href="javascript:;" class="closePopUp">Cerrar</a>
+		<div class="inside">
+			<div>	
+				<div class="field clearfix">
+					<div class="label">Estado Civil:</div>
+					<select id="cvDataEditorMaritalStatus">
+						<?php foreach ($estadosCiviles as $id => $desc){ ?>
+							<option value="<?php echo $id; ?>"><?php echo $desc;?></option> 
+						<?php } ?>
+					</select>
+				</div>
+				<div class="field clearfix">
+					<div class="label">Fecha de nac:</div>
+					<input type="text" id="cvDataEditorBirthDay" value="" />
+				</div>
+				<div class="field clearfix">
+					<div class="label">Calle:</div>
+					<input type="text" id="cvDataEditorAddressStreet" value="" />
+				</div>
+				<div class="field clearfix">
+					<div class="label">Numero:</div>
+					<input type="text" id="cvDataEditorAddressNumber" value="" />
+				</div>
+				<div class="field clearfix">
+					<div class="label">Piso:</div>
+					<input type="text" id="cvDataEditorAddressFloor" value="" />
+				</div>
+				<div class="field clearfix">
+					<div class="label">Dto:</div>
+					<input type="text" id="cvDataEditorAddressApt" value="" />
+				</div>
+				
+				<div class="field clearfix">
+					<div class="label">Código Postal:</div>
+					<input type="text" id="cvDataEditorZipCode" value="" />
+				</div>
+				
+				<div class="field clearfix">
+					<div class="label">Provincia:</div>
+					<input type="text" id="cvDataEditorState" value="" />
+				</div>
+				
+				<div class="field clearfix">
+					<div class="label">Pais:</div>
+					<select id="cvDataEditorCountry">
+						<?php foreach ($paises as $id => $desc){ ?>
+							<option value="<?php echo $id; ?>"><?php echo $desc;?></option> 
+						<?php } ?>
+					</select>
+				</div>
+				
+				<div class="field clearfix">
+					<div class="label">Tel 1:</div>
+					<input type="text" id="cvDataEditorPhone1" value="" />
+				</div>
+
+				<div class="field clearfix">
+					<div class="label">Horario Desde:</div>
+					<input type="text" id="cvDataEditorContactFrom1" value="" />
+				</div>
+				<div class="field clearfix">
+					<div class="label">Hasta:</div>
+					<input type="text" id="cvDataEditorContactTo1" value="" />
+				</div>
+				
+				<div class="field clearfix">
+					<div class="label">Tel 2:</div>
+					<input type="text" id="cvDataEditorPhone2" value="" />
+				</div>
+
+				<div class="field clearfix">
+					<div class="label">Horario Desde:</div>
+					<input type="text" id="cvDataEditorContactFrom2" value="" />
+				</div>
+				<div class="field clearfix">
+					<div class="label">Hasta:</div>
+					<input type="text" id="cvDataEditorContactTo2" value="" />
+				</div>
+				
+				<div class="field clearfix">
+					<div class="label">Nacionalidad:</div>
+					<input type="text" id="cvDataEditorNationality" value="" />
+				</div>
+				
+				<div class="field clearfix">
+					<div class="label">Twitter:</div>
+					<input type="text" id="cvDataEditorTwitter" value="" />
+				</div>
+				
+				<div class="field clearfix">
+					<div class="label">GTalk:</div>
+					<input type="text" id="cvDataEditorGTalk" value="" />
+				</div>
+
+				<div class="field clearfix">
+					<div class="label">SMS:</div>
+					<input type="text" id="cvDataEditorSMS" value="" />
+				</div>
+				
+			</div>
+			<input type="submit" value="Guardar" class="sendButton" />
+		</div>
+	</div>
+</td></tr>
+</table>
+</div>
+
 
 <div class="popup" id="hardPropertiesPopUp" style="display:none;">
 <table cellspacing="0" cellpadding="0" align="center">

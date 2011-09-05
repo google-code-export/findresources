@@ -7,10 +7,6 @@ input, select, textarea{font:12px Arial, Helvetica, sans-serif;}
 ul,ol{position:relative;}
 span.dn{display:none;}
 
-body{
-	text-align: left;
-}
-
 /*GENERAL*/
 
 /*HEADER*/
@@ -23,7 +19,7 @@ body{
 .content{width:1000px;margin:0 auto;}
 .content .CL{width:500px;float:left;}
 .content .CR{width:400px;float:left;}
-.content .CL .block{border-bottom:2px solid #DDD;padding:12px 0 0;}
+.content .CL .block{border-bottom:2px solid #DDD;padding:10px;}
 .content .CL .block h2{font-size:18px;color:#555;padding:0 0 0px;}
 .content .CL .block h2 a{font-size:11px;}
 .content .CL .block h2 a.addpos{float:right;}

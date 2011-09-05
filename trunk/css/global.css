@@ -32,7 +32,7 @@ body {
 	font-family: Lucida Grande, Verdana, Sans-serif;
 	font-size: 14px;
 	color: #4F5155;
-	text-align: center;
+
 }
 
 a {
@@ -69,5 +69,9 @@ code {
 .frFooter{ 
 	text-align: center; 
 	width: 100%;
+	float: left;
+}
+
+.row div{
 	float: left;
 }
