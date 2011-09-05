@@ -51,7 +51,10 @@
 				dateFrom:  "<?php echo $experiencia->fechaDesde;?>",
 				dateTo:  "<?php echo $experiencia->fechaHasta;?>",
 				goal:  "<?php echo $experiencia->logro;?>",
-				description:  "<?php echo $experiencia->descripcion;?>",
+				description:  "<?php 
+				
+				
+				echo strtr($experiencia->descripcion,  array(chr(10) => "</br>"));?>",
 				title:  "<?php echo $experiencia->titulo;?>"
 		};
 	<?php } ?>
@@ -75,7 +78,7 @@
 	<?php foreach ($educacionNoFormalDelCv as $id => $educacion){ ?>
 		informalEducation[<?php echo $id; ?>] = {
 				idType:  "<?php echo $educacion->idTipoEducacionNoFormal;?>",
-				description: "<?php echo $educacion->descripcion;?>",
+				description:  "<?php echo str_replace("&#10;", "\n", $educacion->descripcion);?>",
 				duration:  "<?php echo $educacion->duracion;?>"
 		};
 	<?php } ?>
@@ -126,7 +129,7 @@
 			
 			<div class="info clearfix">
 				<div class="photo">
-					<img src="img/face.jpg" alt="Nombre" />
+					<!--img src="img/face.jpg" alt="Nombre" /-->
 				</div>
 				<div class="right">
 					<h3><?php echo $usuarioData->nombre; ?> <?php echo $usuarioData->apellido; ?><a href="javascript:;" class="editFields">Edit</a></h3>
@@ -162,14 +165,14 @@
 
 				<div class="job" id="job<?php echo $i ?>">
 				
-					<h5><?php echo $experiencia->titulo ?> <a href="javascript:editWorkExperience(<?php echo $i ?>);" class="editFields">Editar</a></h5>
+					<h5><?php echo $experiencia->titulo; ?> <a href="javascript:editWorkExperience(<?php echo $i ;?>);" class="editFields">Editar</a></h5>
 					
-					<p class="company"><?php echo $experiencia->compania ?></p>
-					<p class="industry">Industria: <?php echo $industriasDisponibles[$experiencia->idIndustria] ?></p>
-					<p class="country"><?php echo $paises[$experiencia->idPais] ?></p>
-					<p class="when"><span class="dateFrom"><?php echo $experiencia->fechaDesde ?></span> – <span class="dateTo"><?php echo $experiencia->fechaHasta ?></span></p>
-					<p class="logro"><?php echo $experiencia->logro ?></p>
-					<p class="descripcion"><?php echo $experiencia->descripcion ?></p>
+					<p class="company"><?php echo $experiencia->compania; ?></p>
+					<p class="industry">Industria: <?php echo $industriasDisponibles[$experiencia->idIndustria]; ?></p>
+					<p class="country"><?php echo $paises[$experiencia->idPais]; ?></p>
+					<p class="when"><span class="dateFrom"><?php echo $experiencia->fechaDesde ?></span> – <span class="dateTo"><?php echo $experiencia->fechaHasta; ?></span></p>
+					<p class="logro"><?php echo $experiencia->logro; ?></p>
+					<p class="descripcion"><?php echo $experiencia->descripcion; ?></p>
 					
 				</div>
 				<?php } ?>
@@ -244,6 +247,7 @@
 <table cellspacing="0" cellpadding="0" align="center">
 <tr><td>
 	<div class="in">
+		<div class="popuptitle"> Características Duras </div>
 		<a href="javascript:;" class="closePopUp">Cerrar</a>
 		<div class="inside">
 			<h4>Industrias</h4>
@@ -307,6 +311,7 @@
 <table cellspacing="0" cellpadding="0" align="center">
 <tr><td>
 	<div class="in">
+		<div class="popuptitle"> Experiencia Laboral </div>
 		<a href="javascript:;" class="closePopUp">Cerrar</a>
 		<div class="inside">
 			<div>	
@@ -381,6 +386,7 @@
 	<table cellspacing="0" cellpadding="0" align="center">
 	<tr><td>
 		<div class="in">
+			<div class="popuptitle"> Educación Formal </div>
 			<a href="javascript:;" class="closePopUp">Cerrar</a>
 			<div class="inside">
 				<div>	
@@ -466,6 +472,7 @@
 	<table cellspacing="0" cellpadding="0" align="center">
 	<tr><td>
 		<div class="in">
+			<div class="popuptitle"> Educación Informal </div>
 			<a href="javascript:;" class="closePopUp">Cerrar</a>
 			<div class="inside">
 				<div>	
