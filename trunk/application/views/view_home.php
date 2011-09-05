@@ -12,11 +12,17 @@
 <meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type"/>
 <script type="text/javascript" src=" <?php echo site_url('js/jquery-1.6.2.min.js')?>"></script>
 <script type="text/javascript" src=" <?php echo site_url('js/json2.js')?>"></script>
+<script type="text/javascript" src=" <?php echo site_url('js/utils.js')?>"></script>
+<script type="text/javascript" src=" <?php echo site_url('js/view_home.js')?>"></script>
 
 <link rel=StyleSheet href="css/global.css"/>
 <link rel=StyleSheet href="css/view_home.css"/>
 
 <title>Find Resources</title>
+
+<script type="text/javascript">
+	var userData = <?php  echo json_encode($usuarioData); ?>;
+</script>
 
 
 </head>
@@ -33,24 +39,24 @@
 ?>
 	<div id="homeCandidatePersonalData">
 	
-			<h2>Datos Personales:</h2>
-			<div class="row clearfix">
-				<div class="label" > Nombre: </div><div class="field"> <?php echo $usuarioData->nombre;?></div>
+			<h2>Datos Personales: <a href="javascript:editUserData();" class="editFields">Editar</a></h2>
+			<div class="clearfix">
+				<div class="label" > Nombre: </div><div> <?php echo $usuarioData->nombre;?></div>
 			</div>
-			<div class="row clearfix">
-				<div class="label" > Apellido: </div><div class="field"> <?php echo $usuarioData->apellido;?></div>
-			</div>
-
-			<div class="row clearfix">
-				<div class="label" > <?php echo $usuarioData->idTipoDocumento;?> : </div> <div class="field"><?php echo $usuarioData->numeroDocumento;?></div>
+			<div class="clearfix">
+				<div class="label" > Apellido: </div><div> <?php echo $usuarioData->apellido;?></div>
 			</div>
 
-			<div class="row clearfix">
-				<div class="label" > Teléfono </div><div class="field"> <?php echo $usuarioData->telefono;?></div>
+			<div class="clearfix">
+				<div class="label" > <?php echo $usuarioData->idTipoDocumento;?> : </div> <div><?php echo $usuarioData->numeroDocumento;?></div>
 			</div>
 
-			<div class="row clearfix">
-				<div class="label" > Pais </div><div class="field"> <?php echo $usuarioData->descripcionPais;?></div>
+			<div class="clearfix">
+				<div class="label" > Teléfono </div><div class=""> <?php echo $usuarioData->telefono;?></div>
+			</div>
+
+			<div class="clearfix">
+				<div class="label" > Pais </div><div> <?php echo $usuarioData->descripcionPais;?></div>
 			</div>
 	</div>
 	<div id="homeCandidateLinks">
@@ -65,9 +71,57 @@
 			</a>
 		</div>
 	</div>
-	
-
-<?php 	
+	<div class="opacity" style="display:none;"></div>	
+	<div class="popup" id="userDataPopUp" style="display:none;">
+	<table cellspacing="0" cellpadding="0" align="center">
+	<tr><td>
+		<div class="in">
+			<div class="popuptitle">Datos Personales</div>
+			<a href="javascript:;" class="closePopUp">Cerrar</a>
+			<div class="inside">
+			
+				<div class="field clearfix">
+					<div class="label">Nombre:</div>
+					<input type="text" id="userDataEditorFirstName" value="" />
+				</div>
+				<div class="field clearfix">
+					<div class="label">Apellido:</div>
+					<input type="text" id="userDataEditorLastName" value="" />
+				</div>
+				<div class="field clearfix">
+					<div class="label">Documento Tipo:</div>
+					<select id="userDataEditorIdType">
+						<?php foreach ($tiposDeDocumentos as $id => $desc){ ?>
+							<option value="<?php echo $id; ?>"><?php echo $id;?></option> 
+						<?php } ?>
+					</select>
+				</div>
+				<div class="field clearfix">
+					<div class="label">Numero:</div>
+					<input type="text" id="userDataEditorIdNumber" value="" />
+				</div>
+				<div class="field clearfix">
+					<div class="label">Teléfono:</div>
+					<input type="text" id="userDataEditorPhone" value="" />
+				</div>
+				<div class="field clearfix">
+					<div class="label">Pais:</div>
+					<select id="userDataEditorCountry">
+						<?php foreach ($paises as $id => $desc){ ?>
+							<option value="<?php echo $id; ?>"><?php echo $desc;?></option> 
+						<?php } ?>
+					</select>
+				</div>
+				<input type="submit" value="Guardar" class="sendButton" />
+				
+			</div>
+		</div>
+	</td></tr>
+	</table>
+	</div>
+			
+			
+	<?php 	
         break;
 	    case "E": //EMPRESA
 ?>

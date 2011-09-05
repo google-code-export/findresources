@@ -37,8 +37,16 @@
 
 .field {
 	float:left;
+	width: 100%;
 }
 
 .row {
   margin: 10px;
 }
+
+
+.editFields{
+	font-size: 11px;
+}
+
+.field

@@ -73,7 +73,7 @@ class Usuario_model extends FR_Model {
 	}
 	
 	/**
-	 * @param usuario: {email, clave, nombre, apellido, razonSocial, idIndustria, idTipoDocumento, numeroDocumento, telefono, idPais, tipoUsuario: "E">empresa "C">candidato}
+	 * @param usuario: {email, clave, nombre, apellido, razonSocial, idIndustria, idTipoDocumento, numeroDocumento, telefono, idPais, idTipoUsuario: "E">empresa "C">candidato}
 	 * @return
 	 * */
 	public function  modificarUsuario($usuario){
@@ -81,6 +81,7 @@ class Usuario_model extends FR_Model {
 		$rta=NULL;
 		$n1 = NULL;
 		$n2 = NULL;
+		
 		$params = array(
 		array('name'=>':pi_usuario', 'value'=>$usuario->email, 'type'=>SQLT_CHR, 'length'=>-1),
 		array('name'=>':pi_clave', 'value'=>$usuario->clave, 'type'=>SQLT_CHR, 'length'=>-1),
@@ -91,15 +92,13 @@ class Usuario_model extends FR_Model {
 		array('name'=>':pi_numero_documento', 'value'=>$usuario->numeroDocumento, 'type'=>SQLT_CHR, 'length'=>-1),
 		array('name'=>':pi_telefono', 'value'=>$usuario->telefono, 'type'=>SQLT_CHR, 'length'=>-1),
 		array('name'=>':pi_pais', 'value'=>$usuario->idPais, 'type'=>SQLT_CHR, 'length'=>-1),
-		array('name'=>':pi_t_usuario', 'value'=>$usuario->email, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':pi_t_usuario', 'value'=>$usuario->idTipoUsuario, 'type'=>SQLT_CHR, 'length'=>-1),
 		array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
 		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
 		);
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_usuario','pr_modificacion_usuario',$params);
 
-
-		
 		if ($n1 == 0){
 			return 0;
 		}
