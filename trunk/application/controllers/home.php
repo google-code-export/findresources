@@ -45,7 +45,6 @@ class Home extends CI_Controller {
 		
 		$usuario = json_decode($usuario);
 		$usuario->email = $idUsuario;
-		$usuario->clave = md5("1234567890"); 
 		
 		$response = $this->Usuario_model->modificarUsuario($usuario);
 		

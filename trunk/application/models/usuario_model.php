@@ -84,7 +84,6 @@ class Usuario_model extends FR_Model {
 		
 		$params = array(
 			array('name'=>':pi_usuario', 'value'=>$usuario->email, 'type'=>SQLT_CHR, 'length'=>-1),
-			array('name'=>':pi_clave', 'value'=>$usuario->clave, 'type'=>SQLT_CHR, 'length'=>-1),
 			array('name'=>':pi_nombre', 'value'=>$usuario->nombre, 'type'=>SQLT_CHR, 'length'=>-1),
 			array('name'=>':pi_apellido', 'value'=>$usuario->apellido, 'type'=>SQLT_CHR, 'length'=>-1),
 			array('name'=>':pi_razon_social', 'value'=>$usuario->razonSocial, 'type'=>SQLT_CHR, 'length'=>-1),
