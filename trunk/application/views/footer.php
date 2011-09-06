@@ -39,7 +39,8 @@
 	<a href="docs/sugerencias.html">Sugerencias</a>
 
 	<a href="docs/terminos.html">Terminos</a>
-	Derechos Reservados (C)
+	
+	<div class="copyright">Derechos Reservados (c) 2011 - findResoruces </div>	
 	
 </div>
 	

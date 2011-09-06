@@ -14,7 +14,7 @@
 
 #toolbar_fr_company_name {
 	color: blue; 
-	font-size: 25px; 
+	font-size: 17px; 
 }
 
 #toolbar_fr_company_slogan {
@@ -27,8 +27,8 @@
 }
 
 #toolbar_header {
-	height: 100px;
-	text-align: center;
+	height: 60px;
+	
 }
 
 #login #toolbar_logout{
