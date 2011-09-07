@@ -1,12 +1,3 @@
-html, body, div, h1, h2, h3, h4, h5, h6, ul, li, ol, p, form, dd, dl, dt, label{margin:0;padding:0;list-style:none;font-weight:normal;}
-body{margin:0;font:12px/15px Arial, Helvetica, sans-serif;background:#FEFEFE;width:100%;}
-img{border:0;}
-a{text-decoration:none;color:#069;}
-a:hover{text-decoration:underline;}
-input, select, textarea{font:12px Arial, Helvetica, sans-serif;}
-ul,ol{position:relative;}
-span.dn{display:none;}
-
 /*GENERAL*/
 
 /*HEADER*/
@@ -21,17 +12,16 @@ span.dn{display:none;}
 .content .CR{width:400px;float:left;}
 .content .CL .block{border-bottom:2px solid #DDD;padding:10px;}
 .content .CL .block h2{font-size:18px;color:#555;padding:0 0 0px;}
-.content .CL .block h2 a{font-size:11px;}
 .content .CL .block h2 a.addpos{float:right;}
 .content .CL .block .inblock{padding:12px 0 2px;}
 .content .CL .block .job{padding:12px 0 2px;border-bottom:1px dotted #666;width:auto;margin-left:26px;}
 .content .CL .block .job:last-child{border:none;}
 .content .CL .block .study{padding:12px 0 2px;border-bottom:1px dotted #666;width:auto;margin-left:26px;}
 .content .CL .block .study:last-child{border:none;}
-.content .CL .block h4{font:bold 14px Arial, Helvetica, sans-serif;color:#555;padding:0 0 6px;}
+.content .CL .block h4{font:bold 14px; color:#555;padding:0 0 6px;}
 .content .CL .block ul{padding:0 0 6px;}
 .content .CL .block ul li{}
-.content .CL .block h5{font:bold 14px Arial, Helvetica, sans-serif;padding:0 0 6px;}
+.content .CL .block h5{font:bold 14px;padding:0 0 6px;}
 .content .CL .block h5 a{font-size:11px;font-weight:normal;padding:0 0 0 4px;}
 .content .CL .block p.company{font-size:12px;font-weight:bold;padding:0 0 2px;}
 .content .CL .block p.industry{font-size:11px;color:#999;}
@@ -44,7 +34,7 @@ span.dn{display:none;}
 .content .info .photo{float:left;}
 .content .info .photo img{padding:5px;background:#FFF;}
 .content .info .right{float:left;width:300px;padding:0 0 0 10px;}
-.content .info .right h3{font:16px Arial, Helvetica, sans-serif;padding:0 0 12px;}
+.content .info .right h3{font:16px;padding:0 0 12px;}
 .content .info .right p{padding:0 0 10px;}
 .content .info .right .grey{color:#666;}
 .content .info .right .grey i{padding:0 4px;font-size:12px;line-height:12px;color:#999;font-style:normal;}
@@ -79,3 +69,15 @@ span.dn{display:none;}
 	width: 200px;
 }
 
+
+#userDataPopUp .buttonsPopUp{
+	margin-top:70px;
+}
+
+#formalEducationPopUp .buttonsPopUp{
+	margin-top:31px;
+}
+
+#informalEducationPopUp .buttonsPopUp{
+	margin-top:164px;
+}

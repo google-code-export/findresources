@@ -1,6 +1,7 @@
 <div class="frFooter">
 <a href="docs/sobrenosotros.html">Sobre nosotros</a>
 
+- 
 
 <?php 	
 	
@@ -36,8 +37,9 @@
 		
 ?>
 
+- 
 	<a href="docs/sugerencias.html">Sugerencias</a>
-
+- 
 	<a href="docs/terminos.html">Terminos</a>
 	
 	<div class="copyright">Derechos Reservados (c) 2011 - findResoruces </div>	

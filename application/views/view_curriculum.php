@@ -76,7 +76,7 @@
 					<!--img src="img/face.jpg" alt="Nombre" /-->
 				<!--/div>
 				<div class="right"-->
-					<h2>Información Personal <a href="javascript:editCVData();" class="editFields">Editar</a></h2>
+					<h2>Información Personal <a href="javascript:editCVData();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
 					<div class="row clearfix">
 						<div><?php echo ($curriculumData->estadoCivil == "") ? "" : $estadosCiviles[$curriculumData->estadoCivil]?>&nbsp;</div>
 						<div><?php echo $curriculumData->fechaNacimiento?></div>
@@ -107,6 +107,7 @@
 					</div>
 
 					<div><?php echo ($curriculumData->idPaisNacionalidad == "")? ""  :   $paises[$curriculumData->idPaisNacionalidad]?>&nbsp;</div>
+					
 					<div><?php echo $curriculumData->twitter?>&nbsp;</div>
 					<div><?php echo $curriculumData->gtalk?>&nbsp;</div>
 					<div><?php echo $curriculumData->sms?></div>
@@ -116,7 +117,7 @@
 			</div>
 			
 			<div class="block" id="hardProperties">
-				<h2>Caracterisiticas Duras <a href="javascript:editHardProperties();" class="editFields">Editar</a></h2>
+				<h2>Caracterisiticas Duras <a href="javascript:editHardProperties();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
 				<div class="inblock">
 					<h4>Industrias</h4>
 					<ul>
@@ -136,13 +137,13 @@
 			
 			<div class="block" id="workExperience">
 		
-				<h2>Experiencia Laboral <a href="javascript:addWorkExperience();">+ <b>Agragar</b> una posición</a></h2>
+				<h2>Experiencia Laboral <a class="addFields" href="javascript:addWorkExperience();"><img src="images/src/add.png"/> <b>Agregar</b> una posición</a></h2>
 							
 				<?php foreach ($experienciaLaboralDelCv as $i => $experiencia){ ?>
 
 				<div class="job" id="job<?php echo $i ?>">
 				
-					<h5><?php echo $experiencia->titulo; ?> <a href="javascript:editWorkExperience(<?php echo $i ;?>);" class="editFields">Editar</a></h5>
+					<h3><?php echo $experiencia->titulo; ?> <a href="javascript:editWorkExperience(<?php echo $i ;?>);" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h3>
 					
 					<p class="company"><?php echo $experiencia->compania; ?></p>
 					<p class="industry">Industria: <?php echo $industriasDisponibles[$experiencia->idIndustria]; ?></p>
@@ -157,13 +158,13 @@
 			</div>
 			
 			<div class="block">
-				<h2>Educaci&oacute;n Formal <a href="javascript:addFormalEducation();">+ <b>Agregar</b> educación</a></h2>
+				<h2>Educaci&oacute;n Formal <a class="addFields" href="javascript:addFormalEducation();"><img src="images/src/add.png"/> <b>Agregar</b> educación</a></h2>
 				
 				<?php foreach ($educacionFormalDelCv as $i => $educacion){ ?>
 				
 				<div class="study">
-					<h5><?php echo ($educacion->idEntidad != "")?$entidadesEducativas[$educacion->idEntidad]: $educacion->descripcionEntidad?>
-					<a href="javascript:editFormalEducation(<?php echo $i ?>);" class="editFields">Edit</a></h5>
+					<h3><?php echo ($educacion->idEntidad != "")?$entidadesEducativas[$educacion->idEntidad]: $educacion->descripcionEntidad?>
+					<a href="javascript:editFormalEducation(<?php echo $i ?>);" class="editFields">Edit</a></h3>
 					<p class="title"><?php echo $educacion->titulo?> </p>
 					<p class="when"><span class="dateFrom"><?php echo $educacion->fechaInicio?></span> – <span class="dateTo"><?php echo $educacion->fechaFinalizacion?></span></p>
 					<p class="eduLevel"><?php echo $nivelesDeEducacion[$educacion->idNivelEducacion]?></p>
@@ -194,11 +195,11 @@
 			</div>
 			
 			<div class="block">
-				<h2>Educaci&oacute;n No Formal <a href="javascript:addInformalEducation();">+ <b>Agregar</b> educación</a></h2>
+				<h2>Educaci&oacute;n No Formal <a class="addFields" href="javascript:addInformalEducation();"><img src="images/src/add.png"/> <b>Agregar</b> educación</a></h2>
 				
 				<?php foreach ($educacionNoFormalDelCv as $id => $educacion){ ?>
 				<div class="study">
-					<h5><?php echo $educacion->descripcion?> <a href="javascript:editInformalEducation(<?php echo $id?>);" class="editFields">Edit</a></h5>
+					<h3><?php echo $educacion->descripcion?> <a href="javascript:editInformalEducation(<?php echo $id?>);" class="editFields"><img src="images/src/pencil.gif"/>Edit</a></h3>
 					<p class="type"><?php echo $tiposDeEducacionNoFormal[$educacion->idTipoEducacionNoFormal];?> </p>
 					<p class="when">Duración: <?php echo $educacion->duracion?> </p>
 				</div>
@@ -225,7 +226,7 @@
 <tr><td>
 	<div class="in">
 		<div class="popuptitle"> Información Personal </div>
-		<a href="javascript:;" class="closePopUp">Cerrar</a>
+		<a href="javascript:;" class="closePopUp"></a>
 		<div class="inside">
 			<div>	
 				<div class="field clearfix">
@@ -306,7 +307,11 @@
 				
 				<div class="field clearfix">
 					<div class="label">Nacionalidad:</div>
-					<input type="text" id="cvDataEditorNationality" value="" />
+					<select id="cvDataEditorNationality">
+						<?php foreach ($paises as $id => $desc){ ?>
+							<option value="<?php echo $id; ?>"><?php echo $desc;?></option> 
+						<?php } ?>
+					</select>
 				</div>
 				
 				<div class="field clearfix">
@@ -329,11 +334,14 @@
 					<input type="text" id="cvDataEditorSMS" value="" />
 				</div>
 				<div class="field clearfix">
-					<div class="label">Sueldo Pretnd.:</div>
+					<div class="label">Sueldo Pret.:</div>
 					<input type="text" id="cvDataEditorDesiredSalary" value="" />
 				</div>
 			</div>
-			<input type="submit" value="Guardar" class="sendButton" />
+			<div class="buttonsPopUp">
+				<input type="submit" value="Guardar" class="sendButton" />
+				<input type="submit" value="Cancelar" class="cancelPopUp" />
+			</div>
 		</div>
 	</div>
 </td></tr>
@@ -346,7 +354,7 @@
 <tr><td>
 	<div class="in">
 		<div class="popuptitle"> Características Duras </div>
-		<a href="javascript:;" class="closePopUp">Cerrar</a>
+		<a href="javascript:;" class="closePopUp"></a>
 		<div class="inside">
 			<h4>Industrias</h4>
 			<div class="clearfix">
@@ -356,7 +364,7 @@
 					<?php } ?>
 				</select>
 
-				<a href="javascript:addIndustry();"> + Agregar</a>
+				<a href="javascript:addIndustry();"> <img src="images/src/add.png"/> Agregar</a>
 			</div>
 
 			<ul id="editItemIndustryList">
@@ -382,7 +390,7 @@
 				<select id="availableToolsSelect">
 					<option value="0">Herramientas</option> 
 				</select>
-				<a href="javascript:addTool();"> + Agregar</a>
+				<a href="javascript:addTool();"> <img src="images/src/add.png"/> Agregar</a>
 			</div>
 			
 			<ul id="editItemToolList">
@@ -398,7 +406,10 @@
 				</li>
 			<?php } ?>
 			</ul>
-			<input type="submit" value="Guardar" class="sendButton"/>
+			<div class="buttonsPopUp">
+				<input type="submit" value="Guardar" class="sendButton" />
+				<input type="submit" value="Cancelar" class="cancelPopUp" />
+			</div>
 		</div>
 	</div>
 </td></tr>
@@ -410,7 +421,7 @@
 <tr><td>
 	<div class="in">
 		<div class="popuptitle"> Experiencia Laboral </div>
-		<a href="javascript:;" class="closePopUp">Cerrar</a>
+		<a href="javascript:;" class="closePopUp"></a>
 		<div class="inside">
 			<div>	
 				<input id="workExperienceEditorId" type="hidden" value="" name="" />
@@ -472,7 +483,10 @@
 					<textarea id="workExperienceEditorDescription"></textarea>
 				</div>
 			</div>
-			<input type="submit" value="Guardar" class="sendButton" />
+			<div class="buttonsPopUp">
+				<input type="submit" value="Guardar" class="sendButton" />
+				<input type="submit" value="Cancelar" class="cancelPopUp" />
+			</div>
 		</div>
 	</div>
 </td></tr>
@@ -485,7 +499,7 @@
 	<tr><td>
 		<div class="in">
 			<div class="popuptitle"> Educación Formal </div>
-			<a href="javascript:;" class="closePopUp">Cerrar</a>
+			<a href="javascript:;" class="closePopUp"></a>
 			<div class="inside">
 				<div>	
 					<input id="formalEducationEditorId" type="hidden" value="" name="" />
@@ -559,7 +573,10 @@
 					</div>
 
 				</div>
-				<input type="submit" value="Guardar" class="sendButton" />
+				<div class="buttonsPopUp">
+					<input type="submit" value="Guardar" class="sendButton" />
+					<input type="submit" value="Cancelar" class="cancelPopUp" />
+				</div>
 			</div>
 		</div>
 	</td></tr>
@@ -571,7 +588,7 @@
 	<tr><td>
 		<div class="in">
 			<div class="popuptitle"> Educación Informal </div>
-			<a href="javascript:;" class="closePopUp">Cerrar</a>
+			<a href="javascript:;" class="closePopUp"></a>
 			<div class="inside">
 				<div>	
 					<input id="informalEducationEditorId" type="hidden" value="" name="" />
@@ -599,7 +616,10 @@
 					</div>
 	
 				</div>
-				<input type="submit" value="Guardar" class="sendButton" />
+				<div class="buttonsPopUp">
+					<input type="submit" value="Guardar" class="sendButton" />
+					<input type="submit" value="Cancelar" class="cancelPopUp" />
+				</div>
 			</div>
 		</div>
 	</td></tr>
