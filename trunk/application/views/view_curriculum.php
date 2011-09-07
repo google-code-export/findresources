@@ -164,7 +164,7 @@
 				
 				<div class="study">
 					<h3><?php echo ($educacion->idEntidad != "")?$entidadesEducativas[$educacion->idEntidad]: $educacion->descripcionEntidad?>
-					<a href="javascript:editFormalEducation(<?php echo $i ?>);" class="editFields">Edit</a></h3>
+					<a href="javascript:editFormalEducation(<?php echo $i ?>);" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h3>
 					<p class="title"><?php echo $educacion->titulo?> </p>
 					<p class="when"><span class="dateFrom"><?php echo $educacion->fechaInicio?></span> – <span class="dateTo"><?php echo $educacion->fechaFinalizacion?></span></p>
 					<p class="eduLevel"><?php echo $nivelesDeEducacion[$educacion->idNivelEducacion]?></p>
@@ -199,7 +199,7 @@
 				
 				<?php foreach ($educacionNoFormalDelCv as $id => $educacion){ ?>
 				<div class="study">
-					<h3><?php echo $educacion->descripcion?> <a href="javascript:editInformalEducation(<?php echo $id?>);" class="editFields"><img src="images/src/pencil.gif"/>Edit</a></h3>
+					<h3><?php echo $educacion->descripcion?> <a href="javascript:editInformalEducation(<?php echo $id?>);" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h3>
 					<p class="type"><?php echo $tiposDeEducacionNoFormal[$educacion->idTipoEducacionNoFormal];?> </p>
 					<p class="when">Duración: <?php echo $educacion->duracion?> </p>
 				</div>
