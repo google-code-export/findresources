@@ -133,6 +133,7 @@ function editCVData(){
 	$('#cvDataEditorTwitter').val(cvData.twitter);
 	$('#cvDataEditorGTalk').val(cvData.gtalk);
 	$('#cvDataEditorSMS').val(cvData.sms);
+	$('#cvDataEditorDesiredSalary').val(cvData.sueldoPretendido);
 	
 	showPopUp('#cvDataPopUp');
 }
@@ -357,7 +358,8 @@ $(function(){
 			idPaisNacionalidad: $('#cvDataEditorNationality').val(),
 			twitter: $('#cvDataEditorTwitter').val(),
 			gtalk: $('#cvDataEditorGTalk').val(),
-			sms: $('#cvDataEditorSMS').val()
+			sms: $('#cvDataEditorSMS').val(),
+			sueldoPretendido: $('#cvDataEditorDesiredSalary').val()
 		};
 		$.ajax({
 			url: "curriculum/setCurriculum",

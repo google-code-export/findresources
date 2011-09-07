@@ -110,6 +110,7 @@
 					<div><?php echo $curriculumData->twitter?>&nbsp;</div>
 					<div><?php echo $curriculumData->gtalk?>&nbsp;</div>
 					<div><?php echo $curriculumData->sms?></div>
+					<div>$ <?php echo $curriculumData->sueldoPretendido?></div>
 
 				<!--/div-->
 			</div>
@@ -323,6 +324,14 @@
 					<input type="text" id="cvDataEditorSMS" value="" />
 				</div>
 				
+				<div class="field clearfix">
+					<div class="label">SMS:</div>
+					<input type="text" id="cvDataEditorSMS" value="" />
+				</div>
+				<div class="field clearfix">
+					<div class="label">Sueldo Pretnd.:</div>
+					<input type="text" id="cvDataEditorDesiredSalary" value="" />
+				</div>
 			</div>
 			<input type="submit" value="Guardar" class="sendButton" />
 		</div>

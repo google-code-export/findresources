@@ -68,7 +68,7 @@ class Curriculum_model extends FR_Model {
 	 *      'idPais','idProvincia','partido','calle',
 	 *      'numero','piso','departamento','codigoPostal',
 	 *      'telefono1','horarioContactoDesde1','horarioContactoHasta1','telefono2',
-	 *      'horarioContactoDesde2','horarioContactoHasta2','idPaisNacionalidad','twitter','gtalk','sms'
+	 *      'horarioContactoDesde2','horarioContactoHasta2','idPaisNacionalidad','twitter','gtalk','sms', salarioPretendido
 	 *      }
 	 * **/
 	public function  getCurriculum($idCurriculum){
@@ -111,7 +111,7 @@ class Curriculum_model extends FR_Model {
 			$response->twitter = $dbRegistros[0]->twitter;
 			$response->gtalk = $dbRegistros[0]->gtalk;
 			$response->sms = $dbRegistros[0]->sms;
-			
+			$response->sueldoPretendido = $dbRegistros[0]->sueldo_pretendido;
 			return $response;
 		}
 		else{
@@ -127,7 +127,7 @@ class Curriculum_model extends FR_Model {
 	 *      'idPais','idProvincia','partido','calle',
 	 *      'numero','piso','departamento','codigoPostal',
 	 *      'telefono1','horarioContactoDesde1','horarioContactoHasta1','telefono2',
-	 *      'horarioContactoDesde2','horarioContactoHasta2','idPaisNacionalidad','twitter', 'gtalk','sms'
+	 *      'horarioContactoDesde2','horarioContactoHasta2','idPaisNacionalidad','twitter', 'gtalk','sms', 'salarioPretendido'
 	 *      }
 	 * @return 0 is Ok
 	 * */
@@ -158,6 +158,7 @@ class Curriculum_model extends FR_Model {
 		array('name'=>':pi_twitter', 'value'=>$unCurriculum->twitter, 'type'=>SQLT_CHR, 'length'=>-1),
 		array('name'=>':pi_gtalk', 'value'=>$unCurriculum->gtalk, 'type'=>SQLT_CHR, 'length'=>-1),
 		array('name'=>':pi_sms', 'value'=>$unCurriculum->sms, 'type'=>SQLT_CHR, 'length'=>-1),	
+		array('name'=>':pi_sueldo_pretendido', 'value'=>$unCurriculum->sueldoPretendido, 'type'=>SQLT_CHR, 'length'=>-1),	
 		array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
 		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
 		);
