@@ -38,8 +38,8 @@
 		case "C": //CANDIDATO
 ?>
 	<div id="homeCandidatePersonalData">
-	
-			<h2>Datos Personales: <a href="javascript:editUserData();" class="editFields">Editar</a></h2>
+		<div id="homeCandidatePersonalDataBody">
+			<h2>Datos Personales: <a href="javascript:editUserData();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
 			<div class="clearfix">
 				<div class="label" > Nombre: </div><div> <?php echo $usuarioData->nombre;?></div>
 			</div>
@@ -58,6 +58,7 @@
 			<div class="clearfix">
 				<div class="label" > Pais </div><div> <?php echo $usuarioData->descripcionPais;?></div>
 			</div>
+		</div>
 	</div>
 	<div id="homeCandidateLinks">
 		<div id="homeCurriculumLink" class="clearfix">
@@ -77,7 +78,7 @@
 	<tr><td>
 		<div class="in">
 			<div class="popuptitle">Datos Personales</div>
-			<a href="javascript:;" class="closePopUp">Cerrar</a>
+			<a href="javascript:;" class="closePopUp"></a>
 			<div class="inside">
 			
 				<div class="field clearfix">
@@ -112,8 +113,11 @@
 						<?php } ?>
 					</select>
 				</div>
-				<input type="submit" value="Guardar" class="sendButton" />
 				
+				<div class="buttonsPopUp">
+					<input type="submit" value="Guardar" class="sendButton" />
+					<input type="submit" value="Cancelar" class="cancelPopUp" />
+				</div>
 			</div>
 		</div>
 	</td></tr>

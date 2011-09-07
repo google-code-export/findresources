@@ -1,6 +1,6 @@
 @CHARSET "ISO-8859-1";
 #toolbar_fr_logo {
-	background: url("../images/argentina_soft_logo.png") no-repeat scroll 0 0 transparent;
+	background: url("../images/src/argentina_soft_logo.png") no-repeat scroll 0 0 transparent;
 	float:left;
 	padding-top: 55px;
     width: 76px;
@@ -10,11 +10,13 @@
 #toolbar_fr_company{
 	float:left;
 	width:760px;
+	margin-left: 10px;
 }
 
 #toolbar_fr_company_name {
 	color: blue; 
 	font-size: 17px; 
+	margin-top: 7px;
 }
 
 #toolbar_fr_company_slogan {
@@ -28,7 +30,7 @@
 
 #toolbar_header {
 	height: 60px;
-	
+	margin-bottom: 10px;
 }
 
 #login #toolbar_logout{

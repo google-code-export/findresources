@@ -18,5 +18,9 @@ $(function(){
 		hidePopUp();
 	});
 
-	return false;
+	$('.popup .cancelPopUp').click(function(){
+		hidePopUp();
+	});
+
+return false;
 });
