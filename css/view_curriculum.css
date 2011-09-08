@@ -8,7 +8,7 @@
 
 /*CONTENT*/
 .content{width:1000px;margin:0 auto;}
-.content .CL{width:500px;float:left;}
+.content .CL{width:500px;float:left; margin-left: 10px; margin-top: 20px;}
 .content .CR{width:400px;float:left;}
 .content .CL .block h2{font-size:18px;color:#555;padding:0 0 0px;}
 .content .CL .block h2 a.addpos{float:right;}

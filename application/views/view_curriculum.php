@@ -69,6 +69,7 @@
 	
 	<!-- CONTENT -->
 	<div class="content">
+		<h1>Curriculum</h1>	
 		<div class="CL">
 			
 			<div class="info clearfix block">
