@@ -6,8 +6,8 @@
     <meta name="description" content="FindResources - Choose best people" /> 
     <meta name="keywords" content="personality test images psychology raven intelligence" /> 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <script type="text/javascript" src="<?php echo base_url();?>js/countDown.js"></script>
-    <script src="<?php echo base_url();?>js/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url();?>js/src/countDown.js"></script>
+    <script src="<?php echo base_url();?>js/libs/jquery-1.6.2.min.js"></script>
     <link rel="stylesheet" href="<?php echo base_url();?>css/style.css">
 </head> 
 <body> 

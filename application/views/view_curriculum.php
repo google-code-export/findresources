@@ -50,10 +50,10 @@
 	var cvData = <?php echo json_encode($curriculumData);?>;
 	
 </script>
-<script type="text/javascript" src="<?php echo site_url('js/jquery-1.6.2.min.js')?>"></script>
-<script type="text/javascript" src="<?php echo site_url('js/json2.js')?>"></script>
-<script type="text/javascript" src="<?php echo site_url('js/utils.js')?>"></script>
-<script type="text/javascript" src="<?php echo site_url('js/view_curriculum.js')?>"></script>
+<script type="text/javascript" src="<?php echo site_url('js/libs/jquery-1.6.2.min.js')?>"></script>
+<script type="text/javascript" src="<?php echo site_url('js/libs/json2.js')?>"></script>
+<script type="text/javascript" src="<?php echo site_url('js/src/utils.js')?>"></script>
+<script type="text/javascript" src="<?php echo site_url('js/src/view_curriculum.js')?>"></script>
 </head>
 <body>
 
