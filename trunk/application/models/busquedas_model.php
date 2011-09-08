@@ -111,7 +111,7 @@ class Busquedas_model extends CI_Model {
 	}
 	
 	
-	/** CREO O MODIFICO LAS INDUSTRIAS A BUSCAR **/
+	/** CREO O MODIFICO LAS HERRAMIENTAS A BUSCAR **/
 	public function  setHerramientasBusqueda($idBusqueda, $herramientas){
 
 		$result["error"] = NULL;
@@ -124,7 +124,7 @@ class Busquedas_model extends CI_Model {
 			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
 		);
 		
-		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_BUS_HERRAMIENTAS',$params);
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_BUS_HERRAMIENTA',$params);
 		
 		return $result;
 			
@@ -149,6 +149,181 @@ class Busquedas_model extends CI_Model {
 		return $result;
 			
 	}
+	
+	/** CONSULTA LOS DATOS DE LA BUSQUEDA **/
+	public function  getBusqueda($idBusqueda){
+
+		$result["descripcionBusqueda"] = NULL;
+		$result["cantidadRecursos"] = NULL;
+		$result["fechaHasta"] = NULL;
+		$result["error"] = NULL;
+		$result["desc"] = NULL;
+		
+		$params = array(
+			array('name'=>':pi_id_busqueda', 'value'=>$idBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':PO_D_BUSQUEDA', 'value'=>&$result["descripcionBusqueda"], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':PO_CANTIDAD_RECURSOS', 'value'=>&$result["cantidadRecursos"], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':PO_F_HASTA', 'value'=>&$result["fechaHasta"], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_CONS_BUSQUEDA',$params);
+		
+		return $result;
+			
+	}
+	
+	
+	/** CONSULTO LOS RECURSOS DE LA BUSQUEDA **/
+	public function  getRecursoBusqueda($idBusqueda){
+		$result['edadDesde']= NULL;
+		$result['edadHasta']= NULL;
+		$result['edadModo']= NULL;
+		$result['nacionalidad']= NULL;
+		$result['provincia']= NULL;
+		$result['localidad']= NULL;
+		$result['twitterModo']= NULL;
+		$result['gtalkModo']= NULL;
+		$result['smsModo']= NULL;
+		$result["error"] = NULL;
+		$result["desc"] = NULL;
+		
+		$params = array(
+			array('name'=>':pi_id_busqueda', 'value'=>$idBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':po_edad_desde', 'value'=>&$result['edadDesde'], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':po_edad_hasta', 'value'=>&$result['edadHasta'], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':po_edad_c_modo', 'value'=>&$result['edadModo'], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':po_lista_nacionalidad', 'value'=>&$result['nacionalidad'], 'type'=>SQLT_RSET, 'length'=>255),
+	 		array('name'=>':po_lista_provincia', 'value'=>&$result['provincia'], 'type'=>SQLT_RSET, 'length'=>255),
+			array('name'=>':po_lista_localidad', 'value'=>&$result['localidad'], 'type'=>SQLT_RSET, 'length'=>255),
+			array('name'=>':po_twitter_c_modo', 'value'=>&$result['twitterModo'], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':po_gtalk_c_modo', 'value'=>&$result['gtalkModo'], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':po_sms_c_modo', 'value'=>&$result['smsModo'], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_CONS_BUS_CV',$params);
+		
+		return $result;
+			
+	}
+	
+	
+	/** CONSULTA DE EDUCACION FORMAL DE UNA BUSQUEDA **/
+	public function  getEducacionFormalDeBusqueda($idBusqueda){
+		
+		$result['id'] = NULL;
+		$result['idEntidad'] = NULL;
+		$result['descripcionEntidad'] = NULL;
+		$result['modoEntidad'] = NULL;
+		$result['titulo'] = NULL;
+ 		$result['modoTitulo'] = NULL;
+		$result['idNivelEducacion'] = NULL;
+		$result['modoNivelEducacion'] = NULL;
+		$result['idArea'] = NULL;
+		$result['modoArea'] = NULL;
+		$result['estado'] = NULL;
+		$result['modoEstado'] = NULL;
+		$result['promedioDesde'] = NULL;
+		$result['promedioHasta'] = NULL;
+		$result['modoPromedio']= NULL;
+		$result['baja']= NULL;
+		$result["idEducacionFormal"] = NULL;
+		$result["id"] = NULL;
+		$result["error"] = NULL;
+		$result["desc"] = NULL;
+		
+		$params = array(
+			array('name'=>':pi_id_busqueda', 'value'=>$idBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':po_id_bus_edu_formal', 'value'=>&$result['id'], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':po_id_entidad_educativa', 'value'=>&$result['idEntidad'], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':po_d_entidad', 'value'=>&$result['descripcionEntidad'], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':po_c_modo_entidad', 'value'=>&$result['modoEntidad'], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':po_titulo', 'value'=>&$result['titulo'], 'type'=>SQLT_CHR, 'length'=>255),
+	 		array('name'=>':po_c_modo_titulo', 'value'=>&$result['modoTitulo'], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':po_id_nivel_educacion', 'value'=>&$result['idNivelEducacion'], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':po_c_modo_nivel_educacion', 'value'=>&$result['modoNivelEducacion'], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':po_id_area', 'value'=>&$result['idArea'], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':po_c_modo_area', 'value'=>&$result['modoArea'], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':po_estado', 'value'=>&$result['estado'], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':po_c_modo_estado', 'value'=>&$result['modoEstado'], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':po_promedio_desde', 'value'=>&$result['promedioDesde'], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':po_promedio_hasta', 'value'=>&$result['promedioHasta'], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':po_c_modo_promedio', 'value'=>&$result['modoPromedio'], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':po_id_bus_edu_formal', 'value'=>&$result["idEducacionFormal"], 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_CONS_BUS_EDU_FORMAL',$params);
+		
+		return $result;
+
+		
+	}
+		
+		
+	/** CONSULTO LAS INDUSTRIAS DE UNA  BUSQUEDA**/
+	public function  getIndustriasBusqueda($idBusqueda) {
+		$result["industrias"] = NULL;
+		$result["error"] = NULL;
+		$result["desc"] = NULL;
+		
+		$params = array(
+			array('name'=>':pi_id_busqueda', 'value'=>$idBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':po_bus_industria', 'value'=>&$result["industrias"], 'type'=>SQLT_RSET, 'length'=>255),
+			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_CONS_INDUSTRIA',$params);
+		
+		return $result;
+			
+	}
+	
+	
+	/** CONSULTO LAS HERRAMIENTAS DE UNA BUSQUEDA **/
+	public function  getHerramientasBusqueda($idBusqueda){
+		$result["herramientas"] = NULL;
+		$result["error"] = NULL;
+		$result["desc"] = NULL;
+		
+		$params = array(
+			array('name'=>':pi_id_busqueda', 'value'=>$idBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':po_lista_herramienta', 'value'=>&$result["herramientas"], 'type'=>SQLT_RSET, 'length'=>255),
+			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_CONS_HERRAMIENTA',$params);
+		
+		return $result;
+			
+	}
+	
+	
+	/** CONSULTO LAS HABILIDADES BLANDAS DE UNA BUSUQEDA **/
+	public function  getHabilidadesBlandasBusqueda($idBusqueda){
+		$result["habilidadesBlandas"] = NULL;
+		$result["error"] = NULL;
+		$result["desc"] = NULL;
+		
+		$params = array(
+			array('name'=>':pi_id_busqueda', 'value'=>$idBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':po_hab_blanda', 'value'=>&$result["habilidadesBlandas"], 'type'=>SQLT_RSET, 'length'=>255),
+			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_CONS_HABILIDADES_BLANDAS',$params);
+		
+		return $result;
+			
+	}
+	
 	/*****************************************************************************************************************/
 	/*******************LOS STORED PROCEDURES DE ABAJO NO SON REALES**************************************************/
 	/*****************************************************************************************************************/
