@@ -99,7 +99,7 @@ class Busquedas_model extends CI_Model {
 		
 		$params = array(
 			array('name'=>':pi_id_busqueda', 'value'=>$idBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
-			array('name'=>':pi_bus_industria', 'value'=>$industria, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_bus_industria', 'value'=>$industrias, 'type'=>SQLT_CHR, 'length'=>-1),
 			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
 			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
 		);
