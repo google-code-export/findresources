@@ -38,25 +38,27 @@
 		case "C": //CANDIDATO
 ?>
 	<div id="homeCandidatePersonalData">
-		<div id="homeCandidatePersonalDataBody">
+		<div id="homeCandidatePersonalDataBody" class="block">
 			<h2>Datos Personales: <a href="javascript:editUserData();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
-			<div class="clearfix">
-				<div class="label" > Nombre: </div><div> <?php echo $usuarioData->nombre;?></div>
-			</div>
-			<div class="clearfix">
-				<div class="label" > Apellido: </div><div> <?php echo $usuarioData->apellido;?></div>
-			</div>
-
-			<div class="clearfix">
-				<div class="label" > <?php echo $usuarioData->idTipoDocumento;?> : </div> <div><?php echo $usuarioData->numeroDocumento;?></div>
-			</div>
-
-			<div class="clearfix">
-				<div class="label" > Teléfono </div><div class=""> <?php echo $usuarioData->telefono;?></div>
-			</div>
-
-			<div class="clearfix">
-				<div class="label" > Pais </div><div> <?php echo $usuarioData->descripcionPais;?></div>
+			<div class="inblock">
+				<div class="clearfix">
+					<div class="label" > Nombre: </div><div> <?php echo $usuarioData->nombre;?></div>
+				</div>
+				<div class="clearfix">
+					<div class="label" > Apellido: </div><div> <?php echo $usuarioData->apellido;?></div>
+				</div>
+	
+				<div class="clearfix">
+					<div class="label" > <?php echo $usuarioData->idTipoDocumento;?> : </div> <div><?php echo $usuarioData->numeroDocumento;?></div>
+				</div>
+	
+				<div class="clearfix">
+					<div class="label" > Teléfono </div><div class=""> <?php echo $usuarioData->telefono;?></div>
+				</div>
+	
+				<div class="clearfix">
+					<div class="label" > Pais </div><div> <?php echo $usuarioData->descripcionPais;?></div>
+				</div>
 			</div>
 		</div>
 	</div>

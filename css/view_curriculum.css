@@ -10,14 +10,9 @@
 .content{width:1000px;margin:0 auto;}
 .content .CL{width:500px;float:left;}
 .content .CR{width:400px;float:left;}
-.content .CL .block{border-bottom:2px solid #DDD;padding:10px;}
 .content .CL .block h2{font-size:18px;color:#555;padding:0 0 0px;}
 .content .CL .block h2 a.addpos{float:right;}
-.content .CL .block .inblock{padding:12px 0 2px;}
-.content .CL .block .job{padding:12px 0 2px;border-bottom:1px dotted #666;width:auto;margin-left:26px;}
-.content .CL .block .job:last-child{border:none;}
-.content .CL .block .study{padding:12px 0 2px;border-bottom:1px dotted #666;width:auto;margin-left:26px;}
-.content .CL .block .study:last-child{border:none;}
+
 .content .CL .block h4{font:bold 14px; color:#555;padding:0 0 6px;}
 .content .CL .block ul{padding:0 0 6px;}
 .content .CL .block ul li{}
@@ -30,7 +25,9 @@
 .content .CL .block p.recommendations{color:#666;font-size:11px;font-style:italic;padding:0 0 6px;}
 .content .CL .block p.recommendations a{font-style:normal;padding:0 0 0 6px;}
 .content .CL .block p.addActivity{padding:0 0 6px;}
-.content .info{background:#DDF0F8;padding:10px;margin:0 0 10px;}
+
+.block {margin:0 0 10px; border:2px solid #DDD;padding:10px;}
+
 .content .info .photo{float:left;}
 .content .info .photo img{padding:5px;background:#FFF;}
 .content .info .right{float:left;width:300px;padding:0 0 0 10px;}
@@ -85,3 +82,4 @@
 #hardProperties ul{
 	margin: 3px 0 12px 6px;
 }
+
