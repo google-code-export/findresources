@@ -147,12 +147,17 @@ h1 {
 .addFields, 
 .editFields {
 	font-size: 11px;
-	margin-left: 30px;
-    margin-top: 7px;
 	float: right;
 }
 
 .editFields img{
     margin-right: 3px;
     width: 8px;
+}
+
+
+.inblock{
+	margin:5px;
+	padding:5px;
+	background-color: #DAEBEA
 }
