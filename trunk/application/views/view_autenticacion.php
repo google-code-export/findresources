@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type"/>
-<script type="text/javascript" src=" <?php echo site_url('js/jquery-1.6.2.min.js')?>"></script>
-<script type="text/javascript" src=" <?php echo site_url('js/json2.js')?>"></script>
+<script type="text/javascript" src=" <?php echo site_url('js/libs/jquery-1.6.2.min.js')?>"></script>
+<script type="text/javascript" src=" <?php echo site_url('js/libs/json2.js')?>"></script>
 
 <title>Find Resources</title>
 
