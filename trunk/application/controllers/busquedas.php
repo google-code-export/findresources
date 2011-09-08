@@ -1,6 +1,8 @@
 <?php 
 class Busquedas extends CI_Controller {
 	
+	public $sep = ";";
+	
 	public function Busquedas(){
 		parent::__construct();
 		$this->view_data['base_url'] = base_url();
@@ -8,35 +10,34 @@ class Busquedas extends CI_Controller {
 	}
 	
 	public function index(){
-		//$usuario = @$_SESSION[SESSION_ID_USUARIO];
+		/*
+		$usuario = @$_SESSION[SESSION_ID_USUARIO];
 		$usuario = "jonakup@hotmail.com";
 		$data['usuarioData'] = $this->Usuario_model->getUsuario($usuario);
-
-		$data['busquedasDelUsuario'][0]->id = "0";
-		$data['busquedasDelUsuario'][0]->nombre = "Contadores serios";
-		$data['busquedasDelUsuario'][1]->id = "1";
-		$data['busquedasDelUsuario'][1]->nombre = "Abogado Marketineros";
-		$data['busquedasDelUsuario'][2]->id = "2";
-		$data['busquedasDelUsuario'][2]->nombre = "Secretarias no sexies";
-		$data['busquedasDelUsuario'][3]->id = "3";
-		$data['busquedasDelUsuario'][3]->nombre = "Obrero que desea reubicacion";
+		*/
+		/** SETEO SEPARADOR **/
+		$query = $this->db->query('SELECT PKG_UTIL.FU_OBTIENE_SEPARADOR_SPLIT() SEPARADOR FROM DUAL');
+		$row = $query->row_array();
+		$this->sep = $row["SEPARADOR"];
 		
+		/** PRUEBA CREACION DE BUSQUEDA **/
 		$idUsuario = "leandrominio@gmail.com";
 		$descripcionBusqueda = "Esta es la descripcion de mi primera búsqueda";
 		$fechaHasta = "03/10/2011";
 		$cantidadRecursos = 2 ;
-		$idBusqueda = 1;
+		$idBusqueda = 1; //NULL = nuevo
 		$result  = $this->Busquedas_model->setBusqueda($idBusqueda, $idUsuario,$descripcionBusqueda,$fechaHasta,$cantidadRecursos);
-		
+		$busquedaACTUAL = $result["idBusqueda"];
 		if ($result["error"] == 0 )
-				$data["result"] = "Búsqueda creada/modificada correctamente. ID : ".$result["idBusqueda"];
+				$data["result"] = "PKG_BUSQUEDAS.PR_BUSQUEDA Búsqueda creada/modificada correctamente. ID : ".$busquedaACTUAL;
 		else 			
-			$data["result"] = "ERROR (".$result["error"].") :".$result["desc"];
+			$data["result"] = "PKG_BUSQUEDAS.PR_BUSQUEDA ERROR : (".$result["error"].") :".$result["desc"];
 		
-		echo $data["result"];
-		//$this->load->view('view_busquedas', $data);
+		echo $data["result"]."<br />";
+
+		/** PRUEBA CREACION DE EDUCACION FORMAL PARA LA BUSQUEDA **/
 		$educacionFormal = array(
-			"id" => null, // null = nuevo
+			"id" => 4, // NULL = nuevo
 			"idEntidad" => 3,
 			"descripcionEntidad" => "ENTIDAD", 
 			"modoEntidad" => "R",
@@ -47,31 +48,80 @@ class Busquedas extends CI_Controller {
 			"idArea" => 1,
 			"modoArea" => "R",
 			"estado" => "C",
-			"modoEstado" => "R",
+			"modoEstado" => "R", //REQUERIDO - PREFERIDO
 			"promedioDesde" => 6,
 			"promedioHasta"=> 8,
 			"modoPromedio"=> "P",
 			"baja" => "N" // SI LO QUIERO BORRAR PONGO "S"
 		);
 		
-		$result = $this->Busquedas_model->setEducacionFormalDeBusqueda($result["idBusqueda"],$educacionFormal);
+		$result = $this->Busquedas_model->setEducacionFormalDeBusqueda($busquedaACTUAL,$educacionFormal);
 		
 		if ($result["error"] == 0 )
-				$data["result"] = "EducacionFormal creada/modificada correctamente. ID : ".$result["idEducacionFormal"];
+				$data["result"] = "PKG_BUSQUEDAS.PR_BUS_EDUCACION_FORMAL EducacionFormal creada/modificada correctamente. ID : ".$result["idEducacionFormal"];
 		else 			
-			$data["result"] = "ERROR (".$result["error"].") :".$result["desc"];
+			$data["result"] = "PKG_BUSQUEDAS.PR_BUS_EDUCACION_FORMAL : ERROR (".$result["error"].") :".$result["desc"];
 			
-		print_r($result);
+		echo $data["result"]."<br />";
+		
+		
+		/** PRUEBA CREACION DE RECURSO PARA LA BUSQUEDA **/
+		$recurso = array(
+			"id" => 4, // Busqueda NULL = nuevo
+			"edadDesde" => 20,
+			"edadHasta" => 30, 
+			"edadModo" => "R",
+			"nacionalidad" => "ARG".$this->sep."R".$this->sep."PER".$this->sep."P",
+			"provincia" => "0".$this->sep."P", // 0 = CABA
+			"localidad" => "",
+			"twitterModo" => "P",
+			"gtalkModo" => "P",
+			"smsModo" => "P" 
+		);
+		
+		$result = $this->Busquedas_model->setRecursoBusqueda($busquedaACTUAL,$recurso);
+		
+		if ($result["error"] == 0 )
+				$data["result"] = "PKG_BUSQUEDAS.PR_BUS_CV Recurso de Busqueda creada correctamente.";
+		else 			
+			$data["result"] = "PKG_BUSQUEDAS.PR_BUS_CV ERROR : (".$result["error"].") :".$result["desc"];
+			
+		echo $data["result"]."<br />";
+		
+		
+		/** PRUEBA CREACION DE RECURSO PARA LA BUSQUEDA **/
+		
+		$industrias = "1".$this->sep."5".$this->sep."0,2".$this->sep."2".$this->sep."3".$this->sep."0,9";
+		//ID+VALORACION+IMPORTANCIA
+		$result = $this->Busquedas_model->setIndustriasBusqueda($busquedaACTUAL,$industrias);
+		
+		if ($result["error"] == 0 )
+				$data["result"] = "PKG_BUSQUEDAS.PR_BUS_INDUSTRIA Industrias de Busqueda creada/modificada correctamente.";
+		else 			
+			$data["result"] = "PKG_BUSQUEDAS.PR_BUS_INDUSTRIA ERROR : (".$result["error"].") :".$result["desc"];
+			
+		echo $data["result"]."<br />";
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 	
 	
-	public function  setEducacionFormal(){
+	/*public function  setEducacionFormal(){
 		$currentCurriculum = @$_SESSION[SESSION_CV_EDITANDO];
 		$educacionFormal = $this->input->post('educacionFormal');
 		$educacionFormal = json_decode($educacionFormal);
 		$respuesta = $this->Curriculum_model->setEducacionFormal($currentCurriculum->id, $educacionFormal);
 		echo json_encode($respuesta);
-	}
+	}*/
 	
 
 }?>
