@@ -71,9 +71,9 @@ class Busquedas extends CI_Controller {
 			"edadDesde" => 20,
 			"edadHasta" => 30, 
 			"edadModo" => "R",
-			"nacionalidad" => "ARG".$this->sep."R".$this->sep."PER".$this->sep."P",
+			"nacionalidad" => "ARG".$this->sep."R".$this->sep."BOL".$this->sep."P",
 			"provincia" => "0".$this->sep."P", // 0 = CABA
-			"localidad" => "",
+			"localidad" => "", // VA el texto no el id
 			"twitterModo" => "P",
 			"gtalkModo" => "P",
 			"smsModo" => "P" 
@@ -89,7 +89,7 @@ class Busquedas extends CI_Controller {
 		echo $data["result"]."<br />";
 		
 		
-		/** PRUEBA CREACION DE RECURSO PARA LA BUSQUEDA **/
+		/** PRUEBA CREACION DE INDUSTRIA PARA LA BUSQUEDA **/
 		
 		$industrias = "1".$this->sep."5".$this->sep."0,2".$this->sep."2".$this->sep."3".$this->sep."0,9";
 		//ID+VALORACION+IMPORTANCIA
@@ -103,18 +103,127 @@ class Busquedas extends CI_Controller {
 		echo $data["result"]."<br />";
 		
 		
+		/** PRUEBA CREACION DE HERRAMIENTAS PARA LA BUSQUEDA **/
+		$herramientas = "7".$this->sep."5".$this->sep."0,2".$this->sep."6".$this->sep."3".$this->sep."0,9";
+		//ID+VALORACION+IMPORTANCIA
+		$result = $this->Busquedas_model->setHerramientasBusqueda($busquedaACTUAL,$herramientas);
+		
+		if ($result["error"] == 0 )
+				$data["result"] = "PKG_BUSQUEDAS.PR_BUS_HERRAMIENTA Herramientas de Busqueda creada/modificada correctamente.";
+		else 			
+			$data["result"] = "PKG_BUSQUEDAS.PR_BUS_HERRAMIENTA ERROR : (".$result["error"].") :".$result["desc"];
+			
+		echo $data["result"]."<br />";
 		
 		
+		/** PRUEBA CREACION DE HABILIDADES BLANDAS PARA LA BUSQUEDA **/
+		$habilidadesBlandas = "41".$this->sep."42".$this->sep."44".$this->sep."48".$this->sep."49".$this->sep."51";
+		//ID+VALORACION+IMPORTANCIA
+		$result = $this->Busquedas_model->setHabilidadesBlandasBusqueda($busquedaACTUAL,$habilidadesBlandas);
+		
+		if ($result["error"] == 0 )
+				$data["result"] = "PKG_BUSQUEDAS.PR_BUS_HABILIDADES_BLANDAS Habilidades Blandas de Busqueda creada/modificada correctamente.";
+		else 			
+			$data["result"] = "PKG_BUSQUEDAS.PR_BUS_HABILIDADES_BLANDAS ERROR : (".$result["error"].") :".$result["desc"];
+			
+		echo $data["result"]."<br />";
 		
 		
+		/** PRUEBA CONSULTA DE BUSQUEDA **/
+
+		$result  = $this->Busquedas_model->getBusqueda($busquedaACTUAL);
+
+		if ($result["error"] == 0 ){
+				$data["result"] = "PKG_BUSQUEDAS.PR_BUSQUEDA Búsqueda consultada correctamente. ID : ".$busquedaACTUAL;
+		}
+		else 			
+			$data["result"] = "PKG_BUSQUEDAS.PR_BUSQUEDA ERROR : (".$result["error"].") :".$result["desc"];
+		
+		echo $data["result"]."<br />";
+		var_dump($result);
+		echo "<br />";
+		
+		/** PRUEBA CONSULTA DE RECURSO DEBUSQUEDA **/
+		$result = $this->Busquedas_model->getRecursoBusqueda($busquedaACTUAL);
+
+		if ($result["error"] == 0 )
+				$data["result"] = "PKG_BUSQUEDAS.PR_CONS_BUS_CV Recurso de Busqueda consultado correctamente.";
+		else 			
+			$data["result"] = "PKG_BUSQUEDAS.PR_CONS_BUS_CV ERROR : (".$result["error"].") :".$result["desc"];
+			
+		echo $data["result"]."<br />";
+		var_dump($result);
+		echo "<br />";
 		
 		
-		
-		
-		
-	}
+
 	
+		/** PRUEBA CONSULTA DE EDUCACION FORMAL DE LA BUSQUEDA **/
+		
+
+		$result = $this->Busquedas_model->getEducacionFormalDeBusqueda($busquedaACTUAL);
+		
+		if ($result["error"] == 0 )
+				$data["result"] = "PKG_BUSQUEDAS.PR_CONS_BUS_EDU_FORMAL Industrias de Busqueda creada/modificada correctamente.";
+		else 			
+			$data["result"] = "PKG_BUSQUEDAS.PR_CONS_BUS_EDU_FORMAL ERROR : (".$result["error"].") :".$result["desc"];
+			
+		echo $data["result"]."<br />";
+		var_dump($result);
+		echo "<br />";
+		
+
 	
+		
+		/** PRUEBA CONSULTA DE INDUSTRIA DE LA BUSQUEDA **/
+		
+		$result = $this->Busquedas_model->getIndustriasBusqueda($busquedaACTUAL);
+		
+		if ($result["error"] == 0 )
+				$data["result"] = "PKG_BUSQUEDAS.PR_CONS_INDUSTRIA Industrias de Busqueda consultada correctamente.";
+		else 			
+			$data["result"] = "PKG_BUSQUEDAS.PR_CONS_INDUSTRIA ERROR : (".$result["error"].") :".$result["desc"];
+			
+		echo $data["result"]."<br />";
+		var_dump($result);
+		echo "<br />";
+		
+		/** PRUEBA CONSULTA DE HERRAMIENTAS DE LA BUSQUEDA **/
+		$result = $this->Busquedas_model->getHerramientasBusqueda($busquedaACTUAL);
+		
+		if ($result["error"] == 0 )
+				$data["result"] = "PKG_BUSQUEDAS.PR_CONS_HERRAMIENTA Herramientas de Busqueda consultada correctamente.";
+		else 			
+			$data["result"] = "PKG_BUSQUEDAS.PR_CONS_HERRAMIENTA ERROR : (".$result["error"].") :".$result["desc"];
+			
+		echo $data["result"]."<br />";
+		var_dump($result);
+		echo "<br />";
+		
+		
+		/** CONSULTA DE HABILIDADES BLANDAS DE LA BUSQUEDA **/
+
+		$result = $this->Busquedas_model->getHabilidadesBlandasBusqueda($busquedaACTUAL);
+		
+		if ($result["error"] == 0 )
+				$data["result"] = "PKG_BUSQUEDAS.PR_CONS_HABILIDADES_BLANDAS Habilidades Blandas de Busqueda consultada correctamente.";
+		else 			
+			$data["result"] = "PKG_BUSQUEDAS.PR_CONS_HABILIDADES_BLANDAS ERROR : (".$result["error"].") :".$result["desc"];
+			
+		echo $data["result"]."<br />";		
+		var_dump($result);
+		echo "<br />";
+		
+		
+		
+		
+		
+		
+		
+		
+		}
+		
+		
 	/*public function  setEducacionFormal(){
 		$currentCurriculum = @$_SESSION[SESSION_CV_EDITANDO];
 		$educacionFormal = $this->input->post('educacionFormal');
