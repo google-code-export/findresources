@@ -214,45 +214,13 @@ class Busquedas_model extends CI_Model {
 	/** CONSULTA DE EDUCACION FORMAL DE UNA BUSQUEDA **/
 	public function  getEducacionFormalDeBusqueda($idBusqueda){
 		
-		$result['id'] = NULL;
-		$result['idEntidad'] = NULL;
-		$result['descripcionEntidad'] = NULL;
-		$result['modoEntidad'] = NULL;
-		$result['titulo'] = NULL;
- 		$result['modoTitulo'] = NULL;
-		$result['idNivelEducacion'] = NULL;
-		$result['modoNivelEducacion'] = NULL;
-		$result['idArea'] = NULL;
-		$result['modoArea'] = NULL;
-		$result['estado'] = NULL;
-		$result['modoEstado'] = NULL;
-		$result['promedioDesde'] = NULL;
-		$result['promedioHasta'] = NULL;
-		$result['modoPromedio']= NULL;
-		$result['baja']= NULL;
-		$result["idEducacionFormal"] = NULL;
-		$result["id"] = NULL;
+		$result['educacionFormal'] = NULL;
 		$result["error"] = NULL;
 		$result["desc"] = NULL;
 		
 		$params = array(
 			array('name'=>':pi_id_busqueda', 'value'=>$idBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
-			array('name'=>':po_id_bus_edu_formal', 'value'=>&$result['id'], 'type'=>SQLT_CHR, 'length'=>255),
-			array('name'=>':po_id_entidad_educativa', 'value'=>&$result['idEntidad'], 'type'=>SQLT_CHR, 'length'=>255),
-			array('name'=>':po_d_entidad', 'value'=>&$result['descripcionEntidad'], 'type'=>SQLT_CHR, 'length'=>255),
-			array('name'=>':po_c_modo_entidad', 'value'=>&$result['modoEntidad'], 'type'=>SQLT_CHR, 'length'=>255),
-			array('name'=>':po_titulo', 'value'=>&$result['titulo'], 'type'=>SQLT_CHR, 'length'=>255),
-	 		array('name'=>':po_c_modo_titulo', 'value'=>&$result['modoTitulo'], 'type'=>SQLT_CHR, 'length'=>255),
-			array('name'=>':po_id_nivel_educacion', 'value'=>&$result['idNivelEducacion'], 'type'=>SQLT_CHR, 'length'=>255),
-			array('name'=>':po_c_modo_nivel_educacion', 'value'=>&$result['modoNivelEducacion'], 'type'=>SQLT_CHR, 'length'=>255),
-			array('name'=>':po_id_area', 'value'=>&$result['idArea'], 'type'=>SQLT_CHR, 'length'=>255),
-			array('name'=>':po_c_modo_area', 'value'=>&$result['modoArea'], 'type'=>SQLT_CHR, 'length'=>255),
-			array('name'=>':po_estado', 'value'=>&$result['estado'], 'type'=>SQLT_CHR, 'length'=>255),
-			array('name'=>':po_c_modo_estado', 'value'=>&$result['modoEstado'], 'type'=>SQLT_CHR, 'length'=>255),
-			array('name'=>':po_promedio_desde', 'value'=>&$result['promedioDesde'], 'type'=>SQLT_CHR, 'length'=>255),
-			array('name'=>':po_promedio_hasta', 'value'=>&$result['promedioHasta'], 'type'=>SQLT_CHR, 'length'=>255),
-			array('name'=>':po_c_modo_promedio', 'value'=>&$result['modoPromedio'], 'type'=>SQLT_CHR, 'length'=>255),
-			array('name'=>':po_id_bus_edu_formal', 'value'=>&$result["idEducacionFormal"], 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':po_edu_formal', 'value'=>&$result['educacionFormal'], 'type'=>SQLT_RSET, 'length'=>255),
 			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
 			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
 		);
