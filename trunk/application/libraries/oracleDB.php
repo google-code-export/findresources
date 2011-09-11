@@ -6,9 +6,9 @@ class OracleDB {
 
 	public $stmt_id = NULL;
 
-	public $curs_id = NULL;
+	public $curs_id = array();
 
-	public $result_array = NULL;
+	public $result_array = array();
 
 	public $error_code = NULL;
 
@@ -37,7 +37,7 @@ class OracleDB {
 			if (array_key_exists('type', $param) && ($param['type'] == OCI_B_CURSOR))
 			{
 				$have_cursor = TRUE;
-				$params[$i]['value'] = $this->_set_curs_id();
+				$params[$i]['value'] = $this->_set_curs_id($param['name']);
 			}
 			$i++;
 		}
@@ -47,10 +47,10 @@ class OracleDB {
 		$this->_execute($have_cursor);
 	}
 
-	function _set_curs_id()
+	function _set_curs_id($name = '')
 	{
-		$this->curs_id = oci_new_cursor($this->conn_id);
-		return $this->curs_id;
+		$this->curs_id[$name] = oci_new_cursor($this->conn_id);
+		return $this->curs_id[$name];
 	}
 
 	function _set_stmt_id($sql)
@@ -85,17 +85,18 @@ class OracleDB {
 		oci_execute($this->stmt_id);
 
 		if ($have_cursor) {
-			oci_execute($this->curs_id);
+			foreach ($this->curs_id as $cursor)
+				oci_execute($cursor);
 
 		}
 		oci_free_statement($this->stmt_id);
 	}
 
-	public function get_cursor_data()
+	public function get_cursor_data($name = '')
 	{
-		oci_fetch_all($this->curs_id,$this->result_array);
-		oci_free_statement($this->curs_id);
-		return $this->result_array;
+		oci_fetch_all($this->curs_id[$name],$this->result_array[$name]);
+		oci_free_statement($this->curs_id[$name]);
+		return $this->result_array[$name];
 	}
 	
 	public function close()
