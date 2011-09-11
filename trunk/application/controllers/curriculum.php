@@ -43,7 +43,6 @@ class Curriculum extends CI_Controller {
 		
 		$data['estadosCiviles'] = $this->Util_model->getEstadosCiviles();
 		$data['paises'] = $response = $this->Util_model->getPaises();
-		//$data['industriasDisponibles'] = $response = $this->Util_model->getListadoDeIndustriasDisponibles();
 		$data['industriasDisponibles'] = $this->Util_model->getIndustriasDisponibles();
 		$data['areasDisponibles'] = $this->Util_model->getAreasDisponibles();
 		$data['nivelesDeEducacion'] = $this->Util_model->getNivelesDeEducacion();
