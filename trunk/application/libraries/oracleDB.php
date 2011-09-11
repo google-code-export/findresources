@@ -94,8 +94,16 @@ class OracleDB {
 
 	public function get_cursor_data($name = '')
 	{
-		oci_fetch_all($this->curs_id[$name],$this->result_array[$name]);
+		oci_fetch_all($this->curs_id[$name],$temp[$name]);
 		oci_free_statement($this->curs_id[$name]);
+		/* FIX Para guardar el resultado como un array clásico */
+		foreach($temp[$name] as $fieldName => $aField){
+			//oracle return the values in caps lock, and we use lower case.
+			$fieldName = strtolower($fieldName);
+			foreach($aField as $index => $aValue){
+				$this->result_array[$name][$index]->$fieldName = $aValue;
+			}
+		}
 		return $this->result_array[$name];
 	}
 	
