@@ -49,20 +49,20 @@
 	width:100%;
 }
 
-#hardPropertiesPopUp input[type=text]{
+#hardSkillsPopUp input[type=text]{
 	width: 10px;
  	margin-right: 20px;
 }
 
-#hardPropertiesPopUp h4{
+#hardSkillsPopUp h4{
 	font-weight: bold;
 }
 
-#hardPropertiesPopUp select{
+#hardSkillsPopUp select{
 	margin:6px;
 }
 
-#hardPropertiesPopUp .label {
+#hardSkillsPopUp .label {
 	width: 200px;
 }
 
@@ -79,7 +79,7 @@
 	margin-top:164px;
 }
 
-#hardProperties ul{
+#hardSkills ul{
 	margin: 3px 0 12px 6px;
 }
 
