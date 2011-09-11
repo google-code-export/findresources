@@ -54,6 +54,7 @@
 <script type="text/javascript" src="<?php echo site_url('js/libs/json2.js')?>"></script>
 <script type="text/javascript" src="<?php echo site_url('js/src/utils.js')?>"></script>
 <script type="text/javascript" src="<?php echo site_url('js/src/view_curriculum.js')?>"></script>
+<script type="text/javascript" src=" <?php echo site_url('js/src/hardSkills.js')?>"></script>
 </head>
 <body>
 
@@ -119,8 +120,8 @@
 				<!--/div-->
 			</div>
 			
-			<div class="block" id="hardProperties">
-				<h2>Caracterisiticas Duras <a href="javascript:editHardProperties();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
+			<div class="block" id="hardSkills">
+				<h2>Caracterisiticas Duras <a href="javascript:editHardSkills();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
 				<div class="inblock">
 					<h4>Industrias</h4>
 					<ul>
@@ -354,7 +355,7 @@
 </div>
 
 
-<div class="popup" id="hardPropertiesPopUp" style="display:none;">
+<div class="popup" id="hardSkillsPopUp" style="display:none;">
 <table cellspacing="0" cellpadding="0" align="center">
 <tr><td>
 	<div class="in">
