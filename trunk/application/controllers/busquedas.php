@@ -234,18 +234,22 @@ class Busquedas extends CI_Controller {
 		
 		var_dump($result);
 
+
 		//////////**************HARD CODE DATA BY MFOX************//////////////
 		
 		
 		if(isset($_GET["busquedaId"])){
 			$idBusqueda = $_GET["busquedaId"]; 
 			//SET ID BUSQUEDA EN SESSION
-			$data['busquedaSeleccionada'] = $this->getOpcionesDeBusqueda();
+			$data['busquedaSeleccionada'] = $this->Busquedas_model->getOpcionesDeBusqueda($idBusqueda);
 		}
 		
+		$data['habilidadesBlandasDisponibles'] = $this->Busquedas_model->getHabilidadesBlandasBusqueda($idBusqueda);
+				
+		$data['busquedasDelUsuario'] = $this->Busquedas_model->getBusquedasDeUsuario($idUsuario);
 		
-		
-		$b1->descripcion = "busqueda 1";
+		/*
+		 * $b1->descripcion = "busqueda 1";
 		$b1->fechaHasta = "05/03/2012";
 		$b1->cantidadRecursos = 2;
 		
@@ -267,6 +271,7 @@ class Busquedas extends CI_Controller {
 			"41" => "habilidad blanda 1",
 			"42" => "habilidad blanda 2",
 			"43" => "habilidad blanda 3");
+		*/
 
 		
 		$data['industriasDisponibles'] = $this->Util_model->getIndustriasDisponibles();
