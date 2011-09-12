@@ -148,8 +148,8 @@ class Usuario_model extends FR_Model {
 		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_usuario','pr_consulta_usuario',$params);
 		
 		if ($n1 == 0){
-			$dbRegistros = $this->oracledb->get_cursor_data();
-			$dbRegistros = $this->decodeCursorData($dbRegistros);
+			$dbRegistros = $this->oracledb->get_cursor_data(":po_usuario");
+			//$dbRegistros = $this->decodeCursorData($dbRegistros);
 			
 			//convert db data to model data.
 			$dbRegistro = $dbRegistros[0];
