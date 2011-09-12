@@ -219,19 +219,21 @@ class Busquedas extends CI_Controller {
 
 		$result = $this->Busquedas_model->getBusquedasDeUsuario($idUsuario);
 		
-		if ($result["error"] == 0 ) {
+		if ($result["error"] == 0 )
 			$data["result"] = "PKG_BUSQUEDAS.PR_BUSQUEDAS_X_USUARIO Busquedas de un usuario consultadas correctamente.";
-				
-		
-		} else 			
+		else 			
 			$data["result"] = "PKG_BUSQUEDAS.PR_BUSQUEDAS_X_USUARIOS ERROR : (".$result["error"].") :".$result["desc"];
 			
 		echo $data["result"]."<br />";		
 
 		var_dump($result);
 		echo "<br />";
+
+		/** CONSULTA TODOS LOS DATOS DE UNA BUSQUEDA **/
+		$result = $this->Busquedas_model->getOpcionesDeBusqueda($idBusqueda);
 		
-		
+		var_dump($result);
+
 		//////////**************HARD CODE DATA BY MFOX************//////////////
 		
 		
