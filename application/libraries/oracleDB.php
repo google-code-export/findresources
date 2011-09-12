@@ -38,6 +38,9 @@ class OracleDB {
 			{
 				$have_cursor = TRUE;
 				$params[$i]['value'] = $this->_set_curs_id($param['name']);
+				echo "--";
+				var_dump($param);
+				echo "--";
 			}
 			$i++;
 		}
@@ -96,7 +99,7 @@ class OracleDB {
 	{
 		oci_fetch_all($this->curs_id[$name],$temp[$name]);
 		oci_free_statement($this->curs_id[$name]);
-		
+		$this->result_array[$name] = array();
 		/* FIX Para guardar el resultado como un array clásico */
 		foreach($temp[$name] as $fieldName => $aField){
 			//oracle return the values in caps lock, and we use lower case.
