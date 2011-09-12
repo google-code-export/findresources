@@ -1,9 +1,13 @@
 <?php
-class Busquedas_model extends FR_Model {
+class Busquedas_model extends CI_Model {
 
 	function Busquedas_model()
 	{
 		parent::__construct();
+		/** SETEO SEPARADOR **/
+		$query = $this->db->query('SELECT PKG_UTIL.FU_OBTIENE_SEPARADOR_SPLIT() SEPARADOR FROM DUAL');
+		$row = $query->row_array();
+		$this->sep = $row["SEPARADOR"];
 	}
 	
 	
@@ -137,9 +141,10 @@ class Busquedas_model extends FR_Model {
 	/** CREO O MODIFICO LAS INDUSTRIAS A BUSCAR **/
 	public function  setHabilidadesBlandasBusqueda($idBusqueda, $habilidadesBlandas){
 
+		$habilidadesBlandas =  implode($this->sep,json_decode($habilidadesBlandas));
 		$result["error"] = NULL;
 		$result["desc"] = NULL;
-		
+
 		$params = array(
 			array('name'=>':pi_id_busqueda', 'value'=>$idBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
 			array('name'=>':pi_bus_hab_blanda', 'value'=>$habilidadesBlandas, 'type'=>SQLT_CHR, 'length'=>-1),
