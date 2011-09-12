@@ -85,8 +85,8 @@ class Curriculum_model extends FR_Model {
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','pr_consulta_cv',$params);
 		if ($n1 == 0){
-			$dbRegistros = $this->oracledb->get_cursor_data();
-			$dbRegistros = $this->decodeCursorData($dbRegistros);
+			$dbRegistros = $this->oracledb->get_cursor_data(":po_cv");
+			//$dbRegistros = $this->decodeCursorData($dbRegistros);
 			//convert db data to model data.
 			$response->id = $idCurriculum;
 			$response->usuario = $dbRegistros[0]->usuario;
@@ -197,8 +197,8 @@ class Curriculum_model extends FR_Model {
 		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','pr_consulta_industria',$params);
 		
 		if ($n1 == 0){
-			$dbRegistros = $this->oracledb->get_cursor_data();
-			$dbRegistros = $this->decodeCursorData($dbRegistros);
+			$dbRegistros = $this->oracledb->get_cursor_data(":po_industrias_cv");
+			//$dbRegistros = $this->decodeCursorData($dbRegistros);
 			
 			//convert db data to model data.
 			$respuesta = array();
@@ -277,8 +277,8 @@ class Curriculum_model extends FR_Model {
 		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','pr_consulta_herramientas',$params);
 		
 		if ($n1 == 0){
-			$dbRegistros = $this->oracledb->get_cursor_data();
-			$dbRegistros = $this->decodeCursorData($dbRegistros);
+			$dbRegistros = $this->oracledb->get_cursor_data(":po_habilidades_duras_industria");
+			//$dbRegistros = $this->decodeCursorData($dbRegistros);
 			
 			//convert db data to model data.
 			$respuesta = array();
@@ -352,8 +352,8 @@ class Curriculum_model extends FR_Model {
 		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','pr_consulta_exp_laboral',$params);
 		
 		if ($n1 == 0){
-			$dbRegistros = $this->oracledb->get_cursor_data();
-			$dbRegistros = $this->decodeCursorData($dbRegistros);
+			$dbRegistros = $this->oracledb->get_cursor_data(":po_exp_laboral");
+			//$dbRegistros = $this->decodeCursorData($dbRegistros);
 			
 			//convert db data to model data.
 			$response = array();
@@ -440,9 +440,9 @@ class Curriculum_model extends FR_Model {
 		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','pr_consulta_edu_formal',$params);
 		if ($n1 == 0){
 			
-			$dbRegistros = $this->oracledb->get_cursor_data();
+			$dbRegistros = $this->oracledb->get_cursor_data(":po_educacion_formal");
 //			var_dump($dbRegistros);
-			$dbRegistros = $this->decodeCursorData($dbRegistros);
+			//$dbRegistros = $this->decodeCursorData($dbRegistros);
 
 			//convert db data to model data.
 			$respuesta = array();
@@ -533,8 +533,8 @@ class Curriculum_model extends FR_Model {
 		
 		if ($n1 == 0){
 			
-			$dbRegistros = $this->oracledb->get_cursor_data();
-			$dbRegistros = $this->decodeCursorData($dbRegistros);
+			$dbRegistros = $this->oracledb->get_cursor_data(":po_educacion_formal");
+			//$dbRegistros = $this->decodeCursorData($dbRegistros);
 
 			//convert db data to model data.
 			$respuesta = array();
