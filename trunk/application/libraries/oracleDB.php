@@ -6,9 +6,9 @@ class OracleDB {
 
 	public $stmt_id = NULL;
 
-	public $curs_id = array();
+	public $curs_id = NULL;
 
-	public $result_array = array();
+	public $result_array = NULL;
 
 	public $error_code = NULL;
 
@@ -26,7 +26,9 @@ class OracleDB {
 	public function stored_procedure($conn,$package,$procedure,$params)
 	{
 		$this->conn_id = $conn;
-		 
+		$this->result_array = array();
+		$this->curs_id = array();
+		
 		$have_cursor = FALSE;
 
 		$sql = "begin $package.$procedure(";
@@ -87,13 +89,14 @@ class OracleDB {
 		if ($have_cursor) {
 			foreach ($this->curs_id as $cursor)
 				oci_execute($cursor);
-
 		}
 		oci_free_statement($this->stmt_id);
 	}
 
 	public function get_cursor_data($name = '')
 	{
+		$temp = array();
+		$temp[$name] = array();
 		oci_fetch_all($this->curs_id[$name],$temp[$name]);
 		oci_free_statement($this->curs_id[$name]);
 		$this->result_array[$name] = array();
