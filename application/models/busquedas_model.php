@@ -313,16 +313,6 @@ class Busquedas_model extends FR_Model {
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_BUSQUEDAS_X_USUARIO',$params);
 		$result["busquedasActivas"] = $this->oracledb->get_cursor_data(":PO_BUSQUEDAS_ACTIVAS");
-		/*$dbRegistros = $this->oracledb->get_cursor_data();
-		$dbRegistros = $this->decodeCursorData($dbRegistros);
-		
-		//convert db data to model data.
-		$respuesta = array();
-		foreach ($dbRegistros as $i => $dbRegistro){
-			$respuesta[$i]->idIndustria = $dbRegistro->id_industria;
-			$respuesta[$i]->descripcionIndustria = $dbRegistro->d_industria; 
-			$respuesta[$i]->puntos = $dbRegistro->valoracion;
-		}*/
 		return $result;
 			
 	}
@@ -368,4 +358,31 @@ class Busquedas_model extends FR_Model {
 		return $result;
 			
 	}
+	
+	/** OBTENGO TODOS LOS DATOS DE UNA BUSQUEDA **/
+	public function  getOpcionesDeBusqueda($idBusqueda){
+		
+		$temp1 = $this->getEducacionFormalDeBusqueda($idBusqueda);
+		$result["educacionFormal"] = $temp1["educacionFormal"];
+		$temp2 = $this->getHabilidadesBlandasBusqueda($idBusqueda);
+		$result["habilidadesBlandas"] = $temp2["habilidadesBlandas"];
+		$temp3 = $this->getHerramientasBusqueda($idBusqueda);
+		$result["herramientas"] = $temp3["herramientas"];
+		$temp4 = $this->getIndustriasBusqueda($idBusqueda);
+		$result["industrias"] = $temp4["industrias"];
+		$temp5 = $this->getRecursoBusqueda($idBusqueda);
+		$result["recurso"] = $temp5;
+		$error = $temp1["error"] + $temp2["error"] + $temp3["error"] + $temp4["error"] + $temp5["error"];
+		
+		if ($error == 0) {
+			$result["error"] = 0;
+			$result["desc"] = NULL;
+		} else {
+			$result["error"] = 1;
+			$result["desc"] = "Error al obtener información de las búsqueda.";
+		}
+		return $result;
+			
+	}
+	
 }
