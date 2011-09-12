@@ -26,7 +26,8 @@ class Busquedas extends CI_Controller {
 		$fechaHasta = "03/10/2011";
 		$cantidadRecursos = 2 ;
 		$idBusqueda = 1; //NULL = nuevo
-		$result  = $this->Busquedas_model->setBusqueda($idBusqueda, $idUsuario,$descripcionBusqueda,$fechaHasta,$cantidadRecursos);
+		$idTicket = 1;
+		$result  = $this->Busquedas_model->setBusqueda($idBusqueda, $idUsuario,$descripcionBusqueda,$idTicket,$cantidadRecursos,$fechaHasta);
 		$busquedaACTUAL = $result["idBusqueda"];
 		if ($result["error"] == 0 )
 				$data["result"] = "PKG_BUSQUEDAS.PR_BUSQUEDA Búsqueda creada/modificada correctamente. ID : ".$busquedaACTUAL;
@@ -134,10 +135,10 @@ class Busquedas extends CI_Controller {
 		$result  = $this->Busquedas_model->getBusqueda($busquedaACTUAL);
 
 		if ($result["error"] == 0 ){
-				$data["result"] = "PKG_BUSQUEDAS.PR_BUSQUEDA Búsqueda consultada correctamente. ID : ".$busquedaACTUAL;
+				$data["result"] = "PKG_BUSQUEDAS.PR_CONS_BUSQUEDA Búsqueda consultada correctamente. ID : ".$busquedaACTUAL;
 		}
 		else 			
-			$data["result"] = "PKG_BUSQUEDAS.PR_BUSQUEDA ERROR : (".$result["error"].") :".$result["desc"];
+			$data["result"] = "PKG_BUSQUEDAS.PR_CONS_BUSQUEDA ERROR : (".$result["error"].") :".$result["desc"];
 		
 		echo $data["result"]."<br />";
 		var_dump($result);
@@ -155,7 +156,7 @@ class Busquedas extends CI_Controller {
 		var_dump($result);
 		echo "<br />";
 		
-		
+
 
 	
 		/** PRUEBA CONSULTA DE EDUCACION FORMAL DE LA BUSQUEDA **/
@@ -214,6 +215,21 @@ class Busquedas extends CI_Controller {
 		var_dump($result);
 		echo "<br />";
 		
+		/** CONSULTA DE BUSQUEDAS DE UN USUARIO **/
+
+		$result = $this->Busquedas_model->getBusquedasDeUsuario($idUsuario);
+		
+		if ($result["error"] == 0 ) {
+			$data["result"] = "PKG_BUSQUEDAS.PR_BUSQUEDAS_X_USUARIO Busquedas de un usuario consultadas correctamente.";
+				
+		
+		} else 			
+			$data["result"] = "PKG_BUSQUEDAS.PR_BUSQUEDAS_X_USUARIOS ERROR : (".$result["error"].") :".$result["desc"];
+			
+		echo $data["result"]."<br />";		
+
+		var_dump($result);
+		echo "<br />";
 		
 		
 		//////////**************HARD CODE DATA BY MFOX************//////////////
