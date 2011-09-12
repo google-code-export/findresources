@@ -1,5 +1,5 @@
 <?php
-class Busquedas_model extends CI_Model {
+class Busquedas_model extends FR_Model {
 
 	function Busquedas_model()
 	{
@@ -9,8 +9,9 @@ class Busquedas_model extends CI_Model {
 	
 
 	/** CREA O MODIFICA BUSQUEDAS **/
-	public function setBusqueda($idBusqueda,$idUsuario,$descripcionBusqueda,$fechaHasta,$cantidadRecursos){
+	public function setBusqueda($idBusqueda,$idUsuario,$descripcionBusqueda,$idTicket,$cantidadRecursos,$fechaHasta){
 		$result["idBusqueda"] = NULL;
+		$result["fechaHastaOut"] = NULL;
 		$result["error"] = NULL;
 		$result["desc"] = NULL;
 		
@@ -18,9 +19,11 @@ class Busquedas_model extends CI_Model {
 		array('name'=>':PI_ID_BUSQUEDA', 'value'=>$idBusqueda, 'type'=>SQLT_CHR , 'length'=>-1),
 		array('name'=>':PI_USUARIO', 'value'=>$idUsuario, 'type'=>SQLT_CHR , 'length'=>-1),
 		array('name'=>':PI_D_BUSQUEDA', 'value'=>$descripcionBusqueda, 'type'=>SQLT_CHR , 'length'=>-1),
-		array('name'=>':PI_F_HASTA', 'value'=>$fechaHasta, 'type'=>SQLT_CHR , 'length'=>-1),
+		array('name'=>':PI_ID_TICKET', 'value'=>$idTicket, 'type'=>SQLT_CHR , 'length'=>-1),
 		array('name'=>':PI_CANTIDAD_RECURSOS', 'value'=>$cantidadRecursos, 'type'=>SQLT_CHR , 'length'=>-1),
+		array('name'=>':PI_F_HASTA', 'value'=>$fechaHasta, 'type'=>SQLT_CHR , 'length'=>-1),
 		array('name'=>':PO_ID_BUSQUEDA', 'value'=>&$result["idBusqueda"], 'type'=>SQLT_CHR , 'length'=>255),
+		array('name'=>':PO_F_HASTA', 'value'=>$result["fechaHastaOut"], 'type'=>SQLT_CHR , 'length'=>-1),
 		array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
 		array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
 		);
@@ -205,7 +208,9 @@ class Busquedas_model extends CI_Model {
 		);
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_CONS_BUS_CV',$params);
-		
+		$result["nacionalidad"] = $this->oracledb->get_cursor_data(":po_lista_nacionalidad");
+		$result["provincia"] = $this->oracledb->get_cursor_data(":po_lista_provincia");
+		$result["localidad"] = $this->oracledb->get_cursor_data(":po_lista_localidad");
 		return $result;
 			
 	}
@@ -226,7 +231,7 @@ class Busquedas_model extends CI_Model {
 		);
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_CONS_BUS_EDU_FORMAL',$params);
-		
+		$result["educacionFormal"] = $this->oracledb->get_cursor_data(":po_edu_formal");
 		return $result;
 
 		
@@ -247,7 +252,7 @@ class Busquedas_model extends CI_Model {
 		);
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_CONS_INDUSTRIA',$params);
-		
+		$result["industrias"] = $this->oracledb->get_cursor_data(":po_bus_industria");
 		return $result;
 			
 	}
@@ -267,7 +272,7 @@ class Busquedas_model extends CI_Model {
 		);
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_CONS_HERRAMIENTA',$params);
-		
+		$result["herramientas"] = $this->oracledb->get_cursor_data(":po_lista_herramienta");
 		return $result;
 			
 	}
@@ -287,183 +292,80 @@ class Busquedas_model extends CI_Model {
 		);
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_CONS_HABILIDADES_BLANDAS',$params);
+		$result["habilidadesBlandas"] = $this->oracledb->get_cursor_data(":po_hab_blanda");
+		return $result;
+			
+	}
+	
+	
+	/** CONSULTO LAS HABILIDADES BLANDAS DE UNA BUSQUEDA **/
+	public function  getBusquedasDeUsuario($idUsuario){
+		$result["busquedasActivas"] = NULL;
+		$result["error"] = NULL;
+		$result["desc"] = NULL;
+		
+		$params = array(
+			array('name'=>':PI_USUARIO', 'value'=>$idUsuario, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':PO_BUSQUEDAS_ACTIVAS', 'value'=>&$result["busquedasActivas"], 'type'=>SQLT_RSET, 'length'=>255),
+			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_BUSQUEDAS_X_USUARIO',$params);
+		$result["busquedasActivas"] = $this->oracledb->get_cursor_data(":PO_BUSQUEDAS_ACTIVAS");
+		/*$dbRegistros = $this->oracledb->get_cursor_data();
+		$dbRegistros = $this->decodeCursorData($dbRegistros);
+		
+		//convert db data to model data.
+		$respuesta = array();
+		foreach ($dbRegistros as $i => $dbRegistro){
+			$respuesta[$i]->idIndustria = $dbRegistro->id_industria;
+			$respuesta[$i]->descripcionIndustria = $dbRegistro->d_industria; 
+			$respuesta[$i]->puntos = $dbRegistro->valoracion;
+		}*/
+		return $result;
+			
+	}
+	
+	/** EXTIENDO FECHA DE LA BUSQUEDA **/
+	public function  extenderBusqueda($idBusqueda,$idUsuario,$idTicket){
+		$result["fechaHasta"] = NULL;
+		$result["error"] = NULL;
+		$result["desc"] = NULL;
+		
+		$params = array(
+			array('name'=>':PI_ID_BUSQUEDA', 'value'=>$idBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':PI_USUARIO', 'value'=>$idUsuario, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':PI_ID_TICKET', 'value'=>$idTicket, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':PO_F_HASTA', 'value'=>&$result["fechaHasta"], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_EXTENDER_BUSQUEDA',$params);
 		
 		return $result;
 			
 	}
 	
-	/*****************************************************************************************************************/
-	/*******************LOS STORED PROCEDURES DE ABAJO NO SON REALES**************************************************/
-	/*****************************************************************************************************************/
-	
-	public function getSaldo($idEmpresa){
-		$result["saldo"] = NULL;
-		$result["estado"] = NULL;
+	/** EXTIENDO FECHA DE LA BUSQUEDA **/
+	public function  getBusquedasAVencer($idUsuario,$dias){
+		//Si días es 0 trae las búsquedas activas
+		$result["busquedasActivas"] = NULL;
 		$result["error"] = NULL;
 		$result["desc"] = NULL;
 		
 		$params = array(
-		array('name'=>':PI_EMPRESA', 'value'=>$idEmpresa, 'type'=>SQLT_CHR , 'length'=>-1),
-		array('name'=>':PO_SALDO', 'value'=>&$result["saldo"], 'type'=>SQLT_CHR , 'length'=>255),
-		array('name'=>':PO_ESTADO', 'value'=>&$result["estado"], 'type'=>SQLT_CHR , 'length'=>255),
-		array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
-		array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
+			array('name'=>':PI_USUARIO', 'value'=>$idUsuario, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':PI_DIAS', 'value'=>$dias, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':PO_BUSQUEDAS_ACTIVAS', 'value'=>&$result["busquedasActivas"], 'type'=>SQLT_RSET, 'length'=>255),
+			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
 		);
-		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDADS','PR_GETSALDO',$params);
-			
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_BUSQUEDAS_PROX_VENCER',$params);
+		$result["busquedasActivas"] = $this->oracledb->get_cursor_data(":PO_BUSQUEDAS_ACTIVAS");
 		return $result;
-
+			
 	}
-	public function getBusquedas($idEmpresa){
-		$result["idBusqueda"] = NULL;
-		$result["estado"] = NULL;
-		$result["error"] = NULL;
-		$result["desc"] = NULL;
-		
-		$params = array(
-		array('name'=>':PI_EMPRESA', 'value'=>$idEmpresa, 'type'=>SQLT_CHR , 'length'=>-1),
-		array('name'=>':PI_C_BUSQUEDA', 'value'=>&$result["idBusqueda"], 'type'=>SQLT_CHR , 'length'=>255),
-		array('name'=>':PO_ESTADO', 'value'=>&$result["estadp"], 'type'=>SQLT_CHR , 'length'=>255),
-		array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
-		array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
-		);
-		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDADS','PR_GETBUSQUEDAS',$params);
-			
-		return $result;
-
-	}
-	
-	public function getBusquedaInfo($idEmpresa,$idBusqueda,$caracteristicasDuras,$caracteristicasBlandas,$descripcion,$otrosCriterios){
-		$result["error"] = NULL;
-		$result["desc"] = NULL;
-		
-		$params = array(
-		array('name'=>':PI_C_EMPRESA', 'value'=>$idEmpresa, 'type'=>SQLT_CHR , 'length'=>-1),
-		array('name'=>':PI_C_BUSQUEDA', 'value'=>$idBusqueda, 'type'=>SQLT_CHR , 'length'=>-1),
-		array('name'=>':PI_CARDURAS', 'value'=>catacteristicasDuras, 'type'=>SQLT_CHR , 'length'=>-1),
-		array('name'=>':PI_CARBLANDAS', 'value'=>catacteristicasBlandas, 'type'=>SQLT_CHR , 'length'=>-1),
-		array('name'=>':PI_DESCRIPCION', 'value'=>descripcion, 'type'=>SQLT_CHR , 'length'=>-1),
-		array('name'=>':PI_OTROSCRITERIOS', 'value'=>otrosCriterios, 'type'=>SQLT_CHR , 'length'=>-1),
-		array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
-		array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
-		);
-		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDADS','PR_GETBUSQUEDAINFO',$params);
-			
-		return $result;
-
-	}		
-	
-		
-	
-	
-	public function getCandidatos($idEmpresa, $idBusqueda){
-		$result["candidatos"] = NULL;
-		$result["error"] = NULL;
-		$result["desc"] = NULL;
-		
-		$params = array(
-		array('name'=>':PI_C_EMPRESA', 'value'=>$idEmpresa, 'type'=>SQLT_CHR , 'length'=>-1),
-		array('name'=>':PI_C_BUSQUEDA', 'value'=>$idBusqueda, 'type'=>SQLT_CHR , 'length'=>-1),
-		array('name'=>':PO_CANDIDATOS', 'value'=>&$result["cadidatos"], 'type'=>SQLT_CHR , 'length'=>255),
-		array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
-		array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
-		);
-		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDADS','PR_GETCANDIDATOS',$params);
-			
-		return $result;
-
-	}	
-
-	public function realizarTests($idEmpresa, $idBusqueda,$idCandidato){
-		$idEmpresa = NULL;
-		$idBusqueda = NULL;
-		$candidato = NULL;
-		$result["error"] = NULL;
-		$result["desc"] = NULL;
-		
-		$params = array(
-		array('name'=>':PI_C_EMPRESA', 'value'=>$idEmpresa, 'type'=>SQLT_CHR , 'length'=>-1),
-		array('name'=>':PI_C_BUSQUEDA', 'value'=>$idBusqueda, 'type'=>SQLT_CHR , 'length'=>-1),
-		array('name'=>':PI_C_CANDIDATO', 'value'=>$cadidato, 'type'=>SQLT_CHR , 'length'=>-1),
-		array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
-		array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
-		);
-		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDADS','PR_REALIZARTESTS',$params);
-			
-		return $result;
-
-	}	
-	
-	public function getCandidatosSeleccionados($idEmpresa, $idBusqueda){
-		$idEmpresa = NULL;
-		$idBusqueda = NULL;
-		$result["candidatos"] = NULL;
-		$result["error"] = NULL;
-		$result["desc"] = NULL;
-		
-		$params = array(
-		array('name'=>':PI_C_EMPRESA', 'value'=>$idEmpresa, 'type'=>SQLT_CHR , 'length'=>-1),
-		array('name'=>':PI_C_BUSQUEDA', 'value'=>$idBusqueda, 'type'=>SQLT_CHR , 'length'=>-1),
-		array('name'=>':PO_CANDIDATOS', 'value'=>$result["cadidatos"], 'type'=>SQLT_CHR , 'length'=>255),
-		array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
-		array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
-		);
-		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDADS','PR_GETCANDIDATOSSEL',$params);
-			
-		return $result;
-
-	}	
-
-	public function getEperienciaLaboral(){
-		
-		$result["experiencia"] = NULL;
-		$result["error"] = NULL;
-		$result["desc"] = NULL;
-		
-		$params = array(
-		array('name'=>':PO_EXPERIENCIA', 'value'=>&$result["experiencia"], 'type'=>SQLT_CHR , 'length'=>255),
-		array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
-		array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
-		);
-		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDADS','PR_GETEXPERIENCIA',$params);
-			
-		return $result;
-
-	}	
-
-
-	public function getCaracteristicasDuras(){
-		
-		$result["caracteristicas"] = NULL;
-		$result["error"] = NULL;
-		$result["desc"] = NULL;
-		
-		$params = array(
-		array('name'=>':PO_CARACTERISTICAS', 'value'=>&$result["caracteristicas"], 'type'=>SQLT_CHR , 'length'=>255),
-		array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
-		array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
-		);
-		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDADS','PR_GETCARASTERISTICASDURAS',$params);
-			
-		return $result;
-
-	}	
-	
-		public function getCaracteristicasBlandas(){
-		
-		$result["caracteristicas"] = NULL;
-		$result["error"] = NULL;
-		$result["desc"] = NULL;
-		
-		$params = array(
-		array('name'=>':PO_CARACTERISTICAS', 'value'=>&$result["caracteristicas"], 'type'=>SQLT_CHR , 'length'=>255),
-		array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
-		array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
-		);
-		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDADS','PR_GETCARACTERISTICASBLANDAS',$params);
-			
-		return $result;
-
-	}	
-
 }
