@@ -38,9 +38,6 @@ class OracleDB {
 			{
 				$have_cursor = TRUE;
 				$params[$i]['value'] = $this->_set_curs_id($param['name']);
-				echo "--";
-				var_dump($param);
-				echo "--";
 			}
 			$i++;
 		}
