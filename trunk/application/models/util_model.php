@@ -26,8 +26,8 @@ class Util_model extends FR_Model {
 		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_util','pr_obtiene_estado_civil',$params);
 		
 		if ($n1 == 0){
-			$dbRegistros = $this->oracledb->get_cursor_data();
-			$dbRegistros = $this->decodeCursorData($dbRegistros);
+			$dbRegistros = $this->oracledb->get_cursor_data(":po_salida");
+			//$dbRegistros = $this->decodeCursorData($dbRegistros);
 			
 			//convert db data to model data.
 			$response = array();
@@ -62,8 +62,8 @@ class Util_model extends FR_Model {
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_util','pr_obtiene_paises',$params);
 		if ($n1 == 0){
-			$dbRegistros = $this->oracledb->get_cursor_data();
-			$dbRegistros = $this->decodeCursorData($dbRegistros);
+			$dbRegistros = $this->oracledb->get_cursor_data(":po_paises");
+			//$dbRegistros = $this->decodeCursorData($dbRegistros);
 			//convert db data to model data.
 			$response = array();
 			foreach ($dbRegistros as $i => $dbRegistro){
@@ -105,8 +105,8 @@ class Util_model extends FR_Model {
 		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_util','pr_obtiene_provincias',$params);
 		
 		if ($n1 == 0){
-			$dbRegistros = $this->oracledb->get_cursor_data();
-			$dbRegistros = $this->decodeCursorData($dbRegistros);
+			$dbRegistros = $this->oracledb->get_cursor_data(":po_salida");
+			//$dbRegistros = $this->decodeCursorData($dbRegistros);
 			
 			//convert db data to model data.
 			$response = array();
@@ -142,8 +142,8 @@ class Util_model extends FR_Model {
 		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_util','pr_obtiene_industrias',$params);
 		
 		if ($n1 == 0){
-			$dbRegistros = $this->oracledb->get_cursor_data();
-			$dbRegistros = $this->decodeCursorData($dbRegistros);
+			$dbRegistros = $this->oracledb->get_cursor_data(":po_salida");
+			//$dbRegistros = $this->decodeCursorData($dbRegistros);
 			
 			//convert db data to model data.
 			$response = array();
@@ -189,8 +189,8 @@ class Util_model extends FR_Model {
 		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_util','pr_obtiene_herramientas',$params);
 		
 		if ($n1 == 0){
-			$dbRegistros = $this->oracledb->get_cursor_data();
-			$dbRegistros = $this->decodeCursorData($dbRegistros);
+			$dbRegistros = $this->oracledb->get_cursor_data(":po_herramientas");
+			//$dbRegistros = $this->decodeCursorData($dbRegistros);
 			
 			//convert db data to model data.
 			$response = array();
@@ -227,8 +227,8 @@ class Util_model extends FR_Model {
 		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_util','pr_obtiene_niveles_educacion',$params);
 		
 		if ($n1 == 0){
-			$dbRegistros = $this->oracledb->get_cursor_data();
-			$dbRegistros = $this->decodeCursorData($dbRegistros);
+			$dbRegistros = $this->oracledb->get_cursor_data(":po_niveles_educacion");
+			//$dbRegistros = $this->decodeCursorData($dbRegistros);
 			
 			//convert db data to model data.
 			$response = array();
@@ -263,8 +263,8 @@ class Util_model extends FR_Model {
 		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_util','pr_obtiene_areas',$params);
 		
 		if ($n1 == 0){
-			$dbRegistros = $this->oracledb->get_cursor_data();
-			$dbRegistros = $this->decodeCursorData($dbRegistros);
+			$dbRegistros = $this->oracledb->get_cursor_data(":po_areas");
+			//$dbRegistros = $this->decodeCursorData($dbRegistros);
 			
 			//convert db data to model data.
 			$response = array();
@@ -299,8 +299,8 @@ class Util_model extends FR_Model {
 		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_util','pr_obtiene_entidad_educativa',$params);
 		
 		if ($n1 == 0){
-			$dbRegistros = $this->oracledb->get_cursor_data();
-			$dbRegistros = $this->decodeCursorData($dbRegistros);
+			$dbRegistros = $this->oracledb->get_cursor_data(":po_entidades");
+			//$dbRegistros = $this->decodeCursorData($dbRegistros);
 			
 			//convert db data to model data.
 			$response = array();
@@ -337,8 +337,8 @@ class Util_model extends FR_Model {
 		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_util','pr_obtiene_tipo_edu_no_formal',$params);
 		
 		if ($n1 == 0){
-			$dbRegistros = $this->oracledb->get_cursor_data();
-			$dbRegistros = $this->decodeCursorData($dbRegistros);
+			$dbRegistros = $this->oracledb->get_cursor_data(":po_tipo_edu_no_formal");
+			//$dbRegistros = $this->decodeCursorData($dbRegistros);
 			
 			//convert db data to model data.
 			$response = array();
@@ -375,8 +375,8 @@ class Util_model extends FR_Model {
 		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_util','pr_obtiene_tipos_documentos',$params);
 		
 		if ($n1 == 0){
-			$dbRegistros = $this->oracledb->get_cursor_data();
-			$dbRegistros = $this->decodeCursorData($dbRegistros);
+			$dbRegistros = $this->oracledb->get_cursor_data(":po_documentos");
+			//$dbRegistros = $this->decodeCursorData($dbRegistros);
 			
 			//convert db data to model data.
 			$response = array();
