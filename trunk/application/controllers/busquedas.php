@@ -92,7 +92,7 @@ class Busquedas extends CI_Controller {
 		
 		/** PRUEBA CREACION DE INDUSTRIA PARA LA BUSQUEDA **/
 		
-		$industrias = "1".$this->sep."5".$this->sep."0,2".$this->sep."2".$this->sep."3".$this->sep."0,9";
+		$industrias = "1".$this->sep."5".$this->sep."20".$this->sep."2".$this->sep."3".$this->sep."90";
 		//ID+VALORACION+IMPORTANCIA
 		$result = $this->Busquedas_model->setIndustriasBusqueda($busquedaACTUAL,$industrias);
 		
@@ -105,7 +105,7 @@ class Busquedas extends CI_Controller {
 		
 		
 		/** PRUEBA CREACION DE HERRAMIENTAS PARA LA BUSQUEDA **/
-		$herramientas = "7".$this->sep."5".$this->sep."0,2".$this->sep."6".$this->sep."3".$this->sep."0,9";
+		$herramientas = "7".$this->sep."5".$this->sep."20".$this->sep."6".$this->sep."3".$this->sep."90";
 		//ID+VALORACION+IMPORTANCIA
 		$result = $this->Busquedas_model->setHerramientasBusqueda($busquedaACTUAL,$herramientas);
 		
@@ -118,17 +118,18 @@ class Busquedas extends CI_Controller {
 		
 		
 		/** PRUEBA CREACION DE HABILIDADES BLANDAS PARA LA BUSQUEDA **/
-		$habilidadesBlandas = "41".$this->sep."42".$this->sep."44".$this->sep."48".$this->sep."49".$this->sep."51";
+		//$habilidadesBlandas = "41".$this->sep."42".$this->sep."44".$this->sep."48".$this->sep."49".$this->sep."51";
 		//ID+VALORACION+IMPORTANCIA
+		$habilidadesBlandas =  array (41,42,44,48,49,51);
+		$habilidadesBlandas = json_encode($habilidadesBlandas);
 		$result = $this->Busquedas_model->setHabilidadesBlandasBusqueda($busquedaACTUAL,$habilidadesBlandas);
-		
+
 		if ($result["error"] == 0 )
 				$data["result"] = "PKG_BUSQUEDAS.PR_BUS_HABILIDADES_BLANDAS Habilidades Blandas de Busqueda creada/modificada correctamente.";
 		else 			
 			$data["result"] = "PKG_BUSQUEDAS.PR_BUS_HABILIDADES_BLANDAS ERROR : (".$result["error"].") :".$result["desc"];
 			
 		echo $data["result"]."<br />";
-		
 		
 		/** PRUEBA CONSULTA DE BUSQUEDA **/
 
