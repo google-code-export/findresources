@@ -391,7 +391,29 @@ class Util_model extends FR_Model {
         	throw new Exception('Oracle error message in getTiposDeDocumentos(): ' . $n2);
 		}
 		
-	}		
+	}
+
+	
+	/** OBTENGO HABILIDADES BLANDA **/
+	public function  getHabilidadesBlandas($idBusqueda){
+		
+		$result["habilidadesBlandas"] = NULL;
+		$result["error"] = NULL;
+		$result["desc"] = NULL;
+		
+		$params = array(
+			array('name'=>':PI_C_BUSQUEDA', 'value'=>$idBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':PO_LISTA_HAB_BLANDAS', 'value'=>&$result["habilidadesBlandas"], 'type'=>SQLT_RSET, 'length'=>255),
+			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_UTIL','PR_OBTIENE_HAB_BLANDAS',$params);
+		$result["habilidadesBlandas"] = $this->oracledb->get_cursor_data(":PO_LISTA_HAB_BLANDAS");
+		return $result;
+		
+			
+	}
 
 
 }
