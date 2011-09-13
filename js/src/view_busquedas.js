@@ -88,8 +88,93 @@ $(function() {
 			$('.sectionTitlePencil').css("visibility","none");
 			
 		});
-
 		
+		
+	$('#hardSkillsPopUp .sendButton').click(function(){
+
+		var habilidadesIndustrias = new Array();
+		var startIndex = (new String("editItemIndustry")).length;
+		$('.industryItem').each(function(i,element){
+			var itemId = $(element).attr("id");
+			var id = itemId.substring(startIndex);
+			var points = $('#' + itemId + ' .pointsInput').val();
+			habilidadesIndustrias.push({
+				idIndustria: id,
+				valor: points,
+				importancia: $('#' + itemId + ' .importanceInput').val()
+			});
+		});
+
+		var habilidadesAreas = new Array();
+		startIndex = (new String("editItemTool")).length;
+		$('.toolItem').each(function(i,element){
+			var itemId = $(element).attr("id");
+			var id = itemId.substring(startIndex);
+			var points = $('#' + itemId + ' .pointsInput').val();
+			habilidadesAreas.push({
+				idHerramienta: id,
+				valor: points,
+				importancia: $('#' + itemId + ' .importanceInput').val()
+			});
+		});
+		
+		$.ajax({
+			url: "busquedas/setHabilidadesDuras",
+			global: false,
+			type: "POST",
+			data: {
+				'habilidadesIndustrias': JSON.stringify(habilidadesIndustrias),
+				'habilidadesAreas': JSON.stringify(habilidadesAreas)
+			},
+			dataType: "json",
+			async: true,
+			success: function(response){
+				alert("Se han guardado los datos");
+				hidePopUp();
+				//TODO this is so ugly we shouldnt reload all the page.
+				window.location.reload();
+			},
+			error: function(response){
+				alert(response);
+			}
+		});
+		
+	});
+
+
+	
+	$('#softSkillsPopUp .sendButton').click(function(){
+
+		var habilidades = new Array();
+		var startIndex = (new String("editSoftSkillItem")).length;
+		$('#softSkillsPopUp .softSkillItem').each(function(i,element){
+			var itemId = $(element).attr("id");
+			var id = itemId.substring(startIndex);
+			habilidades.push(id);
+		});
+		
+		$.ajax({
+			url: "busquedas/setHabilidadesBlandas",
+			global: false,
+			type: "POST",
+			data: {
+				'habilidades': JSON.stringify(habilidades)
+			},
+			dataType: "json",
+			async: true,
+			success: function(response){
+				alert("Se han guardado los datos");
+				hidePopUp();
+				//TODO this is so ugly we shouldnt reload all the page.
+				window.location.reload();
+			},
+			error: function(response){
+				alert(response);
+			}
+		});
+		
+	});
+
 	return false;
 });
 
@@ -101,10 +186,57 @@ function newSearch(){
 	$('#searchDataEditorDateTo').val("");
 	$('#searchDataEditorResourcesQuantity').val("");
 	showPopUp('#searchDataPopUp');
-}		
+}
+
+function editSearchData(){
+	$('#searchDataEditorId').val("1");
+	$('#searchDataEditorDescription').val("123");
+	$('#searchDataEditorDateTo').val("123");
+	$('#searchDataEditorResourcesQuantity').val("123");
+	showPopUp('#searchDataPopUp');
+
+}
+
+
+function editHardSkills(){
+	showPopUp('#hardSkillsPopUp');
+}
+
+function editSoftSkills(){
+	showPopUp('#softSkillsPopUp');
+}
+
+
+
 
 var activatedSearch = null;
 
 function retriveSearchData(data){
 	activatedSearch = data;
 }
+
+
+function removeSoftSkill(idSoftSkill){
+	$('#editSoftSkillItem' + idSoftSkill).remove();
+}
+
+
+function addSoftSkill(){
+	var selectedSoftSkill = $('#availableSoftSkillsSelect').val();
+	
+	if($('#editSoftSkillItem' + selectedSoftSkill).length == 0){
+		
+		var softSkillLi = "<li id=\"editSoftSkillItem" + selectedSoftSkill  + "\" class=\"softSkillItem\">"+
+					availableSoftSkills[selectedSoftSkill] + 
+					"<a href=\"javascript:removeSoftSkill(" + selectedSoftSkill + ");\">X</a>" + 
+				"</div></li>"
+
+		$('#editItemSoftSkillList').append(softSkillLi);
+		
+	}else {
+		//it is already selected.
+		alert("Ya tiene esa característica seleccionada");
+	}
+	
+}
+
