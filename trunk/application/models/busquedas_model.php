@@ -389,5 +389,37 @@ class Busquedas_model extends CI_Model {
 		return $result;
 			
 	}
+
+	
+	/** OBTENGO ESTADO DE BUSQUEDA **/
+	public function  getEstadoBusqueda($idBusqueda){
+		
+		$result["descBusqueda"] = NULL;
+		$result["cantRecursos"] = NULL;
+		$result["fechaAlta"] = NULL;
+		$result["fechaHasta"] = NULL;
+		$result["estado"] = NULL;
+		$result["error"] = NULL;
+		$result["desc"] = NULL;
+		
+		$params = array(
+			array('name'=>':PI_USUARIO', 'value'=>$idBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':PO_D_BUSQUEDA', 'value'=>&$result["descBusqueda"], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':PI_CANTIDAD_RECURSOS', 'value'=>&$result["cantRecursos"], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':PO_F_HASTA', 'value'=>&$result["fechaAlta"], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':PO_F_ALTA', 'value'=>&$result["fechaHasta"], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':PO_D_ESTADO', 'value'=>&$result["estado"], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_ESTADO_BUSQUEDA',$params);
+
+		return $result;
+			
+	}
+
+	
+	
 	
 }
