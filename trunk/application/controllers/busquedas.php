@@ -10,7 +10,7 @@ class Busquedas extends CI_Controller {
 	}
 	
 	public function index(){
-		//$this->runTest();
+		$this->runTest();
 		$idUsuario = @$_SESSION[SESSION_ID_USUARIO];
 		if(!$idUsuario){
 			/////////////HARDCODED//////////////////////////
@@ -31,14 +31,15 @@ class Busquedas extends CI_Controller {
 			$idBusqueda = $_GET["busquedaId"]; 
 			//SET ID BUSQUEDA EN SESSION
 			$data['busquedaSeleccionada'] = $this->Busquedas_model->getOpcionesDeBusqueda($idBusqueda);
-		}
+		} else $idBusqueda = "1";
 		
 		//$data['habilidadesBlandasDisponibles'] = $this->Busquedas_model->getHabilidadesBlandasBusqueda($idBusqueda);
 		echo "1";
 		$data['busquedasDelUsuario'] = $this->Busquedas_model->getBusquedasDeUsuario($idUsuario);
 		echo "2";
 		$data['estadoBusqueda'] = $this->Busquedas_model->getEstadoBusqueda($idBusqueda);		
-		//var_dump($busquedasDelUsuario);
+		echo "3";
+		$data['habilidalesdesBlandasDisponibles'] = $this->Util_model->getHabilidadesBlandas($id);
 		/*
 		 * $b1->descripcion = "busqueda 1";
 		$b1->fechaHasta = "05/03/2012";
@@ -480,8 +481,8 @@ class Busquedas extends CI_Controller {
 		
 		
 		/** OBTENER HABILIDADES BLANDAS **/
-
-		$result = $this->Util_model->getHabilidadesBlandas($idUsuario);
+		$idHabilidad = NULL;
+		$result = $this->Util_model->getHabilidadesBlandas($idHabilidad); //SI LE PASO NULL DEVUELVE TODAS
 		
 		if ($result["error"] == 0 )
 			$data["result"] = "PKG_UTIL.PR_OBTIENE_HAB_BLANDAS Habilidades blandas consultadas correctamente.";
