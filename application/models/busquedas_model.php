@@ -419,7 +419,74 @@ class Busquedas_model extends CI_Model {
 			
 	}
 
+	/** SETEO HISTORIA LABORAL EN BUSQUEDA **/
+	public function  setHistoriaLaboral($idBusqueda,$idHistoriaLaboral,$compania,$companiaModo,$industria,$industriaModo,$pais,$paisModo, $anos, $anosModo, $titulo,$tituloModo,$fechaBaja){
+		$result["idHistoriaLaboral"] = NULL;
+		$result["error"] = NULL;
+		$result["desc"] = NULL;
+		
+		$params = array(
+			array('name'=>':PI_USUARIO', 'value'=>$idBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':PO_D_BUSQUEDA', 'value'=>&$result["descBusqueda"], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':PI_CANTIDAD_RECURSOS', 'value'=>&$result["cantRecursos"], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':PO_F_HASTA', 'value'=>&$result["fechaAlta"], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':PO_F_ALTA', 'value'=>&$result["fechaHasta"], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':PO_D_ESTADO', 'value'=>&$result["idHistoriaLaboral"], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_BUS_HISTORIA_LABORAL',$params);
+
+		return $result;
+			
+	}
 	
-	
+	/** OBTENGO ESTADO DE BUSQUEDA **/
+	public function  getEstadoBusqueda($idBusqueda){
+		
+		$result["descBusqueda"] = NULL;
+		$result["cantRecursos"] = NULL;
+		$result["fechaAlta"] = NULL;
+		$result["fechaHasta"] = NULL;
+		$result["estado"] = NULL;
+		$result["error"] = NULL;
+		$result["desc"] = NULL;
+		
+		$params = array(
+			array('name'=>':PI_USUARIO', 'value'=>$idBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':PO_D_BUSQUEDA', 'value'=>&$result["descBusqueda"], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':PI_CANTIDAD_RECURSOS', 'value'=>&$result["cantRecursos"], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':PO_F_HASTA', 'value'=>&$result["fechaAlta"], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':PO_F_ALTA', 'value'=>&$result["fechaHasta"], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':PO_D_ESTADO', 'value'=>&$result["estado"], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_ESTADO_BUSQUEDA',$params);
+
+		return $result;
+			
+	}
+
+	/** OBTENGO HISTORIA LABORAL EN BUSQUEDA **/
+	public function  getHistoriaLaboral($idBusqueda){
+		$result["historiaLaboral"] = NULL;
+		$result["error"] = NULL;
+		$result["desc"] = NULL;
+		
+		$params = array(
+			array('name'=>':PI_ID_BUSQUEDA', 'value'=>$idBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':PO_LISTA_HISTORIA_LABORAL', 'value'=>&$result["historiaLaboral"], 'type'=>SQLR_RSET, 'length'=>255),
+			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_CONS_BUS_HISTORIA_LABORAL',$params);
+		$result["historiaLaboral"] = $this->oracledb->get_cursor_data(":PO_LISTA_HISTORIA_LABORAL");
+		return $result;
+			
+	}
 	
 }
