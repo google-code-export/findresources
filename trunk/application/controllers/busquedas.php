@@ -37,8 +37,8 @@ class Busquedas extends CI_Controller {
 		echo "1";
 		$data['busquedasDelUsuario'] = $this->Busquedas_model->getBusquedasDeUsuario($idUsuario);
 		echo "2";
-		
-		var_dump($busquedasDelUsuario);
+		$data['estadoBusqueda'] = $this->Busquedas_model->getEstadoBusqueda($idBusqueda);		
+		//var_dump($busquedasDelUsuario);
 		/*
 		 * $b1->descripcion = "busqueda 1";
 		$b1->fechaHasta = "05/03/2012";
@@ -416,7 +416,96 @@ class Busquedas extends CI_Controller {
 		
 		var_dump($result);
 
+		/** ASOCIAR TICKET A BUSQUEDA **/
 
+		$duracion = "2";
+		$unidades = "999";
+		$result["error"] = 0; //$result = $this->Ticket_model->asociarTicket($idUsuario,$duracion,$unidades);
+		
+		if ($result["error"] == 0 )
+			$data["result"] = "PKG_TICKETS_EMPRESAS.PR_ASOCIA_TICKETS_EMPRESAS Ticket asociado correctamente.";
+		else 			
+			$data["result"] = "PKG_TICKETS_EMPRESAS.R_ASOCIA_TICKETS_EMPRESAS ERROR : (".$result["error"].") :".$result["desc"];
+			
+		echo $data["result"]."<br />";		
+
+		var_dump($result);
+		echo "<br />";
+
+		/** CONSUMIR TICKET **/
+
+		$idTicket = "4";
+		$unidades = "1";
+		$result = $this->Ticket_model->consumirTicket($idUsuario,$idTicket,$unidades);
+		
+		if ($result["error"] == 0 )
+			$data["result"] = "PKG_TICKETS_EMPRESAS.PR_CONSUME_TICKET_EMPRESA Ticket asociado correctamente.";
+		else 			
+			$data["result"] = "PKG_TICKETS_EMPRESAS.PR_CONSUME_TICKET_EMPRESA : (".$result["error"].") :".$result["desc"];
+			
+		echo $data["result"]."<br />";		
+
+		var_dump($result);
+		echo "<br />";
+		
+		
+		/** CONSULTAR SALDO TICKET **/
+
+		$idTicket = "4";
+		$result = $this->Ticket_model->consultarSaldoTicket($idTicket);
+		
+		if ($result["error"] == 0 )
+			$data["result"] = "PKG_TICKETS_EMPRESAS.PR_CONSULTA_SALDO_TICKET Ticket consultado correctamente.";
+		else 			
+			$data["result"] = "PKG_TICKETS_EMPRESAS.PR_CONSULTA_SALDO_TICKET : (".$result["error"].") :".$result["desc"];
+			
+		echo $data["result"]."<br />";		
+
+		var_dump($result);
+		echo "<br />";
+		
+		/** CONSULTAR SALDO TICKET **/
+
+		$result = $this->Ticket_model->consultarSaldoTicketEmpresa($idUsuario);
+		
+		if ($result["error"] == 0 )
+			$data["result"] = "PKG_TICKETS_EMPRESAS.PR_CONS_TICKET_SALDO_EMPRESA Ticket consultado correctamente.";
+		else 			
+			$data["result"] = "PKG_TICKETS_EMPRESAS.PR_CONS_TICKET_SALDO_EMPRESA : (".$result["error"].") :".$result["desc"];
+			
+		echo $data["result"]."<br />";		
+
+		var_dump($result);
+		echo "<br />";
+		
+		
+		/** OBTENER HABILIDADES BLANDAS **/
+
+		$result = $this->Util_model->getHabilidadesBlandas($idUsuario);
+		
+		if ($result["error"] == 0 )
+			$data["result"] = "PKG_UTIL.PR_OBTIENE_HAB_BLANDAS Habilidades blandas consultadas correctamente.";
+		else 			
+			$data["result"] = "PKG_UTIL.PR_OBTIENE_HAB_BLANDAS : (".$result["error"].") :".$result["desc"];
+			
+		echo $data["result"]."<br />";		
+
+		var_dump($result);
+		echo "<br />";
+		
+		/** CONSULTAR ESTADOBUSQUEDA**/
+
+		$result = $this->Busquedas_model->getEstadoBusqueda($idBusqueda);
+		
+		if ($result["error"] == 0 )
+			$data["result"] = "PKG_TICKETS_EMPRESAS.PR_ESTADO_BUSQUEDA Busqueda consultada correctamente.";
+		else 			
+			$data["result"] = "PKG_TICKETS_EMPRESAS.PR_ESTADO_BUSQUEDA : (".$result["error"].") :".$result["desc"];
+			
+		echo $data["result"]."<br />";		
+
+		var_dump($result);
+		echo "<br />";
 		//////////**************HARD CODE DATA BY MFOX************//////////////
 				
 		
