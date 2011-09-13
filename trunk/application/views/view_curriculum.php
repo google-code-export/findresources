@@ -121,7 +121,7 @@
 			</div>
 			
 			<div class="block" id="hardSkills">
-				<h2>Caracterisiticas Duras <a href="javascript:editHardSkills();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
+				<h2>Caracterísiticas Duras <a href="javascript:editHardSkills();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
 				<div class="inblock">
 					<h4>Industrias</h4>
 					<ul>

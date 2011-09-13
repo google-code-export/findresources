@@ -10,23 +10,6 @@
 .content{width:1000px;margin:0 auto;}
 .content .CL{width:500px;float:left; margin-left: 10px; margin-top: 20px;}
 .content .CR{width:400px;float:left;}
-.content .CL .block h2{font-size:18px;color:#555;padding:0 0 0px;}
-.content .CL .block h2 a.addpos{float:right;}
-
-.content .CL .block h4{font:bold 14px; color:#555;padding:0 0 6px;}
-.content .CL .block ul{padding:0 0 6px;}
-.content .CL .block ul li{}
-.content .CL .block h5{font:bold 14px;padding:0 0 6px;}
-.content .CL .block h5 a{font-size:11px;font-weight:normal;padding:0 0 0 4px;}
-.content .CL .block p.company{font-size:12px;font-weight:bold;padding:0 0 2px;}
-.content .CL .block p.industry{font-size:11px;color:#999;}
-.content .CL .block p.when{color:#555;padding:0 0 6px;}
-.content .CL .block p.text{padding:0 0 6px;}
-.content .CL .block p.recommendations{color:#666;font-size:11px;font-style:italic;padding:0 0 6px;}
-.content .CL .block p.recommendations a{font-style:normal;padding:0 0 0 6px;}
-.content .CL .block p.addActivity{padding:0 0 6px;}
-
-.block {margin:0 0 10px; border:2px solid #DDD;padding:10px;}
 
 .content .info .photo{float:left;}
 .content .info .photo img{padding:5px;background:#FFF;}

@@ -56,3 +56,37 @@ function addTool(){
 	
 	
 }
+
+$(function(){
+	$('#availableAreasSelect').change(function(){
+		$.ajax({
+			url: "util/getHerramientasPorArea",
+			global: false,
+			type: "POST",
+			data: {
+				'idArea': $('#availableAreasSelect').val()
+			},
+			dataType: "json",
+			async: true,
+			success: function(tools){
+				$('#availableToolsSelect').empty();
+				//.children("option").remove();
+				var options = ""; 
+				
+				for (id in tools)
+				{ 
+					availableTools[id] = tools[id];
+					options += "<option value=\"" + id + "\">" + tools[id] + "</option>";
+				}					
+				$('#availableToolsSelect').append(options);
+				/*debugger;
+				alert(response)*/
+			},
+			error: function(response){
+				alert(response);
+			}
+		});
+		
+	});
+
+});

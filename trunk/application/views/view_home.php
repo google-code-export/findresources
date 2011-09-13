@@ -65,12 +65,12 @@
 	<div id="homeCandidateLinks">
 		<div id="homeCurriculumLink" class="clearfix">
 			<a href="curriculum"> 
-				CURRICULUM 
+				CURRICULUM
 			</a>
 		</div>
 		<div id="homeTestLink" class="clearfix">
 			<a href="test_luscher"> 
-				COMPLETAR TEST PSICOTECNICO 
+				COMPLETAR TEST PSICOTECNICO
 			</a>
 		</div>
 	</div>

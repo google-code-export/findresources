@@ -161,3 +161,20 @@ h1 {
 	padding:5px;
 	background-color: #DAEBEA
 }
+
+h2{font-size:18px;color:#555;padding:0 0 0px;}
+
+.block h4{font:bold 14px; color:#555;padding:0 0 6px;}
+.block ul{padding:0 0 6px;}
+.block ul li{}
+.block h5{font:bold 14px;padding:0 0 6px;}
+.block h5 a{font-size:11px;font-weight:normal;padding:0 0 0 4px;}
+.block p.company{font-size:12px;font-weight:bold;padding:0 0 2px;}
+.block p.industry{font-size:11px;color:#999;}
+.block p.when{color:#555;padding:0 0 6px;}
+.block p.text{padding:0 0 6px;}
+.block p.recommendations{color:#666;font-size:11px;font-style:italic;padding:0 0 6px;}
+.block p.recommendations a{font-style:normal;padding:0 0 0 6px;}
+.block p.addActivity{padding:0 0 6px;}
+
+.block {margin:0 0 10px; border:2px solid #DDD;padding:10px;}

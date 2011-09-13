@@ -1,20 +1,19 @@
 #leftPanel,
 #rightPanel{
 	float:left;
-	height: 490px;
 }
 
 #leftPanel {
     width: 130px;
-  	border-color: #707070;
-    border-style: none solid none none;
-    border-width: 1px;
-    overflow: auto;
 }
 
 #rightPanel{
-	width:829px
-	
+	width:800px;
+  	border-color: #707070;
+    border-left: solid;
+    border-width: 1px;
+	padding-left: 20px;      
+	padding-top: 7px;      
 }
 
 
@@ -74,7 +73,19 @@
 }
 */
 
-.tab_content {
-	height: 388px;
-	overflow: auto; 
+.editSearchDataLink {
+	padding-left: 7px;
+}
+
+#savedSearchLinks {
+	padding-left: 7px;
+}
+.savedSearchLink {
+	padding: 4px;
+}
+
+
+#hardSkillsPopUp input[type="text"] {
+    margin-right: 20px;
+    width: 10px;
 }
