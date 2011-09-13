@@ -10,7 +10,7 @@ class Busquedas extends CI_Controller {
 	}
 	
 	public function index(){
-		$this->runTest();
+		//$this->runTest();
 		$idUsuario = @$_SESSION[SESSION_ID_USUARIO];
 		if(!$idUsuario){
 			/////////////HARDCODED//////////////////////////
@@ -40,6 +40,8 @@ class Busquedas extends CI_Controller {
 		$data['estadoBusqueda'] = $this->Busquedas_model->getEstadoBusqueda($idBusqueda);		
 		echo "3";
 		$data['habilidalesdesBlandasDisponibles'] = $this->Util_model->getHabilidadesBlandas($id);
+		
+		var_dump($data);
 		/*
 		 * $b1->descripcion = "busqueda 1";
 		$b1->fechaHasta = "05/03/2012";
