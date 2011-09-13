@@ -10,6 +10,187 @@ class Busquedas extends CI_Controller {
 	}
 	
 	public function index(){
+		//$this->runTest();
+		$idUsuario = @$_SESSION[SESSION_ID_USUARIO];
+		if(!$idUsuario){
+			/////////////HARDCODED//////////////////////////
+			/////////////HARDCODED//////////////////////////
+			$idUsuario = "jonakup@hotmail.com";
+			/////////////HARDCODED//////////////////////////
+			/////////////HARDCODED//////////////////////////
+			
+			///////////DEVELOPING//UNCOMMENT//THIS////////////////
+			///////////DEVELOPING//UNCOMMENT//THIS////////////////
+			//redirect('login');
+			///////////DEVELOPING//UNCOMMENT//THIS////////////////
+			///////////DEVELOPING//UNCOMMENT//THIS////////////////
+		}
+		
+		
+		if(isset($_GET["busquedaId"])){
+			$idBusqueda = $_GET["busquedaId"]; 
+			//SET ID BUSQUEDA EN SESSION
+			$data['busquedaSeleccionada'] = $this->Busquedas_model->getOpcionesDeBusqueda($idBusqueda);
+		}
+		
+		//$data['habilidadesBlandasDisponibles'] = $this->Busquedas_model->getHabilidadesBlandasBusqueda($idBusqueda);
+		echo "1";
+		$data['busquedasDelUsuario'] = $this->Busquedas_model->getBusquedasDeUsuario($idUsuario);
+		echo "2";
+		
+		var_dump($busquedasDelUsuario);
+		/*
+		 * $b1->descripcion = "busqueda 1";
+		$b1->fechaHasta = "05/03/2012";
+		$b1->cantidadRecursos = 2;
+		
+		$b2->descripcion = "busqueda 2";
+		$b2->fechaHasta = "04/04/2012";
+		$b2->cantidadRecursos = 3;
+		
+		$b3->descripcion = "busqueda 3";
+		$b3->fechaHasta = "04/01/2012";
+		$b3->cantidadRecursos = 1;
+		
+		
+		$data['busquedasDelUsuario'] = array(
+			"1" => $b1,
+			"2" => $b2,
+			"3" => $b3);
+		
+		$data['habilidadesBlandasDisponibles'] = array(
+			"41" => "habilidad blanda 1",
+			"42" => "habilidad blanda 2",
+			"43" => "habilidad blanda 3");
+		*/
+
+		
+		$data['industriasDisponibles'] = $this->Util_model->getIndustriasDisponibles();
+		$data['estadosCiviles'] = $this->Util_model->getEstadosCiviles();
+		$data['paises'] = $response = $this->Util_model->getPaises();
+		$data['industriasDisponibles'] = $this->Util_model->getIndustriasDisponibles();
+		$data['areasDisponibles'] = $this->Util_model->getAreasDisponibles();
+		$data['nivelesDeEducacion'] = $this->Util_model->getNivelesDeEducacion();
+		$data['entidadesEducativas'] = $this->Util_model->getEntidadesEducativas();
+		$data['tiposDeEducacionNoFormal'] = $this->Util_model->getTiposDeEducacionNoFormal();
+		
+	
+		
+		
+		$this->load->view('view_busquedas', $data);
+		
+		
+		
+		
+		}
+		
+		
+	/*public function  setEducacionFormal(){
+		$currentCurriculum = @$_SESSION[SESSION_CV_EDITANDO];
+		$educacionFormal = $this->input->post('educacionFormal');
+		$educacionFormal = json_decode($educacionFormal);
+		$respuesta = $this->Curriculum_model->setEducacionFormal($currentCurriculum->id, $educacionFormal);
+		echo json_encode($respuesta);
+	}*/
+	
+			/*public function  setEducacionFormal(){
+		$currentCurriculum = @$_SESSION[SESSION_CV_EDITANDO];
+		$educacionFormal = $this->input->post('educacionFormal');
+		$educacionFormal = json_decode($educacionFormal);
+		$respuesta = $this->Curriculum_model->setEducacionFormal($currentCurriculum->id, $educacionFormal);
+		echo json_encode($respuesta);
+	}*/
+	
+	/**
+	 * input: 'idBusquedaexperienciaLaboral'
+	 * output: retorna las opciones de la busqueda.
+	 * */
+	private function  getOpcionesDeBusqueda($idBusqueda){
+		
+		$resultado->educacionFormal->idEntidad = null;
+		$resultado->educacionFormal->descripcionEntidad = "ENTIDAD"; 
+		$resultado->educacionFormal->modoEntidad = "R";
+		$resultado->educacionFormal->titulo = "Ingeniero en Electrónica";
+		$resultado->educacionFormal->modoTitulo = "R";
+		$resultado->educacionFormal->idNivelEducacion = 1;
+		$resultado->educacionFormal->modoNivelEducacion = "R";
+		$resultado->educacionFormal->idArea = 1;
+		$resultado->educacionFormal->modoArea = "R";
+		$resultado->educacionFormal->estado = "C";
+		$resultado->educacionFormal->modoEstado = "R";
+		$resultado->educacionFormal->promedioDesde = 6;
+		$resultado->educacionFormal->promedioHasta = 8;
+		$resultado->educacionFormal->modoPromedio = "P";
+		$resultado->educacionFormal->baja = "N";
+		
+		$resultado->recurso->edadDesde = 20;
+		$resultado->recurso->edadHasta = 30;
+		$resultado->recurso->edadModo = "R";
+		$resultado->recurso->nacionalidad = array("ARG", "BOL");
+		$resultado->recurso->provincia = array("0", "1");
+		//$resultado->recurso->localidad = "R";" => "", // VA el texto no el id --- VA ESTO?
+		$resultado->recurso->twitterModo = "P";
+		$resultado->recurso->gtalkModo = "P";
+		$resultado->recurso->smsModo = "R"; 
+		
+		
+		/***********          HERRAMIENTAS      ***********/
+		/**
+		 * array[idHerramienta] {valor, importancia}
+		 * */
+		$i1->valor = 5;
+		$i1->importancia = 100;
+		$i1->descripcionArea = "Area 1";
+		$i1->descripcionHerramienta = "Herramienta 1";
+		
+		$i2->valor = 3;
+		$i2->importancia = 20;
+		$i2->descripcionArea = "Area 2";
+		$i2->descripcionHerramienta = "Herramienta 2";
+		
+		$i3->valor = 1;
+		$i3->importancia = 77;
+		$i3->descripcionArea = "Area 3";
+		$i3->descripcionHerramienta = "Herramienta 3";
+		
+				
+		$resultado->herramientas = array(
+			"1" => $i1,
+			"2" => $i2,
+			"3" => $i3,
+		);
+		
+		
+		$resultado->habilidadesBlandas = array("41", "42", "43"); 
+		
+		
+		/**
+		 * array[idIndustria] {idArea, valor, importancia}
+		 * */
+		$i1->valor = 5;
+		$i1->importancia = 31;
+		
+		
+		
+		$i2->valor = 3;
+		$i2->importancia = 20;
+		
+		
+		$i3->valor = 1;
+		$i3->importancia = 77;
+		
+		
+		$resultado->industrias = array(
+			"1" => $i1,
+			"2" => $i2,
+			"3" => $i3,
+		);
+		
+		return $resultado;
+	}
+	
+	private function runTest(){
+		
 		/*
 		$usuario = @$_SESSION[SESSION_ID_USUARIO];
 		$usuario = "jonakup@hotmail.com";
@@ -237,166 +418,8 @@ class Busquedas extends CI_Controller {
 
 
 		//////////**************HARD CODE DATA BY MFOX************//////////////
-		
-		
-		if(isset($_GET["busquedaId"])){
-			$idBusqueda = $_GET["busquedaId"]; 
-			//SET ID BUSQUEDA EN SESSION
-			$data['busquedaSeleccionada'] = $this->Busquedas_model->getOpcionesDeBusqueda($idBusqueda);
-		}
-		
-		$data['habilidadesBlandasDisponibles'] = $this->Busquedas_model->getHabilidadesBlandasBusqueda($idBusqueda);
 				
-		$data['busquedasDelUsuario'] = $this->Busquedas_model->getBusquedasDeUsuario($idUsuario);
 		
-		/*
-		 * $b1->descripcion = "busqueda 1";
-		$b1->fechaHasta = "05/03/2012";
-		$b1->cantidadRecursos = 2;
-		
-		$b2->descripcion = "busqueda 2";
-		$b2->fechaHasta = "04/04/2012";
-		$b2->cantidadRecursos = 3;
-		
-		$b3->descripcion = "busqueda 3";
-		$b3->fechaHasta = "04/01/2012";
-		$b3->cantidadRecursos = 1;
-		
-		
-		$data['busquedasDelUsuario'] = array(
-			"1" => $b1,
-			"2" => $b2,
-			"3" => $b3);
-		
-		$data['habilidadesBlandasDisponibles'] = array(
-			"41" => "habilidad blanda 1",
-			"42" => "habilidad blanda 2",
-			"43" => "habilidad blanda 3");
-		*/
-
-		
-		$data['industriasDisponibles'] = $this->Util_model->getIndustriasDisponibles();
-		$data['estadosCiviles'] = $this->Util_model->getEstadosCiviles();
-		$data['paises'] = $response = $this->Util_model->getPaises();
-		$data['industriasDisponibles'] = $this->Util_model->getIndustriasDisponibles();
-		$data['areasDisponibles'] = $this->Util_model->getAreasDisponibles();
-		$data['nivelesDeEducacion'] = $this->Util_model->getNivelesDeEducacion();
-		$data['entidadesEducativas'] = $this->Util_model->getEntidadesEducativas();
-		$data['tiposDeEducacionNoFormal'] = $this->Util_model->getTiposDeEducacionNoFormal();
-		
-	
-		
-		
-		$this->load->view('view_busquedas', $data);
-		
-		
-		
-		
-		}
-		
-		
-	/*public function  setEducacionFormal(){
-		$currentCurriculum = @$_SESSION[SESSION_CV_EDITANDO];
-		$educacionFormal = $this->input->post('educacionFormal');
-		$educacionFormal = json_decode($educacionFormal);
-		$respuesta = $this->Curriculum_model->setEducacionFormal($currentCurriculum->id, $educacionFormal);
-		echo json_encode($respuesta);
-	}*/
-	
-			/*public function  setEducacionFormal(){
-		$currentCurriculum = @$_SESSION[SESSION_CV_EDITANDO];
-		$educacionFormal = $this->input->post('educacionFormal');
-		$educacionFormal = json_decode($educacionFormal);
-		$respuesta = $this->Curriculum_model->setEducacionFormal($currentCurriculum->id, $educacionFormal);
-		echo json_encode($respuesta);
-	}*/
-	
-	/**
-	 * input: 'idBusquedaexperienciaLaboral'
-	 * output: retorna las opciones de la busqueda.
-	 * */
-	private function  getOpcionesDeBusqueda($idBusqueda){
-		
-		$resultado->educacionFormal->idEntidad = null;
-		$resultado->educacionFormal->descripcionEntidad = "ENTIDAD"; 
-		$resultado->educacionFormal->modoEntidad = "R";
-		$resultado->educacionFormal->titulo = "Ingeniero en Electrónica";
-		$resultado->educacionFormal->modoTitulo = "R";
-		$resultado->educacionFormal->idNivelEducacion = 1;
-		$resultado->educacionFormal->modoNivelEducacion = "R";
-		$resultado->educacionFormal->idArea = 1;
-		$resultado->educacionFormal->modoArea = "R";
-		$resultado->educacionFormal->estado = "C";
-		$resultado->educacionFormal->modoEstado = "R";
-		$resultado->educacionFormal->promedioDesde = 6;
-		$resultado->educacionFormal->promedioHasta = 8;
-		$resultado->educacionFormal->modoPromedio = "P";
-		$resultado->educacionFormal->baja = "N";
-		
-		$resultado->recurso->edadDesde = 20;
-		$resultado->recurso->edadHasta = 30;
-		$resultado->recurso->edadModo = "R";
-		$resultado->recurso->nacionalidad = array("ARG", "BOL");
-		$resultado->recurso->provincia = array("0", "1");
-		//$resultado->recurso->localidad = "R";" => "", // VA el texto no el id --- VA ESTO?
-		$resultado->recurso->twitterModo = "P";
-		$resultado->recurso->gtalkModo = "P";
-		$resultado->recurso->smsModo = "R"; 
-		
-		
-		/***********          HERRAMIENTAS      ***********/
-		/**
-		 * array[idHerramienta] {valor, importancia}
-		 * */
-		$i1->valor = 5;
-		$i1->importancia = 100;
-		$i1->descripcionArea = "Area 1";
-		$i1->descripcionHerramienta = "Herramienta 1";
-		
-		$i2->valor = 3;
-		$i2->importancia = 20;
-		$i2->descripcionArea = "Area 2";
-		$i2->descripcionHerramienta = "Herramienta 2";
-		
-		$i3->valor = 1;
-		$i3->importancia = 77;
-		$i3->descripcionArea = "Area 3";
-		$i3->descripcionHerramienta = "Herramienta 3";
-		
-				
-		$resultado->herramientas = array(
-			"1" => $i1,
-			"2" => $i2,
-			"3" => $i3,
-		);
-		
-		
-		$resultado->habilidadesBlandas = array("41", "42", "43"); 
-		
-		
-		/**
-		 * array[idIndustria] {idArea, valor, importancia}
-		 * */
-		$i1->valor = 5;
-		$i1->importancia = 31;
-		
-		
-		
-		$i2->valor = 3;
-		$i2->importancia = 20;
-		
-		
-		$i3->valor = 1;
-		$i3->importancia = 77;
-		
-		
-		$resultado->industrias = array(
-			"1" => $i1,
-			"2" => $i2,
-			"3" => $i3,
-		);
-		
-		return $resultado;
 	}
 		
 
