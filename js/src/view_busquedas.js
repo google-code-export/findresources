@@ -61,9 +61,10 @@ $(function() {
 		$('#searchDataPopUp .sendButton').click(function(){
 			var experienciaLaboral = {
 				idBusqueda: $('#searchDataEditorId').val(), // null = nuevo
-				descripcionBusqueda: $('#searchDataEditorDescription').val(),
+				descBusqueda: $('#searchDataEditorDescription').val(),
 				fechaHasta: $('#searchDataEditorDateTo').val(), 
-				cantidadRecursos: $('#searchDataEditorResourcesQuantity').val()
+				cantRecursos: $('#searchDataEditorResourcesQuantity').val(),
+				estado: $('#searchDataEditorStatus').val() 
 			};
 			$.ajax({
 				url: "busquedas/setBusqueda",
@@ -188,8 +189,8 @@ function newSearch(){
 	showPopUp('#searchDataPopUp');
 }
 
-function editSearchData(){
-	$('#searchDataEditorId').val("1");
+function editSearchData(idSearch){
+	$('#searchDataEditorId').val(userSearchs[idSearch]->id_busqueda);
 	$('#searchDataEditorDescription').val("123");
 	$('#searchDataEditorDateTo').val("123");
 	$('#searchDataEditorResourcesQuantity').val("123");

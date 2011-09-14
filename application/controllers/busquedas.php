@@ -15,12 +15,14 @@ class Busquedas extends CI_Controller {
 		if(!$idUsuario){
 			/////////////HARDCODED//////////////////////////
 			/////////////HARDCODED//////////////////////////
-			$idUsuario = "jonakup@hotmail.com";
+			$idUsuario = "leandrominio@gmail.com";
+			$idBusqueda = "1";
 			/////////////HARDCODED//////////////////////////
 			/////////////HARDCODED//////////////////////////
 			
 			///////////DEVELOPING//UNCOMMENT//THIS////////////////
 			///////////DEVELOPING//UNCOMMENT//THIS////////////////
+			///////save in session where the user wanted to enter
 			//redirect('login');
 			///////////DEVELOPING//UNCOMMENT//THIS////////////////
 			///////////DEVELOPING//UNCOMMENT//THIS////////////////
@@ -31,7 +33,7 @@ class Busquedas extends CI_Controller {
 			$idBusqueda = $_GET["busquedaId"]; 
 			//SET ID BUSQUEDA EN SESSION
 			$data['busquedaSeleccionada'] = $this->Busquedas_model->getOpcionesDeBusqueda($idBusqueda);
-		} else $idBusqueda = "1";
+		}
 		
 		//$data['habilidadesBlandasDisponibles'] = $this->Busquedas_model->getHabilidadesBlandasBusqueda($idBusqueda);
 		echo "1";
