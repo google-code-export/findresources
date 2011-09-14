@@ -31,13 +31,14 @@
 <title>Find Resources</title>
 
 <script type="text/javascript">
-	var userSearchs = <?php  echo json_encode($busquedasDelUsuario["busquedasActivas"]); ?>;
+
+	var userSearchs = <?php echo json_encode($busquedasDelUsuario["busquedasActivas"]); ?>;
 
  	var availableIndustries = <?php  echo json_encode($industriasDisponibles); ?>;
 
 	var availableAreas = <?php  echo json_encode($areasDisponibles); ?>;
 
-	var availableTools = new Array(); //fill in $('#availableAreasSelect').change();	
+	var availableTools = new Array(); //fill in $('#availableAreasSelect'.change(;	
 
 	var availableCountries = <?php echo json_encode($paises); ?>;
 
@@ -45,7 +46,7 @@
 
 	var availableSoftSkills	= <?php echo json_encode($habilidadesBlandasDisponibles); ?>;
 	
-
+	
 </script>
 
 
@@ -67,10 +68,9 @@
 					<div class="savedSearchLink">
 						<a href="busquedas?busquedaId=<?php echo $busq->id_busqueda?>">
 							<?php 
-							var_dump($busq);
 							echo $busq->d_busqueda?>
 						</a>
-						<a class="editSearchDataLink" href="javascript:editSearchData();">
+						<a class="editSearchDataLink" href="javascript:editSearchData(<?php echo $i ?>);">
 							<img src="images/src/pencil.gif"/>
 						</a>
 					</div>
@@ -99,8 +99,8 @@
 									<div class="inblock">
 										<h4>Industrias</h4>
 										<ul>
-										<?php foreach ($busquedaSeleccionada->industrias as $id => $habilidad){ ?>
-											<li><?php echo $industriasDisponibles[$id] ?>: <?php echo $habilidad->valor ?> - <?php echo $habilidad->importancia ?></li>
+										<?php foreach ($busquedaSeleccionada['industrias']  as $id => $habilidad){ ?>
+											<li><?php echo $habilidad->d_industria ?>: <?php echo $habilidad->valoracion ?> - <?php echo $habilidad->importancia ?></li>
 										<?php } ?>
 										</ul>
 									</div>
@@ -108,8 +108,8 @@
 									<div class="inblock">
 										<h4>Areas</h4>
 										<ul>
-										<?php foreach ($busquedaSeleccionada->herramientas as $habilidad){ ?>
-											<li><?php echo $habilidad->descripcionArea ?> - <?php echo $habilidad->descripcionHerramienta ?>: <?php echo $habilidad->valor ?> - <?php echo $habilidad->importancia ?></li>
+										<?php foreach ($busquedaSeleccionada['herramientas'] as $habilidad){ ?>
+											<li><?php echo $habilidad->d_area ?> - <?php echo $habilidad->d_herramienta ?>: <?php echo $habilidad->valor_herramienta ?> - <?php echo $habilidad->importancia ?></li>
 										<?php } ?>
 										</ul>
 									</div>
@@ -117,9 +117,9 @@
 								<div class="block" id="softSkills">
 									<h2>Características Blandas <a href="javascript:editSoftSkills();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
 									<div class="inblock">
-										<?php foreach ($busquedaSeleccionada->habilidadesBlandas as $idHabilidad){ ?>
+										<?php foreach ($busquedaSeleccionada['habilidadesBlandas'] as $habilidad){ ?>
 											<div class="row clearfix">
-												<?php echo $habilidadesBlandasDisponibles[$idHabilidad]; ?>
+												<?php echo $habilidad->d_habilidad_blanda; ?>
 											</div>
 										<?php } ?>
 									</div>
@@ -127,75 +127,82 @@
 												
 								<div class="block" id="hardSkills">
 									<h2>Educacion Formal <a href="javascript:editFormalEducation();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
-		
-									<div class="study inblock">
-										<div class="row clearfix">
-											<div class="label"> Entidad: </div> 
-											<?php echo ($busquedaSeleccionada->educacionFormal->idEntidad != "")?$entidadesEducativas[$busquedaSeleccionada->educacionFormal->idEntidad]: $busquedaSeleccionada->educacionFormal->descripcionEntidad?>
-											<?php echo $busquedaSeleccionada->educacionFormal->modoEntidad ?>
-										</div>								
-										<div class="row clearfix">
-											<div class="label"> Titulo: </div> 
-											<?php echo $busquedaSeleccionada->educacionFormal->titulo ?>
-											<?php echo $busquedaSeleccionada->educacionFormal->modoTitulo ?>
-										</div>								
-										<div class="row clearfix">
-											<div class="label"> Nivel de Educación: </div> 
-											<?php echo $busquedaSeleccionada->educacionFormal->idNivelEducacion ?>
-											<?php echo $busquedaSeleccionada->educacionFormal->modoNivelEducacion ?>
-										</div>								
-										<div class="row clearfix">
-											<div class="label"> Area: </div> 
-											<?php echo $busquedaSeleccionada->educacionFormal->idArea ?>
-											<?php echo $busquedaSeleccionada->educacionFormal->modoArea ?>
-										</div>								
-										<div class="row clearfix">
-											<div class="label"> Estado: </div> 
-											<?php echo $busquedaSeleccionada->educacionFormal->estado ?>
-											<?php echo $busquedaSeleccionada->educacionFormal->modoEstado ?>
-										</div>								
-										<div class="row clearfix">
-											<div class="label"> Promedio: </div> 
-											de 
-											<?php echo $busquedaSeleccionada->educacionFormal->promedioDesde ?> a 
-											<?php echo $busquedaSeleccionada->educacionFormal->promedioHasta ?>
-											<?php echo $busquedaSeleccionada->educacionFormal->modoPromedio ?>
-										</div>								
-									</div>
+									<?php foreach ($busquedaSeleccionada['educacionFormal'] as $educacion) { ?>
+										<div class="study inblock">
+											<div class="row clearfix">
+												<div class="label"> Entidad: </div> 
+												<?php echo ($educacion->id_entidad_educativa != "")?$entidadesEducativas[$educacion->id_entidad_educativa]: $educacion->d_entidad ?>
+												<?php echo $educacion->c_modo_entidad ?>
+											</div>								
+											<div class="row clearfix">
+												<div class="label"> Titulo: </div> 
+												<?php echo $educacion->titulo ?>
+												<?php echo $educacion->c_modo_titulo ?>
+											</div>								
+											<div class="row clearfix">
+												<div class="label"> Nivel de Educación: </div> 
+												<?php echo $educacion->id_nivel_educacion ?>
+												<?php echo $educacion->c_modo_nivel_educacion ?>
+											</div>								
+											<div class="row clearfix">
+												<div class="label"> Area: </div> 
+												<?php echo $educacion->id_area ?>
+												<?php echo $educacion->c_modo_area ?>
+											</div>								
+											<div class="row clearfix">
+												<div class="label"> Estado: </div> 
+												<?php echo $educacion->estado ?>
+												<?php echo $educacion->c_modo_estado ?>
+											</div>								
+											<div class="row clearfix">
+												<div class="label"> Promedio: </div> 
+												de 
+												<?php echo $educacion->promedio_desde ?> a 
+												<?php echo $educacion->promedio_hasta ?>
+												<?php echo $educacion->c_modo_promedio ?>
+											</div>								
+										</div>
+									<?php } ?>
 								</div>
 		
 								<div class="block" id="hardProperties">
 									<h2>Datos Adicionales <a href="javascript:editAditionalData();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
-									<div class="study inblock">
-										<div class="row clearfix">
-											<div class="label"> Edad: </div> 
-											de
-											<?php echo $busquedaSeleccionada->recurso->edadDesde ?> a
-											<?php echo $busquedaSeleccionada->recurso->edadHasta?> -
-											<?php echo $busquedaSeleccionada->recurso->edadModo?>  
-										</div>								
-										<!--div class="row clearfix">
-											<div class="label">Nacionalidad: </div> 
-											<--?php echo $busquedaSeleccionada->recurso->nacionalidad ?>
-										</div-->
-										<div class="row clearfix">
-											<div class="label">Provincia:</div> 
-											<?php echo $busquedaSeleccionada->recurso->provincia ?>
+
+									<?php foreach ($busquedaSeleccionada["recurso"] as $recurso) { ?>
+										<div class="study inblock">
+											<div class="row clearfix">
+												<div class="label"> Edad: </div> 
+												de
+												<?php echo $recurso->edadDesde ?> a
+												<?php echo $recurso->edadHasta?> -
+												<?php echo $recurso->edadModo?>  
+											</div>								
+											<!--div class="row clearfix">
+												<div class="label">Nacionalidad: </div> 
+												<--?php echo $busquedaSeleccionada["recurso"]->nacionalidad ?>
+											</div-- >
+											<div class="row clearfix">
+												<div class="label">Provincia:</div> 
+												<!--?php echo $recurso->provincia ?>
+											</div-- >
+												<div class="row clearfix">
+												<div class="label">Localidad:</div> 
+												<!--?php echo $recurso->localidad ?>
+											</div-->
+											<div class="row clearfix">
+												<div class="label">Posee twitter:</div> 
+												<?php echo $recurso->twitterModo ?>
+											</div>
+											<div class="row clearfix">
+												<div class="label">Posee gtalk:</div> 
+												<?php echo $busquedaSeleccionada["recurso"]->gtalkModo ?>
+											</div>
+											<div class="row clearfix">
+												<div class="label">Posee sms:</div> 
+												<?php echo $busquedaSeleccionada["recurso"]->smsModo ?>
+											</div>
 										</div>
-										<div class="row clearfix">
-											<div class="label">Posee twitter:</div> 
-											<?php echo $busquedaSeleccionada->recurso->twitterModo ?>
-										</div>
-										<div class="row clearfix">
-											<div class="label">Posee gtalk:</div> 
-											<?php echo $busquedaSeleccionada->recurso->gtalkModo ?>
-										</div>
-										<div class="row clearfix">
-											<div class="label">Posee sms:</div> 
-											<?php echo $busquedaSeleccionada->recurso->smsModo ?>
-										</div>
-																		
-									</div>
+									<?php } ?>
 								</div>
 		
 						    </div>
@@ -326,7 +333,7 @@
 						
 					</div>
 					<div class="buttonsPopUp">
-						<input type="submit" value="Guardar" class="sendButton" />
+						<input type="submit" value="Guardar" class="sendButton" onclick="javascript:setSearchData();"  />
 						<input type="submit" value="Cancelar" class="cancelPopUp" />
 					</div>
 				</div>
@@ -354,11 +361,11 @@
 				</div>
 	
 				<ul id="editItemIndustryList">
-					<?php foreach ($busquedaSeleccionada->industrias as $id => $habilidad){ ?>
+					<?php foreach ($busquedaSeleccionada["industrias"] as $id => $habilidad){ ?>
 					<li id="editItemIndustry<?php echo $id ?>" class="industryItem">
 						<div class="field">
-							<div class="label"><?php echo $industriasDisponibles[$id] ?>:</div> 
-							<input type="text" class="pointsInput" value="<?php echo $habilidad->valor ?>"/>
+							<div class="label"><?php echo $habilidad->d_industria ?>:</div> 
+							<input type="text" class="pointsInput" value="<?php echo $habilidad->valoracion ?>"/>
 							<input type="text" class="importanceInput" value="<?php echo $habilidad->importancia ?>"/>
 							<a href="javascript:removeIndustry(<?php echo $id?>);">X</a>
 						</div>
@@ -387,7 +394,7 @@
 							<div class="label">
 								<?php echo $habilidad->descripcionArea ?> - <?php echo $habilidad->descripcionHerramienta ?>: 
 							</div>
-			        		<input type="text" class="pointsInput" value="<?php echo $habilidad->valor ?>"/>
+			        		<input type="text" class="pointsInput" value="<?php echo $habilidad->valoracion ?>"/>
 							<input type="text" class="importanceInput" value="<?php echo $habilidad->importancia ?>"/>
 							<a href="javascript:removeTool(<?php echo $id ?>);">X</a>
 						</div>
