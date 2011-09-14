@@ -459,7 +459,7 @@ class Busquedas_model extends CI_Model {
 		
 		$params = array(
 			array('name'=>':PI_ID_BUSQUEDA', 'value'=>$idBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
-			array('name'=>':PO_LISTA_HISTORIA_LABORAL', 'value'=>&$result["historiaLaboral"], 'type'=>SQLR_RSET, 'length'=>255),
+			array('name'=>':PO_LISTA_HISTORIA_LABORAL', 'value'=>&$result["historiaLaboral"], 'type'=>SQLT_RSET, 'length'=>255),
 			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
 			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
 		);
