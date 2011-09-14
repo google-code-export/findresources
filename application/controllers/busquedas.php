@@ -39,7 +39,8 @@ class Busquedas extends CI_Controller {
 		echo "2";
 		$data['estadoBusqueda'] = $this->Busquedas_model->getEstadoBusqueda($idBusqueda);		
 		echo "3";
-		$data['habilidalesdesBlandasDisponibles'] = $this->Util_model->getHabilidadesBlandas($id);
+		$idHabilidad = NULL;
+		$data['habilidalesdesBlandasDisponibles'] = $this->Util_model->getHabilidadesBlandas($idHabilidad);
 		
 		var_dump($data);
 		/*
@@ -504,6 +505,45 @@ class Busquedas extends CI_Controller {
 			$data["result"] = "PKG_TICKETS_EMPRESAS.PR_ESTADO_BUSQUEDA Busqueda consultada correctamente.";
 		else 			
 			$data["result"] = "PKG_TICKETS_EMPRESAS.PR_ESTADO_BUSQUEDA : (".$result["error"].") :".$result["desc"];
+			
+		echo $data["result"]."<br />";		
+
+		var_dump($result);
+		echo "<br />";
+		
+		/** SETEO LA HISTORIA LABORAL A UNA BUSQUEDA **/
+		$idHistoriaLaboral = 1;
+		$compania ="IBM";
+		$companiaModo = "P";
+		$industria = "1";
+		$industriaModo = "P";
+		$pais = "ARG";
+		$paisModo = "P";
+		$anos = "20";
+		$anosModo = "P";
+		$titulo = "Universitario";
+		$tituloModo = "P";
+		$fechaBaja = NULL;
+		$result = $this->Busquedas_model->setHistoriaLaboral($idBusqueda,$idHistoriaLaboral,$compania,$companiaModo,$industria,$industriaModo,$pais,$paisModo, $anos, $anosModo, $titulo,$tituloModo,$fechaBaja);
+		
+		if ($result["error"] == 0 )
+			$data["result"] = "PKG_TICKETS_EMPRESAS.PR_BUS_HISTORIA_LABORAL Historia laboral seteada correctamente. N º : ".$result["idHistoriaLaboral"];
+		else 			
+			$data["result"] = "PKG_TICKETS_EMPRESAS.PR_BUS_HISTORIA_LABORAL : (".$result["error"].") :".$result["desc"];
+			
+		echo $data["result"]."<br />";		
+
+		var_dump($result);
+		echo "<br />";
+		
+		/** OBTENGO LA HISTORIA LABORAL A UNA BUSQUEDA **/
+
+		$result = $this->Busquedas_model->getHistoriaLaboral($idBusqueda);
+		
+		if ($result["error"] == 0 )
+			$data["result"] = "PKG_TICKETS_EMPRESAS.PR_CONS_BUS_HISTORIA_LABORAL Historia laboral consultada correctamente.";
+		else 			
+			$data["result"] = "PKG_TICKETS_EMPRESAS.PR_CONS_BUS_HISTORIA_LABORAL : (".$result["error"].") :".$result["desc"];
 			
 		echo $data["result"]."<br />";		
 
