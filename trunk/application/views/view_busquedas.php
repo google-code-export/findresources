@@ -31,7 +31,7 @@
 <title>Find Resources</title>
 
 <script type="text/javascript">
-	var userSearchs = <?php  echo json_encode($busquedasDelUsuario); ?>;
+	var userSearchs = <?php  echo json_encode($busquedasDelUsuario["busquedasActivas"]); ?>;
 
  	var availableIndustries = <?php  echo json_encode($industriasDisponibles); ?>;
 
@@ -61,10 +61,14 @@
 				<a class="newSearch" href="javascript:newSearch();"><img src="images/src/add.png"/> <b>Nueva</b> búsqueda</a>
 			</div> <!-- END OF newSearchLink -->
 			<div id="savedSearchLinks" class="clearfix">
-				<?php foreach ($busquedasDelUsuario as $i => $busq){ ?>
+				
+				<?php 
+				foreach ($busquedasDelUsuario["busquedasActivas"] as $i => $busq){ ?>
 					<div class="savedSearchLink">
-						<a href="busquedas?busquedaId=<?php echo $i?>">
-							<?php echo $busq->descripcion?>
+						<a href="busquedas?busquedaId=<?php echo $busq->id_busqueda?>">
+							<?php 
+							var_dump($busq);
+							echo $busq->d_busqueda?>
 						</a>
 						<a class="editSearchDataLink" href="javascript:editSearchData();">
 							<img src="images/src/pencil.gif"/>
@@ -314,6 +318,10 @@
 						<div class="field clearfix">
 							<div class="label">Cantidad de personal:</div>
 							<input type="text" id="searchDataEditorResourcesQuantity" value="" />
+						</div>
+						<div class="field clearfix">
+							<div class="label">Estado:</div>
+							<input type="text" id="searchDataEditorStatus" value="" />
 						</div>
 						
 					</div>
