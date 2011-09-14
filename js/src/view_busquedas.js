@@ -58,33 +58,6 @@ $(document).ready(function() {
 
 $(function() {
 
-		$('#searchDataPopUp .sendButton').click(function(){
-			var experienciaLaboral = {
-				idBusqueda: $('#searchDataEditorId').val(), // null = nuevo
-				descBusqueda: $('#searchDataEditorDescription').val(),
-				fechaHasta: $('#searchDataEditorDateTo').val(), 
-				cantRecursos: $('#searchDataEditorResourcesQuantity').val(),
-				estado: $('#searchDataEditorStatus').val() 
-			};
-			$.ajax({
-				url: "busquedas/setBusqueda",
-				global: false,
-				type: "POST",
-				data: {
-					'experienciaLaboral': JSON.stringify(experienciaLaboral)
-				},
-				dataType: "json",
-				async: true,
-				success: function(response){
-					hidePopUp();
-					window.location.reload();
-				},
-				error: function(response){
-					alert(response);
-				}
-			});
-		});
-		
 		$('#section1 .sendButton').click(function(){
 			$('.sectionTitlePencil').css("visibility","none");
 			
@@ -190,12 +163,40 @@ function newSearch(){
 }
 
 function editSearchData(idSearch){
-	$('#searchDataEditorId').val(userSearchs[idSearch]->id_busqueda);
-	$('#searchDataEditorDescription').val("123");
-	$('#searchDataEditorDateTo').val("123");
-	$('#searchDataEditorResourcesQuantity').val("123");
+	debugger;
+	$('#searchDataEditorId').val(userSearchs[idSearch].id_busqueda);
+	$('#searchDataEditorDescription').val(userSearchs[idSearch].d_busqueda);
+	$('#searchDataEditorDateTo').val(userSearchs[idSearch].f_hasta);
+	$('#searchDataEditorResourcesQuantity').val(userSearchs[idSearch].cantidad_recursos);
 	showPopUp('#searchDataPopUp');
 
+}
+
+function setSearchData(){
+	var busqueda = {
+		id_busqueda: $('#searchDataEditorId').val(), // null = nuevo
+		d_busqueda: $('#searchDataEditorDescription').val(),
+		f_hasta: $('#searchDataEditorDateTo').val(), 
+		cantidad_recursos: $('#searchDataEditorResourcesQuantity').val()//,
+		//estado: $('#searchDataEditorStatus').val() 
+	};
+	$.ajax({
+		url: "busquedas/setBusqueda",
+		global: false,
+		type: "POST",
+		data: {
+			'busqueda': JSON.stringify(busqueda)
+		},
+		dataType: "json",
+		async: true,
+		success: function(response){
+			hidePopUp();
+			window.location.reload();
+		},
+		error: function(response){
+			alert(response);
+		}
+	});
 }
 
 
