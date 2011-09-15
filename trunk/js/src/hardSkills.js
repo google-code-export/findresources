@@ -6,9 +6,11 @@ function removeTool(idHerramienta){
 	$('#editItemTool' + idHerramienta).remove();
 }
 
-function addIndustry(){
+function addIndustry(showImportance){
 	var selectedIndustry = $('#availableIndustriesSelect').val();
 	
+	var importanceLine = showImportance? "<input type=\"text\" class=\"importanceInput\" value=\"0\"/>" : ""
+
 	
 	if($('#editItemIndustry' + selectedIndustry).length == 0){
 		
@@ -16,6 +18,7 @@ function addIndustry(){
 					"<div class=\"field\">"+
 					"<div class=\"label\" >" + availableIndustries[selectedIndustry] + ":</div>" +
 					"<input type=\"text\" class=\"pointsInput\" value=\"0\"/>" + 
+					importanceLine +
 					"<a href=\"javascript:removeIndustry(" + selectedIndustry + ");\">X</a>" + 
 				"</div></li>"
 
@@ -28,12 +31,13 @@ function addIndustry(){
 	
 }
 
-function addTool(){
+function addTool(showImportance){
 
 	var selectedArea = $('#availableAreasSelect').val();
 	var selectedTool = $('#availableToolsSelect').val();
 	
 //availableTools[response[tool].id]
+	var importanceLine = showImportance? "<input type=\"text\" class=\"importanceInput\" value=\"0\"/>" : ""
 
 	if($('#editItemTool' + selectedTool).length == 0){
 		
@@ -43,6 +47,7 @@ function addTool(){
 							availableAreas[selectedArea] +" - " + availableTools[selectedTool] +
 						":</div>" +
 						"<input type=\"text\" class=\"pointsInput\" value=\"0\"/>" + 
+						importanceLine +
 						"<a href=\"javascript:removeTool(" + selectedTool + ");\">X</a>" + 
 					"</div>" +
 				"</li>"
