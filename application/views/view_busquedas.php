@@ -44,7 +44,6 @@
 
 	var availableSoftSkills	= <?php echo json_encode_utf8($habilidadesBlandasDisponibles['habilidadesBlandas']); ?>;
 	
-	
 </script>
 
 
@@ -125,7 +124,9 @@
 												
 								<div class="block" id="hardSkills">
 									<h2>Educacion Formal <a href="javascript:editFormalEducation();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
+									
 									<?php foreach ($busquedaSeleccionada['educacionFormal'] as $educacion) { ?>
+										<!-- id_bus_edu_formal -->
 										<div class="study inblock">
 											<div class="row clearfix">
 												<div class="label"> Entidad: </div> 
