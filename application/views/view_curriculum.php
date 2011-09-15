@@ -25,29 +25,29 @@
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/global.css')?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/view_curriculum.css')?>" />
 <script type="text/javascript">
-	var availableIndustries = <?php  echo json_encode($industriasDisponibles); ?>;
+	var availableIndustries = <?php  echo json_encode_utf8($industriasDisponibles); ?>;
 
-	var availableAreas = <?php  echo json_encode($areasDisponibles); ?>;
+	var availableAreas = <?php  echo json_encode_utf8($areasDisponibles); ?>;
 
 	var availableTools = new Array(); //fill in $('#availableAreasSelect').change();	
 
-	var availableCountries = <?php  echo json_encode($paises); ?>;
+	var availableCountries = <?php  echo json_encode_utf8($paises); ?>;
 
-	var workExperiences = <?php  echo json_encode($experienciaLaboralDelCv); ?>;
+	var workExperiences = <?php  echo json_encode_utf8($experienciaLaboralDelCv); ?>;
 
-	var formalEducation = <?php  echo json_encode($educacionFormalDelCv); ?>;
+	var formalEducation = <?php  echo json_encode_utf8($educacionFormalDelCv); ?>;
 	
-	var informalEducation = <?php  echo json_encode($educacionNoFormalDelCv); ?>;
+	var informalEducation = <?php  echo json_encode_utf8($educacionNoFormalDelCv); ?>;
 
-	var educationAvailableAreas = <?php  echo json_encode($areasDisponibles); ?>;
+	var educationAvailableAreas = <?php  echo json_encode_utf8($areasDisponibles); ?>;
 
-	var educationAvailableLevels = <?php  echo json_encode($nivelesDeEducacion); ?>;
+	var educationAvailableLevels = <?php  echo json_encode_utf8($nivelesDeEducacion); ?>;
 
-	var educationAvailableInstitutions = <?php  echo json_encode($entidadesEducativas); ?>;
+	var educationAvailableInstitutions = <?php  echo json_encode_utf8($entidadesEducativas); ?>;
 	
-	var informalEducationTypes = <?php  echo json_encode($tiposDeEducacionNoFormal); ?>;
+	var informalEducationTypes = <?php  echo json_encode_utf8($tiposDeEducacionNoFormal); ?>;
 
-	var cvData = <?php echo json_encode($curriculumData);?>;
+	var cvData = <?php echo json_encode_utf8($curriculumData);?>;
 	
 </script>
 <script type="text/javascript" src="<?php echo site_url('js/libs/jquery-1.6.2.min.js')?>"></script>

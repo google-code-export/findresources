@@ -33,17 +33,13 @@ class Busquedas extends CI_Controller {
 			$idBusqueda = $_GET["busquedaId"]; 
 			//SET ID BUSQUEDA EN SESSION
 			$data['busquedaSeleccionada'] = $this->Busquedas_model->getOpcionesDeBusqueda($idBusqueda);
-			//var_dump($data['busquedaSeleccionada']);
 		}
 		
 		
 		$data['habilidadesBlandasDisponibles'] = $this->Busquedas_model->getHabilidadesBlandasBusqueda($idBusqueda);
-		echo "1";
 		$data['busquedasDelUsuario'] = $this->Busquedas_model->getBusquedasDeUsuario($idUsuario);
 		
-		echo "2";
 		$data['estadoBusqueda'] = $this->Busquedas_model->getEstadoBusqueda($idBusqueda);		
-		echo "3";
 		
 		$idHabilidad = NULL;
 
@@ -84,21 +80,6 @@ class Busquedas extends CI_Controller {
 		echo json_encode($respuesta);
 	}*/
 
-	private function to_utf8($in) { 
-	        if (is_array($in)) { 
-	            foreach ($in as $key => $value) { 
-	                $out[to_utf8($key)] = to_utf8($value); 
-	            } 
-	        } elseif(is_string($in)) { 
-	            if(mb_detect_encoding($in) != "UTF-8") 
-	                return utf8_encode($in); 
-	            else 
-	                return $in; 
-	        } else { 
-	            return $in; 
-	        } 
-	        return $out; 
-	} 
 		
 	public function setBusqueda(){
 		

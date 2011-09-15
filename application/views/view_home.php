@@ -21,7 +21,7 @@
 <title>Find Resources</title>
 
 <script type="text/javascript">
-	var userData = <?php  echo json_encode($usuarioData); ?>;
+	var userData = <?php  echo json_encode_utf8($usuarioData); ?>;
 </script>
 
 

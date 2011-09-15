@@ -14,13 +14,11 @@
 
 
 <script type="text/javascript" src=" <?php echo site_url('js/libs/jquery-1.6.2.min.js')?>"></script>
-<script type="text/javascript" src=" <?php echo site_url('js/libs/jquery-ui.min-1.8.16.js')?>"></script>
 <script type="text/javascript" src=" <?php echo site_url('js/libs/json2.js')?>"></script>
 <script type="text/javascript" src=" <?php echo site_url('js/src/utils.js')?>"></script>
 <script type="text/javascript" src=" <?php echo site_url('js/src/view_busquedas.js')?>"></script>
 <script type="text/javascript" src=" <?php echo site_url('js/src/hardSkills.js')?>"></script>
 
-<link rel=StyleSheet href="<?php echo site_url('css/jquery-ui-1.8.16.css')?>"/>
 <link rel=StyleSheet href="<?php echo site_url('css/global.css')?>"/>
 <link rel=StyleSheet href="<?php echo site_url('css/tabs.css')?>"/>
 <link rel=StyleSheet href="<?php echo site_url('css/view_busquedas.css')?>"/>
@@ -32,19 +30,19 @@
 
 <script type="text/javascript">
 
-	var userSearchs = <?php echo json_encode($busquedasDelUsuario["busquedasActivas"]); ?>;
+	var userSearchs = <?php echo json_encode_utf8($busquedasDelUsuario["busquedasActivas"]); ?>;
 
- 	var availableIndustries = <?php  echo json_encode($industriasDisponibles); ?>;
+ 	var availableIndustries = <?php  echo json_encode_utf8($industriasDisponibles); ?>;
 
-	var availableAreas = <?php  echo json_encode($areasDisponibles); ?>;
+	var availableAreas = <?php  echo json_encode_utf8($areasDisponibles); ?>;
 
 	var availableTools = new Array(); //fill in $('#availableAreasSelect'.change(;	
 
-	var availableCountries = <?php echo json_encode($paises); ?>;
+	var availableCountries = <?php echo json_encode_utf8($paises); ?>;
 
-	var selectedSearch	= <?php echo json_encode($busquedaSeleccionada); ?>;
+	var selectedSearch	= <?php echo isset($busquedaSeleccionada)?json_encode_utf8($busquedaSeleccionada): "null";?>;
 
-	var availableSoftSkills	= <?php echo json_encode($habilidadesBlandasDisponibles); ?>;
+	var availableSoftSkills	= <?php echo json_encode_utf8($habilidadesBlandasDisponibles); ?>;
 	
 	
 </script>
@@ -357,17 +355,17 @@
 						<?php } ?>
 					</select>
 	
-					<a href="javascript:addIndustry();"> <img src="images/src/add.png"/> Agregar</a>
+					<a href="javascript:addIndustry(true);"> <img src="images/src/add.png"/> Agregar</a>
 				</div>
 	
 				<ul id="editItemIndustryList">
 					<?php foreach ($busquedaSeleccionada["industrias"] as $id => $habilidad){ ?>
-					<li id="editItemIndustry<?php echo $id ?>" class="industryItem">
+					<li id="editItemIndustry<?php echo $habilidad->id_industria ?>" class="industryItem">
 						<div class="field">
 							<div class="label"><?php echo $habilidad->d_industria ?>:</div> 
 							<input type="text" class="pointsInput" value="<?php echo $habilidad->valoracion ?>"/>
 							<input type="text" class="importanceInput" value="<?php echo $habilidad->importancia ?>"/>
-							<a href="javascript:removeIndustry(<?php echo $id?>);">X</a>
+							<a href="javascript:removeIndustry(<?php echo $habilidad->id_industria?>);">X</a>
 						</div>
 					</li>
 				<?php } ?>
@@ -384,25 +382,25 @@
 					<select id="availableToolsSelect">
 						<option value="0">Herramientas</option> 
 					</select>
-					<a href="javascript:addTool();"> <img src="images/src/add.png"/> Agregar</a>
+					<a href="javascript:addTool(true);"> <img src="images/src/add.png"/> Agregar</a>
 				</div>
 				
 				<ul id="editItemToolList">
-				<?php foreach ($busquedaSeleccionada->herramientas as $id => $habilidad){ ?>
-					<li id="editItemTool<?php echo $id ?>" class="toolItem">
+				<?php foreach ($busquedaSeleccionada["herramientas"] as $id => $habilidad){ ?>
+					<li id="editItemTool<?php echo $habilidad->id_herramienta ?>" class="toolItem">
 						<div class="field">
 							<div class="label">
-								<?php echo $habilidad->descripcionArea ?> - <?php echo $habilidad->descripcionHerramienta ?>: 
+								<?php echo $habilidad->d_area ?> - <?php echo $habilidad->d_herramienta ?>: 
 							</div>
-			        		<input type="text" class="pointsInput" value="<?php echo $habilidad->valoracion ?>"/>
+			        		<input type="text" class="pointsInput" value="<?php echo $habilidad->valor_herramienta ?>"/>
 							<input type="text" class="importanceInput" value="<?php echo $habilidad->importancia ?>"/>
-							<a href="javascript:removeTool(<?php echo $id ?>);">X</a>
+							<a href="javascript:removeTool(<?php echo $habilidad->id_herramienta ?>);">X</a>
 						</div>
 					</li>
 				<?php } ?>
 				</ul>
 				<div class="buttonsPopUp">
-					<input type="submit" value="Guardar" class="sendButton" />
+					<input type="submit" value="Guardar" class="sendButton" onclick="javascript:setHardSkills()"/>
 					<input type="submit" value="Cancelar" class="cancelPopUp" />
 				</div>
 			</div>
@@ -431,7 +429,7 @@
 					</div>
 				
 					<ul id="editItemSoftSkillList">
-						<?php foreach ($busquedaSeleccionada->habilidadesBlandas as $idHabilidad){ ?>
+						<?php foreach ($busquedaSeleccionada['habilidadesBlandas'] as $idHabilidad){ ?>
 							<li id="editSoftSkillItem<?php echo $idHabilidad ?>" class="softSkillItem">
 								<?php echo $habilidadesBlandasDisponibles[$idHabilidad]?>
 								<a href="javascript:removeSoftSkill(<?php echo $idHabilidad ?>);">X</a>
