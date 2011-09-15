@@ -42,7 +42,7 @@
 
 	var selectedSearch	= <?php echo isset($busquedaSeleccionada)?json_encode_utf8($busquedaSeleccionada): "null";?>;
 
-	var availableSoftSkills	= <?php echo json_encode_utf8($habilidadesBlandasDisponibles); ?>;
+	var availableSoftSkills	= <?php echo json_encode_utf8($habilidadesBlandasDisponibles['habilidadesBlandas']); ?>;
 	
 	
 </script>
@@ -421,18 +421,20 @@
 					<div>
 						<select id="availableSoftSkillsSelect">
 							<option id="availableSoftSkillsDefaultOption" value="-1" selected="selected">Características</option>
-							<?php foreach ($habilidadesBlandasDisponibles as $id => $desc){ ?>
-								<option value="<?php echo $id; ?>"><?php echo $desc;?></option> 
+							
+							<?php foreach ($habilidadesBlandasDisponibles['habilidadesBlandas'] as $habilidad){ ?>
+								<option value="<?php echo $habilidad->id_habilidad_blanda; ?>"><?php echo $habilidad->d_habilidad_blanda;?></option> 
 							<?php } ?>
 						</select>
 						<a href="javascript:addSoftSkill();"> <img src="images/src/add.png"/> Agregar</a>
 					</div>
 				
 					<ul id="editItemSoftSkillList">
-						<?php foreach ($busquedaSeleccionada['habilidadesBlandas'] as $idHabilidad){ ?>
-							<li id="editSoftSkillItem<?php echo $idHabilidad ?>" class="softSkillItem">
-								<?php echo $habilidadesBlandasDisponibles[$idHabilidad]?>
-								<a href="javascript:removeSoftSkill(<?php echo $idHabilidad ?>);">X</a>
+						<?php 
+						foreach ($busquedaSeleccionada['habilidadesBlandas'] as $habilidad){ ?>
+							<li id="editSoftSkillItem<?php echo $habilidad->id_habilidad_blanda ?>" class="softSkillItem">
+								<?php echo $habilidad->d_habilidad_blanda?>
+								<a href="javascript:removeSoftSkill(<?php echo $habilidad->id_habilidad_blanda ?>);">X</a>
 							</li>
 						<?php } ?>
 					</ul>
