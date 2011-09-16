@@ -54,13 +54,19 @@ class Busquedas extends CI_Controller {
 		$data['tiposDeEducacionNoFormal'] = $this->Util_model->getTiposDeEducacionNoFormal();
 		
 		if(isset($_POST["educacionFormal"])){
-			$educacionFormal = $_POST["educacionFormal"]; 
+			$educacionFormal =  array_map("utf8_decode",json_decode(utf8_encode($_POST["educacionFormal"]),true));
 			$result = $this->Busquedas_model->setEducacionFormalDeBusqueda($idBusqueda,$educacionFormal);
 		}
 		if(isset($_POST["recurso"])){
-			$recurso = $_POST["recurso"]; 
+			$cv =  array_map("utf8_decode",json_decode(utf8_encode($_POST["recurso"]),true));
 			$result = $this->Busquedas_model->setRecursoBusqueda($idBusqueda,$recurso);
 		}
+		if(isset($_POST["habilidades"])){
+			$habilidades =  implode($this->sep,json_decode($_POST["habilidades"])); 
+			$result = $this->Busquedas_model->setHabilidadesBlandasBusqueda($idBusqueda,habilidades);
+		}		
+		
+
 		$this->load->view('view_busquedas', $data);
 		
 		
@@ -155,7 +161,7 @@ class Busquedas extends CI_Controller {
 			"modoPromedio"=> "P",
 			"baja" => "N" // SI LO QUIERO BORRAR PONGO "S"
 		);
-		$educacionFormal = json_encode(array_map("utf8_encode",$educacionFormal)); 
+		 
 		$result = $this->Busquedas_model->setEducacionFormalDeBusqueda($busquedaACTUAL,$educacionFormal);
 		
 		if ($result["error"] == 0 )
@@ -179,7 +185,6 @@ class Busquedas extends CI_Controller {
 			"gtalkModo" => "P",
 			"smsModo" => "P" 
 		);
-		$recurso = json_encode(array_map("utf8_encode",$recurso)); 
 		$result = $this->Busquedas_model->setRecursoBusqueda($busquedaACTUAL,$recurso);
 		
 		if ($result["error"] == 0 )
@@ -218,10 +223,10 @@ class Busquedas extends CI_Controller {
 		
 		
 		/** PRUEBA CREACION DE HABILIDADES BLANDAS PARA LA BUSQUEDA **/
-		//$habilidadesBlandas = "41".$this->sep."42".$this->sep."44".$this->sep."48".$this->sep."49".$this->sep."51";
+		$habilidadesBlandas = "41".$this->sep."42".$this->sep."44".$this->sep."48".$this->sep."49".$this->sep."51";
 		//ID+VALORACION+IMPORTANCIA
-		$habilidadesBlandas =  array (41,42,44,48,49,51);
-		$habilidadesBlandas = json_encode($habilidadesBlandas);
+		//$habilidadesBlandas =  array (41,42,44,48,49,51);
+		//$habilidadesBlandas = json_encode($habilidadesBlandas);
 		$result = $this->Busquedas_model->setHabilidadesBlandasBusqueda($busquedaACTUAL,$habilidadesBlandas);
 
 		if ($result["error"] == 0 )
