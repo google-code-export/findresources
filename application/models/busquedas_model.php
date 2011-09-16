@@ -38,6 +38,8 @@ class Busquedas_model extends CI_Model {
 	}	
 	/** CREO O MODIFICO LA EDUCACION FORMAL DE UNA BUSQUEDA **/
 	public function  setEducacionFormalDeBusqueda($idBusqueda, $educacionFormal){
+		$educacionFormal =  array_map("utf8_decode",json_decode($educacionFormal,true));
+		print_r($educacionFormal);
 		$result["idEducacionFormal"] = NULL;
 		$result["error"] = NULL;
 		$result["desc"] = NULL;
