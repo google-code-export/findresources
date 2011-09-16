@@ -57,8 +57,10 @@ class Busquedas extends CI_Controller {
 			$educacionFormal = $_POST["educacionFormal"]; 
 			$result = $this->Busquedas_model->setEducacionFormalDeBusqueda($idBusqueda,$educacionFormal);
 		}
-		
-		
+		if(isset($_POST["recurso"])){
+			$recurso = $_POST["recurso"]; 
+			$result = $this->Busquedas_model->setRecursoBusqueda($idBusqueda,$recurso);
+		}
 		$this->load->view('view_busquedas', $data);
 		
 		
@@ -177,7 +179,7 @@ class Busquedas extends CI_Controller {
 			"gtalkModo" => "P",
 			"smsModo" => "P" 
 		);
-		
+		$recurso = json_encode(array_map("utf8_encode",$recurso)); 
 		$result = $this->Busquedas_model->setRecursoBusqueda($busquedaACTUAL,$recurso);
 		
 		if ($result["error"] == 0 )
