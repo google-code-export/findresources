@@ -39,7 +39,6 @@ class Busquedas_model extends CI_Model {
 	/** CREO O MODIFICO LA EDUCACION FORMAL DE UNA BUSQUEDA **/
 	public function  setEducacionFormalDeBusqueda($idBusqueda, $educacionFormal){
 		$educacionFormal =  array_map("utf8_decode",json_decode($educacionFormal,true));
-		print_r($educacionFormal);
 		$result["idEducacionFormal"] = NULL;
 		$result["error"] = NULL;
 		$result["desc"] = NULL;
@@ -74,10 +73,9 @@ class Busquedas_model extends CI_Model {
 	}
 	/** CREO O MODIFICO LOS RECURSOS A BUSCAR **/
 	public function  setRecursoBusqueda($idBusqueda, $cv){
-
+		$cv =  array_map("utf8_decode",json_decode($cv,true));
 		$result["error"] = NULL;
 		$result["desc"] = NULL;
-		
 		$params = array(
 			array('name'=>':PI_ID_BUSQUEDA', 'value'=>$idBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
 			array('name'=>':PI_EDAD_DESDE', 'value'=>$cv['edadDesde'], 'type'=>SQLT_CHR, 'length'=>-1),
@@ -144,6 +142,7 @@ class Busquedas_model extends CI_Model {
 	public function  setHabilidadesBlandasBusqueda($idBusqueda, $habilidadesBlandas){
 
 		$habilidadesBlandas =  implode($this->sep,json_decode($habilidadesBlandas));
+		echo $habilidadesBlandas;
 		$result["error"] = NULL;
 		$result["desc"] = NULL;
 
@@ -187,37 +186,38 @@ class Busquedas_model extends CI_Model {
 	
 	/** CONSULTO LOS RECURSOS DE LA BUSQUEDA **/
 	public function  getRecursoBusqueda($idBusqueda){
-		$result['edadDesde']= NULL;
-		$result['edadHasta']= NULL;
-		$result['edadModo']= NULL;
-		$result['nacionalidad']= NULL;
-		$result['provincia']= NULL;
-		$result['localidad']= NULL;
-		$result['twitterModo']= NULL;
-		$result['gtalkModo']= NULL;
-		$result['smsModo']= NULL;
-		$result["error"] = NULL;
-		$result["desc"] = NULL;
+		$result2['edadDesde']= NULL;
+		$result2['edadHasta']= NULL;
+		$result2['edadModo']= NULL;
+		$result2['nacionalidad']= NULL;
+		$result2['provincia']= NULL;
+		$result2['localidad']= NULL;
+		$result2['twitterModo']= NULL;
+		$result2['gtalkModo']= NULL;
+		$result2['smsModo']= NULL;
+		$result2["error"] = NULL;
+		$result2["desc"] = NULL;
 		
 		$params = array(
 			array('name'=>':PI_ID_BUSQUEDA', 'value'=>$idBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
-			array('name'=>':PO_EDAD_DESDE', 'value'=>&$result['edadDesde'], 'type'=>SQLT_CHR, 'length'=>255),
-			array('name'=>':PO_EDAD_HASTA', 'value'=>&$result['edadHasta'], 'type'=>SQLT_CHR, 'length'=>255),
-			array('name'=>':PO_EDAD_C_MODO', 'value'=>&$result['edadModo'], 'type'=>SQLT_CHR, 'length'=>255),
-			array('name'=>':PO_LISTA_NACIONALIDAD', 'value'=>&$result['nacionalidad'], 'type'=>SQLT_RSET, 'length'=>255),
-	 		array('name'=>':PO_LISTA_PROVINCIA', 'value'=>&$result['provincia'], 'type'=>SQLT_RSET, 'length'=>255),
-			array('name'=>':PO_LISTA_LOCALIDAD', 'value'=>&$result['localidad'], 'type'=>SQLT_RSET, 'length'=>255),
-			array('name'=>':PO_TWITTER_C_MODO', 'value'=>&$result['twitterModo'], 'type'=>SQLT_CHR, 'length'=>255),
-			array('name'=>':PO_GTALK_C_MODO', 'value'=>&$result['gtalkModo'], 'type'=>SQLT_CHR, 'length'=>255),
-			array('name'=>':PO_SMS_C_MODO', 'value'=>&$result['smsModo'], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':PO_EDAD_DESDE', 'value'=>&$result2['edadDesde'], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':PO_EDAD_HASTA', 'value'=>&$result2['edadHasta'], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':PO_EDAD_C_MODO', 'value'=>&$result2['edadModo'], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':PO_LISTA_NACIONALIDAD', 'value'=>&$result2['nacionalidad'], 'type'=>SQLT_RSET, 'length'=>255),
+	 		array('name'=>':PO_LISTA_PROVINCIA', 'value'=>&$result2['provincia'], 'type'=>SQLT_RSET, 'length'=>255),
+			array('name'=>':PO_LISTA_LOCALIDAD', 'value'=>&$result2['localidad'], 'type'=>SQLT_RSET, 'length'=>255),
+			array('name'=>':PO_TWITTER_C_MODO', 'value'=>&$result2['twitterModo'], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':PO_GTALK_C_MODO', 'value'=>&$result2['gtalkModo'], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':PO_SMS_C_MODO', 'value'=>&$result2['smsModo'], 'type'=>SQLT_CHR, 'length'=>255),
 			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
 			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
 		);
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_CONS_BUS_CV',$params);
-		$result["nacionalidad"] = $this->oracledb->get_cursor_data(":PO_LISTA_NACIONALIDAD");
-		$result["provincia"] = $this->oracledb->get_cursor_data(":PO_LISTA_PROVINCIA");
-		$result["localidad"] = $this->oracledb->get_cursor_data(":PO_LISTA_LOCALIDAD");
+		$result2["nacionalidad"] = $this->oracledb->get_cursor_data(":PO_LISTA_NACIONALIDAD");
+		$result2["provincia"] = $this->oracledb->get_cursor_data(":PO_LISTA_PROVINCIA");
+		$result2["localidad"] = $this->oracledb->get_cursor_data(":PO_LISTA_LOCALIDAD");
+		$result["recurso"] = $result2;
 		return $result;
 			
 	}
