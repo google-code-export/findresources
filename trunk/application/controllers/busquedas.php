@@ -53,7 +53,10 @@ class Busquedas extends CI_Controller {
 		$data['entidadesEducativas'] = $this->Util_model->getEntidadesEducativas();
 		$data['tiposDeEducacionNoFormal'] = $this->Util_model->getTiposDeEducacionNoFormal();
 		
-	
+		if(isset($_POST["educacionFormal"])){
+			$educacionFormal = $_POST["educacionFormal"]; 
+			$result = $this->Busquedas_model->setEducacionFormalDeBusqueda($idBusqueda,$educacionFormal);
+		}
 		
 		
 		$this->load->view('view_busquedas', $data);
@@ -150,7 +153,7 @@ class Busquedas extends CI_Controller {
 			"modoPromedio"=> "P",
 			"baja" => "N" // SI LO QUIERO BORRAR PONGO "S"
 		);
-		
+		$educacionFormal = json_encode(array_map("utf8_encode",$educacionFormal)); 
 		$result = $this->Busquedas_model->setEducacionFormalDeBusqueda($busquedaACTUAL,$educacionFormal);
 		
 		if ($result["error"] == 0 )
