@@ -38,7 +38,6 @@ class Busquedas_model extends CI_Model {
 	}	
 	/** CREO O MODIFICO LA EDUCACION FORMAL DE UNA BUSQUEDA **/
 	public function  setEducacionFormalDeBusqueda($idBusqueda, $educacionFormal){
-		$educacionFormal =  array_map("utf8_decode",json_decode($educacionFormal,true));
 		$result["idEducacionFormal"] = NULL;
 		$result["error"] = NULL;
 		$result["desc"] = NULL;
@@ -73,7 +72,6 @@ class Busquedas_model extends CI_Model {
 	}
 	/** CREO O MODIFICO LOS RECURSOS A BUSCAR **/
 	public function  setRecursoBusqueda($idBusqueda, $cv){
-		$cv =  array_map("utf8_decode",json_decode($cv,true));
 		$result["error"] = NULL;
 		$result["desc"] = NULL;
 		$params = array(
@@ -140,9 +138,6 @@ class Busquedas_model extends CI_Model {
 	
 	/** CREO O MODIFICO LAS INDUSTRIAS A BUSCAR **/
 	public function  setHabilidadesBlandasBusqueda($idBusqueda, $habilidadesBlandas){
-
-		$habilidadesBlandas =  implode($this->sep,json_decode($habilidadesBlandas));
-		echo $habilidadesBlandas;
 		$result["error"] = NULL;
 		$result["desc"] = NULL;
 
