@@ -13,7 +13,7 @@ class Busquedas_model extends CI_Model {
 	
 
 	/** CREA O MODIFICA BUSQUEDAS **/
-	public function setBusqueda($idBusqueda,$idUsuario,$descripcionBusqueda,$idTicket,$cantidadRecursos,$fechaHasta){
+	public function setBusqueda($idBusqueda,$idUsuario,$descripcionBusqueda,$idTicket,$cantidadRecursos,$fechaHasta,$titulo){
 		$result["id_busqueda"] = NULL;
 		$result["f_hasta"] = NULL;
 		$result["error"] = NULL;
@@ -26,6 +26,7 @@ class Busquedas_model extends CI_Model {
 		array('name'=>':PI_ID_TICKET', 'value'=>$idTicket, 'type'=>SQLT_CHR , 'length'=>-1),
 		array('name'=>':PI_CANTIDAD_RECURSOS', 'value'=>$cantidadRecursos, 'type'=>SQLT_CHR , 'length'=>-1),
 		array('name'=>':PI_F_HASTA', 'value'=>$fechaHasta, 'type'=>SQLT_CHR , 'length'=>-1),
+		array('name'=>':PI_D_TITULO', 'value'=>$titulo, 'type'=>SQLT_CHR , 'length'=>-1),
 		array('name'=>':PO_ID_BUSQUEDA', 'value'=>&$result["id_busqueda"], 'type'=>SQLT_CHR , 'length'=>255),
 		array('name'=>':PO_F_HASTA', 'value'=>$result["f_hasta"], 'type'=>SQLT_CHR , 'length'=>-1),
 		array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
@@ -33,7 +34,12 @@ class Busquedas_model extends CI_Model {
 		);
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_BUSQUEDA',$params);
 			
-		return $result;
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in setBusqueda(): ' . $result["desc"]);
+		}
 
 	}	
 	/** CREO O MODIFICO LA EDUCACION FORMAL DE UNA BUSQUEDA **/
@@ -67,7 +73,12 @@ class Busquedas_model extends CI_Model {
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_BUS_EDUCACION_FORMAL',$params);
 		
-		return $result;
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in setEducacionFormalDeBusqueda(): ' . $result["desc"]);
+		}
 			
 	}
 	/** CREO O MODIFICO LOS RECURSOS A BUSCAR **/
@@ -91,7 +102,12 @@ class Busquedas_model extends CI_Model {
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_BUS_CV',$params);
 		
-		return $result;
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in setRecursoBusqueda(): ' . $result["desc"]);
+		}
 			
 	}
 	
@@ -111,7 +127,12 @@ class Busquedas_model extends CI_Model {
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_BUS_INDUSTRIA',$params);
 		
-		return $result;
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in setIndustriasBusqueda(): ' . $result["desc"]);
+		}
 			
 	}
 	
@@ -131,7 +152,12 @@ class Busquedas_model extends CI_Model {
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_BUS_HERRAMIENTA',$params);
 		
-		return $result;
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in setHerramientasBusqueda(): ' . $result["desc"]);
+		}
 			
 	}
 	
@@ -150,7 +176,12 @@ class Busquedas_model extends CI_Model {
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_BUS_HABILIDADES_BLANDAS',$params);
 		
-		return $result;
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in setHabilidadesBlandasBusqueda(): ' . $result["desc"]);
+		}
 			
 	}
 	
@@ -160,6 +191,7 @@ class Busquedas_model extends CI_Model {
 		$result["d_busqueda"] = NULL;
 		$result["cantidad_recursos"] = NULL;
 		$result["f_hasta"] = NULL;
+		$result["d_titulo"] = NULL;
 		$result["error"] = NULL;
 		$result["desc"] = NULL;
 		
@@ -168,13 +200,19 @@ class Busquedas_model extends CI_Model {
 			array('name'=>':PO_D_BUSQUEDA', 'value'=>&$result["d_busqueda"], 'type'=>SQLT_CHR, 'length'=>255),
 			array('name'=>':PO_CANTIDAD_RECURSOS', 'value'=>&$result["cantidad_recursos"], 'type'=>SQLT_CHR, 'length'=>255),
 			array('name'=>':PO_F_HASTA', 'value'=>&$result["f_hasta"], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':PO_D_TITULO', 'value'=>&$result["d_titulo"], 'type'=>SQLT_CHR, 'length'=>255),
 			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
 			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
 		);
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_CONS_BUSQUEDA',$params);
 		
-		return $result;
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in getBusqueda(): ' . $result["desc"]);
+		}
 			
 	}
 	
@@ -213,7 +251,13 @@ class Busquedas_model extends CI_Model {
 		$result2["lista_provincia"] = $this->oracledb->get_cursor_data(":PO_LISTA_PROVINCIA");
 		$result2["lista_localidad"] = $this->oracledb->get_cursor_data(":PO_LISTA_LOCALIDAD");
 		$result["recurso"] = $result2;
-		return $result;
+
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in getRecursoBusqueda(): ' . $result["desc"]);
+		}
 			
 	}
 	
@@ -234,7 +278,13 @@ class Busquedas_model extends CI_Model {
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_CONS_BUS_EDU_FORMAL',$params);
 		$result["edu_formal"] = $this->oracledb->get_cursor_data(":PO_EDU_FORMAL");
-		return $result;
+
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in getEducacionFormalDeBusqueda(): ' . $result["desc"]);
+		}
 
 		
 	}
@@ -255,7 +305,13 @@ class Busquedas_model extends CI_Model {
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_CONS_INDUSTRIA',$params);
 		$result["lista_industria"] = $this->oracledb->get_cursor_data(":PO_LISTA_INDUSTRIA");
-		return $result;
+
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in getIndustriasBusqueda(): ' . $result["desc"]);
+		}
 			
 	}
 	
@@ -275,7 +331,13 @@ class Busquedas_model extends CI_Model {
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_CONS_HERRAMIENTA',$params);
 		$result["lista_herramienta"] = $this->oracledb->get_cursor_data(":PO_LISTA_HERRAMIENTA");
-		return $result;
+		
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in getHerramientasBusqueda(): ' . $result["desc"]);
+		}
 			
 	}
 	
@@ -295,7 +357,13 @@ class Busquedas_model extends CI_Model {
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_CONS_HABILIDADES_BLANDAS',$params);
 		$result["hab_blanda"] = $this->oracledb->get_cursor_data(":PO_HAB_BLANDA");
-		return $result;
+
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in getHabilidadesBlandasBusqueda(): ' . $result["desc"]);
+		}
 			
 	}
 	
@@ -315,7 +383,13 @@ class Busquedas_model extends CI_Model {
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_BUSQUEDAS_X_USUARIO',$params);
 		$result["busquedas_activas"] = $this->oracledb->get_cursor_data(":PO_BUSQUEDAS_ACTIVAS");
-		return $result;
+
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in getBusquedasDeUsuario(): ' . $result["desc"]);
+		}
 			
 	}
 	
@@ -336,7 +410,13 @@ class Busquedas_model extends CI_Model {
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_EXTENDER_BUSQUEDA',$params);
 		
-		return $result;
+
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in extenderBusqueda(): ' . $result["desc"]);
+		}
 			
 	}
 	
@@ -357,7 +437,13 @@ class Busquedas_model extends CI_Model {
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_BUSQUEDAS_PROX_VENCER',$params);
 		$result["busquedas_activas"] = $this->oracledb->get_cursor_data(":PO_BUSQUEDAS_ACTIVAS");
-		return $result;
+	
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in getBusquedasAVencer(): ' . $result["desc"]);
+		}
 			
 	}
 	
@@ -383,7 +469,13 @@ class Busquedas_model extends CI_Model {
 			$result["error"] = 1;
 			$result["desc"] = "Error al obtener información de las búsqueda.";
 		}
-		return $result;
+		
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in getOpcionesDeBusqueda(): ' . $result["desc"]);
+		}
 			
 	}
 
@@ -412,7 +504,12 @@ class Busquedas_model extends CI_Model {
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_ESTADO_BUSQUEDA',$params);
 
-		return $result;
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in getEstadoBusqueda(): ' . $result["desc"]);
+		}
 			
 	}
 
@@ -443,7 +540,12 @@ class Busquedas_model extends CI_Model {
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_BUS_HISTORIA_LABORAL',$params);
 
-		return $result;
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in setHistoriaLaboral(): ' . $result["desc"]);
+		}
 			
 	}
 	
@@ -463,7 +565,13 @@ class Busquedas_model extends CI_Model {
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_CONS_BUS_HISTORIA_LABORAL',$params);
 		$result["lista_historia_laboral"] = $this->oracledb->get_cursor_data(":PO_LISTA_HISTORIA_LABORAL");
-		return $result;
+
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in getHistoriaLaboral(): ' . $result["desc"]);
+		}
 			
 	}
 	
