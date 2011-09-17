@@ -109,7 +109,7 @@ class Busquedas extends CI_Controller {
 		$idUsuario = @$_SESSION[SESSION_ID_USUARIO];
 		
 		$result  = $this->Busquedas_model->setBusqueda($busqueda->id_busqueda, $idUsuario,
-					$busqueda->d_busqueda,/*$idTicket*/0,$busqueda->cantidad_recursos,$busqueda->f_hasta);
+					$busqueda->d_busqueda,/*$idTicket*/0,$busqueda->cantidad_recursos,$busqueda->f_hasta,$busqueda->d_titulo);
 
 	}
 	
@@ -198,7 +198,8 @@ class Busquedas extends CI_Controller {
 		$cantidadRecursos = 2 ;
 		$idBusqueda = 1; //NULL = nuevo
 		$idTicket = 1;
-		$result  = $this->Busquedas_model->setBusqueda($idBusqueda, $idUsuario,$descripcionBusqueda,$idTicket,$cantidadRecursos,$fechaHasta);
+		$titulo = "Busqueda de prueba 1";
+		$result  = $this->Busquedas_model->setBusqueda($idBusqueda, $idUsuario,$descripcionBusqueda,$idTicket,$cantidadRecursos,$fechaHasta,$titulo);
 		$busquedaACTUAL = $result["id_busqueda"];
 		if ($result["error"] == 0 )
 				$data["result"] = "PKG_BUSQUEDAS.PR_BUSQUEDA Búsqueda creada/modificada correctamente. ID : ".$busquedaACTUAL;
