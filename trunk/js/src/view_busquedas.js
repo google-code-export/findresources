@@ -65,6 +65,7 @@ $(function() {
 //$idBusqueda,$idUsuario,$descripcionBusqueda,$fechaHasta,$cantidadRecursos
 function newSearch(){
 	$('#searchDataEditorId').val("");
+	$('#searchDataEditorTitle').val("");
 	$('#searchDataEditorDescription').val("");
 	$('#searchDataEditorDateTo').val("");
 	$('#searchDataEditorResourcesQuantity').val("");
@@ -73,6 +74,7 @@ function newSearch(){
 
 function editSearchData(idSearch){
 	$('#searchDataEditorId').val(userSearchs[idSearch].id_busqueda);
+	$('#searchDataEditorTitle').val(userSearchs[idSearch].d_titulo);
 	$('#searchDataEditorDescription').val(userSearchs[idSearch].d_busqueda);
 	$('#searchDataEditorDateTo').val(userSearchs[idSearch].f_hasta);
 	$('#searchDataEditorResourcesQuantity').val(userSearchs[idSearch].cantidad_recursos);
@@ -83,6 +85,7 @@ function editSearchData(idSearch){
 function setSearchData(){
 	var busqueda = {
 		id_busqueda: $('#searchDataEditorId').val(), // null = nuevo
+		d_titulo: $('#searchDataEditorTitle').val(),
 		d_busqueda: $('#searchDataEditorDescription').val(),
 		f_hasta: $('#searchDataEditorDateTo').val(), 
 		cantidad_recursos: $('#searchDataEditorResourcesQuantity').val()//,

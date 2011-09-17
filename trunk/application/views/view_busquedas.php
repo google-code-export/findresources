@@ -64,8 +64,7 @@
 				foreach ($busquedasDelUsuario["busquedas_activas"] as $i => $busq){ ?>
 					<div class="savedSearchLink">
 						<a href="busquedas?busquedaId=<?php echo $busq->id_busqueda?>">
-							<?php 
-							echo $busq->d_busqueda?>
+							<?php echo $busq->d_titulo?>
 						</a>
 						<a class="editSearchDataLink" href="javascript:editSearchData(<?php echo $i ?>);">
 							<img src="images/src/pencil.gif"/>
@@ -312,10 +311,14 @@
 				<div class="popuptitle"> Datos de la Búqueda</div>
 				<a href="javascript:;" class="closePopUp"></a>
 				<div class="inside">
-					<div>	
+					<div>
+						<div class="field clearfix">
+							<div class="label">Título:</div>
+							<input type="text" id="searchDataEditorTitle" value="" />
+						</div>
 						<div class="field clearfix">
 							<div class="label">Descripción:</div>
-							<input type="text" id="searchDataEditorDescription" value="" />
+							<textarea id="searchDataEditorDescription" />
 						</div>
 						<div class="field clearfix">
 							<div class="label">Fecha Hasta:</div>
