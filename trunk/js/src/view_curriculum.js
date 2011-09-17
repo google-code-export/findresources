@@ -50,6 +50,7 @@ function addFormalEducation(){
 
 function addInformalEducation(){
 	$('#informalEducationEditorId').val("");
+	$('#informalEducationEditorInstitution').val("");
 	$('#informalEducationEditorDescription').val("");
 	$('#informalEducationEditorType').val("");
 	$('#informalEducationEditorDuration').val("");
@@ -119,6 +120,7 @@ function editFormalEducation(idEducation){
 
 function editInformalEducation(idEducation){
 	$('#informalEducationEditorId').val(idEducation);
+	$('#informalEducationEditorInstitution').val(informalEducation[idEducation].institucion);
 	$('#informalEducationEditorType').val(informalEducation[idEducation].idTipoEducacionNoFormal);
 	$('#informalEducationEditorDescription').val(informalEducation[idEducation].descripcion);
 	$('#informalEducationEditorDuration').val(informalEducation[idEducation].duracion);
@@ -131,6 +133,46 @@ function checkInstitutionDescriptionDisabled(){
 	$('#formalEducationEditorInstitutionDescription').attr("disabled", 
 			($('#formalEducationEditorInstitution').val() != ""));
 }
+
+function eraseWorkExperience(id){
+	var r=confirm("Esta seguro que desea eliminar la experiencia en " + workExperiences[id].compania);
+	if (r==true)
+	  {
+	  alert("You pressed OK!");
+		window.location.reload();
+	  }
+	else
+	  {
+	  alert("You pressed Cancel!");
+	  }
+}
+
+function eraseFormalEducation(id){
+	var r=confirm("Esta seguro que desea eliminar la educacion formal seleccionada");
+	if (r==true)
+	  {
+	  alert("You pressed OK!");
+		window.location.reload();
+	  }
+	else
+	  {
+	  alert("You pressed Cancel!");
+	  }
+}
+
+function eraseInformalEducation(id){
+	var r=confirm("Esta seguro que desea eliminar la educacion informal seleccionada");
+	if (r==true)
+	  {
+		alert("You pressed OK!");
+		window.location.reload();
+	  }
+	else
+	  {
+	  alert("You pressed Cancel!");
+	  }
+}
+
 
 /*WINDOW ONLOAD*/
 $(function(){
@@ -259,6 +301,7 @@ $(function(){
 		var educacionFormal = {
 			id: $('#informalEducationEditorId').val(), // null = nuevo
 			idTipoEducacionNoFormal: $('#informalEducationEditorType').val(), 
+			institucion: $('#informalEducationEditorInstitution').val(), 
 	 		descripcion:$('#informalEducationEditorDescription').val(), 
 	 		duracion:$('#informalEducationEditorDuration').val()
 		};

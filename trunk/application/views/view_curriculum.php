@@ -149,7 +149,14 @@
 
 				<div class="job inblock" id="job<?php echo $i ?>">
 				
-					<h3><?php echo $experiencia->titulo; ?> <a href="javascript:editWorkExperience(<?php echo $i ;?>);" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h3>
+					<h3><?php echo $experiencia->titulo; ?>  
+								<a href="javascript:editWorkExperience(<?php echo $i ;?>);" class="editFields">
+									<img src="images/src/pencil.gif"/> Editar
+								</a> 
+								<a href="javascript:eraseWorkExperience(<?php echo $i ;?>);" class="eraseFields">
+									<img src="images/src/delete.png"/> Quitar
+								</a>
+					</h3>
 					
 					<p class="company"><?php echo $experiencia->compania; ?></p>
 					<p class="industry">Industria: <?php echo $industriasDisponibles[$experiencia->idIndustria]; ?></p>
@@ -170,7 +177,13 @@
 				
 				<div class="study inblock">
 					<h3><?php echo ($educacion->idEntidad != "")?$entidadesEducativas[$educacion->idEntidad]: $educacion->descripcionEntidad?>
-					<a href="javascript:editFormalEducation(<?php echo $i ?>);" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h3>
+						<a href="javascript:editFormalEducation(<?php echo $i ?>);" class="editFields">
+							<img src="images/src/pencil.gif"/>Editar
+						</a>
+						<a href="javascript:eraseFormalEducation(<?php echo $i ;?>);" class="eraseFields">
+							<img src="images/src/delete.png"/> Quitar
+						</a>
+					</h3>
 					<p class="title"><?php echo $educacion->titulo?> </p>
 					<p class="when"><span class="dateFrom"><?php echo $educacion->fechaInicio?></span> – <span class="dateTo"><?php echo $educacion->fechaFinalizacion?></span></p>
 					<p class="eduLevel"><?php echo $nivelesDeEducacion[$educacion->idNivelEducacion]?></p>
@@ -201,11 +214,19 @@
 			</div>
 			
 			<div class="block">
-				<h2>Educaci&oacute;n No Formal <a class="addFields" href="javascript:addInformalEducation();"><img src="images/src/add.png"/> <b>Agregar</b> educación</a></h2>
+				<h2>Educaci&oacute;n Informal <a class="addFields" href="javascript:addInformalEducation();"><img src="images/src/add.png"/> <b>Agregar</b> educación</a></h2>
 				
 				<?php foreach ($educacionNoFormalDelCv as $id => $educacion){ ?>
 				<div class="study inblock">
-					<h3><?php echo $educacion->descripcion?> <a href="javascript:editInformalEducation(<?php echo $id?>);" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h3>
+					<h3><?php echo $educacion->institucion?> 
+						<a href="javascript:editInformalEducation(<?php echo $id?>);" class="editFields">
+							<img src="images/src/pencil.gif"/>Editar
+						</a>
+						<a href="javascript:eraseInformalEducation(<?php echo $i ;?>);" class="eraseFields">
+							<img src="images/src/delete.png"/> Quitar
+						</a>
+					</h3>
+					<p class="type"><?php echo $educacion->descripcion?> </p>
 					<p class="type"><?php echo $tiposDeEducacionNoFormal[$educacion->idTipoEducacionNoFormal];?> </p>
 					<p class="when">Duración: <?php echo $educacion->duracion?> </p>
 				</div>
@@ -600,6 +621,10 @@
 					<input id="informalEducationEditorId" type="hidden" value="" name="" />
 					
 					
+					<div class="field clearfix">
+						<div class="label">Institución:</div>
+						<input type="text" id="informalEducationEditorInstitution"></input>
+					</div>
 					<div class="field clearfix">
 						<div class="label">Descripción:</div>
 						<textarea id="informalEducationEditorDescription"></textarea>

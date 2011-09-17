@@ -144,17 +144,22 @@ h1 {
 	font-size: 10px;
 }
 
+.eraseFields,
 .addFields, 
 .editFields {
 	font-size: 11px;
 	float: right;
 }
 
+.eraseFields img,
 .editFields img{
     margin-right: 3px;
     width: 8px;
 }
 
+.eraseFields {
+	padding-right: 10px;
+}
 
 .inblock{
 	margin:5px;
