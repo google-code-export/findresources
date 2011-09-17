@@ -411,7 +411,7 @@ class Util_model extends FR_Model {
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_UTIL','PR_OBTIENE_HAB_BLANDAS',$params);
 		$result["lista_hab_blandas"] = $this->oracledb->get_cursor_data(":PO_LISTA_HAB_BLANDAS");
 	
-		if($result["error"] != 0){
+		if($result["error"] == 0){
 			return $result;		
 		}else{
 			//TODO exception managment.
