@@ -10,7 +10,7 @@ class Busquedas extends CI_Controller {
 	}
 	
 	public function index(){
-		$this->runTest();
+		//$this->runTest();
 		$idUsuario = @$_SESSION[SESSION_ID_USUARIO];
 		if(!$idUsuario){
 			/////////////HARDCODED//////////////////////////
