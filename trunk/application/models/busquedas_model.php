@@ -371,19 +371,21 @@ class Busquedas_model extends CI_Model {
 	/** CONSULTO LAS HABILIDADES BLANDAS DE UNA BUSQUEDA **/
 	public function  getBusquedasDeUsuario($idUsuario){
 		$result["busquedas_activas"] = NULL;
+		$result["busquedas_inactivas"] = NULL;
 		$result["error"] = NULL;
 		$result["desc"] = NULL;
 		
 		$params = array(
 			array('name'=>':PI_USUARIO', 'value'=>$idUsuario, 'type'=>SQLT_CHR, 'length'=>-1),
 			array('name'=>':PO_BUSQUEDAS_ACTIVAS', 'value'=>&$result["busquedas_activas"], 'type'=>SQLT_RSET, 'length'=>255),
+			array('name'=>':PO_BUSQUEDAS_INACTIVAS', 'value'=>&$result["busquedas_inactivas"], 'type'=>SQLT_RSET, 'length'=>255),
 			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
 			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
 		);
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_BUSQUEDAS_X_USUARIO',$params);
 		$result["busquedas_activas"] = $this->oracledb->get_cursor_data(":PO_BUSQUEDAS_ACTIVAS");
-
+		$result["busquedas_inactivas"] = $this->oracledb->get_cursor_data(":PO_BUSQUEDAS_ACTIVAS");
 		if($result["error"] == 0){
 			return $result;		
 		}else{
