@@ -542,6 +542,7 @@ class Curriculum_model extends FR_Model {
 				$respuesta[$dbRegistro->id_educacion_no_formal]->idTipoEducacionNoFormal = $dbRegistro->tipo_educacion_no_formal;
 				$respuesta[$dbRegistro->id_educacion_no_formal]->descripcion = $dbRegistro->d_educacion_no_formal;
 				$respuesta[$dbRegistro->id_educacion_no_formal]->duracion = $dbRegistro->d_duracion;
+				$respuesta[$dbRegistro->id_educacion_no_formal]->institucion = $dbRegistro->d_institucion;
 			}
 			return $respuesta;
 		}
@@ -555,7 +556,7 @@ class Curriculum_model extends FR_Model {
 	/**
 	 * @param $idCurriculum
 	 * @param $educacionNoFormal {id (null for new item), idTipoEducacionNoFormal, 
-	 * 			descripcion, duracion}
+	 * 			descripcion, duracion, institucion}
 	 * @return $idEducacionNoFormal
 	 * */
 	public function setEducacionNoFormal($idCurriculum, $educacionNoFormal){
@@ -569,6 +570,7 @@ class Curriculum_model extends FR_Model {
 			array('name'=>':pi_tipo_educacion_no_formal', 'value'=>$educacionNoFormal->idTipoEducacionNoFormal, 'type'=>SQLT_CHR, 'length'=>-1),
 			array('name'=>':pi_d_educacion_no_formal', 'value'=>$educacionNoFormal->descripcion, 'type'=>SQLT_CHR, 'length'=>-1),
 			array('name'=>':pi_d_duracion', 'value'=>$educacionNoFormal->duracion, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_d_institucion', 'value'=>$educacionNoFormal->institucion, 'type'=>SQLT_CHR, 'length'=>-1),
 			array('name'=>':po_id_educacion_no_formal', 'value'=>&$rta, 'type'=>SQLT_CHR , 'length'=>255),
 			array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
 			array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
