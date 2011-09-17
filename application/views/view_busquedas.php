@@ -61,7 +61,7 @@
 			<div id="savedSearchLinks" class="clearfix">
 				
 				<?php 
-				foreach ($busquedasDelUsuario["busquedasActivas"] as $i => $busq){ ?>
+				foreach ($busquedasDelUsuario["busquedas_activas"] as $i => $busq){ ?>
 					<div class="savedSearchLink">
 						<a href="busquedas?busquedaId=<?php echo $busq->id_busqueda?>">
 							<?php 
