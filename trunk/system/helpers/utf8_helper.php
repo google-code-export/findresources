@@ -44,6 +44,10 @@ if ( ! function_exists('utf8'))
 		return json_encode(to_utf8($in));
 	}
 	
+	function json_decode_into_array($in) {
+		return array_map("utf8_decode",json_decode(utf8_encode($in),true));
+	}
+	
 	
 }
 
