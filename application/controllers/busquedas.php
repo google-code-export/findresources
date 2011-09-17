@@ -10,7 +10,7 @@ class Busquedas extends CI_Controller {
 	}
 	
 	public function index(){
-		//$this->runTest();
+		$this->runTest();
 		$idUsuario = @$_SESSION[SESSION_ID_USUARIO];
 		if(!$idUsuario){
 			/////////////HARDCODED//////////////////////////
@@ -31,8 +31,13 @@ class Busquedas extends CI_Controller {
 		
 		if(isset($_GET["busquedaId"])){
 			$idBusqueda = $_GET["busquedaId"]; 
-			//SET ID BUSQUEDA EN SESSION
+			////////REVISAR AQUI SI ESTA BUSQUEDA PERTENECE 
+			////////A LAS QUE VINIERON ANTES A ESTE USUARIO
+			////////SEGUN SU ID.
+			//SET BUSQUEDA SELECCIONADA
+			$_SESSION[SESSION_ID_BUSQUEDA_SELECCIONADA]= $idBusqueda;
 			$data['busquedaSeleccionada'] = $this->Busquedas_model->getOpcionesDeBusqueda($idBusqueda);
+	
 		}
 		
 		
@@ -54,11 +59,11 @@ class Busquedas extends CI_Controller {
 		$data['tiposDeEducacionNoFormal'] = $this->Util_model->getTiposDeEducacionNoFormal();
 		
 		if(isset($_POST["educacionFormal"])){
-			$educacionFormal =  array_map("utf8_decode",json_decode(utf8_encode($_POST["educacionFormal"]),true));
+			$educacionFormal =  json_decode_into_array($_POST["educacionFormal"]);
 			$result = $this->Busquedas_model->setEducacionFormalDeBusqueda($idBusqueda,$educacionFormal);
 		}
 		if(isset($_POST["recurso"])){
-			$cv =  array_map("utf8_decode",json_decode(utf8_encode($_POST["recurso"]),true));
+			$cv =  json_decode_into_array($_POST["recurso"]);
 			$result = $this->Busquedas_model->setRecursoBusqueda($idBusqueda,$recurso);
 		}
 		if(isset($_POST["habilidades"])){
@@ -103,15 +108,75 @@ class Busquedas extends CI_Controller {
 		////////SEGUN SU ID.
 		$idUsuario = @$_SESSION[SESSION_ID_USUARIO];
 		
-		
 		$result  = $this->Busquedas_model->setBusqueda($busqueda->id_busqueda, $idUsuario,
 					$busqueda->d_busqueda,/*$idTicket*/0,$busqueda->cantidad_recursos,$busqueda->f_hasta);
 
-		echo json_encode($result);
+	}
+	
+	public function setRecurso(){
+			
+		$idBusqueda = @$_SESSION[SESSION_ID_BUSQUEDA_SELECCIONADA];
+		
+		if(isset($_POST["recurso"])){
+			$recurso =  json_decode_into_array($_POST["recurso"]);
+			$result = $this->Busquedas_model->setRecursoBusqueda($idBusqueda,$recurso);
+		}
 		
 	
 	}
 	
+	public function setHabilidadesDuras(){
+			
+		$idBusqueda = @$_SESSION[SESSION_ID_BUSQUEDA_SELECCIONADA];
+		
+		if(isset($_POST["lista_herramienta"])){
+			$herramientas =  json_decode_into_array($_POST["lista_herramienta"]);
+			$result = $this->Busquedas_model->setHerramientasBusqueda($idBusqueda,$herramientas);
+		}
+		if(isset($_POST["lista_industria"])){
+			$industrias =  json_decode_into_array($_POST["lista_industria"]);
+			$result = $this->Busquedas_model->setHerramientasBusqueda($idBusqueda,$industrias);
+		}
+	
+	}
+	
+	
+	public function setEducacionFormal(){
+			
+		$idBusqueda = @$_SESSION[SESSION_ID_BUSQUEDA_SELECCIONADA];
+		
+		if(isset($_POST["edu_formal"])){
+			$educacionFormal =  json_decode_into_array($_POST["edu_formal"]);
+			$result = $this->Busquedas_model->setEducacionFormalDeBusqueda($idBusqueda,$educacionFormal);
+		}
+
+	
+	}
+	
+	
+	public function setHabilidadesBlandas(){
+			
+		$idBusqueda = @$_SESSION[SESSION_ID_BUSQUEDA_SELECCIONADA];
+		
+		if(isset($_POST["hab_blandas"])){
+			$habilidadesBlandas =  json_decode_into_array($_POST["hab_blandas"]);
+			$result = $this->Busquedas_model->setHabilidadesBlandasBusqueda($idBusqueda,$habilidadesBlandas);
+		}
+
+	
+	}
+	
+	public function setHistoriaLaboral(){
+			
+		$idBusqueda = @$_SESSION[SESSION_ID_BUSQUEDA_SELECCIONADA];
+		
+		if(isset($_POST["lista_historia_laboral"])){
+			$historiaLaboral =  json_decode_into_array($_POST["lista_historia_laboral"]);
+			$result = $this->Busquedas_model->setHistoriaLaboral($idBusqueda,$historiaLaboral);
+		}
+
+	
+	}
 	
 	
 	private function runTest(){
@@ -134,7 +199,7 @@ class Busquedas extends CI_Controller {
 		$idBusqueda = 1; //NULL = nuevo
 		$idTicket = 1;
 		$result  = $this->Busquedas_model->setBusqueda($idBusqueda, $idUsuario,$descripcionBusqueda,$idTicket,$cantidadRecursos,$fechaHasta);
-		$busquedaACTUAL = $result["idBusqueda"];
+		$busquedaACTUAL = $result["id_busqueda"];
 		if ($result["error"] == 0 )
 				$data["result"] = "PKG_BUSQUEDAS.PR_BUSQUEDA Búsqueda creada/modificada correctamente. ID : ".$busquedaACTUAL;
 		else 			
@@ -145,27 +210,27 @@ class Busquedas extends CI_Controller {
 		/** PRUEBA CREACION DE EDUCACION FORMAL PARA LA BUSQUEDA **/
 		$educacionFormal = array(
 			"id" => 4, // NULL = nuevo
-			"idEntidad" => 3,
-			"descripcionEntidad" => "ENTIDAD", 
-			"modoEntidad" => "R",
+			"id_entidad_educativa" => 3,
+			"d_entidad" => "ENTIDAD", 
+			"c_modo_entidad" => "R",
 			"titulo" => "Ingeniero en Electrónica",
-			"modoTitulo" => "R",
-			"idNivelEducacion" => 1,
-			"modoNivelEducacion" => "R",
-			"idArea" => 1,
-			"modoArea" => "R",
+			"c_modo_titulo" => "R",
+			"id_nivel_educacion" => 1,
+			"c_modo_nivel_educacion" => "R",
+			"id_area" => 1,
+			"c_modo_area" => "R",
 			"estado" => "C",
-			"modoEstado" => "R", //REQUERIDO - PREFERIDO
-			"promedioDesde" => 6,
-			"promedioHasta"=> 8,
-			"modoPromedio"=> "P",
-			"baja" => "N" // SI LO QUIERO BORRAR PONGO "S"
+			"c_modo_estado" => "R", //REQUERIDO - PREFERIDO
+			"promedio_desde" => 6,
+			"promedio_hasta"=> 8,
+			"c_modo_promedio"=> "P",
+			"c_baja" => "N" // SI LO QUIERO BORRAR PONGO "S"
 		);
 		 
 		$result = $this->Busquedas_model->setEducacionFormalDeBusqueda($busquedaACTUAL,$educacionFormal);
 		
 		if ($result["error"] == 0 )
-				$data["result"] = "PKG_BUSQUEDAS.PR_BUS_EDUCACION_FORMAL EducacionFormal creada/modificada correctamente. ID : ".$result["idEducacionFormal"];
+				$data["result"] = "PKG_BUSQUEDAS.PR_BUS_EDUCACION_FORMAL EducacionFormal creada/modificada correctamente. ID : ".$result["id_bus_edu_formal"];
 		else 			
 			$data["result"] = "PKG_BUSQUEDAS.PR_BUS_EDUCACION_FORMAL : ERROR (".$result["error"].") :".$result["desc"];
 			
@@ -175,15 +240,15 @@ class Busquedas extends CI_Controller {
 		/** PRUEBA CREACION DE RECURSO PARA LA BUSQUEDA **/
 		$recurso = array(
 			"id" => 4, // Busqueda NULL = nuevo
-			"edadDesde" => 20,
-			"edadHasta" => 30, 
-			"edadModo" => "R",
+			"edad_desde" => 20,
+			"edad_hasta" => 30, 
+			"edad_c_modo" => "R",
 			"nacionalidad" => "ARG".$this->sep."R".$this->sep."BOL".$this->sep."P",
 			"provincia" => "0".$this->sep."P", // 0 = CABA
 			"localidad" => "", // VA el texto no el id
-			"twitterModo" => "P",
-			"gtalkModo" => "P",
-			"smsModo" => "P" 
+			"twitter_c_modo" => "P",
+			"gtalk_c_modo" => "P",
+			"sms_c_modo" => "P" 
 		);
 		$result = $this->Busquedas_model->setRecursoBusqueda($busquedaACTUAL,$recurso);
 		
@@ -432,22 +497,23 @@ class Busquedas extends CI_Controller {
 		echo "<br />";
 		
 		/** SETEO LA HISTORIA LABORAL A UNA BUSQUEDA **/
-		$idHistoriaLaboral = 1;
-		$compania ="IBM";
-		$companiaModo = "P";
-		$industria = "1";
-		$industriaModo = "P";
-		$pais = "ARG";
-		$paisModo = "P";
-		$anos = "20";
-		$anosModo = "P";
-		$titulo = "Universitario";
-		$tituloModo = "P";
-		$fechaBaja = NULL;
-		$result = $this->Busquedas_model->setHistoriaLaboral($idBusqueda,$idHistoriaLaboral,$compania,$companiaModo,$industria,$industriaModo,$pais,$paisModo, $anos, $anosModo, $titulo,$tituloModo,$fechaBaja);
+		$historiaLaboral["id_historia_laboral"] = 1;
+		$historiaLaboral["d_compania"] ="IBM";
+		$historiaLaboral["c_modo_compania"] = "P";
+		$historiaLaboral["id_industria"] = "1";
+		$historiaLaboral["c_modo_industria"] = "P";
+		$historiaLaboral["pais"] = "ARG";
+		$historiaLaboral["c_modo_pais"] = "P";
+		$historiaLaboral["anos"] = "20";
+		$historiaLaboral["c_modo_anos"] = "P";
+		$historiaLaboral["titulo"] = "Universitario";
+		$historiaLaboral["c_modo_titulo"] = "P";
+		$historiaLaboral["c_baja"] = NULL;
+		
+		$result = $this->Busquedas_model->setHistoriaLaboral($idBusqueda,$historiaLaboral);
 		
 		if ($result["error"] == 0 )
-			$data["result"] = "PKG_TICKETS_EMPRESAS.PR_BUS_HISTORIA_LABORAL Historia laboral seteada correctamente. N º : ".$result["idHistoriaLaboral"];
+			$data["result"] = "PKG_TICKETS_EMPRESAS.PR_BUS_HISTORIA_LABORAL Historia laboral seteada correctamente. N º : ".$result["id_historia_laboral"];
 		else 			
 			$data["result"] = "PKG_TICKETS_EMPRESAS.PR_BUS_HISTORIA_LABORAL : (".$result["error"].") :".$result["desc"];
 			
