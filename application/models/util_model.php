@@ -397,22 +397,26 @@ class Util_model extends FR_Model {
 	/** OBTENGO HABILIDADES BLANDA **/
 	public function  getHabilidadesBlandas($idHabilidad){
 		
-		$result["habilidadesBlandas"] = NULL;
+		$result["lista_hab_blandas"] = NULL;
 		$result["error"] = NULL;
 		$result["desc"] = NULL;
 		
 		$params = array(
 			array('name'=>':PI_ID_HABILIDAD_BLANDA', 'value'=>$idHabilidad, 'type'=>SQLT_CHR, 'length'=>-1),
-			array('name'=>':PO_LISTA_HAB_BLANDAS', 'value'=>&$result["habilidadesBlandas"], 'type'=>SQLT_RSET, 'length'=>255),
+			array('name'=>':PO_LISTA_HAB_BLANDAS', 'value'=>&$result["lista_hab_blandas"], 'type'=>SQLT_RSET, 'length'=>255),
 			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
 			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
 		);
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_UTIL','PR_OBTIENE_HAB_BLANDAS',$params);
-		$result["habilidadesBlandas"] = $this->oracledb->get_cursor_data(":PO_LISTA_HAB_BLANDAS");
-		return $result;
-		
-			
+		$result["lista_hab_blandas"] = $this->oracledb->get_cursor_data(":PO_LISTA_HAB_BLANDAS");
+	
+		if($result["error"] != 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in getHabilidadesBlandas(): ' . $result["desc"]);
+		}	
 	}
 
 
