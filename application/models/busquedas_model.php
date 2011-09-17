@@ -385,7 +385,7 @@ class Busquedas_model extends CI_Model {
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_BUSQUEDAS_X_USUARIO',$params);
 		$result["busquedas_activas"] = $this->oracledb->get_cursor_data(":PO_BUSQUEDAS_ACTIVAS");
-		$result["busquedas_inactivas"] = $this->oracledb->get_cursor_data(":PO_BUSQUEDAS_ACTIVAS");
+		$result["busquedas_inactivas"] = $this->oracledb->get_cursor_data(":PO_BUSQUEDAS_INACTIVAS");
 		if($result["error"] == 0){
 			return $result;		
 		}else{
