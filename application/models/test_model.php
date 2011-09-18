@@ -425,5 +425,25 @@ class Test_model extends CI_Model {
 		return $result;
 
 	}
+	
+	
+	public function getTestsPendientes($usuario){
+		$result["test_pendientes"] = NULL;
+		$result["error"] = NULL;
+		$result["desc"] = NULL;
+		
+		$params = array(
+		array('name'=>':PI_USUARIO', 'value'=>$usuario, 'type'=>SQLT_CHR , 'length'=>-1),
+		array('name'=>':PO_TEST_PENDIENTES', 'value'=>&$result["test_pendientes"], 'type'=>SQLT_RSET , 'length'=>255),
+		array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
+		array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_TEST','PR_TEST_PENDIENTES',$params);
+		$result["test_pendientes"] = $this->oracledb->get_cursor_data(":PO_TEST_PENDIENTES");
+		
+		return $result;
+
+	}
+	
 }
 ?>
