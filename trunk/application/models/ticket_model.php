@@ -29,7 +29,12 @@ class Ticket_model extends CI_Model {
 		);
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_TICKETS_EMPRESAS','PR_ASOCIA_TICKETS_EMPRESAS',$params);
 			
-		return $result;
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in asociarTicket(): ' . $result["desc"]);
+		}
 
 	}	
 	
@@ -47,7 +52,12 @@ class Ticket_model extends CI_Model {
 		);
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_TICKETS_EMPRESAS','PR_CONSUME_TICKET_EMPRESA',$params);
 			
-		return $result;
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in consumirTicket(): ' . $result["desc"]);
+		}
 
 	}	
 	
@@ -65,7 +75,12 @@ class Ticket_model extends CI_Model {
 		);
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_TICKETS_EMPRESAS','PR_CONSULTA_SALDO_TICKET',$params);
 			
-		return $result;
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in consultarSaldoTicket(): ' . $result["desc"]);
+		}
 
 	}	
 	
@@ -83,7 +98,13 @@ class Ticket_model extends CI_Model {
 		);
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_TICKETS_EMPRESAS','PR_CONS_TICKET_SALDO_EMPRESA',$params);
 		$result["ticket_saldo"] = $this->oracledb->get_cursor_data(":PO_TICKET_SALDO");
-		return $result;
+			
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in consultarSaldoTicketEmpresa(): ' . $result["desc"]);
+		}
 
 	}	
 
