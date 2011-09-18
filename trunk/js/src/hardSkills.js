@@ -88,7 +88,7 @@ $(function(){
 				alert(response)*/
 			},
 			error: function(response){
-				alert(response);
+				processError(response);
 			}
 		});
 		

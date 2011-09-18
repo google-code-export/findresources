@@ -70,7 +70,7 @@ $(function(){
 		      		alert("Un mail fue enviado a su casilla para autenticar su usuario.");
 			  },
 			  error: function(response){
-					alert(response);
+				  	processError(response);
 			  }
 		   }
 		);
@@ -102,7 +102,7 @@ $(function(){
 					}
 			  },
 			  error: function(response){
-					alert(response);
+				  processError(response);
 			  }
 		   }
 		);
@@ -152,7 +152,7 @@ $(function(){
 					$('#login_error_msg').css("display", (existe == true)?"inline":"none");
 			  },
 			  error: function(response){
-					alert(response);
+				  processError(response);
 			  }
 		   }
 		);

@@ -160,7 +160,7 @@ function setHardSkills(){
 			window.location.reload();
 		},
 		error: function(response){
-			alert(response);
+			processError(response);
 		}
 	});
 	
@@ -197,7 +197,7 @@ function setSoftSkills(){
 			window.location.reload();
 		},
 		error: function(response){
-			alert(response);
+			processError(response);
 		}
 	});
 		

@@ -42,7 +42,7 @@ $(function(){
 				window.location.reload();
 			},
 			error: function(response){
-				alert(response);
+				processError(response);
 			}
 		});
 		
