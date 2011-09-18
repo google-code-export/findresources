@@ -11,6 +11,11 @@ function hidePopUp()
 	$('.popup').animate({opacity:'0'},500,function(){$(this).hide()});
 }
 
+function processError(errorResponse){
+	$('#errorPopUp .inside').html(errorResponse.responseText);
+	showPopUp('#errorPopUp');
+}
+
 /*WINDOW ONLOAD*/
 $(function(){
 	
