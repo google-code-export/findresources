@@ -19,7 +19,12 @@ class Test_model extends CI_Model {
 		);
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_TEST','PR_LUSCHER_USUARIO',$params);
 			
-		return $result;
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in setLuscherResults(): ' . $result["desc"]);
+		}
 
 	}
 	
@@ -113,8 +118,12 @@ class Test_model extends CI_Model {
 		);
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_TEST','PR_RAVEN_USUARIO',$params);
 
-		return $result;
-
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in setRavenResults(): ' . $result["desc"]);
+		}
 	}
 	
 	public function getD48CorrectAnswers($ravenAnswers){
@@ -194,7 +203,13 @@ class Test_model extends CI_Model {
 		array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
 		);
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_TEST','PR_D48_USUARIO',$params);
-		return $result;
+
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in setD48Results(): ' . $result["desc"]);
+		}
 
 	}
 	
@@ -406,7 +421,12 @@ class Test_model extends CI_Model {
 		);
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_TEST','PR_MIPS_USUARIO',$params);
 
-		return $result;
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in setMIPSResults(): ' . $result["desc"]);
+		}
 
 	}
 	
@@ -422,7 +442,12 @@ class Test_model extends CI_Model {
 		);
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_TEST','PR_RORSCHACH_USUARIO',$params);
 
-		return $result;
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in setRorschachResults(): ' . $result["desc"]);
+		}
 
 	}
 	
@@ -441,7 +466,12 @@ class Test_model extends CI_Model {
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_TEST','PR_TEST_PENDIENTES',$params);
 		$result["test_pendientes"] = $this->oracledb->get_cursor_data(":PO_TEST_PENDIENTES");
 		
-		return $result;
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in getTestsPendientes(): ' . $result["desc"]);
+		}
 
 	}
 	
