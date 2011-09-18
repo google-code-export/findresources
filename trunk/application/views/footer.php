@@ -45,4 +45,18 @@
 	<div class="copyright">Derechos Reservados (c) 2011 - findResoruces </div>	
 	
 </div>
+
+<div class="popup" id="errorPopUp" style="display:none;">
+		<table cellspacing="0" cellpadding="0" align="center">
+		<tr><td>
+			<div class="in">
+				<div class="popuptitle">System Error</div>
+				<a href="#" class="closePopUp"></a>
+				<div class="inside">
+				</div>
+			</div>
+		</td></tr>
+		</table>
+</div>
+
 	

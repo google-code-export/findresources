@@ -40,6 +40,19 @@ span.dn{display:none;}
  	overflow: auto;
 }
 
+#errorPopUp {
+	z-index:1000;
+}
+#errorPopUp  .in {
+	width: 700px;
+	height:600px;
+}
+
+#errorPopUp  .inside {
+	height:515px;
+}
+	
+
 .buttonsPopUp {
 	float: right;
     margin-top: 20px;

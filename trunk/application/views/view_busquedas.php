@@ -30,7 +30,7 @@
 
 <script type="text/javascript">
 
-	var userSearchs = <?php echo json_encode_utf8($busquedasDelUsuario["busquedasActivas"]); ?>;
+	var userSearchs = <?php echo json_encode_utf8($busquedasDelUsuario["busquedas_activas"]); ?>;
 
  	var availableIndustries = <?php  echo json_encode_utf8($industriasDisponibles); ?>;
 
@@ -42,7 +42,7 @@
 
 	var selectedSearch	= <?php echo isset($busquedaSeleccionada)?json_encode_utf8($busquedaSeleccionada): "null";?>;
 
-	var availableSoftSkills	= <?php echo json_encode_utf8($habilidadesBlandasDisponibles['habilidadesBlandas']); ?>;
+	var availableSoftSkills	= <?php echo json_encode_utf8($habilidadesBlandasDisponibles['lista_hab_blandas']); ?>;
 	
 </script>
 
@@ -95,7 +95,7 @@
 									<div class="inblock">
 										<h4>Industrias</h4>
 										<ul>
-										<?php foreach ($busquedaSeleccionada['industrias']  as $id => $habilidad){ ?>
+										<?php foreach ($busquedaSeleccionada['lista_industria']  as $id => $habilidad){ ?>
 											<li><?php echo $habilidad->d_industria ?>: <?php echo $habilidad->valoracion ?> - <?php echo $habilidad->importancia ?></li>
 										<?php } ?>
 										</ul>
@@ -104,7 +104,7 @@
 									<div class="inblock">
 										<h4>Areas</h4>
 										<ul>
-										<?php foreach ($busquedaSeleccionada['herramientas'] as $habilidad){ ?>
+										<?php foreach ($busquedaSeleccionada['lista_herramienta'] as $habilidad){ ?>
 											<li><?php echo $habilidad->d_area ?> - <?php echo $habilidad->d_herramienta ?>: <?php echo $habilidad->valor_herramienta ?> - <?php echo $habilidad->importancia ?></li>
 										<?php } ?>
 										</ul>
@@ -113,7 +113,7 @@
 								<div class="block" id="softSkills">
 									<h2>Características Blandas <a href="javascript:editSoftSkills();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
 									<div class="inblock">
-										<?php foreach ($busquedaSeleccionada['habilidadesBlandas'] as $habilidad){ ?>
+										<?php foreach ($busquedaSeleccionada['hab_blanda'] as $habilidad){ ?>
 											<div class="row clearfix">
 												<?php echo $habilidad->d_habilidad_blanda; ?>
 											</div>
@@ -124,7 +124,7 @@
 								<div class="block" id="hardSkills">
 									<h2>Educacion Formal <a href="javascript:editFormalEducation();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
 									
-									<?php foreach ($busquedaSeleccionada['educacionFormal'] as $educacion) { ?>
+									<?php foreach ($busquedaSeleccionada['edu_formal'] as $educacion) { ?>
 										<!-- id_bus_edu_formal -->
 										<div class="study inblock">
 											<div class="row clearfix">
@@ -312,13 +312,14 @@
 				<a href="javascript:;" class="closePopUp"></a>
 				<div class="inside">
 					<div>
+						<input type="hidden" id="searchDataEditorId" value="" />
 						<div class="field clearfix">
 							<div class="label">Título:</div>
 							<input type="text" id="searchDataEditorTitle" value="" />
 						</div>
 						<div class="field clearfix">
 							<div class="label">Descripción:</div>
-							<textarea id="searchDataEditorDescription" />
+							<textarea id="searchDataEditorDescription"> </textarea>
 						</div>
 						<div class="field clearfix">
 							<div class="label">Fecha Hasta:</div>
@@ -328,10 +329,10 @@
 							<div class="label">Cantidad de personal:</div>
 							<input type="text" id="searchDataEditorResourcesQuantity" value="" />
 						</div>
-						<div class="field clearfix">
+						<!--div class="field clearfix">
 							<div class="label">Estado:</div>
 							<input type="text" id="searchDataEditorStatus" value="" />
-						</div>
+						</div-->
 						
 					</div>
 					<div class="buttonsPopUp">
@@ -426,7 +427,7 @@
 						<select id="availableSoftSkillsSelect">
 							<option id="availableSoftSkillsDefaultOption" value="-1" selected="selected">Características</option>
 							
-							<?php foreach ($habilidadesBlandasDisponibles['habilidadesBlandas'] as $habilidad){ ?>
+							<?php foreach ($habilidadesBlandasDisponibles['lista_hab_blandas'] as $habilidad){ ?>
 								<option value="<?php echo $habilidad->id_habilidad_blanda; ?>"><?php echo $habilidad->d_habilidad_blanda;?></option> 
 							<?php } ?>
 						</select>
@@ -435,7 +436,7 @@
 				
 					<ul id="editItemSoftSkillList">
 						<?php 
-						foreach ($busquedaSeleccionada['habilidadesBlandas'] as $habilidad){ ?>
+						foreach ($busquedaSeleccionada['hab_blandas'] as $habilidad){ ?>
 							<li id="editSoftSkillItem<?php echo $habilidad->id_habilidad_blanda ?>" class="softSkillItem">
 								<?php echo $habilidad->d_habilidad_blanda?>
 								<a href="javascript:removeSoftSkill(<?php echo $habilidad->id_habilidad_blanda ?>);">X</a>
@@ -451,7 +452,6 @@
 		</td></tr>
 		</table>
 	</div>
-	
 	
 </body>
 </html>

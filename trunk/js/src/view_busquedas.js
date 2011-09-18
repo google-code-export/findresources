@@ -91,6 +91,7 @@ function setSearchData(){
 		cantidad_recursos: $('#searchDataEditorResourcesQuantity').val()//,
 		//estado: $('#searchDataEditorStatus').val() 
 	};
+	
 	$.ajax({
 		url: "busquedas/setBusqueda",
 		global: false,
@@ -105,7 +106,7 @@ function setSearchData(){
 			window.location.reload();
 		},
 		error: function(response){
-			alert(response);
+			processError(response);
 		}
 	});
 }

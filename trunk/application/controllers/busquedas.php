@@ -17,6 +17,8 @@ class Busquedas extends CI_Controller {
 			/////////////HARDCODED//////////////////////////
 			$idUsuario = "leandrominio@gmail.com";
 			$idBusqueda = "1";
+			$_SESSION[SESSION_ID_USUARIO] = "leandrominio@gmail.com";
+			
 			/////////////HARDCODED//////////////////////////
 			/////////////HARDCODED//////////////////////////
 			
@@ -98,18 +100,19 @@ class Busquedas extends CI_Controller {
 
 		
 	public function setBusqueda(){
-		
-
 		$busqueda= $this->input->post('busqueda');
 		$busqueda = json_decode($busqueda);
+		
 		
 		////////REVISAR AQUI SI ESTA BUSQUEDA PERTENECE 
 		////////A LAS QUE VINIERON ANTES A ESTE USUARIO
 		////////SEGUN SU ID.
 		$idUsuario = @$_SESSION[SESSION_ID_USUARIO];
+		var_dump($idUsuario);
+		var_dump($busqueda);
 		
 		$result  = $this->Busquedas_model->setBusqueda($busqueda->id_busqueda, $idUsuario,
-					$busqueda->d_busqueda,/*$idTicket*/0,$busqueda->cantidad_recursos,$busqueda->f_hasta,$busqueda->d_titulo);
+					$busqueda->d_busqueda,/*$idTicket*/2,$busqueda->cantidad_recursos,$busqueda->f_hasta,$busqueda->d_titulo);
 
 	}
 	
@@ -122,7 +125,6 @@ class Busquedas extends CI_Controller {
 			$result = $this->Busquedas_model->setRecursoBusqueda($idBusqueda,$recurso);
 		}
 		
-	
 	}
 	
 	public function setHabilidadesDuras(){
