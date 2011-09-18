@@ -19,10 +19,11 @@ class Test extends CI_Controller {
 		/** REALIZAR VALIDACION DE LOS TESTS A REALIZAR POR EL USUARIO**/
 		/** E IR LLAMANDO A LOS TESTS QUE CORRESPONDAN VALIDANDO CON **/
 		/** LO QUE LE FALTA REALIZAR SEGÚN LA INFO OBTENIDA DE LA BD **/
-		
+
 		/* USUARIO DE PRUEBA HASTA PODER TOMAR EL USUARIO REAL GUARDADO EN SESION */
 		$this->session->set_userdata('usuario', "juan@juan.com");
 
+		print_r($this->Test_model->getTestsPendientes("juan@juan.com"));exit;
 
 		$luscher_state = ($this->session->userdata('luscher')) ? $this->session->userdata('luscher') : "PEND";
 		$d48_state = ($this->session->userdata('d48')) ? $this->session->userdata('d48') : "PEND";
