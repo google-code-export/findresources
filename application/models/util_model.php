@@ -420,6 +420,29 @@ class Util_model extends FR_Model {
 	}
 
 
+	/** OBTENGO ESTADO DEL CONTACTO DE UNA BUSQUEDA **/
+	public function  getEstadoContacto(){
+		
+		$result["lista_estados_contacto"] = NULL;
+		$result["error"] = NULL;
+		$result["desc"] = NULL;
+		
+		$params = array(
+			array('name'=>':PO_LISTA_ESTADOS_CONTACTO', 'value'=>&$result["lista_estados_contacto"], 'type'=>SQLT_RSET, 'length'=>255),
+			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_UTIL','PR_ESTADO_CONTACTO_BUSQUEDA',$params);
+		$result["lista_estados_contacto"] = $this->oracledb->get_cursor_data(":PO_LISTA_ESTADOS_CONTACTO");
+	
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in getEstadoContacto(): ' . $result["desc"]);
+		}	
+	}
 }
 
 ?>
