@@ -18,7 +18,8 @@ class Busquedas_model extends CI_Model {
 		$result["f_hasta"] = NULL;
 		$result["error"] = NULL;
 		$result["desc"] = NULL;
-		
+//		echo "$idBusqueda,$idUsuario            ,$descripcionBusqueda,$idTicket,$cantidadRecursos,$fechaHasta,$titulo";exit;
+
 		$params = array(
 		array('name'=>':PI_ID_BUSQUEDA', 'value'=>$idBusqueda, 'type'=>SQLT_CHR , 'length'=>-1),
 		array('name'=>':PI_USUARIO', 'value'=>$idUsuario, 'type'=>SQLT_CHR , 'length'=>-1),
