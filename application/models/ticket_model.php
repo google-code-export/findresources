@@ -15,7 +15,7 @@ class Ticket_model extends CI_Model {
 	
 	/** ASOCIA TICKET A EMPRESA **/
 	public function asociarTicket($idUsuario,$duracion,$unidades){
-		$result["idTicket"] = NULL;
+		$result["id_ticket"] = NULL;
 		$result["error"] = NULL;
 		$result["desc"] = NULL;
 		
@@ -23,7 +23,7 @@ class Ticket_model extends CI_Model {
 		array('name'=>':PI_USUARIO', 'value'=>$idUsuario, 'type'=>SQLT_CHR , 'length'=>-1),
 		array('name'=>':PI_DURACION', 'value'=>$duracion, 'type'=>SQLT_CHR , 'length'=>-1),
 		array('name'=>':PI_Q_UNIDADES', 'value'=>$unidades, 'type'=>SQLT_CHR , 'length'=>-1),
-		array('name'=>':PO_ID_TICKET', 'value'=>&$result["idTicket"], 'type'=>SQLT_CHR , 'length'=>255),
+		array('name'=>':PO_ID_TICKET', 'value'=>&$result["id_ticket"], 'type'=>SQLT_CHR , 'length'=>255),
 		array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
 		array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
 		);
@@ -53,13 +53,13 @@ class Ticket_model extends CI_Model {
 	
 	/** CONSULTO SALDO DE TICKET **/
 	public function consultarSaldoTicket($idTicket){
-		$result["saldo"] = NULL;
+		$result["q_saldo"] = NULL;
 		$result["error"] = NULL;
 		$result["desc"] = NULL;
 		
 		$params = array(
 		array('name'=>':PI_ID_TICKET', 'value'=>$idTicket, 'type'=>SQLT_CHR , 'length'=>-1),
-		array('name'=>':PO_Q_SALDO', 'value'=>&$result["saldo"], 'type'=>SQLT_CHR , 'length'=>255),
+		array('name'=>':PO_Q_SALDO', 'value'=>&$result["q_saldo"], 'type'=>SQLT_CHR , 'length'=>255),
 		array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
 		array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
 		);
@@ -71,18 +71,18 @@ class Ticket_model extends CI_Model {
 	
 	/** ASOCIA TICKET A EMPRESA **/
 	public function consultarSaldoTicketEmpresa($idUsuario){
-		$result["ticketSaldo"] = NULL;
+		$result["ticket_saldo"] = NULL;
 		$result["error"] = NULL;
 		$result["desc"] = NULL;
 		
 		$params = array(
 		array('name'=>':PI_USUARIO', 'value'=>$idUsuario, 'type'=>SQLT_CHR , 'length'=>-1),
-		array('name'=>':PO_TICKET_SALDO', 'value'=>&$result["ticketSaldo"], 'type'=>SQLT_RSET , 'length'=>255),
+		array('name'=>':PO_TICKET_SALDO', 'value'=>&$result["ticket_saldo"], 'type'=>SQLT_RSET , 'length'=>255),
 		array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
 		array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
 		);
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_TICKETS_EMPRESAS','PR_CONS_TICKET_SALDO_EMPRESA',$params);
-		$result["ticketSaldo"] = $this->oracledb->get_cursor_data(":PO_TICKET_SALDO");
+		$result["ticket_saldo"] = $this->oracledb->get_cursor_data(":PO_TICKET_SALDO");
 		return $result;
 
 	}	
