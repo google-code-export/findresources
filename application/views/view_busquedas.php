@@ -19,8 +19,8 @@
 <script type="text/javascript" src=" <?php echo site_url('js/src/view_busquedas.js')?>"></script>
 <script type="text/javascript" src=" <?php echo site_url('js/src/hardSkills.js')?>"></script>
 
-<link rel=StyleSheet href="<?php echo site_url('css/global.css')?>"/>
 <link rel=StyleSheet href="<?php echo site_url('css/tabs.css')?>"/>
+<link rel=StyleSheet href="<?php echo site_url('css/global.css')?>"/>
 <link rel=StyleSheet href="<?php echo site_url('css/view_busquedas.css')?>"/>
 
 
@@ -122,11 +122,17 @@
 								</div>
 												
 								<div class="block" id="hardSkills">
-									<h2>Educacion Formal <a href="javascript:editFormalEducation();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
+									<h2>Educacion Formal 
+										<a class="addFields" href="javascript:addFormalEduction();"><img src="images/src/add.png"/> <b>Agregar</b> una educación</a>
+									</h2>
 									
-									<?php foreach ($busquedaSeleccionada['edu_formal'] as $educacion) { ?>
+									<?php foreach ($busquedaSeleccionada['edu_formal'] as $i => $educacion) { ?>
 										<!-- id_bus_edu_formal -->
-										<div class="study inblock">
+										<div class="inblock">
+											<a href="javascript:editFormalEducation(<?php echo $i ;?>);" class="editFields">
+												<img src="images/src/pencil.gif"/> Editar
+											</a> 
+											
 											<div class="row clearfix">
 												<div class="label"> Entidad: </div> 
 												<?php echo ($educacion->id_entidad_educativa != "")?$entidadesEducativas[$educacion->id_entidad_educativa]: $educacion->d_entidad ?>
@@ -164,16 +170,17 @@
 								</div>
 		
 								<div class="block" id="hardProperties">
+									<?php $recurso = $busquedaSeleccionada["recurso"]   ?>
+									
 									<h2>Datos Adicionales <a href="javascript:editAditionalData();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
-
-									<?php foreach ($busquedaSeleccionada["recurso"] as $recurso) { ?>
+									
 										<div class="study inblock">
 											<div class="row clearfix">
 												<div class="label"> Edad: </div> 
 												de
-												<?php echo $recurso->edadDesde ?> a
-												<?php echo $recurso->edadHasta?> -
-												<?php echo $recurso->edadModo?>  
+												<?php echo @$recurso["edad_desde"] ?> a
+												<?php echo @$recurso["edad_hasta"]?> -
+												<?php echo @$recurso["edad_c_modo"]?>  
 											</div>								
 											<!--div class="row clearfix">
 												<div class="label">Nacionalidad: </div> 
@@ -189,18 +196,17 @@
 											</div-->
 											<div class="row clearfix">
 												<div class="label">Posee twitter:</div> 
-												<?php echo $recurso->twitterModo ?>
+												<?php echo @$recurso["twitter_c_modo"] ?>
 											</div>
 											<div class="row clearfix">
 												<div class="label">Posee gtalk:</div> 
-												<?php echo $busquedaSeleccionada["recurso"]->gtalkModo ?>
+												<?php echo @$recurso["gtalk_c_modo"] ?>
 											</div>
 											<div class="row clearfix">
 												<div class="label">Posee sms:</div> 
-												<?php echo $busquedaSeleccionada["recurso"]->smsModo ?>
+												<?php echo @$recurso["sms_c_modo"] ?>
 											</div>
 										</div>
-									<?php } ?>
 								</div>
 		
 						    </div>
@@ -364,7 +370,7 @@
 				</div>
 	
 				<ul id="editItemIndustryList">
-					<?php foreach ($busquedaSeleccionada["industrias"] as $id => $habilidad){ ?>
+					<?php foreach ($busquedaSeleccionada["lista_industria"] as $id => $habilidad){ ?>
 					<li id="editItemIndustry<?php echo $habilidad->id_industria ?>" class="industryItem">
 						<div class="field">
 							<div class="label"><?php echo $habilidad->d_industria ?>:</div> 
@@ -391,7 +397,7 @@
 				</div>
 				
 				<ul id="editItemToolList">
-				<?php foreach ($busquedaSeleccionada["herramientas"] as $id => $habilidad){ ?>
+				<?php foreach ($busquedaSeleccionada["lista_herramienta"] as $id => $habilidad){ ?>
 					<li id="editItemTool<?php echo $habilidad->id_herramienta ?>" class="toolItem">
 						<div class="field">
 							<div class="label">
@@ -427,8 +433,8 @@
 						<select id="availableSoftSkillsSelect">
 							<option id="availableSoftSkillsDefaultOption" value="-1" selected="selected">Características</option>
 							
-							<?php foreach ($habilidadesBlandasDisponibles['lista_hab_blandas'] as $habilidad){ ?>
-								<option value="<?php echo $habilidad->id_habilidad_blanda; ?>"><?php echo $habilidad->d_habilidad_blanda;?></option> 
+							<?php foreach ($habilidadesBlandasDisponibles['lista_hab_blandas'] as $index => $habilidad){ ?>
+								<option value="<?php echo $index ?>"><?php echo $habilidad->d_habilidad_blanda;?></option> 
 							<?php } ?>
 						</select>
 						<a href="javascript:addSoftSkill();"> <img src="images/src/add.png"/> Agregar</a>
@@ -436,7 +442,7 @@
 				
 					<ul id="editItemSoftSkillList">
 						<?php 
-						foreach ($busquedaSeleccionada['hab_blandas'] as $habilidad){ ?>
+						foreach ($busquedaSeleccionada['hab_blanda'] as $habilidad){ ?>
 							<li id="editSoftSkillItem<?php echo $habilidad->id_habilidad_blanda ?>" class="softSkillItem">
 								<?php echo $habilidad->d_habilidad_blanda?>
 								<a href="javascript:removeSoftSkill(<?php echo $habilidad->id_habilidad_blanda ?>);">X</a>
@@ -444,7 +450,137 @@
 						<?php } ?>
 					</ul>
 					<div class="buttonsPopUp">
-						<input type="submit" value="Guardar" class="sendButton" />
+						<input type="submit" value="Guardar" class="sendButton" onclick="javascript:setSoftSkills();"/>
+						<input type="submit" value="Cancelar" class="cancelPopUp" />
+					</div>
+				</div>
+			</div>
+		</td></tr>
+		</table>
+	</div>
+
+	<div class="popup" id="formalEducationPopUp" style="display:none;">
+		<table cellspacing="0" cellpadding="0" align="center">
+		<tr><td>
+			<div class="in">
+				<div class="popuptitle">Educación Formal</div>
+				<a href="javascript:;" class="closePopUp"></a>
+				<div class="inside">
+					<div>
+						<input type="hidden" id="formalEducationId" value="" />
+						<div class="field clearfix">
+							<div class="label">Institución:</div>
+							<select id="formalEducationEditorInstitution">
+							   <option value="">Otra</option>
+							   <?php foreach ($entidadesEducativas as $id => $desc){ ?>
+							   			<option value="<?php echo $id;?>">
+											<?php echo $desc;?>
+										</option> 
+							   <?php } ?>
+							</select>
+							<input type="text" class="modeField" id="formalEducationEditorInstitutionMode"/>
+						</div>
+						
+						<div class="field clearfix">
+							<div class="label">Otra:</div>
+							<input type="text" id="formalEducationEditorInstitutionDescription" disabled="disabled"/>
+						</div>
+						
+						<div class="field clearfix">
+							<div class="label">Título:</div>
+							<input type="text" id="formalEducationEditorTitle" value="" />
+							<input type="text"  class="modeField" id="formalEducationEditorTitleMode" value="" />
+						</div>
+						
+						<div class="field clearfix">
+							<div class="label">Nivel:</div>
+							<select id="formalEducationEditorLevel">
+							   <?php foreach ($nivelesDeEducacion as $id => $desc){ ?>
+							   			<option value="<?php echo $id;?>">
+											<?php echo $desc;?>
+										</option> 
+							   <?php } ?>
+							</select>
+							<input type="text" class="modeField" id="formalEducationEditorLevelMode" value="" />
+						</div>
+		
+		
+						<div class="field clearfix">
+							<div class="label">Area:</div>
+							<select id="formalEducationEditorArea">
+							   <?php foreach ($areasDisponibles as $id => $desc){ ?>
+							   			<option value="<?php echo $id;?>">
+											<?php echo $desc;?>
+										</option> 
+							   <?php } ?>
+							</select>
+							<input type="text"  class="modeField" id="formalEducationEditorAreaMode" value="" />
+						</div>
+
+						<div class="field clearfix">
+							<div class="label">Estado:</div>
+							<select id="formalEducationEditorStatus">
+					   			<option value="T">Terminado</option> 
+					   			<option value="A">Abandonado</option> 
+					   			<option value="C">En Curso</option> 
+							</select>
+							<input type="text" class="modeField" id="formalEducationEditorStatusMode" value="" />
+						</div>
+					
+						<div class="field clearfix">
+							<div class="label">Promedio: desde </div>
+							<input type="text" id="formalEducationEditorAverageFrom" value="" />
+							a
+							<input type="text" id="formalEducationEditorAverageTo" value="" />
+							<input type="text" class="modeField" id="formalEducationEditorAverageMode" value="" />
+						</div>
+					</div>
+					
+					
+					<div class="buttonsPopUp">
+						<input type="submit" value="Guardar" class="sendButton" onclick="javascript:setFormalEducation();"  />
+						<input type="submit" value="Cancelar" class="cancelPopUp" />
+					</div>
+				</div>
+			</div>
+		</td></tr>
+		</table>
+	</div>
+	
+	
+	<div class="popup" id="aditionalDataPopUp" style="display:none;">
+		<table cellspacing="0" cellpadding="0" align="center">
+		<tr><td>
+			<div class="in">
+				<div class="popuptitle">Datos Adicionales</div>
+				<a href="javascript:;" class="closePopUp"></a>
+				<div class="inside">
+					<div>
+						<div class="field clearfix">
+							<div class="label">Edad: desde&nbsp;</div>
+							<input type="text" id="aditionalDataEditorAgeFrom" value="<?php echo @$recurso["edad_desde"]?>"/>
+							&nbsp;hasta&nbsp;
+							<input type="text" id="aditionalDataEditorAgeTo" value="<?php echo @$recurso["edad_hasta"]?>"/>
+							&nbsp;
+							<input type="text" class="modeField" id="aditionalDataEditorAgeMode"  value="<?php echo @$recurso["edad_c_modo"]?>"/>
+						</div>
+						<div class="field clearfix">
+							<div class="label">Posee twitter:</div>
+							<input type="text" class="modeField" id="aditionalDataEditorTwitterMode"  value="<?php echo @$recurso["twitter_c_modo"]?>"/>
+						</div>
+						<div class="field clearfix">
+							<div class="label">Posee gtalk:</div>
+							<input type="text" class="modeField" id="aditionalDataEditorGtalkMode"  value="<?php echo @$recurso["gtalk_c_modo"]?>"/>
+						</div>
+						<div class="field clearfix">
+							<div class="label">Posee sms:</div>
+							<input type="text" class="modeField" id="aditionalDataEditorSmsMode"  value="<?php echo @$recurso["sms_c_modo"]?>"/>
+						</div>
+					</div>
+					
+					
+					<div class="buttonsPopUp">
+						<input type="submit" value="Guardar" class="sendButton" onclick="javascript:setFormalEducation();"  />
 						<input type="submit" value="Cancelar" class="cancelPopUp" />
 					</div>
 				</div>

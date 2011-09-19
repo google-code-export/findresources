@@ -57,6 +57,10 @@ $(document).ready(function() {
 
 
 $(function() {
+
+	$('#formalEducationEditorInstitution').change(function(){
+		checkInstitutionDescriptionDisabled();
+	});
 		
 	return false;
 });
@@ -148,8 +152,8 @@ function setHardSkills(){
 		global: false,
 		type: "POST",
 		data: {
-			'habilidadesIndustrias': JSON.stringify(habilidadesIndustrias),
-			'habilidadesAreas': JSON.stringify(habilidadesAreas)
+			'lista_herramienta': JSON.stringify(habilidadesIndustrias),
+			'lista_industria': JSON.stringify(habilidadesAreas)
 		},
 		dataType: "json",
 		async: true,
@@ -186,7 +190,7 @@ function setSoftSkills(){
 		global: false,
 		type: "POST",
 		data: {
-			'habilidades': JSON.stringify(habilidades)
+			'hab_blandas': JSON.stringify(habilidades)
 		},
 		dataType: "json",
 		async: true,
@@ -217,13 +221,14 @@ function removeSoftSkill(idSoftSkill){
 
 
 function addSoftSkill(){
-	var selectedSoftSkill = $('#availableSoftSkillsSelect').val();
+	var selectedSoftSkillIndex = $('#availableSoftSkillsSelect').val();
+	var selectedIdSoftSkill = availableSoftSkills[selectedSoftSkillIndex].id_habilidad_blanda;
+	var selectedDescriptionSoftSkill = availableSoftSkills[selectedSoftSkillIndex].d_habilidad_blanda;
 	
-	if($('#editSoftSkillItem' + selectedSoftSkill).length == 0){
-		
-		var softSkillLi = "<li id=\"editSoftSkillItem" + selectedSoftSkill  + "\" class=\"softSkillItem\">"+
-					availableSoftSkills[selectedSoftSkill] + 
-					"<a href=\"javascript:removeSoftSkill(" + selectedSoftSkill + ");\">X</a>" + 
+	if($('#editSoftSkillItem' + selectedIdSoftSkill).length == 0){
+		var softSkillLi = "<li id=\"editSoftSkillItem" + selectedIdSoftSkill  + "\" class=\"softSkillItem\">"+
+					selectedDescriptionSoftSkill + 
+					"<a href=\"javascript:removeSoftSkill(" + selectedIdSoftSkill + ");\">X</a>" + 
 				"</div></li>"
 
 		$('#editItemSoftSkillList').append(softSkillLi);
@@ -235,3 +240,157 @@ function addSoftSkill(){
 	
 }
 
+function addFormalEduction(){
+	
+	$('#formalEducationEditorInstitution').val();
+	$('#formalEducationEditorInstitutionDescription').val();
+	checkInstitutionDescriptionDisabled();
+
+	$('#formalEducationEditorInstitutionMode').val();
+	
+	$('#formalEducationEditorTitle').val();
+	$('#formalEducationEditorTitleMode').val();
+	
+	$('#formalEducationEditorLevel').val();
+	$('#formalEducationEditorLevelMode').val();
+
+	$('#formalEducationEditorArea').val();
+	$('#formalEducationEditorAreaMode').val();
+	
+
+	$('#formalEducationEditorStatus').val();
+	$('#formalEducationEditorStatusMode').val();
+	
+	$('#formalEducationEditorStatusMode').val();
+	$('#formalEducationEditorAverageFrom').val();
+	$('#formalEducationEditorAverageTo').val();
+	$('#formalEducationEditorAverageMode').val();
+
+	showPopUp('#formalEducationPopUp');
+
+}
+
+function editFormalEducation(index){
+	
+	var formalEducation = selectedSearch['edu_formal'][index];
+	
+	$('#formalEducationId').val(formalEducation.id_bus_edu_formal);
+
+	$('#formalEducationEditorInstitution').val(formalEducation.id_entidad_educativa);
+	$('#formalEducationEditorInstitutionDescription').val(formalEducation.d_entidad);
+	checkInstitutionDescriptionDisabled();
+	
+	$('#formalEducationEditorInstitutionMode').val(formalEducation.c_modo_entidad);
+	
+	$('#formalEducationEditorTitle').val(formalEducation.titulo);
+	$('#formalEducationEditorTitleMode').val(formalEducation.c_modo_titulo);
+	
+	$('#formalEducationEditorLevel').val(formalEducation.id_nivel_educacion);
+	$('#formalEducationEditorLevelMode').val(formalEducation.c_modo_nivel_educacion);
+
+	$('#formalEducationEditorArea').val(formalEducation.id_area);
+	$('#formalEducationEditorAreaMode').val(formalEducation.c_modo_area);
+	
+
+	$('#formalEducationEditorStatus').val(formalEducation.estado);
+	$('#formalEducationEditorStatusMode').val(formalEducation.c_modo_estado);
+	
+	$('#formalEducationEditorStatusMode').val(formalEducation.c_modo_estado);
+	$('#formalEducationEditorAverageFrom').val(formalEducation.promedio_desde);
+	$('#formalEducationEditorAverageTo').val(formalEducation.promedio_hasta);
+	$('#formalEducationEditorAverageMode').val(formalEducation.c_modo_promedio);
+	
+	showPopUp('#formalEducationPopUp');
+}
+
+function checkInstitutionDescriptionDisabled(){
+	$('#formalEducationEditorInstitutionDescription').attr("disabled", 
+			($('#formalEducationEditorInstitution').val() != ""));
+}
+
+function setFormalEducation(){
+	
+	var edu_formal = {
+		id_bus_edu_formal: $('#formalEducationId').val(),
+		id_entidad_educativa: $('#formalEducationEditorInstitution').val(),
+		d_entidad: $('#formalEducationEditorInstitutionDescription').val(),
+		c_modo_entidad: $('#formalEducationEditorInstitutionMode').val(),
+		
+		titulo: $('#formalEducationEditorTitle').val(),
+		c_modo_titulo: $('#formalEducationEditorTitleMode').val(),
+		
+		id_nivel_educacion: $('#formalEducationEditorLevel').val(),
+		c_modo_nivel_educacion: $('#formalEducationEditorLevelMode').val(),
+	
+		id_area: $('#formalEducationEditorArea').val(),
+		c_modo_area: $('#formalEducationEditorAreaMode').val(),
+		
+	
+		estado: $('#formalEducationEditorStatus').val(),
+		c_modo_estado: $('#formalEducationEditorStatusMode').val(),
+		
+		c_modo_estado: $('#formalEducationEditorStatusMode').val(),
+		promedio_desde: $('#formalEducationEditorAverageFrom').val(),
+		promedio_hasta: $('#formalEducationEditorAverageTo').val(),
+		c_modo_promedio: $('#formalEducationEditorAverageMode').val()
+	}
+	
+	$.ajax({
+		url: "busquedas/setEducacionFormal",
+		global: false,
+		type: "POST",
+		data: {
+			'edu_formal': JSON.stringify(edu_formal)
+		},
+		dataType: "json",
+		async: true,
+		success: function(response){
+			alert("Se han guardado los datos");
+			hidePopUp();
+			//TODO this is so ugly we shouldnt reload all the page.
+			window.location.reload();
+		},
+		error: function(response){
+			processError(response);
+		}
+	});	
+}
+
+function editAditionalData(){
+	showPopUp('#aditionalDataPopUp');
+}
+
+function setAditionalData(){
+	
+		var recurso = {
+			edad_desde: $('#aditionalDataEditorAgeFrom').val(),
+			edad_hasta: $('#aditionalDataEditorAgeTo').val(),
+			edad_c_modo: $('#aditionalDataEditorAgeMode').val(),
+			nacionalidad: "",
+			provincia: "",
+			localidad: "",
+			twitter_c_modo: $('aditionalDataEditorTwitterMode').val(),
+			gtalk_c_modo: $('aditionalDataEditorGtalkMode').val(),
+			sms_c_modo: $('aditionalDataEditorSmsMode').val() 
+		}
+		
+		$.ajax({
+			url: "busquedas/setRecurso",
+			global: false,
+			type: "POST",
+			data: {
+				'recurso': JSON.stringify(recurso)
+			},
+			dataType: "json",
+			async: true,
+			success: function(response){
+				alert("Se han guardado los datos");
+				hidePopUp();
+				//TODO this is so ugly we shouldnt reload all the page.
+				window.location.reload();
+			},
+			error: function(response){
+				processError(response);
+			}
+		});	
+}
