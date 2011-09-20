@@ -578,4 +578,56 @@ class Busquedas_model extends CI_Model {
 			
 	}
 	
+	
+	/** OBTENGO RESULTADOS DE BUSQUEDA **/
+	public function  getResultadoBusqueda($idBusqueda,$actualiza){
+		$result["resultado_busqueda"] = NULL;
+		$result["error"] = NULL;
+		$result["desc"] = NULL;
+		
+		$params = array(
+			array('name'=>':PI_ID_BUSQUEDA', 'value'=>$idBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':PI_ACTUALIZA_BUSQUEDA', 'value'=>$actualiza, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':PO_RESULTADO_BUSQUEDA', 'value'=>&$result["resultado_busqueda"], 'type'=>SQLT_RSET, 'length'=>255),
+			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_RESULTADO_BUSQUEDA',$params);
+		$result["resultado_busqueda"] = $this->oracledb->get_cursor_data(":PO_RESULTADO_BUSQUEDA");
+
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in getResultadoBusqueda(): ' . $result["desc"]);
+		}
+			
+	}
+	
+	
+	/** CAMBIAR ESTADO CV DE BUSQUEDA **/
+	public function  cambiarEstadoCVBusqueda($idBusqueda,$estado,$observacion){
+		$result["error"] = NULL;
+		$result["desc"] = NULL;
+		
+		$params = array(
+			array('name'=>':PI_ID_BUSQUEDA', 'value'=>$idBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':PI_C_ESTADO_CONTACTO', 'value'=>$estado, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':PI_X_OBSERVACION', 'value'=>$observacion, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_ACT_EST_CV_BUSQUEDA',$params);
+		
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in cambiarEstadoCVBusqueda(): ' . $result["desc"]);
+		}
+			
+	}
+	
 }
