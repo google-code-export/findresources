@@ -22,6 +22,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<link rel="stylesheet" type="text/css" href="<?php echo site_url('css/jquery-ui-1.8.16.css')?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/global.css')?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/view_curriculum.css')?>" />
 <script type="text/javascript">
@@ -51,6 +53,8 @@
 	
 </script>
 <script type="text/javascript" src="<?php echo site_url('js/libs/jquery-1.6.2.min.js')?>"></script>
+<script type="text/javascript" src="<?php echo site_url('js/libs/jquery-ui.min-1.8.16.js')?>"></script>
+
 <script type="text/javascript" src="<?php echo site_url('js/libs/json2.js')?>"></script>
 <script type="text/javascript" src="<?php echo site_url('js/src/utils.js')?>"></script>
 <script type="text/javascript" src="<?php echo site_url('js/src/view_curriculum.js')?>"></script>
@@ -246,6 +250,7 @@
 	
 </div>
 
+
 <div class="popup" id="cvDataPopUp" style="display:none;">
 <table cellspacing="0" cellpadding="0" align="center">
 <tr><td>
@@ -264,7 +269,7 @@
 				</div>
 				<div class="field clearfix">
 					<div class="label">Fecha de nac:</div>
-					<input type="text" id="cvDataEditorBirthDay" value="" />
+					<input class="datepicker" type="text" id="cvDataEditorBirthDay" value="" />
 				</div>
 				<div class="field clearfix">
 					<div class="label">Calle:</div>
@@ -490,12 +495,12 @@
 
 				<div class="field clearfix">
 					<div class="label">Fecha Desde:</div>
-					<input type="text" id="workExperienceEditorDateFrom" value="" />
+					<input type="text" class="datepicker" id="workExperienceEditorDateFrom" value="" />
 				</div>
 				
 				<div class="field clearfix">
 					<div class="label">Fecha Hasta:</div>
-					<input type="text" id="workExperienceEditorDateTo" value="" />
+					<input type="text"  class="datepicker" id="workExperienceEditorDateTo" value="" />
 				</div>
 				
 				<div class="field clearfix">

@@ -18,6 +18,11 @@ function processError(errorResponse){
 
 /*WINDOW ONLOAD*/
 $(function(){
+	if($(".datepicker").length != 0){
+		$(".datepicker").datepicker({ dateFormat: 'dd/mm/yy'});
+	}
+	//$.datepicker.formatDate('yy-mm-dd', new Date(2007, 1 - 1, 26));
+
 	
 	$('.popup .closePopUp').click(function(){
 		hidePopUp();

@@ -13,15 +13,18 @@
 
 
 
+
+<link rel="stylesheet" type="text/css" href="<?php echo site_url('css/jquery-ui-1.8.16.css')?>" />
+<link rel=StyleSheet type="text/css" href="<?php echo site_url('css/tabs.css')?>"/>
+<link rel=StyleSheet type="text/css" href="<?php echo site_url('css/global.css')?>"/>
+<link rel=StyleSheet type="text/css" href="<?php echo site_url('css/view_busquedas.css')?>"/>
+
 <script type="text/javascript" src=" <?php echo site_url('js/libs/jquery-1.6.2.min.js')?>"></script>
+<script type="text/javascript" src="<?php echo site_url('js/libs/jquery-ui.min-1.8.16.js')?>"></script>
 <script type="text/javascript" src=" <?php echo site_url('js/libs/json2.js')?>"></script>
 <script type="text/javascript" src=" <?php echo site_url('js/src/utils.js')?>"></script>
 <script type="text/javascript" src=" <?php echo site_url('js/src/view_busquedas.js')?>"></script>
 <script type="text/javascript" src=" <?php echo site_url('js/src/hardSkills.js')?>"></script>
-
-<link rel=StyleSheet href="<?php echo site_url('css/tabs.css')?>"/>
-<link rel=StyleSheet href="<?php echo site_url('css/global.css')?>"/>
-<link rel=StyleSheet href="<?php echo site_url('css/view_busquedas.css')?>"/>
 
 
 
@@ -327,7 +330,7 @@
 						</div>
 						<div class="field clearfix">
 							<div class="label">Fecha Hasta:</div>
-							<input type="text" id="searchDataEditorDateTo" value="" />
+							<input type="text" class="datepicker" id="searchDataEditorDateTo" value="" />
 						</div>
 						<div class="field clearfix">
 							<div class="label">Cantidad de personal:</div>
