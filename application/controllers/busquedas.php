@@ -152,10 +152,11 @@ class Busquedas extends CI_Controller {
 	public function setEducacionFormal(){
 			
 		$idBusqueda = @$_SESSION[SESSION_ID_BUSQUEDA_SELECCIONADA];
-		
 		if(isset($_POST["edu_formal"])){
 			$educacionFormal =  json_decode_into_array($_POST["edu_formal"]);
-			$result = $this->Busquedas_model->setEducacionFormalDeBusqueda($idBusqueda,$educacionFormal);
+			print_r($educacionFormal);
+			exit;//XXXX
+			//$result = $this->Busquedas_model->setEducacionFormalDeBusqueda($idBusqueda,$educacionFormal);
 		}
 
 	
@@ -206,7 +207,7 @@ class Busquedas extends CI_Controller {
 		$idBusqueda = 1; //NULL = nuevo
 		$idTicket = 1;
 		$titulo = "Busqueda de prueba 2";
-		$result  = $this->Busquedas_model->setBusqueda($idBusqueda, $idUsuario,$descripcionBusqueda,$idTicket,$cantidadRecursos,$fechaHasta,$titulo);
+		$result  = $this->Busquedas_model->setBusqueda($idBusqueda, $idUsuario,$titulo, $descripcionBusqueda,$idTicket,$cantidadRecursos);
 		$busquedaACTUAL = $result["id_busqueda"];
 		if ($result["error"] == 0 )
 				$data["result"] = "PKG_BUSQUEDAS.PR_BUSQUEDA Búsqueda creada/modificada correctamente. ID : ".$busquedaACTUAL;
@@ -214,10 +215,10 @@ class Busquedas extends CI_Controller {
 			$data["result"] = "PKG_BUSQUEDAS.PR_BUSQUEDA ERROR : (".$result["error"].") :".$result["desc"];
 		
 		echo $data["result"]."<br />";
-exit;
+
 		/** PRUEBA CREACION DE EDUCACION FORMAL PARA LA BUSQUEDA **/
 		$educacionFormal = array(
-			"id" => 4, // NULL = nuevo
+			"id_bus_edu_formal" => 4, // NULL = nuevo
 			"id_entidad_educativa" => 3,
 			"d_entidad" => "ENTIDAD", 
 			"c_modo_entidad" => "R",
@@ -417,7 +418,8 @@ exit;
 
 		$duracion = "2";
 		$unidades = "999";
-		$result["error"] = 0; //$result = $this->Ticket_model->asociarTicket($idUsuario,$duracion,$unidades);
+		$result["error"] = 0; //
+		/*$result = $this->Ticket_model->asociarTicket($idUsuario,$duracion,$unidades);
 		
 		if ($result["error"] == 0 )
 			$data["result"] = "PKG_TICKETS_EMPRESAS.PR_ASOCIA_TICKETS_EMPRESAS Ticket asociado correctamente.";
@@ -428,7 +430,7 @@ exit;
 
 		var_dump($result);
 		echo "<br />";
-
+*/
 		/** CONSUMIR TICKET **/
 
 		$idTicket = "4";
