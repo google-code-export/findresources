@@ -15,6 +15,7 @@ class Busquedas extends CI_Controller {
 	
 	public function index(){
 		//$this->runTest();
+		$this->setHabilidadesDuras();
 		$idUsuario = @$_SESSION[SESSION_ID_USUARIO];
 		if(!$idUsuario){
 			/////////////HARDCODED//////////////////////////
@@ -136,11 +137,13 @@ class Busquedas extends CI_Controller {
 		$idBusqueda = @$_SESSION[SESSION_ID_BUSQUEDA_SELECCIONADA];
 
 		if(isset($_POST["lista_herramienta"])){
-			$herramientas =  implode($this->sep,json_decode_into_array($_POST["lista_herramienta"]));
+			$herr_temp= json_decode($_POST["lista_herramienta"],true);
+			$herramientas =  implode($this->sep,$herr_temp[0]);
 			$result = $this->Busquedas_model->setHerramientasBusqueda($idBusqueda,$herramientas);
 		}
 		if(isset($_POST["lista_industria"])){
-			$industrias =  implode($this->sep,json_decode_into_array($_POST["lista_industria"]));
+			$ind_temp= json_decode($_POST["lista_industria"],true);
+			$industrias =  implode($this->sep,$ind_temp[0]);
 			$result = $this->Busquedas_model->setIndustriasBusqueda($idBusqueda,$industrias);
 		}
 	
