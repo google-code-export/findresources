@@ -13,7 +13,7 @@ class Busquedas_model extends CI_Model {
 	
 
 	/** CREA O MODIFICA BUSQUEDAS **/
-	public function setBusqueda($idBusqueda,$idUsuario,$descripcionBusqueda,$idTicket,$cantidadRecursos,$fechaHasta,$titulo){
+	public function setBusqueda($idBusqueda,$idUsuario,$titulo, $descripcionBusqueda,$idTicket,$cantidadRecursos){
 		$result["id_busqueda"] = NULL;
 		$result["f_hasta"] = NULL;
 		$result["error"] = NULL;
@@ -23,18 +23,17 @@ class Busquedas_model extends CI_Model {
 		$params = array(
 		array('name'=>':PI_ID_BUSQUEDA', 'value'=>$idBusqueda, 'type'=>SQLT_CHR , 'length'=>-1),
 		array('name'=>':PI_USUARIO', 'value'=>$idUsuario, 'type'=>SQLT_CHR , 'length'=>-1),
+		array('name'=>':PI_D_TITULO', 'value'=>$titulo, 'type'=>SQLT_CHR , 'length'=>-1),
 		array('name'=>':PI_D_BUSQUEDA', 'value'=>$descripcionBusqueda, 'type'=>SQLT_CHR , 'length'=>-1),
 		array('name'=>':PI_ID_TICKET', 'value'=>$idTicket, 'type'=>SQLT_CHR , 'length'=>-1),
 		array('name'=>':PI_CANTIDAD_RECURSOS', 'value'=>$cantidadRecursos, 'type'=>SQLT_CHR , 'length'=>-1),
-		array('name'=>':PI_F_HASTA', 'value'=>$fechaHasta, 'type'=>SQLT_CHR , 'length'=>-1),
-		array('name'=>':PI_D_TITULO', 'value'=>$titulo, 'type'=>SQLT_CHR , 'length'=>-1),
 		array('name'=>':PO_ID_BUSQUEDA', 'value'=>&$result["id_busqueda"], 'type'=>SQLT_CHR , 'length'=>255),
 		array('name'=>':PO_F_HASTA', 'value'=>$result["f_hasta"], 'type'=>SQLT_CHR , 'length'=>-1),
 		array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
 		array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
 		);
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_BUSQUEDA',$params);
-			
+
 		if($result["error"] == 0){
 			return $result;		
 		}else{
@@ -50,7 +49,7 @@ class Busquedas_model extends CI_Model {
 		$result["desc"] = NULL;
 		
 		$params = array(
-			array('name'=>':PI_ID_EDUCACION_FORMAL_CV', 'value'=>$educacionFormal['id'], 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':PI_ID_BUS_EDU_FORMAL', 'value'=>$educacionFormal['id_bus_edu_formal'], 'type'=>SQLT_CHR, 'length'=>-1),
 			array('name'=>':PI_ID_BUSQUEDA', 'value'=>$idBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
 			array('name'=>':PI_ID_ENTIDAD_EDUCATIVA', 'value'=>$educacionFormal['id_entidad_educativa'], 'type'=>SQLT_CHR, 'length'=>-1),
 			array('name'=>':PI_D_ENTIDAD', 'value'=>$educacionFormal['d_entidad'], 'type'=>SQLT_CHR, 'length'=>-1),
@@ -485,9 +484,9 @@ class Busquedas_model extends CI_Model {
 	
 	/** OBTENGO ESTADO DE BUSQUEDA **/
 	public function  getEstadoBusqueda($idBusqueda){
-		
+
 		$result["d_busqueda"] = NULL;
-		$result["cantidad_recurso"] = NULL;
+		$result["cantidad_recursos"] = NULL;
 		$result["f_hasta"] = NULL;
 		$result["f_alta"] = NULL;
 		$result["d_estado"] = NULL;
@@ -495,9 +494,9 @@ class Busquedas_model extends CI_Model {
 		$result["desc"] = NULL;
 		
 		$params = array(
-			array('name'=>':PI_USUARIO', 'value'=>$idBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':PI_ID_BUSQUEDA', 'value'=>$idBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
 			array('name'=>':PO_D_BUSQUEDA', 'value'=>&$result["d_busqueda"], 'type'=>SQLT_CHR, 'length'=>255),
-			array('name'=>':PO_CANTIDAD_RECURSOS', 'value'=>&$result["cantidad_recurso"], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':PO_CANTIDAD_RECURSOS', 'value'=>&$result["cantidad_recursos"], 'type'=>SQLT_CHR, 'length'=>255),
 			array('name'=>':PO_F_HASTA', 'value'=>&$result["f_hasta"], 'type'=>SQLT_CHR, 'length'=>255),
 			array('name'=>':PO_F_ALTA', 'value'=>&$result["f_alta"], 'type'=>SQLT_CHR, 'length'=>255),
 			array('name'=>':PO_D_ESTADO', 'value'=>&$result["d_estado"], 'type'=>SQLT_CHR, 'length'=>255),
@@ -612,7 +611,7 @@ class Busquedas_model extends CI_Model {
 		$result["desc"] = NULL;
 		
 		$params = array(
-			array('name'=>':PI_ID_BUSQUEDA', 'value'=>$idBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':PI_ID_RES_BUSQUEDA', 'value'=>$idBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
 			array('name'=>':PI_C_ESTADO_CONTACTO', 'value'=>$estado, 'type'=>SQLT_CHR, 'length'=>-1),
 			array('name'=>':PI_X_OBSERVACION', 'value'=>$observacion, 'type'=>SQLT_CHR, 'length'=>-1),
 			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
@@ -629,5 +628,28 @@ class Busquedas_model extends CI_Model {
 		}
 			
 	}
+	
+	/** CAMBIAR ESTADO CV DE BUSQUEDA **/
+	public function  setBajaBusqueda($idBusqueda){
+		$result["error"] = NULL;
+		$result["desc"] = NULL;
+		
+		$params = array(
+			array('name'=>':PI_ID_BUSQUEDA', 'value'=>$idBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_BAJA_BUSQUEDA',$params);
+		
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in setBajaBusqueda(): ' . $result["desc"]);
+		}
+			
+	}
+	
 	
 }
