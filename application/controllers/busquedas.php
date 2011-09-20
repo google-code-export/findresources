@@ -1,11 +1,15 @@
 <?php 
 class Busquedas extends CI_Controller {
 	
-	public $sep = ";";
+	//public $sep = ";";
 	
 	public function Busquedas(){
 		parent::__construct();
 		$this->view_data['base_url'] = base_url();
+		/** SETEO SEPARADOR **/
+		$query = $this->db->query('SELECT PKG_UTIL.FU_OBTIENE_SEPARADOR_SPLIT() SEPARADOR FROM DUAL');
+		$row = $query->row_array();
+		$this->sep = $row["SEPARADOR"];
 		
 	}
 	
@@ -69,7 +73,7 @@ class Busquedas extends CI_Controller {
 			$result = $this->Busquedas_model->setRecursoBusqueda($idBusqueda,$recurso);
 		}
 		if(isset($_POST["habilidades"])){
-			$habilidades =  implode($this->sep,json_decode($_POST["habilidades"])); 
+			$habilidades =  implode($this->sep,json_decode($_POST["habilidades"],true)); 
 			$result = $this->Busquedas_model->setHabilidadesBlandasBusqueda($idBusqueda,habilidades);
 		}		
 		
@@ -130,14 +134,14 @@ class Busquedas extends CI_Controller {
 	public function setHabilidadesDuras(){
 			
 		$idBusqueda = @$_SESSION[SESSION_ID_BUSQUEDA_SELECCIONADA];
-		
+
 		if(isset($_POST["lista_herramienta"])){
-			$herramientas =  json_decode_into_array($_POST["lista_herramienta"]);
+			$herramientas =  implode($this->sep,json_decode_into_array($_POST["lista_herramienta"]));
 			$result = $this->Busquedas_model->setHerramientasBusqueda($idBusqueda,$herramientas);
 		}
 		if(isset($_POST["lista_industria"])){
-			$industrias =  json_decode_into_array($_POST["lista_industria"]);
-			$result = $this->Busquedas_model->setHerramientasBusqueda($idBusqueda,$industrias);
+			$industrias =  implode($this->sep,json_decode_into_array($_POST["lista_industria"]));
+			$result = $this->Busquedas_model->setIndustriasBusqueda($idBusqueda,$industrias);
 		}
 	
 	}
