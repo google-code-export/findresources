@@ -45,6 +45,7 @@
 	<div class="copyright">Derechos Reservados (c) 2011 - findResoruces </div>	
 	
 </div>
+<div class="opacity" style="display:none;"></div>
 
 <div class="popup" id="errorPopUp" style="display:none;">
 		<table cellspacing="0" cellpadding="0" align="center">
@@ -57,6 +58,17 @@
 			</div>
 		</td></tr>
 		</table>
+</div>
+
+<div class="popup" id="waitingActionPopUp" style="display:none;">
+	<table cellspacing="0" cellpadding="0" align="center" style="background-color:black; padding:7px">
+		<tbody>
+		<tr><td>
+				<img style="padding-left: 30px; padding-bottom:5px;" src="images/src/55_cycle_ten_24.gif">
+				<div style="color:white"> Cargando ...</div>
+		</td></tr>
+		</tbody>
+	</table>		
 </div>
 
 	

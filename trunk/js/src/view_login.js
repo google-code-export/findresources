@@ -57,6 +57,7 @@ $(function(){
 			'idPais':(isCandidate)? $('#register_country_select').val() : $('#register_company_country_select').val()
 		};
 		
+		showPopUp("#waitingActionPopUp");
 		$.ajax({
 		      url: "login/crearNuevoUsuario",
 		      global: false,
@@ -67,9 +68,11 @@ $(function(){
 		      dataType: "json",
 		      async:true,
 		      success: function(response){
+		      		hidePopUp();
 		      		alert("Un mail fue enviado a su casilla para autenticar su usuario.");
 			  },
 			  error: function(response){
+		      		hidePopUp();
 				  	processError(response);
 			  }
 		   }
@@ -85,6 +88,7 @@ $(function(){
 			'clave': $('#login_password_input').val()
 		};
 		
+		showPopUp("#waitingActionPopUp");
 		$.ajax({
 		      url: "login/doLogin",
 		      global: false,
@@ -98,10 +102,12 @@ $(function(){
 					if(response == true){
 						window.location="home";
 					}else{
+			      		hidePopUp();
 						alert("usuario invalido");
 					}
 			  },
 			  error: function(response){
+	      		  hidePopUp();
 				  processError(response);
 			  }
 		   }

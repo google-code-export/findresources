@@ -308,8 +308,6 @@
 	</div>
 	
 	
-	<div class="opacity" style="display:none;"></div>
-	
 	<div class="popup" id="searchDataPopUp" style="display:none;">
 		<table cellspacing="0" cellpadding="0" align="center">
 		<tr><td>

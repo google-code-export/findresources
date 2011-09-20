@@ -4,6 +4,7 @@
 <meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type"/>
 <script type="text/javascript" src="<?php echo site_url('js/libs/jquery-1.6.2.min.js')?>"></script>
 <script type="text/javascript" src="<?php echo site_url('js/libs/json2.js')?>"></script>
+<script type="text/javascript" src=" <?php echo site_url('js/src/utils.js')?>"></script>
 <script type="text/javascript" src="<?php echo site_url('js/src/view_login.js')?>"></script>
 
 <title>Find Resources</title>
