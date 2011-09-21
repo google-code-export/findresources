@@ -205,7 +205,7 @@ class Busquedas extends CI_Controller {
 		$fechaHasta = "03/10/2011";
 		$cantidadRecursos = 2 ;
 		$idBusqueda = 1; //NULL = nuevo
-		$idTicket = 1;
+		$idTicket = ""; //VACIO PARA CREAR UNA NUEVA BUSQUEDA
 		$titulo = "Busqueda de prueba 2";
 		$result  = $this->Busquedas_model->setBusqueda($idBusqueda, $idUsuario,$titulo, $descripcionBusqueda,$idTicket,$cantidadRecursos);
 		$busquedaACTUAL = $result["id_busqueda"];
@@ -215,7 +215,8 @@ class Busquedas extends CI_Controller {
 			$data["result"] = "PKG_BUSQUEDAS.PR_BUSQUEDA ERROR : (".$result["error"].") :".$result["desc"];
 		
 		echo $data["result"]."<br />";
-
+		
+exit;
 		/** PRUEBA CREACION DE EDUCACION FORMAL PARA LA BUSQUEDA **/
 		$educacionFormal = array(
 			"id_bus_edu_formal" => 4, // NULL = nuevo
