@@ -43,14 +43,14 @@ class Busquedas extends CI_Controller {
 			//SET BUSQUEDA SELECCIONADA
 			$_SESSION[SESSION_ID_BUSQUEDA_SELECCIONADA]= $idBusqueda;
 			$data['busquedaSeleccionada'] = $this->Busquedas_model->getOpcionesDeBusqueda($idBusqueda);
-	
+			$data['estadoBusqueda'] = $this->Busquedas_model->getEstadoBusqueda($idBusqueda);
 		}
 		
 		
 		//$data['habilidadesBlandasDisponibles'] = $this->Busquedas_model->getHabilidadesBlandasBusqueda($idBusqueda);
 		$data['busquedasDelUsuario'] = $this->Busquedas_model->getBusquedasDeUsuario($idUsuario);
 		
-		$data['estadoBusqueda'] = $this->Busquedas_model->getEstadoBusqueda($idBusqueda);		
+		
 		
 		$idHabilidad = NULL;
 
