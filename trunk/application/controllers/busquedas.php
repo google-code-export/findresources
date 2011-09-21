@@ -47,7 +47,7 @@ class Busquedas extends CI_Controller {
 		}
 		
 		
-		$data['habilidadesBlandasDisponibles'] = $this->Busquedas_model->getHabilidadesBlandasBusqueda($idBusqueda);
+		//$data['habilidadesBlandasDisponibles'] = $this->Busquedas_model->getHabilidadesBlandasBusqueda($idBusqueda);
 		$data['busquedasDelUsuario'] = $this->Busquedas_model->getBusquedasDeUsuario($idUsuario);
 		
 		$data['estadoBusqueda'] = $this->Busquedas_model->getEstadoBusqueda($idBusqueda);		
@@ -154,9 +154,7 @@ class Busquedas extends CI_Controller {
 		$idBusqueda = @$_SESSION[SESSION_ID_BUSQUEDA_SELECCIONADA];
 		if(isset($_POST["edu_formal"])){
 			$educacionFormal =  json_decode_into_array($_POST["edu_formal"]);
-			print_r($educacionFormal);
-			exit;//XXXX
-			//$result = $this->Busquedas_model->setEducacionFormalDeBusqueda($idBusqueda,$educacionFormal);
+			$result = $this->Busquedas_model->setEducacionFormalDeBusqueda($idBusqueda,$educacionFormal);
 		}
 
 	
@@ -216,7 +214,7 @@ class Busquedas extends CI_Controller {
 		
 		echo $data["result"]."<br />";
 		
-exit;
+
 		/** PRUEBA CREACION DE EDUCACION FORMAL PARA LA BUSQUEDA **/
 		$educacionFormal = array(
 			"id_bus_edu_formal" => 4, // NULL = nuevo
