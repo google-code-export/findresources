@@ -495,6 +495,7 @@ class Busquedas_model extends CI_Model {
 		
 		$params = array(
 			array('name'=>':PI_ID_BUSQUEDA', 'value'=>$idBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':PO_TITULO', 'value'=>&$result["titulo"], 'type'=>SQLT_CHR, 'length'=>255),
 			array('name'=>':PO_D_BUSQUEDA', 'value'=>&$result["d_busqueda"], 'type'=>SQLT_CHR, 'length'=>255),
 			array('name'=>':PO_CANTIDAD_RECURSOS', 'value'=>&$result["cantidad_recursos"], 'type'=>SQLT_CHR, 'length'=>255),
 			array('name'=>':PO_F_HASTA', 'value'=>&$result["f_hasta"], 'type'=>SQLT_CHR, 'length'=>255),
@@ -651,5 +652,52 @@ class Busquedas_model extends CI_Model {
 			
 	}
 	
+	/** CAMBIAR ESTADO CV DE BUSQUEDA **/
+	public function  setBajaBusqueda($idBusqueda){
+		$result["error"] = NULL;
+		$result["desc"] = NULL;
+		
+		$params = array(
+			array('name'=>':PI_ID_BUSQUEDA', 'value'=>$idBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_BAJA_BUSQUEDA',$params);
+		
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in setBajaBusqueda(): ' . $result["desc"]);
+		}
+			
+	}
+	
+	/** REACTIVAR BUSQUEDA **/
+	public function  setBajaBusqueda($idBusqueda,$idTicket,$usuario){
+		$result["f_hasta"] = NULL;
+		$result["error"] = NULL;
+		$result["desc"] = NULL;
+		
+		$params = array(
+			array('name'=>':PI_ID_BUSQUEDA', 'value'=>$idBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':PI_ID_TICKET', 'value'=>$idTicket, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':PI_USUARIO', 'value'=>$usuario, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':PO_F_HASTA', 'value'=>&$result["f_hasta"], 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_ACTIVA_BUSQUEDA',$params);
+		
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in setBajaBusqueda(): ' . $result["desc"]);
+		}
+			
+	}
 	
 }
