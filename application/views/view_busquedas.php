@@ -18,8 +18,11 @@
 <link rel=StyleSheet type="text/css" href="<?php echo site_url('css/tabs.css')?>"/>
 <link rel=StyleSheet type="text/css" href="<?php echo site_url('css/global.css')?>"/>
 <link rel=StyleSheet type="text/css" href="<?php echo site_url('css/view_busquedas.css')?>"/>
+<link rel="stylesheet" type="text/css" href="<?php echo site_url('css/flexigrid/flexigrid.pack.css')?>" />
+	
 
-<script type="text/javascript" src=" <?php echo site_url('js/libs/jquery-1.6.2.min.js')?>"></script>
+	<script type="text/javascript"	src="http://code.jquery.com/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src=" <?php echo site_url('js/flexigrid/flexigrid.pack.js')?>"></script>	
 <script type="text/javascript" src="<?php echo site_url('js/libs/jquery-ui.min-1.8.16.js')?>"></script>
 <script type="text/javascript" src=" <?php echo site_url('js/libs/json2.js')?>"></script>
 <script type="text/javascript" src=" <?php echo site_url('js/src/utils.js')?>"></script>
@@ -50,6 +53,9 @@
 </script>
 
 
+<script type="text/javascript">
+		$('.flexme1').flexigrid();
+</script>
 
 </head>
 <body>
@@ -296,6 +302,91 @@
 						    
 						    <div id="tab3" class="tab_content">
 						    	RESULTADOS  
+
+	<table class="flexme1">
+		<thead>
+			<tr>
+				<th width="100">Col 1</th>
+				<th width="100">Col 2</th>
+				<th width="100">Col 3 is a long header name</th>
+				<th width="300">Col 4</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>This is data 1 with overflowing content</td>
+				<td>This is data 2</td>
+				<td>This is data 3</td>
+				<td>This is data 4</td>
+			</tr>
+			<tr>
+				<td>This is data 1</td>
+				<td>This is data 2</td>
+				<td>This is data 3</td>
+				<td>This is data 4</td>
+			</tr>
+			<tr>
+				<td>This is data 1</td>
+				<td>This is data 2</td>
+				<td>This is data 3</td>
+				<td>This is data 4</td>
+			</tr>
+			<tr>
+				<td>This is data 1</td>
+				<td>This is data 2</td>
+				<td>This is data 3</td>
+				<td>This is data 4</td>
+			</tr>
+			<tr>
+				<td>This is data 1</td>
+				<td>This is data 2</td>
+				<td>This is data 3</td>
+				<td>This is data 4</td>
+			</tr>
+			<tr>
+				<td>This is data 1</td>
+				<td>This is data 2</td>
+				<td>This is data 3</td>
+				<td>This is data 4</td>
+			</tr>
+			<tr>
+				<td>This is data 1</td>
+				<td>This is data 2</td>
+				<td>This is data 3</td>
+				<td>This is data 4</td>
+			</tr>
+			<tr>
+				<td>This is data 1</td>
+				<td>This is data 2</td>
+				<td>This is data 3</td>
+				<td>This is data 4</td>
+			</tr>
+			<tr>
+				<td>This is data 1</td>
+				<td>This is data 2</td>
+				<td>This is data 3</td>
+				<td>This is data 4</td>
+			</tr>
+			<tr>
+				<td>This is data 1</td>
+				<td>This is data 2</td>
+				<td>This is data 3</td>
+				<td>This is data 4</td>
+			</tr>
+			<tr>
+				<td>This is data 1</td>
+				<td>This is data 2</td>
+				<td>This is data 3</td>
+				<td>This is data 4</td>
+			</tr>
+			<tr>
+				<td>This is data 1</td>
+				<td>This is data 2</td>
+				<td>This is data 3</td>
+				<td>This is data 4</td>
+			</tr>
+		</tbody>
+	</table>
 						    </div>  <!--  END OF TAB3 -->
 						    
 						    
@@ -589,6 +680,6 @@
 		</td></tr>
 		</table>
 	</div>
-	
+
 </body>
 </html>
