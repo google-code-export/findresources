@@ -135,19 +135,19 @@ class Busquedas extends CI_Controller {
 			
 		$idBusqueda = @$_SESSION[SESSION_ID_BUSQUEDA_SELECCIONADA];
 
+		$result;
 		if(isset($_POST["lista_herramienta"])){
-			$herr_temp= json_decode($_POST["lista_herramienta"],true);
-			$herramientas =  implode($this->sep,$herr_temp[0]);
-			$result = $this->Busquedas_model->setHerramientasBusqueda($idBusqueda,$herramientas);
-			echo json_encode($result);
+			$herramientas= json_decode($_POST["lista_herramienta"],true);
+			$result->herramientas = $this->Busquedas_model->setHerramientasBusqueda($idBusqueda,$herramientas);
 		}
+		
 		if(isset($_POST["lista_industria"])){
-			$ind_temp= json_decode($_POST["lista_industria"],true);
-			$industrias =  implode($this->sep,$ind_temp[0]);
-			$result = $this->Busquedas_model->setIndustriasBusqueda($idBusqueda,$industrias);
-			echo json_encode($result);
+			$industrias= json_decode($_POST["lista_industria"],true);
+			$result->industrias = $this->Busquedas_model->setIndustriasBusqueda($idBusqueda,$industrias);
 		}
-	
+		
+		echo json_encode($result);
+		
 	}
 	
 	
