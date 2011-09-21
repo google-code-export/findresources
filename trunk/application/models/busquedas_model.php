@@ -114,13 +114,22 @@ class Busquedas_model extends CI_Model {
 	
 	/** CREO O MODIFICO LAS INDUSTRIAS A BUSCAR **/
 	public function  setIndustriasBusqueda($idBusqueda, $industrias){
-
+		echo "hola";
+		var_dump($industrias);
+		foreach ($industrias as $industria){
+			$parametro = $parametro .  
+					$industria["id_industria"] . ';' . 
+					$industria["valoracion"]  . ';'.
+					$industria["importancia"] . ';';
+		}
+				
+		var_dump($parametro);
 		$result["error"] = NULL;
 		$result["desc"] = NULL;
 		
 		$params = array(
 			array('name'=>':PI_ID_BUSQUEDA', 'value'=>$idBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
-			array('name'=>':PI_BUS_INDUSTRIA', 'value'=>$industrias, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':PI_BUS_INDUSTRIA', 'value'=>$parametro, 'type'=>SQLT_CHR, 'length'=>-1),
 			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
 			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
 		);
@@ -139,13 +148,20 @@ class Busquedas_model extends CI_Model {
 	
 	/** CREO O MODIFICO LAS HERRAMIENTAS A BUSCAR **/
 	public function  setHerramientasBusqueda($idBusqueda, $herramientas){
-
+		$parametro = "";
+		foreach ($herramientas as $herramienta){
+			$parametro = $parametro .  
+					$herramienta["id_herramienta"] . ';' . 
+					$herramienta["valor_herramienta"] . ';'.
+					$herramienta["importancia"] . ';';
+		}
+		
 		$result["error"] = NULL;
 		$result["desc"] = NULL;
 		
 		$params = array(
 			array('name'=>':PI_ID_BUSQUEDA', 'value'=>$idBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
-			array('name'=>':PI_BUS_HERRAMIENTA', 'value'=>$herramientas, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':PI_BUS_HERRAMIENTA', 'value'=>$parametro, 'type'=>SQLT_CHR, 'length'=>-1),
 			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
 			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
 		);
@@ -164,6 +180,7 @@ class Busquedas_model extends CI_Model {
 	
 	/** CREO O MODIFICO LAS INDUSTRIAS A BUSCAR **/
 	public function  setHabilidadesBlandasBusqueda($idBusqueda, $habilidadesBlandas){
+		
 		$result["error"] = NULL;
 		$result["desc"] = NULL;
 
