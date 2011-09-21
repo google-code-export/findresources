@@ -103,7 +103,7 @@ function setSearchData(){
 		data: {
 			'busqueda': JSON.stringify(busqueda)
 		},
-		dataType: "json",
+		dataType: "text",
 		async: true,
 		success: function(response){
 			hidePopUp();
@@ -155,7 +155,7 @@ function setHardSkills(){
 			'lista_herramienta': JSON.stringify(habilidadesIndustrias),
 			'lista_industria': JSON.stringify(habilidadesAreas)
 		},
-		dataType: "json",
+		dataType: "text",
 		async: true,
 		success: function(response){
 			alert("Se han guardado los datos");
@@ -192,7 +192,7 @@ function setSoftSkills(){
 		data: {
 			'hab_blandas': JSON.stringify(habilidades)
 		},
-		dataType: "json",
+		dataType: "text",
 		async: true,
 		success: function(response){
 			alert("Se han guardado los datos");
