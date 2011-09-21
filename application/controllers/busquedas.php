@@ -117,7 +117,7 @@ class Busquedas extends CI_Controller {
 		
 		$result  = $this->Busquedas_model->setBusqueda($busqueda->id_busqueda, $idUsuario,
 					$busqueda->d_busqueda,/*$idTicket*/2,$busqueda->cantidad_recursos,$busqueda->f_hasta,$busqueda->d_titulo);
-
+		echo json_encode($result);
 	}
 	
 	public function setRecurso(){
@@ -127,8 +127,8 @@ class Busquedas extends CI_Controller {
 		if(isset($_POST["recurso"])){
 			$recurso =  json_decode_into_array($_POST["recurso"]);
 			$result = $this->Busquedas_model->setRecursoBusqueda($idBusqueda,$recurso);
+			echo json_encode($result);
 		}
-		
 	}
 	
 	public function setHabilidadesDuras(){
@@ -139,11 +139,13 @@ class Busquedas extends CI_Controller {
 			$herr_temp= json_decode($_POST["lista_herramienta"],true);
 			$herramientas =  implode($this->sep,$herr_temp[0]);
 			$result = $this->Busquedas_model->setHerramientasBusqueda($idBusqueda,$herramientas);
+			echo json_encode($result);
 		}
 		if(isset($_POST["lista_industria"])){
 			$ind_temp= json_decode($_POST["lista_industria"],true);
 			$industrias =  implode($this->sep,$ind_temp[0]);
 			$result = $this->Busquedas_model->setIndustriasBusqueda($idBusqueda,$industrias);
+			echo json_encode($result);
 		}
 	
 	}
@@ -155,6 +157,7 @@ class Busquedas extends CI_Controller {
 		if(isset($_POST["edu_formal"])){
 			$educacionFormal =  json_decode_into_array($_POST["edu_formal"]);
 			$result = $this->Busquedas_model->setEducacionFormalDeBusqueda($idBusqueda,$educacionFormal);
+			echo json_encode($result);
 		}
 
 	
@@ -167,6 +170,7 @@ class Busquedas extends CI_Controller {
 		if(isset($_POST["hab_blandas"])){
 			$habilidadesBlandas =  implode($this->sep,json_decode_into_array($_POST["hab_blandas"]));
 			$result = $this->Busquedas_model->setHabilidadesBlandasBusqueda($idBusqueda,$habilidadesBlandas);
+			echo json_encode($result);
 		}
 
 	
@@ -179,6 +183,7 @@ class Busquedas extends CI_Controller {
 		if(isset($_POST["lista_historia_laboral"])){
 			$historiaLaboral =  json_decode_into_array($_POST["lista_historia_laboral"]);
 			$result = $this->Busquedas_model->setHistoriaLaboral($idBusqueda,$historiaLaboral);
+			echo json_encode($result);
 		}
 
 	
@@ -544,6 +549,20 @@ class Busquedas extends CI_Controller {
 
 		var_dump($result);
 		echo "<br />";
+		/** OBTENGO LA HISTORIA LABORAL A UNA BUSQUEDA **/
+
+		$result = $this->Busquedas_model->getResultadoBusqueda($idBusqueda,"N");
+		
+		if ($result["error"] == 0 )
+			$data["result"] = "PKG_TICKETS_EMPRESAS.PR_RESULTADO_BUSQUEDA Búsqueda consultada correctamente.";
+		else 			
+			$data["result"] = "PKG_TICKETS_EMPRESAS.PR_RESULTADO_BUSQUEDA : (".$result["error"].") :".$result["desc"];
+			
+		echo $data["result"]."<br />";		
+
+		var_dump($result);
+		echo "<br />";
+		
 		//////////**************HARD CODE DATA BY MFOX************//////////////
 				
 		
