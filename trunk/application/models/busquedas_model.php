@@ -695,4 +695,26 @@ class Busquedas_model extends CI_Model {
 			
 	}
 	
+	
+	public function  bajaEducacionFormal($idEducacionFormal){
+		$result["error"] = NULL;
+		$result["desc"] = NULL;
+		
+		$params = array(
+			array('name'=>':PI_ID_BUS_EDU_FORMAL', 'value'=>$idEducacionFormal, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','pr_baja_edu_formal',$params);
+		
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in activaBusqueda(): ' . $result["desc"]);
+		}
+			
+	}
+	
 }

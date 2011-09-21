@@ -103,7 +103,7 @@ function setSearchData(){
 		data: {
 			'busqueda': JSON.stringify(busqueda)
 		},
-		dataType: "text",
+		dataType: "json",
 		async: true,
 		success: function(response){
 			hidePopUp();
@@ -152,10 +152,10 @@ function setHardSkills(){
 		global: false,
 		type: "POST",
 		data: {
-			'lista_herramienta': JSON.stringify(habilidadesIndustrias),
-			'lista_industria': JSON.stringify(habilidadesAreas)
+			'lista_herramienta': JSON.stringify(habilidadesAreas),
+			'lista_industria': JSON.stringify(habilidadesIndustrias)
 		},
-		dataType: "text",
+		dataType: "json",
 		async: true,
 		success: function(response){
 			alert("Se han guardado los datos");
@@ -192,7 +192,7 @@ function setSoftSkills(){
 		data: {
 			'hab_blandas': JSON.stringify(habilidades)
 		},
-		dataType: "text",
+		dataType: "json",
 		async: true,
 		success: function(response){
 			alert("Se han guardado los datos");
@@ -303,6 +303,38 @@ function editFormalEducation(index){
 	showPopUp('#formalEducationPopUp');
 }
 
+function eraseFormalEducation(index){
+	var formalEducation = selectedSearch['edu_formal'][index];
+
+	r = confirm("Esta seguro que desea eliminar la educacion formal");
+	if (r==true)
+	  {
+		$.ajax({
+			url: "busquedas/bajaEducacionFormal",
+			global: false,
+			type: "POST",
+			data: {
+				'id_bus_edu_formal': formalEducation.id_bus_edu_formal
+			},
+			dataType: "json",
+			async: true,
+			success: function(response){
+				alert("Se han guardado los datos");
+				hidePopUp();
+				//TODO this is so ugly we shouldnt reload all the page.
+				window.location.reload();
+			},
+			error: function(response){
+				processError(response);
+			}
+		});
+	  }
+	else
+	  {
+	  alert("You pressed Cancel!");
+	  }
+}
+
 function checkInstitutionDescriptionDisabled(){
 	$('#formalEducationEditorInstitutionDescription').attr("disabled", 
 			($('#formalEducationEditorInstitution').val() != ""));
@@ -361,7 +393,6 @@ function editAditionalData(){
 }
 
 function setAditionalData(){
-	
 		var recurso = {
 			edad_desde: $('#aditionalDataEditorAgeFrom').val(),
 			edad_hasta: $('#aditionalDataEditorAgeTo').val(),
@@ -369,9 +400,9 @@ function setAditionalData(){
 			nacionalidad: "",
 			provincia: "",
 			localidad: "",
-			twitter_c_modo: $('aditionalDataEditorTwitterMode').val(),
-			gtalk_c_modo: $('aditionalDataEditorGtalkMode').val(),
-			sms_c_modo: $('aditionalDataEditorSmsMode').val() 
+			twitter_c_modo: $('#aditionalDataEditorTwitterMode').val(),
+			gtalk_c_modo: $('#aditionalDataEditorGtalkMode').val(),
+			sms_c_modo: $('#aditionalDataEditorSmsMode').val() 
 		}
 		
 		$.ajax({
