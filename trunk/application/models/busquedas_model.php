@@ -675,7 +675,7 @@ class Busquedas_model extends CI_Model {
 	}
 	
 	/** REACTIVAR BUSQUEDA **/
-	public function  setBajaBusqueda($idBusqueda,$idTicket,$usuario){
+	public function  activaBusqueda($idBusqueda,$idTicket,$usuario){
 		$result["f_hasta"] = NULL;
 		$result["error"] = NULL;
 		$result["desc"] = NULL;
@@ -695,7 +695,7 @@ class Busquedas_model extends CI_Model {
 			return $result;		
 		}else{
 			//TODO exception managment.
-        	throw new Exception('Oracle error message in setBajaBusqueda(): ' . $result["desc"]);
+        	throw new Exception('Oracle error message in activaBusqueda(): ' . $result["desc"]);
 		}
 			
 	}
