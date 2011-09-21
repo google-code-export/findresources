@@ -98,3 +98,9 @@
 #formalEducationEditorAverageFrom {
 	width: 30px;
 }
+
+#aditionalDataEditorAgeFrom,
+#aditionalDataEditorAgeTo {
+	width: 20px;
+}
+

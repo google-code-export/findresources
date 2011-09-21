@@ -145,7 +145,7 @@ function eraseWorkExperience(id){
 			data: {
 				'id': id
 			},
-			dataType: "text",
+			dataType: "json",
 			async: true,
 			success: function(response){
 				alert("Se han guardado los datos");
@@ -175,7 +175,7 @@ function eraseFormalEducation(id){
 			data: {
 				'id': id
 			},
-			dataType: "text",
+			dataType: "json",
 			async: true,
 			success: function(response){
 				alert("Se han guardado los datos");
@@ -205,7 +205,7 @@ function eraseInformalEducation(id){
 			data: {
 				'id': id
 			},
-			dataType: "text",
+			dataType: "json",
 			async: true,
 			success: function(response){
 				alert("Se han guardado los datos");

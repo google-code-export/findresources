@@ -141,6 +141,9 @@
 											<a href="javascript:editFormalEducation(<?php echo $i ;?>);" class="editFields">
 												<img src="images/src/pencil.gif"/> Editar
 											</a> 
+											<a href="javascript:eraseFormalEducation(<?php echo $i ;?>);" class="eraseFields">
+												<img src="images/src/delete.png"/> Quitar
+											</a>
 											
 											<div class="row clearfix">
 												<div class="label"> Entidad: </div> 
@@ -672,7 +675,7 @@
 					
 					
 					<div class="buttonsPopUp">
-						<input type="submit" value="Guardar" class="sendButton" onclick="javascript:setFormalEducation();"  />
+						<input type="submit" value="Guardar" class="sendButton" onclick="javascript:setAditionalData();"  />
 						<input type="submit" value="Cancelar" class="cancelPopUp" />
 					</div>
 				</div>

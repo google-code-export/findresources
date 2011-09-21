@@ -185,10 +185,17 @@ class Busquedas extends CI_Controller {
 			$result = $this->Busquedas_model->setHistoriaLaboral($idBusqueda,$historiaLaboral);
 			echo json_encode($result);
 		}
-
-	
 	}
 	
+	
+	public function bajaEducacionFormal(){
+		if(isset($_POST["id_bus_edu_formal"])){
+			$idEducacionFormal =  $_POST["id_bus_edu_formal"];
+			$result = $this->Busquedas_model->bajaEducacionFormal($idEducacionFormal);
+			echo json_encode($result);
+		}
+		
+	}
 	
 	private function runTest(){
 		
