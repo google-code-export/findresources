@@ -114,16 +114,15 @@ class Busquedas_model extends CI_Model {
 	
 	/** CREO O MODIFICO LAS INDUSTRIAS A BUSCAR **/
 	public function  setIndustriasBusqueda($idBusqueda, $industrias){
-		echo "hola";
-		var_dump($industrias);
+		
+		$parametro = "";
 		foreach ($industrias as $industria){
 			$parametro = $parametro .  
 					$industria["id_industria"] . ';' . 
 					$industria["valoracion"]  . ';'.
 					$industria["importancia"] . ';';
 		}
-				
-		var_dump($parametro);
+
 		$result["error"] = NULL;
 		$result["desc"] = NULL;
 		
