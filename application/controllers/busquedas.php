@@ -551,7 +551,7 @@ class Busquedas extends CI_Controller {
 		echo "<br />";
 		/** OBTENGO LA HISTORIA LABORAL A UNA BUSQUEDA **/
 
-		$result = $this->Busquedas_model->getResultadoBusqueda($idBusqueda,"N");
+		$result = $this->Busquedas_model->getResultadoBusqueda(1,"N");
 		
 		if ($result["error"] == 0 )
 			$data["result"] = "PKG_TICKETS_EMPRESAS.PR_RESULTADO_BUSQUEDA Búsqueda consultada correctamente.";
