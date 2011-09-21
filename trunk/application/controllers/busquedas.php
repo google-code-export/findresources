@@ -138,7 +138,7 @@ class Busquedas extends CI_Controller {
 		$result;
 		if(isset($_POST["lista_herramienta"])){
 			$herramientas= json_decode($_POST["lista_herramienta"],true);
-			$result->herramientas = $this->Busquedas_model->setHerramientasBusqueda($idBusqueda,$herramientas);
+			//$result->herramientas = $this->Busquedas_model->setHerramientasBusqueda($idBusqueda,$herramientas);
 		}
 		
 		if(isset($_POST["lista_industria"])){
