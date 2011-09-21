@@ -588,7 +588,77 @@ class Curriculum_model extends FR_Model {
 		}	
 	}
 	
+	public function bajaExperienciaLaboral($idExperienciaLaboral){
+		$rta=NULL;
+		$n1 = NULL;
+		$n2 = NULL;
+		
+		$params = array(
+			array('name'=>':pi_id_historia_laboral_cv', 'value'=>$idExperienciaLaboral, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','pr_baja_exp_laboral',$params);
+		
+		if ($n1 == 0){
+			return $rta;
+		}
+		else{
+			echo "error aca 1";
+			
+			//TODO exception managment.
+        	throw new Exception('Oracle error message: ' . $n2);
+		}	
+	}
 	
+	public function bajaEducacionNoFormal($idEducacion){
+		$rta=NULL;
+		$n1 = NULL;
+		$n2 = NULL;
+		
+		$params = array(
+			array('name'=>':pi_id_educacion_no_formal', 'value'=>$idEducacion, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','pr_baja_no_formal',$params);
+		
+		if ($n1 == 0){
+			return $rta;
+		}
+		else{
+			
+			//TODO exception managment.
+        	throw new Exception('Oracle error message: ' . $n2);
+		}	
+	}
+	
+	public function bajaEducacionFormal($idEducacionFormal){
+		$rta=NULL;
+		$n1 = NULL;
+		$n2 = NULL;
+		
+		$params = array(
+			array('name'=>':pi_id_educacion_formal_cv', 'value'=>$idEducacionFormal, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','pr_baja_edu_formal',$params);
+		
+		if ($n1 == 0){
+			return $rta;
+		}
+		else{
+			echo "error aca 1";
+			//TODO exception managment.
+        	throw new Exception('Oracle error message: ' . $n2);
+		}	
+	}
+	
+
 }
 
 ?>

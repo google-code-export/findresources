@@ -12,6 +12,8 @@ function hidePopUp()
 }
 
 function processError(errorResponse){
+	
+	$('#errorPopUp .popuptitle').html("System Error (status:" + errorResponse.statusText + ")");
 	$('#errorPopUp .inside').html(errorResponse.responseText);
 	showPopUp('#errorPopUp');
 }

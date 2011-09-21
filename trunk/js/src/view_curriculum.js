@@ -138,8 +138,25 @@ function eraseWorkExperience(id){
 	var r=confirm("Esta seguro que desea eliminar la experiencia en " + workExperiences[id].compania);
 	if (r==true)
 	  {
-	  alert("You pressed OK!");
-		window.location.reload();
+		$.ajax({
+			url: "curriculum/bajaExperienciaLaboral",
+			global: false,
+			type: "POST",
+			data: {
+				'id': id
+			},
+			dataType: "text",
+			async: true,
+			success: function(response){
+				alert("Se han guardado los datos");
+				hidePopUp();
+				//TODO this is so ugly we shouldnt reload all the page.
+				window.location.reload();
+			},
+			error: function(response){
+				processError(response);
+			}
+		});
 	  }
 	else
 	  {
@@ -151,8 +168,25 @@ function eraseFormalEducation(id){
 	var r=confirm("Esta seguro que desea eliminar la educacion formal seleccionada");
 	if (r==true)
 	  {
-	  alert("You pressed OK!");
-		window.location.reload();
+		$.ajax({
+			url: "curriculum/bajaEducacionFormal",
+			global: false,
+			type: "POST",
+			data: {
+				'id': id
+			},
+			dataType: "text",
+			async: true,
+			success: function(response){
+				alert("Se han guardado los datos");
+				hidePopUp();
+				//TODO this is so ugly we shouldnt reload all the page.
+				window.location.reload();
+			},
+			error: function(response){
+				processError(response);
+			}		
+		});
 	  }
 	else
 	  {
@@ -164,8 +198,25 @@ function eraseInformalEducation(id){
 	var r=confirm("Esta seguro que desea eliminar la educacion informal seleccionada");
 	if (r==true)
 	  {
-		alert("You pressed OK!");
-		window.location.reload();
+		$.ajax({
+			url: "curriculum/bajaEducacionNoFormal",
+			global: false,
+			type: "POST",
+			data: {
+				'id': id
+			},
+			dataType: "text",
+			async: true,
+			success: function(response){
+				alert("Se han guardado los datos");
+				hidePopUp();
+				//TODO this is so ugly we shouldnt reload all the page.
+				window.location.reload();
+			},
+			error: function(response){
+				processError(response);
+			}		
+		});
 	  }
 	else
 	  {

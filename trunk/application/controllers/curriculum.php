@@ -236,6 +236,20 @@ class Curriculum extends CI_Controller {
 		echo json_encode($respuesta);
 	}
 	
+	public function  bajaExperienciaLaboral(){
+		$id = $this->input->post('id');
+		$respuesta = $this->Curriculum_model->bajaExperienciaLaboral($id);
+	}
+	
+	public function  bajaEducacionNoFormal(){
+		$id = $this->input->post('id');
+		$respuesta = $this->Curriculum_model->bajaEducacionNoFormal($id);
+	}
+	
+	public function  bajaEducacionFormal(){
+		$id = $this->input->post('id');
+		$respuesta = $this->Curriculum_model->bajaEducacionFormal($id);
+	}
 	
 }
 
