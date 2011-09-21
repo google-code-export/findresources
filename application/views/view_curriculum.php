@@ -589,17 +589,18 @@
 	
 					<div class="field clearfix">
 						<div class="label">Desde:</div>
-						<input type="text" id="formalEducationEditorDateFrom"/>
+						<input class="datepicker" type="text" id="formalEducationEditorDateFrom"/>
 					</div>
 	
 					<div class="field clearfix">
 						<div class="label">Hasta:</div>
-						<input type="text" id="formalEducationEditorDateTo"/>
+						<input class="datepicker" type="text" id="formalEducationEditorDateTo"/>
 					</div>
 	
 					<div class="field clearfix">
 						<div class="label">Promedio:</div>
 						<input type="text" id="formalEducationEditorAverage"/>
+						(Ej: 6,98)
 					</div>
 
 				</div>
