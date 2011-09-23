@@ -21,7 +21,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/flexigrid/flexigrid.pack.css')?>" />
 	
 
-	<script type="text/javascript"	src="http://code.jquery.com/jquery-1.5.2.min.js"></script>
+<script type="text/javascript"	src="http://code.jquery.com/jquery-1.5.2.min.js"></script>
 <script type="text/javascript" src=" <?php echo site_url('js/flexigrid/flexigrid.pack.js')?>"></script>	
 <script type="text/javascript" src="<?php echo site_url('js/libs/jquery-ui.min-1.8.16.js')?>"></script>
 <script type="text/javascript" src=" <?php echo site_url('js/libs/json2.js')?>"></script>
@@ -36,7 +36,7 @@
 
 <script type="text/javascript">
 
-	var userSearchs = <?php echo json_encode_utf8($busquedasDelUsuario["busquedas_activas"]); ?>;
+	var userSearchs = <?php echo json_encode_utf8($busquedasDelUsuario); ?>;
 
  	var availableIndustries = <?php  echo json_encode_utf8($industriasDisponibles); ?>;
 
@@ -64,9 +64,8 @@
 			</div> <!-- END OF newSearchLink -->
 			<div id="savedSearchLinks" class="clearfix">
 				
-				<?php 
-				foreach ($busquedasDelUsuario["busquedas_activas"] as $i => $busq){ ?>
-					<div class="savedSearchLink <?php echo ($busq->d_estado=="Activa")?"activatedSearchLink":"closedSearchLink" ; ?>">
+				<?php foreach ($busquedasDelUsuario as $i => $busq){ ?>
+					<div class="savedSearchLink <?php echo ($busq->d_estado=="Nueva")?"activatedSearchLink":"closedSearchLink" ; ?>">
 						<a href="busquedas?busquedaId=<?php echo $busq->id_busqueda?>">
 							<?php echo $busq->d_titulo?>
 						</a>
@@ -333,17 +332,17 @@
 							<textarea id="searchDataEditorDescription"> </textarea>
 						</div>
 						<div class="field clearfix">
-							<div class="label">Fecha Hasta:</div>
-							<input type="text" id="searchDataEditorDateTo" value="" disabled="disabled"/>
-						</div>
-						<div class="field clearfix">
 							<div class="label">Cantidad de personal:</div>
 							<input type="text" id="searchDataEditorResourcesQuantity" value="" />
 						</div>
-						<!--div class="field clearfix">
+						<div class="field clearfix" id="searchDataEditorDateToContainer">
+							<div class="label">Fecha Hasta:</div>
+							<label id="searchDataEditorDateTo"/>
+						</div>
+						<div class="field clearfix" id="searchDataEditorStatusContainer">
 							<div class="label">Estado:</div>
-							<input type="text" id="searchDataEditorStatus" value="" />
-						</div-->
+							<label id="searchDataEditorStatus" />
+						</div>
 						
 					</div>
 					<div class="buttonsPopUp">
