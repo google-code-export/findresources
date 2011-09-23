@@ -13,32 +13,32 @@ class Busquedas_model extends CI_Model {
 	
 
 	/** CREA O MODIFICA BUSQUEDAS **/
-	public function setBusqueda($idBusqueda,$idUsuario,$titulo, $descripcionBusqueda,$idTicket,$cantidadRecursos){
+	public function setBusqueda($idUsuario,$busqueda, $idTicket){
 		$result["id_busqueda"] = NULL;
 		$result["f_hasta"] = NULL;
 		$result["error"] = NULL;
 		$result["desc"] = NULL;
-//		echo "$idBusqueda,$idUsuario            ,$descripcionBusqueda,$idTicket,$cantidadRecursos,$fechaHasta,$titulo";exit;
-
+		
 		$params = array(
-		array('name'=>':PI_ID_BUSQUEDA', 'value'=>$idBusqueda, 'type'=>SQLT_CHR , 'length'=>-1),
+		array('name'=>':PI_ID_BUSQUEDA', 'value'=>$busqueda->id_busqueda, 'type'=>SQLT_CHR , 'length'=>-1),
 		array('name'=>':PI_USUARIO', 'value'=>$idUsuario, 'type'=>SQLT_CHR , 'length'=>-1),
-		array('name'=>':PI_D_TITULO', 'value'=>$titulo, 'type'=>SQLT_CHR , 'length'=>-1),
-		array('name'=>':PI_D_BUSQUEDA', 'value'=>$descripcionBusqueda, 'type'=>SQLT_CHR , 'length'=>-1),
+		array('name'=>':PI_D_TITULO', 'value'=>$busqueda->d_titulo, 'type'=>SQLT_CHR , 'length'=>-1),
+		array('name'=>':PI_D_BUSQUEDA', 'value'=>$busqueda->d_busqueda, 'type'=>SQLT_CHR , 'length'=>-1),
 		array('name'=>':PI_ID_TICKET', 'value'=>$idTicket, 'type'=>SQLT_CHR , 'length'=>-1),
-		array('name'=>':PI_CANTIDAD_RECURSOS', 'value'=>$cantidadRecursos, 'type'=>SQLT_CHR , 'length'=>-1),
-		array('name'=>':PO_ID_BUSQUEDA', 'value'=>&$result["id_busqueda"], 'type'=>SQLT_CHR , 'length'=>255),
-		array('name'=>':PO_F_HASTA', 'value'=>$result["f_hasta"], 'type'=>SQLT_CHR , 'length'=>-1),
+		array('name'=>':PI_CANTIDAD_RECURSOS', 'value'=>$busqueda->cantidad_recursos, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':PO_ID_BUSQUEDA', 'value'=>&$result["id_busqueda"], 'type'=>SQLT_CHR, 'length'=>255),
+		array('name'=>':PO_F_HASTA', 'value'=>$result["f_hasta"], 'type'=>SQLT_CHR , 'length'=>255),
 		array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
 		array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
 		);
+
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_BUSQUEDA',$params);
 
 		if($result["error"] == 0){
 			return $result;		
 		}else{
 			//TODO exception managment.
-        	throw new Exception('Oracle error message in setBusqueda(): ' . $result["desc"]);
+			throw new Exception('Oracle error message in setBusqueda(): ' . $result["desc"]);
 		}
 
 	}	
@@ -141,7 +141,7 @@ class Busquedas_model extends CI_Model {
 			return $result;		
 		}else{
 			//TODO exception managment.
-        	throw new Exception('Oracle error message in setIndustriasBusqueda(): ' . $result["desc"]);
+			throw new Exception('Oracle error message in setIndustriasBusqueda(): ' . $result["desc"]);
 		}
 			
 	}

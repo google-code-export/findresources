@@ -389,9 +389,55 @@ function setFormalEducation(){
 	});	
 }
 
+function eraseFormalEducation(id){
+		var edu_formal = {
+			id_bus_edu_formal: id,
+			id_entidad_educativa: '',
+			d_entidad: '',
+			c_modo_entidad: '',
+			titulo: '',
+			c_modo_titulo: '',
+			id_nivel_educacion: '',
+			c_modo_nivel_educacion: '',
+			id_area: '',
+			c_modo_area: '',
+			estado: '',
+			c_modo_estado: '',
+			c_modo_estado: '',
+			promedio_desde: '',
+			promedio_hasta: '',
+			c_modo_promedio: '',
+			c_baja: "S"
+		}
+		
+		$.ajax({
+			url: "busquedas/setEducacionFormal",
+			global: false,
+			type: "POST",
+			data: {
+				'edu_formal': JSON.stringify(edu_formal)
+			},
+			dataType: "json",
+			async: true,
+			success: function(response){
+				alert("Se han guardado los datos");
+				hidePopUp();
+				//TODO this is so ugly we shouldnt reload all the page.
+				window.location.reload();
+			},
+			error: function(response){
+				processError(response);
+			}
+		});	
+	
+}
+
+
 function editAditionalData(){
 	showPopUp('#aditionalDataPopUp');
 }
+
+
 
 function setAditionalData(){
 		var recurso = {

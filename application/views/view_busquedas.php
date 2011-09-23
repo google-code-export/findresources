@@ -424,7 +424,7 @@
 						</div>
 						<div class="field clearfix">
 							<div class="label">Fecha Hasta:</div>
-							<input type="text" class="datepicker" id="searchDataEditorDateTo" value="" />
+							<input type="text" id="searchDataEditorDateTo" value="" disabled="disabled"/>
 						</div>
 						<div class="field clearfix">
 							<div class="label">Cantidad de personal:</div>
