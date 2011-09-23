@@ -226,7 +226,7 @@
 						<a href="javascript:editInformalEducation(<?php echo $id?>);" class="editFields">
 							<img src="images/src/pencil.gif"/>Editar
 						</a>
-						<a href="javascript:eraseInformalEducation(<?php echo $i ;?>);" class="eraseFields">
+						<a href="javascript:eraseInformalEducation(<?php echo $id ;?>);" class="eraseFields">
 							<img src="images/src/delete.png"/> Quitar
 						</a>
 					</h3>
