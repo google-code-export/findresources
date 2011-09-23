@@ -364,7 +364,8 @@ function setFormalEducation(){
 		c_modo_estado: $('#formalEducationEditorStatusMode').val(),
 		promedio_desde: $('#formalEducationEditorAverageFrom').val(),
 		promedio_hasta: $('#formalEducationEditorAverageTo').val(),
-		c_modo_promedio: $('#formalEducationEditorAverageMode').val()
+		c_modo_promedio: $('#formalEducationEditorAverageMode').val(),
+		c_baja: ""
 	}
 	
 	$.ajax({

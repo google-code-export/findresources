@@ -358,11 +358,6 @@
 					<div class="label">SMS:</div>
 					<input type="text" id="cvDataEditorSMS" value="" />
 				</div>
-				
-				<div class="field clearfix">
-					<div class="label">SMS:</div>
-					<input type="text" id="cvDataEditorSMS" value="" />
-				</div>
 				<div class="field clearfix">
 					<div class="label">Sueldo Pret.:</div>
 					<input type="text" id="cvDataEditorDesiredSalary" value="" />
