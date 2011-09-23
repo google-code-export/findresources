@@ -158,10 +158,6 @@ function eraseWorkExperience(id){
 			}
 		});
 	  }
-	else
-	  {
-	  alert("You pressed Cancel!");
-	  }
 }
 
 function eraseFormalEducation(id){
@@ -188,10 +184,6 @@ function eraseFormalEducation(id){
 			}		
 		});
 	  }
-	else
-	  {
-	  alert("You pressed Cancel!");
-	  }
 }
 
 function eraseInformalEducation(id){
@@ -217,10 +209,6 @@ function eraseInformalEducation(id){
 				processError(response);
 			}		
 		});
-	  }
-	else
-	  {
-	  alert("You pressed Cancel!");
 	  }
 }
 
