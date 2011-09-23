@@ -52,11 +52,6 @@
 	
 </script>
 
-
-<script type="text/javascript">
-		$('.flexme1').flexigrid();
-</script>
-
 </head>
 <body>
 <?php include("toolbar.php"); ?>
@@ -291,105 +286,20 @@
 											</select>
 						        	</div>
 							    </div>
-						    </div>  <!--  END OF TAB1 -->
+						    </div>  <!--  END OF TAB2 -->
 						    
 						    
 						    
-						    <div id="tab3" class="tab_content">  
+						   <!-- div id="tab3" class="tab_content">  
 						    
 								<!--a href="busquedas/modificarBusqueda/1">Modificar Búsqueda</a>
 								<a href="busquedas/eliminarBusqueda/1">Eliminar Búsqueda</a> <!-- falta sp --  >
 								<a href="busquedas/verDetalle/1">Ver Detalle</a>
-								<a href="busquedas/seleccionarCandidatos/1">Seleccionar Candidatos</a-->
-						    </div>  <!--  END OF TAB2 -->
+								<a href="busquedas/seleccionarCandidatos/1">Seleccionar Candidatos</a>
+						    </div-->  <!--  END OF TAB3? -->
 						    
 						    <div id="tab3" class="tab_content">
-						    	RESULTADOS  
-
-	<table class="flexme1">
-		<thead>
-			<tr>
-				<th width="100">Col 1</th>
-				<th width="100">Col 2</th>
-				<th width="100">Col 3 is a long header name</th>
-				<th width="300">Col 4</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>This is data 1 with overflowing content</td>
-				<td>This is data 2</td>
-				<td>This is data 3</td>
-				<td>This is data 4</td>
-			</tr>
-			<tr>
-				<td>This is data 1</td>
-				<td>This is data 2</td>
-				<td>This is data 3</td>
-				<td>This is data 4</td>
-			</tr>
-			<tr>
-				<td>This is data 1</td>
-				<td>This is data 2</td>
-				<td>This is data 3</td>
-				<td>This is data 4</td>
-			</tr>
-			<tr>
-				<td>This is data 1</td>
-				<td>This is data 2</td>
-				<td>This is data 3</td>
-				<td>This is data 4</td>
-			</tr>
-			<tr>
-				<td>This is data 1</td>
-				<td>This is data 2</td>
-				<td>This is data 3</td>
-				<td>This is data 4</td>
-			</tr>
-			<tr>
-				<td>This is data 1</td>
-				<td>This is data 2</td>
-				<td>This is data 3</td>
-				<td>This is data 4</td>
-			</tr>
-			<tr>
-				<td>This is data 1</td>
-				<td>This is data 2</td>
-				<td>This is data 3</td>
-				<td>This is data 4</td>
-			</tr>
-			<tr>
-				<td>This is data 1</td>
-				<td>This is data 2</td>
-				<td>This is data 3</td>
-				<td>This is data 4</td>
-			</tr>
-			<tr>
-				<td>This is data 1</td>
-				<td>This is data 2</td>
-				<td>This is data 3</td>
-				<td>This is data 4</td>
-			</tr>
-			<tr>
-				<td>This is data 1</td>
-				<td>This is data 2</td>
-				<td>This is data 3</td>
-				<td>This is data 4</td>
-			</tr>
-			<tr>
-				<td>This is data 1</td>
-				<td>This is data 2</td>
-				<td>This is data 3</td>
-				<td>This is data 4</td>
-			</tr>
-			<tr>
-				<td>This is data 1</td>
-				<td>This is data 2</td>
-				<td>This is data 3</td>
-				<td>This is data 4</td>
-			</tr>
-		</tbody>
-	</table>
+						    	<table class="flexme1">	</table>
 						    </div>  <!--  END OF TAB3 -->
 						    
 						    
@@ -684,5 +594,29 @@
 		</table>
 	</div>
 
+<script type="text/javascript">
+$(".flexme1").flexigrid({
+	url: 'busquedas/post',
+	dataType: 'json',
+	colModel : [
+		{display: 'Orden', name : 'orden', width : 40, sortable : true, align: 'center'},
+		{display: 'Nombre y Apellido', name : 'nombre', width : 180, sortable : true, align: 'left'},
+		{display: 'Estado', name : 'estado', width : 120, sortable : true, align: 'left'},
+		{display: 'Informes', name : 'info', width : 130, sortable : true, align: 'left', hide: false},
+		{display: 'Datos', name : 'data', width : 80, sortable : true, align: 'right'},
+		{display: 'Entrevistado', name : 'entrevistado', width : 80, sortable : true, align: 'right'}
+		],
+	sortname: "orden",
+	sortorder: "asc",
+	usepager: true,
+	title: 'Resultados de la búsqueda',
+	useRp: true,
+	rp: 15,
+	showTableToggleBtn: false,
+	width: 750,
+	height: 600
+}); 
+
+</script>
 </body>
 </html>
