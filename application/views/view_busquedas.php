@@ -71,7 +71,7 @@
 				
 				<?php 
 				foreach ($busquedasDelUsuario["busquedas_activas"] as $i => $busq){ ?>
-					<div class="savedSearchLink">
+					<div class="savedSearchLink <?php echo ($busq->d_estado=="Activa")?"activatedSearchLink":"closedSearchLink" ; ?>">
 						<a href="busquedas?busquedaId=<?php echo $busq->id_busqueda?>">
 							<?php echo $busq->d_titulo?>
 						</a>

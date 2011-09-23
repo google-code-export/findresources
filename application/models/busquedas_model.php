@@ -122,7 +122,9 @@ class Busquedas_model extends CI_Model {
 					$industria["valoracion"]  . ';'.
 					$industria["importancia"] . ';';
 		}
-
+		//var_dump($idBusqueda);
+		//var_dump($parametro);
+		
 		$result["error"] = NULL;
 		$result["desc"] = NULL;
 		

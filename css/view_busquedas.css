@@ -104,3 +104,8 @@
 	width: 20px;
 }
 
+.activatedSearchLink{
+}
+.closedSearchLink{
+	color: gray !important;
+}
