@@ -1,9 +1,9 @@
 @CHARSET "ISO-8859-1";
 #toolbar_fr_logo {
-	background: url("../images/src/argentina_soft_logo.png") no-repeat scroll 0 0 transparent;
+	background: url("../images/src/logofr.png") no-repeat scroll 0 0 transparent;
 	float:left;
 	padding-top: 55px;
-    width: 76px;
+    width: 95px;
 	height; 25px;    
 }
 
@@ -29,8 +29,9 @@
 }
 
 #toolbar_header {
-	height: 60px;
+	height: 35px;
 	margin-bottom: 10px;
+	margin-top: 5px;
 }
 
 #login #toolbar_logout{

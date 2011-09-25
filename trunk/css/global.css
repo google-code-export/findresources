@@ -65,7 +65,8 @@ span.dn{display:none;}
 	display: block;
 	height: 0;
 	clear: both;
-	visibility: hidden
+	visibility: hidden;
+	            
 }
 
 .clearfix {
@@ -103,7 +104,9 @@ h1 {
 	font-size: 16px;
 	font-weight: bold;
 	margin: 24px 0 2px 0;
-	padding: 5px 0 6px 0;
+	padding: 5px;
+	background-color: #D0D0D0;
+	border-radius: 5px;
 }
 
 .company_logo {
@@ -177,7 +180,9 @@ h1 {
 .inblock{
 	margin:5px;
 	padding:5px;
-	background-color: #DAEBEA
+	background-color: #DAEBEA;
+	border-radius: 5px;
+	box-shadow: 2px 2px 2px #888;
 }
 
 h2{font-size:18px;color:#555;padding:0 0 0px;}
@@ -195,4 +200,4 @@ h2{font-size:18px;color:#555;padding:0 0 0px;}
 .block p.recommendations a{font-style:normal;padding:0 0 0 6px;}
 .block p.addActivity{padding:0 0 6px;}
 
-.block {margin:0 0 10px; border:2px solid #DDD;padding:10px;}
+.block {margin:0 0 10px; border:2px solid #DDD;padding:10px; border-radius: 5px;}
