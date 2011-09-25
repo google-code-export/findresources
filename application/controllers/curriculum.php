@@ -24,9 +24,6 @@ class Curriculum extends CI_Controller {
 		}
 		
 		$idCurriculum  = $this->Curriculum_model->getCurriculumUser($usuario);
-		if($idCurriculum == null || $idCurriculum == ""){
-			$idCurriculum  = $this->Curriculum_model->createCurriculumUser($usuario);
-		}
 		
 		$curriculumData = $this->Curriculum_model->getCurriculum($idCurriculum);
 
@@ -48,7 +45,7 @@ class Curriculum extends CI_Controller {
 		$data['nivelesDeEducacion'] = $this->Util_model->getNivelesDeEducacion();
 		$data['entidadesEducativas'] = $this->Util_model->getEntidadesEducativas();
 		$data['tiposDeEducacionNoFormal'] = $this->Util_model->getTiposDeEducacionNoFormal();
-		
+		$data['provinciasDisponibles'] = $this->Util_model->getProvincias();
 		
 		
 		$this->load->view('view_curriculum', $data);

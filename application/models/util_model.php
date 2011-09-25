@@ -1,3 +1,4 @@
+
 <?php
 class Util_model extends FR_Model {
 	
@@ -87,7 +88,7 @@ class Util_model extends FR_Model {
 	 * @param idPais
 	 * @return array[id] =  [{descripcion}]
 	 */
-	public function  getProvincias($idPais){
+	public function  getProvincias(){
 
 		/** LOAD DATABASE **/
 //		$this->load->database();		
@@ -106,12 +107,11 @@ class Util_model extends FR_Model {
 		
 		if ($n1 == 0){
 			$dbRegistros = $this->oracledb->get_cursor_data(":po_salida");
-			//$dbRegistros = $this->decodeCursorData($dbRegistros);
-			
+
 			//convert db data to model data.
 			$response = array();
 			foreach ($dbRegistros as $i => $dbRegistro){
-				$response[$dbRegistro->provincias] = $dbRegistro->d_provincias;
+				$response[$dbRegistro->provincia] = $dbRegistro->d_provincia;
 			}
 			
 			return $response;

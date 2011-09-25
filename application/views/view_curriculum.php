@@ -101,24 +101,47 @@
 							<div><?php echo ($curriculumData->idPais=="") ? ""  :  $paises[$curriculumData->idPais]?></div>
 						</div>
 		
-						<div class="row clearfix">
-							<div>Tel:&nbsp;<?php echo $curriculumData->telefono1?>&nbsp;</div>					
-							<div><?php echo $curriculumData->horarioContactoDesde1?>&nbsp;a&nbsp;</div>					
-							<div><?php echo $curriculumData->horarioContactoHasta1?></div>					
-						</div>
+						<?php if($curriculumData->telefono1 !=""){?>
+							<div class="row clearfix">
+								<div>Tel:&nbsp;<?php echo $curriculumData->telefono1?>&nbsp;</div>					
+								<?php if($curriculumData->horarioContactoDesde1 !=""){?>
+									<div><?php echo $curriculumData->horarioContactoDesde1?>&nbsp;a&nbsp;</div>					
+									<div><?php echo $curriculumData->horarioContactoHasta1?></div>					
+							<?php } ?>
+
+							</div>
+						<?php } ?>
 		
-						<div class="row clearfix">
-							<div>Tel:&nbsp;<?php echo $curriculumData->telefono2?>&nbsp;</div>	
-							<div><?php echo $curriculumData->horarioContactoDesde2?>&nbsp; a &nbsp;</div>
-							<div><?php echo $curriculumData->horarioContactoHasta2?></div>					
-						</div>
+						<?php if($curriculumData->telefono2 !=""){?>
+							<div class="row clearfix">
+								<div>Tel:&nbsp;<?php echo $curriculumData->telefono2?>&nbsp;</div>
+								<?php if($curriculumData->horarioContactoDesde2 !=""){?>
+									<div><?php echo $curriculumData->horarioContactoDesde2?>&nbsp; a &nbsp;</div>
+									<div><?php echo $curriculumData->horarioContactoHasta2?></div>
+								<?php } ?>
+
+							</div>
+						<?php } ?>
 	
-						<div><?php echo ($curriculumData->idPaisNacionalidad == "")? ""  :   $paises[$curriculumData->idPaisNacionalidad]?>&nbsp;</div>
+						<?php if($curriculumData->idPaisNacionalidad !=""){?>
+							<div><?php echo $paises[$curriculumData->idPaisNacionalidad]?>&nbsp;</div>
+						<?php } ?>
 						
-						<div><?php echo $curriculumData->twitter?>&nbsp;</div>
-						<div><?php echo $curriculumData->gtalk?>&nbsp;</div>
-						<div><?php echo $curriculumData->sms?></div>
-						<div>$ <?php echo $curriculumData->sueldoPretendido?></div>
+						<?php if($curriculumData->gtalk !=""){?>
+							<div><?php echo $curriculumData->gtalk?>&nbsp;</div>
+						<?php } ?>
+
+						<?php if($curriculumData->gtalk !=""){?>
+							<div><?php echo $curriculumData->gtalk?>&nbsp;</div>
+						<?php } ?>
+						
+						<?php if($curriculumData->sms !=""){?>
+							<div><?php echo $curriculumData->sms?></div>
+						<?php } ?>
+
+						<?php if($curriculumData->sueldoPretendido !=""){?>
+							<div>$ <?php echo $curriculumData->sueldoPretendido?></div>
+						<?php } ?>
 					</div>
 
 				<!--/div-->
@@ -295,7 +318,13 @@
 				
 				<div class="field clearfix">
 					<div class="label">Provincia:</div>
-					<input type="text" id="cvDataEditorState" value="" />
+
+					<select id="cvDataEditorState">
+						<?php foreach ($provinciasDisponibles as $id => $desc){ ?>
+							<option value="<?php echo $id; ?>"><?php echo $desc;?></option> 
+						<?php } ?>
+					</select>
+
 				</div>
 				
 				<div class="field clearfix">
