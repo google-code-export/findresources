@@ -607,13 +607,17 @@ class Busquedas_model extends CI_Model {
 			array('name'=>':PI_ID_BUSQUEDA', 'value'=>$idBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
 			array('name'=>':PI_ACTUALIZA_BUSQUEDA', 'value'=>$actualiza, 'type'=>SQLT_CHR, 'length'=>-1),
 			array('name'=>':PO_RESULTADO_BUSQUEDA', 'value'=>&$result["resultado_busqueda"], 'type'=>SQLT_RSET, 'length'=>255),
+			array('name'=>':PO_CORREOS', 'value'=>&$result["correos"], 'type'=>SQLT_RSET, 'length'=>255),
+			array('name'=>':PO_CORREOS_RECUERDO', 'value'=>&$result["correos_recuerdo"], 'type'=>SQLT_RSET, 'length'=>255),
 			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
 			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
 		);
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_RESULTADO_BUSQUEDA',$params);
 		$result["resultado_busqueda"] = $this->oracledb->get_cursor_data(":PO_RESULTADO_BUSQUEDA");
-
+		$result["correos"] = $this->oracledb->get_cursor_data(":PO_CORREOS");
+		$result["correos_recuerdo"] = $this->oracledb->get_cursor_data(":PO_CORREOS_RECUERDO");
+		
 		if($result["error"] == 0){
 			return $result;		
 		}else{
