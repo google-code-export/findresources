@@ -148,7 +148,7 @@
 			</div>
 			
 			<div class="block" id="hardSkills">
-				<h2>Caracterísiticas Duras <a href="javascript:editHardSkills();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
+				<h2>Conocimientos <a href="javascript:editHardSkills();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
 				<div class="inblock">
 					<h4>Industrias</h4>
 					<ul>
@@ -159,7 +159,7 @@
 				</div>
 
 				<div class="inblock">
-					<h4>Areas</h4>
+					<h4>Herramientas</h4>
 					<ul>
 					<?php foreach ($habilidadesAreasDelCV as $habilidad){ ?>
 						<li><?php echo $habilidad->descripcionArea ?> - <?php echo $habilidad->descripcionHerramienta ?>: <?php echo $habilidad->puntos ?></li>

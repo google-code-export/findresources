@@ -49,8 +49,7 @@ class Busquedas extends CI_Controller {
 		
 		//$data['habilidadesBlandasDisponibles'] = $this->Busquedas_model->getHabilidadesBlandasBusqueda($idBusqueda);
 		$data['busquedasDelUsuario'] = $this->Busquedas_model->getBusquedasDeUsuario($idUsuario);
-		
-		
+		$data['busquedasDelUsuario'] = array_merge($data['busquedasDelUsuario']['busquedas_activas'], $data['busquedasDelUsuario']['busquedas_inactivas']);
 		
 		$idHabilidad = NULL;
 

@@ -106,6 +106,7 @@
 
 .activatedSearchLink{
 }
-.closedSearchLink{
+
+.closedSearchLink a{
 	color: gray !important;
 }
