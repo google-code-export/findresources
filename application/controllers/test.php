@@ -21,10 +21,19 @@ class Test extends CI_Controller {
 		/** LO QUE LE FALTA REALIZAR SEGÚN LA INFO OBTENIDA DE LA BD **/
 
 		/* USUARIO DE PRUEBA HASTA PODER TOMAR EL USUARIO REAL GUARDADO EN SESION */
-		$this->session->set_userdata('usuario', "juan@juan.com");
-		$tests_del_usuario = $this->Test_model->getTestsPendientes($this->session->userdata('usuario'));
+		$idUsuario = @$_SESSION[SESSION_ID_USUARIO];
+		if(!$idUsuario){
+			/////////////HARDCODED//////////////////////////
+			/////////////HARDCODED//////////////////////////
+			$idUsuario = "juan@juan.com";
+			$_SESSION[SESSION_ID_USUARIO] = "juan@juan.com";
+			/////////////HARDCODED//////////////////////////
+			/////////////HARDCODED//////////////////////////		
+		}
+		//$this->session->set_userdata('usuario', "juan@juan.com");
+		$tests_del_usuario = $this->Test_model->getTestsPendientes($idUsuario);
 			//print_r($tests_del_usuario);exit;
-		if (!array_key_exists(3, $tests_del_usuario["test_pendientes"]))	{
+		if (!array_key_exists(0, $tests_del_usuario["test_pendientes"]))	{
 			echo "Usted no tiene tests pendientes.";
 			exit;
 		}
