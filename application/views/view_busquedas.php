@@ -95,9 +95,9 @@
 						<div class="tab_container">  
 						    <div id="tab1" class="tab_content">
 								<div class="block" id="hardProperties">
-									<h2>Caracterísiticas Duras <a href="javascript:editHardSkills();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
+									<h2>Conocimientos <a href="javascript:editHardSkills();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
 									<div class="inblock">
-										<h4>Industrias</h4>
+										<h4>Areas de negocio</h4>
 										<ul>
 										<?php foreach ($busquedaSeleccionada['lista_industria']  as $id => $habilidad){ ?>
 											<li><?php echo $habilidad->d_industria ?>: <?php echo $habilidad->valoracion ?> - <?php echo $habilidad->importancia ?></li>
@@ -106,7 +106,7 @@
 									</div>
 					
 									<div class="inblock">
-										<h4>Areas</h4>
+										<h4>Herramientas</h4>
 										<ul>
 										<?php foreach ($busquedaSeleccionada['lista_herramienta'] as $habilidad){ ?>
 											<li><?php echo $habilidad->d_area ?> - <?php echo $habilidad->d_herramienta ?>: <?php echo $habilidad->valor_herramienta ?> - <?php echo $habilidad->importancia ?></li>

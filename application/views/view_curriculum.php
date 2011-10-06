@@ -124,20 +124,14 @@
 						<?php } ?>
 	
 						<?php if($curriculumData->idPaisNacionalidad !=""){?>
-							<div><?php echo $paises[$curriculumData->idPaisNacionalidad]?>&nbsp;</div>
+							<div><?php echo $paises[$curriculumData->idPaisNacionalidad]?></div>
 						<?php } ?>
 						
-						<?php if($curriculumData->gtalk !=""){?>
-							<div><?php echo $curriculumData->gtalk?>&nbsp;</div>
-						<?php } ?>
+						<div><?php echo $curriculumData->gtalk?></div>
 
-						<?php if($curriculumData->gtalk !=""){?>
-							<div><?php echo $curriculumData->gtalk?>&nbsp;</div>
-						<?php } ?>
+						<div><?php echo $curriculumData->twitter?></div>
 						
-						<?php if($curriculumData->sms !=""){?>
-							<div><?php echo $curriculumData->sms?></div>
-						<?php } ?>
+						<div><?php echo $curriculumData->sms?></div>
 
 						<?php if($curriculumData->sueldoPretendido !=""){?>
 							<div>$ <?php echo $curriculumData->sueldoPretendido?></div>
@@ -150,7 +144,7 @@
 			<div class="block" id="hardSkills">
 				<h2>Conocimientos <a href="javascript:editHardSkills();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
 				<div class="inblock">
-					<h4>Industrias</h4>
+					<h4>Areas de negocio</h4>
 					<ul>
 					<?php foreach ($habilidadesIndustriasDelCV as $habilidad){ ?>
 						<li><?php echo $habilidad->descripcionIndustria ?>: <?php echo $habilidad->puntos ?></li>
