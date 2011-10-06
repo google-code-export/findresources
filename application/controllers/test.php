@@ -22,26 +22,28 @@ class Test extends CI_Controller {
 
 		/* USUARIO DE PRUEBA HASTA PODER TOMAR EL USUARIO REAL GUARDADO EN SESION */
 		$this->session->set_userdata('usuario', "juan@juan.com");
-
-		print_r($this->Test_model->getTestsPendientes("juan@juan.com"));exit;
-
-		$luscher_state = ($this->session->userdata('luscher')) ? $this->session->userdata('luscher') : "PEND";
-		$d48_state = ($this->session->userdata('d48')) ? $this->session->userdata('d48') : "PEND";
-		$raven_state = ($this->session->userdata('raven')) ? $this->session->userdata('raven') : "PEND";
-		
-		$this->session->set_userdata('luscher', $luscher_state);
-		$this->session->set_userdata('d48', $d48_state);
-		$this->session->set_userdata('raven', $raven_state);
-		if ($this->session->userdata('luscher') == "PEND") {
-			$this->luscher("1");
-		}else
-		if ($this->session->userdata('d48') == "PEND") {
-			$this->d48("2");
-		} else
-		if ($this->session->userdata('raven') == "PEND") {
-			$this->raven("3");
-
+		$tests_del_usuario = $this->Test_model->getTestsPendientes($this->session->userdata('usuario'));
+			//print_r($tests_del_usuario);exit;
+		switch (strtolower($tests_del_usuario["test_pendientes"][2]->nombre_test)) {
+			case "luscher":
+				$this->luscher("1");
+				break;
+			case "d48":
+				$this->d48("2");
+				break;
+			case "raven":
+				$this->raven("3");
+				break;
+			case "mips":
+				$this->mips("4");
+				break;
+			case "rorschach":
+				$this->rorschach("5");
+				break;
+			default :
+				echo "Usted no tiene tests pendientes.";
 		}
+
 	}
 	/** METODOS SOLO PARA PRUEBAS INTERNAS **/
 	function t1(){
