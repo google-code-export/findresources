@@ -24,7 +24,11 @@ class Test extends CI_Controller {
 		$this->session->set_userdata('usuario', "juan@juan.com");
 		$tests_del_usuario = $this->Test_model->getTestsPendientes($this->session->userdata('usuario'));
 			//print_r($tests_del_usuario);exit;
-		switch (strtolower($tests_del_usuario["test_pendientes"][2]->nombre_test)) {
+		if (!array_key_exists(3, $tests_del_usuario["test_pendientes"]))	{
+			echo "Usted no tiene tests pendientes.";
+			exit;
+		}
+		switch (strtolower($tests_del_usuario["test_pendientes"][0]->nombre_test)) {
 			case "luscher":
 				$this->luscher("1");
 				break;
