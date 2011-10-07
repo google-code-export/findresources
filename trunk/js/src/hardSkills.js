@@ -17,11 +17,26 @@ function addIndustry(showImportance){
 		var industryLi = "<li id=\"editItemIndustry" + selectedIndustry  + "\" class=\"industryItem\">"+
 					"<div class=\"field\">"+
 					"<div class=\"label\" >" + availableIndustries[selectedIndustry] + ":</div>" +
-					"<input type=\"text\" class=\"pointsInput\" value=\"0\"/>" + 
+					
+					//"<input type=\"text\" class=\"pointsInput\" value=\"0\"/>" + 
+					"<ul class='star-rating'>" + 
+							"<li class='current-rating' value=\"1\" style=\"width: 20px;\"></li>" + 
+							"<li><a href='#' onclick=\"vote('#editItemIndustry" +selectedIndustry+ " .current-rating', 1); return false;\"" + 
+						           "title='Trainee' class='one-star'>1</a></li>" +
+							"<li><a href='#' onclick=\"vote('#editItemIndustry" +selectedIndustry+ " .current-rating',2); return false;\""  +
+						           "title='Junior' class='two-stars'>2</a></li>" +
+							"<li><a href='#' onclick=\"vote('#editItemIndustry" +selectedIndustry+ " .current-rating',3); return false;\"" +
+						           "title='Semi senior' class='three-stars'>3</a></li>" +
+							"<li><a href='#' onclick=\"vote('#editItemIndustry" +selectedIndustry+ " .current-rating',4); return false;\"" +
+						           "title='Senior' class='four-stars'>4</a></li>" +
+							"<li><a href='#' onclick=\"vote('#editItemIndustry" +selectedIndustry+ " .current-rating',5); return false;\"" +
+						           "title='Experto' class='five-stars'>5</a></li>" +
+					"</ul>" +
+					
 					importanceLine +
-					"<a href=\"javascript:removeIndustry(" + selectedIndustry + ");\">X</a>" + 
+					"<a class=\"removeSkillLink\" href=\"javascript:removeIndustry(" + selectedIndustry + ");\"><img src=\"images/src/delete.png\"></img></a>" + 
 				"</div></li>"
-
+		
 		$('#editItemIndustryList').append(industryLi);
 		
 	}else {
@@ -46,9 +61,23 @@ function addTool(showImportance){
 						"<div class=\"label\">" +
 							availableAreas[selectedArea] +" - " + availableTools[selectedTool] +
 						":</div>" +
-						"<input type=\"text\" class=\"pointsInput\" value=\"0\"/>" + 
+//						"<input type=\"text\" class=\"pointsInput\" value=\"0\"/>" + 
+						
+						"<ul class='star-rating'>" + 
+								"<li class='current-rating' value=\"1\" style=\"width: 20px;\"></li>" + 
+								"<li><a href='#' onclick=\"vote('#editItemTool" +selectedTool+ " .current-rating', 1); return false;\"" + 
+							           "title='Trainee' class='one-star'>1</a></li>" +
+								"<li><a href='#' onclick=\"vote('#editItemTool" +selectedTool+ " .current-rating',2); return false;\""  +
+							           "title='Junior' class='two-stars'>2</a></li>" +
+								"<li><a href='#' onclick=\"vote('#editItemTool" +selectedTool+ " .current-rating',3); return false;\"" +
+							           "title='Semi senior' class='three-stars'>3</a></li>" +
+								"<li><a href='#' onclick=\"vote('#editItemTool" +selectedTool+ " .current-rating',4); return false;\"" +
+							           "title='Senior' class='four-stars'>4</a></li>" +
+								"<li><a href='#' onclick=\"vote('#editItemTool" +selectedTool+ " .current-rating',5); return false;\"" +
+							           "title='Experto' class='five-stars'>5</a></li>" +
+						"</ul>" +
 						importanceLine +
-						"<a href=\"javascript:removeTool(" + selectedTool + ");\">X</a>" + 
+						"<a class=\"removeSkillLink\" href=\"javascript:removeTool(" + selectedTool + ");\"><img src=\"images/src/delete.png\"></img></a>" + 
 					"</div>" +
 				"</li>"
 

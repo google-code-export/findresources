@@ -110,3 +110,29 @@
 .closedSearchLink a{
 	color: gray !important;
 }
+
+
+#hardProperties .star-rating{
+	float: left;
+	margin: 3px 10px 5px 6px;
+	
+}
+
+#hardProperties .label {
+	margin-top: 4px;
+}
+
+.removeSkillLink img{
+	margin: 5px 15px;
+}
+
+.toolItem,
+.industryItem {
+	height: 20px;
+	background-color: #FBFBFB;
+}
+
+.industryItem .label{
+	padding-top: 3px
+}
+

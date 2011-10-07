@@ -1,5 +1,8 @@
 @import url('http://fonts.googleapis.com/css?family=Droid+Sans');
 html, body, div, h1, h2, h3, h4, h5, h6, ul, li, ol, p, form, dd, dl, dt, label{margin:0;padding:0;list-style:none;font-weight:normal;}
+html {
+/*background-color: #84C5F0;*/
+}
 h1{
 	font-size: 20px;
 }
