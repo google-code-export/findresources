@@ -1,24 +1,28 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en">
+<html>
 <head>
 	<meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type"/>
     <link rel="StyleSheet" type="text/css" href="<?php echo site_url('css/style.css')?>" />
     <link rel=StyleSheet type="text/css" href="<?php echo site_url('css/global.css')?>"/>
-	<!-- link rel=StyleSheet type="text/css" href="<?php echo site_url('css/view_busquedas.css')?>"/-->
 	<script src="<?php echo base_url();?>js/libs/jquery-1.6.2.min.js"></script>
 	<title>FindResources</title>
 </head> 
 <body> 
 <?php include("toolbar.php"); ?>
+<h1>Test de Lüscher</h1>
+<div id="page" style="height:600px;"> 
 <?php
+
+/** ************************* **/
 /** PAGINA DE INICIO DEL TEST **/
+/** ************************* **/
+
 if ($source== "init_test"){
 ?>
-<div id="page"> 
 <center> 
-<h1 style="text-align:center;">Test de Lüscher</h1> 
-Para la realización de este test usted deberá seleccionar 8 colores en el orden que prefiera.
-<br /><br /><br />
+<br /><br />
+<h4>Para la realización de este test usted deberá seleccionar 8 colores en el orden que prefiera.</h4>
+<br /><br /><br /><br /><br /><br />
 <form method="post" id="quiz_form" name="quiz_form">
 <input type="hidden" name="source" value="init_test" />
 <input type="hidden" name="colors1" value="" />
@@ -28,7 +32,11 @@ Para la realización de este test usted deberá seleccionar 8 colores en el orden 
 </center>
 <?php 
 }
+
+/** *************************************** **/
 /** PAGINA DE SELECCION DE COLORES DEL TEST **/
+/** *************************************** **/
+
 if ($source == "select_colors1" || $source == "select_colors2"){
  
 if ($source == "select_colors1"){
@@ -49,17 +57,8 @@ if ($source == "select_colors2" ) {
 var total = 0;
 var quiz_form = document.getElementById('quiz_form');
 setColor = function(id) {
-  //replace image
   $('#image'+id).fadeOut(400);
-  //document.getElementById('image'+id).src = '<?php echo base_url();?>images/luscher/blank.gif';
-  //document.getElementById('image'+id).parentNode.onmousedown = function() {
-//    return false;
-//  }
- 
-  //save data
-//var prev =  $('[input=[@name=#<?php echo $color;?>').val();
- //  $('#<?php echo $color;?>').val(prev+id);
- quiz_form.<?php echo $color;?>.value += id;
+  quiz_form.<?php echo $color;?>.value += id;
   
   //check if finished
   total++;
@@ -72,8 +71,9 @@ setColor = function(id) {
 }
 </script> 
 <center> 
-<h1 style="text-align:center;">Test de Lüscher</h1> 
-<h3><?php echo $title;?></h3> 
+<br /><br />
+<h4><?php echo $title;?></h4> 
+<br /><br /><br /><br /><br /><br />
 <table> 
 <tr> <!-- rojo -->
 <td style="background-color:#D32727;" class="luscher_color" id="image3" onclick="setColor(3)"> 
@@ -97,19 +97,30 @@ setColor = function(id) {
 </center> 
  <?php 
 }
-/** PAGINA FINAL DEL TEST **/
-if ($source == "test_finished") {
-	echo '<br /><h3>Muchas gracias por realizar el Test. Esta información será tenida en cuenta en sus postulaciones.</h3><br /><hr><br />';
-	echo '<br /><a href="'.base_url().'Test">Continuar con el siguiente test.</a><br /><hr><br />';
-	//echo '<pre>RESULTADOS: <br />';
-	//echo '1era Selección: '.$c1.$sep.$timer1.'<br />';
-	//echo '2da  Selección: '.$c2.$sep.$timer2.'</pre>';	
-	echo $result;
-	
 
-	//$this->session->set_userdata($test, "DONE");
+/** ********************* **/
+/** PAGINA FINAL DEL TEST **/
+/** ********************* **/
+
+if ($source == "test_finished") {
+?>
+<br />
+<br /><br />
+<h4>Muchas gracias por realizar el Test. Esta información será tenida en cuenta en sus postulaciones.</h4>
+<br /><br /><br />
+<br /><a href="<?php echo base_url()?>Test">Continuar con el siguiente test.</a>
+<br /><br /><hr />
+<?php 
+	if ($result != "OK")
+			echo $result;
+			echo "<br /><hr />";
 }
 ?>
 </div> 
+
+<div id="test_footer">
+<?php include("footer.php"); ?>
+</div>
+
 </body>
 </html>
