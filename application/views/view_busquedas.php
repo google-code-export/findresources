@@ -16,7 +16,10 @@
 
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/jquery-ui-1.8.16.css')?>" />
 <link rel=StyleSheet type="text/css" href="<?php echo site_url('css/tabs.css')?>"/>
+<link rel=StyleSheet type="text/css" href="<?php echo site_url('css/starrating.css')?>"/>
+
 <link rel=StyleSheet type="text/css" href="<?php echo site_url('css/global.css')?>"/>
+<link rel=StyleSheet type="text/css" href="<?php echo site_url('css/starrating.css')?>"/>
 <link rel=StyleSheet type="text/css" href="<?php echo site_url('css/view_busquedas.css')?>"/>
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/flexigrid/flexigrid.pack.css')?>" />
 	
@@ -25,6 +28,7 @@
 <script type="text/javascript" src=" <?php echo site_url('js/flexigrid/flexigrid.pack.js')?>"></script>	
 <script type="text/javascript" src="<?php echo site_url('js/libs/jquery-ui.min-1.8.16.js')?>"></script>
 <script type="text/javascript" src=" <?php echo site_url('js/libs/json2.js')?>"></script>
+<script type="text/javascript" src=" <?php echo site_url('js/src/starrating.js')?>"></script>
 <script type="text/javascript" src=" <?php echo site_url('js/src/utils.js')?>"></script>
 <script type="text/javascript" src=" <?php echo site_url('js/src/view_busquedas.js')?>"></script>
 <script type="text/javascript" src=" <?php echo site_url('js/src/hardSkills.js')?>"></script>
@@ -100,7 +104,17 @@
 										<h4>Areas de negocio</h4>
 										<ul>
 										<?php foreach ($busquedaSeleccionada['lista_industria']  as $id => $habilidad){ ?>
-											<li><?php echo $habilidad->d_industria ?>: <?php echo $habilidad->valoracion ?> - <?php echo $habilidad->importancia ?></li>
+											<li class="clearfix">
+												<div class="label"> 
+													<?php echo $habilidad->d_industria; ?> : 
+												</div>											
+												<ul class='star-rating'>
+													<li class='current-rating' value="<?php echo $habilidad->valoracion ?>"></li>
+												</ul>
+												<div class="label"> 
+													- <?php echo $habilidad->importancia ?>
+												</div>								
+											</li>		
 										<?php } ?>
 										</ul>
 									</div>
@@ -109,13 +123,24 @@
 										<h4>Herramientas</h4>
 										<ul>
 										<?php foreach ($busquedaSeleccionada['lista_herramienta'] as $habilidad){ ?>
-											<li><?php echo $habilidad->d_area ?> - <?php echo $habilidad->d_herramienta ?>: <?php echo $habilidad->valor_herramienta ?> - <?php echo $habilidad->importancia ?></li>
+											<li class="clearfix">
+												<div class="label"> 
+													<?php echo $habilidad->d_area ?> - <?php echo $habilidad->d_herramienta ?>: 
+												</div>
+												<ul class='star-rating'>
+													<li class='current-rating' value="<?php echo $habilidad->valor_herramienta ?>"></li>
+												</ul>
+												<div class="label"> 
+													- 
+													<?php echo $habilidad->importancia ?>
+												</div>											
+											</li>
 										<?php } ?>
 										</ul>
 									</div>
 								</div>
 								<div class="block" id="softSkills">
-									<h2>Características Blandas <a href="javascript:editSoftSkills();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
+									<h2>Aspectos de la personalidad <a href="javascript:editSoftSkills();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
 									<div class="inblock">
 										<?php foreach ($busquedaSeleccionada['hab_blanda'] as $habilidad){ ?>
 											<div class="row clearfix">
@@ -360,10 +385,10 @@
 	<table cellspacing="0" cellpadding="0" align="center">
 	<tr><td>
 		<div class="in">
-			<div class="popuptitle"> Características Duras </div>
+			<div class="popuptitle">Conocimientos</div>
 			<a href="javascript:;" class="closePopUp"></a>
 			<div class="inside">
-				<h4>Industrias</h4>
+				<h4>Areas de negocio</h4>
 				<div class="clearfix">
 					<select id="availableIndustriesSelect">
 						<?php foreach ($industriasDisponibles as $id => $industria){ ?>
@@ -379,15 +404,29 @@
 					<li id="editItemIndustry<?php echo $habilidad->id_industria ?>" class="industryItem">
 						<div class="field">
 							<div class="label"><?php echo $habilidad->d_industria ?>:</div> 
-							<input type="text" class="pointsInput" value="<?php echo $habilidad->valoracion ?>"/>
+
+							<ul class='star-rating'>
+								<li class='current-rating' value="<?php echo $habilidad->valoracion ?>"></li>
+								<li><a href="#" onclick="vote('#editItemIndustry<?php echo $habilidad->id_industria ?> .current-rating', 1); return false;" 
+							           title='Trainee' class='one-star'>1</a></li>
+								<li><a href="#" onclick="vote('#editItemIndustry<?php echo $habilidad->id_industria ?> .current-rating',2); return false;" 
+							           title='Junior' class='two-stars'>2</a></li>
+								<li><a href="#" onclick="vote('#editItemIndustry<?php echo $habilidad->id_industria ?> .current-rating',3); return false;" 
+							           title='Semi senior' class='three-stars'>3</a></li>
+								<li><a href="#" onclick="vote('#editItemIndustry<?php echo $habilidad->id_industria ?> .current-rating',4); return false;" 
+							           title='Senior' class='four-stars'>4</a></li>
+								<li><a href="#" onclick="vote('#editItemIndustry<?php echo $habilidad->id_industria ?> .current-rating',5); return false;" 
+							           title='Experto' class='five-stars'>5</a></li>
+							</ul>
+
 							<input type="text" class="importanceInput" value="<?php echo $habilidad->importancia ?>"/>
-							<a href="javascript:removeIndustry(<?php echo $habilidad->id_industria?>);">X</a>
+							<a class="removeSkillLink" href="javascript:removeIndustry(<?php echo $habilidad->id_industria?>);"><img src="images/src/delete.png"></img></a>
 						</div>
 					</li>
 				<?php } ?>
 				</ul>
 				
-				<h4>Areas</h4>
+				<h4>Herramientas</h4>
 				<div>
 					<select id="availableAreasSelect">
 						<option id="availableAreasDefaultOption" value="-1" selected="selected">Areas</option>
@@ -408,9 +447,23 @@
 							<div class="label">
 								<?php echo $habilidad->d_area ?> - <?php echo $habilidad->d_herramienta ?>: 
 							</div>
-			        		<input type="text" class="pointsInput" value="<?php echo $habilidad->valor_herramienta ?>"/>
+
+							<ul class='star-rating'>
+								<li class='current-rating' value="<?php echo $habilidad->valor_herramienta ?>"></li>
+								<li><a href="#" onclick="vote('#editItemTool<?php echo $habilidad->id_herramienta ?> .current-rating', 1); return false;" 
+							           title='Trainee' class='one-star'>1</a></li>
+								<li><a href="#" onclick="vote('#editItemTool<?php echo $habilidad->id_herramienta ?> .current-rating',2); return false;" 
+							           title='Junior' class='two-stars'>2</a></li>
+								<li><a href="#" onclick="vote('#editItemTool<?php echo $habilidad->id_herramienta ?> .current-rating',3); return false;" 
+							           title='Semi senior' class='three-stars'>3</a></li>
+								<li><a href="#" onclick="vote('#editItemTool<?php echo $habilidad->id_herramienta ?> .current-rating',4); return false;" 
+							           title='Senior' class='four-stars'>4</a></li>
+								<li><a href="#" onclick="vote('#editItemTool<?php echo $habilidad->id_herramienta ?> .current-rating',5); return false;" 
+							           title='Experto' class='five-stars'>5</a></li>
+							</ul>
+
 							<input type="text" class="importanceInput" value="<?php echo $habilidad->importancia ?>"/>
-							<a href="javascript:removeTool(<?php echo $habilidad->id_herramienta ?>);">X</a>
+							<a class="removeSkillLink" href="javascript:removeTool(<?php echo $habilidad->id_herramienta ?>);"><img src="images/src/delete.png"></img></a>
 						</div>
 					</li>
 				<?php } ?>
@@ -430,7 +483,7 @@
 		<table cellspacing="0" cellpadding="0" align="center">
 		<tr><td>
 			<div class="in">
-				<div class="popuptitle">Características Blandas</div>
+				<div class="popuptitle">Aspectos de la Personalidad</div>
 				<a href="#" class="closePopUp"></a>
 				<div class="inside">
 					<h4>Habilidades</h4>

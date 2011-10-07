@@ -126,7 +126,7 @@ function setHardSkills(){
 	$('.industryItem').each(function(i,element){
 		var itemId = $(element).attr("id");
 		var id = itemId.substring(startIndex);
-		var points = $('#' + itemId + ' .pointsInput').val();
+		var points = $('#' + itemId + ' .current-rating').val();
 		habilidadesIndustrias.push({
 			id_industria: id,
 			valoracion: points,
@@ -139,7 +139,7 @@ function setHardSkills(){
 	$('.toolItem').each(function(i,element){
 		var itemId = $(element).attr("id");
 		var id = itemId.substring(startIndex);
-		var points = $('#' + itemId + ' .pointsInput').val();
+		var points = $('#' + itemId + ' .current-rating').val();
 		habilidadesAreas.push({
 			id_herramienta: id,
 			valor_herramienta: points,

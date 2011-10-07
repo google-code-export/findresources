@@ -25,6 +25,7 @@
 
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/jquery-ui-1.8.16.css')?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/global.css')?>" />
+<link rel=StyleSheet type="text/css" href="<?php echo site_url('css/starrating.css')?>"/>
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/view_curriculum.css')?>" />
 <script type="text/javascript">
 	var availableIndustries = <?php  echo json_encode_utf8($industriasDisponibles); ?>;
@@ -56,6 +57,7 @@
 <script type="text/javascript" src="<?php echo site_url('js/libs/jquery-ui.min-1.8.16.js')?>"></script>
 
 <script type="text/javascript" src="<?php echo site_url('js/libs/json2.js')?>"></script>
+<script type="text/javascript" src=" <?php echo site_url('js/src/starrating.js')?>"></script>
 <script type="text/javascript" src="<?php echo site_url('js/src/utils.js')?>"></script>
 <script type="text/javascript" src="<?php echo site_url('js/src/view_curriculum.js')?>"></script>
 <script type="text/javascript" src=" <?php echo site_url('js/src/hardSkills.js')?>"></script>
@@ -147,7 +149,14 @@
 					<h4>Areas de negocio</h4>
 					<ul>
 					<?php foreach ($habilidadesIndustriasDelCV as $habilidad){ ?>
-						<li><?php echo $habilidad->descripcionIndustria ?>: <?php echo $habilidad->puntos ?></li>
+						<li class="clearfix">
+							<div class="label"> 
+								<?php echo $habilidad->descripcionIndustria ?>: 
+							</div>						
+							<ul class='star-rating'>
+								<li class='current-rating' value="<?php echo $habilidad->puntos ?>"></li>
+							</ul>
+						</li>
 					<?php } ?>
 					</ul>
 				</div>
@@ -156,7 +165,14 @@
 					<h4>Herramientas</h4>
 					<ul>
 					<?php foreach ($habilidadesAreasDelCV as $habilidad){ ?>
-						<li><?php echo $habilidad->descripcionArea ?> - <?php echo $habilidad->descripcionHerramienta ?>: <?php echo $habilidad->puntos ?></li>
+						<li class="clearfix">
+							<div class="label"> 
+								<?php echo $habilidad->descripcionArea ?> - <?php echo $habilidad->descripcionHerramienta ?>: 
+							</div>						
+							<ul class='star-rating'>
+								<li class='current-rating' value="<?php echo $habilidad->puntos ?>"></li>
+							</ul>
+						</li>
 					<?php } ?>
 					</ul>
 				</div>
@@ -404,7 +420,7 @@
 		<div class="popuptitle"> Características Duras </div>
 		<a href="javascript:;" class="closePopUp"></a>
 		<div class="inside">
-			<h4>Industrias</h4>
+			<h4>Areas de negocio</h4>
 			<div class="clearfix">
 				<select id="availableIndustriesSelect">
 					<?php foreach ($industriasDisponibles as $id => $industria){ ?>
@@ -419,15 +435,29 @@
 			<?php foreach ($habilidadesIndustriasDelCV as $habilidad){ ?>
 				<li id="editItemIndustry<?php echo $habilidad->idIndustria ?>" class="industryItem">
 					<div class="field">
+					
 						<div class="label"><?php echo $habilidad->descripcionIndustria ?>:</div> 
-						<input type="text" class="pointsInput" value="<?php echo $habilidad->puntos ?>"/>
-						<a href="javascript:removeIndustry(<?php echo $habilidad->idIndustria ?>);">X</a>
+						
+						<ul class='star-rating'>
+							<li class='current-rating' value="<?php echo $habilidad->puntos ?>"></li>
+							<li><a href="#" onclick="vote('#editItemIndustry<?php echo $habilidad->idIndustria ?> .current-rating', 1); return false;" 
+						           title='Trainee' class='one-star'>1</a></li>
+							<li><a href="#" onclick="vote('#editItemIndustry<?php echo $habilidad->idIndustria ?> .current-rating',2); return false;" 
+						           title='Junior' class='two-stars'>2</a></li>
+							<li><a href="#" onclick="vote('#editItemIndustry<?php echo $habilidad->idIndustria ?> .current-rating',3); return false;" 
+						           title='Semi senior' class='three-stars'>3</a></li>
+							<li><a href="#" onclick="vote('#editItemIndustry<?php echo $habilidad->idIndustria ?> .current-rating',4); return false;" 
+						           title='Senior' class='four-stars'>4</a></li>
+							<li><a href="#" onclick="vote('#editItemIndustry<?php echo $habilidad->idIndustria ?> .current-rating',5); return false;" 
+						           title='Experto' class='five-stars'>5</a></li>
+						</ul>
+						<a class="removeSkillLink" href="javascript:removeIndustry(<?php echo $habilidad->idIndustria ?>);"><img src="images/src/delete.png"></img></a>
 					</div>
 				</li>
 			<?php } ?>
 			</ul>
 			
-			<h4>Areas</h4>
+			<h4 class="toolsTitle" >Herramientas</h4>
 			<div>
 				<select id="availableAreasSelect">
 					<option id="availableAreasDefaultOption" value="-1" selected="selected">Areas</option>
@@ -448,8 +478,23 @@
 						<div class="label">
 							<?php echo $habilidad->descripcionArea ?> - <?php echo $habilidad->descripcionHerramienta ?>: 
 						</div>
-		        		<input type="text" class="pointsInput" value="<?php echo $habilidad->puntos ?>"/>
-						<a href="javascript:removeTool(<?php echo $habilidad->idHerramienta ?>);">X</a>
+		        		
+						<ul class='star-rating'>
+							<li class='current-rating' value="<?php echo $habilidad->puntos ?>"></li>
+							<li><a href="#" onclick="vote('#editItemTool<?php echo $habilidad->idHerramienta ?> .current-rating', 1); return false;" 
+						           title='Trainee' class='one-star'>1</a></li>
+							<li><a href="#" onclick="vote('#editItemTool<?php echo $habilidad->idHerramienta ?> .current-rating',2); return false;" 
+						           title='Junior' class='two-stars'>2</a></li>
+							<li><a href="#" onclick="vote('#editItemTool<?php echo $habilidad->idHerramienta ?> .current-rating',3); return false;" 
+						           title='Semi senior' class='three-stars'>3</a></li>
+							<li><a href="#" onclick="vote('#editItemTool<?php echo $habilidad->idHerramienta ?> .current-rating',4); return false;" 
+						           title='Senior' class='four-stars'>4</a></li>
+							<li><a href="#" onclick="vote('#editItemTool<?php echo $habilidad->idHerramienta ?> .current-rating',5); return false;" 
+						           title='Experto' class='five-stars'>5</a></li>
+						</ul>
+		        		
+		        		
+						<a class="removeSkillLink" href="javascript:removeTool(<?php echo $habilidad->idHerramienta ?>);"><img src="images/src/delete.png"></img></a>
 					</div>
 				</li>
 			<?php } ?>

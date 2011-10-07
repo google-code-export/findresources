@@ -223,7 +223,7 @@ $(function(){
 		$('.industryItem').each(function(i,element){
 			var itemId = $(element).attr("id");
 			var id = itemId.substring(startIndex);
-			var points = $('#' + itemId + ' .pointsInput').val();
+			var points = $('#' + itemId + ' .current-rating').val();
 			habilidadesIndustrias.push({
 				idIndustria: id,
 				puntos: points
@@ -238,7 +238,7 @@ $(function(){
 			var itemId = $(element).attr("id");
 			var id = itemId.substring(startIndex);
 			var idArea = $(element).attr("area");
-			var points = $('#' + itemId + ' .pointsInput').val();
+			var points = $('#' + itemId + ' .current-rating').val();
 			habilidadesAreas.push({
 				idArea: idArea,
 				idHerramienta: id,

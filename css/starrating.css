@@ -1,0 +1,91 @@
+@CHARSET "ISO-8859-1";
+
+.star-rating {
+	list-style: none;
+	margin-left: 5px !important;
+	padding: 0px !important;
+	width: 100px;
+	height: 20px;
+	position: relative;
+	background: url(../images/src/alt_star.png) top left repeat-x;
+}
+
+.star-rating li {
+	padding: 0px;
+	margin: 0px;
+	/*\*/
+	float: left;
+	/* */
+}
+
+.star-rating li a {
+	display: block;
+	width: 20px;
+	height: 20px;
+	text-decoration: none;
+	text-indent: -9000px;
+	z-index: 20;
+	position: absolute;
+	padding: 0px;
+}
+
+.star-rating li a:hover {
+	background: url(../images/src/alt_star.png) left bottom;
+	z-index: 2;
+	left: 0px;
+}
+
+.star-rating a:focus,.star-rating a:active {
+	border: 0;
+	-moz-outline-style: none;
+	outline: none;
+}
+
+.star-rating a.one-star {
+	left: 0px;
+}
+
+.star-rating a.one-star:hover {
+	width: 20px;
+}
+
+.star-rating a.two-stars {
+	left: 20px;
+}
+
+.star-rating a.two-stars:hover {
+	width: 40px;
+}
+
+.star-rating a.three-stars {
+	left: 40px;
+}
+
+.star-rating a.three-stars:hover {
+	width: 60px;
+}
+
+.star-rating a.four-stars {
+	left: 60px;
+}
+
+.star-rating a.four-stars:hover {
+	width: 80px;
+}
+
+.star-rating a.five-stars {
+	left: 80px;
+}
+
+.star-rating a.five-stars:hover {
+	width: 100px;
+}
+
+.star-rating li.current-rating {
+	background: url(../images/src/alt_star.png) left center;
+	position: absolute;
+	height: 20px;
+	display: block;
+	text-indent: -9000px;
+	z-index: 1;
+}
