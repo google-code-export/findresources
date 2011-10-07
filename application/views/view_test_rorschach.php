@@ -129,6 +129,5 @@ if ($source == "test_finished") {
 <div id="test_footer">
 <?php include("footer.php"); ?>
 </div>
-</div>
 </body> 
 </html>
