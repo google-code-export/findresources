@@ -1,15 +1,15 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=Cp1252">
-    <title>FindResources - Test de Lüscher</title> 
-    <meta name="description" content="FindResources - Choose best people" /> 
-    <meta name="keywords" content="personality test color psychology luscher colour" /> 
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <script src="<?php echo base_url();?>js/libs/jquery-1.6.2.min.js"></script>
-    <link rel="stylesheet" href="<?php echo base_url();?>css/style.css">
+	<meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type"/>
+    <link rel="StyleSheet" type="text/css" href="<?php echo site_url('css/style.css')?>" />
+    <link rel=StyleSheet type="text/css" href="<?php echo site_url('css/global.css')?>"/>
+	<!-- link rel=StyleSheet type="text/css" href="<?php echo site_url('css/view_busquedas.css')?>"/-->
+	<script src="<?php echo base_url();?>js/libs/jquery-1.6.2.min.js"></script>
+	<title>FindResources</title>
 </head> 
 <body> 
+<?php include("toolbar.php"); ?>
 <?php
 /** PAGINA DE INICIO DEL TEST **/
 if ($source== "init_test"){
@@ -19,7 +19,7 @@ if ($source== "init_test"){
 <h1 style="text-align:center;">Test de Lüscher</h1> 
 Para la realización de este test usted deberá seleccionar 8 colores en el orden que prefiera.
 <br /><br /><br />
-<form method="POST" id="quiz_form" name="quiz_form">
+<form method="post" id="quiz_form" name="quiz_form">
 <input type="hidden" name="source" value="init_test" />
 <input type="hidden" name="colors1" value="" />
 <input type="hidden" name="colors2" value="" />
@@ -40,7 +40,7 @@ if ($source == "select_colors2" ) {
 	$title = "Selecciona nuevamente los colores en el orden que prefieras.";
 }
 ?>
-<form method="POST" id="quiz_form" name="quiz_form">
+<form method="post" id="quiz_form" name="quiz_form">
 <input type="hidden" name="source" value="<?php echo $source;?>" />
 <input type="hidden" name="colors1" value="<?php echo $c1;?>" />
 <input type="hidden" name="colors2" value="<?php echo $c2;?>" />
@@ -111,4 +111,5 @@ if ($source == "test_finished") {
 }
 ?>
 </div> 
+</body>
 </html>
