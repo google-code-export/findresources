@@ -25,7 +25,7 @@
 <link rel=StyleSheet href="<?php echo site_url('css/toolbar.css')?>"/>
 
 <div id="toolbar_header">
-	<a id="toolbar_fr_logo" href="home"></a>
+	<a id="toolbar_fr_logo" href="<?php echo site_url('home')?>"></a>
 	<div id="toolbar_session">
 		<div id="toolbar_fr_lenguage">
 			<?php if(isset($_SESSION[SESSION_ID_USUARIO])){
