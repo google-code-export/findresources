@@ -44,6 +44,8 @@ class Busquedas extends CI_Controller {
 			$_SESSION[SESSION_ID_BUSQUEDA_SELECCIONADA]= $idBusqueda;
 			$data['busquedaSeleccionada'] = $this->Busquedas_model->getOpcionesDeBusqueda($idBusqueda);
 			$data['estadoBusqueda'] = $this->Busquedas_model->getEstadoBusqueda($idBusqueda);
+			//$result = $this->Busquedas_model->getResultadoBusqueda("1","");
+			//var_dump($result);
 		}
 		
 		
