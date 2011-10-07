@@ -1,16 +1,17 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=Cp1252">
-    <title>FindResources - Test de Dominó</title> 
-    <meta name="description" content="FindResources - Choose best people" /> 
-    <meta name="keywords" content="personality test images psychology d48 intelligence domino" /> 
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type"/>
     <script type="text/javascript" src="<?php echo base_url();?>js/src/countDown.js"></script>
     <script src="<?php echo base_url();?>js/libs/jquery-1.6.2.min.js"></script>
-    <link rel="stylesheet" href="<?php echo base_url();?>css/style.css">
+    <link rel="StyleSheet" type="text/css" href="<?php echo site_url('css/style.css')?>" />
+    <link rel=StyleSheet type="text/css" href="<?php echo site_url('css/global.css')?>"/>
+    <title>FindResources</title> 
 </head> 
 <body> 
+<?php include("toolbar.php"); ?>
+<h1>Test de Dominó</h1>
+<div id="page" style="height:620px;"> 
 <?php
 /** PAGINA DE INICIO DEL TEST **/
 if ($source== "init_test"){
@@ -31,23 +32,22 @@ $(document).ready(function(){
     });
   });
 </script>
-<div id="page"> 
 <center> 
-<h1 style="text-align:center;">Test de Dominó</h1> 
+<br /><br /><h4>
 En cada uno de los cuadros siguientes hay un grupo de fichas de dominós. Dentro de cada mitad los puntos varían de 0 a 6.
 <br /><br />
 Lo que usted tiene que hacer es observar bien cada grupo y calcular cuántos puntos le corresponden a la ficha que está en blanco.
 <br /><br />
-Aquí hay dos ejemplos que ya han sido resueltos. Observe cómo y por qué corresponden esas soluciones.<br /><br /><br />
-<img src="<?php echo base_url();?>images/d48/placaej1.png" id="ej1">
-<img src="<?php echo base_url();?>images/d48/placaej2.png" id="ej2">
+Aquí hay cuatro ejemplos que ya han sido resueltos. Observe cómo y por qué corresponden esas soluciones.<br /><br /><br /></h4>
+<img src="<?php echo base_url();?>images/d48/placaej1.png" id="ej1" />
+<img src="<?php echo base_url();?>images/d48/placaej2.png" id="ej2" />
 <br />
-<img src="<?php echo base_url();?>images/d48/placaej3.png" id="ej3">
-<img src="<?php echo base_url();?>images/d48/placaej4.png" id="ej4">
+<img src="<?php echo base_url();?>images/d48/placaej3.png" id="ej3" />
+<img src="<?php echo base_url();?>images/d48/placaej4.png" id="ej4" />
 <br /><br />
 Haga clic en la ficha blanca para ver el resultado.
 <br /><br />
-<form method="POST" id="quiz_form" name="quiz_form">
+<form method="post" id="quiz_form" name="quiz_form">
 <input type="hidden" name="source" value="init_test" />
 <input type="hidden" name="placa" value="0" />
 <a href="javascript:document.quiz_form.submit();" class="button">Comenzar el test</a>
@@ -55,10 +55,10 @@ Haga clic en la ficha blanca para ver el resultado.
 </center>
 <?php 
 }
+/** ************************************** **/
 /** PAGINA DE SELECCION DE FICHAS DEL TEST **/
+/** ************************************** **/
 if ($source == "select_ficha"){
-//$minutos = "45";
-//$segundos = "01";
 if($timer == "") {	$timer = "40:01"; }
 $time = explode(':',$timer,2);
 $minutos = $time[0];
@@ -81,11 +81,12 @@ $(document).ready(function(){
 </script>
 <script type="text/javascript">function init() {cd('<?php echo $minutos;?>', '<?php echo $segundos;?>');}window.onload = init;</script>
 <center>
-<h1>Test de Dominó</h1>
+<br /><br />
 <h3>Placa Nº<?php echo $placa;?></h3>
+<br />
 <img src="<?php echo base_url();?>images/d48/placa<?php echo $placa;?>.png" /><br />
 <h4>Selecciona la ficha que continua la serie: </h4><br />
-<form method="POST" id="quiz_form" name="quiz_form">
+<form method="post" id="quiz_form" name="quiz_form">
 <table id="d48_ficha">
 <tr><td><input type="text" name="item1" value="" maxlength="1" id="d48_input" /></td></tr>
 <tr><td><input type="text" name="item2" value="" maxlength="1" id="d48_input" /></td></tr>
@@ -140,70 +141,35 @@ $(document).ready(function(){
 <input type="hidden" name="s47" value="<?php echo $s47;?>"/>
 <input type="hidden" name="s48" value="<?php echo $s48;?>"/>
 <input type="hidden" name="placa" value="<?php echo $placa;?>"/>
-<input type="text" name="timer" id="timer" value="<?php echo $timer;?>" border="0" READONLY/><br /><br />
+<input type="text" name="timer" id="timer" value="<?php echo $timer;?>" readonly="readonly" /><br /><br />
 <a href="javascript:document.quiz_form.submit();" class="button save">Siguiente</a>
 </form>
 </center>
  <?php 
 }
-/** PAGINA FINAL DEL TEST **/
-if ($source == "test_finished") {
-	echo '<br /><h3>Muchas gracias por realizar el Test. Esta información será tenida en cuenta en sus postulaciones.</h3><br /><hr>';
-	echo '<a href="'.base_url().'Test">Continuar con el siguiente test.</a><br /><hr><br />';
-	/*echo '<pre>RESULTADOS:<br />
-	Placa 1: '.	$s1.'<br />
-	Placa 2: '.	$s2.'<br />
-	Placa 3: '.	$s3.'<br />
-	Placa 4: '.	$s4.'<br />
-	Placa 5: '.	$s5.'<br />
-	Placa 6: '.	$s6.'<br />
-	Placa 7: '.	$s7.'<br />
-	Placa 8: '.	$s8.'<br />
-	Placa 9: '.	$s9.'<br />
-	Placa 10: '.$s10.'<br />
-	Placa 11: '.$s11.'<br />
-	Placa 12: '.$s12.'<br />
-	Placa 13: '.$s13.'<br />
-	Placa 14: '.$s14.'<br />
-	Placa 15: '.$s15.'<br />
-	Placa 16: '.$s16.'<br />
-	Placa 17: '.$s17.'<br />
-	Placa 18: '.$s18.'<br />
-	Placa 19: '.$s19.'<br />
-	Placa 20: '.$s20.'<br />
-	Placa 21: '.$s21.'<br />
-	Placa 22: '.$s22.'<br />
-	Placa 23: '.$s23.'<br />
-	Placa 24: '.$s24.'<br />
-	Placa 25: '.$s25.'<br />
-	Placa 26: '.$s26.'<br />
-	Placa 27: '.$s27.'<br />
-	Placa 28: '.$s28.'<br />
-	Placa 29: '.$s29.'<br />
-	Placa 30: '.$s30.'<br />
-	Placa 31: '.$s31.'<br />
-	Placa 32: '.$s32.'<br />
-	Placa 33: '.$s33.'<br />
-	Placa 34: '.$s34.'<br />
-	Placa 35: '.$s35.'<br />
-	Placa 36: '.$s36.'<br />
-	Placa 37: '.$s37.'<br />
-	Placa 38: '.$s38.'<br />
-	Placa 39: '.$s39.'<br />
-	Placa 40: '.$s40.'<br />
-	Placa 41: '.$s41.'<br />
-	Placa 42: '.$s42.'<br />
-	Placa 43: '.$s43.'<br />
-	Placa 44: '.$s44.'<br />
-	Placa 45: '.$s45.'<br />
-	Placa 46: '.$s46.'<br />
-	Placa 47: '.$s47.'<br />
-	Placa 48: '.$s48.'<br />
-	Tiempo:  '.$timer.'<br />';*/
 
- 	echo $result;
-	//$this->session->set_userdata($test, "DONE");
+/** ********************* **/
+/** PAGINA FINAL DEL TEST **/
+/** ********************* **/
+if ($source == "test_finished") {
+?>
+<br />
+<br /><br />
+<h4>Muchas gracias por realizar el Test. Esta información será tenida en cuenta en sus postulaciones.</h4>
+<br /><br /><br />
+<br /><a href="<?php echo base_url()?>Test">Continuar con el siguiente test.</a>
+<br /><br /><hr />
+<?php 
+	if ($result != "OK")
+			echo $result;
+			echo "<br /><hr />";
 }
 ?>
+
+</div>
+
+<div id="test_footer">
+<?php include("footer.php"); ?>
 </div> 
+</body>
 </html>

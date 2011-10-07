@@ -1,28 +1,30 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=Cp1252">
-    <title>FindResources - Test de Raven</title> 
-    <meta name="description" content="FindResources - Choose best people" /> 
-    <meta name="keywords" content="personality test images psychology raven intelligence" /> 
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type"/>
+    <link rel="StyleSheet" type="text/css" href="<?php echo site_url('css/style.css')?>" />
+    <link rel=StyleSheet type="text/css" href="<?php echo site_url('css/global.css')?>"/>
     <script type="text/javascript" src="<?php echo base_url();?>js/src/countDown.js"></script>
     <script src="<?php echo base_url();?>js/libs/jquery-1.6.2.min.js"></script>
-    <link rel="stylesheet" href="<?php echo base_url();?>css/style.css">
+    <title>FindResources</title>
 </head> 
 <body> 
+<?php include("toolbar.php"); ?>
+<h1>Test de Raven</h1>
+<div id="page" style="height:600px;"> 
 <?php
+/** ************************* **/
 /** PAGINA DE INICIO DEL TEST **/
+/** ************************* **/
 if ($source== "init_test"){
 ?>
-<div id="page"> 
 <center> 
-<h1 style="text-align:center;">Test de Raven</h1> 
+<br /><br /><h4>
 El Test consiste en decidir cuál a tu criterio es la figura que resta en las placas que se te mostrarán. 
 <br /><br />
-Disponés de 45 minutos para resolver las 60 placas del test. 
+Disponés de 45 minutos para resolver las 60 placas del test.</h4> 
 <br /><br />
-<form method="POST" id="quiz_form" name="quiz_form">
+<form method="post" id="quiz_form" name="quiz_form">
 <input type="hidden" name="source" value="init_test" />
 <input type="hidden" name="placa" value="0" />
 <a href="javascript:document.quiz_form.submit();" class="button">Comenzar el test</a>
@@ -32,8 +34,7 @@ Disponés de 45 minutos para resolver las 60 placas del test.
 }
 /** PAGINA DE SELECCION DE FICHAS DEL TEST **/
 if ($source == "select_pieza"){
-//$minutos = "45";
-//$segundos = "01";
+
 if($timer == "") {	$timer = "40:01"; }
 $time = explode(':',$timer,2);
 $minutos = $time[0];
@@ -42,40 +43,22 @@ $segundos = $time[1];
 if($placa == 60) {	$source = "select_pieza_final"; }
 ?>
 <script>
-//document.selection.empty();
+
 $(document).ready(function(){
 	$('input[name="item"]').focus();
 	$('input[name="item"]').keyup(function(e){
 	    this.value = this.value.replace(/\D/g,'');
-	    //if(this.value > 6)	this.value = '';
 	});
 });
 </script>
 <script type="text/javascript">function init() {cd('<?php echo $minutos;?>', '<?php echo $segundos;?>');}window.onload = init;</script>
 <center>
-<h1>Test de Raven</h1>
+<br /><br />
 <h3>Placa Nº<?php echo $placa;?></h3>
 <img src="<?php echo base_url();?>images/raven/<?php echo $placa;?>.jpg" />
 <h4>Selecciona la pieza que corresponda: </h4><br />
-<form method="POST" id="quiz_form" name="quiz_form">
-<input type="text" name="item" maxlength="1" id="raven_input" value="<?php echo ($placa == "1")? "?" : "" ?>">
-<!-- 
-<p><b>1</b>:
-<input type="radio" name="item" value="1"/>
-<b>2</b>:
-<input type="radio" name="item" value="2"/>
-<b>3</b>:
-<input type="radio" name="item" value="3"/>
-</p>
-<p>
-<b>4</b>:
-<input type="radio" name="item" value="4"/>
-<b>5</b>:
-<input type="radio" name="item" value="5"/>
-<b>6</b>:
-<input type="radio" name="item" value="6"/>
-</p>-->
-
+<form method="post" id="quiz_form" name="quiz_form">
+<input type="text" name="item" maxlength="1" id="raven_input" value="<?php echo ($placa == "1")? "?" : "" ?>" />
 <input type="hidden" id="source" name="source" value="<?php echo $source;?>" />
 <input type="hidden" name="s1" value="<?php echo $s1;?>"/>
 <input type="hidden" name="s2" value="<?php echo $s2;?>"/>
@@ -138,83 +121,34 @@ $(document).ready(function(){
 <input type="hidden" name="s59" value="<?php echo $s59;?>"/>
 <input type="hidden" name="s60" value="<?php echo $s60;?>"/>
 <input type="hidden" name="placa" value="<?php echo $placa;?>"/>
-<input type="text" name="timer" id="timer" value="<?php echo $timer;?>" border="0" READONLY/><br /><br />
+<input type="text" name="timer" id="timer" value="<?php echo $timer;?>" readonly="readonly" /><br /><br />
 <a href="javascript:document.quiz_form.submit();" class="button save">Siguiente</a>
 </form>
 </center>
  <?php 
 }
+
+/** ********************* **/
 /** PAGINA FINAL DEL TEST **/
+/** ********************* **/
 if ($source == "test_finished") {
-	echo '<br /><h3>Muchas gracias por realizar el Test. Esta información será tenida en cuenta en sus postulaciones.</h3><br /><hr>';
-	echo '<a href="'.base_url().'Test">Continuar con el siguiente test.</a><br /><hr><br />';
-	/*echo '<pre>RESULTADOS:<br />
-	Placa 1: '.	$s1.'<br />
-	Placa 2: '.	$s2.'<br />
-	Placa 3: '.	$s3.'<br />
-	Placa 4: '.	$s4.'<br />
-	Placa 5: '.	$s5.'<br />
-	Placa 6: '.	$s6.'<br />
-	Placa 7: '.	$s7.'<br />
-	Placa 8: '.	$s8.'<br />
-	Placa 9: '.	$s9.'<br />
-	Placa 10: '.$s10.'<br />
-	Placa 11: '.$s11.'<br />
-	Placa 12: '.$s12.'<br />
-	Placa 13: '.$s13.'<br />
-	Placa 14: '.$s14.'<br />
-	Placa 15: '.$s15.'<br />
-	Placa 16: '.$s16.'<br />
-	Placa 17: '.$s17.'<br />
-	Placa 18: '.$s18.'<br />
-	Placa 19: '.$s19.'<br />
-	Placa 20: '.$s20.'<br />
-	Placa 21: '.$s21.'<br />
-	Placa 22: '.$s22.'<br />
-	Placa 23: '.$s23.'<br />
-	Placa 24: '.$s24.'<br />
-	Placa 25: '.$s25.'<br />
-	Placa 26: '.$s26.'<br />
-	Placa 27: '.$s27.'<br />
-	Placa 28: '.$s28.'<br />
-	Placa 29: '.$s29.'<br />
-	Placa 30: '.$s30.'<br />
-	Placa 31: '.$s31.'<br />
-	Placa 32: '.$s32.'<br />
-	Placa 33: '.$s33.'<br />
-	Placa 34: '.$s34.'<br />
-	Placa 35: '.$s35.'<br />
-	Placa 36: '.$s36.'<br />
-	Placa 37: '.$s37.'<br />
-	Placa 38: '.$s38.'<br />
-	Placa 39: '.$s39.'<br />
-	Placa 40: '.$s40.'<br />
-	Placa 41: '.$s41.'<br />
-	Placa 42: '.$s42.'<br />
-	Placa 43: '.$s43.'<br />
-	Placa 44: '.$s44.'<br />
-	Placa 45: '.$s45.'<br />
-	Placa 46: '.$s46.'<br />
-	Placa 47: '.$s47.'<br />
-	Placa 48: '.$s48.'<br />
-	Placa 49: '.$s49.'<br />
-	Placa 50: '.$s50.'<br />
-	Placa 51: '.$s51.'<br />
-	Placa 52: '.$s52.'<br />
-	Placa 53: '.$s53.'<br />
-	Placa 54: '.$s54.'<br />
-	Placa 55: '.$s55.'<br />
-	Placa 56: '.$s56.'<br />
-	Placa 57: '.$s57.'<br />
-	Placa 58: '.$s58.'<br />
-	Placa 59: '.$s59.'<br />
-	Placa 60: '.$s60.'<br />
-
-	Tiempo:  '.$timer.'<br />';*/
-
-	echo $result;
-	//$this->session->set_userdata($test, "DONE");
+?>
+<br />
+<br /><br />
+<h4>Muchas gracias por realizar el Test. Esta información será tenida en cuenta en sus postulaciones.</h4>
+<br /><br /><br />
+<br /><a href="<?php echo base_url()?>Test">Continuar con el siguiente test.</a>
+<br /><br /><hr />
+<?php 
+	if ($result != "OK")
+			echo $result;
+			echo "<br /><hr />";
 }
 ?>
-</div> 
+</div>
+
+<div id="test_footer">
+<?php include("footer.php"); ?>
+</div>
+</body>
 </html>
