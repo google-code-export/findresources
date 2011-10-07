@@ -111,7 +111,13 @@
 	color: gray !important;
 }
 
+#hardSkillsPopUp h4{
+	font-weight: bold;
+    margin-bottom: 5px;
+    margin-top: 8px;
+}
 
+#hardSkillsPopUp .star-rating,
 #hardProperties .star-rating{
 	float: left;
 	margin: 3px 10px 5px 6px;
