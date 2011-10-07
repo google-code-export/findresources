@@ -22,13 +22,17 @@
 	    });
 	}
 </script>
-<link rel=StyleSheet href="css/toolbar.css"/>
+<link rel=StyleSheet href="<?php echo site_url('css/toolbar.css')?>"/>
 
 <div id="toolbar_header">
 	<a id="toolbar_fr_logo" href="home"></a>
 	<div id="toolbar_session">
 		<div id="toolbar_fr_lenguage">
-			English / Español
+			<?php if(isset($_SESSION[SESSION_ID_USUARIO])){
+				echo $_SESSION[SESSION_ID_USUARIO];
+			}else {
+				echo "NO LOGUEADO";
+			}?>
 		</div>
 		<div id="toolbar_logout">
 			<a href="javascript:logout()"> logout </a>		
