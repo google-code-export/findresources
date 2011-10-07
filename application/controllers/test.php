@@ -11,8 +11,18 @@ class Test extends CI_Controller {
         $this->load->library('session');
     }
 
-	function index(){
-		/* Obtengo el separador */
+	function inicio(){
+		$data["source"] ="inicio";
+		$this->load->view('view_tests',$data);
+		
+	}
+	function fin(){
+		$data["source"] ="fin";
+		$this->load->view('view_tests',$data);
+		
+	}
+	function index() {
+	/* Obtengo el separador */
 		$query = $this->db->query('SELECT PKG_UTIL.FU_OBTIENE_SEPARADOR_SPLIT() SEPARADOR FROM DUAL');
 		$row = $query->row_array();
 		$this->sep = $row["SEPARADOR"];
@@ -54,9 +64,8 @@ class Test extends CI_Controller {
 				$this->rorschach("5");
 				break;
 			default :
-				echo "Usted no tiene tests pendientes.";
+				$this->fin();
 		}
-
 	}
 	/** METODOS SOLO PARA PRUEBAS INTERNAS **/
 	function t1(){
@@ -105,13 +114,18 @@ class Test extends CI_Controller {
 				$usuario = $this->session->userdata('usuario');
 				$seleccion_luscher1 = $this->input->post('colors1');
 				$seleccion_luscher2 = $this->input->post('colors2');
-				$result = $this->Test_model->setLuscherResults($usuario,$seleccion_luscher1,$seleccion_luscher2);
-				if ($result["error"] == 0 )
-					$data["result"] = "Test completado correctamente";
-				else 			
-					$data["result"] = "ERROR (".$result["error"].") :".$result["desc"];
-		 		$data['source'] = "test_finished";
-		 		$this->load->view('view_test_luscher',$data);
+			 	$data['source'] = "test_finished";
+				try {
+					$result = $this->Test_model->setLuscherResults($usuario,$seleccion_luscher1,$seleccion_luscher2);
+					if ($result["error"] == 0 )
+						$data["result"] = "OK";
+					else 			
+						$data["result"] = "ERROR (".$result["error"].") :".$result["desc"];
+			 		$this->load->view('view_test_luscher',$data);
+				} catch (Exception $e) {
+					$data["result"] = "ERROR (".$e->getMessage().")";
+		 			$this->load->view('view_test_luscher',$data);
+				}
 			break;
 			default :
 		 		$data['source'] = "init_test";
@@ -160,13 +174,19 @@ class Test extends CI_Controller {
 		 		$data['source'] = "test_finished";
 				$correctAnswers = $this->Test_model->getRavenCorrectAnswers($data);
 				$usuario = $this->session->userdata('usuario');
-		 		$result = $this->Test_model->setRavenResults($usuario,$correctAnswers);
-				if ($result["error"] == 0 )
-					$data["result"] = "Test completado correctamente";
-				else 			
-					$data["result"] = "ERROR (".$result["error"].") :".$result["desc"];
-					
-		 		$this->load->view('view_test_raven',$data);
+		 		try{
+			 		$result = $this->Test_model->setRavenResults($usuario,$correctAnswers);
+					if ($result["error"] == 0 )
+						$data["result"] = "OK";
+					else 			
+						$data["result"] = "ERROR (".$result["error"].") :".$result["desc"];
+						
+			 		$this->load->view('view_test_raven',$data);
+		 		
+				} catch (Exception $e) {
+					$data["result"] = "ERROR (".$e->getMessage().")";
+		 			$this->load->view('view_test_raven',$data);
+				}
 			break;
 			default :
 		 		$data['source'] = "init_test";
@@ -217,13 +237,20 @@ class Test extends CI_Controller {
 		 		
 				$correctAnswers = $this->Test_model->getD48CorrectAnswers($data);
 				$usuario = $this->session->userdata('usuario');
-		 		$result = $this->Test_model->setD48Results($usuario,$correctAnswers);
-				if ($result["error"] == 0 )
-					$data["result"] = "Test completado correctamente";
-				else 			
-					$data["result"] = "ERROR (".$result["error"].") :".$result["desc"];
-					
-		 		$this->load->view('view_test_d48',$data);
+				try {
+		 			$result = $this->Test_model->setD48Results($usuario,$correctAnswers);
+
+					if ($result["error"] == 0 )
+						$data["result"] = "OK";
+					else 			
+						$data["result"] = "ERROR (".$result["error"].") :".$result["desc"];
+						
+			 		$this->load->view('view_test_d48',$data);
+			 		
+				} catch (Exception $e) {
+					$data["result"] = "ERROR (".$e->getMessage().")";
+		 			$this->load->view('view_test_d48',$data);
+				}
 			break;
 			default :
 		 		$data['source'] = "init_test";
@@ -250,7 +277,7 @@ class Test extends CI_Controller {
 		 		$codError = NULL;
 				$descError = NULL;
 				$usuario = $this->session->userdata('usuario');
-				
+				$data['source'] = "test_finished";
 				/* Obtengo el valor de todas las placas */
 				$data['q1'] = $this->input->post('q1');
 				$id = 2;
@@ -261,15 +288,17 @@ class Test extends CI_Controller {
 				}
 					
 				$correctAnswers = $this->Test_model->getMIPSCorrectAnswers($data);
-		 		$result = $this->Test_model->setMIPSResults($usuario,$correctAnswers);
-				if ($result["error"] == 0 )
-					$data["result"] = "Test completado correctamente";
-				else 			
-					$data["result"] = "ERROR (".$result["error"].") :".$result["desc"];
-
-					
-		 		$data['source'] = "test_finished";
-			 	$this->load->view('view_test_mips',$data);
+				try {
+			 		$result = $this->Test_model->setMIPSResults($usuario,$correctAnswers);
+					if ($result["error"] == 0 )
+						$data["result"] = "OK";
+					else 			
+						$data["result"] = "ERROR (".$result["error"].") :".$result["desc"];
+				 	$this->load->view('view_test_mips',$data);
+				} catch (Exception $e) {
+					$data["result"] = "ERROR (".$e->getMessage().")";
+		 			$this->load->view('view_test_mips',$data);
+				}
 			break;
 			default :
 		 		$data['source'] = "init_test";
@@ -360,29 +389,38 @@ class Test extends CI_Controller {
 		 		//$data['session'] = $this->session->userdata('RORSCHACH_DATA');
 				$answers = $this->session->userdata('RORSCHACH_DATA');
 				$usuario = $this->session->userdata('usuario');
-
-				foreach($answers as $tags){
-					foreach($tags as $tag){
-							$tagdata = $tag['pictureid'].$this->sep;
-							$tagdata .= $tag['top'].$this->sep;
-							$tagdata .= $tag['left'].$this->sep;
-							$tagdata .= $tag['width'].$this->sep;
-							$tagdata .= $tag['height'].$this->sep;
-							$tagdata .= $tag['description'];
-							echo $tagdata;
-							$result = $this->Test_model->setRorschachResults($usuario,$tagdata);			
-						
+				try {
+					$result["error"] = 0;
+					$result["desc"]  = "";
+					if (is_array($answers)){
+						foreach($answers as $tags){
+							foreach($tags as $tag){
+									$tagdata = $tag['pictureid'].$this->sep;
+									$tagdata .= $tag['top'].$this->sep;
+									$tagdata .= $tag['left'].$this->sep;
+									$tagdata .= $tag['width'].$this->sep;
+									$tagdata .= $tag['height'].$this->sep;
+									$tagdata .= $tag['description'];
+									$result = $this->Test_model->setRorschachResults($usuario,$tagdata);			
+								
+							}
+						}
+					} else {
+						$result["error"] = "999";
+						$result["desc"] = "No se ingresaron datos";
 					}
+	 		
+					if ($result["error"] == 0 )
+						$data["result"] = "OK";
+					else 			
+						$data["result"] = "ERROR (".$result["error"].") :".$result["desc"];
+						
+			 		$this->session->sess_destroy();
+			 		$this->load->view('view_test_rorschach',$data);
+				} catch (Exception $e) {
+					$data["result"] = "ERROR (".$e->getMessage().")";
+		 			$this->load->view('view_test_rorschach',$data);
 				}
-		 		
-		 		
-				if ($result["error"] == 0 )
-					$data["result"] = "Test completado correctamente";
-				else 			
-					$data["result"] = "ERROR (".$result["error"].") :".$result["desc"];
-					
-		 		$this->session->sess_destroy();
-		 		$this->load->view('view_test_rorschach',$data);
 			break;
 			default :
 		 		$data['source'] = "init_test";
