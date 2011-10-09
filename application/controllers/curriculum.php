@@ -31,6 +31,43 @@ class Curriculum extends CI_Controller {
 		
 		$data['curriculumData'] = $curriculumData;
 		$data['usuarioData'] = $this->Usuario_model->getUsuario($usuario);
+		$data['habilidadesIndustriasDelCV'] = $this->Curriculum_model->getHabilidadesIndustriasDelCV($curriculumData->id);
+		$data['habilidadesAreasDelCV'] = $this->Curriculum_model->getHabilidadesAreasDelCV($curriculumData->id);
+		$data['experienciaLaboralDelCv'] = $this->Curriculum_model->getExperienciaLaboralDelCv($curriculumData->id);
+		$data['educacionFormalDelCv'] = $this->Curriculum_model->getEducacionFormalDelCv($curriculumData->id);
+		$data['educacionNoFormalDelCv'] = $this->Curriculum_model->getEducacionNoFormalDelCv($curriculumData->id);
+		
+		$data['estadosCiviles'] = $this->Util_model->getEstadosCiviles();
+		$data['paises'] = $response = $this->Util_model->getPaises();
+		$data['industriasDisponibles'] = $this->Util_model->getIndustriasDisponibles();
+		$data['areasDisponibles'] = $this->Util_model->getAreasDisponibles();
+		$data['nivelesDeEducacion'] = $this->Util_model->getNivelesDeEducacion();
+		$data['entidadesEducativas'] = $this->Util_model->getEntidadesEducativas();
+		$data['tiposDeEducacionNoFormal'] = $this->Util_model->getTiposDeEducacionNoFormal();
+		$data['provinciasDisponibles'] = $this->Util_model->getProvincias();
+		
+		/** IMPORTANTE SETEAR PERFIL PARA MOSTRAR LOS LINKS DE EDICION **/
+		$data['perfil'] = "usuario";
+		$this->load->view('view_curriculum', $data);
+		
+	}
+	
+	public function userBusqueda(){
+		$usuario = $this->input->post("datos");
+		$usuario = "juan@juan.com";
+		if(!$usuario){
+			echo "No se seleccionó un usuario";
+			exit;
+		}
+		
+		$idCurriculum  = $this->Curriculum_model->getCurriculumUser($usuario);
+		
+		$curriculumData = $this->Curriculum_model->getCurriculum($idCurriculum);
+
+		//$_SESSION[SESSION_CV_EDITANDO] = $curriculumData;
+		
+		$data['curriculumData'] = $curriculumData;
+		$data['usuarioData'] = $this->Usuario_model->getUsuario($usuario);
 		
 		$data['habilidadesIndustriasDelCV'] = $this->Curriculum_model->getHabilidadesIndustriasDelCV($curriculumData->id);
 		$data['habilidadesAreasDelCV'] = $this->Curriculum_model->getHabilidadesAreasDelCV($curriculumData->id);
@@ -47,7 +84,8 @@ class Curriculum extends CI_Controller {
 		$data['tiposDeEducacionNoFormal'] = $this->Util_model->getTiposDeEducacionNoFormal();
 		$data['provinciasDisponibles'] = $this->Util_model->getProvincias();
 		
-		
+		/** IMPORTANTE SETEAR EL TIPO DE PERFIL PARA NO MOSTRAR LOS LINKS DE EDICION **/
+		$data['perfil'] = "empresa";
 		$this->load->view('view_curriculum', $data);
 		
 	}
