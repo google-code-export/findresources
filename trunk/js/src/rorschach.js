@@ -27,7 +27,7 @@ $(document).ready(function(){
 	);
 
 });
-
+/*
 $(function() {
 	var availableTags = [
 	                     "alas",
@@ -164,4 +164,5 @@ $(function() {
 		source: availableTags
 	});
 });
+*/
    
