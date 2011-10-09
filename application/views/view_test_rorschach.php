@@ -101,7 +101,7 @@ if($pic == 10) {	$source = "select_img_final"; }
 	<form method=post name="pic_form">
 	<input type=hidden name=pic value="<?php echo $pic+1;?>" />
 	<input type="hidden" name="source" value="<?php echo $source;?>" />
-	<a href="javascript:document.pic_form.submit();" class="button save">Siguiente imagen >></a>
+	<a href="javascript:document.pic_form.submit();" class="button save">Siguiente imagen &gt;&gt;</a>
 	</form>
 </div>
  <?php 
