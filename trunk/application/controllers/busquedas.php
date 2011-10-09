@@ -44,8 +44,9 @@ class Busquedas extends CI_Controller {
 			$_SESSION[SESSION_ID_BUSQUEDA_SELECCIONADA]= $idBusqueda;
 			$data['busquedaSeleccionada'] = $this->Busquedas_model->getOpcionesDeBusqueda($idBusqueda);
 			$data['estadoBusqueda'] = $this->Busquedas_model->getEstadoBusqueda($idBusqueda);
-			//$result = $this->Busquedas_model->getResultadoBusqueda("1","");
-			//var_dump($result);
+			//$data['resultadoBusqueda'] = $this->Busquedas_model->getResultadoBusqueda($idBusqueda);
+			//var_dump($data['resultadoBusqueda']);
+			//exit;
 		}
 		
 		
@@ -184,6 +185,88 @@ class Busquedas extends CI_Controller {
 			$result = $this->Busquedas_model->setHistoriaLaboral($idBusqueda,$historiaLaboral);
 			echo json_encode($result);
 		}
+	}
+	
+	public function setGrid(){
+		$idBusqueda = $this->uri->segment(3);
+		$resultados_de_busqueda = $this->Busquedas_model->getResultadoBusqueda($idBusqueda);
+		//print_r($resultados_de_busqueda);
+		$grid["page"] = 1;
+		$grid["total"] = 6;
+		$grid["rows"] = array();
+		 
+		$rc = false;
+		$key = 1;
+		foreach ($resultados_de_busqueda["resultado_busqueda"] as $resultado_busqueda) {
+		
+			/**************************************************************/
+		 	/**TODO REEMPLAZAR POR pkg_util.pr_estado_contacto_busqueda  **/
+			/**************************************************************/
+			switch($resultado_busqueda->c_estado_contacto) { 
+				case "EN":
+					$s1 = "selected";
+					$s2 ="";
+					$s3 ="";
+					$s4 ="";
+					$s5 ="";
+					break;
+				case "SE":
+					$s1 =""; 
+					$s2 = "selected";
+					$s3 ="";
+					$s4 ="";
+					$s5 ="";
+				break;
+				case "CO":
+					$s1 =""; 
+					$s2 = "";
+					$s3 ="selected";
+					$s4 ="";
+					$s5 ="";
+				break;
+				case "RE":
+					$s1 =""; 
+					$s2 = "";
+					$s3 ="";
+					$s4 ="selected";
+					$s5 ="";
+				break;
+				case "OE":
+					$s1 =""; 
+					$s2 = "";
+					$s3 ="";
+					$s4 ="";
+					$s5 ="selected";
+				break;
+			}
+			$grid["rows"][$key]["id"] = $key;
+			$grid["rows"][$key]["cell"] = array($key,
+												$resultado_busqueda->nombre." ".$resultado_busqueda->apellido,
+												$resultado_busqueda->estado_test,
+												"<form id='informe$key' name='informe$key' method=post action='informe' target='_blank'>
+													<input type='hidden' name='informe' value='".$resultado_busqueda->nombre."' />
+													<a href='javascript:document.informe$key.submit();' class='button'>Ver</a>
+												</form>",
+												"<form id='datos$key' name='datos$key' method=post action='curriculum/userBusqueda' target='_blank'>
+													<input type='hidden' name='datos' value='".$resultado_busqueda->nombre."'/>
+													<a href='javascript:document.datos$key.submit();' class='button'>Ver</a>
+												</form>",
+												"<form id='estado$key' name='estado$key'>
+													<select>
+														<option value='SI' ".$s1." >Entrevistado</option>
+														<option value='NO' ".$s2." >Sin Entrevistar</option>
+														<option value='CO' ".$s3." >Contratado</option>
+														<option value='RE' ".$s4." >Rechazado</option>
+														<option value='RE' ".$s5." >Entrevista Solicitada</option>
+													</select>&nbsp;&nbsp;
+													<a href='#'><img src='".site_url("images/src/refresh.png")."' /></a>
+												</form>"
+												);
+
+		$key++;
+		}
+		echo json_encode_utf8($grid);
+		
 	}
 	
 	private function runTest(){

@@ -37,15 +37,15 @@ class Test extends CI_Controller {
 			/////////////HARDCODED//////////////////////////
 			$idUsuario = "juan@juan.com";
 			$_SESSION[SESSION_ID_USUARIO] = "juan@juan.com";
+			$this->session->set_userdata('usuario', "juan@juan.com");
 			/////////////HARDCODED//////////////////////////
 			/////////////HARDCODED//////////////////////////		
 		}
 		//$this->session->set_userdata('usuario', "juan@juan.com");
 		$tests_del_usuario = $this->Test_model->getTestsPendientes($idUsuario);
-			//print_r($tests_del_usuario);exit;
+		//print_r($tests_del_usuario);exit;
 		if (!array_key_exists(0, $tests_del_usuario["test_pendientes"]))	{
-			echo "Usted no tiene tests pendientes.";
-			exit;
+			 redirect('/Test/fin', 'refresh');
 		}
 		switch (strtolower($tests_del_usuario["test_pendientes"][0]->nombre_test)) {
 			case "luscher":
@@ -401,19 +401,24 @@ class Test extends CI_Controller {
 									$tagdata .= $tag['width'].$this->sep;
 									$tagdata .= $tag['height'].$this->sep;
 									$tagdata .= $tag['description'];
+									/**TODO CHECK RESULTS */
+									echo "<br />".$usuario."|".$tagdata."<br />";
 									$result = $this->Test_model->setRorschachResults($usuario,$tagdata);			
-								
+									print_r($result);
+									echo "<br />";
+									/**TODO CHECK RESULTS */
+									if ($result["error"] == 0 )
+										$data["result"] = "OK";
+									else {			
+										$data["result"] = "ERROR (".$result["error"].") :".$result["desc"];
+										break;
+									}
 							}
 						}
 					} else {
 						$result["error"] = "999";
 						$result["desc"] = "No se ingresaron datos";
 					}
-	 		
-					if ($result["error"] == 0 )
-						$data["result"] = "OK";
-					else 			
-						$data["result"] = "ERROR (".$result["error"].") :".$result["desc"];
 						
 			 		$this->session->sess_destroy();
 			 		$this->load->view('view_test_rorschach',$data);
