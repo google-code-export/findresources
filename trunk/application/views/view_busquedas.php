@@ -17,7 +17,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/jquery-ui-1.8.16.css')?>" />
 <link rel=StyleSheet type="text/css" href="<?php echo site_url('css/tabs.css')?>"/>
 <link rel=StyleSheet type="text/css" href="<?php echo site_url('css/starrating.css')?>"/>
-
+<link rel=StyleSheet type="text/css" href="<?php echo site_url('css/style.css')?>"/>
 <link rel=StyleSheet type="text/css" href="<?php echo site_url('css/global.css')?>"/>
 <link rel=StyleSheet type="text/css" href="<?php echo site_url('css/starrating.css')?>"/>
 <link rel=StyleSheet type="text/css" href="<?php echo site_url('css/view_busquedas.css')?>"/>
@@ -140,7 +140,7 @@
 									</div>
 								</div>
 								<div class="block" id="softSkills">
-									<h2>Aspectos de la personalidad <a href="javascript:editSoftSkills();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
+									<h2>Aspectos de la Personalidad <a href="javascript:editSoftSkills();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
 									<div class="inblock">
 										<?php foreach ($busquedaSeleccionada['hab_blanda'] as $habilidad){ ?>
 											<div class="row clearfix">
@@ -649,15 +649,15 @@
 
 <script type="text/javascript">
 $(".flexme1").flexigrid({
-	url: 'busquedas/post',
+	url: 'busquedas/setGrid/<?php echo $_GET["busquedaId"];?>',
 	dataType: 'json',
 	colModel : [
-		{display: 'Orden', name : 'orden', width : 40, sortable : true, align: 'center'},
-		{display: 'Nombre y Apellido', name : 'nombre', width : 180, sortable : true, align: 'left'},
-		{display: 'Estado', name : 'estado', width : 120, sortable : true, align: 'left'},
-		{display: 'Informes', name : 'info', width : 130, sortable : true, align: 'left', hide: false},
-		{display: 'Datos', name : 'data', width : 80, sortable : true, align: 'right'},
-		{display: 'Entrevistado', name : 'entrevistado', width : 80, sortable : true, align: 'right'}
+		{display: 'Orden', name : 'orden', width : 40, sortable : false, align: 'center'},
+		{display: 'Nombre y Apellido', name : 'nombre', width : 180, sortable : false, align: 'left'},
+		{display: 'Psicotécnico Online', name : 'estado', width : 120, sortable : false, align: 'left'},
+		{display: 'Informes', name : 'info', width : 80, sortable : false, align: 'center', hide: false},
+		{display: 'Datos', name : 'data', width : 80, sortable : false, align: 'center'},
+		{display: 'Estado', name : 'entrevistado', width : 176, sortable : false, align: 'center'}
 		],
 	sortname: "orden",
 	sortorder: "asc",
