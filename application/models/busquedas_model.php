@@ -598,7 +598,7 @@ class Busquedas_model extends CI_Model {
 	
 	
 	/** OBTENGO RESULTADOS DE BUSQUEDA **/
-	public function  getResultadoBusqueda($idBusqueda,$actualiza){
+	public function  getResultadoBusqueda($idBusqueda,$actualiza = "N"){
 		$result["resultado_busqueda"] = NULL;
 		$result["error"] = NULL;
 		$result["desc"] = NULL;
@@ -700,5 +700,6 @@ class Busquedas_model extends CI_Model {
 		}
 			
 	}
-	
+
+
 }
