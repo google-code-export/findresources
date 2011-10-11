@@ -61,6 +61,7 @@
 <script type="text/javascript" src="<?php echo site_url('js/src/utils.js')?>"></script>
 <script type="text/javascript" src="<?php echo site_url('js/src/view_curriculum.js')?>"></script>
 <script type="text/javascript" src=" <?php echo site_url('js/src/hardSkills.js')?>"></script>
+<title>FindResources - <?php echo $usuarioData->nombre." ".$usuarioData->apellido;?></title>
 </head>
 <body>
 
@@ -84,7 +85,7 @@
 					<!--img src="img/face.jpg" alt="Nombre" /-->
 				<!--/div>
 				<div class="right"-->
-					<h2>Información Personal <a href="javascript:editCVData();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
+					<h2>Información Personal <a href="javascript:editCVData();" class="editFields"><img src="/images/src/pencil.gif"/>Editar</a></h2>
 					<div class="inblock">
 						<div class="row clearfix">
 							<div><?php echo ($curriculumData->estadoCivil == "") ? "" : $estadosCiviles[$curriculumData->estadoCivil]?>&nbsp;</div>
@@ -144,7 +145,7 @@
 			</div>
 			
 			<div class="block" id="hardSkills">
-				<h2>Conocimientos <a href="javascript:editHardSkills();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
+				<h2>Conocimientos <a href="javascript:editHardSkills();" class="editFields"><img src="/images/src/pencil.gif"/>Editar</a></h2>
 				<div class="inblock">
 					<h4>Areas de negocio</h4>
 					<ul>
@@ -180,7 +181,7 @@
 			
 			<div class="block" id="workExperience">
 		
-				<h2>Experiencia Laboral <?php if($perfil == "usuario") { ?><a class="addFields" href="javascript:addWorkExperience();"><img src="images/src/add.png"/> <b>Agregar</b> una posición</a> <?php  } ?></h2>
+				<h2>Experiencia Laboral <?php if($perfil == "usuario") { ?><a class="addFields" href="javascript:addWorkExperience();"><img src="/images/src/add.png"/> <b>Agregar</b> una posición</a> <?php  } ?></h2>
 							
 				<?php foreach ($experienciaLaboralDelCv as $i => $experiencia){ ?>
 
@@ -189,10 +190,10 @@
 					<h3><?php echo $experiencia->titulo; ?>  
 								<?php if($perfil == "usuario") { ?>
 								<a href="javascript:editWorkExperience(<?php echo $i ;?>);" class="editFields">
-									<img src="images/src/pencil.gif"/> Editar
+									<img src="/images/src/pencil.gif"/> Editar
 								</a> 
 								<a href="javascript:eraseWorkExperience(<?php echo $i ;?>);" class="eraseFields">
-									<img src="images/src/delete.png"/> Quitar
+									<img src="/images/src/delete.png"/> Quitar
 								</a>
 								<?php } ?>
 					</h3>
@@ -210,7 +211,7 @@
 			</div>
 			
 			<div class="block">
-				<h2>Educaci&oacute;n Formal <?php if($perfil == "usuario") { ?><a class="addFields" href="javascript:addFormalEducation();"><img src="images/src/add.png"/> <b>Agregar</b> educación</a><?php } ?></h2>
+				<h2>Educaci&oacute;n Formal <?php if($perfil == "usuario") { ?><a class="addFields" href="javascript:addFormalEducation();"><img src="/images/src/add.png"/> <b>Agregar</b> educación</a><?php } ?></h2>
 				
 				<?php foreach ($educacionFormalDelCv as $i => $educacion){ ?>
 				
@@ -218,10 +219,10 @@
 					<h3><?php echo ($educacion->idEntidad != "")?$entidadesEducativas[$educacion->idEntidad]: $educacion->descripcionEntidad?>
 						<?php if($perfil == "usuario") { ?>
 						<a href="javascript:editFormalEducation(<?php echo $i ?>);" class="editFields">
-							<img src="images/src/pencil.gif"/>Editar
+							<img src="/images/src/pencil.gif"/>Editar
 						</a>
 						<a href="javascript:eraseFormalEducation(<?php echo $i ;?>);" class="eraseFields">
-							<img src="images/src/delete.png"/> Quitar
+							<img src="/images/src/delete.png"/> Quitar
 						</a>
 						<?php } ?>
 					</h3>
@@ -255,17 +256,17 @@
 			</div>
 			
 			<div class="block">
-				<h2>Educaci&oacute;n Informal <?php if($perfil == "usuario") { ?><a class="addFields" href="javascript:addInformalEducation();"><img src="images/src/add.png"/> <b>Agregar</b> educación</a><?php } ?></h2>
+				<h2>Educaci&oacute;n Informal <?php if($perfil == "usuario") { ?><a class="addFields" href="javascript:addInformalEducation();"><img src="/images/src/add.png"/> <b>Agregar</b> educación</a><?php } ?></h2>
 				
 				<?php foreach ($educacionNoFormalDelCv as $id => $educacion){ ?>
 				<div class="study inblock">
 					<h3><?php echo $educacion->institucion?> 
 						<?php if($perfil == "usuario") { ?>
 						<a href="javascript:editInformalEducation(<?php echo $id?>);" class="editFields">
-							<img src="images/src/pencil.gif"/>Editar
+							<img src="/images/src/pencil.gif"/>Editar
 						</a>
 						<a href="javascript:eraseInformalEducation(<?php echo $id ;?>);" class="eraseFields">
-							<img src="images/src/delete.png"/> Quitar
+							<img src="/images/src/delete.png"/> Quitar
 						</a>
 						<?php } ?>
 					</h3>
@@ -434,7 +435,7 @@
 					<?php } ?>
 				</select>
 
-				<?php if($perfil == "usuario") { ?><a href="javascript:addIndustry();"> <img src="images/src/add.png"/> Agregar</a><?php } ?>
+				<?php if($perfil == "usuario") { ?><a href="javascript:addIndustry();"> <img src="/images/src/add.png"/> Agregar</a><?php } ?>
 			</div>
 
 			<ul id="editItemIndustryList">
@@ -457,7 +458,7 @@
 							<li><a href="#" onclick="vote('#editItemIndustry<?php echo $habilidad->idIndustria ?> .current-rating',5); return false;" 
 						           title='Experto' class='five-stars'>5</a></li>
 						</ul>
-						<a class="removeSkillLink" href="javascript:removeIndustry(<?php echo $habilidad->idIndustria ?>);"><img src="images/src/delete.png"></img></a>
+						<a class="removeSkillLink" href="javascript:removeIndustry(<?php echo $habilidad->idIndustria ?>);"><img src="/images/src/delete.png"></img></a>
 					</div>
 				</li>
 			<?php } ?>
@@ -474,7 +475,7 @@
 				<select id="availableToolsSelect">
 					<option value="0">Herramientas</option> 
 				</select>
-				<?php if($perfil == "usuario") { ?><a href="javascript:addTool();"> <img src="images/src/add.png"/> Agregar</a><?php  } ?>
+				<?php if($perfil == "usuario") { ?><a href="javascript:addTool();"> <img src="/images/src/add.png"/> Agregar</a><?php  } ?>
 			</div>
 			
 			<ul id="editItemToolList">
@@ -500,7 +501,7 @@
 						</ul>
 		        		
 		        		
-						<a class="removeSkillLink" href="javascript:removeTool(<?php echo $habilidad->idHerramienta ?>);"><img src="images/src/delete.png"></img></a>
+						<a class="removeSkillLink" href="javascript:removeTool(<?php echo $habilidad->idHerramienta ?>);"><img src="/images/src/delete.png"></img></a>
 					</div>
 				</li>
 			<?php } ?>

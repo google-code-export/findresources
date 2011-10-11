@@ -55,11 +55,10 @@
 	var availableSoftSkills	= <?php echo json_encode_utf8($habilidadesBlandasDisponibles['lista_hab_blandas']); ?>;
 	
 </script>
-
 </head>
 <body>
 <?php include("toolbar.php"); ?>
-<h1>Busquedas </h1>
+<h1>Búsquedas </h1>
 
 	<div id="searchBody" class="clearfix">
 		<div id="leftPanel">
@@ -108,11 +107,11 @@
 												<div class="label"> 
 													<?php echo $habilidad->d_industria; ?> : 
 												</div>											
-												<ul class='star-rating'>
-													<li class='current-rating' value="<?php echo $habilidad->valoracion ?>"></li>
+												<ul class='star-rating' >
+													<li class='current-rating' value="<?php echo $habilidad->valoracion ?>" ></li>
 												</ul>
 												<div class="label"> 
-													- <?php echo $habilidad->importancia ?>
+													<?php echo $habilidad->importancia ?> %
 												</div>								
 											</li>		
 										<?php } ?>
@@ -131,8 +130,7 @@
 													<li class='current-rating' value="<?php echo $habilidad->valor_herramienta ?>"></li>
 												</ul>
 												<div class="label"> 
-													- 
-													<?php echo $habilidad->importancia ?>
+													<?php echo $habilidad->importancia ?> %
 												</div>											
 											</li>
 										<?php } ?>
@@ -151,8 +149,8 @@
 								</div>
 												
 								<div class="block" id="hardSkills">
-									<h2>Educacion Formal 
-										<a class="addFields" href="javascript:addFormalEduction();"><img src="images/src/add.png"/> <b>Agregar</b> una educación</a>
+									<h2>Educación Formal 
+										<a class="addFields" href="javascript:addFormalEduction();"><img src="images/src/add.png"/> Agregar una educación</a>
 									</h2>
 									
 									<?php foreach ($busquedaSeleccionada['edu_formal'] as $i => $educacion) { ?>
@@ -168,34 +166,34 @@
 											<div class="row clearfix">
 												<div class="label"> Entidad: </div> 
 												<?php echo ($educacion->id_entidad_educativa != "")?$entidadesEducativas[$educacion->id_entidad_educativa]: $educacion->d_entidad ?>
-												<?php echo $educacion->c_modo_entidad ?>
+												<?php echo ($educacion->c_modo_entidad == "R")? "(Requerido)" : "(Preferido)" ?>
 											</div>								
 											<div class="row clearfix">
 												<div class="label"> Titulo: </div> 
 												<?php echo $educacion->titulo ?>
-												<?php echo $educacion->c_modo_titulo ?>
+												<?php echo ($educacion->c_modo_titulo == "R")? "(Requerido)" : "(Preferido)" ?>
 											</div>								
 											<div class="row clearfix">
 												<div class="label"> Nivel de Educación: </div> 
 												<?php echo $educacion->id_nivel_educacion ?>
-												<?php echo $educacion->c_modo_nivel_educacion ?>
+												<?php echo ($educacion->c_modo_nivel_educacion == "R")? "(Requerido)" : "(Preferido)" ?>
 											</div>								
 											<div class="row clearfix">
 												<div class="label"> Area: </div> 
 												<?php echo $educacion->id_area ?>
-												<?php echo $educacion->c_modo_area ?>
+												<?php echo ($educacion->c_modo_area == "R")? "(Requerido)" : "(Preferido)" ?>
 											</div>								
 											<div class="row clearfix">
 												<div class="label"> Estado: </div> 
 												<?php echo $educacion->estado ?>
-												<?php echo $educacion->c_modo_estado ?>
+												<?php echo ($educacion->c_modo_estado == "R")? "(Requerido)" : "(Preferido)" ?>
 											</div>								
 											<div class="row clearfix">
 												<div class="label"> Promedio: </div> 
 												de 
 												<?php echo $educacion->promedio_desde ?> a 
 												<?php echo $educacion->promedio_hasta ?>
-												<?php echo $educacion->c_modo_promedio ?>
+												<?php echo ($educacion->c_modo_promedio == "R")? "(Requerido)" : "(Preferido)" ?>
 											</div>								
 										</div>
 									<?php } ?>
@@ -209,10 +207,9 @@
 										<div class="study inblock">
 											<div class="row clearfix">
 												<div class="label"> Edad: </div> 
-												de
 												<?php echo @$recurso["edad_desde"] ?> a
-												<?php echo @$recurso["edad_hasta"]?> -
-												<?php echo @$recurso["edad_c_modo"]?>  
+												<?php echo @$recurso["edad_hasta"]?>
+												<?php echo (@$recurso["edad_c_modo"] == "R")? "(Requerido)" : "(Preferido)"?>  
 											</div>								
 											<!--div class="row clearfix">
 												<div class="label">Nacionalidad: </div> 
@@ -228,15 +225,15 @@
 											</div-->
 											<div class="row clearfix">
 												<div class="label">Posee twitter:</div> 
-												<?php echo @$recurso["twitter_c_modo"] ?>
+												<?php echo (@$recurso["twitter_c_modo"] == "R")? "(Requerido)" : "(Preferido)" ?>
 											</div>
 											<div class="row clearfix">
 												<div class="label">Posee gtalk:</div> 
-												<?php echo @$recurso["gtalk_c_modo"] ?>
+												<?php echo (@$recurso["gtalk_c_modo"] == "R")? "(Requerido)" : "(Preferido)" ?>
 											</div>
 											<div class="row clearfix">
 												<div class="label">Posee sms:</div> 
-												<?php echo @$recurso["sms_c_modo"] ?>
+												<?php echo (@$recurso["sms_c_modo"] == "R")? "(Requerido)" : "(Preferido)" ?>
 											</div>
 										</div>
 								</div>
@@ -404,7 +401,6 @@
 					<li id="editItemIndustry<?php echo $habilidad->id_industria ?>" class="industryItem">
 						<div class="field">
 							<div class="label"><?php echo $habilidad->d_industria ?>:</div> 
-
 							<ul class='star-rating'>
 								<li class='current-rating' value="<?php echo $habilidad->valoracion ?>"></li>
 								<li><a href="#" onclick="vote('#editItemIndustry<?php echo $habilidad->id_industria ?> .current-rating', 1); return false;" 
@@ -420,7 +416,15 @@
 							</ul>
 
 							<input type="text" class="importanceInput" value="<?php echo $habilidad->importancia ?>"/>
+							<!-- 
+							<table><tr><td>
+							<input type="text" id="importancia<?php echo $habilidad->id_industria;?>" class="importanceInput" value="<?php echo $habilidad->importancia ?>" style="border:0; font-weight:bold;" />
+							<div id="slider-range-min<?php echo $habilidad->id_industria;?>" ></div>
+							-->
 							<a class="removeSkillLink" href="javascript:removeIndustry(<?php echo $habilidad->id_industria?>);"><img src="images/src/delete.png"></img></a>
+							<!-- 
+							</td></tr></table>
+							-->
 						</div>
 					</li>
 				<?php } ?>
@@ -497,13 +501,14 @@
 						</select>
 						<a href="javascript:addSoftSkill();"> <img src="images/src/add.png"/> Agregar</a>
 					</div>
-				
+					<br />
 					<ul id="editItemSoftSkillList">
 						<?php 
 						foreach ($busquedaSeleccionada['hab_blanda'] as $habilidad){ ?>
 							<li id="editSoftSkillItem<?php echo $habilidad->id_habilidad_blanda ?>" class="softSkillItem">
-								<?php echo $habilidad->d_habilidad_blanda?>
-								<a href="javascript:removeSoftSkill(<?php echo $habilidad->id_habilidad_blanda ?>);">X</a>
+								<img src='/images/src/bullet_flecha.png' /> <?php echo $habilidad->d_habilidad_blanda?>
+								<a href="javascript:removeSoftSkill(<?php echo $habilidad->id_habilidad_blanda ?>);">&nbsp;<img src="/images/src/delete.png"/></a>
+								<br /><br />
 							</li>
 						<?php } ?>
 					</ul>
@@ -536,7 +541,10 @@
 										</option> 
 							   <?php } ?>
 							</select>
-							<input type="text" class="modeField" id="formalEducationEditorInstitutionMode"/>
+							<select class="modeField" id="formalEducationEditorInstitutionMode">
+							   			<option value="P">Preferido</option>
+							   			<option value="R">Requerido</option> 
+							</select>
 						</div>
 						
 						<div class="field clearfix">
@@ -547,7 +555,10 @@
 						<div class="field clearfix">
 							<div class="label">Título:</div>
 							<input type="text" id="formalEducationEditorTitle" value="" />
-							<input type="text"  class="modeField" id="formalEducationEditorTitleMode" value="" />
+							<select class="modeField" id="formalEducationEditorTitleMode">
+							   			<option value="P">Preferido</option>
+							   			<option value="R">Requerido</option> 
+							</select>
 						</div>
 						
 						<div class="field clearfix">
@@ -559,7 +570,10 @@
 										</option> 
 							   <?php } ?>
 							</select>
-							<input type="text" class="modeField" id="formalEducationEditorLevelMode" value="" />
+							<select class="modeField" id="formalEducationEditorLevelMode">
+							   			<option value="P">Preferido</option>
+							   			<option value="R">Requerido</option> 
+							</select>
 						</div>
 		
 		
@@ -572,7 +586,10 @@
 										</option> 
 							   <?php } ?>
 							</select>
-							<input type="text"  class="modeField" id="formalEducationEditorAreaMode" value="" />
+							<select class="modeField" id="formalEducationEditorAreaMode">
+							   			<option value="P">Preferido</option>
+							   			<option value="R">Requerido</option> 
+							</select>
 						</div>
 
 						<div class="field clearfix">
@@ -582,7 +599,10 @@
 					   			<option value="A">Abandonado</option> 
 					   			<option value="C">En Curso</option> 
 							</select>
-							<input type="text" class="modeField" id="formalEducationEditorStatusMode" value="" />
+							<select class="modeField" id="formalEducationEditorStatusMode">
+							   			<option value="P">Preferido</option>
+							   			<option value="R">Requerido</option> 
+							</select>
 						</div>
 					
 						<div class="field clearfix">
@@ -590,7 +610,10 @@
 							<input type="text" id="formalEducationEditorAverageFrom" value="" />
 							a
 							<input type="text" id="formalEducationEditorAverageTo" value="" />
-							<input type="text" class="modeField" id="formalEducationEditorAverageMode" value="" />
+							<select class="modeField" id="formalEducationEditorAverageMode">
+							   			<option value="P">Preferido</option>
+							   			<option value="R">Requerido</option> 
+							</select>
 						</div>
 					</div>
 					
@@ -615,24 +638,37 @@
 				<div class="inside">
 					<div>
 						<div class="field clearfix">
-							<div class="label">Edad: desde&nbsp;</div>
+							<div class="label">Edad: </div>
+							De&nbsp;
 							<input type="text" id="aditionalDataEditorAgeFrom" value="<?php echo @$recurso["edad_desde"]?>"/>
-							&nbsp;hasta&nbsp;
+							&nbsp;a&nbsp;
 							<input type="text" id="aditionalDataEditorAgeTo" value="<?php echo @$recurso["edad_hasta"]?>"/>
-							&nbsp;
-							<input type="text" class="modeField" id="aditionalDataEditorAgeMode"  value="<?php echo @$recurso["edad_c_modo"]?>"/>
+							años&nbsp;
+							<select class="modeField" id="aditionalDataEditorAgeMode">
+							   			<option value="P" <?php if ($recurso["edad_c_modo"] == "P") echo "selected";?>>Preferido</option>
+							   			<option value="R" <?php if ($recurso["edad_c_modo"] == "R") echo "selected";?>>Requerido</option> 
+							</select>
 						</div>
 						<div class="field clearfix">
 							<div class="label">Posee twitter:</div>
-							<input type="text" class="modeField" id="aditionalDataEditorTwitterMode"  value="<?php echo @$recurso["twitter_c_modo"]?>"/>
+							<select class="modeField" id="aditionalDataEditorTwitterMode">
+							   			<option value="P" <?php if ($recurso["twitter_c_modo"] == "P") echo "selected";?>>Preferido</option>
+							   			<option value="R" <?php if ($recurso["twitter_c_modo"] == "R") echo "selected";?>>Requerido</option> 
+							</select>
 						</div>
 						<div class="field clearfix">
 							<div class="label">Posee gtalk:</div>
-							<input type="text" class="modeField" id="aditionalDataEditorGtalkMode"  value="<?php echo @$recurso["gtalk_c_modo"]?>"/>
+							<select class="modeField" id="aditionalDataEditorGtalkMode">
+							   			<option value="P" <?php if ($recurso["gtalk_c_modo"] == "P") echo "selected";?>>Preferido</option>
+							   			<option value="R" <?php if ($recurso["gtalk_c_modo"] == "R") echo "selected";?>>Requerido</option> 
+							</select>
 						</div>
 						<div class="field clearfix">
 							<div class="label">Posee sms:</div>
-							<input type="text" class="modeField" id="aditionalDataEditorSmsMode"  value="<?php echo @$recurso["sms_c_modo"]?>"/>
+							<select class="modeField" id="aditionalDataEditorSmsMode">
+							   			<option value="P" <?php if ($recurso["sms_c_modo"] == "P") echo "selected";?>>Preferido</option>
+							   			<option value="R" <?php if ($recurso["sms_c_modo"] == "R") echo "selected";?>>Requerido</option> 
+							</select>
 						</div>
 					</div>
 					
@@ -654,10 +690,10 @@ $(".flexme1").flexigrid({
 	colModel : [
 		{display: 'Orden', name : 'orden', width : 40, sortable : false, align: 'center'},
 		{display: 'Nombre y Apellido', name : 'nombre', width : 180, sortable : false, align: 'left'},
-		{display: 'Psicotécnico Online', name : 'estado', width : 120, sortable : false, align: 'left'},
+		{display: 'Psicotécnico Online', name : 'estado', width : 95, sortable : false, align: 'center'},
 		{display: 'Informes', name : 'info', width : 80, sortable : false, align: 'center', hide: false},
 		{display: 'Datos', name : 'data', width : 80, sortable : false, align: 'center'},
-		{display: 'Estado', name : 'entrevistado', width : 176, sortable : false, align: 'center'}
+		{display: 'Estado', name : 'entrevistado', width : 192, sortable : false, align: 'center'}
 		],
 	sortname: "orden",
 	sortorder: "asc",
@@ -671,5 +707,39 @@ $(".flexme1").flexigrid({
 }); 
 
 </script>
+	<script>
+	$(function() {
+		$( "#slider-range-min1" ).slider({
+			range: "min",
+			value: 50,
+			min: 0,
+			max: 100,
+			slide: function( event, ui ) {
+				$( "#importancia1" ).val( ui.value + '%' );
+			}
+		});
+		$( "#slider-range-min2" ).slider({
+			range: "min",
+			value: 50,
+			min: 0,
+			max: 100,
+			slide: function( event, ui ) {
+				$( "#importancia2" ).val( ui.value + '%' );
+			}
+		});
+		$( "#slider-range-min6" ).slider({
+			range: "min",
+			value: 50,
+			min: 0,
+			max: 100,
+			slide: function( event, ui ) {
+				$( "#importancia6" ).val( ui.value + '%' );
+			}
+		});
+		$( "#importancia1" ).val( $( "#slider-range-min1" ).slider( "value" ) + '%' );
+		$( "#importancia2" ).val( $( "#slider-range-min2" ).slider( "value" ) + '%' );
+		$( "#importancia6" ).val( $( "#slider-range-min6" ).slider( "value" ) + '%' );
+	});
+	</script>
 </body>
 </html>
