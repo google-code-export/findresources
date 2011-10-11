@@ -40,9 +40,9 @@
 - 
 	<a href="<?php echo site_url('docs/sugerencias.html')?>">Sugerencias</a>
 - 
-	<a href="<?php echo site_url('docs/terminos.html')?>">Terminos</a>
+	<a href="<?php echo site_url('docs/terminos.html')?>">Términos</a>
 	
-	<div class="copyright">Derechos Reservados (c) 2011 - findResoruces </div>	
+	<div class="copyright">Derechos Reservados &copy; <?php echo date("Y");?> - FindResoruces </div>	
 	
 </div>
 <div class="opacity" style="display:none;"></div>
@@ -64,7 +64,7 @@
 	<table cellspacing="0" cellpadding="0" align="center" style="background-color:black; padding:7px">
 		<tbody>
 		<tr><td>
-				<img style="padding-left: 30px; padding-bottom:5px;" src="images/src/55_cycle_ten_24.gif">
+				<img style="padding-left: 30px; padding-bottom:5px;" src="/images/src/55_cycle_ten_24.gif">
 				<div style="color:white"> Cargando ...</div>
 		</td></tr>
 		</tbody>
