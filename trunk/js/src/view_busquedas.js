@@ -234,9 +234,9 @@ function addSoftSkill(){
 	
 	if($('#editSoftSkillItem' + selectedIdSoftSkill).length == 0){
 		var softSkillLi = "<li id=\"editSoftSkillItem" + selectedIdSoftSkill  + "\" class=\"softSkillItem\">"+
-					selectedDescriptionSoftSkill + 
-					"<a href=\"javascript:removeSoftSkill(" + selectedIdSoftSkill + ");\">X</a>" + 
-				"</div></li>"
+					"<img src='/images/src/bullet_flecha.png' /> "+ selectedDescriptionSoftSkill + 
+					"<a href=\"javascript:removeSoftSkill(" + selectedIdSoftSkill + ");\">&nbsp;<img src='/images/src/delete.png'/></a>" + 
+				"</div><br /><br /></li>"
 
 		$('#editItemSoftSkillList').append(softSkillLi);
 		
@@ -453,4 +453,30 @@ function setAditionalData(){
 				processError(response);
 			}
 		});	
+}
+
+
+function setEstadoCVBusqueda(formID){
+	var cv_bus = {
+	cv_busqueda : $("form#"+formID+" input[name=cv_busqueda]").val(),
+	estado_cv_busqueda : $("form#"+formID+" select[name=estado_cv_busqueda]").val(),
+	observacion_cv_busqueda : ''
+	}
+	$.ajax({
+		url: "busquedas/setEstadoCVBusqueda",
+		global: false,
+		type: "POST",
+		data: {
+			'cv_bus': JSON.stringify(cv_bus)
+		},
+		dataType: "json",
+		async: true,
+		success: function(response){
+			alert("Se han actualizado los datos");
+			hidePopUp();
+		},
+		error: function(response){
+			processError(response);
+		}
+	});	
 }
