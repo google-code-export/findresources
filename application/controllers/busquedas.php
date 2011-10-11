@@ -138,7 +138,7 @@ class Busquedas extends CI_Controller {
 		$result;
 		if(isset($_POST["lista_herramienta"])){
 			$herramientas= json_decode($_POST["lista_herramienta"],true);
-			//$result->herramientas = $this->Busquedas_model->setHerramientasBusqueda($idBusqueda,$herramientas);
+			$result->herramientas = $this->Busquedas_model->setHerramientasBusqueda($idBusqueda,$herramientas);
 		}
 		
 		if(isset($_POST["lista_industria"])){
@@ -156,6 +156,7 @@ class Busquedas extends CI_Controller {
 		$idBusqueda = @$_SESSION[SESSION_ID_BUSQUEDA_SELECCIONADA];
 		if(isset($_POST["edu_formal"])){
 			$educacionFormal =  json_decode_into_array($_POST["edu_formal"]);
+			//print_r($educacionFormal);
 			$result = $this->Busquedas_model->setEducacionFormalDeBusqueda($idBusqueda,$educacionFormal);
 			echo json_encode($result);
 		}
@@ -239,27 +240,40 @@ class Busquedas extends CI_Controller {
 					$s5 ="selected";
 				break;
 			}
+			switch ($resultado_busqueda->estado_test){
+				case "P":
+					$estado = "Pendiente";
+					$estado = "<img src='/images/src/delete.png' />";
+					break;
+				case "R";
+					$estado = "Realizado";
+					$estado = "<img src='/images/src/ok.png' />";
+					break;
+				default:
+					$estado = "Sin datos";
+			}
 			$grid["rows"][$key]["id"] = $key;
-			$grid["rows"][$key]["cell"] = array($key,
+			$grid["rows"][$key]["cell"] = array($resultado_busqueda->valor_ranking,
 												$resultado_busqueda->nombre." ".$resultado_busqueda->apellido,
-												$resultado_busqueda->estado_test,
+												$estado,
 												"<form id='informe$key' name='informe$key' method=post action='informe' target='_blank'>
-													<input type='hidden' name='informe' value='".$resultado_busqueda->nombre."' />
-													<a href='javascript:document.informe$key.submit();' class='button'>Ver</a>
+													<input type='hidden' name='informe' value='".$resultado_busqueda->usuario."' />
+													<a href='javascript:document.informe$key.submit();' ><img src='/images/src/doc.png' /></a>
 												</form>",
 												"<form id='datos$key' name='datos$key' method=post action='curriculum/userBusqueda' target='_blank'>
-													<input type='hidden' name='datos' value='".$resultado_busqueda->nombre."'/>
-													<a href='javascript:document.datos$key.submit();' class='button'>Ver</a>
+													<input type='hidden' name='datos' value='".$resultado_busqueda->usuario."'/>
+													<a href='javascript:document.datos$key.submit();' ><img src='/images/src/cv.png' width='21px'/></a>
 												</form>",
-												"<form id='estado$key' name='estado$key'>
-													<select>
-														<option value='SI' ".$s1." >Entrevistado</option>
-														<option value='NO' ".$s2." >Sin Entrevistar</option>
+												"<form id='estado$key' name='estado$key' method=post >
+												<input type='hidden' name='cv_busqueda' id='cv_busqueda' value='".$resultado_busqueda->id_res_busqueda."' />
+													<select name='estado_cv_busqueda' id='estado_cv_busqueda'>
+														<option value='EN' ".$s1." >Entrevistado</option>
+														<option value='SE' ".$s2." >Sin Entrevistar</option>
 														<option value='CO' ".$s3." >Contratado</option>
 														<option value='RE' ".$s4." >Rechazado</option>
 														<option value='RE' ".$s5." >Entrevista Solicitada</option>
 													</select>&nbsp;&nbsp;
-													<a href='#'><img src='".site_url("images/src/refresh.png")."' /></a>
+													<a href='javascript:setEstadoCVBusqueda(\"estado$key\");'><img src='".site_url("images/src/refresh.png")."' /></a>
 												</form>"
 												);
 
@@ -269,6 +283,25 @@ class Busquedas extends CI_Controller {
 		
 	}
 	
+	/** SETEA EL ESTADO DE UN CV DE UNA BUSQUEDA **/
+	public function setEstadoCVBusqueda(){
+		if(isset($_POST["cv_bus"])){
+			$cv_busqueda = json_decode_into_array($_POST["cv_bus"]);
+			try {
+				$result = $this->Busquedas_model->cambiarEstadoCVBusqueda($cv_busqueda["cv_busqueda"],$cv_busqueda["estado_cv_busqueda"],$cv_busqueda["observacion_cv_busqueda"]);
+				echo json_encode($result);
+			}
+			catch (Exception $e) {
+				echo "ERROR (".$e->getMessage().")";
+			}
+		}
+	}
+	
+	
+	
+	/**************************************** TEST **********************************************/
+	/**************************************** TEST **********************************************/
+	/**************************************** TEST **********************************************/
 	private function runTest(){
 		
 		/*

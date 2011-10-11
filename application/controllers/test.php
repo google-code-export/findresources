@@ -31,19 +31,17 @@ class Test extends CI_Controller {
 		/** LO QUE LE FALTA REALIZAR SEGÚN LA INFO OBTENIDA DE LA BD **/
 
 		/* USUARIO DE PRUEBA HASTA PODER TOMAR EL USUARIO REAL GUARDADO EN SESION */
-		$idUsuario = @$_SESSION[SESSION_ID_USUARIO];
+		$idUsuario = $this->functionutils->getSession('SESSION_ID_USUARIO');
 		if(!$idUsuario){
 			/////////////HARDCODED//////////////////////////
 			/////////////HARDCODED//////////////////////////
 			$idUsuario = "juan@juan.com";
-			$_SESSION[SESSION_ID_USUARIO] = "juan@juan.com";
-			$this->session->set_userdata('usuario', "juan@juan.com");
+			$this->functionutils->setSession('SESSION_ID_USUARIO',$idUsuario);
 			/////////////HARDCODED//////////////////////////
 			/////////////HARDCODED//////////////////////////		
 		}
-		//$this->session->set_userdata('usuario', "juan@juan.com");
 		$tests_del_usuario = $this->Test_model->getTestsPendientes($idUsuario);
-		//print_r($tests_del_usuario);exit;
+
 		if (!array_key_exists(0, $tests_del_usuario["test_pendientes"]))	{
 			 redirect('/Test/fin', 'refresh');
 		}
@@ -69,23 +67,23 @@ class Test extends CI_Controller {
 	}
 	/** METODOS SOLO PARA PRUEBAS INTERNAS **/
 	function t1(){
-		$this->session->set_userdata('usuario', "juan@juan.com");
+		$this->functionutils->setSession('SESSION_ID_USUARIO',"juan@juan.com");
 		$this->luscher("1");
 	}
 	function t2(){
-		$this->session->set_userdata('usuario', "juan@juan.com");
+		$this->functionutils->setSession('SESSION_ID_USUARIO',"juan@juan.com");
 		$this->d48("2");
 	}
 	function t3(){
-		$this->session->set_userdata('usuario', "juan@juan.com");
+		$this->functionutils->setSession('SESSION_ID_USUARIO',"juan@juan.com");
 		$this->raven("3");
 	}
 	function t4(){
-		$this->session->set_userdata('usuario', "juan@juan.com");
+		$this->functionutils->setSession('SESSION_ID_USUARIO',"juan@juan.com");
 		$this->mips("4");
 	}
 	function t5(){
-		$this->session->set_userdata('usuario', "juan@juan.com");
+		$this->functionutils->setSession('SESSION_ID_USUARIO',"juan@juan.com");
 		$this->rorschach("5");
 	}
 	/** METODOS SOLO PARA PRUEBAS INTERNAS **/
@@ -111,7 +109,7 @@ class Test extends CI_Controller {
 			 	$this->load->view('view_test_luscher',$data);
 			break;
 			case 'select_colors2' : 
-				$usuario = $this->session->userdata('usuario');
+				$usuario = $this->functionutils->getSession('SESSION_ID_USUARIO');
 				$seleccion_luscher1 = $this->input->post('colors1');
 				$seleccion_luscher2 = $this->input->post('colors2');
 			 	$data['source'] = "test_finished";
@@ -173,7 +171,7 @@ class Test extends CI_Controller {
 		 		$data['timer'] = $this->input->post('timer');
 		 		$data['source'] = "test_finished";
 				$correctAnswers = $this->Test_model->getRavenCorrectAnswers($data);
-				$usuario = $this->session->userdata('usuario');
+				$usuario = $this->functionutils->getSession('SESSION_ID_USUARIO');
 		 		try{
 			 		$result = $this->Test_model->setRavenResults($usuario,$correctAnswers);
 					if ($result["error"] == 0 )
@@ -236,7 +234,7 @@ class Test extends CI_Controller {
 		 		$data['source'] = "test_finished";
 		 		
 				$correctAnswers = $this->Test_model->getD48CorrectAnswers($data);
-				$usuario = $this->session->userdata('usuario');
+				$usuario = $this->functionutils->getSession('SESSION_ID_USUARIO');
 				try {
 		 			$result = $this->Test_model->setD48Results($usuario,$correctAnswers);
 
@@ -276,14 +274,13 @@ class Test extends CI_Controller {
 		 		
 		 		$codError = NULL;
 				$descError = NULL;
-				$usuario = $this->session->userdata('usuario');
+				$usuario = $this->functionutils->getSession('SESSION_ID_USUARIO');
 				$data['source'] = "test_finished";
 				/* Obtengo el valor de todas las placas */
 				$data['q1'] = $this->input->post('q1');
 				$id = 2;
 				while ($id <= 180) {
 					$data['q'.$id] = $this->input->post('q'.$id);
-					//$seleccion_mips .= $this->input->post('q'.$id);
 			    	$id++;  
 				}
 					
@@ -330,10 +327,11 @@ class Test extends CI_Controller {
 		$d = $this->input->post('del');
 		if($d != ""){
 			$del = intval($d);
-			$rdata = $this->session->userdata('RORSCHACH_DATA');
+			$rdata = $this->functionutils->getSession('RORSCHACH_DATA');
 			unset($rdata[$key][$del]);
-			$this->session->set_userdata('RORSCHACH_DATA',$rdata);
-
+			$this->functionutils->setSession('RORSCHACH_DATA',$rdata);
+			//Modifico el source para que no entre en el switch final
+			$_POST["source"] = "select_img";
 		}
 		
 		/* Agregado de un tag */
@@ -350,14 +348,15 @@ class Test extends CI_Controller {
 			$tag['height']  = $height;
 			$tag['description']  = $description;
 
-		   $rdata = $this->session->userdata('RORSCHACH_DATA');
+		   $rdata = $this->functionutils->getSession('RORSCHACH_DATA');
 		   $rdata[$key][] = $tag;
-		   $this->session->set_userdata('RORSCHACH_DATA',$rdata);
-
+		   $this->functionutils->setSession('RORSCHACH_DATA',$rdata);
+			//Modifico el source para que no entre en el switch final
+			$_POST["source"] = "select_img";
 		}
 
 		/* Obtengo el valor de todas las placas */
-		$rdata = $this->session->userdata('RORSCHACH_DATA');
+		$rdata = $this->functionutils->getSession('RORSCHACH_DATA');
 
 		/* La primera vez que se usa hay que setearlo como array para que no tire error el array_key_exists*/
 		if(!is_array($rdata)) {
@@ -386,41 +385,40 @@ class Test extends CI_Controller {
 			break;
 			case 'select_img_final' : 
 		 		$data['source'] = "test_finished";
-		 		//$data['session'] = $this->session->userdata('RORSCHACH_DATA');
-				$answers = $this->session->userdata('RORSCHACH_DATA');
-				$usuario = $this->session->userdata('usuario');
+				$answers = $this->functionutils->getSession('RORSCHACH_DATA');
+				$usuario = $this->functionutils->getSession('SESSION_ID_USUARIO');
 				try {
 					$result["error"] = 0;
 					$result["desc"]  = "";
+					$tagdata = "";
 					if (is_array($answers)){
 						foreach($answers as $tags){
 							foreach($tags as $tag){
-									$tagdata = $tag['pictureid'].$this->sep;
+									$tagdata .= $tag['pictureid'].$this->sep;
 									$tagdata .= $tag['top'].$this->sep;
 									$tagdata .= $tag['left'].$this->sep;
 									$tagdata .= $tag['width'].$this->sep;
 									$tagdata .= $tag['height'].$this->sep;
-									$tagdata .= $tag['description'];
-									/**TODO CHECK RESULTS */
-									echo "<br />".$usuario."|".$tagdata."<br />";
-									$result = $this->Test_model->setRorschachResults($usuario,$tagdata);			
-									print_r($result);
-									echo "<br />";
-									/**TODO CHECK RESULTS */
-									if ($result["error"] == 0 )
-										$data["result"] = "OK";
-									else {			
-										$data["result"] = "ERROR (".$result["error"].") :".$result["desc"];
-										break;
-									}
+									$tagdata .= $tag['description'].$this->sep;
+									
 							}
+						}
+						/** Elimino el último separador **/
+						$tagdata = substr($tagdata,0,-1);
+						$result = $this->Test_model->setRorschachResults($usuario,$tagdata);			
+
+						if ($result["error"] == 0 )
+							$data["result"] = "OK";
+						else {			
+							$data["result"] = "ERROR (".$result["error"].") :".$result["desc"];
+							break;
 						}
 					} else {
 						$result["error"] = "999";
 						$result["desc"] = "No se ingresaron datos";
 					}
 						
-			 		$this->session->sess_destroy();
+			 		$this->functionutils->unsetSession('RORSCHACH_DATA');
 			 		$this->load->view('view_test_rorschach',$data);
 				} catch (Exception $e) {
 					$data["result"] = "ERROR (".$e->getMessage().")";
