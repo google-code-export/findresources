@@ -43,7 +43,7 @@ class Busquedas_model extends CI_Model {
 
 	}	
 	/** CREO O MODIFICO LA EDUCACION FORMAL DE UNA BUSQUEDA **/
-	public function  setEducacionFormalDeBusqueda($idBusqueda, $educacionFormal){
+	public function  setEducacionFormalDeBusqueda($idBusqueda, $educacionFormal = "N"){
 		$result["id_bus_edu_formal"] = NULL;
 		$result["error"] = NULL;
 		$result["desc"] = NULL;
@@ -118,10 +118,14 @@ class Busquedas_model extends CI_Model {
 		$parametro = "";
 		foreach ($industrias as $industria){
 			$parametro = $parametro .  
-					$industria["id_industria"] . ';' . 
-					$industria["valoracion"]  . ';'.
-					$industria["importancia"] . ';';
+					$industria["id_industria"] . $this->sep . 
+					$industria["valoracion"]  . $this->sep.
+					$industria["importancia"] . $this->sep;
 		}
+		// Borro el último separador
+		if ($parametro != "")
+			$parametro = substr($parametro,0,-1);
+			
 		//var_dump($idBusqueda);
 		//var_dump($parametro);
 		
@@ -141,6 +145,7 @@ class Busquedas_model extends CI_Model {
 			return $result;		
 		}else{
 			//TODO exception managment.
+			print_r($result);
 			throw new Exception('Oracle error message in setIndustriasBusqueda(): ' . $result["desc"]);
 		}
 			
@@ -152,11 +157,14 @@ class Busquedas_model extends CI_Model {
 		$parametro = "";
 		foreach ($herramientas as $herramienta){
 			$parametro = $parametro .  
-					$herramienta["id_herramienta"] . ';' . 
-					$herramienta["valor_herramienta"] . ';'.
-					$herramienta["importancia"] . ';';
+					$herramienta["id_herramienta"] . $this->sep . 
+					$herramienta["valor_herramienta"] . $this->sep.
+					$herramienta["importancia"] . $this->sep;
 		}
-		
+		// Borro el último separador
+		if ($parametro != "")
+			$parametro = substr($parametro,0,-1);
+			
 		$result["error"] = NULL;
 		$result["desc"] = NULL;
 		
@@ -168,7 +176,7 @@ class Busquedas_model extends CI_Model {
 		);
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_BUS_HERRAMIENTA',$params);
-		
+
 		if($result["error"] == 0){
 			return $result;		
 		}else{
@@ -629,7 +637,7 @@ class Busquedas_model extends CI_Model {
 	
 	
 	/** CAMBIAR ESTADO CV DE BUSQUEDA **/
-	public function  cambiarEstadoCVBusqueda($idBusqueda,$estado,$observacion){
+	public function  cambiarEstadoCVBusqueda($idBusqueda,$estado,$observacion = ""){
 		$result["error"] = NULL;
 		$result["desc"] = NULL;
 		
