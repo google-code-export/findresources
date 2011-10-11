@@ -54,7 +54,6 @@ class Curriculum extends CI_Controller {
 	
 	public function userBusqueda(){
 		$usuario = $this->input->post("datos");
-		$usuario = "juan@juan.com";
 		if(!$usuario){
 			echo "No se seleccionó un usuario";
 			exit;
@@ -106,8 +105,8 @@ class Curriculum extends CI_Controller {
 		
 		$currentCurriculum = @$_SESSION[SESSION_CV_EDITANDO];
 		$unCurriculum = $this->input->post('curriculum');
-		$unCurriculum = json_decode($unCurriculum);
-		$unCurriculum->id = $currentCurriculum->id;
+		$unCurriculum = json_decode_into_array(utf8_decode($unCurriculum));
+		$unCurriculum["id"] = $currentCurriculum->id;
 		$response = $this->Curriculum_model->setCurriculum($unCurriculum);
 		
 		if($response == 0){
@@ -208,7 +207,7 @@ class Curriculum extends CI_Controller {
 	public function  setExperienciaLaboral(){
 		$currentCurriculum = @$_SESSION[SESSION_CV_EDITANDO];
 		$experienciaLaboral = $this->input->post('experienciaLaboral');
-		$experienciaLaboral = json_decode($experienciaLaboral);
+		$experienciaLaboral = json_decode_into_array(utf8_decode($experienciaLaboral));
 		$respuesta = $this->Curriculum_model->setExperienciaLaboral($currentCurriculum->id, $experienciaLaboral);
 		echo json_encode($respuesta);
 	}
@@ -241,7 +240,7 @@ class Curriculum extends CI_Controller {
 	public function  setEducacionFormal(){
 		$currentCurriculum = @$_SESSION[SESSION_CV_EDITANDO];
 		$educacionFormal = $this->input->post('educacionFormal');
-		$educacionFormal = json_decode($educacionFormal);
+		$educacionFormal = json_decode_into_array(utf8_decode($educacionFormal));
 		$respuesta = $this->Curriculum_model->setEducacionFormal($currentCurriculum->id, $educacionFormal);
 		echo json_encode($respuesta);
 	}
@@ -266,7 +265,7 @@ class Curriculum extends CI_Controller {
 	public function  setEducacionNoFormal(){
 		$currentCurriculum = @$_SESSION[SESSION_CV_EDITANDO];
 		$educacionNoFormal = $this->input->post('educacionNoFormal');
-		$educacionNoFormal = json_decode($educacionNoFormal);
+		$educacionNoFormal = json_decode_into_array(utf8_decode($educacionNoFormal));
 		$respuesta = $this->Curriculum_model->setEducacionNoFormal($currentCurriculum->id, $educacionNoFormal);
 		echo json_encode($respuesta);
 	}
