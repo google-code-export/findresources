@@ -15,9 +15,9 @@
 <script type="text/javascript" src=" <?php echo site_url('js/src/utils.js')?>"></script>
 <script type="text/javascript" src=" <?php echo site_url('js/src/view_home.js')?>"></script>
 
-<link rel=StyleSheet href="css/global.css"/>
-<link rel=StyleSheet href="css/view_home.css"/>
-
+<link rel="stylesheet" type="text/css" href="<?php echo site_url('css/global.css')?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo site_url('css/view_home.css')?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo site_url('css/style.css')?>" />
 <title>Find Resources</title>
 
 <script type="text/javascript">
@@ -63,15 +63,17 @@
 		</div>
 	</div>
 	<div id="homeCandidateLinks">
-		<div id="homeCurriculumLink" class="clearfix">
-			<a href="curriculum"> 
-				CURRICULUM
-			</a>
+		<div id="homeCurriculumLink" class="clearfix" align="center">
+			<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="/curriculum"> 
+				<img src="/images/src/cv.png" />
+			</a><br />&nbsp;&nbsp;Editar Curriculum Vitae
 		</div>
-		<div id="homeTestLink" class="clearfix">
-			<a href="test_luscher"> 
-				COMPLETAR TEST PSICOTECNICO
-			</a>
+		<div id="homeTestLink" class="clearfix" align="center">
+			<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="/Test"> 
+				<img src="/images/src/test.gif" />
+			</a><br />&nbsp;&nbsp;Realizar Psicotécnico
 		</div>
 	</div>
 	<div class="opacity" style="display:none;"></div>	

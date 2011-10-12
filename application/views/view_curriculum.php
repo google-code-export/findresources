@@ -85,7 +85,7 @@
 					<!--img src="img/face.jpg" alt="Nombre" /-->
 				<!--/div>
 				<div class="right"-->
-					<h2>Información Personal <a href="javascript:editCVData();" class="editFields"><img src="/images/src/pencil.gif"/>Editar</a></h2>
+					<h2>Información Personal <?php if($perfil == "usuario") { ?> <a href="javascript:editCVData();" class="editFields"><img src="/images/src/pencil.gif"/>Editar</a><?php } ?></h2>
 					<div class="inblock">
 						<div class="row clearfix">
 							<div><?php echo ($curriculumData->estadoCivil == "") ? "" : $estadosCiviles[$curriculumData->estadoCivil]?>&nbsp;</div>
@@ -145,7 +145,7 @@
 			</div>
 			
 			<div class="block" id="hardSkills">
-				<h2>Conocimientos <a href="javascript:editHardSkills();" class="editFields"><img src="/images/src/pencil.gif"/>Editar</a></h2>
+				<h2>Conocimientos <?php if($perfil == "usuario") { ?><a href="javascript:editHardSkills();" class="editFields"><img src="/images/src/pencil.gif"/>Editar</a><?php } ?></h2>
 				<div class="inblock">
 					<h4>Areas de negocio</h4>
 					<ul>
