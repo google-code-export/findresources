@@ -13,7 +13,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/global.css')?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/view_login.css')?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/style.css')?>" />
-
+<link rel="shortcut icon" type="image/x-icon" href="<?php echo site_url("images/src/favicon.ico")?>" />
 </head>
 <body>
 <div id="fb-root"></div>
