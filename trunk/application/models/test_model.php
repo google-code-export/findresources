@@ -475,5 +475,28 @@ class Test_model extends CI_Model {
 
 	}
 	
+	public function getInforme($usuario){
+		$result["informe_info"] = NULL;
+		$result["error"] = NULL;
+		$result["desc"] = NULL;
+		
+		$params = array(
+		array('name'=>':PI_USUARIO', 'value'=>$usuario, 'type'=>SQLT_CHR , 'length'=>-1),
+		array('name'=>':PO_INFORME', 'value'=>&$result["informe_info"], 'type'=>SQLT_RSET , 'length'=>255),
+		array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
+		array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_TEST','PR_INFORME_USUARIO',$params);
+		$result["informe_info"] = $this->oracledb->get_cursor_data(":PO_INFORME");
+		
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in getInforme(): ' . $result["desc"]);
+		}
+
+	}
+	
 }
 ?>
