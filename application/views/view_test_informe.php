@@ -22,7 +22,7 @@
 		foreach($informe as $inf)
 			echo @$inf->informe."<br /><br /><br />";
 	} else {
-		echo "Aún no han sido generados informes para los exámenes psicotécnicos.";
+		echo "Aún no han sido generados informes para este candidato.";
 	} 
 ?>
 
