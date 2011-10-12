@@ -4,7 +4,7 @@
 <meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type"/>
 <script type="text/javascript" src=" <?php echo site_url('js/libs/jquery-1.6.2.min.js')?>"></script>
 <script type="text/javascript" src=" <?php echo site_url('js/libs/json2.js')?>"></script>
-
+<link rel="shortcut icon" type="image/x-icon" href="<?php echo site_url("images/src/favicon.ico")?>" />
 <title>Find Resources</title>
 
 <style type="text/css">

@@ -4,6 +4,7 @@
 	<meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type"/>
     <link rel="StyleSheet" type="text/css" href="<?php echo site_url('css/style.css')?>" />
     <link rel="StyleSheet" type="text/css" href="<?php echo site_url('css/global.css')?>" />
+    <link rel="shortcut icon" type="image/x-icon" href="<?php echo site_url("images/src/favicon.ico")?>" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
     <?php /*NO SACAR ESTA VERSION DE JQUERY PORQUE SINO NO FUNCIONA*/?>
 	<script src="<?php echo base_url();?>js/libs/jquery-ui-1.8.15.custom.min.js" language="JavaScript" type="text/javascript"></script>
