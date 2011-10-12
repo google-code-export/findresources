@@ -431,5 +431,17 @@ class Test extends CI_Controller {
 		}
 	}
 	
+	public function informe(){
+		$usuario = $this->input->post("informe_usuario");
+		if(!$usuario){
+			echo "No se seleccionó un usuario";
+			exit;
+		}
+		
+		$informe  = $this->Test_model->getInforme($usuario);
+		$data['informe'] = $informe["informe_info"];
+		$this->load->view('view_test_informe', $data);
+	}
+	
 }
 ?>
