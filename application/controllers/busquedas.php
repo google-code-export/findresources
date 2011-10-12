@@ -107,7 +107,7 @@ class Busquedas extends CI_Controller {
 		
 	public function setBusqueda(){
 		$busqueda= $this->input->post('busqueda');
-		$busqueda = json_decode($busqueda);
+		$busqueda = json_decode_into_array(utf8_decode($busqueda));
 		
 		
 		////////REVISAR AQUI SI ESTA BUSQUEDA PERTENECE 
