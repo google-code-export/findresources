@@ -28,7 +28,7 @@
 
 <div id="login">
 	<?php include("toolbar.php"); ?>
-
+<h1>&nbsp;&nbsp;Donde no encontrás un trabajo, encontrás el tuyo...</h1><br />
 	<div id="login_body">
 		<div id="login_wellcome">
 			<br />
