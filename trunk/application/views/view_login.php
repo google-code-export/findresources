@@ -17,7 +17,14 @@
 
 </head>
 <body>
-
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1&appId=98516639154";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 
 <div id="login">
@@ -25,7 +32,16 @@
 
 	<div id="login_body">
 		<div id="login_wellcome">
-			ACA VA EL WELLCOME
+			<br />
+			Bienvenido al primer Sitio Web que brinda servicios<br />
+			para búsqueda y selección de personal<br />
+			evaluando conocimientos y personalidad<br /><br />
+			 &#10004; Ranking de postulantes<br />
+			 &#10004; Psicotécnicos Online<br />
+			 &#10004; Informe de habilidades<br />
+			 &#10004; Seguimiento detallado del proceso de selección<br /><br />
+			 <center><iframe width="336" height="189" src="http://www.youtube.com/embed/SdZWF8DJOfk" frameborder="0" allowfullscreen></iframe></center>
+			 <br /><br /><div class="fb-like" data-href="https://www.facebook.com/pages/FindResources/198212693580643" data-send="false" data-width="450" data-show-faces="false" data-font="lucida grande"></div>
 		</div>
 		<div id="login_tabs">
 			<ul class="tabs">  
