@@ -43,8 +43,8 @@ class Home extends CI_Controller {
 		
 		$usuario = $this->input->post('usuario');
 		
-		$usuario = json_decode($usuario);
-		$usuario->email = $idUsuario;
+		$usuario = json_decode_into_array(utf8_decode($usuario));
+		$usuario["email"] = $idUsuario;
 		
 		$response = $this->Usuario_model->modificarUsuario($usuario);
 		
