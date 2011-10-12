@@ -92,8 +92,7 @@
 					<div id="searchTabs" class="clearfix">
 						<ul class="tabs">  
 						    <li><a href="#tab1">Opciones</a></li>  
-						    <li><a href="#tab2">Estado</a></li>  
-						    <li><a href="#tab3">Resultados</a></li>  
+						    <li><a href="#tab2">Resultados</a></li>  
 						</ul>  
 							  
 						<div class="tab_container">  
@@ -239,91 +238,12 @@
 										</div>
 								</div>
 		
-						    </div>
+						    </div> <!--  END OF TAB1 -->
+						    
 						    
 						    <div id="tab2" class="tab_content">
-						    
-								<div class="field">
-						        	<div class="label">Característica Dura</div>
-						        	<div class="control">
-						        			<input type="text" name="caracteristicaDura" />
-									</div>
-							    </div><br /><br /><br />
-								<div class="field">
-									<div class="label">Nivel</div>
-									<div class="control">
-						        			<input type="text" name="nivel" />
-						        	</div>
-							    </div><br /><br /><br />
-								<div class="field">
-									<div class="label">Tipo</div>
-									<div class="control">
-											<select>
-											  <option value="Deseada">Deseada</option>
-											  <option value="Necesaria">Necesaria</option>
-											</select>
-						        	</div>
-						        </div><br /><br /><br />
-								<div class="field">
-						        	<div class="label">Característica Blanda</div>
-						        	<div class="control">
-						        			<input type="text" name="caracteristicaBlanda" />
-									</div>
-							    </div><br /><br /><br />
-								<div class="field">
-						        	<div class="label">Descripción</div>
-						        	<div class="control">
-						        			<textarea name="descripcion" ></textarea>
-									</div>
-							    </div><br /><br /><br />
-								<div class="field">
-						        	<div class="label">Otro Criterio</div>
-						        	<div class="control">
-						        			<input type="text" name="otrocriterio" />
-									</div>
-							    </div><br /><br /><br />
-								<div class="field">
-						        	<div class="label">Experiencia laboral</div>
-						        	<div class="control">
-						        			<input type="text" name="experiencialaboral" />
-									</div>
-							    </div><br /><br /><br />
-								<div class="field">
-						        	<div class="label">Datos personales</div>
-						        	<div class="control">
-						        			<input type="text" name="datospersonales" />
-									</div>
-							    </div><br /><br /><br />
-								<div class="field">
-						        	<div class="label">Educación Formal</div>
-						        	<div class="control">
-						        			<input type="text" name="educacionformal" />
-									</div>
-							    </div><br /><br /><br />
-								<div class="field">
-									<div class="label">Tipo</div>
-									<div class="control">
-											<select>
-											  <option value="Obligatorio">Obligatorio</option>
-											  <option value="Opcional">Opcional</option>
-											</select>
-						        	</div>
-							    </div>
-						    </div>  <!--  END OF TAB2 -->
-						    
-						    
-						    
-						   <!-- div id="tab3" class="tab_content">  
-						    
-								<!--a href="busquedas/modificarBusqueda/1">Modificar Búsqueda</a>
-								<a href="busquedas/eliminarBusqueda/1">Eliminar Búsqueda</a> <!-- falta sp --  >
-								<a href="busquedas/verDetalle/1">Ver Detalle</a>
-								<a href="busquedas/seleccionarCandidatos/1">Seleccionar Candidatos</a>
-						    </div-->  <!--  END OF TAB3? -->
-						    
-						    <div id="tab3" class="tab_content">
 						    	<table class="flexme1">	</table>
-						    </div>  <!--  END OF TAB3 -->
+						    </div>  <!--  END OF TAB2 -->
 						    
 						    
 					    </div>  <!--  END OF tab_container --> 
