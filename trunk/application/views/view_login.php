@@ -9,11 +9,10 @@
 
 <title>Find Resources</title>
 
-<link rel=StyleSheet href="css/tabs.css"/>
-<link rel=StyleSheet href="css/global.css"/>
-<link rel=StyleSheet href="css/view_login.css"/>
-
-
+<link rel="stylesheet" type="text/css" href="<?php echo site_url('css/tabs.css')?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo site_url('css/global.css')?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo site_url('css/view_login.css')?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo site_url('css/style.css')?>" />
 
 </head>
 <body>
@@ -64,7 +63,7 @@
 						</div>
 			        </div>
 			        <div id="login_button_div">
-				        <input type="submit" value="Ingresar" id="do_login_button"  />
+				        <a href="#" id="do_login_button" class="button" >Ingresar</a>
 			        </div>
 			        
 			    </div>  
