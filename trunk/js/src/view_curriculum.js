@@ -317,7 +317,7 @@ $(function(){
 			estado: $('#formalEducationEditorStatus').val(),
 			fechaInicio: $('#formalEducationEditorDateFrom').val(),
 			fechaFinalizacion: $('#formalEducationEditorDateTo').val(),
-			promedio: $('#formalEducationEditorAverage').val()
+			promedio: $('#formalEducationEditorAverage').val().replace(".", ",")
 			
 		};
 		$.ajax({
