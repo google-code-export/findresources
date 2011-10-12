@@ -67,6 +67,8 @@ function editCVData(){
 	$('#cvDataEditorZipCode').val(cvData.codigoPostal);
 	$('#cvDataEditorState').val(cvData.idProvincia);
 	$('#cvDataEditorCountry').val(cvData.idPais);
+	cvDataEditorCountryChange();
+
 	$('#cvDataEditorPhone1').val(cvData.telefono1);
 	$('#cvDataEditorContactFrom1').val(cvData.horarioContactoDesde1);
 	$('#cvDataEditorContactTo1').val(cvData.horarioContactoHasta1);
@@ -412,5 +414,16 @@ $(function(){
 		checkInstitutionDescriptionDisabled();
 	});
 	
+	
+	$('#cvDataEditorCountry').change(cvDataEditorCountryChange);
 	return false;
 });
+
+
+function cvDataEditorCountryChange(){
+	if($('#cvDataEditorCountry').val() =="ARG"){
+		$('#cvDataEditorState').attr('disabled',false);
+	}else{
+		$('#cvDataEditorState').attr('disabled',true);
+	}
+}

@@ -334,6 +334,15 @@
 				</div>
 				
 				<div class="field clearfix">
+					<div class="label">Pais:</div>
+					<select id="cvDataEditorCountry">
+						<?php foreach ($paises as $id => $desc){ ?>
+							<option value="<?php echo $id; ?>"><?php echo $desc;?></option> 
+						<?php } ?>
+					</select>
+				</div>
+
+				<div class="field clearfix">
 					<div class="label">Provincia:</div>
 
 					<select id="cvDataEditorState">
@@ -342,15 +351,6 @@
 						<?php } ?>
 					</select>
 
-				</div>
-				
-				<div class="field clearfix">
-					<div class="label">Pais:</div>
-					<select id="cvDataEditorCountry">
-						<?php foreach ($paises as $id => $desc){ ?>
-							<option value="<?php echo $id; ?>"><?php echo $desc;?></option> 
-						<?php } ?>
-					</select>
 				</div>
 				
 				<div class="field clearfix">
