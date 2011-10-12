@@ -134,10 +134,11 @@
 	    case "E": //EMPRESA
 ?>
 
-	HOME - TICKETS - - DATOS DE LA EMPRESA
+	<img src="/images/src/home.png" width=30px /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="/images/src/ticket.png" width=30px /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="/images/src/company.png" width=30px /><br />HOME &nbsp;&nbsp;&nbsp;&nbsp; TICKETS &nbsp;&nbsp;&nbsp;&nbsp; DATOS DE LA EMPRESA
+	<br /><br /><br /><br />
 	<div class="clearfix">
 		<a href="busquedas"> 
-			BUSQUEDAS 
+			<img src="/images/src/search.png" /> <br />BÚSQUEDA
 		</a>
 	</div>
 
