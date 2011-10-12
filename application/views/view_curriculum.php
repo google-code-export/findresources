@@ -27,6 +27,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/global.css')?>" />
 <link rel=StyleSheet type="text/css" href="<?php echo site_url('css/starrating.css')?>"/>
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/view_curriculum.css')?>" />
+<link rel="shortcut icon" type="image/x-icon" href="<?php echo site_url("images/src/favicon.ico")?>" />
 <script type="text/javascript">
 	var availableIndustries = <?php  echo json_encode_utf8($industriasDisponibles); ?>;
 
