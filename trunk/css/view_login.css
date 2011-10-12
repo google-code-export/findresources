@@ -47,6 +47,13 @@ code {
 #login_wellcome {
 	width: 500px;
 	float: left;
+	position: absolute;
+	 font-family: Arial;
+	font-style:italic;
+	 
+	 font-size: 18px;
+
+	 color: blue;
 }
 
 #login_tabs {
