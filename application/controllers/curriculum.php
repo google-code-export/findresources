@@ -116,6 +116,30 @@ class Curriculum extends CI_Controller {
 		
 		echo json_encode($response);
 	}	
+
+	public function  upload(){
+		// Process their input and login the user
+		$unCurriculum = @$_SESSION[SESSION_CV_EDITANDO];
+		//$unCurriculum->id;
+		//if ($unCurriculum != "") {
+			// Script Que copia el archivo temporal subido al servidor en un directorio.
+			$tipo = substr($_FILES['photo']['type'], 0, 5);
+			// Definimos Directorio donde se guarda el archivo
+			$dir = 'images/cv/';
+			// Intentamos Subir Archivo
+			// (1) Comprovamos que existe el nombre temporal del archivo
+			if (isset($_FILES['photo']['tmp_name'])) {
+			// (2) - Comprovamos que se trata de un archivo de imágen
+			if ($tipo == 'image') {
+			// (3) Por ultimo se intenta copiar el archivo al servidor.
+			if (!copy($_FILES['photo']['tmp_name'], $dir.md5($this->input->post('usr')).".jpg"))
+					echo 'error';
+			}
+			}
+			//}
+			
+
+	}
 	
 	/**
 	 * input: null
