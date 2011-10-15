@@ -12,7 +12,7 @@
 .content .CR{width:400px;float:left;}
 
 .content .info .photo{float:left;}
-.content .info .photo img{padding:5px;background:#FFF;}
+.content .info .photo img{padding:5px;background:#FFF;border: .1em solid black; }
 .content .info .right{float:left;width:300px;padding:0 0 0 10px;}
 .content .info .right h3{font:16px;padding:0 0 12px;}
 .content .info .right p{padding:0 0 10px;}
