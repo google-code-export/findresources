@@ -187,7 +187,14 @@ h1 {
 	border-radius: 5px;
 	box-shadow: 2px 2px 2px #888;
 }
-
+.inblock2{
+	margin:5px;
+	padding:5px;
+	background-color: #DAEBEA;
+	border-radius: 5px;
+	box-shadow: 2px 2px 2px #888;
+	min-height : 140px;
+}
 h2{font-size:18px;color:#555;padding:0 0 0px;}
 
 .block h4{font:bold 14px; color:#555;padding:0 0 6px;}
