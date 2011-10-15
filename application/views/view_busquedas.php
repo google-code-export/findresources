@@ -24,7 +24,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/flexigrid/flexigrid.pack.css')?>" />
 	
 
-<script type="text/javascript"	src="http://code.jquery.com/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="<?php echo site_url('js/libs/jquery-1.6.2.min.js')?>"></script>
 <script type="text/javascript" src=" <?php echo site_url('js/flexigrid/flexigrid.pack.js')?>"></script>	
 <script type="text/javascript" src="<?php echo site_url('js/libs/jquery-ui.min-1.8.16.js')?>"></script>
 <script type="text/javascript" src=" <?php echo site_url('js/libs/json2.js')?>"></script>
