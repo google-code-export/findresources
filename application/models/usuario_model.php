@@ -157,6 +157,7 @@ class Usuario_model extends FR_Model {
 	        	throw new Exception('User not found: getUsuario('. $idUsuario .')' . $n2);
 			}
 			
+			$response->id  = $dbRegistro->id_usuario;
 			$response->nombre  = $dbRegistro->nombre;
 			$response->apellido  = $dbRegistro->apellido; 
 			$response->razonSocial  = $dbRegistro->razon_social; 
