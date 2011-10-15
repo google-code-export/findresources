@@ -15,7 +15,7 @@
 |
 */
 $config['base_url']	= 'http://localhost/FindResources';
-
+//$config['base_url']	= 'http://findresources.dyndns.info/';//NO COMMITEAR PARA QUE TODOS PUEDAN PROBAR!!
 /*
 |--------------------------------------------------------------------------
 | Index File
@@ -80,7 +80,7 @@ $config['language']	= 'english';
 | that require a character set to be provided.
 |
 */
-$config['charset'] = 'UTF-8';
+$config['charset'] = 'ISO-8859-1';
 
 /*
 |--------------------------------------------------------------------------
