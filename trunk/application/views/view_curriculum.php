@@ -82,12 +82,12 @@
 		<div class="CL">
 			<h1><?php echo $usuarioData->nombre." ".$usuarioData->apellido;?></h1>			
 			<div class="info clearfix block">
-				<!-- div class="photo"-->
-					<!--img src="img/face.jpg" alt="Nombre" /-->
-				<!--/div>
-				<div class="right"-->
-					<h2>Información Personal <?php if($perfil == "usuario") { ?> <a href="javascript:editCVData();" class="editFields"><img src="/images/src/pencil.gif"/>Editar</a><?php } ?></h2>
-					<div class="inblock">
+				<div class="photo" ><br />
+					<img src="/images/cv/<?php echo md5($usuarioData->id);?>.jpg" alt="Foto" width=150px />
+				</div>
+				<div class="right">
+					<h2>&nbsp;&nbsp;Información Personal <?php if($perfil == "usuario") { ?> <a href="javascript:editCVData();" class="editFields"><img src="/images/src/pencil.gif"/>Editar</a><?php } ?></h2>
+					<div class="inblock2">
 						<div class="row clearfix">
 							<div><?php echo ($curriculumData->estadoCivil == "") ? "" : $estadosCiviles[$curriculumData->estadoCivil]?>&nbsp;</div>
 							<div><?php echo $curriculumData->fechaNacimiento?></div>
@@ -142,7 +142,7 @@
 						<?php } ?>
 					</div>
 
-				<!--/div-->
+				</div>
 			</div>
 			
 			<div class="block" id="hardSkills">
@@ -299,7 +299,15 @@
 		<div class="popuptitle"> Información Personal </div>
 		<a href="javascript:;" class="closePopUp"></a>
 		<div class="inside">
-			<div>	
+			<div>
+				<div class="field clearfix">
+					<div class="label">Foto:</div>
+					<form method="post" enctype="multipart/form-data" action="/curriculum/upload" id="photoupload" target="iframeUpload">
+						<input type="file" name="photo" size="20" id="cvDataEditorPhoto" onchange="javascript: submit()"/>
+						<input type="hidden" value="<?php echo $usuarioData->id;?>" name="usr" />
+						<iframe name="iframeUpload" style="display:none"></iframe>
+					</form>
+				</div>
 				<div class="field clearfix">
 					<div class="label">Estado Civil:</div>
 					<select id="cvDataEditorMaritalStatus">
@@ -309,7 +317,7 @@
 					</select>
 				</div>
 				<div class="field clearfix">
-					<div class="label">Fecha de nac:</div>
+					<div class="label">Fecha de nacimiento:</div>
 					<input class="datepicker" type="text" id="cvDataEditorBirthDay" value="" />
 				</div>
 				<div class="field clearfix">
@@ -402,7 +410,7 @@
 				</div>
 
 				<div class="field clearfix">
-					<div class="label">SMS:</div>
+					<div class="label">Skype:</div>
 					<input type="text" id="cvDataEditorSMS" value="" />
 				</div>
 				<div class="field clearfix">
