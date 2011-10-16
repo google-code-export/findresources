@@ -155,7 +155,58 @@
 	    case "A": //ADMINISTRADOR
 
 ?>
-		HOME - Alta de Usuario Experto
+		<div class="block">
+			<h2>Usuarios: </h2>
+			<div class="inblock">
+				<img src="/images/src/new_user_icon.gif" /> 
+				<a href="admin_usuarios"> 
+					<br /> Expertos
+				</a>
+			</div>
+		</div>
+			
+		<div class="block informes">
+			<h2>Informes: </h2>
+			<div class="inblock">
+				<img src="/images/src/report.png" /> 
+				
+				<div>
+					<a href="informe_conocimientos"> 
+						Conocimientos
+					</a>
+					<br />
+		
+					<a href="informe_aspectos"> 
+						Aspectos de la personalidad
+					</a>
+					<br />
+					
+					<a href="informe_estadisticas"> 
+						Estadisticas por test
+					</a>
+					<br />
+					
+					<a href="informe_clientes"> 
+						Clientes
+					</a>
+					<br />
+					
+					<a href="informe_busquedas"> 
+						Puestos solicitados
+					</a>
+					<br />
+					
+					<a href="informe_cv"> 
+						Curriculums
+					</a>
+					<br />
+				</div>
+			</div>
+		</div>
+
+			
+			
+		</div>
 <?php 
 		break;
     	default:

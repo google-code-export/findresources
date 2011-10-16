@@ -72,3 +72,16 @@
 .popup .label{
 	font-weight: normal;
 }
+
+.informes .inblock {
+	height: 127px;
+}
+
+.informes .inblock img,
+.informes .inblock div {
+	float: left;
+}
+
+.informes .inblock div {
+	margin-top: 22px;
+}

@@ -443,6 +443,8 @@ class Util_model extends FR_Model {
         	throw new Exception('Oracle error message in getEstadoContacto(): ' . $result["desc"]);
 		}	
 	}
+		
+	
 }
 
 ?>
