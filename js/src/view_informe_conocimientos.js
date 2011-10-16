@@ -14,7 +14,11 @@ $(function() {
 		rp: 15,
 		showTableToggleBtn: false,
 		width: 450,
-		height: 500
+		height: 500,
+		onError: function(response){
+			processError(response);
+		} 
+
 	}); 
 
 	$("#herramientasGrid").flexigrid({
@@ -32,7 +36,11 @@ $(function() {
 		rp: 15,
 		showTableToggleBtn: false,
 		width: 450,
-		height: 500
+		height: 500,
+		onError: function(response){
+			processError(response);
+		} 
+
 	}); 
 
 	return false;
