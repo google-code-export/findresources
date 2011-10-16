@@ -18,7 +18,11 @@ $(function() {
 		rp: 15,
 		showTableToggleBtn: false,
 		width: 850,
-		height: 500
+		height: 500,
+		onError: function(response){
+			processError(response);
+		} 
+
 	}); 
 
 

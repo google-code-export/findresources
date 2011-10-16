@@ -624,7 +624,11 @@ $(".flexme1").flexigrid({
 	rp: 15,
 	showTableToggleBtn: false,
 	width: 750,
-	height: 600
+	height: 600,
+	onError: function(response){
+		processError(response);
+	} 
+
 }); 
 
 </script>
