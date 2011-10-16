@@ -239,7 +239,30 @@ class Usuario_model extends FR_Model {
 	}	
 	
 	
-
+	public function  getUsuariosExpertos(){
+		
+		$result["usuarios"] = NULL;
+		$result["error"] = NULL;
+		$result["desc"] = NULL;
+		
+		$params = array(
+			array('name'=>':pi_usuario', 'value'=>"", 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':PO_USUARIOS_EXPERTOS', 'value'=>&$result["lista_estados_contacto"], 'type'=>SQLT_RSET, 'length'=>255),
+			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_USUARIO','PR_OBTIENE_USUARIOS_EXPERTOS',$params);
+		$result["usuarios"] = $this->oracledb->get_cursor_data(":PO_USUARIOS_EXPERTOS");
+	
+		if($result["error"] == 0){
+			return $result;
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in getEstadoContacto(): ' . $result["desc"]);
+		}	
+		
+	}
 	
 }
 
