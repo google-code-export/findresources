@@ -26,6 +26,7 @@
 <script type="text/javascript" src="<?php echo site_url('js/libs/jquery-ui.min-1.8.16.js')?>"></script>
 <script type="text/javascript" src="<?php echo site_url('js/libs/json2.js')?>"></script>
 <script type="text/javascript" src="<?php echo site_url('js/src/utils.js')?>"></script>
+<script type="text/javascript" src="<?php echo site_url('js/src/exportPDF.js')?>"></script>
 
 <script type="text/javascript" src=" <?php echo site_url('js/flexigrid/flexigrid.pack.js')?>"></script>	
 <script type="text/javascript" src=" <?php echo site_url('js/src/view_informe_aspectos.js')?>"></script>
@@ -50,7 +51,7 @@
 			<div class="CL">
 				<div class="info clearfix block">
 
-					<div style="float:left">
+					<div id="aspectosGridContainer" style="float:left">
 						<table id="aspectosGrid">	</table>
 					</div>
 
@@ -59,6 +60,15 @@
 		</div>
 	</div>
 <?php include("footer.php"); ?>
+
+<form method="post" enctype="multipart/form-data" action="<?php echo site_url('dompdf/getpdf.php')?>" id="exportToPdf" target="iframeUpload">
+	
+	<input id="contentHtml" name="contentHtml" type="hidden"/>
+	<input id="filename" name="filename" type="hidden"/>
+	<input id="pdfTitle" name="title" type="hidden"/>
+	
+	<iframe name="iframeUpload" style="display:none"></iframe>
+</form>
 
 </body>
 </html>
