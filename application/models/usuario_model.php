@@ -54,7 +54,7 @@ class Usuario_model extends FR_Model {
 		$n1 = NULL;
 		$n2 = NULL;
 		$params = array(
-		array('name'=>':pi_usuario', 'value'=>$usuario->email, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':pi_usuario', 'value'=>$idUsuario, 'type'=>SQLT_CHR, 'length'=>-1),
 		array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
 		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
 		);
@@ -264,6 +264,78 @@ class Usuario_model extends FR_Model {
 		
 	}
 	
+	/**
+	 * @param usuario: {email, clave, nombre, apellido}
+	 * @return 
+	 * */
+	public function  crearNuevoUsuarioExperto($usuario){
+
+		$n1 = NULL;
+		$n2 = NULL;
+		$params = array(
+		array('name'=>':pi_usuario', 'value'=>$usuario->email, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':pi_clave', 'value'=>$usuario->clave, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':pi_nombre', 'value'=>$usuario->nombre, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':pi_apellido', 'value'=>$usuario->apellido, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':pi_tipo_documento', 'value'=>$usuario->tipo_documento, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':pi_numero_documento', 'value'=>$usuario->numero_documento, 'type'=>SQLT_CHR, 'length'=>-1), 
+		array('name'=>':pi_telefono', 'value'=>$usuario->telefono, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':pi_pais', 'value'=>$usuario->pais, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
+		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		var_dump($params);
+		exit;
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_usuario','pr_crea_usuario_experto',$params);
+		
+		if ($n1 == 0){
+			return 0;
+		}
+		else{
+			
+			//TODO exception managment.
+        	throw new Exception('Oracle error in crearNuevoUsuario ('. $usuario->email .') message in : ' . $n2);
+		}		
+		
+	}	
+
+	
+	
+	
+	
+	
+	/**
+	 * @param usuario en mail.
+	 * @param clave en md5.
+	 * 
+	 * @return 
+	 * */
+	public function  modificaClave($usuario, $clave){
+
+		$n1 = NULL;
+		$n2 = NULL;
+		$params = array(
+		array('name'=>':pi_usuario', 'value'=>$usuario, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':pi_clave', 'value'=>$clave, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
+		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_usuario','pr_modificacion_clave',$params);
+		
+		if ($n1 == 0){
+			return 0;
+		}
+		else{
+			
+			//TODO exception managment.
+        	throw new Exception('Oracle error in crearNuevoUsuario ('. $usuario->email .') message in : ' . $n2);
+		}		
+		
+	}	
+
 }
 
 ?>
