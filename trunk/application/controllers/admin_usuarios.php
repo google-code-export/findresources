@@ -9,12 +9,15 @@ class Admin_Usuarios extends CI_Controller {
 	
 	public function index(){
 		$idUsuario = @$_SESSION[SESSION_ID_USUARIO];
+		$data['tiposDeDocumentos'] =  $this->Util_model->getTiposDeDocumentos();
+		$data['paises'] = $this->Util_model->getPaises();
+		
 		if(!$idUsuario){
 			redirect('home');
 			
 		}else{
 			//user is already logged in.
-			$this->load->view('view_admin_usuarios');
+			$this->load->view('view_admin_usuarios', $data);
 		}
 		
 	}
@@ -32,7 +35,11 @@ class Admin_Usuarios extends CI_Controller {
 		$key = 1;
 		foreach ($usuarios as $usuario) {
 			$grid["rows"][$key]["id"] = $usuario->id_usuario ;
-			$grid["rows"][$key]["cell"] = array($usuario->usuario , $usuario->nombre, "********", "BAJA", "EDITAR");
+			$grid["rows"][$key]["cell"] = array($usuario->usuario , $usuario->nombre, "********", 
+			"<a class='removeUserLink' href='javascript:removeUser(\"". $usuario->usuario ."\");'><img src='/images/src/delete.png'></img></a>", 
+			"<a class='editUserLink' href='javascript:editUserPassword(\"". $usuario->usuario ."\");'><img src='/images/src/pencil.gif'></img></a>", 
+			
+			"EDITAR");
 			$key++;
 		}
 		echo json_encode_utf8($grid);
@@ -40,11 +47,48 @@ class Admin_Usuarios extends CI_Controller {
 	}
 	
 	public function bajaUsuario(){
+		$usuario = $this->input->post('usuario');
+		$respuesta = $this->Usuario_model->bajaUsuario($usuario);
+		echo json_encode_utf8($respuesta);
 		
-
-				
 	}
 	
+	/**
+	 * Crea nuevo usuario experto.
+	 * input: json 'usuario' {email, clave, nombre, apellido}
+	 * output: 
+	 */
+	public function  setUserData(){
+		$usuario = $this->input->post('usuario');
+		$usuario = json_decode($usuario);
+		$usuario->clave = md5($usuario->clave);
+
+		$respuesta = $this->Usuario_model->crearNuevoUsuarioExperto($usuario);
+		//email confirmation
+		$this->email->from('noreply@gmail.com', 'Findresources');
+		$this->email->to($usuario->email);
+		$this->email->subject('FindResources - Confirmacion de Registración');
+		$this->email->message('Su usuario Experto ha sido creado contactese con el administrador para saber su contraseña.');
+		//ENVIAR EMAIL.
+		$emailSent = $this->email->send();
+		
+		echo json_encode($respuesta);
+	}
+	
+	/**
+	 * Cambia la contraseña del usuario.
+	 * input: json 'usuario' {email, clave}
+	 * output: 
+	 */
+	public function  setUserPassword(){
+		$usuario = $this->input->post('usuario');
+		$usuario = json_decode($usuario);
+		$usuario->clave = md5($usuario->clave);
+
+		$respuesta = $this->Usuario_model->modificaClave($usuario->email, $usuario->clave);
+		
+		echo json_encode($respuesta);
+	}
 	
 	
 }

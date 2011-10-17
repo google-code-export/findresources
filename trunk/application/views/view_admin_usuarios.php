@@ -29,6 +29,15 @@
 
 <script type="text/javascript" src=" <?php echo site_url('js/flexigrid/flexigrid.pack.js')?>"></script>	
 <script type="text/javascript" src=" <?php echo site_url('js/src/view_admin_usuarios.js')?>"></script>
+<style type="text/css">
+	#userEditorIdType {
+		width: 50px;
+	}
+	
+	#userEditorIdNumber {
+		width: 87px;
+	}
+</style>
 
 <title>FindResources </title>
 </head>
@@ -57,6 +66,116 @@
 		</div>
 	</div>
 <?php include("footer.php"); ?>
+
+<div class="popup" id="userPopUp" style="display:none;">
+	<table cellspacing="0" cellpadding="0" align="center">
+	<tr><td>
+		<div class="in">
+			<div class="popuptitle"> Usuario </div>
+			<a href="#" class="closePopUp"></a>
+			<div class="inside">
+				<div>	
+					<div class="field clearfix">
+						<div class="label">Nombre:</div>
+						<input type="text" id="userEditorFirstName"></input>
+					</div>
+
+					<div class="field clearfix">
+						<div class="label">Apellido:</div>
+						<input type="text" id="userEditorLastName"></input>
+					</div>
+
+					<div class="field clearfix">
+						<div class="label">Email:</div>
+						<input type="text" id="userEditorEmail"></input>
+					</div>
+					<div class="field clearfix">
+						<div class="label">Contraseña:</div>
+						<input type="password" id="userEditorPassword"></input>
+					</div>
+
+					<div class="field clearfix">
+						<div class="label">Confirmar Contraseña:</div>
+						<input type="password" id="userEditorPasswordConfirm"></input>
+					</div>
+
+			        <div class="field">
+			        	<div class="label">Documento:</div>
+			        	<div class="control">
+							<select id="userEditorIdType"> 
+							   <?php foreach ($tiposDeDocumentos as $id => $tipo){ ?>
+							   			<option value="<?php echo $id?>">
+											<?php echo $id?>
+										</option> 
+							   <?php } ?>
+							</select>
+			        		<input type="text" id="userEditorIdNumber" />
+						</div>
+			        </div>
+			        <div class="field">
+			        	<div class="label">Telefono:</div>
+			        	<div class="control">
+			        		<input type="text" id="userEditorPhone" />
+						</div>
+			        </div>
+			        <div class="field">
+			        	<div class="label">Pais:</div>
+			        	<div class="control">
+							<select id="userEditorCountry"> 
+							   <?php  
+							   		foreach ($paises as $id => $pais){
+							   ?>
+							   			<option value="<?php echo $id?>">
+											<?php echo $pais?>
+										</option> 
+							   <?php  
+							   		}
+							   ?>
+							</select>
+						</div>
+			        </div>
+
+				</div>
+				<div class="buttonsPopUp">
+					<input type="submit" value="Guardar" class="sendButton" onclick="performEditUserData();"> </input>
+					<input type="submit" value="Cancelar" class="cancelPopUp"></input>
+				</div>
+				
+			</div>
+		</div>
+	</td></tr>
+	</table>
+</div>
+
+<div class="popup" id="userPaswordPopUp" style="display:none;">
+	<table cellspacing="0" cellpadding="0" align="center">
+	<tr><td>
+		<div class="in">
+			<div class="popuptitle"> Contraseña de Usuario </div>
+			<a href="javascript:;" class="closePopUp"></a>
+			<div class="inside">
+				<div>	
+					<input type="hidden" id="userPasswordEditorEmail"></input>
+					<div class="field clearfix">
+						<div class="label">Contraseña:</div>
+						<input type="password" id="userPasswordEditorPassword"></input>
+					</div>
+
+					<div class="field clearfix">
+						<div class="label">Confirmar Contraseña:</div>
+						<input type="password" id="userPasswordEditorPasswordConfirm"></input>
+					</div>
+				</div>
+				<div class="buttonsPopUp">
+					<input type="submit" value="Guardar" class="sendButton" onclick="setUserPassword();" />
+					<input type="submit" value="Cancelar" class="cancelPopUp" />
+				</div>
+				
+			</div>
+		</div>
+	</td></tr>
+	</table>
+</div>
 
 </body>
 </html>
