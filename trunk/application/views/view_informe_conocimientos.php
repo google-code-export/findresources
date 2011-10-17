@@ -50,12 +50,12 @@
 			<div class="CL">
 				<div class="info clearfix block">
 
-					<div style="float:left">
-						<table id="industriasGrid">	</table>
+					<div id="industriasGridContent" class="gridContent" style="float:left">
+						<table id="industriasGrid"  class="grid">	</table>
 					</div>
 
-					<div style="float:right">
-						<table id="herramientasGrid">	</table>
+					<div id="herramientasGridContent" class="gridContent" style="float:right">
+						<table id="herramientasGrid" class="grid">	</table>
 					</div>
 
 				</div>
@@ -63,6 +63,16 @@
 		</div>
 	</div>
 <?php include("footer.php"); ?>
+
+<form method="post" enctype="multipart/form-data" action="<?php echo site_url('dompdf/getpdf.php')?>" id="exportToPdf" target="iframeUpload">
+	
+	<input id="contentHtml" name="contentHtml" type="hidden"/>
+	<input id="filename" name="filename" type="hidden"/>
+	<input id="pdfTitle" name="title" type="hidden"/>
+	
+	<iframe name="iframeUpload" style="display:none"></iframe>
+</form>
+
 
 </body>
 </html>
