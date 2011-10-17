@@ -1056,9 +1056,13 @@
 		}
 		$(g.pDiv, g.sDiv).append("<div style='clear:both'></div>");
 		// add title
+		
 		if (p.title) {
 			g.mDiv.className = 'mDiv';
-			g.mDiv.innerHTML = '<div class="ftitle">' + p.title + '</div>';
+			g.mDiv.innerHTML = '<div class="ftitle">' 
+				+ p.title + 
+			
+			'</div>';
 			$(g.gDiv).prepend(g.mDiv);
 			if (p.showTableToggleBtn) {
 				$(g.mDiv).append('<div class="ptogtitle" title="Minimize/Maximize Table"><span></span></div>');
@@ -1068,6 +1072,8 @@
 				});
 			}
 		}
+		
+		
 		//setup cdrops
 		g.cdropleft = document.createElement('span');
 		g.cdropleft.className = 'cdropleft';
