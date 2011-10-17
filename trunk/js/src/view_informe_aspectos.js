@@ -20,6 +20,8 @@ $(function() {
 		} 
 	}); 
 
+	addExportLink("#aspectosGridContainer", "Informe de Aspectos de la Personalidad Disponibles");
+
 	return false;
 });
 

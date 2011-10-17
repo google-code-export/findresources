@@ -36,31 +36,6 @@ function getHtml($title,  $contentHtml){
 	return <<<EOF
 		<html>
 			<head>
-			<script type="text/php">
-				
-				if ( isset(\$pdf) ) {
-				
-				  // Open the object: all drawing commands will
-				  // go to the object instead of the current page
-				  \$footer = \$pdf->open_object();
-				
-				  \$w = \$pdf->get_width();
-				  \$h = \$pdf->get_height();
-				
-				  // Add a logo
-				  \$img_w = 2 * 72; // 2 inches, in points
-				  \$img_h = 1 * 72; // 1 inch, in points -- change these as required
-				  \$pdf->image("../images/src/logofr.png", "png", (\$w - \$img_w) / 2.0, \$y - \$img_h, \$img_w, \$img_h);
-				
-				  // Close the object (stop capture)
-				  \$pdf->close_object();
-				
-				  // Add the object to every page. You can
-				  // also specify "odd" or "even"
-				  \$pdf->add_object(\$footer, "all");
-				}
-				</script>
-
 
 				<style type="text/css">
 					$flexGridStyles

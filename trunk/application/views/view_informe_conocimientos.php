@@ -25,6 +25,8 @@
 <script type="text/javascript" src="<?php echo site_url('js/libs/jquery-1.6.2.min.js')?>"></script>
 <script type="text/javascript" src="<?php echo site_url('js/libs/jquery-ui.min-1.8.16.js')?>"></script>
 <script type="text/javascript" src="<?php echo site_url('js/libs/json2.js')?>"></script>
+<script type="text/javascript" src="<?php echo site_url('js/src/exportPDF.js')?>"></script>
+
 <script type="text/javascript" src="<?php echo site_url('js/src/utils.js')?>"></script>
 
 <script type="text/javascript" src=" <?php echo site_url('js/flexigrid/flexigrid.pack.js')?>"></script>	
@@ -50,11 +52,11 @@
 			<div class="CL">
 				<div class="info clearfix block">
 
-					<div id="industriasGridContent" class="gridContent" style="float:left">
+					<div id="industriasGridContainer" class="gridContent" style="float:left">
 						<table id="industriasGrid"  class="grid">	</table>
 					</div>
 
-					<div id="herramientasGridContent" class="gridContent" style="float:right">
+					<div id="herramientasGridContainer" class="gridContent" style="float:right">
 						<table id="herramientasGrid" class="grid">	</table>
 					</div>
 
@@ -63,15 +65,6 @@
 		</div>
 	</div>
 <?php include("footer.php"); ?>
-
-<form method="post" enctype="multipart/form-data" action="<?php echo site_url('dompdf/getpdf.php')?>" id="exportToPdf" target="iframeUpload">
-	
-	<input id="contentHtml" name="contentHtml" type="hidden"/>
-	<input id="filename" name="filename" type="hidden"/>
-	<input id="pdfTitle" name="title" type="hidden"/>
-	
-	<iframe name="iframeUpload" style="display:none"></iframe>
-</form>
 
 
 </body>
