@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/FindResources';
+$config['base_url']	= 'http://localhost';
 //$config['base_url']	= 'http://findresources.dyndns.info/';//NO COMMITEAR PARA QUE TODOS PUEDAN PROBAR!!
 /*
 |--------------------------------------------------------------------------
