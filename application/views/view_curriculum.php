@@ -303,7 +303,7 @@
 				<div class="field clearfix">
 					<div class="label">Foto:</div>
 					<form method="post" enctype="multipart/form-data" action="/curriculum/upload" id="photoupload" target="iframeUpload">
-						<input type="file" name="photo" size="20" id="cvDataEditorPhoto" onchange="javascript: submit()"/>
+						<input type="file" name="photo" size="20" id="cvDataEditorPhoto" onchange="javascript:upload();"/>
 						<input type="hidden" value="<?php echo $usuarioData->id;?>" name="usr" />
 						<iframe name="iframeUpload" style="display:none"></iframe>
 					</form>
