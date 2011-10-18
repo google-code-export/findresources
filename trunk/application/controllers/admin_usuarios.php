@@ -37,9 +37,8 @@ class Admin_Usuarios extends CI_Controller {
 			$grid["rows"][$key]["id"] = $usuario->id_usuario ;
 			$grid["rows"][$key]["cell"] = array($usuario->usuario , $usuario->nombre, "********", 
 			"<a class='removeUserLink' href='javascript:removeUser(\"". $usuario->usuario ."\");'><img src='/images/src/delete.png'></img></a>", 
-			"<a class='editUserLink' href='javascript:editUserPassword(\"". $usuario->usuario ."\");'><img src='/images/src/pencil.gif'></img></a>", 
-			
-			"EDITAR");
+			"<a class='editUserLink' href='javascript:editUserPassword(\"". $usuario->usuario ."\");'><img src='/images/src/pencil.gif'></img></a>" 
+			);
 			$key++;
 		}
 		echo json_encode_utf8($grid);
