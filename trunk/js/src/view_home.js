@@ -5,6 +5,8 @@ function editUserData(){
 	$('#userDataEditorIdNumber').val(userData.numeroDocumento);
 	$('#userDataEditorPhone').val(userData.telefono);
 	$('#userDataEditorCountry').val(userData.idPais);
+	$('#userDataEditorRazonSocial').val(userData.razonSocial);
+	$('#userDataEditorIdIndustria').val(userData.idIndustria);
 	showPopUp('#userDataPopUp');
 }
 
@@ -17,12 +19,13 @@ $(function(){
 		var usuario = {
 			nombre: $('#userDataEditorFirstName').val(),
 			apellido: $('#userDataEditorLastName').val(),
-			razonSocial:"",
-			idIndustria:"",
+			razonSocial:$('#userDataEditorRazonSocial').val(),
+			idIndustria:$('#userDataEditorIdIndustria').val(),
 			idTipoDocumento:$('#userDataEditorIdType').val(),
 			numeroDocumento:$('#userDataEditorIdNumber').val(),
 			telefono:$('#userDataEditorPhone').val(),
 			idPais:$('#userDataEditorCountry').val(),
+
 			idTipoUsuario: userData.idTipoUsuario
 		};
 
