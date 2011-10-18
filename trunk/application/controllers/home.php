@@ -18,6 +18,7 @@ class Home extends CI_Controller {
 		$data['usuarioData'] = $dataUsuario;
 		$data['tiposDeDocumentos'] =  $this->Util_model->getTiposDeDocumentos();
 		$data['paises'] = $response = $this->Util_model->getPaises();
+		$data['industriasDisponibles'] = $this->Util_model->getIndustriasDisponibles();
 		
 		$tests_del_usuario = $this->Test_model->getTestsPendientes($idUsuario);
 
