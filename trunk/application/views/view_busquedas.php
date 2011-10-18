@@ -166,34 +166,34 @@
 											<div class="row clearfix">
 												<div class="label"> Entidad: </div> 
 												<?php echo ($educacion->id_entidad_educativa != "")?$entidadesEducativas[$educacion->id_entidad_educativa]: $educacion->d_entidad ?>
-												<?php echo ($educacion->c_modo_entidad == "R")? "(Requerido)" : "(Preferido)" ?>
+												<?php echo ($educacion->c_modo_entidad == "R")? "(Requerido)" : "(Deseado)" ?>
 											</div>								
 											<div class="row clearfix">
 												<div class="label"> Titulo: </div> 
 												<?php echo $educacion->titulo ?>
-												<?php echo ($educacion->c_modo_titulo == "R")? "(Requerido)" : "(Preferido)" ?>
+												<?php echo ($educacion->c_modo_titulo == "R")? "(Requerido)" : "(Deseado)" ?>
 											</div>								
 											<div class="row clearfix">
 												<div class="label"> Nivel de Educación: </div> 
 												<?php echo $educacion->id_nivel_educacion ?>
-												<?php echo ($educacion->c_modo_nivel_educacion == "R")? "(Requerido)" : "(Preferido)" ?>
+												<?php echo ($educacion->c_modo_nivel_educacion == "R")? "(Requerido)" : "(Deseado)" ?>
 											</div>								
 											<div class="row clearfix">
 												<div class="label"> Area: </div> 
 												<?php echo $educacion->id_area ?>
-												<?php echo ($educacion->c_modo_area == "R")? "(Requerido)" : "(Preferido)" ?>
+												<?php echo ($educacion->c_modo_area == "R")? "(Requerido)" : "(Deseado)" ?>
 											</div>								
 											<div class="row clearfix">
 												<div class="label"> Estado: </div> 
 												<?php echo $educacion->estado ?>
-												<?php echo ($educacion->c_modo_estado == "R")? "(Requerido)" : "(Preferido)" ?>
+												<?php echo ($educacion->c_modo_estado == "R")? "(Requerido)" : "(Deseado)" ?>
 											</div>								
 											<div class="row clearfix">
 												<div class="label"> Promedio: </div> 
 												de 
 												<?php echo $educacion->promedio_desde ?> a 
 												<?php echo $educacion->promedio_hasta ?>
-												<?php echo ($educacion->c_modo_promedio == "R")? "(Requerido)" : "(Preferido)" ?>
+												<?php echo ($educacion->c_modo_promedio == "R")? "(Requerido)" : "(Deseado)" ?>
 											</div>								
 										</div>
 									<?php } ?>
@@ -209,7 +209,7 @@
 												<div class="label"> Edad: </div> 
 												<?php echo @$recurso["edad_desde"] ?> a
 												<?php echo @$recurso["edad_hasta"]?>
-												<?php echo (@$recurso["edad_c_modo"] == "R")? "(Requerido)" : "(Preferido)"?>  
+												<?php echo (@$recurso["edad_c_modo"] == "R")? "(Requerido)" : "(Deseado)"?>  
 											</div>								
 											<!--div class="row clearfix">
 												<div class="label">Nacionalidad: </div> 
@@ -225,15 +225,15 @@
 											</div-->
 											<div class="row clearfix">
 												<div class="label">Posee twitter:</div> 
-												<?php echo (@$recurso["twitter_c_modo"] == "R")? "(Requerido)" : "(Preferido)" ?>
+												<?php echo (@$recurso["twitter_c_modo"] == "R")? "(Requerido)" : "(Deseado)" ?>
 											</div>
 											<div class="row clearfix">
 												<div class="label">Posee gtalk:</div> 
-												<?php echo (@$recurso["gtalk_c_modo"] == "R")? "(Requerido)" : "(Preferido)" ?>
+												<?php echo (@$recurso["gtalk_c_modo"] == "R")? "(Requerido)" : "(Deseado)" ?>
 											</div>
 											<div class="row clearfix">
 												<div class="label">Posee sms:</div> 
-												<?php echo (@$recurso["sms_c_modo"] == "R")? "(Requerido)" : "(Preferido)" ?>
+												<?php echo (@$recurso["sms_c_modo"] == "R")? "(Requerido)" : "(Deseado)" ?>
 											</div>
 										</div>
 								</div>
@@ -463,7 +463,7 @@
 							   <?php } ?>
 							</select>
 							<select class="modeField" id="formalEducationEditorInstitutionMode">
-							   			<option value="P">Preferido</option>
+							   			<option value="P">Deseado</option>
 							   			<option value="R">Requerido</option> 
 							</select>
 						</div>
@@ -477,7 +477,7 @@
 							<div class="label">Título:</div>
 							<input type="text" id="formalEducationEditorTitle" value="" />
 							<select class="modeField" id="formalEducationEditorTitleMode">
-							   			<option value="P">Preferido</option>
+							   			<option value="P">Deseado</option>
 							   			<option value="R">Requerido</option> 
 							</select>
 						</div>
@@ -492,7 +492,7 @@
 							   <?php } ?>
 							</select>
 							<select class="modeField" id="formalEducationEditorLevelMode">
-							   			<option value="P">Preferido</option>
+							   			<option value="P">Deseado</option>
 							   			<option value="R">Requerido</option> 
 							</select>
 						</div>
@@ -508,7 +508,7 @@
 							   <?php } ?>
 							</select>
 							<select class="modeField" id="formalEducationEditorAreaMode">
-							   			<option value="P">Preferido</option>
+							   			<option value="P">Deseado</option>
 							   			<option value="R">Requerido</option> 
 							</select>
 						</div>
@@ -521,7 +521,7 @@
 					   			<option value="C">En Curso</option> 
 							</select>
 							<select class="modeField" id="formalEducationEditorStatusMode">
-							   			<option value="P">Preferido</option>
+							   			<option value="P">Deseado</option>
 							   			<option value="R">Requerido</option> 
 							</select>
 						</div>
@@ -532,7 +532,7 @@
 							a
 							<input type="text" id="formalEducationEditorAverageTo" value="" />
 							<select class="modeField" id="formalEducationEditorAverageMode">
-							   			<option value="P">Preferido</option>
+							   			<option value="P">Deseado</option>
 							   			<option value="R">Requerido</option> 
 							</select>
 						</div>
@@ -566,28 +566,28 @@
 							<input type="text" id="aditionalDataEditorAgeTo" value="<?php echo @$recurso["edad_hasta"]?>"/>
 							años&nbsp;
 							<select class="modeField" id="aditionalDataEditorAgeMode">
-							   			<option value="P" <?php if ($recurso["edad_c_modo"] == "P") echo "selected";?>>Preferido</option>
+							   			<option value="P" <?php if ($recurso["edad_c_modo"] == "P") echo "selected";?>>Deseado</option>
 							   			<option value="R" <?php if ($recurso["edad_c_modo"] == "R") echo "selected";?>>Requerido</option> 
 							</select>
 						</div>
 						<div class="field clearfix">
 							<div class="label">Posee twitter:</div>
 							<select class="modeField" id="aditionalDataEditorTwitterMode">
-							   			<option value="P" <?php if ($recurso["twitter_c_modo"] == "P") echo "selected";?>>Preferido</option>
+							   			<option value="P" <?php if ($recurso["twitter_c_modo"] == "P") echo "selected";?>>Deseado</option>
 							   			<option value="R" <?php if ($recurso["twitter_c_modo"] == "R") echo "selected";?>>Requerido</option> 
 							</select>
 						</div>
 						<div class="field clearfix">
 							<div class="label">Posee gtalk:</div>
 							<select class="modeField" id="aditionalDataEditorGtalkMode">
-							   			<option value="P" <?php if ($recurso["gtalk_c_modo"] == "P") echo "selected";?>>Preferido</option>
+							   			<option value="P" <?php if ($recurso["gtalk_c_modo"] == "P") echo "selected";?>>Deseado</option>
 							   			<option value="R" <?php if ($recurso["gtalk_c_modo"] == "R") echo "selected";?>>Requerido</option> 
 							</select>
 						</div>
 						<div class="field clearfix">
 							<div class="label">Posee sms:</div>
 							<select class="modeField" id="aditionalDataEditorSmsMode">
-							   			<option value="P" <?php if ($recurso["sms_c_modo"] == "P") echo "selected";?>>Preferido</option>
+							   			<option value="P" <?php if ($recurso["sms_c_modo"] == "P") echo "selected";?>>Deseado</option>
 							   			<option value="R" <?php if ($recurso["sms_c_modo"] == "R") echo "selected";?>>Requerido</option> 
 							</select>
 						</div>
