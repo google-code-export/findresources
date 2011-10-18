@@ -68,7 +68,7 @@
 			<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="/curriculum"> 
 				<img src="/images/src/cv.png" />
-			</a><br />&nbsp;&nbsp;Editar Curriculum Vitae
+			</a><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Editar Curriculum Vitae
 		</div>
 
 		<div id="homeTestLink" class="clearfix" align="center">
@@ -79,7 +79,8 @@
 			</a><br />&nbsp;&nbsp;Realizar Psicotécnico
 <?php } else { ?>
 			<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<img src="/images/src/ok.png" /><br />&nbsp;&nbsp;Psicotécnico realizado
+				<img src="/images/src/ok2.png" />
+			<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Psicotécnico realizado
 <?php } ?>
 		</div>
 	</div>
@@ -140,16 +141,101 @@
         break;
 	    case "E": //EMPRESA
 ?>
-
 	<a href="/home"><img src="/images/src/home.png" width=30px /></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="/images/src/ticket.png" width=30px /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="/images/src/company.png" width=30px />
 	<br />HOME &nbsp;&nbsp;&nbsp;&nbsp; TICKETS &nbsp;&nbsp;&nbsp;&nbsp; DATOS DE LA EMPRESA
 	<br /><br /><br /><br />
+	
+	
+	<div id="homeCandidatePersonalData">
+		<div id="homeCandidatePersonalDataBody" class="block">
+			<h2>Datos de la Empresa: <a href="javascript:editUserData();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
+			<div class="inblock">
+				<div class="clearfix">
+					<div class="label" >Razón Social: </div><div> <?php echo $usuarioData->razonSocial;?></div>
+				</div>
+	
+				<div class="clearfix">
+					<div class="label" > <?php echo $usuarioData->idTipoDocumento;?> : </div> <div><?php echo $usuarioData->numeroDocumento;?></div>
+				</div>
+				<div class="clearfix">
+					<div class="label" > Industria: </div> <div><?php echo $usuarioData->descripcionIndustria;?></div>
+				</div>	
+				<div class="clearfix">
+					<div class="label" > Nombre: </div><div> <?php echo $usuarioData->nombre;?></div>
+				</div>
+				<div class="clearfix">
+					<div class="label" > Apellido: </div><div> <?php echo $usuarioData->apellido;?></div>
+				</div>
+				<div class="clearfix">
+					<div class="label" > Teléfono </div><div class=""> <?php echo $usuarioData->telefono;?></div>
+				</div>
+	
+				<div class="clearfix">
+					<div class="label" > Pais </div><div> <?php echo $usuarioData->descripcionPais;?></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br /><br /><br /><br /><br /><br />
 	<div class="clearfix" align=center>
 		<a href="busquedas"> 
 			<img src="/images/src/search.png" /> 
 		</a>
-		<br />BÚSQUEDA
+		<br />BÚSQUEDAS
 	</div>
+	<div class="opacity" style="display:none;"></div>	
+	<div class="popup" id="userDataPopUp" style="display:none;">
+	<table cellspacing="0" cellpadding="0" align="center">
+	<tr><td>
+		<div class="in">
+			<div class="popuptitle">Datos de la Empresa</div>
+			<a href="javascript:;" class="closePopUp"></a>
+			<div class="inside">
+			
+				<div class="field clearfix">
+					<div class="label">Nombre:</div>
+					<input type="text" id="userDataEditorFirstName" value="" />
+				</div>
+				<div class="field clearfix">
+					<div class="label">Apellido:</div>
+					<input type="text" id="userDataEditorLastName" value="" />
+				</div>
+				<div class="field clearfix">
+					<div class="label">Documento Tipo:</div>
+					<select id="userDataEditorIdType">
+						<?php foreach ($tiposDeDocumentos as $id => $desc){ ?>
+							<option value="<?php echo $id; ?>"><?php echo $id;?></option> 
+						<?php } ?>
+					</select>
+				</div>
+				<div class="field clearfix">
+					<div class="label">Numero:</div>
+					<input type="text" id="userDataEditorIdNumber" value="" />
+				</div>
+				<div class="field clearfix">
+					<div class="label">Teléfono:</div>
+					<input type="text" id="userDataEditorPhone" value="" />
+				</div>
+				<div class="field clearfix">
+					<div class="label">Pais:</div>
+					<select id="userDataEditorCountry">
+						<?php foreach ($paises as $id => $desc){ ?>
+							<option value="<?php echo $id; ?>"><?php echo $desc;?></option> 
+						<?php } ?>
+					</select>
+				</div>
+				
+				<div class="buttonsPopUp">
+					<input type="submit" value="Guardar" class="sendButton" />
+					<input type="submit" value="Cancelar" class="cancelPopUp" />
+				</div>
+			</div>
+		</div>
+	</td></tr>
+	</table>
+	</div>
+	
+
 
 <?php 
         break;
@@ -191,8 +277,8 @@
 						</a>
 						<br />
 						
-						<a href="informe_psicotecnicos"> 
-							Estadisticas por psicotécnico
+						<a href="informe_estadisticas"> 
+							Estadisticas por test
 						</a>
 						<br />
 						
