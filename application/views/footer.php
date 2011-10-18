@@ -42,7 +42,7 @@
 - 
 	<a href="<?php echo site_url('docs/terminos.html')?>">Términos</a>
 	
-	<div class="copyright">Derechos Reservados &copy; <?php echo date("Y");?> - FindResoruces </div>	
+	<div class="copyright">Derechos Reservados &copy; <?php echo date("Y");?> - FindResources </div>	
 	
 </div>
 <div class="opacity" style="display:none;"></div>
