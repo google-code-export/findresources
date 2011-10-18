@@ -14,6 +14,18 @@ h1{
     padding: 8px 14px;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
 }
+h1_BLUE{
+	font-size: 14px;
+	font-weight: bold;
+	border-radius: 5px;
+    background: url("/images/src/h1_blue.gif") repeat-x scroll 0 0 #27537C;
+    border: 1px solid #27537C;
+    border-radius: 5px;
+    color: #E8EDF0;
+    padding: 8px 14px;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
 h2{
 	font-size: 16px;
 	color:#555;
