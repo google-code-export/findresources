@@ -89,27 +89,28 @@
 					<h2>&nbsp;&nbsp;Información Personal <?php if($perfil == "usuario") { ?> <a href="javascript:editCVData();" class="editFields"><img src="/images/src/pencil.gif"/>Editar</a><?php } ?></h2>
 					<div class="inblock2">
 						<div class="row clearfix">
-							<div><?php echo ($curriculumData->estadoCivil == "") ? "" : $estadosCiviles[$curriculumData->estadoCivil]?>&nbsp;</div>
-							<div><?php echo $curriculumData->fechaNacimiento?></div>
+							<div><?php echo ($curriculumData->estadoCivil == "") ? "" : "<b>Estado civil:</b> ".$estadosCiviles[$curriculumData->estadoCivil]?>&nbsp;</div>
+							<div><?php if($curriculumData->fechaNacimiento!="") echo "<b>Fecha de Nac.:</b> ".$curriculumData->fechaNacimiento;?></div>
 						</div>
 						<div class="row clearfix">
 							<!-- div><!--?php echo $curriculumData->partido?></div-->					
-							<div><?php echo $curriculumData->calle?>&nbsp;</div> 
+							<div><?php if($curriculumData->calle !="") echo "<b>Dirección:</b> ".$curriculumData->calle;?>&nbsp;</div> 
 							<div><?php echo $curriculumData->numero?>&nbsp;</div>
-							<div><?php echo $curriculumData->piso?>&nbsp;</div>
-							<div><?php echo $curriculumData->departamento?></div>					
+							<div><?php if($curriculumData->piso !="") echo $curriculumData->piso."º";?>&nbsp;</div>
+							<div><?php echo $curriculumData->departamento;?>&nbsp;</div>
+							<div><?php if($curriculumData->codigoPostal != "") echo "(CP:".$curriculumData->codigoPostal.")";?>&nbsp;</div>
 						</div>
 						<div class="row clearfix">
-							<div><?php echo $curriculumData->codigoPostal?>&nbsp;</div>					
-							<div><?php echo $curriculumData->idProvincia?>&nbsp;</div>			
+				
+							<div><?php if($curriculumData->idProvincia!= "") echo "<b>Provincia:</b> ".$curriculumData->idProvincia;?>,&nbsp;</div>			
 							<div><?php echo ($curriculumData->idPais=="") ? ""  :  $paises[$curriculumData->idPais]?></div>
 						</div>
 		
 						<?php if($curriculumData->telefono1 !=""){?>
 							<div class="row clearfix">
-								<div>Tel:&nbsp;<?php echo $curriculumData->telefono1?>&nbsp;</div>					
+								<div><?php echo "<b>Tel:</b> ".$curriculumData->telefono1?>&nbsp;</div>					
 								<?php if($curriculumData->horarioContactoDesde1 !=""){?>
-									<div><?php echo $curriculumData->horarioContactoDesde1?>&nbsp;a&nbsp;</div>					
+									<div><?php echo "de ".$curriculumData->horarioContactoDesde1?>&nbsp;a&nbsp;</div>					
 									<div><?php echo $curriculumData->horarioContactoHasta1?></div>					
 							<?php } ?>
 
@@ -118,9 +119,9 @@
 		
 						<?php if($curriculumData->telefono2 !=""){?>
 							<div class="row clearfix">
-								<div>Tel:&nbsp;<?php echo $curriculumData->telefono2?>&nbsp;</div>
+								<div><?php echo "<b>Tel. (2) : </b>".$curriculumData->telefono2?>&nbsp;</div>
 								<?php if($curriculumData->horarioContactoDesde2 !=""){?>
-									<div><?php echo $curriculumData->horarioContactoDesde2?>&nbsp; a &nbsp;</div>
+									<div><?php echo "de ".$curriculumData->horarioContactoDesde2?>&nbsp; a &nbsp;</div>
 									<div><?php echo $curriculumData->horarioContactoHasta2?></div>
 								<?php } ?>
 
@@ -128,17 +129,17 @@
 						<?php } ?>
 	
 						<?php if($curriculumData->idPaisNacionalidad !=""){?>
-							<div><?php echo $paises[$curriculumData->idPaisNacionalidad]?></div>
+							<div><?php echo "<b>Nacionalidad:</b> ".$paises[$curriculumData->idPaisNacionalidad];?></div>
 						<?php } ?>
 						
-						<div><?php echo $curriculumData->gtalk?></div>
+						<div><?php if($curriculumData->gtalk != "") echo "<b>Gtalk:</b> ".$curriculumData->gtalk;?></div>
 
-						<div><?php echo $curriculumData->twitter?></div>
+						<div><?php if($curriculumData->twitter != "") echo "<b>Twitter:</b> ".$curriculumData->twitter;?></div>
 						
-						<div><?php echo $curriculumData->sms?></div>
+						<div><?php if($curriculumData->sms !="") echo "<b>Skype:</b> ".$curriculumData->sms;?></div>
 
 						<?php if($curriculumData->sueldoPretendido !=""){?>
-							<div>$ <?php echo $curriculumData->sueldoPretendido?></div>
+							<div><?php echo "<b>Sueldo pretendido:</b> $".$curriculumData->sueldoPretendido?></div>
 						<?php } ?>
 					</div>
 
@@ -148,7 +149,7 @@
 			<div class="block" id="hardSkills">
 				<h2>Conocimientos <?php if($perfil == "usuario") { ?><a href="javascript:editHardSkills();" class="editFields"><img src="/images/src/pencil.gif"/>Editar</a><?php } ?></h2>
 				<div class="inblock">
-					<h4>Areas de negocio</h4>
+					<h4>Áreas de negocio</h4>
 					<ul>
 					<?php foreach ($habilidadesIndustriasDelCV as $habilidad){ ?>
 						<li class="clearfix">
@@ -436,7 +437,7 @@
 		<div class="popuptitle"> Características Duras </div>
 		<a href="javascript:;" class="closePopUp"></a>
 		<div class="inside">
-			<h4>Areas de negocio</h4>
+			<h4>Áreas de negocio</h4>
 			<div class="clearfix">
 				<select id="availableIndustriesSelect">
 					<?php foreach ($industriasDisponibles as $id => $industria){ ?>
@@ -647,7 +648,7 @@
 	
 	
 					<div class="field clearfix">
-						<div class="label">Area:</div>
+						<div class="label">Área:</div>
 						<select id="formalEducationEditorArea">
 						   <?php foreach ($areasDisponibles as $id => $desc){ ?>
 						   			<option value="<?php echo $id;?>">
