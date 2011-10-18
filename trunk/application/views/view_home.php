@@ -141,11 +141,6 @@
         break;
 	    case "E": //EMPRESA
 ?>
-	<a href="/home"><img src="/images/src/home.png" width=30px /></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="/images/src/ticket.png" width=30px /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="/images/src/company.png" width=30px />
-	<br />HOME &nbsp;&nbsp;&nbsp;&nbsp; TICKETS &nbsp;&nbsp;&nbsp;&nbsp; DATOS DE LA EMPRESA
-	<br /><br /><br /><br />
-	
-	
 	<div id="homeCandidatePersonalData">
 		<div id="homeCandidatePersonalDataBody" class="block">
 			<h2>Datos de la Empresa: <a href="javascript:editUserData();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
@@ -176,13 +171,18 @@
 			</div>
 		</div>
 	</div>
-	<br /><br /><br /><br /><br /><br />
+	<br /><br />
 	<div class="clearfix" align=center>
-		<a href="busquedas"> 
+		<a href="/busquedas"> 
 			<img src="/images/src/search.png" /> 
 		</a>
-		<br />BÚSQUEDAS
+		<br />BÚSQUEDAS<br /><br /><br />
+		<a href="/tickets"> 
+			<img src="/images/src/ticket.png" width=30px /> 
+		</a>
+		<br />TICKETS
 	</div>
+ 
 	<div class="opacity" style="display:none;"></div>	
 	<div class="popup" id="userDataPopUp" style="display:none;">
 	<table cellspacing="0" cellpadding="0" align="center">
