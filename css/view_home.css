@@ -2,8 +2,6 @@
 #homeCandidatePersonalData{
 	width: 460px;
 	height: 199px;
-	border-color: #707070;
-	border-style:solid none solid solid;
 	border-width: 1px;
 	float:left;
 }
@@ -18,15 +16,11 @@
 
 #homeCurriculumLink{
 	height: 99px;
-	border-color: #707070;
-	border-style:solid;
 	border-width: 1px;
 }
 
 #homeTestLink{
 	height: 99px;
-	border-color: #707070;
-	border-style: none solid solid solid;
 	border-width: 1px;
 }
 
