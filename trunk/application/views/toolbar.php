@@ -28,7 +28,7 @@
 			<?php if(isset($_SESSION[SESSION_ID_USUARIO])){
 				echo $_SESSION[SESSION_ID_USUARIO];
 			}else {
-				echo "NO LOGUEADO";
+				echo "";
 			}?>
 		</div>
 		<div id="toolbar_logout">
