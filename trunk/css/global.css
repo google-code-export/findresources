@@ -41,7 +41,6 @@ h4, h5, h6{
 img{border:0;}
 a{text-decoration:none;color:#069;}
 a:hover{text-decoration:underline;}
-input, select, textarea{font:12px;}
 ul,ol{position:relative;}
 span.dn{display:none;}
 
@@ -221,3 +220,13 @@ body {
 .block p.addActivity{padding:0 0 6px;}
 
 .block {margin:0 0 10px; border:2px solid #DDD;padding:10px; border-radius: 5px;background: none repeat scroll 0 0 #F1F2F2;}
+
+input[type="text"],input[type="password"],select, textarea[type="text"] {
+    background: url("/images/src/input.gif") repeat-x scroll 0 0 #FCFCFC;
+    border: 1px solid #BBBBBB;
+    color: #333333;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    padding: 3px 4px 1px;
+
+}
