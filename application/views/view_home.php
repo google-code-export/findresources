@@ -141,12 +141,14 @@
 	    case "E": //EMPRESA
 ?>
 
-	<img src="/images/src/home.png" width=30px /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="/images/src/ticket.png" width=30px /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="/images/src/company.png" width=30px /><br />HOME &nbsp;&nbsp;&nbsp;&nbsp; TICKETS &nbsp;&nbsp;&nbsp;&nbsp; DATOS DE LA EMPRESA
+	<a href="/home"><img src="/images/src/home.png" width=30px /></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="/images/src/ticket.png" width=30px /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="/images/src/company.png" width=30px />
+	<br />HOME &nbsp;&nbsp;&nbsp;&nbsp; TICKETS &nbsp;&nbsp;&nbsp;&nbsp; DATOS DE LA EMPRESA
 	<br /><br /><br /><br />
-	<div class="clearfix">
+	<div class="clearfix" align=center>
 		<a href="busquedas"> 
-			<img src="/images/src/search.png" /> <br />BÚSQUEDA
+			<img src="/images/src/search.png" /> 
 		</a>
+		<br />BÚSQUEDA
 	</div>
 
 <?php 
