@@ -49,7 +49,7 @@ span.dn{display:none;}
 .opacity{position:fixed;top:0px;left:0px;width:100%;height:100%;opacity:0;background:#000;z-index:997;}
 /*POPUP*/
 .popup{width:100%;position:absolute;top:50px;left:0;z-index:998;opacity:0;}
-.popup .in{width:400px;height:400px;background:#FFF;position:relative;}
+.popup .in{width:400px;min-height:400px;background:#FFF;position:relative;}
 .popup .in .closePopUp{
 	position:absolute;
 	background: url("../images/src/close-button.png") no-repeat scroll 0 0 transparent;
@@ -61,7 +61,7 @@ span.dn{display:none;}
 .popup .in{}
 .popup .inside {
 	padding: 20px;
- 	height: 315px;
+ 	/*height: 315px;*/
  	overflow: auto;
 }
 
