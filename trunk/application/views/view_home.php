@@ -201,16 +201,27 @@
 					<input type="text" id="userDataEditorLastName" value="" />
 				</div>
 				<div class="field clearfix">
-					<div class="label">Documento Tipo:</div>
-					<select id="userDataEditorIdType">
-						<?php foreach ($tiposDeDocumentos as $id => $desc){ ?>
-							<option value="<?php echo $id; ?>"><?php echo $id;?></option> 
-						<?php } ?>
-					</select>
+				  	<div class="label">Razon social</div>
+				  	<div class="control">
+						<input type="text" id="userDataEditorRazonSocial" value=""/>
+					</div>
+				</div>
+				 <div class="field clearfix">
+				    <div class="label">Industria:</div>
+				    <div class="control">
+						<select id="userDataEditorIdIndustria"> 
+					   <?php foreach ($industriasDisponibles as $id => $unaIndustria){?>
+					   			<option value="<?php echo $id?>" >
+									<?php echo $unaIndustria?>
+								</option> 
+					   <?php } ?>
+						</select>
+					</div>
 				</div>
 				<div class="field clearfix">
-					<div class="label">Numero:</div>
+					<div class="label">CUIT:</div>
 					<input type="text" id="userDataEditorIdNumber" value="" />
+					<input type="hidden" id="userDataEditorIdType" value="CUIT" />
 				</div>
 				<div class="field clearfix">
 					<div class="label">Teléfono:</div>
