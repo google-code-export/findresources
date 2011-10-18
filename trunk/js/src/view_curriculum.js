@@ -427,3 +427,21 @@ function cvDataEditorCountryChange(){
 		$('#cvDataEditorState').attr('disabled',true);
 	}
 }
+
+function upload()
+{ 
+ var id_value = $('#cvDataEditorPhoto').val();
+ 
+ if(id_value != '')
+ { 
+  var valid_extensions = /(.jpg)$/i;   
+  if(valid_extensions.test(id_value))
+  { 	  
+	  $('#photoupload').submit();
+  }
+  else
+  {
+   alert('La imagen debe tener extensión .jpg');
+  }
+ }
+}
