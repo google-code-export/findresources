@@ -169,6 +169,10 @@ class Usuario_model extends FR_Model {
 			$response->descripcionPais  = $dbRegistro->dpais;
 			$response->idTipoUsuario = $dbRegistro->t_usuario;
 			$response->descripcionUsuario  = $dbRegistro->d_t_usuario;
+			$response->fechaAlta  = $dbRegistro->f_alta;
+			$response->fechaBaja  = $dbRegistro->f_baja;
+			$response->idIndustria  = $dbRegistro->id_industria;
+			$response->descripcionIndustria  = $dbRegistro->d_industria;
 			return $response;
 		}
 		else{
