@@ -70,11 +70,17 @@
 				<img src="/images/src/cv.png" />
 			</a><br />&nbsp;&nbsp;Editar Curriculum Vitae
 		</div>
+
 		<div id="homeTestLink" class="clearfix" align="center">
+<?php if($test_pendiente == "SI") { ?>
 			<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="/Test"> 
 				<img src="/images/src/test.gif" />
 			</a><br />&nbsp;&nbsp;Realizar Psicotécnico
+<?php } else { ?>
+			<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<img src="/images/src/ok.png" /><br />&nbsp;&nbsp;Psicotécnico realizado
+<?php } ?>
 		</div>
 	</div>
 	<div class="opacity" style="display:none;"></div>	
