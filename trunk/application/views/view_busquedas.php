@@ -139,13 +139,13 @@
 								</div>
 								<div class="block" id="softSkills">
 									<h2>Aspectos de la Personalidad <a href="javascript:editSoftSkills();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
-									<div class="inblock">
+									<?php if(count($busquedaSeleccionada['hab_blanda'])) {?><div class="inblock"> <?php  }?>
 										<?php foreach ($busquedaSeleccionada['hab_blanda'] as $habilidad){ ?>
 											<div class="row clearfix">
 												<?php echo $habilidad->d_habilidad_blanda; ?>
 											</div>
 										<?php } ?>
-									</div>
+									<?php if(count($busquedaSeleccionada['hab_blanda'])) {?></div> <?php  }?>
 								</div>
 												
 								<div class="block" id="hardSkills">
@@ -203,14 +203,15 @@
 									<?php $recurso = $busquedaSeleccionada["recurso"]   ?>
 									
 									<h2>Datos Adicionales <a href="javascript:editAditionalData();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
-									
 										<div class="study inblock">
+											<?php if( $recurso["edad_desde"] != "" OR $recurso["edad_hasta"] != "")  { ?>
 											<div class="row clearfix">
 												<div class="label"> Edad: </div> 
 												<?php echo @$recurso["edad_desde"] ?> a
-												<?php echo @$recurso["edad_hasta"]?>
+												<?php echo @$recurso["edad_hasta"]?> años
 												<?php echo (@$recurso["edad_c_modo"] == "R")? "(Requerido)" : "(Deseado)"?>  
 											</div>								
+											<?php } ?>
 											<!--div class="row clearfix">
 												<div class="label">Nacionalidad: </div> 
 												<--?php echo $busquedaSeleccionada["recurso"]->nacionalidad ?>
