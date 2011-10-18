@@ -32,7 +32,7 @@
 			}?>
 		</div>
 		<div id="toolbar_logout">
-			<a href="javascript:logout()"> logout </a>		
+			<a href="javascript:logout()"> cerrar sesión </a>		
 		</div>
 	</div>
 </div>
