@@ -4,7 +4,7 @@ $(function() {
 		url: 'informe_conocimientos/getIndustriasGrid',
 		dataType: 'json',
 		colModel : [
-			{display: 'Industria', name : 'descripcion', width : 450, sortable : false, align: 'center'},
+			{display: 'Industria', name : 'descripcion', width : 450, sortable : false, align: 'center'}
 		],
 		sortname: "orden",
 		sortorder: "asc",
@@ -26,7 +26,7 @@ $(function() {
 		dataType: 'json',
 		colModel : [
 			{display: 'Area', name : 'd_area', width : 200, sortable : false, align: 'center'},
-			{display: 'Herramientas', name : 'd_herramienta', width : 200, sortable : false, align: 'center'},
+			{display: 'Herramientas', name : 'd_herramienta', width : 200, sortable : false, align: 'center'}
 		],
 		sortname: "orden",
 		sortorder: "asc",

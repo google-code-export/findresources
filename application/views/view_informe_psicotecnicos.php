@@ -1,6 +1,7 @@
 <?php 
 /**
- * Este archivo pertenece a la vista del informe de conocimientos.
+ * Este archivo pertenece a la vista del informe de psicotecnicos.
+ * 
  **/
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -26,7 +27,19 @@
 <script type="text/javascript" src="<?php echo site_url('js/src/utils.js')?>"></script>
 
 <script type="text/javascript" src=" <?php echo site_url('js/flexigrid/flexigrid.pack.js')?>"></script>	
-<script type="text/javascript" src=" <?php echo site_url('js/src/view_informe_conocimientos.js')?>"></script>
+<script type="text/javascript" src=" <?php echo site_url('js/src/view_informe_psicotecnicos.js')?>"></script>
+
+<style type="text/css">
+	.popup .inside{
+		height: 580px;
+	}
+	
+	.popup .in {
+		 height: 600px;
+		 width: 800px;
+	}
+</style>
+
 
 <title>FindResources </title>
 </head>
@@ -43,17 +56,13 @@
 		
 		<!-- CONTENT -->
 		<div class="content">
-			<h1>Informe de conociemientos</h1>	
+			<h1>Informe de psicotécnicos</h1>	
 	
 			<div class="CL">
 				<div class="info clearfix block">
 
-					<div id="industriasGridContainer" class="gridContent" style="float:left">
-						<table id="industriasGrid"  class="grid">	</table>
-					</div>
-
-					<div id="herramientasGridContainer" class="gridContent" style="float:right">
-						<table id="herramientasGrid" class="grid">	</table>
+					<div id="psicotecnicosGridContainer" class="gridContent" style="float:left">
+						<table id="psicotecnicosGrid"  class="grid">	</table>
 					</div>
 
 				</div>
@@ -62,6 +71,21 @@
 	</div>
 <?php include("footer.php"); ?>
 
+<div class="popup" id="propuestasGridPopUp" style="display:none;">
+	<table cellspacing="0" cellpadding="0" align="center">
+	<tr><td>
+		<div class="in">
+			<div class="popuptitle"> Propuesta de modificación </div>
+			<a href="javascript:;" class="closePopUp"></a>
+			<div class="inside">
+				<div id="propuestasGridContainer" class="gridContent" style="float:left">
+					<table id="propuestasGrid"  class="grid">	</table>
+				</div>
+			</div>
+		</div>
+	</td></tr>
+	</table>
+</div>
 
 </body>
 </html>

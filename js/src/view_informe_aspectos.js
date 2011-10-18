@@ -4,7 +4,7 @@ $(function() {
 		url: 'informe_aspectos/getAspectosGrid',
 		dataType: 'json',
 		colModel : [
-			{display: 'Aspectos', name : 'descripcion', width : 450, sortable : false, align: 'center'},
+			{display: 'Aspectos', name : 'descripcion', width : 450, sortable : false, align: 'center'}
 		],
 		sortname: "orden",
 		sortorder: "asc",

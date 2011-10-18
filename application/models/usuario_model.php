@@ -286,7 +286,6 @@ class Usuario_model extends FR_Model {
 		);
 		
 		var_dump($params);
-		exit;
 		
 		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_usuario','pr_crea_usuario_experto',$params);
 		
