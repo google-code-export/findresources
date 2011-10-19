@@ -14,7 +14,7 @@ class Ticket_model extends CI_Model {
 	
 	
 	/** ASOCIA TICKET A EMPRESA **/
-	public function asociarTicket($idUsuario,$duracion,$unidades){
+	public function asociarTicket($idUsuario,$duracion,$unidades,$valor){
 		$result["id_ticket"] = NULL;
 		$result["error"] = NULL;
 		$result["desc"] = NULL;
@@ -23,12 +23,12 @@ class Ticket_model extends CI_Model {
 		array('name'=>':PI_USUARIO', 'value'=>$idUsuario, 'type'=>SQLT_CHR , 'length'=>-1),
 		array('name'=>':PI_DURACION', 'value'=>$duracion, 'type'=>SQLT_CHR , 'length'=>-1),
 		array('name'=>':PI_Q_UNIDADES', 'value'=>$unidades, 'type'=>SQLT_CHR , 'length'=>-1),
+		array('name'=>':PI_VALOR', 'value'=>$valor, 'type'=>SQLT_CHR , 'length'=>-1),
 		array('name'=>':PO_ID_TICKET', 'value'=>&$result["id_ticket"], 'type'=>SQLT_CHR , 'length'=>255),
 		array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
 		array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
 		);
 		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_TICKETS_EMPRESAS','PR_ASOCIA_TICKETS_EMPRESAS',$params);
-			
 		if($result["error"] == 0){
 			return $result;		
 		}else{
@@ -84,7 +84,7 @@ class Ticket_model extends CI_Model {
 
 	}	
 	
-	/** ASOCIA TICKET A EMPRESA **/
+	/** CONSULTAR SALDO TICKET EMPRESA **/
 	public function consultarSaldoTicketEmpresa($idUsuario){
 		$result["ticket_saldo"] = NULL;
 		$result["error"] = NULL;
@@ -108,5 +108,55 @@ class Ticket_model extends CI_Model {
 
 	}	
 
+	/** CONSULTAR SALDO TICKET EMPRESA **/
+	public function getValorTicket($duracion,$unidades){
+		$result["valor"] = NULL;
+		$result["error"] = NULL;
+		$result["desc"] = NULL;
+		
+		$params = array(
+		array('name'=>':PI_DURACION', 'value'=>$duracion, 'type'=>SQLT_CHR , 'length'=>-1),
+		array('name'=>':PI_Q_UNIDADES', 'value'=>$unidades, 'type'=>SQLT_CHR , 'length'=>-1),
+		array('name'=>':PO_VALOR', 'value'=>&$result["valor"], 'type'=>SQLT_CHR , 'length'=>255),
+		array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
+		array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_TICKETS_EMPRESAS','PR_CALCULO_TICKETS',$params);
+			
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in consultarSaldoTicketEmpresa(): ' . $result["desc"]);
+		}
+
+	}
+	
+	/*
+	 * PROCEDURE pr_consulta_ticket(pi_id_ticket IN frt_tickets_usuarios.id_ticket%TYPE,
+		po_ticket OUT pkg_tipos_genericios.trefcursor,
+		po_c_error OUT pkg_tipos_genericios.tc_error,
+		po_d_error OUT pkg_tipos_genericios.td_error) IS
+		
+		--
+		-- ***************************************************************************
+		-- Procedure para consultar un ticket
+		-- pi_id_ticket (numero): identificador del ticket (si viene filtra)
+		--
+		-- Salida :
+		-- po_ticket (RefCursor):
+		-- id_ticket
+		-- duracion
+		-- q_unidades
+		-- q_saldo
+		-- valor
+		-- po_c_error (Varchar2) : codigo del error -> 0 OK
+		-- po_d_error (Varchar2) : detalle del error
+		--
+		-- Author : Perez Pina Juan Pablo
+		-- ***************************************************************************
+*/
+	 
+	
 }
 ?>
