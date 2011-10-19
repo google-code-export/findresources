@@ -1,0 +1,64 @@
+
+#ticketData{
+	width: 460px;
+	height: 199px;
+	border-width: 1px;
+	float:left;
+}
+
+
+#ticketLinks{
+	width: 460px;
+	height: 200px;
+	float:left;
+}
+
+
+#addTicketLinks{
+	height: 99px;
+	border-width: 1px;
+}
+
+
+.label {
+	font-weight: bold;
+	float:left;
+}
+
+.field {
+	float:left;
+	width: 100%;
+}
+
+.row {
+  margin: 10px;
+}
+
+
+.editFields{
+	font-size: 11px;
+}
+
+#ticketDataBody{
+	margin:10px
+}
+
+#ticketDataBody div{
+	margin-top:4px
+}
+
+.frFooter{
+	margin-top: 450px;
+}
+
+#homeBody{
+	margin-top: 50px;
+}
+
+#ticketDataPopUp .buttonsPopUp{
+	margin-top:67px;
+}
+
+.popup .label{
+	font-weight: normal;
+}
