@@ -10,10 +10,10 @@
 <html lang="en">
 <head>
 <meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type"/>
-<script type="text/javascript" src=" <?php echo site_url('js/libs/jquery-1.6.2.min.js')?>"></script>
-<script type="text/javascript" src=" <?php echo site_url('js/libs/json2.js')?>"></script>
-<script type="text/javascript" src=" <?php echo site_url('js/src/utils.js')?>"></script>
-<script type="text/javascript" src=" <?php echo site_url('js/src/view_home.js')?>"></script>
+<script type="text/javascript" src="<?php echo site_url('js/libs/jquery-1.6.2.min.js')?>"></script>
+<script type="text/javascript" src="<?php echo site_url('js/libs/json2.js')?>"></script>
+<script type="text/javascript" src="<?php echo site_url('js/src/utils.js')?>"></script>
+<script type="text/javascript" src="<?php echo site_url('js/src/view_home.js')?>"></script>
 
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/global.css')?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/view_home.css')?>" />
