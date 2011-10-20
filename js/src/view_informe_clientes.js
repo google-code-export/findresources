@@ -12,11 +12,8 @@ $(function() {
 		],
 		sortname: "orden",
 		sortorder: "asc",
-		usepager: true,
 		title: 'Clientes registrados en el sistema',
-		useRp: true,
 		rp: 15,
-		showTableToggleBtn: false,
 		width: 850,
 		height: 500,
 		onError: function(response){
@@ -46,11 +43,8 @@ function showBusquedas(usuarioEmpresa, name){
 			],
 			sortname: "orden",
 			sortorder: "asc",
-			usepager: true,
 			title: 'Búsquedas de la empresa ' + name,
-			useRp: true,
 			rp: 15,
-			showTableToggleBtn: false,
 			width: 420,
 			height: 420,
 			onError: function(response){

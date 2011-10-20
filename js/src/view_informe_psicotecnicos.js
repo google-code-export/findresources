@@ -11,11 +11,8 @@ $(function() {
 		],
 		sortname: "orden",
 		sortorder: "asc",
-		usepager: true,
 		title: 'Areas de negocio disponibles',
-		useRp: true,
 		rp: 15,
-		showTableToggleBtn: false,
 		width: 850,
 		height: 500,
 		onError: function(response){
@@ -49,11 +46,8 @@ function showPropose(idPsicotecnico, name){
 			],
 			sortname: "orden",
 			sortorder: "asc",
-			usepager: true,
 			title: 'Propuesta de cambio del test ' + name,
-			useRp: true,
 			rp: 15,
-			showTableToggleBtn: false,
 			width: 720,
 			height: 420,
 			onError: function(response){

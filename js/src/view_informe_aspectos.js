@@ -8,11 +8,8 @@ $(function() {
 		],
 		sortname: "orden",
 		sortorder: "asc",
-		usepager: true,
 		title: 'Aspectos de la personalida que el usuario puede elegir',
-		useRp: true,
 		rp: 15,
-		showTableToggleBtn: false,
 		width: 450,
 		height: 500,
 		onError: function(response){
