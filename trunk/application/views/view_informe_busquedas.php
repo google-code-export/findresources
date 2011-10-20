@@ -29,7 +29,7 @@
 <script type="text/javascript" src="<?php echo site_url('js/src/exportPDF.js')?>"></script>
 
 <script type="text/javascript" src=" <?php echo site_url('js/flexigrid/flexigrid.pack.js')?>"></script>	
-<script type="text/javascript" src=" <?php echo site_url('js/src/view_informe_aspectos.js')?>"></script>
+<script type="text/javascript" src=" <?php echo site_url('js/src/view_informe_busquedas.js')?>"></script>
 
 <title>FindResources </title>
 </head>
@@ -46,13 +46,13 @@
 		
 		<!-- CONTENT -->
 		<div class="content">
-			<h1>Informe de aspectos de la personalidad</h1>	
+			<h1>Informe de búsquedas por area de negocio</h1>	
 	
 			<div class="CL">
 				<div class="info clearfix block">
 
-					<div id="aspectosGridContainer" style="float:left">
-						<table id="aspectosGrid">	</table>
+					<div id="busquedasGridContainer" style="float:left">
+						<table id="busquedasGrid">	</table>
 					</div>
 
 				</div>

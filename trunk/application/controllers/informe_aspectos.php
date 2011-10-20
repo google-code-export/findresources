@@ -9,7 +9,7 @@ class Informe_Aspectos extends CI_Controller {
 	
 	public function index(){
 		$idUsuario = @$_SESSION[SESSION_ID_USUARIO];
-		if(!$idUsuario){
+		if(!$idUsuario || @$_SESSION[SESSION_TIPO_USUARIO] != "A"){
 			redirect('home');
 			
 		}else{

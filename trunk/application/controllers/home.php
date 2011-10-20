@@ -16,6 +16,8 @@ class Home extends CI_Controller {
 		//get usuario data.
 		$dataUsuario = $this->Usuario_model->getUsuario($idUsuario);
 		$data['usuarioData'] = $dataUsuario;
+		$_SESSION[SESSION_TIPO_USUARIO] = $dataUsuario->idTipoUsuario;
+		
 		$data['tiposDeDocumentos'] =  $this->Util_model->getTiposDeDocumentos();
 		$data['paises'] = $response = $this->Util_model->getPaises();
 		$data['industriasDisponibles'] = $this->Util_model->getIndustriasDisponibles();
