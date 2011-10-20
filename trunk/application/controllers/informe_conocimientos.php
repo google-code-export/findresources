@@ -40,7 +40,7 @@ class Informe_Conocimientos extends CI_Controller {
 	
 	public function getHerramientasGrid(){
 		
-		$herramientasDisponibles = $this->Util_model->getAreasDisponibles();
+		$herramientasDisponibles = $this->Util_model->getHerramientas("","");
 		
 		$grid["page"] = 1;
 		$grid["total"] = sizeof($herramientasDisponibles);
@@ -50,7 +50,7 @@ class Informe_Conocimientos extends CI_Controller {
 		$key = 1;
 		foreach ($herramientasDisponibles as $area) {
 			$grid["rows"][$key]["id"] = $key;
-			$grid["rows"][$key]["cell"] = array($area, "herramienta x");
+			$grid["rows"][$key]["cell"] = array($area->d_area, $area->d_herramienta);
 			$key++;
 		}
 

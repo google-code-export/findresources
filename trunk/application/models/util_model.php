@@ -167,14 +167,6 @@ class Util_model extends FR_Model {
 	 * @return array[id] = [descripction}]
 	 * */
 	public function  getHerramientasPorArea($idArea){
-//		$respuesta[0]->id = 1; 
-//		$respuesta[0]->descripcion = "Java";
-//		$respuesta[1]->id = 2; 
-//		$respuesta[1]->descripcion = ".Net";
-//		$respuesta[2]->id = 3; 
-//		$respuesta[2]->descripcion = "Oracle";
-//		return $respuesta; ///not in the db yet.
-//		
 		$curs=NULL;
 		$n1 = NULL;
 		$n2 = NULL;
@@ -204,10 +196,38 @@ class Util_model extends FR_Model {
 			//TODO exception managment.
         	throw new Exception('Oracle error message in getHerramientasPorArea(): ' . $n2);
 		}		
-		
-		
 	}
 
+	/**
+	 * @param idArea
+	 * @return array[] = [id_area, d_area , id_herramienta, d_herramienta  }]
+	 * */
+	public function  getHerramientas($idArea, $idHerramienta){
+		$curs=NULL;
+		$n1 = NULL;
+		$n2 = NULL;
+		$params = array(
+		array('name'=>':pi_area', 'value'=>$idArea, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':pi_id_herramienta', 'value'=>$idHerramienta, 'type'=>SQLT_CHR, 'length'=>-1),
+		array('name'=>':po_herramientas', 'value'=>&$curs, 'type'=>SQLT_RSET , 'length'=>-1),
+		array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
+		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_util','pr_obtiene_herramientas',$params);
+		
+		if ($n1 == 0){
+			$dbRegistros = $this->oracledb->get_cursor_data(":po_herramientas");
+			//$dbRegistros = $this->decodeCursorData($dbRegistros);
+			return $dbRegistros;
+		}
+		else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in getHerramientasPorArea(): ' . $n2);
+		}		
+	}	
+	
+	
 	/**
 	 * Busca los niveles de educacion disponibles
 	 * @param

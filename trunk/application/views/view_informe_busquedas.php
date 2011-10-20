@@ -1,10 +1,6 @@
 <?php 
 /**
- * Este archivo pertenece a la vista del curriculum.
- * El siguiente php tiene como parametros que recible del controller al cargarse 
- * las siguientes variables>
- * 		$gridIndustria
- * 		$gridHerramientas
+ * Este archivo pertenece a la vista del informe de busquedas
  **/
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

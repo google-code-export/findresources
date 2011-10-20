@@ -303,7 +303,7 @@
 						</a>
 						<br />
 						
-						<a href="informe_cv"> 
+						<a href="informe_curriculum"> 
 							Curriculums
 						</a>
 						<br />
