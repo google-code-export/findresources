@@ -289,8 +289,6 @@ class Usuario_model extends FR_Model {
 		array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
 		);
 		
-		var_dump($params);
-		
 		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_usuario','pr_crea_usuario_experto',$params);
 		
 		if ($n1 == 0){
