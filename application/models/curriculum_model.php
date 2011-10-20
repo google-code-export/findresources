@@ -658,6 +658,40 @@ class Curriculum_model extends FR_Model {
 		}	
 	}
 	
+	
+	/**
+	 * @param idCurriculum, idUsuario 
+	 * @return 
+	 * 		
+	 * */
+    public function  getInformeCurriculum($idCurriculum, $idUsuario){
+		$curs=NULL;
+		$n1 = NULL;
+		$n2 = NULL;
+		$params = array(
+			array('name'=>':pi_id_curriculum', 'value'=>$idCurriculum, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_id_usuario', 'value'=>"", 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_usuario', 'value'=>$idUsuario, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':po_informe_cv', 'value'=>&$curs, 'type'=>SQLT_RSET , 'length'=>-1),
+			array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_cv','pr_informe_cv',$params);
+		
+		if ($n1 == 0){
+			
+			$respuesta = $this->oracledb->get_cursor_data(":po_informe_cv");
+
+			return $respuesta;
+		}
+		else{
+			
+			//TODO exception managment.
+        	throw new Exception('Oracle error message: ' . $n2);
+		}						
+	}
+		
 
 }
 

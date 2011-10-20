@@ -1,6 +1,6 @@
 <?php 
 /**
- * Este archivo pertenece a la vista del informe de aspectos.
+ * Este archivo pertenece a la vista del informe de curriculums.
  **/
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -25,7 +25,7 @@
 <script type="text/javascript" src="<?php echo site_url('js/src/exportPDF.js')?>"></script>
 
 <script type="text/javascript" src=" <?php echo site_url('js/flexigrid/flexigrid.pack.js')?>"></script>	
-<script type="text/javascript" src=" <?php echo site_url('js/src/view_informe_aspectos.js')?>"></script>
+<script type="text/javascript" src=" <?php echo site_url('js/src/view_informe_curriculum.js')?>"></script>
 
 <title>FindResources </title>
 </head>
@@ -42,13 +42,13 @@
 		
 		<!-- CONTENT -->
 		<div class="content">
-			<h1>Informe de aspectos de la personalidad</h1>	
+			<h1>Informe de curriculums existentes</h1>	
 	
 			<div class="CL">
 				<div class="info clearfix block">
 
-					<div id="aspectosGridContainer" style="float:left">
-						<table id="aspectosGrid">	</table>
+					<div id="curriculumGridContainer" style="float:left">
+						<table id="curriculumGrid">	</table>
 					</div>
 
 				</div>
