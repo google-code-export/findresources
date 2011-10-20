@@ -72,7 +72,7 @@ function newSearch(){
 	$('#searchDataEditorTitle').val("");
 	$('#searchDataEditorDescription').val("");
 	$('#searchDataEditorResourcesQuantity').val("");
-
+	$('#searchDataEditorTicket').val("");
 	$('#searchDataEditorDateToContainer').css("visibility", "hidden");
 	$('#searchDataEditorStatusContainer').css("visibility", "hidden");
 	
@@ -88,6 +88,8 @@ function editSearchData(idSearch){
 	$('#searchDataEditorDateTo').html(userSearchs[idSearch].f_hasta);
 	$('#searchDataEditorStatusContainer').css("visibility", "visible");
 	$('#searchDataEditorStatus').html(userSearchs[idSearch].d_estado);
+	//$('#searchDataEditorTicketContainer').css("visibility", "visible");
+	//$('#searchDataEditorTicket').html(userSearchs[idSearch].id_ticket);
 	
 	showPopUp('#searchDataPopUp');
 
@@ -99,6 +101,7 @@ function setSearchData(){
 		d_titulo: $('#searchDataEditorTitle').val(),
 		d_busqueda: $('#searchDataEditorDescription').val(),
 		f_hasta: $('#searchDataEditorDateTo').val(), 
+		//id_ticket: $('#searchDataEditorTicket').val(), 
 		cantidad_recursos: $('#searchDataEditorResourcesQuantity').val()//,
 		//estado: $('#searchDataEditorStatus').val() 
 	};
