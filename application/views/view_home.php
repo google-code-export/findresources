@@ -288,8 +288,8 @@
 						</a>
 						<br />
 						
-						<a href="informe_estadisticas"> 
-							Estadisticas por test
+						<a href="informe_psicotecnicos"> 
+							Estadisticas por psicotécnico
 						</a>
 						<br />
 						

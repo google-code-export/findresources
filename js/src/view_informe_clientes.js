@@ -58,6 +58,9 @@ function showBusquedas(usuarioEmpresa, name){
 			} 
 		}); 
 		addExportLink("#busquedasGridContainer", "Informe de Aspectos de la Personalidad Disponibles");
+	}else{
+		$("#propuestasGrid").flexOptions({url: 'informe_clientes/getBusquedasGrid?usuarioEmpresa=' + usuarioEmpresa}); 
+		$("#propuestasGrid").flexReload(); 
 	}
 
 	showPopUp('#busquedasGridPopUp');

@@ -12,7 +12,7 @@ class Admin_Usuarios extends CI_Controller {
 		$data['tiposDeDocumentos'] =  $this->Util_model->getTiposDeDocumentos();
 		$data['paises'] = $this->Util_model->getPaises();
 		
-		if(!$idUsuario){
+		if(!$idUsuario || @$_SESSION[SESSION_TIPO_USUARIO] != "A"){
 			redirect('home');
 			
 		}else{

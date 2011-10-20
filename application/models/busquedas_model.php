@@ -709,5 +709,31 @@ class Busquedas_model extends CI_Model {
 			
 	}
 
-
+	/** Informe de puestos Solicitados 
+	 * si idBusqueda es null o "", devuelve todas las busquedas del sistema. 
+	 * **/
+	public function  getBusquedasPorAreaDeNegocio($idBusqueda){
+		$result["informe_busqueda"] = NULL;
+		$result["error"] = NULL;
+		$result["desc"] = NULL;
+		
+		$params = array(
+			array('name'=>':PI_ID_BUSQUEDA', 'value'=>$idBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':po_informe_busqueda', 'value'=>&$result["informe_busqueda"], 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','pr_cons_informe_busqueda',$params);
+		
+		$result["informe_busqueda"] = $this->oracledb->get_cursor_data(":PO_INFORME_BUSQUEDA");
+		
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in activaBusqueda(): ' . $result["desc"]);
+		}
+			
+	}
 }
