@@ -79,7 +79,9 @@ class Busquedas extends CI_Controller {
 			$result = $this->Busquedas_model->setHabilidadesBlandasBusqueda($idBusqueda,habilidades);
 		}		
 		
-
+		$info_tickets = $this->Ticket_model->consultarSaldoTicketEmpresa($idUsuario);
+		$data["tickets"] = $info_tickets["ticket_saldo"];
+		
 		$this->load->view('view_busquedas', $data);
 		
 		
