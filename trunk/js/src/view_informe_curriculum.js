@@ -14,11 +14,8 @@ $(function() {
 		],
 		sortname: "orden",
 		sortorder: "asc",
-		usepager: true,
 		title: 'Búsquedas',
-		useRp: true,
 		rp: 15,
-		showTableToggleBtn: false,
 		width: 850,
 		height: 500,
 		onError: function(response){

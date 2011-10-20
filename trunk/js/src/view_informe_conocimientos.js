@@ -8,11 +8,8 @@ $(function() {
 		],
 		sortname: "orden",
 		sortorder: "asc",
-		usepager: true,
 		title: 'Areas de negocio disponibles',
-		useRp: true,
 		rp: 15,
-		showTableToggleBtn: false,
 		width: 450,
 		height: 500,
 		onError: function(response){
@@ -30,11 +27,8 @@ $(function() {
 		],
 		sortname: "orden",
 		sortorder: "asc",
-		usepager: true,
 		title: 'Herramientas',
-		useRp: true,
 		rp: 15,
-		showTableToggleBtn: false,
 		width: 450,
 		height: 500,
 		onError: function(response){
