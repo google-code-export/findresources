@@ -38,7 +38,7 @@ class Informe_Curriculum extends CI_Controller {
 				$busqueda->apellido,
 				$busqueda->lista_herramientas,
 				$busqueda->lista_aspectos_personalidad,
-				$busqueda->lista_busquedas,
+				$busqueda->q_busquedas,
 				$busqueda->f_actualizacion 
 			);
 			$key++;
