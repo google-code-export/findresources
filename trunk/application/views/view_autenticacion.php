@@ -12,7 +12,6 @@
 body {
  background-color: #fff;
  margin: 40px;
- font-family: Lucida Grande, Verdana, Sans-serif;
  font-size: 14px;
  color: #4F5155;
  text-align: center;
@@ -34,16 +33,6 @@ h1 {
  padding: 5px 0 6px 0;
 }
 
-code {
- font-family: Monaco, Verdana, Sans-serif;
- font-size: 12px;
- background-color: #f9f9f9;
- border: 1px solid #D0D0D0;
- color: #002166;
- display: block;
- margin: 14px 0 14px 0;
- padding: 12px 10px 12px 10px;
-}
 
 .company_logo{
 }

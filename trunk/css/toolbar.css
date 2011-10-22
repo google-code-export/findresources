@@ -31,9 +31,21 @@
 #toolbar_header {
 	height: 50px;
 	padding: 10px;
+    background: url("/images/src/background_header.png") repeat-x scroll 0 0 #FCFCFC;
 	/*background-color: #0C4870*/
 }
 
 #login #toolbar_logout{
 	display:none;
 }
+
+#toolbar_fr_lenguage{
+	color: white;
+	font-weight: bold;
+}
+
+#toolbar_logout a{
+	color: white;
+	float: right;
+}
+	

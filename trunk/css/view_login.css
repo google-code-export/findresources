@@ -2,23 +2,11 @@
 body {
  background-color: #fff;
  margin: auto;
- font-family: Lucida Grande, Verdana, Sans-serif;
  font-size: 10px;
  color: #4F5155;
  width: 960px;
 }
 
-
-code {
- font-family: Monaco, Verdana, Sans-serif;
- font-size: 12px;
- background-color: #f9f9f9;
- border: 1px solid #D0D0D0;
- color: #002166;
- display: block;
- margin: 14px 0 14px 0;
- padding: 12px 10px 12px 10px;
-}
 
 .company_logo{
 }
@@ -36,13 +24,20 @@ code {
 }
 
 #login_wellcome {
-	width: 480px;
 	float: left;
 	position: absolute;
-	font-family: Verdana;
- 	font-size: 13px;
-	color: black;
 	margin-left:30px;
+}
+
+#login_wellcome_text {
+	color: #FFFFFF;
+    background: url("/images/src/find_fondo.jpg") no-repeat scroll 0 0;
+	padding: 0 8px 0 20px;
+ 	font-size: 13px;
+	margin-bottom: 10px;
+	width: 415px;
+	height: 200px;
+	border-radius: 5px 5px 5px 5px;
 }
 
 #login_tabs {

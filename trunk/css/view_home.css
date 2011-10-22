@@ -52,11 +52,12 @@
 }
 
 .frFooter{
-	margin-top: 250px;
+	margin-top: 200px;
 }
 
 #homeBody{
-	margin-top: 50px;
+	padding-top: 50px;
+	padding-bottom: 50px;	
 }
 
 #userDataPopUp .buttonsPopUp{

@@ -7,8 +7,11 @@
 .ft{}
 
 /*CONTENT*/
-.content{width:1000px;margin:0 auto;}
-.content .CL{width:500px;float:left; margin-left: 30px; margin-top: 20px;}
+.content{width:961px;margin:0 auto;}
+.content .CL{width:500px;float:left;
+	padding-left: 30px;
+    padding-top: 20px;
+}
 .content .CR{width:400px;float:left;}
 
 .content .info .photo{float:left;}
@@ -19,9 +22,6 @@
 .content .info .right .grey{color:#666;}
 .content .info .right .grey i{padding:0 4px;font-size:12px;line-height:12px;color:#999;font-style:normal;}
 .content .info .right h3 a{font-size:11px;padding:0 0 0 4px;}
-.content{}
-.content{}
-.content{}
 
 
 
