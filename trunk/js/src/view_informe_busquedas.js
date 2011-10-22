@@ -22,7 +22,7 @@ $(function() {
 		} 
 	}); 
 
-	addExportLink("#busquedasGrid", "Búsquedas creadas en el sistema.");
+	addExportLink("#busquedasGridContainer", "Búsquedas creadas en el sistema.");
 
 	return false;
 });

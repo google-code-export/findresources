@@ -22,7 +22,7 @@ class Informe_Busquedas extends CI_Controller {
 	public function getBusquedasGrid(){
 		
 		$busquedas = $this->Busquedas_model->getBusquedasPorAreaDeNegocio("");
-		$busquedas = $busquedas["usuarios"];
+		$busquedas = $busquedas["informe_busqueda"];
 		$grid["page"] = 1;
 		$grid["total"] = sizeof($busquedas);
 		$grid["rows"] = array();
