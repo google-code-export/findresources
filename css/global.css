@@ -115,10 +115,15 @@ body {
 	width: 960px;
 	margin: auto;
 	background-color: #FEFEFE;
-	font-family: 'Droid Sans', sans-serif;
+	font-family: 'Droid Sans', Lucida Grande,Verdana,Sans-serif;
 	font-size: 12px;
 	color: #4F5155;
 
+}
+
+.body_container {
+    /*background: url("/images/src/background_body_continue.png") repeat scroll 0 0 #FCFCFC;*/
+    background-color: #FCFCFC;
 }
 
 .company_logo {

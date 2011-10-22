@@ -32,7 +32,8 @@
 
 
 <h1>Bienvenido a FindResources</h1>
-<div id="homeBody" class="clearfix">
+
+<div id="homeBody" class="clearfix body_container">
 
 <?php 	
 	switch ($usuarioData->idTipoUsuario) {
