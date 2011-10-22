@@ -14,7 +14,7 @@ $(function() {
 		],
 		sortname: "orden",
 		sortorder: "asc",
-		title: 'Búsquedas',
+		title: 'Curriculums en el sistema',
 		rp: 15,
 		width: 850,
 		height: 500,
@@ -23,7 +23,7 @@ $(function() {
 		} 
 	}); 
 
-	addExportLink("#curriculumGrid", "Búsquedas creadas en el sistema.");
+	addExportLink("#curriculumGridContainer", "Curriculums en el sistema.");
 
 	return false;
 });

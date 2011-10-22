@@ -344,14 +344,14 @@ class Usuario_model extends FR_Model {
 		$result["desc"] = NULL;
 		
 		$params = array(
-			array('name'=>':pi_usuario', 'value'=>"", 'type'=>SQLT_CHR, 'length'=>-1),
-			array('name'=>':po_datos_empresa', 'value'=>&$result["usuarios"], 'type'=>SQLT_RSET, 'length'=>255),
+			array('name'=>':pi_usuario', 'value'=>$usuario, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':po_datos_adic_empresa', 'value'=>&$result["usuarios"], 'type'=>SQLT_RSET, 'length'=>255),
 			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
 			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
 		);
 		
-		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_USUARIO',' pr_obtiene_dat_empresas',$params);
-		$result["usuarios"] = $this->oracledb->get_cursor_data(":po_datos_empresa");
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_USUARIO',' pr_obt_datos_adic_empresas',$params);
+		$result["usuarios"] = $this->oracledb->get_cursor_data(":po_datos_adic_empresa");
 	
 		if($result["error"] == 0){
 			return $result;

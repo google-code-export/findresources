@@ -23,7 +23,7 @@ $(function() {
 	}); 
 
 	
-	addExportLink("#clientesGridContainer", "Informe de Industras Disponibles");
+	addExportLink("#clientesGridContainer", "Clientes registrados en el sistema");
 	
 	return false;
 });
@@ -51,7 +51,7 @@ function showBusquedas(usuarioEmpresa, name){
 				processError(response);
 			} 
 		}); 
-		addExportLink("#busquedasGridContainer", "Informe de Aspectos de la Personalidad Disponibles");
+		addExportLink("#busquedasGridContainer", 'Búsquedas de la empresa ' + name);
 	}else{
 		$("#propuestasGrid").flexOptions({url: 'informe_clientes/getBusquedasGrid?usuarioEmpresa=' + usuarioEmpresa}); 
 		$("#propuestasGrid").flexReload(); 
