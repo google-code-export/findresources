@@ -111,6 +111,10 @@
 	color: gray !important;
 }
 
+.newSearchLink a{
+	font-weight: bold;
+}
+
 #hardSkillsPopUp h4,#softSkillsPopUp h4{
 	font-weight: bold;
     margin-bottom: 5px;
