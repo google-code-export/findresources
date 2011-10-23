@@ -290,6 +290,10 @@
 							<div class="label">Descripción:</div>
 							<textarea id="searchDataEditorDescription"> </textarea>
 						</div>
+						<div class="field clearfix">
+							<div class="label">Cantidad de personal:</div>
+							<input type="text" id="searchDataEditorResourcesQuantity" value="" />
+						</div>
 						<div class="field clearfix" id="searchDataEditorTicketContainer">
 							<div class="label">Tickets Disponibles:</div>
 							<select id="searchDataEditorTicket" >
@@ -297,11 +301,9 @@
 							<option value="<?php echo $ticket->id_ticket;?>">Ticket #<?php echo str_pad($ticket->id_ticket, 3, "0", STR_PAD_LEFT)." | Saldo: ".str_pad($ticket->q_saldo, 5, "0", STR_PAD_LEFT)." | ".$ticket->duracion." días";?></option>
 							<?php } ?>
 							</select>
+							<label id="searchDataEditorTicketInfo"/>
 						</div>
-						<div class="field clearfix">
-							<div class="label">Cantidad de personal:</div>
-							<input type="text" id="searchDataEditorResourcesQuantity" value="" />
-						</div>
+						<label id="searchDataEditorTicketInfo"/>	
 						<div class="field clearfix" id="searchDataEditorDateToContainer">
 							<div class="label">Fecha Hasta:</div>
 							<label id="searchDataEditorDateTo"/>
@@ -310,7 +312,7 @@
 							<div class="label">Estado:</div>
 							<label id="searchDataEditorStatus" />
 						</div>
-						
+				
 					</div>
 					<div class="buttonsPopUp">
 						<input type="submit" value="Guardar" class="sendButton" onclick="javascript:setSearchData();"  />
