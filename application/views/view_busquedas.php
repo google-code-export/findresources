@@ -25,13 +25,13 @@
 	
 
 <script type="text/javascript" src="<?php echo site_url('js/libs/jquery-1.6.2.min.js')?>"></script>
-<script type="text/javascript" src=" <?php echo site_url('js/flexigrid/flexigrid.pack.js')?>"></script>	
+<script type="text/javascript" src="<?php echo site_url('js/flexigrid/flexigrid.pack.js')?>"></script>	
 <script type="text/javascript" src="<?php echo site_url('js/libs/jquery-ui.min-1.8.16.js')?>"></script>
-<script type="text/javascript" src=" <?php echo site_url('js/libs/json2.js')?>"></script>
-<script type="text/javascript" src=" <?php echo site_url('js/src/starrating.js')?>"></script>
-<script type="text/javascript" src=" <?php echo site_url('js/src/utils.js')?>"></script>
-<script type="text/javascript" src=" <?php echo site_url('js/src/view_busquedas.js')?>"></script>
-<script type="text/javascript" src=" <?php echo site_url('js/src/hardSkills.js')?>"></script>
+<script type="text/javascript" src="<?php echo site_url('js/libs/json2.js')?>"></script>
+<script type="text/javascript" src="<?php echo site_url('js/src/starrating.js')?>"></script>
+<script type="text/javascript" src="<?php echo site_url('js/src/utils.js')?>"></script>
+<script type="text/javascript" src="<?php echo site_url('js/src/view_busquedas.js')?>"></script>
+<script type="text/javascript" src="<?php echo site_url('js/src/hardSkills.js')?>"></script>
 
 
 
@@ -70,7 +70,21 @@
 				
 				<?php 
 				foreach ($busquedasDelUsuario as $i => $busq){ ?>
-					<div class="savedSearchLink <?php echo ($busq->d_estado=="Nueva")?"activatedSearchLink":"closedSearchLink" ; ?>">
+					<div class="savedSearchLink 
+					<?php 
+					switch ($busq->d_estado) {
+						case "Nueva" : 
+							echo "newSearchLink";
+							break;
+						case "Terminada":
+							echo "closedSearchLink";
+						break;
+						case "Activa":
+							echo "activatedSearchLink";							
+						break; 
+							
+					}
+					?>">
 						<a href="busquedas?busquedaId=<?php echo $busq->id_busqueda?>">
 							<?php echo $busq->d_titulo?>
 						</a>
@@ -276,14 +290,14 @@
 							<div class="label">Descripción:</div>
 							<textarea id="searchDataEditorDescription"> </textarea>
 						</div>
-						<!-- <div class="field clearfix" id="searchDataEditorTicketContainer">
+						<div class="field clearfix" id="searchDataEditorTicketContainer">
 							<div class="label">Tickets Disponibles:</div>
 							<select id="searchDataEditorTicket" >
 							<?php foreach($tickets as $ticket) { ?>
 							<option value="<?php echo $ticket->id_ticket;?>">Ticket #<?php echo str_pad($ticket->id_ticket, 3, "0", STR_PAD_LEFT)." | Saldo: ".str_pad($ticket->q_saldo, 5, "0", STR_PAD_LEFT)." | ".$ticket->duracion." días";?></option>
 							<?php } ?>
 							</select>
-						</div>-->
+						</div>
 						<div class="field clearfix">
 							<div class="label">Cantidad de personal:</div>
 							<input type="text" id="searchDataEditorResourcesQuantity" value="" />
@@ -619,20 +633,20 @@ $(".flexme1").flexigrid({
 	dataType: 'json',
 	colModel : [
 		{display: 'Orden', name : 'orden', width : 40, sortable : false, align: 'center'},
-		{display: 'Nombre y Apellido', name : 'nombre', width : 180, sortable : false, align: 'left'},
+		{display: 'Nombre y Apellido', name : 'nombre', width : 189, sortable : false, align: 'left'},
 		{display: 'Psicotécnico Online', name : 'estado', width : 95, sortable : false, align: 'center'},
-		{display: 'Informes', name : 'info', width : 80, sortable : false, align: 'center', hide: false},
-		{display: 'Datos', name : 'data', width : 80, sortable : false, align: 'center'},
+		{display: 'Informes', name : 'info', width : 70, sortable : false, align: 'center', hide: false},
+		{display: 'Datos', name : 'data', width : 70, sortable : false, align: 'center'},
 		{display: 'Estado', name : 'entrevistado', width : 192, sortable : false, align: 'center'}
 		],
 	sortname: "orden",
 	sortorder: "asc",
-	usepager: true,
-	title: 'Resultados de la búsqueda',
-	useRp: true,
+	usepager: false,
+	/*title: 'Resultados de la búsqueda',*/
+	useRp: false,
 	rp: 15,
 	showTableToggleBtn: false,
-	width: 750,
+	width: 730,
 	height: 600,
 	onError: function(response){
 		processError(response);
