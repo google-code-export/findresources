@@ -83,7 +83,11 @@
 			<h1><?php echo $usuarioData->nombre." ".$usuarioData->apellido;?></h1>			
 			<div class="info clearfix block">
 				<div class="photo" ><br />
-					<img src="/images/cv/<?php echo md5($usuarioData->id);?>.jpg" alt="Foto" width=150px />
+				<?php 
+				$photo_filename = "/images/cv/".md5($usuarioData->id).".jpg";
+				$photo_filename = (!file_exists($_SERVER['DOCUMENT_ROOT'].$photo_filename))? "/images/cv/default.jpg":$photo_filename;
+				?>
+					<img src="<?php echo $photo_filename;?>" alt="Foto" width=150px />
 				</div>
 				<div class="right">
 					<h2>&nbsp;&nbsp;Información Personal <?php if($perfil == "usuario") { ?> <a href="javascript:editCVData();" class="editFields"><img src="/images/src/pencil.gif"/>Editar</a><?php } ?></h2>
