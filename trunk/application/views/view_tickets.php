@@ -73,7 +73,7 @@
 			
 				<div class="field clearfix">
 					<div class="label">Cantidad de Búsquedas:</div>
-					<input type="text" id="ticketDataEditorQuantity" value="1"  onkeypress="javascript:getSaldo();" maxlength="4" size="4" />
+					<input type="text" id="ticketDataEditorQuantity" value="" onkeydown="javascript:getSaldo();" onkeyup="javascript:getSaldo();" maxlength="3" size="3" />
 				</div>
 				<div class="field clearfix">
 					<div class="label">Duración:</div>
@@ -85,7 +85,7 @@
 					</select>
 				</div>
 				<div class="field clearfix">
-					<div class="label">Precio:</div>
+					<div class="label"><b>PRECIO: </b></div>
 					<input type="text" id="ticketDataEditorValue" value="" readonly=readonly />
 				</div>
 				<div class="buttonsPopUp">
