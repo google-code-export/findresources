@@ -31,7 +31,10 @@ class Informe_Aspectos extends CI_Controller {
 		$key = 1;
 		foreach ($aspectosDisponibles as $aspecto) {
 			$grid["rows"][$key]["id"] = $key;
-			$grid["rows"][$key]["cell"] = array($aspecto->d_habilidad_blanda);
+			$grid["rows"][$key]["cell"] = array(
+				$aspecto->d_habilidad_blanda,
+				$aspecto->d_coloquio 
+			);
 			$key++;
 		}
 		echo json_encode_utf8($grid);

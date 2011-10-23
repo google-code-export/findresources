@@ -736,4 +736,63 @@ class Busquedas_model extends CI_Model {
 		}
 			
 	}
+	
+	/** Informe de puestos Solicitados 
+	 * si idBusqueda es null o "", devuelve todas las busquedas del sistema. 
+	 * **/
+	public function  getBusquedasDelSistema($nombreDeBusqueda, $empresa, $mail){
+			$result["informe_busqueda"] = NULL;
+		$result["error"] = NULL;
+		$result["desc"] = NULL;
+		
+		$params = array(
+			array('name'=>':pi_razon_social', 'value'=>$empresa, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_d_busqueda', 'value'=>$nombreDeBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_usuario', 'value'=>$idBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':po_informe_bus_bus ', 'value'=>&$result["informe_busqueda"], 'type'=>SQLT_RSET , 'length'=>255),
+			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','pr_cons_informe_bus_bus',$params);
+		
+		$result["informe_busqueda"] = $this->oracledb->get_cursor_data(":po_informe_bus_bus");
+		
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in activaBusqueda(): ' . $result["desc"]);
+		}
+	}
+	
+	
+	
+
+	public function  getInformeDeCandidatosDeBusqueda($idBusqueda){
+		$result["informe_busqueda"] = NULL;
+		$result["error"] = NULL;
+		$result["desc"] = NULL;
+		
+		$params = array(
+			array('name'=>':pi_id_busqueda', 'value'=>$idBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':po_informe_habbl_bus ', 'value'=>&$result["informe_busqueda"], 'type'=>SQLT_RSET , 'length'=>255),
+			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','pr_cons_informe_bus_habbl',$params);
+		
+		$result["informe_busqueda"] = $this->oracledb->get_cursor_data(":po_informe_habbl_bus");
+		
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in activaBusqueda(): ' . $result["desc"]);
+		}
+	}
+	
+
+
 }

@@ -254,7 +254,39 @@
 	    case "P": //EXPERTO
 
 ?>
-	HOME - Feedback Test  - Feedback Informe Final
+		<div class="experto">
+			<div class="block informes">
+					<h2>Feedback informe final: </h2>
+					<div class="inblock">
+						<img src="/images/src/deco_feedback.png" /> 
+						
+						<div>
+							<a href="feedback_resultados"> 
+								Ver informes finales
+							</a>
+							<br />
+				
+							<a href="feedback_aspectos"> 
+								Actualizar armado de Coloquios
+							</a>
+							<br />
+						</div>
+					</div>
+				</div>
+
+				<div class="block informes">
+					<h2>Feedback psicotécnicos: </h2>
+					<div class="inblock">
+						<img src="/images/src/Properties.gif" /> 
+						<div>
+							<a href="feedback_test"> 
+								Ver resultados de test.
+							</a>
+						</div>
+					</div>
+				</div>
+
+		</div>
 
 <?php 
         break;
