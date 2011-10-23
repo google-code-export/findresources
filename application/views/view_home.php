@@ -178,9 +178,7 @@
 			<img src="/images/src/search.png" /> 
 		</a>
 		<br />BÚSQUEDAS<br /><br /><br />
-		<a href="/tickets"> 
-			<img src="/images/src/ticket.png" width=30px /> 
-		</a>
+		<a href="/tickets"><img src="/images/src/ticket.png" width=40px /></a>
 		<br />TICKETS
 	</div>
  
