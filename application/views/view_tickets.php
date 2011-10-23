@@ -56,10 +56,12 @@
 	</div>
 	<div id="ticketLinks">
 		<div id="addTicketLink" class="clearfix" align="center">
-			<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<br /><br /><a href="/busquedas"><img src="/images/src/search.png" /></a>
+			<br />BÚSQUEDAS<br />
+			<br /><br />
 			<a href="javascript:addTicket();" >
 				<img src="/images/src/addticket.png" width="50px"/></a>
-				<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Solicitar Nuevo Ticket
+				<br />&nbsp;SOLICITAR TICKET
 		</div>
 	</div>
 	<div class="opacity" style="display:none;"></div>	
