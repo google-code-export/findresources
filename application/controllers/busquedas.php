@@ -116,8 +116,8 @@ class Busquedas extends CI_Controller {
 		////////A LAS QUE VINIERON ANTES A ESTE USUARIO
 		////////SEGUN SU ID.
 		$idUsuario = @$_SESSION[SESSION_ID_USUARIO];
-		
-		$result  = $this->Busquedas_model->setBusqueda($idUsuario, $busqueda, ""/*$idTicket*/);
+
+		$result  = $this->Busquedas_model->setBusqueda($idUsuario, $busqueda, $busqueda["id_ticket"]);
 
 		echo json_encode($result);
 	}
