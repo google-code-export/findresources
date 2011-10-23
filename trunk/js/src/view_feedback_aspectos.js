@@ -19,7 +19,7 @@ $(function() {
 		}
 	}); 
 
-	addExportLink("#aspectosGridContainer", "Informe de Aspectos de la Personalidad Disponibles");
+	addExportLink("#aspectosGridContainer", "Aspectos de la personalida obtenidos por el sistema");
 
 	return false;
 });
