@@ -73,6 +73,7 @@ function newSearch(){
 	$('#searchDataEditorDescription').val("");
 	$('#searchDataEditorResourcesQuantity').val("");
 	$('#searchDataEditorTicket').val("");
+	$('#searchDataEditorTicketContainer').css("visibility", "visible");
 	$('#searchDataEditorDateToContainer').css("visibility", "hidden");
 	$('#searchDataEditorStatusContainer').css("visibility", "hidden");
 	
@@ -88,8 +89,13 @@ function editSearchData(idSearch){
 	$('#searchDataEditorDateTo').html(userSearchs[idSearch].f_hasta);
 	$('#searchDataEditorStatusContainer').css("visibility", "visible");
 	$('#searchDataEditorStatus').html(userSearchs[idSearch].d_estado);
-	//$('#searchDataEditorTicketContainer').css("visibility", "visible");
-	//$('#searchDataEditorTicket').html(userSearchs[idSearch].id_ticket);
+	if(userSearchs[idSearch].d_estado == "Nueva"){
+	  $('#searchDataEditorTicketContainer').css("visibility", "visible");
+	} else { 
+	  $('#searchDataEditorTicketContainer').css("visibility", "hidden");
+	  /*$('#searchDataEditorTicketInfo').html(userSearchs[idSearch].id_ticket);*/
+	}
+
 	
 	showPopUp('#searchDataPopUp');
 
