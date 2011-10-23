@@ -279,8 +279,8 @@
 					<div class="inblock">
 						<img src="/images/src/Properties.gif" /> 
 						<div>
-							<a href="feedback_test"> 
-								Ver resultados de test.
+							<a href="feedback_psicotecnicos"> 
+								Ver resultados de psicotecnicos.
 							</a>
 						</div>
 					</div>

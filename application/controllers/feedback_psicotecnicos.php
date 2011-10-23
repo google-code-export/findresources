@@ -1,7 +1,7 @@
 <?php 
-class Feedback_Aspectos extends CI_Controller {
+class Feedback_Psicotecnicos extends CI_Controller {
 	
-	public function Feedback_Aspectos(){
+	public function Feedback_Psicotecnicos(){
 		parent::__construct();
 		$this->view_data['base_url'] = base_url();
 		
@@ -16,15 +16,13 @@ class Feedback_Aspectos extends CI_Controller {
 		}else{
 			$idHabilidad = NULL;
 
-			$data['habilidadesBlandasDisponibles'] = $this->Util_model->getHabilidadesBlandas($idHabilidad);
-			
 			//user is already logged in.
-			$this->load->view('view_feedback_aspectos', $data);
+			$this->load->view('view_feedback_psicotecnicos');
 		}
 		
 	}
 	
-	public function getAspectosGrid(){
+	public function getFeedbackPsicotecnicosGrid(){
 		
 		$aspectos = $this->Util_model->getHabilidadesBlandas("");
 		$aspectos = $aspectos["lista_hab_blandas"];
@@ -39,9 +37,12 @@ class Feedback_Aspectos extends CI_Controller {
 			
 			$grid["rows"][$key]["id"] = $key;
 			$grid["rows"][$key]["cell"] = array(
-				$aspecto->d_habilidad_blanda,
-				$aspecto->d_coloquio,
-				"<a href='javascript:editColoquio(\"". $aspecto->id_habilidad_blanda  ."\");'><img src='/images/src/pencil.gif'></img></a>" 
+				"nombre",
+				"apellido",
+				"mail@mail.com",
+				"12,312,312,3123",
+				"asdf,asdf,asdf,asdf,asdf",
+				"<a href='javascript:editPropuesta(\"". "999999"  ."\", \"". "12,312,312,3123"  ."\",\"". "asdf,asdf,asdf,asdf,asdf"  ."\");'><img src='/images/src/pencil.gif'></img></a>" 
 			);
 			$key++;
 		}
@@ -49,15 +50,26 @@ class Feedback_Aspectos extends CI_Controller {
 		
 	}
 	
+	
+	public function getDatosPropuesta(){
+		
+		$respuesta->salidas_del_usuario = "una salida del usuario logueado";
+		
+		$respuesta->notas_del_usuario = "las notas del usuario logueado.";
+		echo json_encode_utf8($respuesta);
+		
+	}
+	
 	/**
 	 * Recibe el id_habilidad_blanda y d_coloquio 
 	 * */
-	public function setHabilidadBlanda(){
-		
+	public function setPropuestaDeCambio(){
+		/*
 		$aspecto = $this->input->post('habilidad_blanda');
 		$aspecto = json_decode($aspecto);
 		$respuesta = $this->Util_model->setHabilidadBlanda($aspecto->id_habilidad_blanda, $aspecto->d_habilidad_blanda, $aspecto->d_coloquio );
-		echo json_encode($respuesta);
+		echo json_encode($respuesta);*/
+		echo json_encode_utf8("bla");
 		
 	}
 	
