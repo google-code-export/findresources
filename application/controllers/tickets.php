@@ -10,7 +10,8 @@ class Tickets extends CI_Controller {
 		if(!$usuario){
 			/////////////HARDCODED//////////////////////////
 			/////////////HARDCODED//////////////////////////
-			$usuario = "juan@juan.com";
+			$usuario = "leandrominio@gmail.com";
+			$_SESSION[SESSION_ID_USUARIO] = $usuario;
 			/////////////HARDCODED//////////////////////////
 			/////////////HARDCODED//////////////////////////
 			
