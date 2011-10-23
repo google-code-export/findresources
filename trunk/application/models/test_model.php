@@ -463,7 +463,7 @@ class Test_model extends CI_Model {
 		array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
 		array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
 		);
-		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_TEST','PR_TEST_PENDIENTES',$params);
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_TEST_II','PR_TEST_PENDIENTES',$params);
 		$result["test_pendientes"] = $this->oracledb->get_cursor_data(":PO_TEST_PENDIENTES");
 		
 		if($result["error"] == 0){
@@ -486,7 +486,7 @@ class Test_model extends CI_Model {
 		array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
 		array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
 		);
-		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_TEST','PR_INFORME_USUARIO',$params);
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_TEST_II','PR_INFORME_USUARIO',$params);
 		$result["informe_info"] = $this->oracledb->get_cursor_data(":PO_INFORME");
 		
 		if($result["error"] == 0){
