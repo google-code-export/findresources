@@ -43,7 +43,7 @@
 
 	var userSearchs = <?php echo json_encode_utf8($busquedasDelUsuario); ?>;
 
- 	var availableIndustries = <?php  echo json_encode_utf8($industriasDisponibles); ?>;
+	var availableIndustries = <?php  echo json_encode_utf8($industriasDisponibles); ?>;
 
 	var availableAreas = <?php  echo json_encode_utf8($areasDisponibles); ?>;
 
@@ -297,7 +297,7 @@
 						<div class="field clearfix" id="searchDataEditorTicketContainer">
 							<div class="label">Tickets Disponibles:</div>
 							<select id="searchDataEditorTicket" style="width:170px">
-							<option value="">Seleccione..</option>
+							<option value="" selected=selected >Seleccione..</option>
 							<?php foreach($tickets as $ticket) { ?>
 							<!-- <option value="<?php echo $ticket->id_ticket;?>">Ticket #<?php echo str_pad($ticket->id_ticket, 3, "0", STR_PAD_LEFT)." | Saldo: ".str_pad($ticket->q_saldo, 5, "0", STR_PAD_LEFT)." | ".$ticket->duracion." días";?></option> -->
 							<optgroup label="Ticket #<?php echo $ticket->id_ticket;?>" >
