@@ -246,13 +246,16 @@ class Busquedas extends CI_Controller {
 				case "P":
 					$estado = "Pendiente";
 					$estado = "<img src='/images/src/delete.png' />";
+					$informe_img = "<img src='/images/src/delete.png' />";
 					break;
 				case "R";
 					$estado = "Realizado";
 					$estado = "<img src='/images/src/ok.png' />";
+					$informe_img = "<img src='/images/src/doc.png' />";
 					break;
 				default:
 					$estado = "Sin datos";
+					$informe_img = "Sin datos";
 			}
 			$grid["rows"][$key]["id"] = $key;
 			$grid["rows"][$key]["cell"] = array($resultado_busqueda->valor_ranking,
@@ -260,7 +263,7 @@ class Busquedas extends CI_Controller {
 												$estado,
 												"<form id='informe$key' name='informe$key' method=post action='test/informe' target='_blank'>
 													<input type='hidden' name='informe_usuario' value='".$resultado_busqueda->usuario."' />
-													<a href='javascript:document.informe$key.submit();' ><img src='/images/src/doc.png' /></a>
+													<a href='javascript:document.informe$key.submit();' >".$informe_img."</a>
 												</form>",
 												"<form id='datos$key' name='datos$key' method=post action='curriculum/userBusqueda' target='_blank'>
 													<input type='hidden' name='datos' value='".$resultado_busqueda->usuario."'/>
