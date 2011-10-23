@@ -72,7 +72,6 @@ function newSearch(){
 	$('#searchDataEditorTitle').val("");
 	$('#searchDataEditorDescription').val("");
 	$('#searchDataEditorResourcesQuantity').val("");
-	$('#searchDataEditorTicket').val("");
 	$('#searchDataEditorTicketContainer').css("visibility", "visible");
 	$('#searchDataEditorDateToContainer').css("visibility", "hidden");
 	$('#searchDataEditorStatusContainer').css("visibility", "hidden");
@@ -89,6 +88,8 @@ function editSearchData(idSearch){
 	$('#searchDataEditorDateTo').html(userSearchs[idSearch].f_hasta);
 	$('#searchDataEditorStatusContainer').css("visibility", "visible");
 	$('#searchDataEditorStatus').html(userSearchs[idSearch].d_estado);
+	//No tengo este dato para seleccionar automaticamente el combo de tickets
+	//$('#searchDataEditorTicketoption[value="'+userSearchs[idSearch].id_ticket+'"]').attr("selected", true);
 	if(userSearchs[idSearch].d_estado == "Nueva"){
 	  $('#searchDataEditorTicketContainer').css("visibility", "visible");
 	} else { 
@@ -96,7 +97,6 @@ function editSearchData(idSearch){
 	  /*$('#searchDataEditorTicketInfo').html(userSearchs[idSearch].id_ticket);*/
 	}
 
-	
 	showPopUp('#searchDataPopUp');
 
 }
@@ -106,8 +106,7 @@ function setSearchData(){
 		id_busqueda: $('#searchDataEditorId').val(), // null = nuevo
 		d_titulo: $('#searchDataEditorTitle').val(),
 		d_busqueda: $('#searchDataEditorDescription').val(),
-		f_hasta: $('#searchDataEditorDateTo').val(), 
-		//id_ticket: $('#searchDataEditorTicket').val(), 
+		id_ticket: $('#searchDataEditorTicket').val(), 
 		cantidad_recursos: $('#searchDataEditorResourcesQuantity').val()//,
 		//estado: $('#searchDataEditorStatus').val() 
 	};
