@@ -154,9 +154,15 @@ body {
 }
 
 .field input,
-.field textarea{
 	width: 140px;
 }
+
+.field textarea{
+	width: 230px;
+	height: 50px;
+	
+}
+
 
 .field select{
 	width: 147px;

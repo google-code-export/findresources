@@ -53,8 +53,8 @@ function showBusquedas(usuarioEmpresa, name){
 		}); 
 		addExportLink("#busquedasGridContainer", 'Búsquedas de la empresa ' + name);
 	}else{
-		$("#propuestasGrid").flexOptions({url: 'informe_clientes/getBusquedasGrid?usuarioEmpresa=' + usuarioEmpresa}); 
-		$("#propuestasGrid").flexReload(); 
+		$("#busquedasGrid").flexOptions({url: 'informe_clientes/getBusquedasGrid?usuarioEmpresa=' + usuarioEmpresa, title: 'Búsquedas de la empresa ' + name}); 
+		$("#busquedasGrid").flexReload(); 
 	}
 
 	showPopUp('#busquedasGridPopUp');

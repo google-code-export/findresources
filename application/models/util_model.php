@@ -463,8 +463,35 @@ class Util_model extends FR_Model {
         	throw new Exception('Oracle error message in getEstadoContacto(): ' . $result["desc"]);
 		}	
 	}
-		
 	
+		
+	/** CREA O MODIFICA BUSQUEDAS **/
+	public function setHabilidadBlanda($idHabilidadBlanda,$dHabilidadBlanda, $dColoquio){
+		$result["id_habilidad_blanda"] = NULL;
+		$result["error"] = NULL;
+		$result["desc"] = NULL;
+		
+		$params = array(
+			
+			array('name'=>':pi_id_habilidad_blanda', 'value'=>$idHabilidadBlanda, 'type'=>SQLT_CHR , 'length'=>-1),
+			array('name'=>':pi_d_habilidad_blanda', 'value'=>$dHabilidadBlanda, 'type'=>SQLT_CHR , 'length'=>-1),
+			array('name'=>':pi_d_coloquio', 'value'=>$dColoquio, 'type'=>SQLT_CHR , 'length'=>-1),
+			
+			array('name'=>':po_id_habilidad_blanda', 'value'=>&$result["id_habilidad_blanda"], 'type'=>SQLT_CHR, 'length'=>255),
+			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
+		);
+
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_UTIL','pr_inserta_habilidad_blanda',$params);
+
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+			throw new Exception('Oracle error message in setBusqueda(): ' . $result["desc"]);
+		}
+
+	}		
 }
 
 ?>
