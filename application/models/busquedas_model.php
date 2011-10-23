@@ -27,7 +27,7 @@ class Busquedas_model extends CI_Model {
 		array('name'=>':PI_ID_TICKET', 'value'=>$idTicket, 'type'=>SQLT_CHR , 'length'=>-1),
 		array('name'=>':PI_CANTIDAD_RECURSOS', 'value'=>$busqueda["cantidad_recursos"], 'type'=>SQLT_CHR, 'length'=>-1),
 		array('name'=>':PO_ID_BUSQUEDA', 'value'=>&$result["id_busqueda"], 'type'=>SQLT_CHR, 'length'=>255),
-		array('name'=>':PO_F_HASTA', 'value'=>$result["f_hasta"], 'type'=>SQLT_CHR , 'length'=>255),
+		array('name'=>':PO_F_HASTA', 'value'=>&$result["f_hasta"], 'type'=>SQLT_CHR , 'length'=>255),
 		array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
 		array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
 		);
