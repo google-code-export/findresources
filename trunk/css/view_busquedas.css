@@ -76,7 +76,10 @@
 .editSearchDataLink {
 	padding-left: 7px;
 }
-
+#searchDataEditorDescription{
+ width:135px;
+ height:100px;
+}
 #savedSearchLinks {
 	padding-left: 7px;
 }
