@@ -21,15 +21,17 @@ class Home extends CI_Controller {
 		$data['tiposDeDocumentos'] =  $this->Util_model->getTiposDeDocumentos();
 		$data['paises'] = $response = $this->Util_model->getPaises();
 		$data['industriasDisponibles'] = $this->Util_model->getIndustriasDisponibles();
-		
-		$tests_del_usuario = $this->Test_model->getTestsPendientes($idUsuario);
 
-		if (array_key_exists(0, $tests_del_usuario["test_pendientes"]))	{
-			$data["test_pendiente"] = "SI";
-		} else {
-			$data["test_pendiente"] = "NO";
+		// SI EL USUARIO ES UN CANDIDATO => VERIFICO SI TIENE TESTS PENDIENTES
+		if ($dataUsuario->idTipoUsuario == "C") {
+			$tests_del_usuario = $this->Test_model->getTestsPendientes($idUsuario);
+			if (array_key_exists(0, $tests_del_usuario["test_pendientes"]))	{
+				$data["test_pendiente"] = "SI";
+			} else {
+				$data["test_pendiente"] = "NO";
+			}
 		}
-
+		
 		$this->load->view('view_home', $data);
 		
 	}
