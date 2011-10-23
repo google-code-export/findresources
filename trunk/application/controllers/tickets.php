@@ -44,7 +44,12 @@ class Tickets extends CI_Controller {
 	public function getValor(){
 		$ticket = $this->input->post('ticket');
 		$ticket = json_decode_into_array(utf8_decode($ticket));
-		$ticket_valor_tmp = $this->Ticket_model->getValorTicket($ticket["duracion"],$ticket["unidades"]);
+		try {
+			$ticket_valor_tmp = $this->Ticket_model->getValorTicket($ticket["duracion"],$ticket["unidades"]);	
+		} catch (Exception $e) {
+			$ticket["valor"] = "0";
+			echo json_encode($ticket);
+		}
 		$ticket["valor"] = $ticket_valor_tmp["valor"];
 		echo json_encode($ticket);
 	}
