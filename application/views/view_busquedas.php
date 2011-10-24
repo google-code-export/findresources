@@ -72,22 +72,20 @@
 				foreach ($busquedasDelUsuario as $i => $busq){ ?>
 					<div class="savedSearchLink 
 					<?php 
-					$finish_button = true;
 					switch ($busq->d_estado) {
 						case "Nueva" : 
 							echo "newSearchLink";
 							break;
 						case "Terminada":
 							echo "closedSearchLink";
-							$finish_button = false;
-						break;
+							break;
 						case "Activa":
 							echo "activatedSearchLink";							
-						break;
+							break;
 						case "Pendiente":
 							echo "pendingSearchLink";							
-						break;
-							
+							break;
+						
 					}
 					?>">
 						<a href="busquedas?busquedaId=<?php echo $busq->id_busqueda?>">
@@ -328,11 +326,9 @@
 				
 					</div>
 					<div class="buttonsPopUp">
-					<?php if ($finish_button) {?>
-						<input type="submit" value="Finalizar" class="finishButton" onclick="javascript:finishSearch();"  />
-					<?php } ?>
-						<input type="submit" value="Guardar" class="sendButton" onclick="javascript:setSearchData();"  />
-						<input type="submit" value="Cancelar" class="cancelPopUp" />
+						<a href="javascript:setSearchData();" class="button sendButton">Guardar</a>
+						<a href="#" class="button cancelPopUp">Cancelar</a>
+						<!-- <br /><br /><div class="hide" align="right" ><a href="javascript:finishSearch();" class="button finishButton" >Finalizar Búsqueda</a></div>-->
 					</div>
 				</div>
 			</div>
@@ -435,8 +431,8 @@
 				<?php } ?>
 				</ul>
 				<div class="buttonsPopUp">
-					<input type="submit" value="Guardar" class="sendButton" onclick="javascript:setHardSkills()"/>
-					<input type="submit" value="Cancelar" class="cancelPopUp" />
+					<a href="javascript:setHardSkills();" class="button sendButton">Guardar</a>
+					<a href="#" class="button cancelPopUp">Cancelar</a>
 				</div>
 			</div>
 		</div>
@@ -475,8 +471,8 @@
 						<?php } ?>
 					</ul>
 					<div class="buttonsPopUp">
-						<input type="submit" value="Guardar" class="sendButton" onclick="javascript:setSoftSkills();"/>
-						<input type="submit" value="Cancelar" class="cancelPopUp" />
+						<a href="javascript:setSoftSkills();" class="button sendButton">Guardar</a>
+						<a href="#" class="button cancelPopUp">Cancelar</a>
 					</div>
 				</div>
 			</div>
@@ -581,8 +577,8 @@
 					
 					
 					<div class="buttonsPopUp">
-						<input type="submit" value="Guardar" class="sendButton" onclick="javascript:setFormalEducation();"  />
-						<input type="submit" value="Cancelar" class="cancelPopUp" />
+						<a href="javascript:setFormalEducation();" class="button sendButton">Guardar</a>
+						<a href="#" class="button cancelPopUp">Cancelar</a>
 					</div>
 				</div>
 			</div>
@@ -636,8 +632,8 @@
 					
 					
 					<div class="buttonsPopUp">
-						<input type="submit" value="Guardar" class="sendButton" onclick="javascript:setAditionalData();"  />
-						<input type="submit" value="Cancelar" class="cancelPopUp" />
+						<a href="javascript:setAditionalData();" class="button sendButton">Guardar</a>
+						<a href="#" class="button cancelPopUp">Cancelar</a>
 					</div>
 				</div>
 			</div>
