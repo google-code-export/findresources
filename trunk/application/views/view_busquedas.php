@@ -81,7 +81,10 @@
 						break;
 						case "Activa":
 							echo "activatedSearchLink";							
-						break; 
+						break;
+						case "Pendiente":
+							echo "pendingSearchLink";							
+						break;
 							
 					}
 					?>">
