@@ -3,8 +3,23 @@ html, body, div, h1, h2, h3, h4, h5, h6, ul, li, ol, p, form, dd, dl, dt, label{
 html {
 /*background-color: #84C5F0;*/
 }
+
 h1{
-	font-size: 14px;
+	font-size: 19px;
+	color:#555;
+	padding:0 0 0px;
+	border-bottom: 1px #CCCCCC solid;
+	margin-bottom: 20px;
+}
+
+h2{
+	font-size: 16px;
+	color:#555;
+	padding:0 0 0px;
+}
+
+.header-block {
+	font-size: 16px;
 	font-weight: bold;
 	border-radius: 5px;
     background: url("/images/src/h1.png") repeat-x scroll 0 0 #a3a3a3;
@@ -14,6 +29,7 @@ h1{
     padding: 8px 14px;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
 }
+
 h1_BLUE{
 	font-size: 14px;
 	font-weight: bold;
@@ -26,11 +42,6 @@ h1_BLUE{
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
 }
 
-h2{
-	font-size: 16px;
-	color:#555;
-	padding:0 0 0px;
-}
 h3{
 	font-size: 14px;
 }

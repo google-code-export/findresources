@@ -1,27 +1,34 @@
 /*GENERAL*/
 
-/*HEADER*/
-.hd{}
-
-/*FOOTER*/
-.ft{}
-
-/*CONTENT*/
-.content{width:961px;margin:0 auto;}
-.content .CL{width:500px;float:left;
-	padding-left: 30px;
-    padding-top: 20px;
+.block{
+	width:500px;
 }
+
+h1 {
+	width:524px;
+}
+
+.header-block{
+	width:494px;
+	margin-bottom: 20px;
+}
+
+.body_container {
+	padding-left: 50px;
+    padding-top: 20px;
+	
+}
+
 .content .CR{width:400px;float:left;}
 
-.content .info .photo{float:left;}
-.content .info .photo img{padding:5px;background:#FFF;border: .1em solid black; }
-.content .info .right{float:left;width:300px;padding:0 0 0 10px;}
-.content .info .right h3{font:16px;padding:0 0 12px;}
-.content .info .right p{padding:0 0 10px;}
-.content .info .right .grey{color:#666;}
-.content .info .right .grey i{padding:0 4px;font-size:12px;line-height:12px;color:#999;font-style:normal;}
-.content .info .right h3 a{font-size:11px;padding:0 0 0 4px;}
+.info .photo{float:left; width:190px;}
+.info .photo img{padding:5px;background:#FFF;border: .1em solid black; width:150px;}
+.info .right{float:left;width:300px;padding:0 0 0 10px;}
+.info .right h3{font:16px;padding:0 0 12px;}
+.info .right p{padding:0 0 10px;}
+.info .right .grey{color:#666;}
+.info .right .grey i{padding:0 4px;font-size:12px;line-height:12px;color:#999;font-style:normal;}
+.info .right h3 a{font-size:11px;padding:0 0 0 4px;}
 
 
 

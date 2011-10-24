@@ -68,26 +68,17 @@
 
 <?php include("toolbar.php"); ?>
 
-<div class="layout">
-	
-	<!-- HEADER -->
-	<div class="hd">
-		
-	</div>
-	<!-- end HEADER -->
-	
-	<!-- CONTENT -->
-	<div class="content">
+<div class="body_container">
 		<h1>Curriculum</h1>	
 		<div class="CL">
-			<h1><?php echo $usuarioData->nombre." ".$usuarioData->apellido;?></h1>			
+			<div class="header-block"><?php echo $usuarioData->nombre." ".$usuarioData->apellido;?></div>
 			<div class="info clearfix block">
 				<div class="photo" ><br />
 				<?php 
 				$photo_filename = "/images/cv/".md5($usuarioData->id).".jpg";
 				$photo_filename = (!file_exists($_SERVER['DOCUMENT_ROOT'].$photo_filename))? "/images/cv/default.jpg":$photo_filename;
 				?>
-					<img src="<?php echo $photo_filename;?>" alt="Foto" width=150px />
+					<img src="<?php echo $photo_filename;?>" alt="Foto"/>
 				</div>
 				<div class="right">
 					<h2>&nbsp;&nbsp;Información Personal <?php if($perfil == "usuario") { ?> <a href="javascript:editCVData();" class="editFields"><img src="/images/src/pencil.gif"/>Editar</a><?php } ?></h2>
@@ -284,16 +275,6 @@
 				<?php } ?>
 			</div>
 		</div>
-	
-	</div>
-	<!-- end CONTENT -->
-	
-	<!-- FOOTER -->
-	<div class="ft">
-		<!-- ?php include("footer.php"); ?-->
-	</div>
-	<!-- end FOOTER -->
-	
 </div>
 
 
