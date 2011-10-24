@@ -72,12 +72,14 @@
 				foreach ($busquedasDelUsuario as $i => $busq){ ?>
 					<div class="savedSearchLink 
 					<?php 
+					$finish_button = true;
 					switch ($busq->d_estado) {
 						case "Nueva" : 
 							echo "newSearchLink";
 							break;
 						case "Terminada":
 							echo "closedSearchLink";
+							$finish_button = false;
 						break;
 						case "Activa":
 							echo "activatedSearchLink";							
@@ -326,6 +328,9 @@
 				
 					</div>
 					<div class="buttonsPopUp">
+					<?php if ($finish_button) {?>
+						<input type="submit" value="Finalizar" class="finishButton" onclick="javascript:finishSearch();"  />
+					<?php } ?>
 						<input type="submit" value="Guardar" class="sendButton" onclick="javascript:setSearchData();"  />
 						<input type="submit" value="Cancelar" class="cancelPopUp" />
 					</div>
