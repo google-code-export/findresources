@@ -122,6 +122,14 @@ class Busquedas extends CI_Controller {
 		echo json_encode($result);
 	}
 	
+	public function setBajaBusqueda(){
+		$busqueda= $this->input->post('busqueda');
+		$busqueda = json_decode($busqueda);
+		$result  = $this->Busquedas_model->setBajaBusqueda($busqueda->id_busqueda);
+
+		echo json_encode($result);
+	}
+	
 	public function setRecurso(){
 			
 		$idBusqueda = @$_SESSION[SESSION_ID_BUSQUEDA_SELECCIONADA];
