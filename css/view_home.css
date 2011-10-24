@@ -9,19 +9,23 @@
 
 #homeCandidateLinks{
 	width: 460px;
-	height: 200px;
-	float:left;
+	height: 153px;
+	float: left;
+	margin-top: 10px;
 }
 
 
 #homeCurriculumLink{
 	height: 99px;
 	border-width: 1px;
+	width: 152px;
+	float: left;
 }
 
 #homeTestLink{
 	height: 99px;
 	border-width: 1px;
+	float: left;
 }
 
 .label {

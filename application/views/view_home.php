@@ -31,7 +31,6 @@
 <?php include("toolbar.php"); ?>
 
 
-<h1>Bienvenido a FindResources</h1>
 
 <div id="homeBody" class="clearfix body_container">
 
@@ -64,24 +63,25 @@
 			</div>
 		</div>
 	</div>
-	<div id="homeCandidateLinks">
-		<div id="homeCurriculumLink" class="clearfix" align="center">
-			<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+	<div id="homeCandidateLinks" class="block">
+		<div id="homeCurriculumLink" align="center">
+			<br />
 			<a href="/curriculum"> 
 				<img src="/images/src/cv.png" />
-			</a><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Editar Curriculum Vitae
+			</a><br />Curriculum Vitae
 		</div>
 
-		<div id="homeTestLink" class="clearfix" align="center">
+		<div id="homeTestLink" align="center">
 <?php if($test_pendiente == "SI") { ?>
-			<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<br />
 			<a href="/Test"> 
-				<img src="/images/src/test.gif" />
-			</a><br />&nbsp;&nbsp;Realizar Psicotécnico
+				<img src="/images/src/test.gif" height="46px"/>
+			</a><br />Realizar Psicotécnico
 <?php } else { ?>
-			<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<br /><br />
 				<img src="/images/src/ok2.png" />
-			<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Psicotécnico realizado
+			<br />Psicotécnico realizado
 <?php } ?>
 		</div>
 	</div>
