@@ -130,6 +130,33 @@ function setSearchData(){
 	});
 }
 
+function finishSearch(){
+	if (confirm("Se va a finalizar la búsqueda, ¿está seguro?" )) {
+
+		var busqueda = {
+			id_busqueda: $('#searchDataEditorId').val()
+		};
+		
+		$.ajax({
+			url: "busquedas/setBajaBusqueda",
+			global: false,
+			type: "POST",
+			data: {
+				'busqueda': JSON.stringify(busqueda)
+			},
+			dataType: "json",
+			async: true,
+			success: function(response){
+				alert("Busqueda finalizada, se puede consultar en el historial de búsquedas");
+				hidePopUp();
+				window.location.reload();
+			},
+			error: function(response){
+				processError(response);
+			}
+		});
+		}
+}
 
 function editHardSkills(){
 	showPopUp('#hardSkillsPopUp');
