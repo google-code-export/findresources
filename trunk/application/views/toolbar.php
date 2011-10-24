@@ -23,6 +23,8 @@
 
 <div id="toolbar_header">
 	<a id="toolbar_fr_logo" href="<?php echo site_url('home')?>"></a>
+	<div id="toolbar_slogan">Donde no encontrás un trabajo, encontrás el tuyo... </div>
+	
 	<div id="toolbar_session">
 		<div id="toolbar_fr_lenguage">
 			<?php if(isset($_SESSION[SESSION_ID_USUARIO])){
@@ -32,7 +34,9 @@
 			}?>
 		</div>
 		<div id="toolbar_logout">
-			<a href="javascript:logout()"> cerrar sesión </a>		
+			<?php if(isset($_SESSION[SESSION_ID_USUARIO]) && $_SESSION[SESSION_ID_USUARIO] != ""){?>
+				<a href="javascript:logout()"> cerrar sesión </a>
+			<?php }?>
 		</div>
 	</div>
 </div>

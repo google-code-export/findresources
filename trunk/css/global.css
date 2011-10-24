@@ -124,6 +124,9 @@ body {
 .body_container {
     /*background: url("/images/src/background_body_continue.png") repeat scroll 0 0 #FCFCFC;*/
     background-color: #FCFCFC;
+    border: 1px #CCCCCC solid;
+    border-top: none;
+    padding-top: 20px;
 }
 
 .company_logo {
