@@ -112,8 +112,11 @@
 
 .closedSearchLink a{
 	color: gray !important;
+	text-decoration: line-through;
 }
-
+.pendingSearchLink a{
+	color: gray !important;
+}
 .newSearchLink a{
 	font-weight: bold;
 }
