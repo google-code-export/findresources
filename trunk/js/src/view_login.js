@@ -32,6 +32,11 @@ $(document).ready(function() {
 });  
 
 $(function(){
+	$('#tab1 input').keypress(function(event){
+	  if ( event.which == 13 ) {
+	     doLogin();
+	   }
+	}); 
 	
 	$('#do_register_button').click(function(){
 		
@@ -82,36 +87,7 @@ $(function(){
 	});
 	
 	$('#do_login_button').click(function(){
-		/**TODO Esta llamada debe ser segura, hay que investigar eso!**/
-		var usuario = {
-			'email': $('#login_email_input').val(),
-			'clave': $('#login_password_input').val()
-		};
-		
-		showPopUp("#waitingActionPopUp");
-		$.ajax({
-		      url: "login/doLogin",
-		      global: false,
-		      type: "POST",
-		      data: {
-				'usuario': JSON.stringify(usuario)
-			  },
-		      dataType: "json",
-		      async:true,
-		      success: function(response){
-					if(response == true){
-						window.location="home";
-					}else{
-			      		hidePopUp();
-						alert("usuario invalido");
-					}
-			  },
-			  error: function(response){
-	      		  hidePopUp();
-				  processError(response);
-			  }
-		   }
-		);
+		doLogin();
 	});
 	
 	$('#register_type_select').change(function(){
@@ -168,3 +144,35 @@ $(function(){
 	return false;
 });
 
+function doLogin(){
+	/**TODO Esta llamada debe ser segura, hay que investigar eso!**/
+	var usuario = {
+		'email': $('#login_email_input').val(),
+		'clave': $('#login_password_input').val()
+	};
+	
+	showPopUp("#waitingActionPopUp");
+	$.ajax({
+	      url: "login/doLogin",
+	      global: false,
+	      type: "POST",
+	      data: {
+			'usuario': JSON.stringify(usuario)
+		  },
+	      dataType: "json",
+	      async:true,
+	      success: function(response){
+				if(response == true){
+					window.location="home";
+				}else{
+		      		hidePopUp();
+					alert("usuario invalido");
+				}
+		  },
+		  error: function(response){
+      		  hidePopUp();
+			  processError(response);
+		  }
+	   }
+	);
+}
