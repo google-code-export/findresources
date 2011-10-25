@@ -200,7 +200,7 @@ class Busquedas extends CI_Controller {
 	
 	public function setGrid(){
 		$idBusqueda = $this->uri->segment(3);
-		$resultados_de_busqueda = $this->Busquedas_model->getResultadoBusqueda($idBusqueda);
+		$resultados_de_busqueda = $this->Busquedas_model->getResultadoBusqueda($idBusqueda,"S");
 		//print_r($resultados_de_busqueda);
 		$grid["page"] = 1;
 		$grid["total"] = 6;
