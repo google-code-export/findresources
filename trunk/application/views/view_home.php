@@ -68,23 +68,22 @@
 	</div>
 
 	<div id="homeCandidateLinks" class="block">
-		<div id="homeCurriculumLink" align="center">
-			<br />
-			<a href="/curriculum"> 
-				<img src="/images/src/cv.png" />
-			</a><br />Curriculum Vitae
+		<div id="homeCurriculumLink">
+			<a class="curriculumLink" href="/curriculum"> 
+				Curriculum Vitae
+			</a>
 		</div>
 
 		<div id="homeTestLink" align="center">
 <?php if($test_pendiente == "SI") { ?>
-			<br />
-			<a href="/Test"> 
-				<img src="/images/src/test.gif" height="46px"/>
-			</a><br />Realizar Psicotécnico
+			<a class="testLink" href="/Test"> 
+				Realizar Psicotécnico
+			</a>
 <?php } else { ?>
-			<br /><br />
+			<div class="testDoneLink" >
 				<img src="/images/src/ok2.png" />
-			<br />Psicotécnico realizado
+				Psicotécnico realizado
+			</div>
 <?php } ?>
 		</div>
 	</div>
@@ -177,12 +176,12 @@
 	</div>
 	
 	<div id="homeCompanyLinks" class="clearfix block" align=center>
-		<a href="/busquedas"> 
-			<img src="/images/src/search.png" /> 
+		<a class="searchLink" href="/busquedas"> 
+			búsquedas
 		</a>
-		<br />BÚSQUEDAS<br /><br /><br />
-		<a href="/tickets"><img src="/images/src/ticket.png" width=40px /></a>
-		<br />TICKETS
+		<a class="ticketsLink" href="/tickets">
+			tickets
+		</a>
 	</div>
  
 	<div class="opacity" style="display:none;"></div>	

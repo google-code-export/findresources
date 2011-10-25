@@ -9,9 +9,10 @@
 
 #homeCandidateLinks{
 	width: 434px;
-	height: 153px;
+	height: 128px;
 	float: left;
 	margin-top: 10px;
+	padding-top: 35px;
 }
 
 #homeCompanyLinks{
@@ -19,7 +20,37 @@
     height: 181px;
     width: 430px;
 	margin-top: 10px;
-	height: 193px;
+	height: 199px;
+}
+
+#homeCompanyLinks .searchLink,
+#homeCompanyLinks .ticketsLink,
+#homeCandidateLinks .curriculumLink,
+#homeCandidateLinks .testLink
+ {
+	background-position:center top !important;
+	display: block;
+	padding-top: 47px;
+	text-align: center;	
+}
+
+#homeCompanyLinks .searchLink{
+	background:transparent url("../images/src/search.png") no-repeat;
+	width: 60px;
+	height: 40px;
+}
+
+#homeCandidateLinks .ticketsLink {
+	background:transparent url("../images/src/ticket.png") no-repeat;
+	width: 50px;
+	height: 50px;
+}
+
+#homeCandidateLinks .testLink {
+	background:transparent url("../images/src/test.gif") no-repeat;
+	width: 70px;
+	height: 50px;
+	
 }
 
 #homeCurriculumLink{
@@ -27,6 +58,18 @@
 	border-width: 1px;
 	width: 152px;
 	float: left;
+	margin-left: 110px;
+}
+
+
+#homeCurriculumLink .curriculumLink{
+	background:transparent url("../images/src/cv.png") no-repeat;
+	width: 65px;
+	height: 50px;
+}
+
+#homeCurriculumLink .testLink {
+
 }
 
 #homeTestLink{
@@ -109,3 +152,5 @@
 	padding-left: 20px;
 	padding-right: 20px;
 }
+
+
