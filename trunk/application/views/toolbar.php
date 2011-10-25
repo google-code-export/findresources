@@ -23,7 +23,7 @@
 
 <div id="toolbar_header">
 	<a id="toolbar_fr_logo" href="<?php echo site_url('home')?>"></a>
-	<div id="toolbar_slogan">Donde no encontrás un trabajo, encontrás el tuyo... </div>
+	<div id="toolbar_slogan">Donde no encontrás un trabajo, encontrás el tuyo. </div>
 	
 	<div id="toolbar_session">
 		<div id="toolbar_fr_lenguage">

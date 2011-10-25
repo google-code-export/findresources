@@ -44,7 +44,7 @@
 <body>
 
 <?php include("toolbar.php"); ?>
-	<div class="layout">
+	<div class="body_container">
 		
 		<!-- HEADER -->
 		<div class="hd">

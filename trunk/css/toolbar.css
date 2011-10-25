@@ -5,6 +5,10 @@
 	padding-top: 55px;
     width: 95px;  
 }
+#toolbar_fr_logo:hover{
+	opacity:0.4;
+	filter:alpha(opacity=40); /* For IE8 and earlier */
+}
 
 #toolbar_fr_company{
 	float:left;
