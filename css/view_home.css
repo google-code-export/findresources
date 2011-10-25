@@ -8,12 +8,19 @@
 
 
 #homeCandidateLinks{
-	width: 460px;
+	width: 434px;
 	height: 153px;
 	float: left;
 	margin-top: 10px;
 }
 
+#homeCompanyLinks{
+    float: left;
+    height: 181px;
+    width: 430px;
+	margin-top: 10px;
+	height: 193px;
+}
 
 #homeCurriculumLink{
 	height: 99px;
@@ -60,7 +67,7 @@
 }
 
 #homeBody{
-	padding-top: 50px;
+	padding-top: 30px;
 	padding-bottom: 50px;	
 }
 
@@ -85,11 +92,20 @@
 	margin-top: 22px;
 }
 
+.admin .block {
+	margin-left: 50px;
+	width: 500px;
+}
 .admin .usuarios {
 	padding-left: 20px;
 }
 
 .experto img{
     width: 75px;
+	padding-right: 20px;
+}
+
+.body_container {
+	padding-left: 20px;
 	padding-right: 20px;
 }
