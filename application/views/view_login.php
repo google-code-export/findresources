@@ -27,12 +27,9 @@
 
 
 <?php include("toolbar.php"); ?>
-<div class="body_container">
-	
-	<!--h1>&nbsp;&nbsp;Donde no encontrás un trabajo, encontrás el tuyo...</h1><br /-->
-	<div id="login_body">
+	<div class="body_container">
 		<div id="login_wellcome">
-			<div id="login_wellcome_text"/>
+			<div id="login_wellcome_text">
 				<br />
 				 <div style="font-size:15px;">
 					Sitio Web que brinda servicios<br />
@@ -51,6 +48,7 @@
 			 <center id="video_container"><iframe width="336" height="189" src="http://www.youtube.com/embed/SdZWF8DJOfk" frameborder="0" allowfullscreen></iframe></center>
 			 <br /><br /><div class="fb-like" data-href="https://www.facebook.com/pages/FindResources/198212693580643" data-send="false" data-width="450" data-show-faces="false" data-font="lucida grande"></div>
 		</div>
+		
 		<div id="login_tabs">
 			<ul class="tabs">  
 			    <li><a href="#tab1">Ingresar</a></li>  

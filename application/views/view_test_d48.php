@@ -7,13 +7,6 @@
     <link rel="StyleSheet" type="text/css" href="<?php echo site_url('css/style.css')?>" />
     <link rel=StyleSheet type="text/css" href="<?php echo site_url('css/global.css')?>"/>
     <link rel="shortcut icon" type="image/x-icon" href="<?php echo site_url("images/src/favicon.ico")?>" />
-	<style type="text/css">
-		.body_container {
-			padding-left: 20px;
-			padding-right: 20px;
-		}
-	
-	</style>
 	<title>FindResources</title> 
 </head> 
 <body>

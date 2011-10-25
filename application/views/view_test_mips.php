@@ -15,12 +15,6 @@
 	
 		}
 	</script>
-	<style type="text/css">
-		.body_container {
-			padding-left: 20px;
-			padding-right: 20px;
-		}
-	</style>
 	
     <title>FindResources</title>
 </head> 

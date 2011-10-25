@@ -10,12 +10,6 @@
 	<script src="<?php echo base_url();?>js/libs/jquery-ui-1.8.15.custom.min.js" language="JavaScript" type="text/javascript"></script>
 	<script src="<?php echo base_url();?>js/src/rorschach.js" language="JavaScript" type="text/javascript"></script>
 	<link type="text/css" href="<?php echo base_url();?>css/jquery-ui-1.8.15.custom.css" rel="stylesheet" />
-	<style type="text/css">
-		.body_container {
-			padding-left: 20px;
-			padding-right: 20px;
-		}
-	</style>
 	<title>FindResources</title>
 </head> 
 <body> 
