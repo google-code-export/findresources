@@ -53,9 +53,6 @@
 .control select{
 	width: 156px;
 }
-.field {
-	margin-top: 15px;
-}
 
 #busquedas_tabs .tab_content {
 	height:620px;
@@ -91,11 +88,37 @@
 }
 
 
-#hardSkillsPopUp input[type="text"] {
-    margin-right: 20px;
-    width: 25px; /** TODO MODIFICAR PARA EL SLIDER **/
+#hardSkillsPopUp .in {
+	width: 750px;
 }
 
+#hardSkillsPopUp .label {
+	width: 250px;
+}
+
+.ui-slider {
+	float: left;
+	width: 160px;
+	margin-top: 5px;
+	margin-right: 60px;
+}
+
+.ui-slider input[type="text"] {
+	float: right;
+    margin-right: -45px;
+    height: 12px;
+    margin-top: -4px;
+    width: 25px;
+}
+
+
+.ui-slider label {
+	float: right;
+    margin-right: -60px;
+    margin-top: -2px;
+	
+}
+	
 .field .modeField {
 	width: 92px;
 }
@@ -133,7 +156,7 @@
 #hardSkillsPopUp .star-rating,
 #hardProperties .star-rating{
 	float: left;
-	margin: 3px 10px 5px 6px;
+	margin-top: 3px;
 	
 }
 
@@ -147,15 +170,65 @@
 
 .toolItem,
 .industryItem {
-	height: 20px;
-	background-color: #FBFBFB;
+	height: 25px;
+	background-color: #BDDEE0;
 }
 
 .industryItem .label{
-	padding-top: 3px
+	padding-top: 3px;
 }
 
-/* WIDTH DEL SLIDER*/
-.ui-slider {
-    width: 100px;
+
+#toolEditorList {
+	border-top: 1px #CCCCCC solid;
+    margin-top: 30px;
+    padding-top: 10px;
+}
+
+
+#importanceTitle,
+#seniorityTitle {
+    background: none repeat scroll 0 0 #EEFAFA;
+    float: left;
+    text-align: center;
+    height: 20px;
+	padding-top: 5px;
+	font-weight: bold;
+    
+}
+
+#seniorityTitle{
+    margin-left: 257px;
+    width: 115px;
+}
+
+#importanceTitle{
+    margin-left: 40px;
+    width: 232px;
+	
+}
+
+.starRatingContainer {
+    background-color: #EEFAFA;
+    float: left;
+    height: 25px;
+	padding-left: 5px;
+    padding-right: 5px;
+    width: auto;
+    margin-right: 40px;
+}
+
+.sliderContainer {
+    background-color: #EEFAFA;
+    float: left;
+    height: 25px;
+	padding-left: 5px;
+    padding-right: 5px;
+    width: auto;
+}
+
+
+.addTool,
+.addIndustry {
+	margin-left: 15px;
 }
