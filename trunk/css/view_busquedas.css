@@ -8,7 +8,7 @@
 }
 
 #rightPanel{
-	width:760px;
+	width: 720px;
   	border-color: #707070;
     border-left: solid;
     border-width: 1px;
@@ -19,6 +19,9 @@
 
 #newSearchLink {
 	padding: 10px 0 10px 0;
+	border-bottom: 1px #CCCCCC solid;
+	margin-bottom: 4px;
+	width: 160px;
 }
 
 #busquedas {
