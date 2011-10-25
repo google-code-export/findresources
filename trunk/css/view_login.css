@@ -19,17 +19,18 @@ body {
 
 
 
-#login_body {
+.body_container {
 	height: 550px;
 }
 
 #login_wellcome {
 	float: left;
 	position: absolute;
-	margin-left:30px;
 	padding-right: 7px;
 	border-right: 1px #CCCCCC solid;
 	height: 465px;
+	width: 452px;
+	
 }
 
 #login_wellcome_text {
@@ -38,9 +39,9 @@ body {
 	padding: 0 8px 0 20px;
  	font-size: 13px;
 	margin-bottom: 10px;
-	width: 415px;
 	height: 200px;
 	border-radius: 5px 5px 5px 5px;
+	width: 415px;
 }
 
 #video_container {
@@ -53,7 +54,6 @@ body {
 #login_tabs {
 	width: 450px;
 	float: right;
-	margin-right: 20px;
 	height: 412px;
 }
 

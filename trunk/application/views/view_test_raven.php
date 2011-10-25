@@ -7,13 +7,6 @@
     <link rel="shortcut icon" type="image/x-icon" href="<?php echo site_url("images/src/favicon.ico")?>" />
     <script type="text/javascript" src="<?php echo base_url();?>js/src/countDown.js"></script>
     <script src="<?php echo base_url();?>js/libs/jquery-1.6.2.min.js"></script>
-	<style type="text/css">
-		.body_container {
-			padding-left: 20px;
-			padding-right: 20px;
-		}
-	
-	</style>
 	<title>FindResources</title>
 </head> 
 <body> 
