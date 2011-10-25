@@ -43,12 +43,20 @@ function getHtml($title,  $contentHtml){
 				
 				<style type="text/css">
 					.title {
+						margin-top: 10px;
+						
 						margin-left: 200px;
+						float: left;
 					}
 					.header {
 						clear: both;
 						border-bottom: solid 1px gray;
+						background: url("/images/src/background_header.png") repeat-x scroll 0 0 #FCFCFC;	
+						height: 60px;
+						padding: 5px;					
+						color: white;
 					}
+					
 					.header div,
 					.header img{
 						float: left;
@@ -67,8 +75,11 @@ function getHtml($title,  $contentHtml){
 			<body>
 				<div class="header">
 					<img src='../images/src/logofr.png'> </img>
-					<div class="title"> <b>$title</b> </div>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Donde no encontrás un trabajo, encontrás el tuyo.
 				</div>
+				
+				<div class="title"> <b>$title</b> </div>
+				
 				<div class="content flexigrid">
 					$contentHtml
 				</div>

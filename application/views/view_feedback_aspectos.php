@@ -48,13 +48,7 @@
 <body>
 
 <?php include("toolbar.php"); ?>
-	<div class="layout">
-		
-		<!-- HEADER -->
-		<div class="hd">
-			
-		</div>
-		<!-- end HEADER -->
+	<div class="body_container">
 		
 		<!-- CONTENT -->
 		<div class="content">
