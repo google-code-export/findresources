@@ -1,13 +1,18 @@
 @CHARSET "ISO-8859-1";
-#toolbar_fr_logo {
-	background: url("../images/src/logofr.png") no-repeat scroll 0 0 transparent;
+a#toolbar_fr_logo{
+	display:block;
+	background:transparent url("../images/src/logo-fr-sprite.png") no-repeat;
 	float:left;
-	padding-top: 55px;
-    width: 95px;  
+	/*padding-top: 55px;*/
+    width: 100px;
+    height:63px;  
 }
-#toolbar_fr_logo:hover{
+a#toolbar_fr_logo:hover{
+	background-position:left bottom;
+	/*
 	opacity:0.4;
-	filter:alpha(opacity=40); /* For IE8 and earlier */
+	filter:alpha(opacity=40);  For IE8 and earlier
+	*/
 }
 
 #toolbar_fr_company{
@@ -33,7 +38,7 @@
 
 #toolbar_header {
 	height: 45px;
-	padding: 10px;
+	padding: 0 10px 20px;
     background: url("/images/src/background_header.png") repeat-x scroll 0 0 #FCFCFC;
 	/*background-color: #0C4870*/
 }
@@ -55,7 +60,7 @@
 #toolbar_slogan {
 	color:white;
 	margin-left: 7px;
-	margin-top: 37px;
+	margin-top: 45px;
 	font-size: 11px;
 	float: left;
 }
