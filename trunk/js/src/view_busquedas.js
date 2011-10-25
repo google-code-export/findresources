@@ -57,9 +57,57 @@ $(document).ready(function() {
 
 
 $(function() {
+	$(".flexme1").flexigrid({
+		url: 'busquedas/setGrid/' + busquedaId,
+		dataType: 'json',
+		colModel : [
+			{display: 'Orden', name : 'orden', width : 40, sortable : false, align: 'center'},
+			{display: 'Nombre y Apellido', name : 'nombre', width : 189, sortable : false, align: 'left'},
+			{display: 'Psicotécnico Online', name : 'estado', width : 95, sortable : false, align: 'center'},
+			{display: 'Informes', name : 'info', width : 70, sortable : false, align: 'center', hide: false},
+			{display: 'Datos', name : 'data', width : 70, sortable : false, align: 'center'},
+			{display: 'Estado', name : 'entrevistado', width : 192, sortable : false, align: 'center'}
+			],
+		sortname: "orden",
+		sortorder: "asc",
+		usepager: false,
+		/*title: 'Resultados de la búsqueda',*/
+		useRp: false,
+		rp: 15,
+		showTableToggleBtn: false,
+		width: 730,
+		height: 600,
+		onError: function(response){
+			processError(response);
+		} 
+	
+	}); 
 
 	$('#formalEducationEditorInstitution').change(function(){
 		checkInstitutionDescriptionDisabled();
+	});
+
+	$( ".slider" ).slider({
+		range: "min",
+		value: 50,
+		min: 0,
+		max: 100,
+		slide: function( event, ui ) {
+			var importanceInput = $(this).find('.importanceInput');
+			if(importanceInput.val() != ui.value){
+				$(this).find('.importanceInput').val(ui.value);
+			}
+		}
+	});
+	
+	$(".importanceInput").change(function(event){
+		var value = $(this).val();
+		if(isNaN(value)){
+			return false;
+		}
+		
+		var slider = $(this).parent(".slider");
+		$(this).parent(".slider").slider("value", value);
 	});
 		
 	return false;

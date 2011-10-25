@@ -255,3 +255,13 @@ input[type="text"],input[type="password"],select, textarea[type="text"] {
     padding: 3px 4px 1px;
 
 }
+
+.ui-slider {
+ 	background: url("/images/src/ui-bg_diagonals-small_75_ccd232_40x40.png") repeat-x scroll 50% 50% red !important;
+}
+
+.ui-slider .ui-widget-header {
+ background: url("/images/src/ui-bg_diagonals-small_40_db4865_40x40.png") repeat-x scroll 50% 50% red;
+}
+
+

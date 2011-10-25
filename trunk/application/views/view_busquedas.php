@@ -54,6 +54,8 @@
 	var selectedSearch	= <?php echo isset($busquedaSeleccionada)?json_encode_utf8($busquedaSeleccionada): "null";?>;
 
 	var availableSoftSkills	= <?php echo json_encode_utf8($habilidadesBlandasDisponibles['lista_hab_blandas']); ?>;
+
+	var busquedaId	= <?php echo $_GET["busquedaId"];?>
 	
 </script>
 </head>
@@ -344,6 +346,10 @@
 				<div class="popuptitle">Conocimientos</div>
 				<a href="javascript:;" class="closePopUp"></a>
 				<div class="inside">
+					<div class="clearfix">
+						<div id="seniorityTitle">Seniority</div>
+						<div id="importanceTitle">Importancia</div>
+					</div>
 					<h4>Areas de negocio</h4>
 					<div class="clearfix">
 						<select id="availableIndustriesSelect">
@@ -352,7 +358,7 @@
 							<?php } ?>
 						</select>
 		
-						<a href="javascript:addIndustry(true);"> <img src="images/src/add.png"/> Agregar</a>
+						<a class="addIndustry" href="javascript:addIndustry(true);"> <img src="images/src/add.png"/> Agregar</a>
 					</div>
 		
 					<ul id="editItemIndustryList">
@@ -360,36 +366,36 @@
 						<li id="editItemIndustry<?php echo $habilidad->id_industria ?>" class="industryItem">
 							<div class="field">
 								<div class="label"><?php echo $habilidad->d_industria ?>:</div> 
-								<ul class='star-rating'>
-									<li class='current-rating' value="<?php echo $habilidad->valoracion ?>"></li>
-									<li><a href="#" onclick="vote('#editItemIndustry<?php echo $habilidad->id_industria ?> .current-rating', 1); return false;" 
-								           title='Trainee' class='one-star'>1</a></li>
-									<li><a href="#" onclick="vote('#editItemIndustry<?php echo $habilidad->id_industria ?> .current-rating',2); return false;" 
-								           title='Junior' class='two-stars'>2</a></li>
-									<li><a href="#" onclick="vote('#editItemIndustry<?php echo $habilidad->id_industria ?> .current-rating',3); return false;" 
-								           title='Semi senior' class='three-stars'>3</a></li>
-									<li><a href="#" onclick="vote('#editItemIndustry<?php echo $habilidad->id_industria ?> .current-rating',4); return false;" 
-								           title='Senior' class='four-stars'>4</a></li>
-									<li><a href="#" onclick="vote('#editItemIndustry<?php echo $habilidad->id_industria ?> .current-rating',5); return false;" 
-								           title='Experto' class='five-stars'>5</a></li>
-								</ul>
-	
-								<input type="text" class="importanceInput" value="<?php echo $habilidad->importancia ?>"/>
-								<!-- 
-								<table><tr><td>
-								<input type="text" id="importancia<?php echo $habilidad->id_industria;?>" class="importanceInput" value="<?php echo $habilidad->importancia ?>" style="border:0; font-weight:bold;" />
-								<div id="slider-range-min<?php echo $habilidad->id_industria;?>" ></div>
-								-->
+								<div class="starRatingContainer">
+									<ul class='star-rating'>
+										<li class='current-rating' value="<?php echo $habilidad->valoracion ?>"></li>
+										<li><a href="#" onclick="vote('#editItemIndustry<?php echo $habilidad->id_industria ?> .current-rating', 1); return false;" 
+									           title='Trainee' class='one-star'>1</a></li>
+										<li><a href="#" onclick="vote('#editItemIndustry<?php echo $habilidad->id_industria ?> .current-rating',2); return false;" 
+									           title='Junior' class='two-stars'>2</a></li>
+										<li><a href="#" onclick="vote('#editItemIndustry<?php echo $habilidad->id_industria ?> .current-rating',3); return false;" 
+									           title='Semi senior' class='three-stars'>3</a></li>
+										<li><a href="#" onclick="vote('#editItemIndustry<?php echo $habilidad->id_industria ?> .current-rating',4); return false;" 
+									           title='Senior' class='four-stars'>4</a></li>
+										<li><a href="#" onclick="vote('#editItemIndustry<?php echo $habilidad->id_industria ?> .current-rating',5); return false;" 
+									           title='Experto' class='five-stars'>5</a></li>
+									</ul>
+								</div>
+
+								<div class="sliderContainer">
+									<div class="slider" title="Importancia: Determina el grado de deseado del puesto. 100% es requerido.)">
+										<label>%</label>
+										<input type="text" class="importanceInput" value="<?php echo $habilidad->importancia ?>"/>
+									</div>
+								</div>
+
 								<a class="removeSkillLink" href="javascript:removeIndustry(<?php echo $habilidad->id_industria?>);"><img src="images/src/delete.png"></img></a>
-								<!-- 
-								</td></tr></table>
-								-->
 							</div>
 						</li>
 					<?php } ?>
 					</ul>
 					
-					<h4>Herramientas</h4>
+					<h4 id="toolEditorList">Herramientas</h4>
 					<div>
 						<select id="availableAreasSelect">
 							<option id="availableAreasDefaultOption" value="-1" selected="selected">Areas</option>
@@ -400,7 +406,7 @@
 						<select id="availableToolsSelect">
 							<option value="0">Herramientas</option> 
 						</select>
-						<a href="javascript:addTool(true);"> <img src="images/src/add.png"/> Agregar</a>
+						<a class="addTool" href="javascript:addTool(true);"> <img src="images/src/add.png"/> Agregar</a>
 					</div>
 					
 					<ul id="editItemToolList">
@@ -643,67 +649,5 @@
 		</div>
 </div>
 
-<script type="text/javascript">
-$(".flexme1").flexigrid({
-	url: 'busquedas/setGrid/<?php echo $_GET["busquedaId"];?>',
-	dataType: 'json',
-	colModel : [
-		{display: 'Orden', name : 'orden', width : 40, sortable : false, align: 'center'},
-		{display: 'Nombre y Apellido', name : 'nombre', width : 189, sortable : false, align: 'left'},
-		{display: 'Psicotécnico Online', name : 'estado', width : 95, sortable : false, align: 'center'},
-		{display: 'Informes', name : 'info', width : 70, sortable : false, align: 'center', hide: false},
-		{display: 'Datos', name : 'data', width : 70, sortable : false, align: 'center'},
-		{display: 'Estado', name : 'entrevistado', width : 192, sortable : false, align: 'center'}
-		],
-	sortname: "orden",
-	sortorder: "asc",
-	usepager: false,
-	/*title: 'Resultados de la búsqueda',*/
-	useRp: false,
-	rp: 15,
-	showTableToggleBtn: false,
-	width: 730,
-	height: 600,
-	onError: function(response){
-		processError(response);
-	} 
-
-}); 
-
-</script>
-	<script>
-	$(function() {
-		$( "#slider-range-min1" ).slider({
-			range: "min",
-			value: 50,
-			min: 0,
-			max: 100,
-			slide: function( event, ui ) {
-				$( "#importancia1" ).val( ui.value + '%' );
-			}
-		});
-		$( "#slider-range-min2" ).slider({
-			range: "min",
-			value: 50,
-			min: 0,
-			max: 100,
-			slide: function( event, ui ) {
-				$( "#importancia2" ).val( ui.value + '%' );
-			}
-		});
-		$( "#slider-range-min6" ).slider({
-			range: "min",
-			value: 50,
-			min: 0,
-			max: 100,
-			slide: function( event, ui ) {
-				$( "#importancia6" ).val( ui.value + '%' );
-			}
-		});
-		$( "#importancia1" ).val( $( "#slider-range-min1" ).slider( "value" ) + '%' );
-		$( "#importancia2" ).val( $( "#slider-range-min2" ).slider( "value" ) + '%' );
-		$( "#importancia6" ).val( $( "#slider-range-min6" ).slider( "value" ) + '%' );
-	});
-	</script>
 </body>
 </html>
