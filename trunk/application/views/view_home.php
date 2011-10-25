@@ -34,10 +34,13 @@
 
 <div id="homeBody" class="clearfix body_container">
 
+<h1>Accesos</h1>
+
 <?php 	
 	switch ($usuarioData->idTipoUsuario) {
 		case "C": //CANDIDATO
 ?>
+	
 	<div id="homeCandidatePersonalData">
 		<div id="homeCandidatePersonalDataBody" class="block">
 			<h2>Datos Personales: <a href="javascript:editUserData();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
@@ -172,8 +175,8 @@
 			</div>
 		</div>
 	</div>
-	<br /><br />
-	<div class="clearfix" align=center>
+	
+	<div id="homeCompanyLinks" class="clearfix block" align=center>
 		<a href="/busquedas"> 
 			<img src="/images/src/search.png" /> 
 		</a>
