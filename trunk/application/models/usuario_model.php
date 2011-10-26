@@ -173,6 +173,21 @@ class Usuario_model extends FR_Model {
 			$response->fechaBaja  = $dbRegistro->f_baja;
 			$response->idIndustria  = $dbRegistro->id_industria;
 			$response->descripcionIndustria  = $dbRegistro->d_industria;
+			//DATOS DE LA EMPRESA
+			
+			if ($dbRegistro->t_usuario == "E"){
+				$response->calle = $dbRegistro->calle;
+				$response->numero = $dbRegistro->numero;
+				$response->piso = $dbRegistro->piso;
+				$response->departamento = $dbRegistro->departamento;
+				$response->localidad = $dbRegistro->localidad;
+				$response->idProvincia = $dbRegistro->provincia;
+				$response->descProvincia = $dbRegistro->d_provincia;
+				$response->cantEmpleados = $dbRegistro->q_empleados;
+				$response->fechaInicio = $dbRegistro->fecha_inicio_act; 
+				$response->saldo = $dbRegistro->saldo;
+			}
+			
 			return $response;
 		}
 		else{
