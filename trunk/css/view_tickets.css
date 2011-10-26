@@ -43,6 +43,12 @@
 	margin:10px
 }
 
+#ticketBody{
+	padding-top: 30px;
+	padding-bottom: 00px;	
+}
+
+
 #ticketDataBody div{
 	margin-top:4px
 }
