@@ -64,7 +64,34 @@ class Home extends CI_Controller {
 		
 	}
 	
+	/** FOOTER METHODS **/
+	public function sobrenosotros(){
+		$this->load->view('footer/view_sobrenosotros');
+	}
+	public function ayuda(){
+		$tipoUsuario = $this->input->get('u');
 	
+		switch ($tipoUsuario) {
+		    case "E": //EMPRESA
+			$this->load->view('footer/view_ayuda_empresas'); 
+	        break;
+		    case "P": //EXPERTO
+			$this->load->view('footer/view_ayuda_expertos');
+			break;
+			case "C": //CANDIDATO
+			default:
+			$this->load->view('footer/view_ayuda_candidatos');
+	    		
+		} //end switch
+
+	}
+	public function sugerencias(){
+		$this->load->view('footer/view_sugerencias');
+	}
+	public function terminos(){
+		$this->load->view('footer/view_terminos');
+	}
+	/** FOOTER METHODS **/
 	
 }
 
