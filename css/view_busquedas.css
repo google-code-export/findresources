@@ -94,6 +94,7 @@
 
 #hardSkillsPopUp .label {
 	width: 250px;
+	padding-top: 6px;
 }
 
 .ui-slider {
@@ -177,9 +178,6 @@
 	background-color: #BDDEE0;
 }
 
-.industryItem .label{
-	padding-top: 3px;
-}
 
 
 #toolEditorList {
