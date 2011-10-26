@@ -14,7 +14,6 @@ class Busquedas extends CI_Controller {
 	}
 	
 	public function index(){
-		//$this->runTest();
 		$idUsuario = @$_SESSION[SESSION_ID_USUARIO];
 		if(!$idUsuario){
 			/////////////HARDCODED//////////////////////////
@@ -201,7 +200,13 @@ class Busquedas extends CI_Controller {
 	public function setGrid(){
 		$idBusqueda = $this->uri->segment(3);
 		$resultados_de_busqueda = $this->Busquedas_model->getResultadoBusqueda($idBusqueda,"S");
-		//print_r($resultados_de_busqueda);
+		if(!empty($resultados_de_busqueda["correos"])) {
+			$this->sendTestEmailsToUser($resultados_de_busqueda["correos"]);
+		}
+		if(!empty($resultados_de_busqueda["correos_recuerdo"])) {
+			$this->sendTestEmailsReminderToUser($resultados_de_busqueda["correos_recuerdo"]);
+		}
+		//var_dump($resultados_de_busqueda);
 		$grid["page"] = 1;
 		$grid["total"] = 50;
 		$grid["rows"] = array();
@@ -309,388 +314,44 @@ class Busquedas extends CI_Controller {
 		}
 	}
 	
-	
-	
-	/**************************************** TEST **********************************************/
-	/**************************************** TEST **********************************************/
-	/**************************************** TEST **********************************************/
-	private function runTest(){
-		
-		/*
-		$usuario = @$_SESSION[SESSION_ID_USUARIO];
-		$usuario = "jonakup@hotmail.com";
-		$data['usuarioData'] = $this->Usuario_model->getUsuario($usuario);
-		*/
-		/** SETEO SEPARADOR **/
-		$query = $this->db->query('SELECT PKG_UTIL.FU_OBTIENE_SEPARADOR_SPLIT() SEPARADOR FROM DUAL');
-		$row = $query->row_array();
-		$this->sep = $row["SEPARADOR"];
-		
-		/** PRUEBA CREACION DE BUSQUEDA **/
-		$idUsuario = "leandrominio@gmail.com";
-		$descripcionBusqueda = "Esta es la descripcion de mi primera búsqueda";
-		$fechaHasta = "03/10/2011";
-		$cantidadRecursos = 2 ;
-		$idBusqueda = 1; //NULL = nuevo
-		$idTicket = ""; //VACIO PARA CREAR UNA NUEVA BUSQUEDA
-		$titulo = "Busqueda de prueba 2";
-		$result  = $this->Busquedas_model->setBusqueda($idBusqueda, $idUsuario,$titulo, $descripcionBusqueda,$idTicket,$cantidadRecursos);
-		$busquedaACTUAL = $result["id_busqueda"];
-		if ($result["error"] == 0 )
-				$data["result"] = "PKG_BUSQUEDAS.PR_BUSQUEDA Búsqueda creada/modificada correctamente. ID : ".$busquedaACTUAL;
-		else 			
-			$data["result"] = "PKG_BUSQUEDAS.PR_BUSQUEDA ERROR : (".$result["error"].") :".$result["desc"];
-		
-		echo $data["result"]."<br />";
-		
 
-		/** PRUEBA CREACION DE EDUCACION FORMAL PARA LA BUSQUEDA **/
-		$educacionFormal = array(
-			"id_bus_edu_formal" => 4, // NULL = nuevo
-			"id_entidad_educativa" => 3,
-			"d_entidad" => "ENTIDAD", 
-			"c_modo_entidad" => "R",
-			"titulo" => "Ingeniero en Electrónica",
-			"c_modo_titulo" => "R",
-			"id_nivel_educacion" => 1,
-			"c_modo_nivel_educacion" => "R",
-			"id_area" => 1,
-			"c_modo_area" => "R",
-			"estado" => "C",
-			"c_modo_estado" => "R", //REQUERIDO - PREFERIDO
-			"promedio_desde" => 6,
-			"promedio_hasta"=> 8,
-			"c_modo_promedio"=> "P",
-			"c_baja" => "N" // SI LO QUIERO BORRAR PONGO "S"
-		);
-		 
-		$result = $this->Busquedas_model->setEducacionFormalDeBusqueda($busquedaACTUAL,$educacionFormal);
-		
-		if ($result["error"] == 0 )
-				$data["result"] = "PKG_BUSQUEDAS.PR_BUS_EDUCACION_FORMAL EducacionFormal creada/modificada correctamente. ID : ".$result["id_bus_edu_formal"];
-		else 			
-			$data["result"] = "PKG_BUSQUEDAS.PR_BUS_EDUCACION_FORMAL : ERROR (".$result["error"].") :".$result["desc"];
-			
-		echo $data["result"]."<br />";
-		
-		
-		/** PRUEBA CREACION DE RECURSO PARA LA BUSQUEDA **/
-		$recurso = array(
-			"id" => 4, // Busqueda NULL = nuevo
-			"edad_desde" => 20,
-			"edad_hasta" => 30, 
-			"edad_c_modo" => "R",
-			"nacionalidad" => "ARG".$this->sep."R".$this->sep."BOL".$this->sep."P",
-			"provincia" => "0".$this->sep."P", // 0 = CABA
-			"localidad" => "", // VA el texto no el id
-			"twitter_c_modo" => "P",
-			"gtalk_c_modo" => "P",
-			"sms_c_modo" => "P" 
-		);
-		$result = $this->Busquedas_model->setRecursoBusqueda($busquedaACTUAL,$recurso);
-		
-		if ($result["error"] == 0 )
-				$data["result"] = "PKG_BUSQUEDAS.PR_BUS_CV Recurso de Busqueda creada correctamente.";
-		else 			
-			$data["result"] = "PKG_BUSQUEDAS.PR_BUS_CV ERROR : (".$result["error"].") :".$result["desc"];
-			
-		echo $data["result"]."<br />";
-		
-		
-		/** PRUEBA CREACION DE INDUSTRIA PARA LA BUSQUEDA **/
-		
-		$industrias = "1".$this->sep."5".$this->sep."20".$this->sep."2".$this->sep."3".$this->sep."90";
-		//ID+VALORACION+IMPORTANCIA
-		$result = $this->Busquedas_model->setIndustriasBusqueda($busquedaACTUAL,$industrias);
-		
-		if ($result["error"] == 0 )
-				$data["result"] = "PKG_BUSQUEDAS.PR_BUS_INDUSTRIA Industrias de Busqueda creada/modificada correctamente.";
-		else 			
-			$data["result"] = "PKG_BUSQUEDAS.PR_BUS_INDUSTRIA ERROR : (".$result["error"].") :".$result["desc"];
-			
-		echo $data["result"]."<br />";
-		
-		
-		/** PRUEBA CREACION DE HERRAMIENTAS PARA LA BUSQUEDA **/
-		$herramientas = "7".$this->sep."5".$this->sep."20".$this->sep."6".$this->sep."3".$this->sep."90";
-		//ID+VALORACION+IMPORTANCIA
-		$result = $this->Busquedas_model->setHerramientasBusqueda($busquedaACTUAL,$herramientas);
-		
-		if ($result["error"] == 0 )
-				$data["result"] = "PKG_BUSQUEDAS.PR_BUS_HERRAMIENTA Herramientas de Busqueda creada/modificada correctamente.";
-		else 			
-			$data["result"] = "PKG_BUSQUEDAS.PR_BUS_HERRAMIENTA ERROR : (".$result["error"].") :".$result["desc"];
-			
-		echo $data["result"]."<br />";
-		
-		
-		/** PRUEBA CREACION DE HABILIDADES BLANDAS PARA LA BUSQUEDA **/
-		$habilidadesBlandas = "41".$this->sep."42".$this->sep."44".$this->sep."48".$this->sep."49".$this->sep."51";
-		//ID+VALORACION+IMPORTANCIA
-		//$habilidadesBlandas =  array (41,42,44,48,49,51);
-		//$habilidadesBlandas = json_encode($habilidadesBlandas);
-		$result = $this->Busquedas_model->setHabilidadesBlandasBusqueda($busquedaACTUAL,$habilidadesBlandas);
-
-		if ($result["error"] == 0 )
-				$data["result"] = "PKG_BUSQUEDAS.PR_BUS_HABILIDADES_BLANDAS Habilidades Blandas de Busqueda creada/modificada correctamente.";
-		else 			
-			$data["result"] = "PKG_BUSQUEDAS.PR_BUS_HABILIDADES_BLANDAS ERROR : (".$result["error"].") :".$result["desc"];
-			
-		echo $data["result"]."<br />";
-		
-		/** PRUEBA CONSULTA DE BUSQUEDA **/
-
-		$result  = $this->Busquedas_model->getBusqueda($busquedaACTUAL);
-
-		if ($result["error"] == 0 ){
-				$data["result"] = "PKG_BUSQUEDAS.PR_CONS_BUSQUEDA Búsqueda consultada correctamente. ID : ".$busquedaACTUAL;
-		}
-		else 			
-			$data["result"] = "PKG_BUSQUEDAS.PR_CONS_BUSQUEDA ERROR : (".$result["error"].") :".$result["desc"];
-		
-		echo $data["result"]."<br />";
-		var_dump($result);
-		echo "<br />";
-		
-		/** PRUEBA CONSULTA DE RECURSO DEBUSQUEDA **/
-		$result = $this->Busquedas_model->getRecursoBusqueda($busquedaACTUAL);
-
-		if ($result["error"] == 0 )
-				$data["result"] = "PKG_BUSQUEDAS.PR_CONS_BUS_CV Recurso de Busqueda consultado correctamente.";
-		else 			
-			$data["result"] = "PKG_BUSQUEDAS.PR_CONS_BUS_CV ERROR : (".$result["error"].") :".$result["desc"];
-			
-		echo $data["result"]."<br />";
-		var_dump($result);
-		echo "<br />";
-		
-
-
-	
-		/** PRUEBA CONSULTA DE EDUCACION FORMAL DE LA BUSQUEDA **/
-		
-
-		$result = $this->Busquedas_model->getEducacionFormalDeBusqueda($busquedaACTUAL);
-		
-		if ($result["error"] == 0 )
-				$data["result"] = "PKG_BUSQUEDAS.PR_CONS_BUS_EDU_FORMAL Industrias de Busqueda creada/modificada correctamente.";
-		else 			
-			$data["result"] = "PKG_BUSQUEDAS.PR_CONS_BUS_EDU_FORMAL ERROR : (".$result["error"].") :".$result["desc"];
-			
-		echo $data["result"]."<br />";
-		var_dump($result);
-		echo "<br />";
-		
-
-	
-		
-		/** PRUEBA CONSULTA DE INDUSTRIA DE LA BUSQUEDA **/
-		
-		$result = $this->Busquedas_model->getIndustriasBusqueda($busquedaACTUAL);
-		
-		if ($result["error"] == 0 )
-				$data["result"] = "PKG_BUSQUEDAS.PR_CONS_INDUSTRIA Industrias de Busqueda consultada correctamente.";
-		else 			
-			$data["result"] = "PKG_BUSQUEDAS.PR_CONS_INDUSTRIA ERROR : (".$result["error"].") :".$result["desc"];
-			
-		echo $data["result"]."<br />";
-		var_dump($result);
-		echo "<br />";
-		
-		/** PRUEBA CONSULTA DE HERRAMIENTAS DE LA BUSQUEDA **/
-		$result = $this->Busquedas_model->getHerramientasBusqueda($busquedaACTUAL);
-		
-		if ($result["error"] == 0 )
-				$data["result"] = "PKG_BUSQUEDAS.PR_CONS_HERRAMIENTA Herramientas de Busqueda consultada correctamente.";
-		else 			
-			$data["result"] = "PKG_BUSQUEDAS.PR_CONS_HERRAMIENTA ERROR : (".$result["error"].") :".$result["desc"];
-			
-		echo $data["result"]."<br />";
-		var_dump($result);
-		echo "<br />";
-		
-		
-		/** CONSULTA DE HABILIDADES BLANDAS DE LA BUSQUEDA **/
-
-		$result = $this->Busquedas_model->getHabilidadesBlandasBusqueda($busquedaACTUAL);
-		
-		if ($result["error"] == 0 )
-				$data["result"] = "PKG_BUSQUEDAS.PR_CONS_HABILIDADES_BLANDAS Habilidades Blandas de Busqueda consultada correctamente.";
-		else 			
-			$data["result"] = "PKG_BUSQUEDAS.PR_CONS_HABILIDADES_BLANDAS ERROR : (".$result["error"].") :".$result["desc"];
-			
-		echo $data["result"]."<br />";		
-		var_dump($result);
-		echo "<br />";
-		
-		/** CONSULTA DE BUSQUEDAS DE UN USUARIO **/
-
-		$result = $this->Busquedas_model->getBusquedasDeUsuario($idUsuario);
-		
-		if ($result["error"] == 0 )
-			$data["result"] = "PKG_BUSQUEDAS.PR_BUSQUEDAS_X_USUARIO Busquedas de un usuario consultadas correctamente.";
-		else 			
-			$data["result"] = "PKG_BUSQUEDAS.PR_BUSQUEDAS_X_USUARIOS ERROR : (".$result["error"].") :".$result["desc"];
-			
-		echo $data["result"]."<br />";		
-
-		var_dump($result);
-		echo "<br />";
-
-		/** CONSULTA TODOS LOS DATOS DE UNA BUSQUEDA **/
-		$result = $this->Busquedas_model->getOpcionesDeBusqueda($idBusqueda);
-		
-		var_dump($result);
-
-		/** ASOCIAR TICKET A BUSQUEDA **/
-
-		$duracion = "2";
-		$unidades = "999";
-		$result["error"] = 0; //
-		/*$result = $this->Ticket_model->asociarTicket($idUsuario,$duracion,$unidades);
-		
-		if ($result["error"] == 0 )
-			$data["result"] = "PKG_TICKETS_EMPRESAS.PR_ASOCIA_TICKETS_EMPRESAS Ticket asociado correctamente.";
-		else 			
-			$data["result"] = "PKG_TICKETS_EMPRESAS.R_ASOCIA_TICKETS_EMPRESAS ERROR : (".$result["error"].") :".$result["desc"];
-			
-		echo $data["result"]."<br />";		
-
-		var_dump($result);
-		echo "<br />";
-*/
-		/** CONSUMIR TICKET **/
-
-		$idTicket = "4";
-		$unidades = "1";
-		$result = $this->Ticket_model->consumirTicket($idUsuario,$idTicket,$unidades);
-		
-		if ($result["error"] == 0 )
-			$data["result"] = "PKG_TICKETS_EMPRESAS.PR_CONSUME_TICKET_EMPRESA Ticket asociado correctamente.";
-		else 			
-			$data["result"] = "PKG_TICKETS_EMPRESAS.PR_CONSUME_TICKET_EMPRESA : (".$result["error"].") :".$result["desc"];
-			
-		echo $data["result"]."<br />";		
-
-		var_dump($result);
-		echo "<br />";
-		
-		
-		/** CONSULTAR SALDO TICKET **/
-
-		$idTicket = "4";
-		$result = $this->Ticket_model->consultarSaldoTicket($idTicket);
-		
-		if ($result["error"] == 0 )
-			$data["result"] = "PKG_TICKETS_EMPRESAS.PR_CONSULTA_SALDO_TICKET Ticket consultado correctamente.";
-		else 			
-			$data["result"] = "PKG_TICKETS_EMPRESAS.PR_CONSULTA_SALDO_TICKET : (".$result["error"].") :".$result["desc"];
-			
-		echo $data["result"]."<br />";		
-
-		var_dump($result);
-		echo "<br />";
-		
-		/** CONSULTAR SALDO TICKET **/
-
-		$result = $this->Ticket_model->consultarSaldoTicketEmpresa($idUsuario);
-		
-		if ($result["error"] == 0 )
-			$data["result"] = "PKG_TICKETS_EMPRESAS.PR_CONS_TICKET_SALDO_EMPRESA Ticket consultado correctamente.";
-		else 			
-			$data["result"] = "PKG_TICKETS_EMPRESAS.PR_CONS_TICKET_SALDO_EMPRESA : (".$result["error"].") :".$result["desc"];
-			
-		echo $data["result"]."<br />";		
-
-		var_dump($result);
-		echo "<br />";
-		
-		
-		/** OBTENER HABILIDADES BLANDAS **/
-		$idHabilidad = NULL;
-		$result = $this->Util_model->getHabilidadesBlandas($idHabilidad); //SI LE PASO NULL DEVUELVE TODAS
-		
-		if ($result["error"] == 0 )
-			$data["result"] = "PKG_UTIL.PR_OBTIENE_HAB_BLANDAS Habilidades blandas consultadas correctamente.";
-		else 			
-			$data["result"] = "PKG_UTIL.PR_OBTIENE_HAB_BLANDAS : (".$result["error"].") :".$result["desc"];
-			
-		echo $data["result"]."<br />";		
-
-		var_dump($result);
-		echo "<br />";
-		
-		/** CONSULTAR ESTADOBUSQUEDA**/
-
-		$result = $this->Busquedas_model->getEstadoBusqueda($idBusqueda);
-		
-		if ($result["error"] == 0 )
-			$data["result"] = "PKG_TICKETS_EMPRESAS.PR_ESTADO_BUSQUEDA Busqueda consultada correctamente.";
-		else 			
-			$data["result"] = "PKG_TICKETS_EMPRESAS.PR_ESTADO_BUSQUEDA : (".$result["error"].") :".$result["desc"];
-			
-		echo $data["result"]."<br />";		
-
-		var_dump($result);
-		echo "<br />";
-		
-		/** SETEO LA HISTORIA LABORAL A UNA BUSQUEDA **/
-		$historiaLaboral["id_historia_laboral"] = 1;
-		$historiaLaboral["d_compania"] ="IBM";
-		$historiaLaboral["c_modo_compania"] = "P";
-		$historiaLaboral["id_industria"] = "1";
-		$historiaLaboral["c_modo_industria"] = "P";
-		$historiaLaboral["pais"] = "ARG";
-		$historiaLaboral["c_modo_pais"] = "P";
-		$historiaLaboral["anos"] = "20";
-		$historiaLaboral["c_modo_anos"] = "P";
-		$historiaLaboral["titulo"] = "Universitario";
-		$historiaLaboral["c_modo_titulo"] = "P";
-		$historiaLaboral["c_baja"] = NULL;
-		
-		$result = $this->Busquedas_model->setHistoriaLaboral($idBusqueda,$historiaLaboral);
-		
-		if ($result["error"] == 0 )
-			$data["result"] = "PKG_TICKETS_EMPRESAS.PR_BUS_HISTORIA_LABORAL Historia laboral seteada correctamente. N º : ".$result["id_historia_laboral"];
-		else 			
-			$data["result"] = "PKG_TICKETS_EMPRESAS.PR_BUS_HISTORIA_LABORAL : (".$result["error"].") :".$result["desc"];
-			
-		echo $data["result"]."<br />";		
-
-		var_dump($result);
-		echo "<br />";
-		
-		/** OBTENGO LA HISTORIA LABORAL A UNA BUSQUEDA **/
-
-		$result = $this->Busquedas_model->getHistoriaLaboral($idBusqueda);
-		
-		if ($result["error"] == 0 )
-			$data["result"] = "PKG_TICKETS_EMPRESAS.PR_CONS_BUS_HISTORIA_LABORAL Historia laboral consultada correctamente.";
-		else 			
-			$data["result"] = "PKG_TICKETS_EMPRESAS.PR_CONS_BUS_HISTORIA_LABORAL : (".$result["error"].") :".$result["desc"];
-			
-		echo $data["result"]."<br />";		
-
-		var_dump($result);
-		echo "<br />";
-		/** OBTENGO LA HISTORIA LABORAL A UNA BUSQUEDA **/
-
-		$result = $this->Busquedas_model->getResultadoBusqueda(1,"N");
-		
-		if ($result["error"] == 0 )
-			$data["result"] = "PKG_TICKETS_EMPRESAS.PR_RESULTADO_BUSQUEDA Búsqueda consultada correctamente.";
-		else 			
-			$data["result"] = "PKG_TICKETS_EMPRESAS.PR_RESULTADO_BUSQUEDA : (".$result["error"].") :".$result["desc"];
-			
-		echo $data["result"]."<br />";		
-
-		var_dump($result);
-		echo "<br />";
-		
-		//////////**************HARD CODE DATA BY MFOX************//////////////
-				
-		
+	private function sendTestEmailsToUser($emails){
+			foreach ($emails["E_mail"] as $email) {
+				$this->email->from("noreply@gmail.com", "FindResources");
+				$this->email->to($email);
+				$this->email->bcc ("leandro.minio@gmail.com");
+				$this->email->subject(utf8_encode('FindResources - Realización de exámen psicotécnico online'));
+				$this->email->message(utf8_encode('
+				<b>FindResources - Realización de exámen psicotécnico online</b><br /><br />
+				Estimado/a,<br />
+				Queremos informarle que su curriculum apareció recientemente en un resultado de búsqueda realizado en FindResources.com.ar<br />
+				Si usted está interesado en tener más posibilidades para que lo seleccionen para el puesto, le recomendamos realizar
+				los exámenes psicotécnicos que le fueron asignados. <br />
+				Para realizar el exámen deberá ingresar en <a href="http://findresources.dyndns.info/Test/inicio">este enlace</a><br /><br />
+				Desde ya muchas gracias,<br /><br />
+				El Staff de FindResources'));
+				$emailSent = $this->email->send();
+			}
 	}
+	private function sendTestEmailsReminderToUser($emails){
+			foreach ($emails["E_mail"] as $email) {
+				$this->email->from("noreply@gmail.com", "FindResources");
+				$this->email->to($email);
+				$this->email->bcc ("leandro.minio@gmail.com");
+				$this->email->subject(utf8_encode('FindResources - Realización de exámen psicotécnico online'));
+				$this->email->message(utf8_encode('
+				<b>FindResources - Realización de exámen psicotécnico online</b><br /><br />
+				Estimado/a,<br />
+				Queremos recordarle que aún tiene pendiente la realización del exámen psicotécnico online. <br />
+				Le recordamos que la realización del mismo le brindará más posibilidades para ser seleccionado en un puesto. <br />
+				Para realizar el exámen deberá ingresar en <a href="http://findresources.dyndns.info/Test/inicio">este enlace</a><br /><br />
+				Desde ya muchas gracias,<br /><br />
+				El Staff de FindResources'));
+				$emailSent = $this->email->send();
+			}
+	}		
+	
+	
 		
 
 }?>
