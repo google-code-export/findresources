@@ -165,11 +165,26 @@
 					<div class="label" > Apellido: </div><div> <?php echo $usuarioData->apellido;?></div>
 				</div>
 				<div class="clearfix">
-					<div class="label" > Teléfono </div><div class=""> <?php echo $usuarioData->telefono;?></div>
+					<div class="label" > Teléfono: </div><div class=""> <?php echo $usuarioData->telefono;?></div>
 				</div>
-	
+					<div class="clearfix">
+					<div class="label" > País: </div><div> <?php echo $usuarioData->descripcionPais;?></div>
+				</div>
+				
 				<div class="clearfix">
-					<div class="label" > Pais </div><div> <?php echo $usuarioData->descripcionPais;?></div>
+					<div class="label" > Localidad/Provincia: </div><div> <?php echo $usuarioData->localidad. ", ".$usuarioData->descProvincia;?></div>
+				</div>
+				<div class="clearfix">
+					<div class="label" > Calle: </div><div> <?php echo $usuarioData->calle." ".$usuarioData->numero." ".$usuarioData->piso."º ".$usuarioData->departamento;?></div>
+				</div>
+				<div class="clearfix">
+					<div class="label" > Cantidad de Empleados: </div><div> <?php echo $usuarioData->cantEmpleados;?></div>
+				</div>
+				<div class="clearfix">
+					<div class="label" > Fecha de Inicio de actividad: </div><div> <?php echo $usuarioData->fechaInicio;?></div>
+				</div>
+				<div class="clearfix">
+					<div class="label" > Saldo: </div><div> $<?php echo $usuarioData->saldo;?></div>
 				</div>
 			</div>
 		</div>
