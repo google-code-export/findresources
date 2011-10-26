@@ -172,10 +172,10 @@
 				</div>
 				
 				<div class="clearfix">
-					<div class="label" > Localidad/Provincia: </div><div> <?php echo $usuarioData->localidad. ", ".$usuarioData->descProvincia;?></div>
+					<div class="label" > Loc./Prov.: </div><div> <?php echo $usuarioData->localidad. ", ".$usuarioData->descProvincia;?></div>
 				</div>
 				<div class="clearfix">
-					<div class="label" > Calle: </div><div> <?php echo $usuarioData->calle." ".$usuarioData->numero." ".$usuarioData->piso."º ".$usuarioData->departamento;?></div>
+					<div class="label" > Dirección: </div><div> <?php echo $usuarioData->calle." ".$usuarioData->numero." ".$usuarioData->piso."º ".$usuarioData->departamento;?></div>
 				</div>
 				<div class="clearfix">
 					<div class="label" > Cantidad de Empleados: </div><div> <?php echo $usuarioData->cantEmpleados;?></div>
@@ -251,7 +251,42 @@
 						<?php } ?>
 					</select>
 				</div>
-				
+				<div class="field clearfix">
+					<div class="label">Dirección:</div>
+					<input type="text" id="userDataEditorAddress" value="" />
+				</div>
+				<div class="field clearfix">
+					<div class="label">Número:</div>
+					<input type="text" id="userDataEditorAddressNumber" value="" />
+				</div>
+				<div class="field clearfix">
+					<div class="label">Piso:</div>
+					<input type="text" id="userDataEditorAddressPiso" value="" />
+				</div>
+				<div class="field clearfix">
+					<div class="label">Departamento:</div>
+					<input type="text" id="userDataEditorAddressDpto" value="" />
+				</div>
+				<div class="field clearfix">
+					<div class="label">Localidad:</div>
+					<input type="text" id="userDataEditorLocalidad" value="" />
+				</div>
+				<div class="field clearfix">
+					<div class="label">Provincia:</div>
+					<select id="userDataEditorProvincia">
+						<?php foreach ($provinciasDisponibles as $id => $desc){ ?>
+							<option value="<?php echo $id; ?>"><?php echo $desc;?></option> 
+						<?php } ?>
+					</select>
+				</div>
+				<div class="field clearfix">
+					<div class="label">Cantidad de Empleados:</div>
+					<input type="text" id="userDataEditorCantEmpleados" value="" />
+				</div>
+				<div class="field clearfix">
+					<div class="label">Fecha de inicio de actividades:</div>
+					<input type="text" id="userDataEditorFechaInicio" value="" />
+				</div>
 				<div class="buttonsPopUp">
 					<input type="submit" value="Guardar" class="sendButton" />
 					<input type="submit" value="Cancelar" class="cancelPopUp" />
