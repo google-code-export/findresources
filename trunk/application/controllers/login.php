@@ -40,10 +40,10 @@ class Login extends CI_Controller {
 		$activationCode = $this->randomString(32);
 		$respuesta = $this->Usuario_model->crearNuevoUsuario($usuario, $activationCode);
 		//email confirmation
-		$this->email->from('noreply@gmail.com', 'Findresources');
+		$this->email->from('noreply@gmail.com', 'FindResources');
 		$this->email->to($usuario->email);
-		$this->email->subject('FindResources - Confirmacion de Registración');
-		$this->email->message('Porfavor clickee este link para confirmar su registración: ' . anchor(base_url() .'autenticacion?autCode=' . $activationCode . '&email='. $usuario->email, 'Confirme registracion'));
+		$this->email->subject(utf8_encode('FindResources - Confirmación de Registro'));
+		$this->email->message(utf8_encode('Por favor haga clic en este link para confirmar su registro: ' . anchor(base_url() .'autenticacion?autCode=' . $activationCode . '&email='. $usuario->email, 'Confirme su registro')));
 		//ENVIAR EMAIL.
 		$emailSent = $this->email->send();
 		
