@@ -86,10 +86,35 @@ class Home extends CI_Controller {
 
 	}
 	public function sugerencias(){
-		$this->load->view('footer/view_sugerencias');
+		$data["filled_form"] = false;
+		$this->load->view('footer/view_sugerencias',$data);
 	}
 	public function terminos(){
 		$this->load->view('footer/view_terminos');
+	}
+	public function contact(){
+		$descripcion = $this->input->post('Descripcion');
+		$pais = $this->input->post('Pais');
+		$telefono = $this->input->post('Telefono');
+		$email = $this->input->post('Email');
+		$nombre = $this->input->post('NombreApellido');
+
+		$this->email->from($email, utf8_encode($nombre));
+		$this->email->to("leandro.minio@gmail.com,jonakup@gmail.com,jpppina@gmail.com,foxbaucia@gmail.com");
+		$this->email->subject('FindResources - Sugerencias');
+		$this->email->message(utf8_encode('
+		<b>Sugerencias de FindResources</b><br /><br />
+		NOMBRE : '.$nombre.'<br />
+		EMAIL :  '.$email.'<br />
+		DESCRIPCIÓN : '.$descripcion.'<br />
+		PAÍS : '.$pais.'<br />
+		TELÉFONO : '.$telefono.'<br />
+		 '));
+		//ENVIAR EMAIL.
+		$emailSent = $this->email->send();
+		
+		$data["filled_form"] = true;
+		$this->load->view('footer/view_sugerencias',$data);
 	}
 	/** FOOTER METHODS **/
 	
