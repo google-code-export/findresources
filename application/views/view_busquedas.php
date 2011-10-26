@@ -85,6 +85,9 @@
 							case "Activa":
 								echo "activatedSearchLink";							
 								break;
+							case "Cancelada":
+								echo "cancelledSearchLink";							
+								break;
 							case "Pendiente":
 								echo "pendingSearchLink";							
 								break;
