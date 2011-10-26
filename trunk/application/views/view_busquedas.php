@@ -331,7 +331,7 @@
 						<div class="buttonsPopUp">
 							<a href="javascript:setSearchData();" class="button sendButton">Guardar</a>
 							<a href="#" class="button cancelPopUp">Cancelar</a>
-							<!-- <br /><br /><div class="hide" align="right" ><a href="javascript:finishSearch();" class="button finishButton" >Finalizar Búsqueda</a></div>-->
+							<div id="finishSearchButton" align="right" ><br /><a href="javascript:finishSearch();" class="button finishButton" >Finalizar Búsqueda</a></div>
 						</div>
 					</div>
 				</div>
