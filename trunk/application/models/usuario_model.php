@@ -375,6 +375,44 @@ class Usuario_model extends FR_Model {
         	throw new Exception('Oracle error message in getEstadoContacto(): ' . $result["desc"]);
 		}	
 	}
+	
+	
+	/**
+	 * @param usuario: {email, clave, nombre, apellido, razonSocial, idIndustria, idTipoDocumento, numeroDocumento, telefono, idPais, idTipoUsuario: "E">empresa "C">candidato}
+	 * @return
+	 * */
+	public function  modificarUsuarioEmpresa($usuario){
+		
+		$rta=NULL;
+		$n1 = NULL;
+		$n2 = NULL;
+		
+		$params = array(
+			array('name'=>':pi_usuario', 'value'=>$usuario["email"], 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_calle', 'value'=>$usuario["calle"], 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_numero', 'value'=>$usuario["numero"], 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_piso', 'value'=>$usuario["piso"], 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_departamento', 'value'=>$usuario["departamento"], 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_localidad', 'value'=>$usuario["localidad"], 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_provincia', 'value'=>$usuario["provincia"], 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_fecha_inicio_act', 'value'=>$usuario["fechainicio"], 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_q_empleados', 'value'=>$usuario["cantempleados"], 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'pkg_usuario','pr_modif_datos_adic_empresas',$params);
+
+		if ($n1 == 0){
+			return 0;
+		}
+		else{
+			
+			//TODO exception managment.
+        	throw new Exception('Oracle error in modificarUsuario(' . $usuario["email"] . ') message: ' . $n2);
+		}		
+		
+	}	
 }
 
 ?>

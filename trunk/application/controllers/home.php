@@ -21,7 +21,7 @@ class Home extends CI_Controller {
 		$data['tiposDeDocumentos'] =  $this->Util_model->getTiposDeDocumentos();
 		$data['paises'] = $response = $this->Util_model->getPaises();
 		$data['industriasDisponibles'] = $this->Util_model->getIndustriasDisponibles();
-
+		$data['provinciasDisponibles'] = $this->Util_model->getProvincias();
 		// SI EL USUARIO ES UN CANDIDATO => VERIFICO SI TIENE TESTS PENDIENTES
 		if ($dataUsuario->idTipoUsuario == "C") {
 			$tests_del_usuario = $this->Test_model->getTestsPendientes($idUsuario);
@@ -59,6 +59,19 @@ class Home extends CI_Controller {
 		$usuario["email"] = $idUsuario;
 		
 		$response = $this->Usuario_model->modificarUsuario($usuario);
+		
+		echo json_encode($response);
+		
+	}
+	
+	public function setUsuarioEmpresa(){
+		$idUsuario = @$_SESSION[SESSION_ID_USUARIO];
+		
+		$empresa = $this->input->post('empresa');
+		
+		$empresa = json_decode_into_array(utf8_decode($empresa));
+		$empresa["email"] = $idUsuario;
+		$response = $this->Usuario_model->modificarUsuarioEmpresa($empresa);
 		
 		echo json_encode($response);
 		
