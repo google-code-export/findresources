@@ -19,15 +19,11 @@
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/style.css')?>" />
 <link rel="shortcut icon" type="image/x-icon" href="<?php echo site_url("images/src/favicon.ico")?>" />
 <title>Find Resources</title>
-
-
 </head>
 <body>
 <?php include("toolbar.php"); ?>
-
-<h1>Bienvenido a FindResources</h1>
-<div id="homeBody" class="clearfix">
-
+<div id="ticketBody" class="clearfix">
+<h1>Solicitud de Tickets</h1>
 	<div id="ticketData">
 		<div id="ticketDataBody" class="block">
 			<h2>Tickets registrados: </h2>
