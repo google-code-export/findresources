@@ -142,9 +142,19 @@ function editSearchData(idSearch){
 	  $('#searchDataEditorTicketContainer').css("visibility", "visible");
 	  $('#finishSearchButton').css("visibility", "hidden");
 	} else { 
-	  $('#searchDataEditorTicketContainer').css("visibility", "hidden");
-	  $('#finishSearchButton').css("visibility", "visible");
-	  /*$('#searchDataEditorTicketInfo').html(userSearchs[idSearch].id_ticket);*/
+		if (userSearchs[idSearch].d_estado == "Terminada" || userSearchs[idSearch].d_estado == "Cancelada") {
+			  $('#searchDataEditorTicketContainer').css("visibility", "hidden");
+			  $('#finishSearchButton').css("visibility", "hidden");
+		} else {
+			if(userSearchs[idSearch].d_estado == "Pendiente"){
+					$('#searchDataEditorTicketContainer').css("visibility", "visible");
+					$('#finishSearchButton').css("visibility", "visible");		
+			} else {
+					$('#searchDataEditorTicketContainer').css("visibility", "hidden");
+					$('#finishSearchButton').css("visibility", "visible");
+					/*$('#searchDataEditorTicketInfo').html(userSearchs[idSearch].id_ticket);*/
+			}
+		   }
 	}
 
 	showPopUp('#searchDataPopUp');
