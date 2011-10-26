@@ -136,6 +136,9 @@
 .activatedSearchLink{
 }
 
+.cancelledSearchLink{
+	text-decoration: line-through;
+}
 .closedSearchLink a{
 	color: gray !important;
 	text-decoration: line-through;
