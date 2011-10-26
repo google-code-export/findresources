@@ -39,6 +39,11 @@
 	width: 60px;
 	height: 40px;
 }
+#homeCompanyLinks .ticketsLink {
+background: transparent url("../images/src/ticket.png") no-repeat;
+width: 60px;
+height: 40px;
+}
 
 #homeCandidateLinks .ticketsLink {
 	background:transparent url("../images/src/ticket.png") no-repeat;
