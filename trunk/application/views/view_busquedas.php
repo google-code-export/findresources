@@ -139,9 +139,10 @@
 													<ul class='star-rating' >
 														<li class='current-rating' value="<?php echo $habilidad->valoracion ?>" ></li>
 													</ul>
-													<div class="label"> 
-														<?php echo $habilidad->importancia ?> %
-													</div>								
+
+													<div class="importanceInput" style="display: inline;"><?php echo $habilidad->importancia ?></div>
+													<label>%</label>
+
 												</li>		
 											<?php } ?>
 											</ul>
@@ -426,21 +427,29 @@
 									<?php echo $habilidad->d_area ?> - <?php echo $habilidad->d_herramienta ?>: 
 								</div>
 	
-								<ul class='star-rating'>
-									<li class='current-rating' value="<?php echo $habilidad->valor_herramienta ?>"></li>
-									<li><a href="#" onclick="vote('#editItemTool<?php echo $habilidad->id_herramienta ?> .current-rating', 1); return false;" 
-								           title='Trainee' class='one-star'>1</a></li>
-									<li><a href="#" onclick="vote('#editItemTool<?php echo $habilidad->id_herramienta ?> .current-rating',2); return false;" 
-								           title='Junior' class='two-stars'>2</a></li>
-									<li><a href="#" onclick="vote('#editItemTool<?php echo $habilidad->id_herramienta ?> .current-rating',3); return false;" 
-								           title='Semi senior' class='three-stars'>3</a></li>
-									<li><a href="#" onclick="vote('#editItemTool<?php echo $habilidad->id_herramienta ?> .current-rating',4); return false;" 
-								           title='Senior' class='four-stars'>4</a></li>
-									<li><a href="#" onclick="vote('#editItemTool<?php echo $habilidad->id_herramienta ?> .current-rating',5); return false;" 
-								           title='Experto' class='five-stars'>5</a></li>
-								</ul>
+								<div class="starRatingContainer">
+									<ul class='star-rating'>
+										<li class='current-rating' value="<?php echo $habilidad->valor_herramienta ?>"></li>
+										<li><a href="#" onclick="vote('#editItemTool<?php echo $habilidad->id_herramienta ?> .current-rating', 1); return false;" 
+									           title='Trainee' class='one-star'>1</a></li>
+										<li><a href="#" onclick="vote('#editItemTool<?php echo $habilidad->id_herramienta ?> .current-rating',2); return false;" 
+									           title='Junior' class='two-stars'>2</a></li>
+										<li><a href="#" onclick="vote('#editItemTool<?php echo $habilidad->id_herramienta ?> .current-rating',3); return false;" 
+									           title='Semi senior' class='three-stars'>3</a></li>
+										<li><a href="#" onclick="vote('#editItemTool<?php echo $habilidad->id_herramienta ?> .current-rating',4); return false;" 
+									           title='Senior' class='four-stars'>4</a></li>
+										<li><a href="#" onclick="vote('#editItemTool<?php echo $habilidad->id_herramienta ?> .current-rating',5); return false;" 
+									           title='Experto' class='five-stars'>5</a></li>
+									</ul>
+								</div>
 	
-								<input type="text" class="importanceInput" value="<?php echo $habilidad->importancia ?>"/>
+								<div class="sliderContainer">
+									<div class="slider" title="Importancia: Determina el grado de deseado del puesto. 100% es requerido.)">
+										<label>%</label>
+										<input type="text" class="importanceInput" value="<?php echo $habilidad->importancia ?>"/>
+									</div>
+								</div>
+
 								<a class="removeSkillLink" href="javascript:removeTool(<?php echo $habilidad->id_herramienta ?>);"><img src="images/src/delete.png"></img></a>
 							</div>
 						</li>
