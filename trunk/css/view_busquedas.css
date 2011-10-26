@@ -5,13 +5,13 @@
 
 #leftPanel {
     width: 170px;
+  	border-color: #707070;
+    border-right: solid;
+    border-width: 1px;
 }
 
 #rightPanel{
 	width: 720px;
-  	border-color: #707070;
-    border-left: solid;
-    border-width: 1px;
 	padding-left: 20px;      
 	padding-top: 7px;      
 }
@@ -234,4 +234,8 @@
 .addTool,
 .addIndustry {
 	margin-left: 15px;
+}
+
+#searchDescription {
+	margin-bottom: 10px;
 }

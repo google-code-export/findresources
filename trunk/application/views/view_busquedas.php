@@ -111,12 +111,18 @@
 						Seleccione una búsqueda.
 					</div>
 				<?php }else{?>
+				
 					<div id="selectedSearch">
+						<div id="searchDescription">
+							<h3>
+								Búsqueda: <b><?php echo $estadoBusqueda["d_busqueda"] ?></b>
+							</h3>
+						</div>
 						<div id="searchTabs" class="clearfix">
 							<ul class="tabs">  
 							    <li><a href="#tab1">Opciones</a></li>  
 							    <li><a href="#tab2">Resultados</a></li>  
-							</ul>  
+							</ul>
 								  
 							<div class="tab_container">  
 							    <div id="tab1" class="tab_content">
