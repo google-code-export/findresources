@@ -62,11 +62,11 @@ $(function() {
 		dataType: 'json',
 		colModel : [
 			{display: 'Orden', name : 'orden', width : 40, sortable : false, align: 'center'},
-			{display: 'Nombre y Apellido', name : 'nombre', width : 189, sortable : false, align: 'left'},
+			{display: 'Nombre y Apellido', name : 'nombre', width : 190, sortable : false, align: 'left'},
 			{display: 'Psicotécnico Online', name : 'estado', width : 95, sortable : false, align: 'center'},
 			{display: 'Informes', name : 'info', width : 70, sortable : false, align: 'center', hide: false},
 			{display: 'Datos', name : 'data', width : 70, sortable : false, align: 'center'},
-			{display: 'Estado', name : 'entrevistado', width : 192, sortable : false, align: 'center'}
+			{display: 'Estado', name : 'entrevistado', width : 162, sortable : false, align: 'center'}
 			],
 		sortname: "orden",
 		sortorder: "asc",
@@ -123,7 +123,7 @@ function newSearch(){
 	$('#searchDataEditorTicketContainer').css("visibility", "visible");
 	$('#searchDataEditorDateToContainer').css("visibility", "hidden");
 	$('#searchDataEditorStatusContainer').css("visibility", "hidden");
-	
+	$('#finishSearchButton').css("visibility", "hidden");
 	showPopUp('#searchDataPopUp');
 }
 
@@ -140,8 +140,10 @@ function editSearchData(idSearch){
 	//$('#searchDataEditorTicketoption[value="'+userSearchs[idSearch].id_ticket+'"]').attr("selected", true);
 	if(userSearchs[idSearch].d_estado == "Nueva"){
 	  $('#searchDataEditorTicketContainer').css("visibility", "visible");
+	  $('#finishSearchButton').css("visibility", "hidden");
 	} else { 
 	  $('#searchDataEditorTicketContainer').css("visibility", "hidden");
+	  $('#finishSearchButton').css("visibility", "visible");
 	  /*$('#searchDataEditorTicketInfo').html(userSearchs[idSearch].id_ticket);*/
 	}
 
