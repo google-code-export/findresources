@@ -748,7 +748,7 @@ class Busquedas_model extends CI_Model {
 		$params = array(
 			array('name'=>':pi_razon_social', 'value'=>$empresa, 'type'=>SQLT_CHR, 'length'=>-1),
 			array('name'=>':pi_d_busqueda', 'value'=>$nombreDeBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
-			array('name'=>':pi_usuario', 'value'=>$idBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_usuario', 'value'=>$mail, 'type'=>SQLT_CHR, 'length'=>-1),
 			array('name'=>':po_informe_bus_bus ', 'value'=>&$result["informe_busqueda"], 'type'=>SQLT_RSET , 'length'=>255),
 			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
 			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
