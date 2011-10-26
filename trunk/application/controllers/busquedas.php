@@ -279,14 +279,13 @@ class Busquedas extends CI_Controller {
 												</form>",
 												"<form id='estado$key' name='estado$key' method=post >
 												<input type='hidden' name='cv_busqueda' id='cv_busqueda' value='".$resultado_busqueda->id_res_busqueda."' />
-													<select name='estado_cv_busqueda' id='estado_cv_busqueda'>
+													<select name='estado_cv_busqueda' id='estado_cv_busqueda' onchange='javascript:setEstadoCVBusqueda(\"estado$key\");'>
 														<option value='EN' ".$s1." >Entrevistado</option>
 														<option value='SE' ".$s2." >Sin Entrevistar</option>
 														<option value='CO' ".$s3." >Contratado</option>
 														<option value='RE' ".$s4." >Rechazado</option>
 														<option value='RE' ".$s5." >Entrevista Solicitada</option>
-													</select>&nbsp;&nbsp;
-													<a href='javascript:setEstadoCVBusqueda(\"estado$key\");'><img src='".site_url("images/src/refresh.png")."' /></a>
+													</select>
 												</form>"
 												);
 
