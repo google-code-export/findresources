@@ -1,46 +1,14 @@
-<div class="frFooter">
-<a href="<?php echo site_url('docs/sobrenosotros.html')?>">Sobre nosotros</a>
-
-- 
-
 <?php 	
-	
-	$tipoUsuario = "";
-	
-	if(isset($dataUsuario) && $dataUsuario->idTipoUsuario){
-		$tipoUsuario = $dataUsuario->idTipoUsuario;
-	}
-	
-
-	switch ($tipoUsuario) {
-	    case "E": //EMPRESA
+		$tipoUsuario = @$_SESSION[SESSION_TIPO_USUARIO];
 ?>
-
-	<a href="<?php echo site_url('docs/ayuda_empresas.html')?>">Ayuda</a>
-
-<?php 
-        break;
-	    case "P": //EXPERTO
-
-?>
-	<a href="<?php echo site_url('docs/ayuda_expertos.html')?>">Ayuda</a>
-
-<?php 
-		break;
-		case "C": //CANDIDATO
-		default:
-?>
-	<a href="<?php echo site_url('docs/ayuda_candidatos.html')?>">Ayuda</a>
-<?php 
-    		
-	} //end switch
-		
-?>
-
+<div class="frFooter">
+	<a href="<?php echo site_url('/home/sobrenosotros')?>">Sobre nosotros</a>
 - 
-	<a href="<?php echo site_url('docs/sugerencias.html')?>">Sugerencias</a>
+	<a href="<?php echo site_url('/home/ayuda?u='.$tipoUsuario)?>">Ayuda</a>
 - 
-	<a href="<?php echo site_url('docs/terminos.html')?>">Términos</a>
+	<a href="<?php echo site_url('/home/sugerencias')?>">Sugerencias</a>
+- 
+	<a href="<?php echo site_url('/home/terminos')?>">Términos</a>
 	
 	<div class="copyright">Derechos Reservados &copy; <?php echo date("Y");?> - FindResources </div>	
 	
