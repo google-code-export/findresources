@@ -81,17 +81,17 @@ class Usuario_model extends FR_Model {
 		$rta=NULL;
 		$n1 = NULL;
 		$n2 = NULL;
-		
+		//Saco el warning de razon social e industria porque si es candidato no esta definido el indice
 		$params = array(
 			array('name'=>':pi_usuario', 'value'=>$usuario["email"], 'type'=>SQLT_CHR, 'length'=>-1),
 			array('name'=>':pi_nombre', 'value'=>$usuario["nombre"], 'type'=>SQLT_CHR, 'length'=>-1),
 			array('name'=>':pi_apellido', 'value'=>$usuario["apellido"], 'type'=>SQLT_CHR, 'length'=>-1),
-			array('name'=>':pi_razon_social', 'value'=>$usuario["razonSocial"], 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_razon_social', 'value'=>@$usuario["razonSocial"], 'type'=>SQLT_CHR, 'length'=>-1),
 			array('name'=>':pi_tipo_documento', 'value'=>$usuario["idTipoDocumento"], 'type'=>SQLT_CHR, 'length'=>-1),
 			array('name'=>':pi_numero_documento', 'value'=>$usuario["numeroDocumento"], 'type'=>SQLT_CHR, 'length'=>-1),
 			array('name'=>':pi_telefono', 'value'=>$usuario["telefono"], 'type'=>SQLT_CHR, 'length'=>-1),
 			array('name'=>':pi_pais', 'value'=>$usuario["idPais"], 'type'=>SQLT_CHR, 'length'=>-1),
-			array('name'=>':pi_id_industria', 'value'=>$usuario["idIndustria"], 'type'=>SQLT_CHR, 'length'=>-1),
+			array('name'=>':pi_id_industria', 'value'=>@$usuario["idIndustria"], 'type'=>SQLT_CHR, 'length'=>-1),
 			array('name'=>':po_c_error', 'value'=>&$n1, 'type'=>SQLT_CHR , 'length'=>255),
 			array('name'=>':po_d_error', 'value'=>&$n2, 'type'=>SQLT_CHR, 'length'=>255)
 		);
