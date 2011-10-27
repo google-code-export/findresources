@@ -32,7 +32,10 @@ class Busquedas extends CI_Controller {
 			///////////DEVELOPING//UNCOMMENT//THIS////////////////
 			///////////DEVELOPING//UNCOMMENT//THIS////////////////
 		}
-		
+		if(@$_SESSION[SESSION_TIPO_USUARIO] != "E") {
+			echo "Usted no es un usuario Empresa.";
+			exit;
+		}
 		
 		if(isset($_GET["busquedaId"])){
 			$idBusqueda = $_GET["busquedaId"]; 
