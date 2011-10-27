@@ -133,38 +133,52 @@ function newSearch(){
 	showPopUp('#searchDataPopUp');
 }
 
-function editSearchData(idSearch){
-	$('#searchDataEditorId').val(userSearchs[idSearch].id_busqueda);
-	$('#searchDataEditorTitle').val(userSearchs[idSearch].d_titulo);
-	$('#searchDataEditorDescription').val(userSearchs[idSearch].d_busqueda);
-	$('#searchDataEditorResourcesQuantity').val(userSearchs[idSearch].cantidad_recursos);
+function editSearchData(id_busqueda){
+	var userSearch = findUserSearch(id_busqueda);
+	if(userSearch == null){
+		return;
+	}
+	
+	$('#searchDataEditorId').val(userSearch.id_busqueda);
+	$('#searchDataEditorTitle').val(userSearch.d_titulo);
+	$('#searchDataEditorDescription').val(userSearch.d_busqueda);
+	$('#searchDataEditorResourcesQuantity').val(userSearch.cantidad_recursos);
 	$('#searchDataEditorDateToContainer').css("visibility", "visible");
-	$('#searchDataEditorDateTo').html(userSearchs[idSearch].f_hasta);
+	$('#searchDataEditorDateTo').html(userSearch.f_hasta);
 	$('#searchDataEditorStatusContainer').css("visibility", "visible");
-	$('#searchDataEditorStatus').html(userSearchs[idSearch].d_estado);
+	$('#searchDataEditorStatus').html(userSearch.d_estado);
 	//No tengo este dato para seleccionar automaticamente el combo de tickets
-	//$('#searchDataEditorTicketoption[value="'+userSearchs[idSearch].id_ticket+'"]').attr("selected", true);
-	if(userSearchs[idSearch].d_estado == "Nueva"){
+	//$('#searchDataEditorTicketoption[value="'+userSearch.id_ticket+'"]').attr("selected", true);
+	if(userSearch.d_estado == "Nueva"){
 	  $('#searchDataEditorTicketContainer').css("visibility", "visible");
 	  $('#finishSearchButton').css("visibility", "hidden");
 	} else { 
-		if (userSearchs[idSearch].d_estado == "Terminada" || userSearchs[idSearch].d_estado == "Cancelada") {
+		if (userSearch.d_estado == "Terminada" || userSearch.d_estado == "Cancelada") {
 			  $('#searchDataEditorTicketContainer').css("visibility", "hidden");
 			  $('#finishSearchButton').css("visibility", "hidden");
 		} else {
-			if(userSearchs[idSearch].d_estado == "Pendiente"){
+			if(userSearch.d_estado == "Pendiente"){
 					$('#searchDataEditorTicketContainer').css("visibility", "visible");
 					$('#finishSearchButton').css("visibility", "visible");		
 			} else {
 					$('#searchDataEditorTicketContainer').css("visibility", "hidden");
 					$('#finishSearchButton').css("visibility", "visible");
-					/*$('#searchDataEditorTicketInfo').html(userSearchs[idSearch].id_ticket);*/
+					/*$('#searchDataEditorTicketInfo').html(userSearch.id_ticket);*/
 			}
 		   }
 	}
 
 	showPopUp('#searchDataPopUp');
 
+}
+
+function findUserSearch(id_busqueda){
+	var i = 0;
+	for (i=0; i < userSearchs.length; i++){
+		if( id_busqueda == userSearchs[i].id_busqueda){
+			return userSearchs[i];
+		}
+	} 
 }
 
 function setSearchData(){
