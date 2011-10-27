@@ -140,8 +140,11 @@
 														<li class='current-rating' value="<?php echo $habilidad->valoracion ?>" ></li>
 													</ul>
 
-													<div class="importanceInput" style="display: inline;"><?php echo $habilidad->importancia ?></div>
-													<label>%</label>
+													<div title="Importancia: Determina el grado de deseado del puesto. 100% es requerido.)" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
+													<div class="ui-slider-range ui-widget-header ui-slider-range-min" style="width: <?php echo $habilidad->importancia ?>%;"></div>
+													</div>
+
+													<div class="importanceLabel"><?php echo $habilidad->importancia ?> %</div>
 
 												</li>		
 											<?php } ?>
@@ -159,7 +162,10 @@
 													<ul class='star-rating'>
 														<li class='current-rating' value="<?php echo $habilidad->valor_herramienta ?>"></li>
 													</ul>
-													<div class="label"> 
+													<div title="Importancia: Determina el grado de deseado del puesto. 100% es requerido.)" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
+													<div class="ui-slider-range ui-widget-header ui-slider-range-min" style="width: <?php echo $habilidad->importancia ?>%;"></div>
+													</div>
+													<div class="importanceLabel"> 
 														<?php echo $habilidad->importancia ?> %
 													</div>											
 												</li>
@@ -193,7 +199,7 @@
 													<img src="images/src/delete.png"/> Quitar
 												</a>
 												
-												<div class="row clearfix">
+												<div class="row clearfix" style="margin-top: 17px;">
 													<div class="label"> Entidad: </div> 
 													<?php echo ($educacion->id_entidad_educativa != "")?$entidadesEducativas[$educacion->id_entidad_educativa]: $educacion->d_entidad ?>
 													<?php echo ($educacion->c_modo_entidad == "R")? "(Requerido)" : "(Deseado)" ?>
@@ -210,7 +216,7 @@
 												</div>								
 												<div class="row clearfix">
 													<div class="label"> Area: </div> 
-													<?php echo $educacion->id_area ?>
+													<?php echo $educacion->d_area ?>
 													<?php echo ($educacion->c_modo_area == "R")? "(Requerido)" : "(Deseado)" ?>
 												</div>								
 												<div class="row clearfix">
@@ -414,7 +420,7 @@
 							<?php } ?>
 						</select>
 						<select id="availableToolsSelect">
-							<option value="0">Herramientas</option> 
+							<option value="-1">Herramientas</option> 
 						</select>
 						<a class="addTool" href="javascript:addTool(true);"> <img src="images/src/add.png"/> Agregar</a>
 					</div>

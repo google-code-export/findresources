@@ -99,3 +99,6 @@ h1 {
  margin-top: 4px;
 }
 
+.starRatingContainer {
+	display: inline;
+}

@@ -100,7 +100,7 @@ $(function() {
 		}
 	});
 	
-	$(".importanceInput").change(function(event){
+	$(".importanceInput").keyup(function(event){
 		var value = $(this).val();
 		if(isNaN(value)){
 			return false;
@@ -109,11 +109,17 @@ $(function() {
 		var slider = $(this).parent(".slider");
 		$(this).parent(".slider").slider("value", value);
 	});
-		
+	
+	////move the slider to the saved position.
+ 	$(".importanceInput").each(function(i, val) {
+		var slider = $(this).parent(".slider");
+		$(this).parent(".slider").slider("value", $(this).val());
+    });	
+	
 	return false;
 });
 
-		
+
 //$idBusqueda,$idUsuario,$descripcionBusqueda,$fechaHasta,$cantidadRecursos
 function newSearch(){
 	$('#searchDataEditorId').val("");

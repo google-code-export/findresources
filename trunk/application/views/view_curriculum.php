@@ -151,9 +151,12 @@
 							<div class="label"> 
 								<?php echo $habilidad->descripcionIndustria ?>: 
 							</div>						
-							<ul class='star-rating'>
-								<li class='current-rating' value="<?php echo $habilidad->puntos ?>"></li>
-							</ul>
+							
+							<div class="starRatingContainer"> 
+								<ul class='star-rating'>
+									<li class='current-rating' value="<?php echo $habilidad->puntos ?>"></li>
+								</ul>
+							</div>						
 						</li>
 					<?php } ?>
 					</ul>
@@ -167,9 +170,11 @@
 							<div class="label"> 
 								<?php echo $habilidad->descripcionArea ?> - <?php echo $habilidad->descripcionHerramienta ?>: 
 							</div>						
-							<ul class='star-rating'>
-								<li class='current-rating' value="<?php echo $habilidad->puntos ?>"></li>
-							</ul>
+							<div class="starRatingContainer"> 
+								<ul class='star-rating'>
+									<li class='current-rating' value="<?php echo $habilidad->puntos ?>"></li>
+								</ul>
+							</div>						
 						</li>
 					<?php } ?>
 					</ul>
@@ -419,7 +424,7 @@
 <table cellspacing="0" cellpadding="0" align="center">
 <tr><td>
 	<div class="in">
-		<div class="popuptitle"> Características Duras </div>
+		<div class="popuptitle"> Conocimientos </div>
 		<a href="javascript:;" class="closePopUp"></a>
 		<div class="inside">
 			<h4>Áreas de negocio</h4>
@@ -440,19 +445,21 @@
 					
 						<div class="label"><?php echo $habilidad->descripcionIndustria ?>:</div> 
 						
-						<ul class='star-rating'>
-							<li class='current-rating' value="<?php echo $habilidad->puntos ?>"></li>
-							<li><a href="#" onclick="vote('#editItemIndustry<?php echo $habilidad->idIndustria ?> .current-rating', 1); return false;" 
-						           title='Trainee' class='one-star'>1</a></li>
-							<li><a href="#" onclick="vote('#editItemIndustry<?php echo $habilidad->idIndustria ?> .current-rating',2); return false;" 
-						           title='Junior' class='two-stars'>2</a></li>
-							<li><a href="#" onclick="vote('#editItemIndustry<?php echo $habilidad->idIndustria ?> .current-rating',3); return false;" 
-						           title='Semi senior' class='three-stars'>3</a></li>
-							<li><a href="#" onclick="vote('#editItemIndustry<?php echo $habilidad->idIndustria ?> .current-rating',4); return false;" 
-						           title='Senior' class='four-stars'>4</a></li>
-							<li><a href="#" onclick="vote('#editItemIndustry<?php echo $habilidad->idIndustria ?> .current-rating',5); return false;" 
-						           title='Experto' class='five-stars'>5</a></li>
-						</ul>
+						<div class="starRatingContainer"> 
+							<ul class='star-rating'>
+								<li class='current-rating' value="<?php echo $habilidad->puntos ?>"></li>
+								<li><a href="#" onclick="vote('#editItemIndustry<?php echo $habilidad->idIndustria ?> .current-rating', 1); return false;" 
+							           title='Trainee' class='one-star'>1</a></li>
+								<li><a href="#" onclick="vote('#editItemIndustry<?php echo $habilidad->idIndustria ?> .current-rating',2); return false;" 
+							           title='Junior' class='two-stars'>2</a></li>
+								<li><a href="#" onclick="vote('#editItemIndustry<?php echo $habilidad->idIndustria ?> .current-rating',3); return false;" 
+							           title='Semi senior' class='three-stars'>3</a></li>
+								<li><a href="#" onclick="vote('#editItemIndustry<?php echo $habilidad->idIndustria ?> .current-rating',4); return false;" 
+							           title='Senior' class='four-stars'>4</a></li>
+								<li><a href="#" onclick="vote('#editItemIndustry<?php echo $habilidad->idIndustria ?> .current-rating',5); return false;" 
+							           title='Experto' class='five-stars'>5</a></li>
+							</ul>
+						</div>
 						<a class="removeSkillLink" href="javascript:removeIndustry(<?php echo $habilidad->idIndustria ?>);"><img src="/images/src/delete.png"></img></a>
 					</div>
 				</li>
@@ -468,7 +475,7 @@
 					<?php } ?>
 				</select>
 				<select id="availableToolsSelect">
-					<option value="0">Herramientas</option> 
+					<option value="-1">Herramientas</option> 
 				</select>
 				<?php if($perfil == "usuario") { ?><a href="javascript:addTool();"> <img src="/images/src/add.png"/> Agregar</a><?php  } ?>
 			</div>
@@ -481,20 +488,21 @@
 							<?php echo $habilidad->descripcionArea ?> - <?php echo $habilidad->descripcionHerramienta ?>: 
 						</div>
 		        		
-						<ul class='star-rating'>
-							<li class='current-rating' value="<?php echo $habilidad->puntos ?>"></li>
-							<li><a href="#" onclick="vote('#editItemTool<?php echo $habilidad->idHerramienta ?> .current-rating', 1); return false;" 
-						           title='Trainee' class='one-star'>1</a></li>
-							<li><a href="#" onclick="vote('#editItemTool<?php echo $habilidad->idHerramienta ?> .current-rating',2); return false;" 
-						           title='Junior' class='two-stars'>2</a></li>
-							<li><a href="#" onclick="vote('#editItemTool<?php echo $habilidad->idHerramienta ?> .current-rating',3); return false;" 
-						           title='Semi senior' class='three-stars'>3</a></li>
-							<li><a href="#" onclick="vote('#editItemTool<?php echo $habilidad->idHerramienta ?> .current-rating',4); return false;" 
-						           title='Senior' class='four-stars'>4</a></li>
-							<li><a href="#" onclick="vote('#editItemTool<?php echo $habilidad->idHerramienta ?> .current-rating',5); return false;" 
-						           title='Experto' class='five-stars'>5</a></li>
-						</ul>
-		        		
+						<div class="starRatingContainer"> 
+							<ul class='star-rating'>
+								<li class='current-rating' value="<?php echo $habilidad->puntos ?>"></li>
+								<li><a href="#" onclick="vote('#editItemTool<?php echo $habilidad->idHerramienta ?> .current-rating', 1); return false;" 
+							           title='Trainee' class='one-star'>1</a></li>
+								<li><a href="#" onclick="vote('#editItemTool<?php echo $habilidad->idHerramienta ?> .current-rating',2); return false;" 
+							           title='Junior' class='two-stars'>2</a></li>
+								<li><a href="#" onclick="vote('#editItemTool<?php echo $habilidad->idHerramienta ?> .current-rating',3); return false;" 
+							           title='Semi senior' class='three-stars'>3</a></li>
+								<li><a href="#" onclick="vote('#editItemTool<?php echo $habilidad->idHerramienta ?> .current-rating',4); return false;" 
+							           title='Senior' class='four-stars'>4</a></li>
+								<li><a href="#" onclick="vote('#editItemTool<?php echo $habilidad->idHerramienta ?> .current-rating',5); return false;" 
+							           title='Experto' class='five-stars'>5</a></li>
+							</ul>
+		        		</div>
 		        		
 						<a class="removeSkillLink" href="javascript:removeTool(<?php echo $habilidad->idHerramienta ?>);"><img src="/images/src/delete.png"></img></a>
 					</div>
