@@ -21,6 +21,7 @@ class Busquedas extends CI_Controller {
 			$idUsuario = "leandrominio@gmail.com";
 			$idBusqueda = "1";
 			$_SESSION[SESSION_ID_USUARIO] = "leandrominio@gmail.com";
+			$_SESSION[SESSION_TIPO_USUARIO] = "E";
 			
 			/////////////HARDCODED//////////////////////////
 			/////////////HARDCODED//////////////////////////
