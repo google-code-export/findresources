@@ -9,16 +9,31 @@ function removeTool(idHerramienta){
 function addIndustry(showImportance){
 	var selectedIndustry = $('#availableIndustriesSelect').val();
 	
-	var importanceLine = showImportance? "<input type=\"text\" class=\"importanceInput\" value=\"0\"/>" : ""
+	if(!selectedIndustry || selectedIndustry == ""){
+		alert("Seleccione un area de negocio");
+		return;
 
+	}
+	
 	
 	if($('#editItemIndustry' + selectedIndustry).length == 0){
+		
+		var importanceLine = ""
+		
+		if(showImportance){
+			importanceLine =  '<div class="sliderContainer">'
+							+ '<div class="slider" title="Importancia: Determina el grado de deseado del puesto. 100% es requerido.)">'
+								+ '<label>%</label>'
+								+ '<input type="text" class="importanceInput" value="0"/>'
+							+ '</div>'
+						+ '</div>'
+		}
 		
 		var industryLi = "<li id=\"editItemIndustry" + selectedIndustry  + "\" class=\"industryItem\">"+
 					"<div class=\"field\">"+
 					"<div class=\"label\" >" + availableIndustries[selectedIndustry] + ":</div>" +
 					
-					//"<input type=\"text\" class=\"pointsInput\" value=\"0\"/>" + 
+					'<div class="starRatingContainer">' + 
 					"<ul class='star-rating'>" + 
 							"<li class='current-rating' value=\"1\" style=\"width: 20px;\"></li>" + 
 							"<li><a href='#' onclick=\"vote('#editItemIndustry" +selectedIndustry+ " .current-rating', 1); return false;\"" + 
@@ -32,12 +47,28 @@ function addIndustry(showImportance){
 							"<li><a href='#' onclick=\"vote('#editItemIndustry" +selectedIndustry+ " .current-rating',5); return false;\"" +
 						           "title='Experto' class='five-stars'>5</a></li>" +
 					"</ul>" +
-					
+					"</div>" +
 					importanceLine +
 					"<a class=\"removeSkillLink\" href=\"javascript:removeIndustry(" + selectedIndustry + ");\"><img src=\"images/src/delete.png\"></img></a>" + 
 				"</div></li>"
-		
+					
 		$('#editItemIndustryList').append(industryLi);
+		
+		if(importanceLine != ""){
+			$( "#editItemIndustry" + selectedIndustry + " .slider" ).slider({
+				range: "min",
+				value: 0,
+				min: 0,
+				max: 100,
+				slide: function( event, ui ) {
+					var importanceInput = $(this).find('.importanceInput');
+					if(importanceInput.val() != ui.value){
+						$(this).find('.importanceInput').val(ui.value);
+					}
+				}
+			});		
+		}
+		
 		
 	}else {
 		//it is already selected.
@@ -51,9 +82,29 @@ function addTool(showImportance){
 	var selectedArea = $('#availableAreasSelect').val();
 	var selectedTool = $('#availableToolsSelect').val();
 	
+	if(!selectedArea || selectedArea == -1){
+		alert("Seleccione un area de negocio");
+		return;
+	}
+	
+	if(!selectedTool || selectedTool == -1){
+		alert("Seleccione una herramienta");
+		return;
+	}
+	
+	
 //availableTools[response[tool].id]
-	var importanceLine = showImportance? "<input type=\"text\" class=\"importanceInput\" value=\"0\"/>" : ""
-
+	var importanceLine = ""
+	
+	if(showImportance){
+		importanceLine =  '<div class="sliderContainer">'
+						+ '<div class="slider" title="Importancia: Determina el grado de deseado del puesto. 100% es requerido.)">'
+							+ '<label>%</label>'
+							+ '<input type="text" class="importanceInput" value="0"/>'
+						+ '</div>'
+					+ '</div>'
+	}
+	
 	if($('#editItemTool' + selectedTool).length == 0){
 		
 		var toolLi = "<li id=\"editItemTool" + selectedTool  + "\" class=\"toolItem\" area=\""+ selectedArea + "\" >"+
@@ -61,8 +112,7 @@ function addTool(showImportance){
 						"<div class=\"label\">" +
 							availableAreas[selectedArea] +" - " + availableTools[selectedTool] +
 						":</div>" +
-//						"<input type=\"text\" class=\"pointsInput\" value=\"0\"/>" + 
-						
+						'<div class="starRatingContainer">' + 
 						"<ul class='star-rating'>" + 
 								"<li class='current-rating' value=\"1\" style=\"width: 20px;\"></li>" + 
 								"<li><a href='#' onclick=\"vote('#editItemTool" +selectedTool+ " .current-rating', 1); return false;\"" + 
@@ -76,12 +126,30 @@ function addTool(showImportance){
 								"<li><a href='#' onclick=\"vote('#editItemTool" +selectedTool+ " .current-rating',5); return false;\"" +
 							           "title='Experto' class='five-stars'>5</a></li>" +
 						"</ul>" +
+						"</div>" +
 						importanceLine +
 						"<a class=\"removeSkillLink\" href=\"javascript:removeTool(" + selectedTool + ");\"><img src=\"images/src/delete.png\"></img></a>" + 
 					"</div>" +
 				"</li>"
 
 		$('#editItemToolList').append(toolLi);
+		
+		if(importanceLine != ""){
+			$( "#editItemTool" + selectedTool + " .slider" ).slider({
+				range: "min",
+				value: 0,
+				min: 0,
+				max: 100,
+				slide: function( event, ui ) {
+					var importanceInput = $(this).find('.importanceInput');
+					if(importanceInput.val() != ui.value){
+						$(this).find('.importanceInput').val(ui.value);
+					}
+				}
+			});		
+		}
+				
+		
 		
 	}else {
 		//it is already selected.
