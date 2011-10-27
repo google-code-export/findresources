@@ -246,7 +246,7 @@ body {
 
 .block {margin:0 0 10px; border:2px solid #DDD;padding:10px; border-radius: 5px;background: none repeat scroll 0 0 #F1F2F2;}
 
-input[type="text"],input[type="password"],select, textarea[type="text"] {
+input[type="text"],input[type="password"],select, textarea {
     background: url("/images/src/input.gif") repeat-x scroll 0 0 #FCFCFC;
     border: 1px solid #BBBBBB;
     color: #333333;
