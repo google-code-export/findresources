@@ -97,9 +97,9 @@
 							<a href="busquedas?busquedaId=<?php echo $busq->id_busqueda?>">
 								<?php echo $busq->d_titulo?>
 							</a>
-							<a class="editSearchDataLink" href="javascript:editSearchData(<?php echo $i ?>);">
+							<!--a class="editSearchDataLink" href="javascript:editSearchData(<?php echo $i ?>);">
 								<img src="images/src/pencil.gif"/>
-							</a>
+							</a-->
 						</div>
 					<?php }?>
 					
@@ -115,7 +115,11 @@
 					<div id="selectedSearch">
 						<div id="searchDescription">
 							<h3>
-								Búsqueda: <b><?php echo $estadoBusqueda["d_busqueda"] ?></b>
+								Búsqueda: <b><?php echo $estadoBusqueda["titulo"] ?></b>
+								<a class="editSearchDataLink" href="javascript:editSearchData(<?php echo $busquedaId?>);">
+								<img src="images/src/edit16.png"/>
+							</a>
+								
 							</h3>
 						</div>
 						<div id="searchTabs" class="clearfix">
