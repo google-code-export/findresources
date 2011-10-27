@@ -22,44 +22,48 @@
 </head>
 <body>
 <?php include("toolbar.php"); ?>
-<div id="ticketBody" class="clearfix">
-<h1>Solicitud de Tickets</h1>
-	<div id="ticketData">
-		<div id="ticketDataBody" class="block">
-			<h2>Tickets registrados: </h2>
-			<div class="inblock">
-			<?php 
-			$cant = count($tickets);
-			$i=0;
-			foreach($tickets as $ticket) {
-			$i++;?>
-				<div class="clearfix">
-					<div class="label" > Ticket ID: </div><div> <?php echo $ticket->id_ticket;?></div>
-				</div>
-				<div class="clearfix">
-					<div class="label" > Duración: </div><div> <?php echo $ticket->duracion." días";?></div>
-				</div>
-				<div class="clearfix">
-					<div class="label" > Saldo: </div><div> <?php echo $ticket->q_saldo;?></div>
-				</div>
-				<div class="clearfix">
-					<div class="label" > Valor: </div><div>$ <?php echo $ticket->valor;?></div>
-				</div>
-				<?php if ($cant != $i) echo "<hr />";?>
-			<?php }?>
+<div id="ticketBody" class="body_container">
+	<h1>Solicitud de Tickets</h1>
+	<div class="clearfix">
+		<div id="ticketData">
+			<div id="ticketDataBody" class="block">
+				<h2>Tickets registrados: </h2>
+					<?php 
+					$cant = count($tickets);
+					$i=0;
+					foreach($tickets as $ticket) {
+					$i++;?>
+						<div class="inblock">
+							<div class="clearfix">
+								<div class="label" > Ticket ID: </div><div> <?php echo $ticket->id_ticket;?></div>
+							</div>
+							<div class="clearfix">
+								<div class="label" > Duración: </div><div> <?php echo $ticket->duracion." días";?></div>
+							</div>
+							<div class="clearfix">
+								<div class="label" > Saldo: </div><div> <?php echo $ticket->q_saldo;?></div>
+							</div>
+							<div class="clearfix">
+								<div class="label" > Valor: </div><div>$ <?php echo $ticket->valor;?></div>
+							</div>
+						</div>
+					<?php }?>
+			</div>
+		</div>
+		<div id="ticketLinks" class="block">
+			<div id="addTicketLink" class="clearfix" align="center">
+				<a class="searchLink" href="/busquedas"> 
+					búsquedas
+				</a>
+				<a class="ticketsLink" href="javascript:addTicket();">
+					solicitar tickets
+				</a>
 			</div>
 		</div>
 	</div>
-	<div id="ticketLinks">
-		<div id="addTicketLink" class="clearfix" align="center">
-			<br /><br /><a href="/busquedas"><img src="/images/src/search.png" /></a>
-			<br />BÚSQUEDAS<br />
-			<br /><br />
-			<a href="javascript:addTicket();" >
-				<img src="/images/src/addticket.png" width="50px"/></a>
-				<br />&nbsp;SOLICITAR TICKET
-		</div>
-	</div>
+</div>
+<?php include("footer.php"); ?>
+
 	<div class="opacity" style="display:none;"></div>	
 	<div class="popup" id="ticketDataPopUp" style="display:none;">
 	<table cellspacing="0" cellpadding="0" align="center">
@@ -95,8 +99,5 @@
 	</td></tr>
 	</table>
 	</div>
-</div>
-<?php include("footer.php"); ?>
-
 </body>
 </html>
