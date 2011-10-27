@@ -1,16 +1,16 @@
 
 #ticketData{
 	width: 460px;
-	height: 199px;
 	border-width: 1px;
-	float:left;
+	float: left;
 }
 
 
 #ticketLinks{
-	width: 460px;
+	width: 434px;
 	height: 200px;
-	float:left;
+	float: left;
+	margin-top: 10px;
 }
 
 
@@ -53,10 +53,6 @@
 	margin-top:4px
 }
 
-.frFooter{
-	margin-top: 450px;
-}
-
 #homeBody{
 	margin-top: 50px;
 }
@@ -67,4 +63,27 @@
 
 .popup .label{
 	font-weight: normal;
+}
+
+
+
+.searchLink,
+.ticketsLink
+ {
+	background-position:center top !important;
+	display: block;
+	padding-top: 47px;
+	text-align: center;	
+}
+
+.searchLink{
+	background:transparent url("../images/src/search.png") no-repeat;
+	width: 60px;
+	height: 40px;
+}
+
+.ticketsLink {
+	background:transparent url("../images/src/addticket.png") no-repeat;
+	width: 60px;
+	height: 40px;
 }
