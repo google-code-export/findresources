@@ -114,18 +114,26 @@
 				
 					<div id="selectedSearch">
 						<div id="searchDescription">
+							<div style="float:left;" >
 							<h3>
 								Búsqueda: <b><?php echo $estadoBusqueda["titulo"] ?></b>
-								<a class="editSearchDataLink" href="javascript:editSearchData(<?php echo $busquedaId?>);">
-								<img src="images/src/edit16.png"/>
-							</a>
-								
 							</h3>
+							</div>
+							<div style="float:right;" >
+								<a class="editSearchDataLink button" href="javascript:setGrid(<?php echo $busquedaId?>,'S')" title="Actualizar" >
+								<img src="images/src/refresh.png" style="vertical-align:sub"/> Actualizar Búsqueda 
+							</a>
+							</div>
+							<div style="float:right;" >
+							<a class="editSearchDataLink button" href="javascript:editSearchData(<?php echo $busquedaId?>);" title="Editar">
+								<img src="images/src/edit16.png" style="vertical-align:sub;width:15px" /> Editar
+							</a>
+							</div>	
 						</div>
 						<div id="searchTabs" class="clearfix">
 							<ul class="tabs">  
 							    <li><a href="#tab1">Opciones</a></li>  
-							    <li><a href="#tab2">Resultados</a></li>  
+							    <li><a href="#tab2" onclick="javascript:setGrid(<?php echo $busquedaId?>,'N')">Resultados</a></li>  
 							</ul>
 								  
 							<div class="tab_container">  
