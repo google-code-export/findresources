@@ -709,5 +709,23 @@
 			</table>
 		</div>
 
+		<div class="popup" id="candidateReportPopUp" style="display:none;">
+			<table cellspacing="0" cellpadding="0" align="center">
+			<tr><td>
+				<div class="in">
+					<a href="javascript:;" class="closePopUp"></a>
+					<div class="inside">
+						<iframe id="candidateReportIframe" src="" scrolling="no" frameborder="0">
+						</iframe>
+						<div id="candidateReportLoading">
+							<img src="/images/src/55_cycle_ten_24.gif"/>
+							<div> Cargando ...</div>
+						</div>
+						
+					</div>
+				</div>
+			</td></tr>
+			</table>
+		</div>
 </body>
 </html>

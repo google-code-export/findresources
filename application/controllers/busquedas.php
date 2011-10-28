@@ -293,10 +293,12 @@ class Busquedas extends CI_Controller {
 			$grid["rows"][$key]["cell"] = array($resultado_busqueda->valor_ranking,
 												$resultado_busqueda->nombre." ".$resultado_busqueda->apellido,
 												$estado,
-												"<form id='informe$key' name='informe$key' method=post action='test/informe' target='_blank'>
+												/*"<form id='informe$key' name='informe$key' method=post action='test/informe' target='_blank'>
 													<input type='hidden' name='informe_usuario' value='".$resultado_busqueda->usuario."' />
 													".$informe_link."
-												</form>",
+												</form>",*/
+												"<a href='javascript:showCandidateReport(\"". $resultado_busqueda->usuario. "\");' title='Ver CV' ><img src='/images/src/doc.png'/></a>",
+												
 												/*
 												"<form id='datos$key' name='datos$key' method=post action='curriculum/userBusqueda' target='_blank'>
 													<input type='hidden' name='datos' value='".$resultado_busqueda->usuario."'/>

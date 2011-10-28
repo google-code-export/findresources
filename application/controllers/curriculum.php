@@ -53,8 +53,11 @@ class Curriculum extends CI_Controller {
 	}
 	
 	public function userBusqueda(){
-		//$usuario = $this->input->post("datos");
-		$usuario = $this->input->get("usuario");
+		$usuario = $this->input->post("datos");
+		
+		if(!$usuario || $usuario == ""){
+			$usuario = $this->input->get("usuario");
+		}
 		if(!$usuario){
 			echo "No se seleccionó un usuario";
 			exit;

@@ -7,15 +7,35 @@
     <script src="<?php echo base_url();?>js/libs/jquery-1.6.2.min.js"></script>
     <link rel="shortcut icon" type="image/x-icon" href="<?php echo site_url("images/src/favicon.ico")?>" />
     <title>FindResources</title>
-	    
+	<script type="text/javascript">
+		$(function() {
+		
+			///para el caso de que esta pantalla este en un iframe.
+			//se resizea el iframe.
+			if(self!=parent){
+				var parentIFrame = parent.document.getElementById("candidateReportIframe");
+				parentIFrame.height = $("body").css("height");
+				
+				//get out the border
+				$(".body_container").css("border","none");
+				
+			}; 
+		});
+	</script>
+		    
 </head> 
 <body> 
-<?php include("toolbar.php"); ?>
+<?php 
+	if(@$perfil != "empresa"){
+		//it is an iframe, no show it.
+		include("toolbar.php");
+	}
+?>
 
 <div class="body_container">
 
 	<h1>Informe de Exámen Psicotécnico</h1>
-	<div id="page" style="height:auto;min-height:600px"> 
+	<div id="page" style="height:auto;min-height:400px"> 
 	<center> 
 	<br /><br />
 	<h1>Informe</h1> 
@@ -35,7 +55,12 @@
 	</div> 
 </div>
 <div id="test_footer">
-<?php include("footer.php"); ?>
+<?php 
+if(@$perfil != "empresa"){
+	//it is an iframe, no show it.
+	include("footer.php");	
+}
+ ?>
 </div>
 </body>
 </html>
