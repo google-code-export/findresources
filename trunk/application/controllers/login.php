@@ -35,7 +35,7 @@ class Login extends CI_Controller {
 	 */
 	public function  crearNuevoUsuario(){
 		$usuario = $this->input->post('usuario');
-		$usuario = json_decode($usuario);
+		$usuario = json_decode(utf8_decode($usuario));
 		$usuario->clave = md5($usuario->clave);
 		$activationCode = $this->randomString(32);
 		$respuesta = $this->Usuario_model->crearNuevoUsuario($usuario, $activationCode);
