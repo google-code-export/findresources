@@ -5,18 +5,20 @@ function getBusquedas(){
 	var busquedasSearchName = $('#busquedasSearchName').val().trim();
 	var busquedasCompanyName = $('#busquedasCompanyName').val().trim();
 	var busquedasCompanyMail = $('#busquedasCompanyMail').val().trim();
-	var url = 'feedback_resultados/getBusquedasGrid?' 
-					+ 'nombreDeBusqueda=' + busquedasSearchName 
-					+ '&nombreDeEmpresa=' + busquedasCompanyName 
-					+ '&mailDeEmpresa=' + busquedasCompanyMail;
-	var title = 'Búsquedas del sistema '
-					  + (busquedasSearchName!="")? ", con nombre de búsqueda '" + busquedasSearchName + "'":"" 
-					  + (busquedasCompanyName!="")? ", de la empresa '" + busquedasCompanyName + "'":"" 
-					  + (busquedasCompanyMail!="")? ", de la empresa con mail '" + busquedasCompanyMail + "'":"" 
+	
+	var url = 'feedback_resultados/getBusquedasGrid?';
+	url += 'nombreDeBusqueda=' + busquedasSearchName;
+	url += '&nombreDeEmpresa=' + busquedasCompanyName;
+	url += '&mailDeEmpresa=' + busquedasCompanyMail;
+	
+	var title = 'Búsquedas del sistema ';
+	title += (busquedasSearchName!="")? ", con nombre de búsqueda '" + busquedasSearchName + "'":"";
+	title += (busquedasCompanyName!="")? ", de la empresa '" + busquedasCompanyName + "'":"";
+	title += (busquedasCompanyMail!="")? ", de la empresa con mail '" + busquedasCompanyMail + "'":"";
 
 	
 	if(!busquedasGrid){
-		$("#candidatosGrid").flexigrid({
+		busquedasGrid = $("#busquedasGrid").flexigrid({
 			url: url,
 			dataType: 'json',
 			colModel : [
@@ -39,11 +41,11 @@ function getBusquedas(){
 	
 		}); 
 		
-		addExportLink("#candidatosGridContainer", title);
+		addExportLink("#busquedasGridContainer", title);
 	
 	}else{
-		$("#candidatosGrid").flexOptions({url: url, title: title}); 
-		$("#candidatosGrid").flexReload(); 
+		$("#busquedasGrid").flexOptions({url: url, title: title}); 
+		$("#busquedasGrid").flexReload(); 
 
 	}
 	
@@ -60,16 +62,16 @@ function showCandidatos(idBusqueda, name){
 			url: 'feedback_resultados/getCandidatosGrid?idBusqueda=' + idBusqueda,
 			dataType: 'json',
 			colModel : [
-				{display: 'Apellido', name : 'fecha', width : 200, sortable : false, align: 'center'},
-				{display: 'Nombre', name : 'entradas', width : 200, sortable : false, align: 'center'},
+				{display: 'Apellido', name : 'fecha', width : 100, sortable : false, align: 'center'},
+				{display: 'Nombre', name : 'entradas', width : 100, sortable : false, align: 'center'},
 				{display: 'Email', name : 'entradas', width : 200, sortable : false, align: 'center'},
-				{display: 'Aspectos de la personalidad', name : 'entradas', width : 200, sortable : false, align: 'center'}
+				{display: 'Aspectos de la personalidad', name : 'entradas', width : 220, sortable : false, align: 'center'}
 			],
 			sortname: "orden",
 			sortorder: "asc",
 			title: 'Búsquedas de la empresa ' + name,
 			rp: 15,
-			width: 420,
+			width: 700,
 			height: 420,
 			onError: function(response){
 				processError(response);
