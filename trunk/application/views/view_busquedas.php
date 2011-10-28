@@ -474,7 +474,7 @@
 					<?php } ?>
 					</ul>
 					<div class="buttonsPopUp">
-						<a href="javascript:setHardSkills();" class="button sendButton">Guardar</a>
+						<a href="javascript:setHardSkills();" class="button save sendButton">Guardar</a>
 						<a href="#" class="button cancelPopUp">Cancelar</a>
 					</div>
 				</div>
@@ -514,7 +514,7 @@
 							<?php } ?>
 						</ul>
 						<div class="buttonsPopUp">
-							<a href="javascript:setSoftSkills();" class="button sendButton">Guardar</a>
+							<a href="javascript:setSoftSkills();" class="button save sendButton">Guardar</a>
 							<a href="#" class="button cancelPopUp">Cancelar</a>
 						</div>
 					</div>
@@ -620,7 +620,7 @@
 						
 						
 						<div class="buttonsPopUp">
-							<a href="javascript:setFormalEducation();" class="button sendButton">Guardar</a>
+							<a href="javascript:setFormalEducation();" class="button save sendButton">Guardar</a>
 							<a href="#" class="button cancelPopUp">Cancelar</a>
 						</div>
 					</div>
@@ -675,7 +675,7 @@
 						
 						
 						<div class="buttonsPopUp">
-							<a href="javascript:setAditionalData();" class="button sendButton">Guardar</a>
+							<a href="javascript:setAditionalData();" class="button save sendButton">Guardar</a>
 							<a href="#" class="button cancelPopUp">Cancelar</a>
 						</div>
 					</div>
