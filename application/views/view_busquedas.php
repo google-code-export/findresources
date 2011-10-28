@@ -377,10 +377,6 @@
 				<div class="popuptitle">Conocimientos</div>
 				<a href="javascript:;" class="closePopUp"></a>
 				<div class="inside">
-					<div class="clearfix">
-						<div id="seniorityTitle">Seniority</div>
-						<div id="importanceTitle">Importancia</div>
-					</div>
 					<h4>Areas de negocio</h4>
 					<div class="clearfix">
 						<select id="availableIndustriesSelect">
@@ -390,6 +386,10 @@
 						</select>
 		
 						<a class="addIndustry" href="javascript:addIndustry(true);"> <img src="images/src/add.png"/> Agregar</a>
+					</div>
+					<div class="clearfix hardSkillGridHeader">
+						<div id="seniorityTitle">Seniority</div>
+						<div id="importanceTitle">Importancia</div>
 					</div>
 		
 					<ul id="editItemIndustryList">
@@ -438,6 +438,11 @@
 							<option value="-1">Herramientas</option> 
 						</select>
 						<a class="addTool" href="javascript:addTool(true);"> <img src="images/src/add.png"/> Agregar</a>
+					</div>
+					
+					<div class="clearfix hardSkillGridHeader">
+						<div id="seniorityTitle">Seniority</div>
+						<div id="importanceTitle">Importancia</div>
 					</div>
 					
 					<ul id="editItemToolList">
