@@ -694,7 +694,6 @@
 			<table cellspacing="0" cellpadding="0" align="center">
 			<tr><td>
 				<div class="in">
-					<div class="popuptitle">Candidato</div>
 					<a href="javascript:;" class="closePopUp"></a>
 					<div class="inside">
 						<iframe id="candidateCVIframe" src="" scrolling="no" frameborder="0">
