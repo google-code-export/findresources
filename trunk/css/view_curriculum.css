@@ -39,6 +39,10 @@ h1 {
 	width:100%;
 }
 
+#hardSkillsPopUp .in {
+	width: 540px;
+}
+
 #hardSkillsPopUp input[type=text]{
 	width: 10px;
  	margin-right: 20px;
@@ -46,6 +50,7 @@ h1 {
 
 #hardSkillsPopUp ul{
 	float: left;
+	margin-top: 3px;
 }
 
 #hardSkillsPopUp h4{
@@ -54,10 +59,11 @@ h1 {
 
 #hardSkillsPopUp select{
 	margin:6px;
+	width: 202px;
 }
 
 #hardSkillsPopUp .label {
-	width: 160px;
+	width: 300px;
 }
 
 
@@ -79,16 +85,29 @@ h1 {
 
 .toolItem,
 .industryItem {
-	height: 20px;
-	background-color: #FBFBFB;
+	height: 25px;
+	background-color: #EEFAFA;
 }
+
+.toolsTitle {
+	border-top: 1px #CCCCCC solid;
+    margin-top: 30px;
+    padding-top: 10px;
+	display: inline-block;
+	width: 100%;
+}
+
 
 .industryItem .label{
 	padding-top: 3px
 }
 
+.removeSkillLink {
+	float: left;
+}
+
 .removeSkillLink img{
-	margin: 5px 15px;
+	margin: 4px 15px;
 }
 
 #hardSkills .star-rating{
