@@ -297,10 +297,13 @@ class Busquedas extends CI_Controller {
 													<input type='hidden' name='informe_usuario' value='".$resultado_busqueda->usuario."' />
 													".$informe_link."
 												</form>",
+												/*
 												"<form id='datos$key' name='datos$key' method=post action='curriculum/userBusqueda' target='_blank'>
 													<input type='hidden' name='datos' value='".$resultado_busqueda->usuario."'/>
 													<a href='javascript:document.datos$key.submit();' title='Ver CV' ><img src='/images/src/cv.png' width='21px'/></a>
-												</form>",
+												</form>",*/
+												"<a href='javascript:showCandidateCV(\"". $resultado_busqueda->usuario. "\");' title='Ver CV' ><img src='/images/src/cv.png' width='21px'/></a>",
+												
 												"<form id='estado$key' name='estado$key' method=post >
 												<input type='hidden' name='cv_busqueda' id='cv_busqueda' value='".$resultado_busqueda->id_res_busqueda."' />
 													<select name='estado_cv_busqueda' id='estado_cv_busqueda' onchange='javascript:setEstadoCVBusqueda(\"estado$key\");'>

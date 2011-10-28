@@ -264,3 +264,28 @@
 .hardSkillGridHeader {
 	margin-top: 10px;
 }
+
+
+#candidateCVPopUp .in {
+	width: 650px;
+	min-height: 170px;
+}
+
+#candidateCVIframe {
+	width: 600px;
+	
+}
+
+#candidateCVLoading{
+	color: white;
+	background-color: black;
+    opacity: 0.8;
+    display: block;
+    padding: 20px;
+}
+
+#candidateCVLoading img {
+	padding-bottom:5px;
+}
+
+
