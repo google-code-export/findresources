@@ -122,6 +122,11 @@ $(function() {
 		var slider = $(this).parent(".slider");
 		$(this).parent(".slider").slider("value", $(this).val());
     });	
+    
+	
+	$('#candidateCVIframe').load(function(){
+		$('#candidateCVLoading').css("display", "none");
+	})    
 	
 	return false;
 });
@@ -600,4 +605,13 @@ function setEstadoCVBusqueda(formID){
 			processError(response);
 		}
 	});	
+}
+
+
+function showCandidateCV(usuario){
+	$('#candidateCVLoading').css("display", "block");
+	$('#candidateCVIframe').attr("height", "0px"); //put in 0px, then the child frame will update the needed height
+	$('#candidateCVIframe').attr("src", "curriculum/userBusqueda?usuario=" + usuario);
+	showPopUp('#candidateCVPopUp');
+	
 }

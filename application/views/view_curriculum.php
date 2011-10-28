@@ -67,7 +67,11 @@
 </head>
 <body>
 
-<?php include("toolbar.php"); ?>
+<?php 
+	if($perfil == "usuario"){
+		include("toolbar.php"); 
+	}
+?>
 
 <div class="body_container">
 		<h1>Curriculum</h1>	
@@ -735,7 +739,10 @@
 	</table>
 </div>
 
-<?php include("footer.php"); ?>
+<?php 
+	if($perfil == "usuario"){
+		include("footer.php"); 
+	}?>
 </body>
 </html>
 
