@@ -121,7 +121,7 @@
 							</div>
 							<div style="float:right;" >
 								<a class="editSearchDataLink button" href="javascript:setGrid(<?php echo $busquedaId?>,'S')" title="Actualizar" >
-								<img src="images/src/refresh.png" style="vertical-align:sub"/> Actualizar Búsqueda 
+								<img src="images/src/refresh.png" style="vertical-align:sub"/> Actualizar Resultados 
 							</a>
 							</div>
 							<div style="float:right;" >
