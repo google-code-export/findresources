@@ -83,6 +83,8 @@ function setGrid(busquedaId,actualizar){
 	
 	}); 
 	if(actualizar == "S"){
+		$(".flexme1").flexOptions({url: 'busquedas/setGrid?busquedaID=' + busquedaId + "&refresh="+actualizar});
+		$(".flexme1").flexReload(); 
 		alert("Resultados actualizados.");
 	}
 }
