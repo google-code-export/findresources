@@ -223,17 +223,20 @@
 												</div>								
 												<div class="row clearfix">
 													<div class="label"> Nivel de Educación: </div> 
-													<?php echo $educacion->id_nivel_educacion ?>
+													<?php echo $educacion->d_nivel_educcacion ?>
 													<?php echo ($educacion->c_modo_nivel_educacion == "R")? "(Requerido)" : "(Deseado)" ?>
 												</div>								
 												<div class="row clearfix">
 													<div class="label"> Area: </div> 
-													<?php echo $educacion->d_area ?>
+													
+													<?php 
+													var_dump($educacion);
+													echo $educacion->d_area ?>
 													<?php echo ($educacion->c_modo_area == "R")? "(Requerido)" : "(Deseado)" ?>
 												</div>								
 												<div class="row clearfix">
 													<div class="label"> Estado: </div> 
-													<?php echo $educacion->estado ?>
+													<?php echo $educacion->d_estado ?>
 													<?php echo ($educacion->c_modo_estado == "R")? "(Requerido)" : "(Deseado)" ?>
 												</div>								
 												<div class="row clearfix">
