@@ -223,10 +223,7 @@
 												</div>								
 												<div class="row clearfix">
 													<div class="label"> Area: </div> 
-													
-													<?php 
-													var_dump($educacion);
-													echo $educacion->d_area ?>
+													<?php echo $educacion->d_area ?>
 													<?php echo ($educacion->c_modo_area == "R")? "(Requerido)" : "(Deseado)" ?>
 												</div>								
 												<div class="row clearfix">
