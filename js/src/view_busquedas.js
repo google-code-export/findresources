@@ -56,9 +56,9 @@ $(document).ready(function() {
 });
 
 
-$(function() {
+function setGrid(busquedaId,actualizar){
 	$(".flexme1").flexigrid({
-		url: 'busquedas/setGrid/' + busquedaId,
+		url: 'busquedas/setGrid?busquedaID=' + busquedaId + "&refresh="+actualizar,
 		dataType: 'json',
 		colModel : [
 			{display: 'Orden', name : 'orden', width : 40, sortable : false, align: 'center'},
@@ -82,7 +82,12 @@ $(function() {
 		} 
 	
 	}); 
+	if(actualizar == "S"){
+		alert("Resultados actualizados.");
+	}
+}
 
+$(function() {
 	$('#formalEducationEditorInstitution').change(function(){
 		checkInstitutionDescriptionDisabled();
 	});
@@ -120,7 +125,6 @@ $(function() {
 });
 
 
-//$idBusqueda,$idUsuario,$descripcionBusqueda,$fechaHasta,$cantidadRecursos
 function newSearch(){
 	$('#searchDataEditorId').val("");
 	$('#searchDataEditorTitle').val("");
