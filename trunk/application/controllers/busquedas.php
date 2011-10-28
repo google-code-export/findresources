@@ -48,8 +48,7 @@ class Busquedas extends CI_Controller {
 			$data['busquedaSeleccionada'] = $this->Busquedas_model->getOpcionesDeBusqueda($idBusqueda);
 			$data['estadoBusqueda'] = $this->Busquedas_model->getEstadoBusqueda($idBusqueda);
 			$data['busquedaId'] = $idBusqueda ;
-			
-			//$data['resultadoBusqueda'] = $this->Busquedas_model->getResultadoBusqueda($idBusqueda);
+			//$data['resultadoBusqueda'] = $this->Busquedas_model->getResultadoBusqueda($idBusqueda,"S");
 			//var_dump($data['resultadoBusqueda']);
 			//exit;
 		}
@@ -204,8 +203,16 @@ class Busquedas extends CI_Controller {
 	}
 	
 	public function setGrid(){
-		$idBusqueda = $this->uri->segment(3);
-		$resultados_de_busqueda = $this->Busquedas_model->getResultadoBusqueda($idBusqueda,"S");
+		//$idBusqueda = $this->uri->segment(3);
+		$idBusqueda= $this->input->get('busquedaID');
+		
+		if($this->input->get('refresh') == "S"){
+			$actualizar = "S";
+		} else {
+			$actualizar = "N";
+		}
+		
+		$resultados_de_busqueda = $this->Busquedas_model->getResultadoBusqueda($idBusqueda,$actualizar);
 		if(!empty($resultados_de_busqueda["correos"])) {
 			$this->sendTestEmailsToUser($resultados_de_busqueda["correos"]);
 		}
@@ -270,7 +277,7 @@ class Busquedas extends CI_Controller {
 				case "R";
 					$estado = "Realizado";
 					$estado = "<img src='/images/src/ok.png' />";
-					$informe_link = "<a href='javascript:document.informe$key.submit();' ><img src='/images/src/doc.png' /></a>";
+					$informe_link = "<a href='javascript:document.informe$key.submit();' title='Ver informe'><img src='/images/src/doc.png' /></a>";
 					break;
 				default:
 					$estado = "Sin datos";
@@ -286,7 +293,7 @@ class Busquedas extends CI_Controller {
 												</form>",
 												"<form id='datos$key' name='datos$key' method=post action='curriculum/userBusqueda' target='_blank'>
 													<input type='hidden' name='datos' value='".$resultado_busqueda->usuario."'/>
-													<a href='javascript:document.datos$key.submit();' ><img src='/images/src/cv.png' width='21px'/></a>
+													<a href='javascript:document.datos$key.submit();' title='Ver CV' ><img src='/images/src/cv.png' width='21px'/></a>
 												</form>",
 												"<form id='estado$key' name='estado$key' method=post >
 												<input type='hidden' name='cv_busqueda' id='cv_busqueda' value='".$resultado_busqueda->id_res_busqueda."' />
