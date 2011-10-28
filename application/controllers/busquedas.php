@@ -215,9 +215,15 @@ class Busquedas extends CI_Controller {
 		$resultados_de_busqueda = $this->Busquedas_model->getResultadoBusqueda($idBusqueda,$actualizar);
 		if(!empty($resultados_de_busqueda["correos"])) {
 			$this->sendTestEmailsToUser($resultados_de_busqueda["correos"]);
+			echo "SI A ALGUNO VE ESTO MANDEMELO POR MAIL !! ESTARIA ENVIANDO CORREOS!!!!";
+			print_r($resultados_de_busqueda["correos"]);
+			exit;
 		}
 		if(!empty($resultados_de_busqueda["correos_recuerdo"])) {
 			$this->sendTestEmailsReminderToUser($resultados_de_busqueda["correos_recuerdo"]);
+			echo "SI A ALGUNO VE ESTO MANDEMELO POR MAIL !! ESTARIA ENVIANDO CORREOS RECUERDO!!!!";
+			print_r($resultados_de_busqueda["correos_recuerdo"]);
+			exit;
 		}
 		//var_dump($resultados_de_busqueda);
 		$grid["page"] = 1;
