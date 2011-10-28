@@ -25,6 +25,7 @@
 
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/jquery-ui-1.8.16.css')?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/global.css')?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo site_url('css/style.css')?>" />
 <link rel=StyleSheet type="text/css" href="<?php echo site_url('css/starrating.css')?>"/>
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/view_curriculum.css')?>" />
 <link rel="shortcut icon" type="image/x-icon" href="<?php echo site_url("images/src/favicon.ico")?>" />
@@ -410,8 +411,8 @@
 				</div>
 			</div>
 			<div class="buttonsPopUp">
-				<input type="submit" value="Guardar" class="sendButton" />
-				<input type="submit" value="Cancelar" class="cancelPopUp" />
+					<a href="#" onclick="javascript:submit()" class="sendButton button save">Guardar</a>
+					<a href="#" onclick="javascript:submit()" class="cancelPopUp button">Cancelar</a>
 			</div>
 		</div>
 	</div>
@@ -510,8 +511,8 @@
 			<?php } ?>
 			</ul>
 			<div class="buttonsPopUp">
-				<input type="submit" value="Guardar" class="sendButton" />
-				<input type="submit" value="Cancelar" class="cancelPopUp" />
+					<a href="#" onclick="javascript:submit()" class="sendButton button save">Guardar</a>
+					<a href="#" onclick="javascript:submit()" class="cancelPopUp button">Cancelar</a>
 			</div>
 		</div>
 	</div>
@@ -587,8 +588,8 @@
 				</div>
 			</div>
 			<div class="buttonsPopUp">
-				<input type="submit" value="Guardar" class="sendButton" />
-				<input type="submit" value="Cancelar" class="cancelPopUp" />
+					<a href="#" onclick="javascript:submit()" class="sendButton button save">Guardar</a>
+					<a href="#" onclick="javascript:submit()" class="cancelPopUp button">Cancelar</a>
 			</div>
 		</div>
 	</div>
@@ -678,8 +679,8 @@
 
 				</div>
 				<div class="buttonsPopUp">
-					<input type="submit" value="Guardar" class="sendButton" />
-					<input type="submit" value="Cancelar" class="cancelPopUp" />
+					<a href="#" onclick="javascript:submit()" class="sendButton button save">Guardar</a>
+					<a href="#" onclick="javascript:submit()" class="cancelPopUp button">Cancelar</a>
 				</div>
 			</div>
 		</div>
@@ -725,8 +726,8 @@
 	
 				</div>
 				<div class="buttonsPopUp">
-					<input type="submit" value="Guardar" class="sendButton" />
-					<input type="submit" value="Cancelar" class="cancelPopUp" />
+					<a href="#" onclick="javascript:submit()" class="sendButton button save">Guardar</a>
+					<a href="#" onclick="javascript:submit()" class="cancelPopUp button">Cancelar</a>
 				</div>
 			</div>
 		</div>
