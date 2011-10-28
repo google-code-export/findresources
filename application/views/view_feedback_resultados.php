@@ -38,6 +38,10 @@
 		 height: 600px;
 		 width: 800px;
 	}
+	
+	.label{
+		width: 200px;
+	}
 </style>
 
 
@@ -73,7 +77,7 @@
 						</div>
 
 					</div>
-					<div id="busquedasGridContainer" class="gridContent" style="float:left">
+					<div id="busquedasGridContainer" class="gridContent" style="float:left; margin-left: 7px; margin-top: 20px;">
 						<table id="busquedasGrid"  class="grid">	</table>
 					</div>
 
