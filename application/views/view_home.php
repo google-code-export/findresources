@@ -80,10 +80,10 @@
 				Realizar Psicotécnico
 			</a>
 <?php } else { ?>
-			<!-- <div class="testDoneLink" >
+			<div class="testDoneLink" >
 				<img src="/images/src/ok2.png" />
-				<div>Psicotécnico realizado</div>
-			</div>-->
+				<div>No tiene tests pendientes</div>
+			</div>
 <?php } ?>
 		</div>
 	</div>
