@@ -45,22 +45,22 @@
 		<div id="homeCandidatePersonalDataBody" class="block">
 			<h2>Datos Personales: <a href="javascript:editUserData();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
 			<div class="inblock">
-				<div class="clearfix">
+				<div class="clearfix row">
 					<div class="label" > Nombre: </div><div> <?php echo $usuarioData->nombre;?></div>
 				</div>
-				<div class="clearfix">
+				<div class="clearfix row">
 					<div class="label" > Apellido: </div><div> <?php echo $usuarioData->apellido;?></div>
 				</div>
 	
-				<div class="clearfix">
+				<div class="clearfix row">
 					<div class="label" > <?php echo $usuarioData->idTipoDocumento;?> : </div> <div><?php echo $usuarioData->numeroDocumento;?></div>
 				</div>
 	
-				<div class="clearfix">
+				<div class="clearfix row">
 					<div class="label" > Teléfono </div><div class=""> <?php echo $usuarioData->telefono;?></div>
 				</div>
 	
-				<div class="clearfix">
+				<div class="clearfix row">
 					<div class="label" > Pais </div><div> <?php echo $usuarioData->descripcionPais;?></div>
 				</div>
 			</div>
@@ -82,7 +82,7 @@
 <?php } else { ?>
 			<div class="testDoneLink" >
 				<img src="/images/src/ok2.png" />
-				Psicotécnico realizado
+				<div>Psicotécnico realizado</div>
 			</div>
 <?php } ?>
 		</div>
@@ -148,43 +148,43 @@
 		<div id="homeCandidatePersonalDataBody" class="block">
 			<h2>Datos de la Empresa: <a href="javascript:editUserData();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
 			<div class="inblock">
-				<div class="clearfix">
+				<div class="clearfix row">
 					<div class="label" >Razón Social: </div><div> <?php echo $usuarioData->razonSocial;?></div>
 				</div>
 	
-				<div class="clearfix">
+				<div class="clearfix row">
 					<div class="label" > <?php echo $usuarioData->idTipoDocumento;?> : </div> <div><?php echo $usuarioData->numeroDocumento;?></div>
 				</div>
-				<div class="clearfix">
+				<div class="clearfix row">
 					<div class="label" > Industria: </div> <div><?php echo $usuarioData->descripcionIndustria;?></div>
 				</div>	
-				<div class="clearfix">
+				<div class="clearfix row">
 					<div class="label" > Nombre: </div><div> <?php echo $usuarioData->nombre;?></div>
 				</div>
-				<div class="clearfix">
+				<div class="clearfix row">
 					<div class="label" > Apellido: </div><div> <?php echo $usuarioData->apellido;?></div>
 				</div>
-				<div class="clearfix">
+				<div class="clearfix row">
 					<div class="label" > Teléfono: </div><div class=""> <?php echo $usuarioData->telefono;?></div>
 				</div>
-					<div class="clearfix">
+				<div class="clearfix row">
 					<div class="label" > País: </div><div> <?php echo $usuarioData->descripcionPais;?></div>
 				</div>
 				
-				<div class="clearfix">
+				<div class="clearfix row">
 					<div class="label" > Loc./Prov.: </div><div> <?php echo $usuarioData->localidad. ", ".$usuarioData->descProvincia;?></div>
 				</div>
-				<div class="clearfix">
+				<div class="clearfix row">
 					<div class="label" > Dirección: </div><div> <?php echo $usuarioData->calle." ".$usuarioData->numero." ".$usuarioData->piso."º ".$usuarioData->departamento;?></div>
 				</div>
-				<div class="clearfix">
+				<div class="clearfix row">
 					<div class="label" > Cantidad de Empleados: </div><div> <?php echo $usuarioData->cantEmpleados;?></div>
 				</div>
-				<div class="clearfix">
+				<div class="clearfix row">
 					<div class="label" > Fecha de Inicio de actividad: </div><div> <?php echo $usuarioData->fechaInicio;?></div>
 				</div>
-				<div class="clearfix">
-					<div class="label" > Saldo: </div><div> $<?php echo $usuarioData->saldo;?></div>
+				<div class="clearfix row">
+					<div class="label" > Saldo: </div><div> <?php echo $usuarioData->saldo;?> tickets</div>
 				</div>
 			</div>
 		</div>
