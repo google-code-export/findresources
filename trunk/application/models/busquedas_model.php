@@ -32,7 +32,7 @@ class Busquedas_model extends CI_Model {
 		array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
 		);
 
-		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDAS','PR_BUSQUEDA',$params);
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_BUSQUEDA_III','PR_BUSQUEDA',$params);
 
 		if($result["error"] == 0){
 			return $result;		
