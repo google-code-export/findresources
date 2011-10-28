@@ -120,13 +120,8 @@
 							</h3>
 							</div>
 							<div style="float:right;" >
-								<a class="editSearchDataLink button" href="javascript:setGrid(<?php echo $busquedaId?>,'S')" title="Actualizar" >
-								<img src="images/src/refresh.png" style="vertical-align:sub"/> Actualizar Resultados 
-							</a>
-							</div>
-							<div style="float:right;" >
 							<a class="editSearchDataLink button" href="javascript:editSearchData(<?php echo $busquedaId?>);" title="Editar">
-								<img src="images/src/edit16.png" style="vertical-align:sub;width:15px" /> Editar
+								<img src="images/src/edit16.png" style="vertical-align:sub;width:15px" /> Editar datos
 							</a>
 							</div>	
 						</div>
@@ -294,6 +289,11 @@
 							    
 							    
 							    <div id="tab2" class="tab_content">
+							<div style="float:right;" >
+								<a class="editSearchDataLink button" href="javascript:setGrid(<?php echo $busquedaId?>,'S')" title="Actualizar" >
+								<img src="images/src/refresh.png" style="vertical-align:sub"/> Actualizar Resultados 
+							</a>
+							</div><br /><br /><br />
 							    	<table class="flexme1">	</table>
 							    </div>  <!--  END OF TAB2 -->
 							    
