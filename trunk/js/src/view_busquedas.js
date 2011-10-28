@@ -127,6 +127,9 @@ $(function() {
 	$('#candidateCVIframe').load(function(){
 		$('#candidateCVLoading').css("display", "none");
 	})    
+	$('#candidateReportIframe').load(function(){
+		$('#candidateReportLoading').css("display", "none");
+	})
 	
 	return false;
 });
@@ -615,3 +618,12 @@ function showCandidateCV(usuario){
 	showPopUp('#candidateCVPopUp');
 	
 }
+
+function showCandidateReport(usuario){
+	$('#candidateReportLoading').css("display", "block");
+	$('#candidateReportIframe').attr("height", "0px"); //put in 0px, then the child frame will update the needed height
+	$('#candidateReportIframe').attr("src", "test/informe?usuario=" + usuario);
+	showPopUp('#candidateReportPopUp');
+	
+}
+

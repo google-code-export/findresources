@@ -266,16 +266,29 @@
 }
 
 
+#candidateReportPopUp .in,
 #candidateCVPopUp .in {
 	width: 650px;
 	min-height: 170px;
 }
+
+
+#candidateReportPopUp .in{
+	width: 1020px;
+	min-height: 170px;
+}
+
 
 #candidateCVIframe {
 	width: 600px;
 	
 }
 
+#candidateReportIframe{
+	width: 950px;
+}
+
+#candidateReportLoading,
 #candidateCVLoading{
 	color: white;
 	background-color: black;
@@ -284,6 +297,7 @@
     padding: 20px;
 }
 
+#candidateReportLoading img, 
 #candidateCVLoading img {
 	padding-bottom:5px;
 }

@@ -432,15 +432,24 @@ class Test extends CI_Controller {
 	}
 	
 	public function informe(){
+		
 		$usuario = $this->input->post("informe_usuario");
-		if(!$usuario){
+		if(!$usuario || $usuario  == ""){
+			$usuario = @$_GET["usuario"];
+		}
+		
+		if(!$usuario || $usuario  == ""){
 			echo "No se seleccionó un usuario";
 			exit;
 		}
 		
 		$informe  = $this->Test_model->getInforme($usuario);
 		$data['informe'] = $informe["informe_info"];
+		
+		$data['perfil'] = "empresa"; // por ahora solo la empresa ingresa aqui.
+		
 		$this->load->view('view_test_informe', $data);
+		
 	}
 	
 }
