@@ -82,7 +82,7 @@
 						</div>
 			        </div>
 					<div id="login_error_msg" class="field error_msg" style="display:none">
-						*El usuario ya existe 
+			        	<div class="label">*El usuario ya existe</div>
 					</div>
 			        <div class="field">
 			        	<div class="label">Contraseña</div>
