@@ -130,8 +130,8 @@
 				</div>
 				
 				<div class="buttonsPopUp">
-					<input type="submit" value="Guardar" class="sendButton" />
-					<input type="submit" value="Cancelar" class="cancelPopUp" />
+					<a href="#" onclick="javascript:submit()" class="sendButton button save">Guardar</a>
+					<a href="#" onclick="javascript:submit()" class="cancelPopUp button">Cancelar</a>
 				</div>
 			</div>
 		</div>
@@ -288,8 +288,8 @@
 					<input type="text" id="userDataEditorFechaInicio" value="" />
 				</div>
 				<div class="buttonsPopUp">
-					<input type="submit" value="Guardar" class="sendButton" />
-					<input type="submit" value="Cancelar" class="cancelPopUp" />
+					<a href="#" onclick="javascript:submit()" class="sendButton button save">Guardar</a>
+					<a href="#" onclick="javascript:submit()" class="cancelPopUp button">Cancelar</a>
 				</div>
 			</div>
 		</div>
