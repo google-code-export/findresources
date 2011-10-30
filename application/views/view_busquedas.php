@@ -218,7 +218,7 @@
 												</div>								
 												<div class="row clearfix">
 													<div class="label"> Nivel de Educación: </div> 
-													<?php echo $educacion->d_nivel_educcacion ?>
+													<?php echo $educacion->d_nivel_educacion ?>
 													<?php echo ($educacion->c_modo_nivel_educacion == "R")? "(Requerido)" : "(Deseado)" ?>
 												</div>								
 												<div class="row clearfix">
