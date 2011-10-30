@@ -4,6 +4,7 @@
 <meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type"/>
 <script type="text/javascript" src=" <?php echo site_url('js/libs/jquery-1.6.2.min.js')?>"></script>
 <script type="text/javascript" src=" <?php echo site_url('js/libs/json2.js')?>"></script>
+<link rel=StyleSheet type="text/css" href="<?php echo site_url('css/global.css')?>"/>
 <link rel="shortcut icon" type="image/x-icon" href="<?php echo site_url("images/src/favicon.ico")?>" />
 <title>Find Resources</title>
 
@@ -11,7 +12,6 @@
 
 body {
  background-color: #fff;
- margin: 40px;
  font-size: 14px;
  color: #4F5155;
  text-align: center;
@@ -44,29 +44,40 @@ h1 {
 </head>
 <body>
 
-<h1>Bienvenido a FindResources</h1>
-<div class="company_logo">
-	<img src="images/argentina_soft_logo.png"/>
-</div>
-
+<?php include("toolbar.php"); ?>
+<div class="body_container">
+	<h1>Autenticación</h1>
 <?php 
 	if($autenticado){
 ?>
-<p>Congrats fuiste autenticado :D.</p>
+	<div  style="padding:20px">
+		<p>Su usuario fue autenticado.</p>
+	</div>
 
-	<a href="login">
-		GO TO LOGIN
-	</a>
-</p>
+	<div  style="padding:20px">
+		<a href="login">
+			Ingresar
+		</a>
+	</div>
 <?php 
 	}
 	else {
 ?>
 	
-	<h1>ERROR AL AUTENTICARSE. SU USUARIO YA FUE AUTENTICADO O EL CODIGO ES ERRONEO.</h1>
+	<div  style="padding:20px">
+		<b>ERROR AL AUTENTICARSE. </b>
+	</div>
+	<div  style="padding:20px">
+		<p>
+			SU USUARIO YA FUE AUTENTICADO O EL CODIGO ES ERRONEO.
+		</p>
+	</div>
 <?php 
 	}
 ?>
+
+</div>
+<?php include("footer.php"); ?>
 
 </body>
 </html>
