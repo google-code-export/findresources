@@ -43,13 +43,41 @@ class Login extends CI_Controller {
 		$this->email->from('noreply@gmail.com', 'FindResources');
 		$this->email->to($usuario->email);
 		$this->email->subject(utf8_encode('FindResources - Confirmación de Registro'));
-		$this->email->message(utf8_encode('Por favor haga clic en este link para confirmar su registro: ' . anchor(base_url() .'autenticacion?autCode=' . $activationCode . '&email='. $usuario->email, 'Confirme su registro')));
+
+		$link =  base_url() .'autenticacion?autCode=' . $activationCode . '&email='. $usuario->email;
+
+		$email = <<<EOF
+		<html>
+			<head>
+				<style type="text/css">
+				</style>
+			</head>
+			<body>
+				<div style="border-bottom: 1px #CCCCCC solid; margin-bottom: 20px;padding:10px">
+					<img src="http://www.findresources.com.ar/images/src/logofr2.png" alt="Find Resources"/>
+				</div>
+		
+				<div style="color:#00529E; font-family: sans-serif; display:block;padding:20px">
+					Por favor haga clic en este link para confirmar su registro:  <a href="$link">  Confirme su registro </a>
+				</div>
+				<div style="color:#00529E; font-family: sans-serif; display:block;padding:20px">
+					O copie y pegue la siguente direccion de internet en su explorador: 
+					<p/>
+					$link
+				</div>
+			</body>
+		</html>
+EOF;
+		
+		
+		$this->email->message(utf8_encode($email));
+		
 		//ENVIAR EMAIL.
 		$emailSent = $this->email->send();
 		
 		echo json_encode($respuesta);
 	}
-
+	
 	/**
 	 * Realiza el login.
 	 * input: json 'usuario' {email, clave}
