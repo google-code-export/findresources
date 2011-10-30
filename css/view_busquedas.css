@@ -302,4 +302,14 @@
 	padding-bottom:5px;
 }
 
+#cancelSearchButton {
+	float:right;	
+}
 
+#saveSearchButton {
+	float:right;
+}
+
+#finishSearchButton {
+	float:left
+}
