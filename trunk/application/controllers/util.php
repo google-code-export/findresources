@@ -18,7 +18,7 @@ class Util extends CI_Controller {
 	public function  getProvincias(){
 		$idPais = $this->input->post('idPais');
 		$respuesta = $this->Util_model->getProvincias($idPais);
-		echo json_encode($respuesta);
+		echo json_encode_utf8($respuesta);
 	}
 
 	/**
@@ -29,7 +29,7 @@ class Util extends CI_Controller {
 	public function  getHerramientasPorArea(){
 		$idArea = $this->input->post('idArea');
 		$respuesta = $this->Util_model->getHerramientasPorArea($idArea);
-		echo json_encode($respuesta);
+		echo json_encode_utf8($respuesta);
 	}
 	
 	/**
@@ -38,7 +38,7 @@ class Util extends CI_Controller {
 	 */
 	public function  getNivelesDeEducacion(){
 		$respuesta = $this->Util_model->getNivelesDeEducacion();
-		echo json_encode($respuesta);
+		echo json_encode_utf8($respuesta);
 	}
 
 	
@@ -50,7 +50,7 @@ class Util extends CI_Controller {
 	 */
 	public function  getAreas(){
 		$respuesta = $this->Util_model->getAreasDisponibles();
-		echo json_encode($respuesta);
+		echo json_encode_utf8($respuesta);
 	}
 	
 	
@@ -61,7 +61,7 @@ class Util extends CI_Controller {
 	 */
 	public function  getIndustrias(){
 		$respuesta = $this->Util_model->getIndustriasDisponibles();
-		echo json_encode($respuesta);
+		echo json_encode_utf8($respuesta);
 	}
 		
 	
@@ -72,7 +72,7 @@ class Util extends CI_Controller {
 	 */
 	public function  getEntidadesEducativas(){
 		$respuesta = $this->Util_model->getEntidadesEducativas();
-		echo json_encode($respuesta);
+		echo json_encode_utf8($respuesta);
 	}
 	
 }
