@@ -146,7 +146,7 @@
 ?>
 	<div id="homeCandidatePersonalData">
 		<div id="homeCandidatePersonalDataBody" class="block">
-			<h2>Datos de la Empresa: <a href="javascript:editUserData();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
+			<h2>Datos de la Empresa <a href="javascript:editUserData();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
 			<div class="inblock">
 				<div class="clearfix row">
 					<div class="label" >Razón Social: </div><div> <?php echo $usuarioData->razonSocial;?></div>
@@ -190,13 +190,16 @@
 		</div>
 	</div>
 	
-	<div id="homeCompanyLinks" class="clearfix block" align=center>
+	<div id="homeCompanyLinks" class="clearfix block">
+	<h2>Panel de acciones</h2>
+				<div class="inblock" align=center><br />
 		<a class="searchLink" href="/busquedas"> 
 			búsquedas
 		</a>
 		<a class="ticketsLink" href="/tickets">
 			tickets
 		</a>
+		</div>
 	</div>
  
 	<div class="opacity" style="display:none;"></div>	
