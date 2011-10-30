@@ -46,12 +46,12 @@ h1 {
 
 <?php include("toolbar.php"); ?>
 <div class="body_container">
-	<h1>Autenticación</h1>
+	<h1>Validación de email</h1>
 <?php 
 	if($autenticado){
 ?>
 	<div  style="padding:20px">
-		<p>Su usuario fue autenticado.</p>
+		<p>Su email ha sido validado.</p>
 	</div>
 
 	<div  style="padding:20px">
