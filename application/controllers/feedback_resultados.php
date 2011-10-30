@@ -40,7 +40,7 @@ class Feedback_Resultados extends CI_Controller {
 			
 			$grid["rows"][$key]["id"] = $key;
 			$grid["rows"][$key]["cell"] = array(
-				$busqueda->d_busqueda,
+				$busqueda->d_titulo,
 				$busqueda->razon_social,
 				$busqueda->usuario,
 				$busqueda->listaconocimientos,
