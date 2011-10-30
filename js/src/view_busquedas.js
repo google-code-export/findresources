@@ -170,6 +170,7 @@ function editSearchData(id_busqueda){
 		if (userSearch.d_estado == "Terminada" || userSearch.d_estado == "Cancelada") {
 			  $('#searchDataEditorTicketContainer').css("visibility", "hidden");
 			  $('#finishSearchButton').css("visibility", "hidden");
+			  $('#saveSearchButton').css("visibility", "hidden");
 		} else {
 			if(userSearch.d_estado == "Pendiente"){
 					$('#searchDataEditorTicketContainer').css("visibility", "visible");
