@@ -27,7 +27,7 @@
 	<div class="clearfix">
 		<div id="ticketData">
 			<div id="ticketDataBody" class="block">
-				<h2>Tickets registrados: </h2>
+				<h2>Tickets registrados</h2>
 					<?php 
 					$cant = count($tickets);
 					$i=0;
@@ -51,13 +51,16 @@
 			</div>
 		</div>
 		<div id="ticketLinks" class="block">
-			<div id="addTicketLink" class="clearfix" align="center">
+			<div id="addTicketLink" class="clearfix">
+				<h2>Panel de acciones</h2>
+				<div class="inblock" align=center><br />
 				<a class="searchLink" href="/busquedas"> 
 					búsquedas
 				</a>
 				<a class="ticketsLink" href="javascript:addTicket();">
 					solicitar tickets
 				</a>
+				</div>
 			</div>
 		</div>
 	</div>
