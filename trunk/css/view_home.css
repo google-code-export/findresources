@@ -9,10 +9,9 @@
 
 #homeCandidateLinks{
 	width: 434px;
-	height: 155px;
+	height: 169px;
 	float: left;
 	margin-top: 10px;
-	padding-top: 35px;
 }
 
 #homeCompanyLinks{
@@ -63,7 +62,7 @@ height: 40px;
 	border-width: 1px;
 	width: 152px;
 	float: left;
-	margin-left: 110px;
+	margin-left: 80px;
 }
 
 
