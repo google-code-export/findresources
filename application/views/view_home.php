@@ -68,6 +68,8 @@
 	</div>
 
 	<div id="homeCandidateLinks" class="block">
+		<h2>Panel de acciones</h2>
+			<div class="inblock" align=center style="height:130px"><br />
 		<div id="homeCurriculumLink">
 			<a class="curriculumLink" href="/curriculum"> 
 				Curriculum Vitae
@@ -85,6 +87,7 @@
 				<div>No tiene tests pendientes</div>
 			</div>
 <?php } ?>
+		</div>
 		</div>
 	</div>
 	<div class="opacity" style="display:none;"></div>	
@@ -191,8 +194,8 @@
 	</div>
 	
 	<div id="homeCompanyLinks" class="clearfix block">
-	<h2>Panel de acciones</h2>
-				<div class="inblock" align=center><br />
+		<h2>Panel de acciones</h2>
+		<div class="inblock" align=center><br />
 		<a class="searchLink" href="/busquedas"> 
 			búsquedas
 		</a>
