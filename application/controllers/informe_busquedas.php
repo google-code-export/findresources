@@ -20,7 +20,7 @@ class Informe_Busquedas extends CI_Controller {
 	}
 	
 	public function getBusquedasGrid(){
-		
+
 		$busquedas = $this->Busquedas_model->getBusquedasPorAreaDeNegocio("");
 		$busquedas = $busquedas["informe_busqueda"];
 		$grid["page"] = 1;
@@ -29,14 +29,13 @@ class Informe_Busquedas extends CI_Controller {
 		 
 		$rc = false;
 		$key = 1;
-
 		foreach ($busquedas as $busqueda) {
 			
 			$grid["rows"][$key]["id"] = $key;
 			$grid["rows"][$key]["cell"] = array(
 				$busqueda->d_industria,
 				$busqueda->razon_social,
-				$busqueda->d_busqueda,
+				$busqueda->d_titulo,
 				$busqueda->d_herramienta,
 				$busqueda->d_habilidad_blanda,
 				$busqueda->estado
