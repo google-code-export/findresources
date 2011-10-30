@@ -53,9 +53,8 @@ class Login extends CI_Controller {
 				</style>
 			</head>
 			<body>
-				<div style="border-bottom: 1px #CCCCCC solid; margin-bottom: 20px;padding:10px;font-family: sans-serif; ">
-					<!--img src="http://www.findresources.com.ar/images/src/logofr2.png" alt="Find Resources"/-->
-					<h1>Find Resources</h1>
+				<div style="border-bottom: 1px #CCCCCC solid; margin-bottom: 20px;padding:10px;font-family: sans-serif; font-size:18px">
+					<img src="http://www.findresources.com.ar/images/src/logofr2.png" alt="Find Resources"/>
 				</div>
 		
 				<div style="color:#00529E; font-family: sans-serif; display:block;padding:20px">
