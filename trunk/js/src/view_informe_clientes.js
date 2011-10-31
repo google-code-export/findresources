@@ -8,7 +8,7 @@ $(function() {
 			{display: 'Razón Social', name : 'nombre', width : 250, sortable : false, align: 'center'},
 			{display: 'CUIL', name : 'cuil', width : 100, sortable : false, align: 'center'},
 			{display: 'Saldo', name : 'saldo', width : 100, sortable : false, align: 'center'},
-			{display: 'Ver Busquedas', name : 'ver_busquedas', width : 100, sortable : false, align: 'center'}
+			{display: 'Ver Búsquedas', name : 'ver_busquedas', width : 100, sortable : false, align: 'center'}
 		],
 		sortname: "orden",
 		sortorder: "asc",
