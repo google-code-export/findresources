@@ -15,34 +15,39 @@ class Feedback_Psicotecnicos extends CI_Controller {
 			
 		}else{
 			$idHabilidad = NULL;
+			
+			$data["psicotecnicosDisponibles"] = $this->Util_model->getPsicotecnicosDisponibles();
+			$data["psicotecnicosDisponibles"] = $data["psicotecnicosDisponibles"]["psicotecnicos"]; 
 
 			//user is already logged in.
-			$this->load->view('view_feedback_psicotecnicos');
+			$this->load->view('view_feedback_psicotecnicos', $data);
 		}
 		
 	}
 	
 	public function getFeedbackPsicotecnicosGrid(){
 		
-		$aspectos = $this->Util_model->getHabilidadesBlandas("");
-		$aspectos = $aspectos["lista_hab_blandas"];
+		$idTest = @$_GET["psicotecnico"];
+		
+		$corridas = $this->Test_model->getCorridas($idTest);
+		$corridas = $corridas["corridas"];
 		$grid["page"] = 1;
-		$grid["total"] = sizeof($aspectos);
+		$grid["total"] = sizeof($corridas);
 		$grid["rows"] = array();
 		 
 		$rc = false;
 		$key = 1;
 
-		foreach ($aspectos as $aspecto) {
+		foreach ($corridas as $corrida) {
 			
 			$grid["rows"][$key]["id"] = $key;
 			$grid["rows"][$key]["cell"] = array(
-				"<a href='javascript:editPropuesta(\"". "999999"  ."\", \"". "12,312,312,3123"  ."\",\"". "asdf,asdf,asdf,asdf,asdf"  ."\");'><img src='/images/src/pencil.gif'></img></a>",
-				"nombre",
-				"apellido",
-				"mail@mail.com",
-				"12,312,312,3123",
-				"asdf,asdf,asdf,asdf,asdf"
+				$corrida->nombre,
+				$corrida->apellido,
+				$corrida->usuario,
+				$corrida->entradas,
+				$corrida->salida,
+				"<a href='javascript:editPropuesta(\"". $corrida->id_psicotecnico  ."\",  \"". $corrida->usuario  ."\", \"". $corrida->entradas  ."\",\"". $corrida->salida  ."\");'><img src='/images/src/pencil.gif'></img></a>" 
 			);
 			$key++;
 		}
