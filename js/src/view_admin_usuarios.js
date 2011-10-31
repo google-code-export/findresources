@@ -12,7 +12,7 @@ $(function() {
 		],
 		sortname: "orden",
 		sortorder: "asc",
-		usepager: true,
+		usepager: false,
 		title: 'Usuarios Expertos',
 		useRp: true,
 		rp: 15,
