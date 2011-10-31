@@ -37,7 +37,7 @@
 		
 		<!-- CONTENT -->
 		<div class="content">
-			<h1>Informe de conociemientos</h1>	
+			<h1>Informe de conocimientos</h1>	
 	
 			<div class="CL">
 				<div class="info clearfix block">
