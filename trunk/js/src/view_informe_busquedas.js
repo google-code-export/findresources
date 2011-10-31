@@ -15,7 +15,7 @@ $(function() {
 		sortorder: "asc",
 		title: 'Búsquedas',
 		rp: 15,
-		width: 850,
+		width: 890,
 		height: 500,
 		onError: function(response){
 			processError(response);

@@ -5,7 +5,7 @@ $(function() {
 		dataType: 'json',
 		colModel : [
 			{display: 'Nombre ', name : 'nombre', width : 200, sortable : false, align: 'center'},
-			{display: 'Aspectos que obtiene ', name : 'aspectos', width : 400, sortable : false, align: 'center'},
+			{display: 'Aspectos que obtiene ', name : 'aspectos', width : 423, sortable : false, align: 'center'},
 			{display: 'Veces Utilizado', name : 'cuenta', width : 100, sortable : false, align: 'center'},
 			{display: 'Ver Propuestas', name : 'ver_propuesta', width : 100, sortable : false, align: 'center'}
 		],
@@ -13,7 +13,7 @@ $(function() {
 		sortorder: "asc",
 		title: 'Areas de negocio disponibles',
 		rp: 15,
-		width: 850,
+		width: 890,
 		height: 500,
 		onError: function(response){
 			processError(response);
@@ -48,7 +48,7 @@ function showPropose(idPsicotecnico, name){
 			sortorder: "asc",
 			title: 'Propuesta de cambio del test ' + name,
 			rp: 15,
-			width: 720,
+			width: 760,
 			height: 420,
 			onError: function(response){
 				processError(response);

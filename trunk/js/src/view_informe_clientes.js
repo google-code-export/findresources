@@ -5,7 +5,7 @@ $(function() {
 		dataType: 'json',
 		colModel : [
 			{display: 'Mail ', name : 'mail', width : 230, sortable : false, align: 'center'},
-			{display: 'Razón Social', name : 'nombre', width : 250, sortable : false, align: 'center'},
+			{display: 'Razón Social', name : 'nombre', width : 296, sortable : false, align: 'center'},
 			{display: 'CUIL', name : 'cuil', width : 100, sortable : false, align: 'center'},
 			{display: 'Saldo', name : 'saldo', width : 100, sortable : false, align: 'center'},
 			{display: 'Ver Búsquedas', name : 'ver_busquedas', width : 100, sortable : false, align: 'center'}
@@ -14,7 +14,7 @@ $(function() {
 		sortorder: "asc",
 		title: 'Clientes registrados en el sistema',
 		rp: 15,
-		width: 850,
+		width: 890,
 		height: 500,
 		onError: function(response){
 			processError(response);

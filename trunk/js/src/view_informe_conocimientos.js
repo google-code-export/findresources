@@ -10,7 +10,7 @@ $(function() {
 		sortorder: "asc",
 		title: 'Areas de negocio disponibles',
 		rp: 15,
-		width: 410,
+		width: 432,
 		height: 500,
 		onError: function(response){
 			processError(response);
@@ -29,7 +29,7 @@ $(function() {
 		sortorder: "asc",
 		title: 'Herramientas',
 		rp: 15,
-		width: 410,
+		width: 426,
 		height: 500,
 		onError: function(response){
 			processError(response);
