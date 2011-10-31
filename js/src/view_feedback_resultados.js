@@ -22,18 +22,18 @@ function getBusquedas(){
 			url: url,
 			dataType: 'json',
 			colModel : [
-				{display: 'Nombre ', name : 'nombre', width : 230, sortable : false, align: 'center'},
-				{display: 'Empresa', name : 'empresa', width : 250, sortable : false, align: 'center'},
-				{display: 'Mail', name : 'mail', width : 100, sortable : false, align: 'center'},
-				{display: 'Conocimientos', name : 'Conocimientos', width : 100, sortable : false, align: 'center'},
-				{display: 'Aspectos', name : 'aspectos', width : 100, sortable : false, align: 'center'},
-				{display: 'Ver Candidatos', name : 'ver_candidatos', width : 100, sortable : false, align: 'center'}
+				{display: 'Nombre ', name : 'nombre', width : 190, sortable : false, align: 'left'},
+				{display: 'Empresa', name : 'empresa', width : 150, sortable : false, align: 'left'},
+				{display: 'Mail', name : 'mail', width : 150, sortable : false, align: 'left'},
+				{display: 'Conocimientos', name : 'Conocimientos', width : 100, sortable : false, align: 'left'},
+				{display: 'Aspectos', name : 'aspectos', width : 128, sortable : false, align: 'left'},
+				{display: 'Ver Candidatos', name : 'ver_candidatos', width : 71, sortable : false, align: 'center'}
 			],
 			sortname: "orden",
 			sortorder: "asc",
 			title: title,
 			rp: 15,
-			width: 850,
+			width: 880,
 			height: 500,
 			onError: function(response){
 				processError(response);
