@@ -16,7 +16,7 @@ $(function() {
 		sortorder: "asc",
 		title: 'Curriculums en el sistema',
 		rp: 15,
-		width: 850,
+		width: 895,
 		height: 500,
 		onError: function(response){
 			processError(response);
