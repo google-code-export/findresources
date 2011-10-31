@@ -37,12 +37,12 @@ class Feedback_Psicotecnicos extends CI_Controller {
 			
 			$grid["rows"][$key]["id"] = $key;
 			$grid["rows"][$key]["cell"] = array(
+				"<a href='javascript:editPropuesta(\"". "999999"  ."\", \"". "12,312,312,3123"  ."\",\"". "asdf,asdf,asdf,asdf,asdf"  ."\");'><img src='/images/src/pencil.gif'></img></a>",
 				"nombre",
 				"apellido",
 				"mail@mail.com",
 				"12,312,312,3123",
-				"asdf,asdf,asdf,asdf,asdf",
-				"<a href='javascript:editPropuesta(\"". "999999"  ."\", \"". "12,312,312,3123"  ."\",\"". "asdf,asdf,asdf,asdf,asdf"  ."\");'><img src='/images/src/pencil.gif'></img></a>" 
+				"asdf,asdf,asdf,asdf,asdf"
 			);
 			$key++;
 		}
