@@ -4,9 +4,9 @@ $(function() {
 		url: 'admin_usuarios/getUsuariosExpertosGrid',
 		dataType: 'json',
 		colModel : [
-			{display: 'E mail', name : 'usuario', width : 150, sortable : false, align: 'center'},
-			{display: 'Nombre', name : 'nombre', width : 150, sortable : false, align: 'center'},
-			{display: 'Conraseña', name : 'password', width : 150, sortable : false, align: 'center'},
+			{display: 'E mail', name : 'usuario', width : 200, sortable : false, align: 'left'},
+			{display: 'Nombre', name : 'nombre', width : 178, sortable : false, align: 'left'},
+			{display: 'Conraseña', name : 'password', width : 150, sortable : false, align: 'left'},
 			{display: 'Dar de baja', name : 'baja', width : 150, sortable : false, align: 'center'},
 			{display: 'Editar Contraseña', name : 'edit', width : 150, sortable : false, align: 'center'}
 		],
@@ -17,7 +17,7 @@ $(function() {
 		useRp: true,
 		rp: 15,
 		showTableToggleBtn: false,
-		width: 850,
+		width: 890,
 		height: 500,
 		onError: function(response){
 			processError(response);
