@@ -32,7 +32,7 @@
 	<table cellspacing="0" cellpadding="0" align="center" style="background-color:black; padding:7px">
 		<tbody>
 		<tr><td>
-				<img style="padding-left: 30px; padding-bottom:5px;" src="/images/src/55_cycle_ten_24.gif"/>
+				<img style="padding-bottom:5px;width:80px" src="/images/src/loading.gif"/>
 				<div style="color:white"> Cargando ...</div>
 		</td></tr>
 		</tbody>
