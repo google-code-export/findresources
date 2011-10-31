@@ -4,7 +4,7 @@ $(function() {
 		url: 'feedback_aspectos/getAspectosGrid',
 		dataType: 'json',
 		colModel : [
-			{display: 'Aspecto', name : 'descripcion', width : 200, sortable : false, align: 'center'},
+			{display: 'Aspecto', name : 'descripcion', width : 200, sortable : false, align: 'left'},
 			{display: 'Coloquio', name : 'descripcion', width : 605, sortable : false, align: 'left'},
 			{display: 'Editar', name : 'descripcion', width : 30, sortable : false, align: 'center'}
 		],
