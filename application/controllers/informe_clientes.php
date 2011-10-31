@@ -31,12 +31,11 @@ class Informe_Clientes extends CI_Controller {
 		$key = 1;
 
 		foreach ($empresas as $empresa) {
-			
 			$grid["rows"][$key]["id"] = $key;
 			$grid["rows"][$key]["cell"] = array(
 				$empresa->usuario,
 				$empresa->razon_social,
-				$empresa->cuil,
+				$empresa->cuit,
 				$empresa->saldo,
 				"<a class='' href='javascript:showBusquedas(\"". $empresa->usuario ."\", \"". $empresa->razon_social ."\");'><img src='/images/src/lupa.png'></img></a>" 
 			);
