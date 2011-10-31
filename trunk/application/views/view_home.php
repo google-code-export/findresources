@@ -336,7 +336,7 @@
 						<img src="/images/src/Properties.gif" /> 
 						<div>
 							<a href="feedback_psicotecnicos"> 
-								Ver resultados de psicotecnicos.
+								Ver resultados de psicotécnicos.
 							</a>
 						</div>
 					</div>
