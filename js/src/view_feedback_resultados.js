@@ -62,16 +62,16 @@ function showCandidatos(idBusqueda, name){
 			url: 'feedback_resultados/getCandidatosGrid?idBusqueda=' + idBusqueda,
 			dataType: 'json',
 			colModel : [
-				{display: 'Apellido', name : 'fecha', width : 100, sortable : false, align: 'center'},
-				{display: 'Nombre', name : 'entradas', width : 100, sortable : false, align: 'center'},
-				{display: 'Email', name : 'entradas', width : 200, sortable : false, align: 'center'},
-				{display: 'Aspectos de la personalidad', name : 'entradas', width : 220, sortable : false, align: 'center'}
+				{display: 'Apellido', name : 'fecha', width : 100, sortable : false, align: 'left'},
+				{display: 'Nombre', name : 'entradas', width : 100, sortable : false, align: 'left'},
+				{display: 'Email', name : 'entradas', width : 200, sortable : false, align: 'left'},
+				{display: 'Aspectos de la personalidad', name : 'entradas', width : 310, sortable : false, align: 'left'}
 			],
 			sortname: "orden",
 			sortorder: "asc",
 			title: 'Búsquedas de la empresa ' + name,
 			rp: 15,
-			width: 700,
+			width: 760,
 			height: 420,
 			onError: function(response){
 				processError(response);
