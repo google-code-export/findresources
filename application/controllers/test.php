@@ -347,7 +347,7 @@ class Test extends CI_Controller {
 			$tag['width']  = $width;
 			$tag['height']  = $height;
 			$tag['description']  = $description;
-
+var_dump($tag);exit;
 		   $rdata = $this->functionutils->getSession('RORSCHACH_DATA');
 		   $rdata[$key][] = $tag;
 		   $this->functionutils->setSession('RORSCHACH_DATA',$rdata);
