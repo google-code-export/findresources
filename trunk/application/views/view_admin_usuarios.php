@@ -14,6 +14,7 @@
 
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/jquery-ui-1.8.16.css')?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/global.css')?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo site_url('css/style.css')?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/flexigrid/flexigrid.pack.css')?>" />
 <link rel="shortcut icon" type="image/x-icon" href="<?php echo site_url("images/src/favicon.ico")?>" />
 
@@ -137,10 +138,9 @@
 
 				</div>
 				<div class="buttonsPopUp">
-					<input type="submit" value="Guardar" class="sendButton" onclick="performEditUserData();"> </input>
-					<input type="submit" value="Cancelar" class="cancelPopUp"></input>
-				</div>
-				
+				<a href="javascript:performEditUserData();" class="button save sendButton">Guardar</a>
+				<a href="#" class="button cancelPopUp">Cancelar</a>
+				</div>	
 			</div>
 		</div>
 	</td></tr>
@@ -152,7 +152,7 @@
 	<tr><td>
 		<div class="in">
 			<div class="popuptitle"> Contraseña de Usuario </div>
-			<a href="javascript:;" class="closePopUp"></a>
+			<a href="#" class="closePopUp"></a>
 			<div class="inside">
 				<div>	
 					<input type="hidden" id="userPasswordEditorEmail"></input>
@@ -166,11 +166,11 @@
 						<input type="password" id="userPasswordEditorPasswordConfirm"></input>
 					</div>
 				</div>
+				<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 				<div class="buttonsPopUp">
-					<input type="submit" value="Guardar" class="sendButton" onclick="setUserPassword();" />
-					<input type="submit" value="Cancelar" class="cancelPopUp" />
+				<a href="javascript:setUserPassword();" class="button save sendButton">Guardar</a>
+				<a href="#" class="button cancelPopUp">Cancelar</a>
 				</div>
-				
 			</div>
 		</div>
 	</td></tr>
