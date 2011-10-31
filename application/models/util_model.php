@@ -491,7 +491,35 @@ class Util_model extends FR_Model {
 			throw new Exception('Oracle error message in setBusqueda(): ' . $result["desc"]);
 		}
 
-	}		
+	}
+
+	/** CREA O MODIFICA BUSQUEDAS **/
+	public function getPsicotecnicosDisponibles(){
+		$result["psicotecnicos"] = NULL;
+		$result["error"] = NULL;
+		$result["desc"] = NULL;
+		
+		$params = array(
+			array('name'=>':po_test', 'value'=>&$result["psicotecnicos"], 'type'=>SQLT_RSET, 'length'=>255),
+			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
+		);
+
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_UTIL','PR_OBTIENE_TEST',$params);
+		
+		$result["psicotecnicos"] = $this->oracledb->get_cursor_data(":po_test");
+		
+		
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+			throw new Exception('Oracle error message in setBusqueda(): ' . $result["desc"]);
+		}
+
+	}
+	
+	
 }
 
 ?>

@@ -52,16 +52,30 @@
 		
 		<!-- CONTENT -->
 		<div class="content">
-			<h1>Informes finales</h1>	
-	
+			<h1>Resultados de psicotécnicos</h1>	
 			<div class="CL">
 				<div class="info clearfix block">
-					<div id="candidatosGridContainer" class="gridContent" style="float:left">
-						<table id="candidatosGrid"  class="grid">	</table>
+					<div id="searchFields">
+						<div class="field clearfix">
+							<div class="label">Psicotécnicos Disponibles:</div>
+							<select id="psicotecnicoBuscado">
+								<?php foreach ($psicotecnicosDisponibles as $psicotecnico){ ?>
+									<option value="<?php echo $psicotecnico->id_test; ?>"><?php echo $psicotecnico->nombre_test;?></option> 
+								<?php } ?>
+							</select>
+						</div>
+						<div class="buttonsPopUp">
+							<input type="submit" value="Consultar" onclick="getPsicotecnicosResultados();" />
+						</div>
+					</div>
+					<div class="info clearfix block">
+						<div id="candidatosGridContainer" class="gridContent" style="float:left">
+							<table id="candidatosGrid"  class="grid">	</table>
+						</div>
 					</div>
 
 				</div>
-			</div>
+			</div>	
 		</div>
 	</div>
 <?php include("footer.php"); ?>
