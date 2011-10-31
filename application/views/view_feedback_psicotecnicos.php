@@ -11,6 +11,7 @@
 
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/jquery-ui-1.8.16.css')?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/global.css')?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo site_url('css/style.css')?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/flexigrid/flexigrid.pack.css')?>" />
 <link rel="shortcut icon" type="image/x-icon" href="<?php echo site_url("images/src/favicon.ico")?>" />
 
@@ -87,8 +88,8 @@
 
 			<input type="hidden" id="softSkillEditorId"/>
 			<div class="buttonsPopUp">
-				<input type="submit" value="Guardar" class="sendButton" onclick="setSoftSkill();"/>
-				<input type="submit" value="Cancelar" class="cancelPopUp" />
+				<a href="javascript:setSoftSkill();" class="button save sendButton">Guardar</a>
+				<a href="#" class="button cancelPopUp">Cancelar</a>
 			</div>
 		</div>
 	</div>
