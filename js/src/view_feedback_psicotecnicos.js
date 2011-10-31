@@ -4,18 +4,18 @@ $(function() {
 		url: 'feedback_psicotecnicos/getFeedbackPsicotecnicosGrid',
 		dataType: 'json',
 		colModel : [
+		    {display: 'Editar', name : 'descripcion', width : 30, sortable : false, align: 'center'},
 			{display: 'Nombre', name : 'descripcion', width : 200, sortable : false, align: 'center'},
 			{display: 'Apellido', name : 'descripcion', width : 200, sortable : false, align: 'center'},
 			{display: 'Mail', name : 'descripcion', width : 200, sortable : false, align: 'center'},
 			{display: 'Entradas', name : 'descripcion', width : 300, sortable : false, align: 'center'},
-			{display: 'Salidas obtenidas por el sistema', name : 'descripcion', width : 300, sortable : false, align: 'center'},
-			{display: 'Editar', name : 'descripcion', width : 30, sortable : false, align: 'center'}
+			{display: 'Salidas obtenidas por el sistema', name : 'descripcion', width : 300, sortable : false, align: 'center'}
 		],
 		sortname: "orden",
 		sortorder: "asc",
 		title: 'Resultados de psicotecnicos obtenidos por el sistema',
 		rp: 15,
-		width: 750,
+		width: 890,
 		height: 500,
 		onError: function(response){
 			processError(response);

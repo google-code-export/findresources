@@ -5,14 +5,14 @@ $(function() {
 		dataType: 'json',
 		colModel : [
 			{display: 'Aspecto', name : 'descripcion', width : 200, sortable : false, align: 'center'},
-			{display: 'Coloquio', name : 'descripcion', width : 420, sortable : false, align: 'left'},
+			{display: 'Coloquio', name : 'descripcion', width : 605, sortable : false, align: 'left'},
 			{display: 'Editar', name : 'descripcion', width : 30, sortable : false, align: 'center'}
 		],
 		sortname: "orden",
 		sortorder: "asc",
 		title: 'Aspectos de la personalida que el usuario puede elegir',
 		rp: 15,
-		width: 750,
+		width: 890,
 		height: 500,
 		onError: function(response){
 			processError(response);
