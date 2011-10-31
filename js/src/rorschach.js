@@ -26,6 +26,14 @@ $(document).ready(function(){
 	}
 	);
 
+/** PARA MOSTRAR LAS COORDENADAS EN PANTALLA AL MOVER EL MOUSE**/
+	$("#drag").mousemove(function(e){
+	document.Show.MouseX.value = $("#drag").attr("offsetWidth");
+	document.Show.MouseY.value = $("#drag").attr("offsetHeight");
+	document.Show.MouseW.value = $("#drag").attr("offsetTop");
+	document.Show.MouseZ.value = $("#drag").attr("offsetLeft");
+	});
+/** **/
 });
 /*
 $(function() {
