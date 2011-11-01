@@ -47,17 +47,25 @@ function editPropuesta(idTest, idPsicotecnico, candidato, entradas, salidas){
 	
 	var url = "feedback_psicotecnicos/getDatosPropuesta?idTest="+ idTest + "&idPsicotecnico=" + idPsicotecnico;
 	
+	
+	
+
+	$('#softSkillEditorId').val(candidato);
+	$('#softSkillEditorCandidateEntry').val(entradas);
+	$('#softSkillEditorSystemResponse').val(salidas);
+
+	$('#softSkillEditorExpertIdTest').val(idTest);
+	$('#softSkillEditorExpertIdRun').val(idPsicotecnico);
+	
+	
 	$.ajax({
 		url: url,
 		global: false,
-		type: "POST",
-		data: {
-			'id_cv': JSON.stringify(candidato)
-		},
+		type: "GET",
 		dataType: "json",
 		async: true,
 		success: function(response){
-			performEditPropuesta(candidato, entradas, salidas, response.salidas_del_usuario, response.notas_del_usuario)
+			performEditPropuesta(response.salidas_del_usuario, response.notas_del_usuario)
 		},
 		error: function(response){
 			processError(response);
@@ -67,13 +75,10 @@ function editPropuesta(idTest, idPsicotecnico, candidato, entradas, salidas){
 
 }
 
-function performEditPropuesta(candidato, entradas, salidas, salidasDelUsuario, notasDelUsuario){
+function performEditPropuesta(salidasDelUsuario, notasDelUsuario){
 	
-	$('#softSkillEditorId').val(candidato);
-	$('#softSkillEditorCandidateEntry').val(entradas);
-	$('#softSkillEditorSystemResponse').val(salidas);
 	$('#softSkillEditorExpertResponse').val(salidasDelUsuario);
-	$('#softSkillEditorUserNotes').val(notasDelUsuario);
+	$('#softSkillEditorExpertNotes').val(notasDelUsuario);
 	
 	showPopUp('#psicotecnicoPopUp');
 }
@@ -81,8 +86,10 @@ function performEditPropuesta(candidato, entradas, salidas, salidasDelUsuario, n
 function setPropuestaDeSalida(){
 	
 	var propuesta_de_salida = {
-		xxx: $('#psicotecnicoEditorResponse').val(),
-		xxy: $('#psicotecnicoEditorNote').val()
+		idTest: $('#softSkillEditorExpertIdTest').val(),
+		idCorrida: $('#softSkillEditorExpertIdRun').val(),
+		propuesta: $('#softSkillEditorExpertResponse').val(),
+		nota: $('#softSkillEditorExpertNotes').val()
 	}
 	
 	$.ajax({

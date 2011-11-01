@@ -47,7 +47,7 @@ class Feedback_Psicotecnicos extends CI_Controller {
 				$corrida->usuario,
 				$corrida->entradas,
 				$corrida->salida,
-				"<a href='javascript:editPropuesta(\"". $corrida->id_psicotecnico  ."\",  \"". $corrida->usuario  ."\", \"". $corrida->entradas  ."\",\"". $corrida->salida  ."\");'><img src='/images/src/pencil.gif'></img></a>" 
+				"<a href='javascript:editPropuesta(\"". $corrida->id_psicotecnico /*->id_test*/ ."\",  \"". $corrida->id_psicotecnico  ."\",  \"". $corrida->usuario  ."\", \"". $corrida->entradas  ."\",\"". $corrida->salida  ."\");'><img src='/images/src/pencil.gif'></img></a>" 
 			);
 			$key++;
 		}
@@ -57,10 +57,13 @@ class Feedback_Psicotecnicos extends CI_Controller {
 	
 	
 	public function getDatosPropuesta(){
+		$idTest = @$_GET["idTest"];
+		$idCorrida = @$_GET["idPsicotecnico"];
+		$idUsuario = @$_SESSION[SESSION_ID_USUARIO];
 		
-		$respuesta->salidas_del_usuario = "una salida del usuario logueado";
-		
-		$respuesta->notas_del_usuario = "las notas del usuario logueado.";
+		$data = $this->Test_model->getPropuestaCambioPorUsuario($idTest, $idCorrida, $idUsuario);
+		$respuesta->salidas_del_usuario = $data["propuesta"];
+		$respuesta->notas_del_usuario = $data["nota"];
 		echo json_encode_utf8($respuesta);
 		
 	}
@@ -69,12 +72,15 @@ class Feedback_Psicotecnicos extends CI_Controller {
 	 * Recibe el id_habilidad_blanda y d_coloquio 
 	 * */
 	public function setPropuestaDeCambio(){
-		/*
-		$aspecto = $this->input->post('habilidad_blanda');
-		$aspecto = json_decode($aspecto);
-		$respuesta = $this->Util_model->setHabilidadBlanda($aspecto->id_habilidad_blanda, $aspecto->d_habilidad_blanda, $aspecto->d_coloquio );
-		echo json_encode($respuesta);*/
-		echo json_encode_utf8("bla");
+
+		$propuesta = $this->input->post('propuesta');
+		$propuesta = json_decode_into_array(utf8_decode($propuesta));
+
+		$idUsuario = @$_SESSION[SESSION_ID_USUARIO];
+		
+		$data = $this->Test_model->setPropuestaCambioPorUsuario($propuesta["idTest"], $propuesta["idCorrida"], $idUsuario, $propuesta["propuesta"],$propuesta["nota"]);
+		
+		echo json_encode_utf8($data);
 		
 	}
 	

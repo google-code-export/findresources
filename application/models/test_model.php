@@ -390,7 +390,62 @@ class Test_model extends CI_Model {
 		
 	}
 	
+	public function getPropuestaCambioPorUsuario($idTest, $idCorrida, $usuario){
+		$result["propuesta"] = NULL;
+		$result["nota"] = NULL;
+		
+		$result["error"] = NULL;
+		$result["desc"] = NULL;
+		
+		$params = array(
+			array('name'=>':PI_ID_TEST', 'value'=>$idTest, 'type'=>SQLT_CHR , 'length'=>-1),
+			array('name'=>':PI_ID_PSICOTECNICO', 'value'=>$idCorrida, 'type'=>SQLT_CHR , 'length'=>-1),
+			array('name'=>':PI_USUARIO', 'value'=>$usuario, 'type'=>SQLT_CHR , 'length'=>-1),
+			array('name'=>':PO_PROPUESTA', 'value'=>&$result["propuesta"], 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':PO_NOTA', 'value'=>&$result["propuesta"], 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_TEST_III','pr_obtiene_propuesta',$params);
+		
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in getInforme(): ' . $result["desc"]);
+		}
+
+	}
 	
+		
+	public function setPropuestaCambioPorUsuario($idTest, $idCorrida, $usuario, $propuesta,$nota){
+		$result["propuesta"] = NULL;
+		$result["nota"] = NULL;
+		
+		$result["error"] = NULL;
+		$result["desc"] = NULL;
+		
+		$params = array(
+			array('name'=>':PI_ID_TEST', 'value'=>$idTest, 'type'=>SQLT_CHR , 'length'=>-1),
+			array('name'=>':PI_ID_PSICOTECNICO', 'value'=>$idCorrida, 'type'=>SQLT_CHR , 'length'=>-1),
+			array('name'=>':PI_USUARIO', 'value'=>$usuario, 'type'=>SQLT_CHR , 'length'=>-1),
+			array('name'=>':PI_PROPUESTA', 'value'=>$propuesta, 'type'=>SQLT_CHR , 'length'=>-1),
+			array('name'=>':PI_NOTA', 'value'=>$nota, 'type'=>SQLT_CHR , 'length'=>-1),
+			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_TEST_III','pr_actualiza_prop_de_cambio',$params);
+		
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in getInforme(): ' . $result["desc"]);
+		}
+
+	}
 	
 
 }
