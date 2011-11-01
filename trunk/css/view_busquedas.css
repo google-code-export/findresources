@@ -60,6 +60,7 @@
 
 .label {
 	font-size:12px; /*dont know why need to do this*/
+	width: 100px;
 }
 /*
 .ui-accordion-content {
