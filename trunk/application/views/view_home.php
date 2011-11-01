@@ -61,7 +61,7 @@
 				</div>
 	
 				<div class="clearfix row">
-					<div class="label" > Pais </div><div> <?php echo $usuarioData->descripcionPais;?></div>
+					<div class="label" > País </div><div> <?php echo $usuarioData->descripcionPais;?></div>
 				</div>
 			</div>
 		</div>
@@ -124,7 +124,7 @@
 					<input type="text" id="userDataEditorPhone" value="" />
 				</div>
 				<div class="field clearfix">
-					<div class="label">Pais:</div>
+					<div class="label">País:</div>
 					<select id="userDataEditorCountry">
 						<?php foreach ($paises as $id => $desc){ ?>
 							<option value="<?php echo $id; ?>"><?php echo $desc;?></option> 
@@ -222,8 +222,9 @@
 					<div class="label">Apellido:</div>
 					<input type="text" id="userDataEditorLastName" value="" />
 				</div>
+				<hr />
 				<div class="field clearfix">
-				  	<div class="label">Razon social</div>
+				  	<div class="label">Razón social</div>
 				  	<div class="control">
 						<input type="text" id="userDataEditorRazonSocial" value=""/>
 					</div>
@@ -250,12 +251,26 @@
 					<input type="text" id="userDataEditorPhone" value="" />
 				</div>
 				<div class="field clearfix">
-					<div class="label">Pais:</div>
+					<div class="label">País:</div>
 					<select id="userDataEditorCountry">
+					<option value="" selected=selecter>Seleccione...</option>
 						<?php foreach ($paises as $id => $desc){ ?>
 							<option value="<?php echo $id; ?>"><?php echo $desc;?></option> 
 						<?php } ?>
 					</select>
+				</div>
+				<div class="field clearfix">
+					<div class="label">Provincia:</div>
+					<select id="userDataEditorProvincia">
+						<option value="" selected=selecter>Seleccione...</option>
+						<?php foreach ($provinciasDisponibles as $id => $desc){ ?>
+							<option value="<?php echo $id; ?>"><?php echo $desc;?></option> 
+						<?php } ?>
+					</select>
+				</div>
+				<div class="field clearfix">
+					<div class="label">Localidad:</div>
+					<input type="text" id="userDataEditorLocalidad" value="" />
 				</div>
 				<div class="field clearfix">
 					<div class="label">Dirección:</div>
@@ -274,24 +289,12 @@
 					<input type="text" id="userDataEditorAddressDpto" value="" />
 				</div>
 				<div class="field clearfix">
-					<div class="label">Localidad:</div>
-					<input type="text" id="userDataEditorLocalidad" value="" />
-				</div>
-				<div class="field clearfix">
-					<div class="label">Provincia:</div>
-					<select id="userDataEditorProvincia">
-						<?php foreach ($provinciasDisponibles as $id => $desc){ ?>
-							<option value="<?php echo $id; ?>"><?php echo $desc;?></option> 
-						<?php } ?>
-					</select>
-				</div>
-				<div class="field clearfix">
 					<div class="label">Cantidad de Empleados:</div>
 					<input type="text" id="userDataEditorCantEmpleados" value="" />
 				</div>
 				<div class="field clearfix">
 					<div class="label">Fecha de inicio de actividades:</div>
-					<input type="text" id="userDataEditorFechaInicio" value="" />
+					<input type="text" id="userDataEditorFechaInicio" value="" />&nbsp;&nbsp;(dd/mm/yyyy)
 				</div>
 				<div class="buttonsPopUp">
 					<a href="#" onclick="javascript:submit()" class="sendButton button save">Guardar</a>
