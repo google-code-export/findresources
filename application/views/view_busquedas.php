@@ -414,7 +414,7 @@
 								<div class="sliderContainer">
 									<div class="slider" title="Importancia: Determina el grado de deseado del puesto. 100% es requerido.)">
 										<label>%</label>
-										<input type="text" class="importanceInput" value="<?php echo $habilidad->importancia ?>"/>
+										<input type="text" class="importanceInput" value="<?php echo $habilidad->importancia ?>" readonly=readonly/>
 									</div>
 								</div>
 
@@ -470,7 +470,7 @@
 								<div class="sliderContainer">
 									<div class="slider" title="Importancia: Determina el grado de deseado del puesto. 100% es requerido.)">
 										<label>%</label>
-										<input type="text" class="importanceInput" value="<?php echo $habilidad->importancia ?>"/>
+										<input type="text" class="importanceInput" value="<?php echo $habilidad->importancia ?>" readonly=readonly/>
 									</div>
 								</div>
 
