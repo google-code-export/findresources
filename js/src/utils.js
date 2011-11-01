@@ -13,9 +13,14 @@ function hidePopUp()
 
 function processError(errorResponse){
 	
-	$('#errorPopUp .popuptitle').html("System Error (status:" + errorResponse.statusText + ")");
-	$('#errorPopUp .inside').html(errorResponse.responseText);
-	showPopUp('#errorPopUp');
+	alert("Por favor verifique los datos ingresados.");
+	//$('#errorPopUp .popuptitle').html("System Error (status:" + errorResponse.statusText + ")");
+	//$('#errorPopUp .inside').html(errorResponse.responseText);
+	//showPopUp('#errorPopUp');
+}
+
+function processError2(xhr, ajaxOptions, thrownError){
+	alert("Error al guardar la información. Intente nuevamente.\n\n"+thrownError);
 }
 
 /*WINDOW ONLOAD*/
