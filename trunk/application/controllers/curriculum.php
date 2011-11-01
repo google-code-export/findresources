@@ -10,17 +10,12 @@ class Curriculum extends CI_Controller {
 	public function index(){
 		$usuario = @$_SESSION[SESSION_ID_USUARIO];
 		if(!$usuario){
+			redirect('login');
 			/////////////HARDCODED//////////////////////////
 			/////////////HARDCODED//////////////////////////
 			$usuario = "juan@juan.com";
 			/////////////HARDCODED//////////////////////////
 			/////////////HARDCODED//////////////////////////
-			
-			///////////DEVELOPING//UNCOMMENT//THIS////////////////
-			///////////DEVELOPING//UNCOMMENT//THIS////////////////
-			//redirect('login');
-			///////////DEVELOPING//UNCOMMENT//THIS////////////////
-			///////////DEVELOPING//UNCOMMENT//THIS////////////////
 		}
 		
 		$idCurriculum  = $this->Curriculum_model->getCurriculumUser($usuario);
