@@ -263,7 +263,7 @@
 			</div>
 			
 			<div class="block">
-				<h2>Educaci&oacute;n Informal <?php if($perfil == "usuario") { ?><a class="addFields" href="javascript:addInformalEducation();"><img src="/images/src/add.png"/> <b>Agregar</b> educación</a><?php } ?></h2>
+				<h2>Educaci&oacute;n No Formal <?php if($perfil == "usuario") { ?><a class="addFields" href="javascript:addInformalEducation();"><img src="/images/src/add.png"/> <b>Agregar</b> educación</a><?php } ?></h2>
 				
 				<?php foreach ($educacionNoFormalDelCv as $id => $educacion){ ?>
 				<div class="study inblock">
@@ -698,7 +698,7 @@
 	<table cellspacing="0" cellpadding="0" align="center">
 	<tr><td>
 		<div class="in">
-			<div class="popuptitle"> Educación Informal </div>
+			<div class="popuptitle"> Educación No Formal </div>
 			<a href="javascript:;" class="closePopUp"></a>
 			<div class="inside">
 				<div>	

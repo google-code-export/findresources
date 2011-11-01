@@ -136,7 +136,7 @@
 									<div class="block" id="hardProperties">
 										<h2>Conocimientos <a href="javascript:editHardSkills();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
 										<div class="inblock">
-											<h4>Areas de negocio</h4>
+											<h4>Áreas de negocio</h4>
 											<ul>
 											<?php foreach ($busquedaSeleccionada['lista_industria']  as $id => $habilidad){ ?>
 												<li class="clearfix">
@@ -375,7 +375,7 @@
 				<div class="popuptitle">Conocimientos</div>
 				<a href="javascript:;" class="closePopUp"></a>
 				<div class="inside">
-					<h4>Areas de negocio</h4>
+					<h4>Áreas de negocio</h4>
 					<div class="clearfix">
 						<select id="availableIndustriesSelect">
 							<?php foreach ($industriasDisponibles as $id => $industria){ ?>
@@ -427,7 +427,7 @@
 					<h4 id="toolEditorList">Herramientas</h4>
 					<div>
 						<select id="availableAreasSelect">
-							<option id="availableAreasDefaultOption" value="-1" selected="selected">Areas</option>
+							<option id="availableAreasDefaultOption" value="-1" selected="selected">Áreas</option>
 							<?php foreach ($areasDisponibles as $id => $area){ ?>
 								<option value="<?php echo $id; ?>"><?php echo $area;?></option> 
 							<?php } ?>
