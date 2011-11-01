@@ -102,7 +102,7 @@
 						</div>
 						<div class="row clearfix">
 				
-							<div><?php if($curriculumData->idProvincia!= "") echo "<b>Provincia:</b> ".$curriculumData->idProvincia;?>,&nbsp;</div>			
+							<div><?php if($curriculumData->idProvincia!= "") echo "<b>Provincia:</b> ".$provinciasDisponibles[$curriculumData->idProvincia];?>,&nbsp;</div>			
 							<div><?php echo ($curriculumData->idPais=="") ? ""  :  $paises[$curriculumData->idPais]?></div>
 						</div>
 		

@@ -43,7 +43,7 @@
 	
 	<div id="homeCandidatePersonalData">
 		<div id="homeCandidatePersonalDataBody" class="block">
-			<h2>Datos Personales: <a href="javascript:editUserData();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
+			<h2>Datos Personales <a href="javascript:editUserData();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
 			<div class="inblock">
 				<div class="clearfix row">
 					<div class="label" > Nombre: </div><div> <?php echo $usuarioData->nombre;?></div>
@@ -116,7 +116,7 @@
 					</select>
 				</div>
 				<div class="field clearfix">
-					<div class="label">Numero:</div>
+					<div class="label">Número de documento:</div>
 					<input type="text" id="userDataEditorIdNumber" value="" />
 				</div>
 				<div class="field clearfix">

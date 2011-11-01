@@ -104,7 +104,7 @@ class Usuario_model extends FR_Model {
 		else{
 			
 			//TODO exception managment.
-        	throw new Exception('Oracle error in modificarUsuario(' . $usuario->email . ') message: ' . $n2);
+        	throw new Exception('Oracle error in modificarUsuario(' . $usuario["email"] . ') message: ' . $n2);
 		}		
 		
 	}	

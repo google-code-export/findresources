@@ -150,7 +150,7 @@ function eraseWorkExperience(id){
 			dataType: "json",
 			async: true,
 			success: function(response){
-				alert("Se han guardado los datos");
+				//alert("Se han guardado los datos");
 				hidePopUp();
 				//TODO this is so ugly we shouldnt reload all the page.
 				window.location.reload();
@@ -176,7 +176,7 @@ function eraseFormalEducation(id){
 			dataType: "json",
 			async: true,
 			success: function(response){
-				alert("Se han guardado los datos");
+				//alert("Se han guardado los datos");
 				hidePopUp();
 				//TODO this is so ugly we shouldnt reload all the page.
 				window.location.reload();
@@ -202,7 +202,7 @@ function eraseInformalEducation(id){
 			dataType: "json",
 			async: true,
 			success: function(response){
-				alert("Se han guardado los datos");
+				//alert("Se han guardado los datos");
 				hidePopUp();
 				//TODO this is so ugly we shouldnt reload all the page.
 				window.location.reload();
@@ -260,7 +260,7 @@ $(function(){
 			dataType: "json",
 			async: true,
 			success: function(response){
-				alert("Se han guardado los datos");
+				//alert("Se han guardado los datos");
 				hidePopUp();
 				//TODO this is so ugly we shouldnt reload all the page.
 				window.location.reload();
