@@ -16,6 +16,7 @@ class Busquedas extends CI_Controller {
 	public function index(){
 		$idUsuario = @$_SESSION[SESSION_ID_USUARIO];
 		if(!$idUsuario){
+			redirect("login");
 			/////////////HARDCODED//////////////////////////
 			/////////////HARDCODED//////////////////////////
 			$idUsuario = "leandrominio@gmail.com";
@@ -25,17 +26,10 @@ class Busquedas extends CI_Controller {
 			
 			/////////////HARDCODED//////////////////////////
 			/////////////HARDCODED//////////////////////////
-			
-			///////////DEVELOPING//UNCOMMENT//THIS////////////////
-			///////////DEVELOPING//UNCOMMENT//THIS////////////////
-			///////save in session where the user wanted to enter
-			//redirect('login');
-			///////////DEVELOPING//UNCOMMENT//THIS////////////////
-			///////////DEVELOPING//UNCOMMENT//THIS////////////////
 		}
 		if(@$_SESSION[SESSION_TIPO_USUARIO] != "E") {
-			echo "Usted no es un usuario Empresa.";
-			exit;
+			alert("Usted no es un usuario Empresa.");
+			redirect("login");
 		}
 		
 		if(isset($_GET["busquedaId"])){
