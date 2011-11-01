@@ -295,7 +295,7 @@ function setHardSkills(){
 		dataType: "json",
 		async: true,
 		success: function(response){
-			alert("Se han guardado los datos");
+			//alert("Se han guardado los datos");
 			hidePopUp();
 			//TODO this is so ugly we shouldnt reload all the page.
 			window.location.reload();
@@ -332,7 +332,7 @@ function setSoftSkills(){
 		dataType: "json",
 		async: true,
 		success: function(response){
-			alert("Se han guardado los datos");
+			//alert("Se han guardado los datos");
 			hidePopUp();
 			//TODO this is so ugly we shouldnt reload all the page.
 			window.location.reload();
@@ -477,7 +477,7 @@ function eraseFormalEducation(index){
 			dataType: "json",
 			async: true,
 			success: function(response){
-				alert("Se han guardado los datos");
+				//alert("Se han guardado los datos");
 				hidePopUp();
 				//TODO this is so ugly we shouldnt reload all the page.
 				window.location.reload();
@@ -533,7 +533,7 @@ function setFormalEducation(){
 		dataType: "json",
 		async: true,
 		success: function(response){
-			alert("Se han guardado los datos");
+			//alert("Se han guardado los datos");
 			hidePopUp();
 			//TODO this is so ugly we shouldnt reload all the page.
 			window.location.reload();
@@ -574,7 +574,7 @@ function setAditionalData(){
 			dataType: "json",
 			async: true,
 			success: function(response){
-				alert("Se han guardado los datos");
+				//alert("Se han guardado los datos");
 				hidePopUp();
 				//TODO this is so ugly we shouldnt reload all the page.
 				window.location.reload();

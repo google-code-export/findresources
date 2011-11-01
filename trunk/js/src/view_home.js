@@ -39,7 +39,7 @@ $(function(){
 
 			idTipoUsuario: userData.idTipoUsuario
 		};
-
+		var error_setUsr = false;
 		$.ajax({
 			url: "home/setUsuario",
 			global: false,
@@ -58,13 +58,13 @@ $(function(){
 				}
 			},
 			error: function(response){
+				error_setUsr = true; 
 				processError(response);
 			}
 		});
-		
-		if (userData.idTipoUsuario =="E") {
+		if (userData.idTipoUsuario =="E" && error_setUsr == false) {
 			//Valido el formato de la fecha para que no tire error el SP dd/mm/yyyy
-			if(validate($('#userDataEditorFechaInicio').val())){
+			//if(validate($('#userDataEditorFechaInicio').val())){
 				
 				var empresa = {
 					calle: $('#userDataEditorAddress').val(),
@@ -97,10 +97,10 @@ $(function(){
 					}
 				});
 			
-			} else {
-				alert("Formato de fecha incorrecto. Debe ser dd/mm/yyyy");
-				return false;
-			}
+			//} else {
+			//	alert("Formato de fecha incorrecto. Debe ser dd/mm/yyyy");
+			//	return false;
+			//}
 			
 		}
 	});
