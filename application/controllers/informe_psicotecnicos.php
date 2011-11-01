@@ -20,18 +20,21 @@ class Informe_Psicotecnicos extends CI_Controller {
 	
 	public function getPsicotecnicosGrid(){
 		
-		$industriasDisponibles = $this->Util_model->getIndustriasDisponibles();
-		
+		$estadisticas = $this->Test_model->getEstadisticas("");
+		$estadisticas = $estadisticas["estadisticas"];
 		$grid["page"] = 1;
-		$grid["total"] = sizeof($industriasDisponibles);
+		$grid["total"] = sizeof($estadisticas);
 		$grid["rows"] = array();
 		 
 		$rc = false;
 		$key = 1;
-		foreach ($industriasDisponibles as $industria) {
+		foreach ($estadisticas as $estadistica) {
 			$grid["rows"][$key]["id"] = $key;
-			$grid["rows"][$key]["cell"] = array("MIPS" , "Introversion, Apertura", "9999", 
-			"<a class='' href='javascript:showPropose(\"". "1" ."\", \"". "1" ."\");'><img src='/images/src/lupa.png'></img></a>" 
+			$grid["rows"][$key]["cell"] = array(
+			$estadistica->d_test,
+			$estadistica->listaaspectosper, 
+			$estadistica->cantidad, 
+			"<a class='' href='javascript:showPropose(\"". $estadistica->id_test ."\", \"". $estadistica->d_test ."\");'><img src='/images/src/lupa.png'></img></a>" 
 		);
 			$key++;
 		}
@@ -43,17 +46,23 @@ class Informe_Psicotecnicos extends CI_Controller {
 		$idPsicotecnico = @$_GET["idPsicotecnico"];
 	
 		////////////////////////
-		$industriasDisponibles = $this->Util_model->getIndustriasDisponibles();
+		$propuestas = $this->Test_model->getPropuestasCambios($idPsicotecnico);
+		$propuestas = $propuestas["propuestas"]; 
 		
 		$grid["page"] = 1;
-		$grid["total"] = sizeof($industriasDisponibles);
+		$grid["total"] = sizeof($propuestas);
 		$grid["rows"] = array();
 		 
 		$rc = false;
 		$key = 1;
-		foreach ($industriasDisponibles as $industria) {
+		foreach ($propuestas as $propuesta) {
 			$grid["rows"][$key]["id"] = $key;
-			$grid["rows"][$key]["cell"] = array("10/10/2010" , "entrada 1, entrada 2, entrada 3, entrada 4", "Saluda 1 2 y 3", "Propuesta de Salida . . . . ", "Notas .... . . . .");
+			$grid["rows"][$key]["cell"] = array(
+					$propuesta->fecha, 
+					$propuesta->entradas,
+					$propuesta->salida,
+					$propuesta->propuesta,
+					$propuesta->nota);
 			$key++;
 		}
 		echo json_encode_utf8($grid);

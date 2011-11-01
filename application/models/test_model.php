@@ -337,10 +337,61 @@ class Test_model extends CI_Model {
         	throw new Exception('Oracle error message in getInforme(): ' . $result["desc"]);
 		}
 		
+	}
+	
+
+	public function getEstadisticas($idTest){
 		
+		$result["estadisticas"] = NULL;
+		$result["error"] = NULL;
+		$result["desc"] = NULL;
+		
+		$params = array(
+		array('name'=>':PI_ID_TEST', 'value'=>$idTest, 'type'=>SQLT_CHR , 'length'=>-1),
+		array('name'=>':PO_ESTADISTICA', 'value'=>&$result["estadisticas"], 'type'=>SQLT_RSET , 'length'=>255),
+		array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
+		array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_TEST_II','pr_estadistica_test',$params);
+		$result["estadisticas"] = $this->oracledb->get_cursor_data(":PO_ESTADISTICA");
+		
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in getInforme(): ' . $result["desc"]);
+		}
+		
+	}
+
+
+	public function getPropuestasCambios($idTest){
+		
+		$result["propuestas"] = NULL;
+		$result["error"] = NULL;
+		$result["desc"] = NULL;
+		
+		$params = array(
+			array('name'=>':PI_ID_TEST', 'value'=>$idTest, 'type'=>SQLT_CHR , 'length'=>-1),
+			array('name'=>':PO_PROPUESTAS', 'value'=>&$result["propuestas"], 'type'=>SQLT_RSET , 'length'=>255),
+			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
+		);
+		
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_TEST_III','pr_obtiene_prop_de_cambio',$params);
+		$result["propuestas"] = $this->oracledb->get_cursor_data(":PO_PROPUESTAS");
+		
+		if($result["error"] == 0){
+			return $result;		
+		}else{
+			//TODO exception managment.
+        	throw new Exception('Oracle error message in getInforme(): ' . $result["desc"]);
+		}
 		
 	}
 	
 	
+	
+
 }
 ?>

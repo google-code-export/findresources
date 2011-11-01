@@ -11,7 +11,7 @@ $(function() {
 		],
 		sortname: "orden",
 		sortorder: "asc",
-		title: 'Areas de negocio disponibles',
+		title: 'Psicotecnicos Disponibles',
 		rp: 15,
 		width: 890,
 		height: 500,
@@ -22,8 +22,8 @@ $(function() {
 	}); 
 
 	
-	addExportLink("#industriasGridContainer", "Informe de Industras Disponibles");
-	addExportLink("#herramientasGridContainer", "Informe de Aspectos de la Personalidad Disponibles");
+	addExportLink("#psicotecnicosGridContainer", "Psicotecnicos Disponibles");
+	addExportLink("#propuestasGridContainer", "Revisiones del psicotecnicos");
 	
 	return false;
 });
