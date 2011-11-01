@@ -33,10 +33,11 @@ class Test extends CI_Controller {
 		/* USUARIO DE PRUEBA HASTA PODER TOMAR EL USUARIO REAL GUARDADO EN SESION */
 		$idUsuario = $this->functionutils->getSession('SESSION_ID_USUARIO');
 		if(!$idUsuario){
+			redirect('login');
 			/////////////HARDCODED//////////////////////////
 			/////////////HARDCODED//////////////////////////
-			$idUsuario = "juan@juan.com";
-			$this->functionutils->setSession('SESSION_ID_USUARIO',$idUsuario);
+			//$idUsuario = "juan@juan.com";
+			//$this->functionutils->setSession('SESSION_ID_USUARIO',$idUsuario);
 			/////////////HARDCODED//////////////////////////
 			/////////////HARDCODED//////////////////////////		
 		}

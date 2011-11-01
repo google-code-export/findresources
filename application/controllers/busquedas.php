@@ -19,17 +19,16 @@ class Busquedas extends CI_Controller {
 			redirect("login");
 			/////////////HARDCODED//////////////////////////
 			/////////////HARDCODED//////////////////////////
-			$idUsuario = "leandrominio@gmail.com";
-			$idBusqueda = "1";
-			$_SESSION[SESSION_ID_USUARIO] = "leandrominio@gmail.com";
-			$_SESSION[SESSION_TIPO_USUARIO] = "E";
-			
+			//$idUsuario = "leandrominio@gmail.com";
+			//$idBusqueda = "1";
+			//$_SESSION[SESSION_ID_USUARIO] = "leandrominio@gmail.com";
+			//$_SESSION[SESSION_TIPO_USUARIO] = "E";
 			/////////////HARDCODED//////////////////////////
 			/////////////HARDCODED//////////////////////////
 		}
 		if(@$_SESSION[SESSION_TIPO_USUARIO] != "E") {
 			alert("Usted no es un usuario Empresa.");
-			redirect("login");
+			redirect("home");
 		}
 		
 		if(isset($_GET["busquedaId"])){

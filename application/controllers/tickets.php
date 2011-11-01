@@ -8,18 +8,13 @@ class Tickets extends CI_Controller {
 	public function index(){
 		$usuario = @$_SESSION[SESSION_ID_USUARIO];
 		if(!$usuario){
+			redirect('login');
 			/////////////HARDCODED//////////////////////////
 			/////////////HARDCODED//////////////////////////
-			$usuario = "leandrominio@gmail.com";
-			$_SESSION[SESSION_ID_USUARIO] = $usuario;
+			//$usuario = "leandrominio@gmail.com";
+			//$_SESSION[SESSION_ID_USUARIO] = $usuario;
 			/////////////HARDCODED//////////////////////////
 			/////////////HARDCODED//////////////////////////
-			
-			///////////DEVELOPING//UNCOMMENT//THIS////////////////
-			///////////DEVELOPING//UNCOMMENT//THIS////////////////
-			//redirect('login');
-			///////////DEVELOPING//UNCOMMENT//THIS////////////////
-			///////////DEVELOPING//UNCOMMENT//THIS////////////////
 		}
 		
 		$info_tickets = $this->Ticket_model->consultarSaldoTicketEmpresa($usuario);
