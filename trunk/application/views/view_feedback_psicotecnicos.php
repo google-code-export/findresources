@@ -87,6 +87,9 @@
 		<div class="popuptitle"> Modificación de Coloquio </div>
 		<a href="javascript:;" class="closePopUp"></a>
 		<div class="inside">
+			<input id="softSkillEditorExpertIdTest" type="hidden"/>
+			<input id="softSkillEditorExpertIdRun" type="hidden"/>
+		
 			<h4>Entrada del candidato: <b><label id="softSkillEditorCandidateEntry"></label></b></h4>
 			<h4>Salida del sistema: <b><label id="softSkillEditorSystemResponse"></label></b></h4>
 
@@ -102,7 +105,7 @@
 
 			<input type="hidden" id="softSkillEditorId"/>
 			<div class="buttonsPopUp">
-				<a href="javascript:setSoftSkill();" class="button save sendButton">Guardar</a>
+				<a href="javascript:setPropuestaDeSalida();" class="button save sendButton">Guardar</a>
 				<a href="#" class="button cancelPopUp">Cancelar</a>
 			</div>
 		</div>

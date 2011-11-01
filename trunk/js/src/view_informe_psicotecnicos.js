@@ -7,7 +7,7 @@ $(function() {
 			{display: 'Nombre ', name : 'nombre', width : 200, sortable : false, align: 'center'},
 			{display: 'Aspectos que obtiene ', name : 'aspectos', width : 423, sortable : false, align: 'center'},
 			{display: 'Veces Utilizado', name : 'cuenta', width : 100, sortable : false, align: 'center'},
-			{display: 'Ver Propuestas', name : 'ver_propuesta', width : 100, sortable : false, align: 'center'}
+			{display: 'Ver Revisiones', name : 'ver_propuesta', width : 100, sortable : false, align: 'center'}
 		],
 		sortname: "orden",
 		sortorder: "asc",
@@ -54,7 +54,7 @@ function showPropose(idPsicotecnico, name){
 				processError(response);
 			} 
 		}); 	
-		addExportLink("#propuestasGrid", "Informe de Propuestas de modificación de psicotécnicos.");
+		addExportLink("#propuestasGrid", "Informe de revisiones de psicotécnicos.");
 
 	}else{
 		$("#propuestasGrid").flexOptions({url: 'informe_psicotecnicos/getPropuestasGrid?idPsicotecnico=' + idPsicotecnico}); 
