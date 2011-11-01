@@ -1,5 +1,12 @@
 /*GENERAL*/
 
+.popup .label{
+	width: 200px;
+}
+.popup .in{
+	width: 500px;
+}
+
 .block{
 	width:500px;
 }
