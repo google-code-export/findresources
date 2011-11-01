@@ -46,7 +46,12 @@ class Busquedas extends CI_Controller {
 			//SET BUSQUEDA SELECCIONADA
 			$_SESSION[SESSION_ID_BUSQUEDA_SELECCIONADA]= $idBusqueda;
 			$data['busquedaSeleccionada'] = $this->Busquedas_model->getOpcionesDeBusqueda($idBusqueda);
-			$data['estadoBusqueda'] = $this->Busquedas_model->getEstadoBusqueda($idBusqueda);
+			try{
+				// SI NO PUEDO OBTENER EL ESTADO DE LA BUSQUEDA REDIRIJO AL LISTADO
+				$data['estadoBusqueda'] = $this->Busquedas_model->getEstadoBusqueda($idBusqueda);
+			} catch (Exception $e) {
+				redirect("/busquedas");
+			}
 			$data['busquedaId'] = $idBusqueda ;
 			//$data['resultadoBusqueda'] = $this->Busquedas_model->getResultadoBusqueda($idBusqueda,"S");
 			//var_dump($data['resultadoBusqueda']);
@@ -56,7 +61,17 @@ class Busquedas extends CI_Controller {
 		
 		//$data['habilidadesBlandasDisponibles'] = $this->Busquedas_model->getHabilidadesBlandasBusqueda($idBusqueda);
 		$data['busquedasDelUsuario'] = $this->Busquedas_model->getBusquedasDeUsuario($idUsuario);
+		
 		$data['busquedasDelUsuario'] = array_merge($data['busquedasDelUsuario']['busquedas_activas'], $data['busquedasDelUsuario']['busquedas_inactivas']);
+
+
+		//VERIFICO SI LA BUSQUEDA PASADA POR PARAMETRO PERTENECE AL USUARIO
+		if(isset($idBusqueda)){
+			if (!$this->busquedaPerteneceAlUsuario($data['busquedasDelUsuario'],$idBusqueda)){
+				redirect("/busquedas");
+			}
+		}
+		
 		
 		$idHabilidad = NULL;
 
@@ -110,7 +125,17 @@ class Busquedas extends CI_Controller {
 		echo json_encode($respuesta);
 	}*/
 
-		
+	public function busquedaPerteneceAlUsuario($busquedas,$idBusqueda){
+		$existe = false;
+		foreach($busquedas as $bus) {
+			if ($idBusqueda == @$bus->id_busqueda){
+				$existe = true;
+				break;
+			}	
+		}
+		return $existe;
+	}
+	
 	public function setBusqueda(){
 		$busqueda= $this->input->post('busqueda');
 		$busqueda = json_decode_into_array(utf8_decode($busqueda));
@@ -215,15 +240,15 @@ class Busquedas extends CI_Controller {
 		$resultados_de_busqueda = $this->Busquedas_model->getResultadoBusqueda($idBusqueda,$actualizar);
 		if(!empty($resultados_de_busqueda["correos"])) {
 			$this->sendTestEmailsToUser($resultados_de_busqueda["correos"]);
-			echo "SI A ALGUNO VE ESTO MANDEMELO POR MAIL !! ESTARIA ENVIANDO CORREOS!!!!";
-			print_r($resultados_de_busqueda["correos"]);
-			exit;
+			//echo "SI A ALGUNO VE ESTO MANDEMELO POR MAIL !! ESTARIA ENVIANDO CORREOS!!!!";
+			//print_r($resultados_de_busqueda["correos"]);
+			//exit;
 		}
 		if(!empty($resultados_de_busqueda["correos_recuerdo"])) {
 			$this->sendTestEmailsReminderToUser($resultados_de_busqueda["correos_recuerdo"]);
-			echo "SI A ALGUNO VE ESTO MANDEMELO POR MAIL !! ESTARIA ENVIANDO CORREOS RECUERDO!!!!";
-			print_r($resultados_de_busqueda["correos_recuerdo"]);
-			exit;
+			//echo "SI A ALGUNO VE ESTO MANDEMELO POR MAIL !! ESTARIA ENVIANDO CORREOS RECUERDO!!!!";
+			//print_r($resultados_de_busqueda["correos_recuerdo"]);
+			//exit;
 		}
 		//var_dump($resultados_de_busqueda);
 		$grid["page"] = 1;
@@ -340,7 +365,7 @@ class Busquedas extends CI_Controller {
 	
 
 	private function sendTestEmailsToUser($emails){
-			foreach ($emails["E_mail"] as $email) {
+			foreach ($emails["usuario"] as $email) {
 				$this->email->from("noreply@gmail.com", "FindResources");
 				$this->email->to($email);
 				$this->email->bcc ("leandro.minio@gmail.com");
@@ -358,7 +383,7 @@ class Busquedas extends CI_Controller {
 			}
 	}
 	private function sendTestEmailsReminderToUser($emails){
-			foreach ($emails["E_mail"] as $email) {
+			foreach ($emails["usuario"] as $email) {
 				$this->email->from("noreply@gmail.com", "FindResources");
 				$this->email->to($email);
 				$this->email->bcc ("leandro.minio@gmail.com");

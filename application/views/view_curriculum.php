@@ -236,7 +236,7 @@
 					<p class="title"><?php echo $educacion->titulo?> </p>
 					<p class="when"><span class="dateFrom"><?php echo $educacion->fechaInicio?></span> – <span class="dateTo"><?php echo $educacion->fechaFinalizacion?></span></p>
 					<p class="eduLevel"><?php echo $nivelesDeEducacion[$educacion->idNivelEducacion]?></p>
-					<p>Area: <span class="area"><?php echo $areasDisponibles[$educacion->idArea]?></span></p>
+					<p>Área: <span class="area"><?php echo $areasDisponibles[$educacion->idArea]?></span></p>
 					<p>Estado: 
 					<span class="state">
 					<?php 
@@ -321,7 +321,7 @@
 					<input type="text" id="cvDataEditorAddressStreet" value="" />
 				</div>
 				<div class="field clearfix">
-					<div class="label">Numero:</div>
+					<div class="label">Número:</div>
 					<input type="text" id="cvDataEditorAddressNumber" value="" />
 				</div>
 				<div class="field clearfix">
@@ -339,8 +339,9 @@
 				</div>
 				
 				<div class="field clearfix">
-					<div class="label">Pais:</div>
+					<div class="label">País:</div>
 					<select id="cvDataEditorCountry">
+						<option value="" selected=selected>Seleccione..</option>
 						<?php foreach ($paises as $id => $desc){ ?>
 							<option value="<?php echo $id; ?>"><?php echo $desc;?></option> 
 						<?php } ?>
@@ -349,8 +350,8 @@
 
 				<div class="field clearfix">
 					<div class="label">Provincia:</div>
-
 					<select id="cvDataEditorState">
+						<option value="" selected=selected>Seleccione..</option>
 						<?php foreach ($provinciasDisponibles as $id => $desc){ ?>
 							<option value="<?php echo $id; ?>"><?php echo $desc;?></option> 
 						<?php } ?>
@@ -389,6 +390,7 @@
 				<div class="field clearfix">
 					<div class="label">Nacionalidad:</div>
 					<select id="cvDataEditorNationality">
+						<option value="" selected=selected>Seleccione..</option>
 						<?php foreach ($paises as $id => $desc){ ?>
 							<option value="<?php echo $id; ?>"><?php echo $desc;?></option> 
 						<?php } ?>
@@ -474,7 +476,7 @@
 			<h4 class="toolsTitle" >Herramientas</h4>
 			<div>
 				<select id="availableAreasSelect">
-					<option id="availableAreasDefaultOption" value="-1" selected="selected">Areas</option>
+					<option id="availableAreasDefaultOption" value="-1" selected="selected">Áreas</option>
 					<?php foreach ($areasDisponibles as $id => $area){ ?>
 						<option value="<?php echo $id; ?>"><?php echo $area;?></option> 
 					<?php } ?>
@@ -556,7 +558,7 @@
 				</div>
 				
 				<div class="field clearfix">
-					<div class="label">Pais:</div>
+					<div class="label">País:</div>
 					<select id="workExperienceEditorCountry"> 
 					   <?php  
 					   		foreach ($paises as $id => $pais){
@@ -629,7 +631,7 @@
 					</div>
 	
 					<div class="field clearfix">
-						<div class="label">Titulo:</div>
+						<div class="label">Título:</div>
 						<input type="text" id="formalEducationEditorTitle"/>
 					</div>
 	
