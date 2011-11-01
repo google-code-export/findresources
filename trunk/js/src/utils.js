@@ -35,7 +35,7 @@ function strip_tags (input, allowed) {
 /*WINDOW ONLOAD*/
 $(function(){
 	if($(".datepicker").length != 0){
-		$(".datepicker").datepicker({ dateFormat: 'dd/mm/yy'});
+		$(".datepicker").datepicker({ dateFormat: 'dd/mm/yy', yearRange: '1900:2030', changeYear: true});
 	}
 	//$.datepicker.formatDate('yy-mm-dd', new Date(2007, 1 - 1, 26));
 
