@@ -68,23 +68,18 @@ class Test extends CI_Controller {
 	}
 	/** METODOS SOLO PARA PRUEBAS INTERNAS **/
 	function t1(){
-		$this->functionutils->setSession('SESSION_ID_USUARIO',"juan@juan.com");
 		$this->luscher("1");
 	}
 	function t2(){
-		$this->functionutils->setSession('SESSION_ID_USUARIO',"juan@juan.com");
 		$this->d48("2");
 	}
 	function t3(){
-		$this->functionutils->setSession('SESSION_ID_USUARIO',"juan@juan.com");
 		$this->raven("3");
 	}
 	function t4(){
-		$this->functionutils->setSession('SESSION_ID_USUARIO',"juan@juan.com");
 		$this->mips("4");
 	}
 	function t5(){
-		$this->functionutils->setSession('SESSION_ID_USUARIO',"juan@juan.com");
 		$this->rorschach("5");
 	}
 	/** METODOS SOLO PARA PRUEBAS INTERNAS **/
