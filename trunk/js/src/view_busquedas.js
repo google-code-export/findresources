@@ -379,29 +379,29 @@ function addSoftSkill(){
 
 function addFormalEduction(){
 	
-	$('#formalEducationEditorInstitution').val();
-	$('#formalEducationEditorInstitutionDescription').val();
+	$('#formalEducationEditorInstitution').val("");
+	$('#formalEducationEditorInstitutionDescription').val("");
 	checkInstitutionDescriptionDisabled();
 
-	$('#formalEducationEditorInstitutionMode').val();
+	$('#formalEducationEditorInstitutionMode').val("");
 	
-	$('#formalEducationEditorTitle').val();
-	$('#formalEducationEditorTitleMode').val();
+	$('#formalEducationEditorTitle').val("");
+	$('#formalEducationEditorTitleMode').val("");
 	
-	$('#formalEducationEditorLevel').val();
-	$('#formalEducationEditorLevelMode').val();
+	$('#formalEducationEditorLevel').val("");
+	$('#formalEducationEditorLevelMode').val("");
 
-	$('#formalEducationEditorArea').val();
-	$('#formalEducationEditorAreaMode').val();
+	$('#formalEducationEditorArea').val("");
+	$('#formalEducationEditorAreaMode').val("");
 	
 
-	$('#formalEducationEditorStatus').val();
-	$('#formalEducationEditorStatusMode').val();
+	$('#formalEducationEditorStatus').val("");
+	$('#formalEducationEditorStatusMode').val("");
 	
-	$('#formalEducationEditorStatusMode').val();
-	$('#formalEducationEditorAverageFrom').val();
-	$('#formalEducationEditorAverageTo').val();
-	$('#formalEducationEditorAverageMode').val();
+	$('#formalEducationEditorStatusMode').val("");
+	$('#formalEducationEditorAverageFrom').val("");
+	$('#formalEducationEditorAverageTo').val("");
+	$('#formalEducationEditorAverageMode').val("");
 
 	showPopUp('#formalEducationPopUp');
 
