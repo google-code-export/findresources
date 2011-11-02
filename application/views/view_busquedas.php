@@ -136,7 +136,7 @@
 									<div class="block" id="hardProperties">
 										<h2>Conocimientos <a href="javascript:editHardSkills();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
 										<div class="inblock">
-											<h4>Áreas de negocio</h4>
+											<h4><b>Áreas de negocio</b></h4>
 											<ul>
 											<?php foreach ($busquedaSeleccionada['lista_industria']  as $id => $habilidad){ ?>
 												<li class="clearfix">
@@ -159,7 +159,7 @@
 										</div>
 						
 										<div class="inblock">
-											<h4>Herramientas</h4>
+											<h4><b>Herramientas</b></h4>
 											<ul>
 											<?php foreach ($busquedaSeleccionada['lista_herramienta'] as $habilidad){ ?>
 												<li class="clearfix">
@@ -184,7 +184,7 @@
 										<h2>Aspectos de la Personalidad <a href="javascript:editSoftSkills();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
 										<?php if(count($busquedaSeleccionada['hab_blanda'])) {?><div class="inblock"> <?php  }?>
 											<?php foreach ($busquedaSeleccionada['hab_blanda'] as $habilidad){ ?>
-												<div class="row clearfix">
+												<div class="row clearfix labelpersonalidad">
 													<?php echo $habilidad->d_habilidad_blanda; ?>
 												</div>
 											<?php } ?>
@@ -212,7 +212,7 @@
 													<?php echo ($educacion->c_modo_entidad == "R")? "(Requerido)" : "(Deseado)" ?>
 												</div>								
 												<div class="row clearfix">
-													<div class="label"> Titulo: </div> 
+													<div class="label"> Título: </div> 
 													<?php echo $educacion->titulo ?>
 													<?php echo ($educacion->c_modo_titulo == "R")? "(Requerido)" : "(Deseado)" ?>
 												</div>								
@@ -222,7 +222,7 @@
 													<?php echo ($educacion->c_modo_nivel_educacion == "R")? "(Requerido)" : "(Deseado)" ?>
 												</div>								
 												<div class="row clearfix">
-													<div class="label"> Area: </div> 
+													<div class="label"> Área: </div> 
 													<?php echo $educacion->d_area ?>
 													<?php echo ($educacion->c_modo_area == "R")? "(Requerido)" : "(Deseado)" ?>
 												</div>								
@@ -247,12 +247,17 @@
 										
 										<h2>Datos Adicionales <a href="javascript:editAditionalData();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
 											<div class="study inblock">
-												<?php if( $recurso["edad_desde"] != "" OR $recurso["edad_hasta"] != "")  { ?>
+											<?php if (@$recurso["edad_c_modo"] == "" AND @$recurso["twitter_c_modo"] == "" AND @$recurso["gtalk_c_modo"] == "" AND @$recurso["sms_c_modo"] == "") { ?>
+												<div class="row clearfix">
+													<div class="label">No hay datos adicionales seleccionados.</div> 
+												</div>
+											<?php } else { ?>
+												<?php if( $recurso["edad_desde"] != "" AND $recurso["edad_hasta"] != "" AND @$recurso["edad_c_modo"] != "" )  { ?>
 												<div class="row clearfix">
 													<div class="label"> Edad: </div> 
 													<?php echo @$recurso["edad_desde"] ?> a
 													<?php echo @$recurso["edad_hasta"]?> años
-													<?php echo (@$recurso["edad_c_modo"] == "R")? "(Requerido)" : "(Deseado)"?>  
+													<?php echo (@$recurso["edad_c_modo"] == "R")? "(Requerido)" : (@$recurso["edad_c_modo"] == "P")?"(Deseado)" : "(Indiferente)"?>  
 												</div>								
 												<?php } ?>
 												<!--div class="row clearfix">
@@ -267,19 +272,26 @@
 													<div class="label">Localidad:</div> 
 													<!--?php echo $recurso->localidad ?>
 												</div-->
+												<?php if(@$recurso["twitter_c_modo"] != "") {?>
 												<div class="row clearfix">
-													<div class="label">Posee twitter:</div> 
-													<?php echo (@$recurso["twitter_c_modo"] == "R")? "(Requerido)" : "(Deseado)" ?>
+													<div class="label">Posee Twitter:</div> 
+													<?php echo (@$recurso["twitter_c_modo"] == "R")? "(Requerido)" : (@$recurso["twitter_c_modo"] == "P")?"(Deseado)" : "(Indiferente)"?>
 												</div>
+												<?php } ?>
+												<?php if(@$recurso["gtalk_c_modo"] != "") {?>
 												<div class="row clearfix">
-													<div class="label">Posee gtalk:</div> 
-													<?php echo (@$recurso["gtalk_c_modo"] == "R")? "(Requerido)" : "(Deseado)" ?>
+													<div class="label">Posee Gtalk:</div> 
+													<?php echo (@$recurso["gtalk_c_modo"] == "R")? "(Requerido)" : (@$recurso["gtalk_c_modo"] == "P")?"(Deseado)" : "(Indiferente)"?>
 												</div>
+												<?php } ?>
+												<?php if(@$recurso["sms_c_modo"] != "") {?>
 												<div class="row clearfix">
-													<div class="label">Posee sms:</div> 
-													<?php echo (@$recurso["sms_c_modo"] == "R")? "(Requerido)" : "(Deseado)" ?>
+													<div class="label">Posee Skype:</div> 
+													<?php echo (@$recurso["sms_c_modo"] == "R")? "(Requerido)" : (@$recurso["sms_c_modo"] == "P")?"(Deseado)" : "(Indiferente)"?>
 												</div>
+												<?php } ?>
 											</div>
+											<?php } ?>
 									</div>
 			
 							    </div> <!--  END OF TAB1 -->
@@ -532,7 +544,7 @@
 		<div class="popup" id="formalEducationPopUp" style="display:none;">
 			<table cellspacing="0" cellpadding="0" align="center">
 			<tr><td>
-				<div class="in">
+				<div class="in" style="width:500px">
 					<div class="popuptitle">Educación Formal</div>
 					<a href="javascript:;" class="closePopUp"></a>
 					<div class="inside">
@@ -585,7 +597,7 @@
 			
 			
 							<div class="field clearfix">
-								<div class="label">Area:</div>
+								<div class="label">Área:</div>
 								<select id="formalEducationEditorArea">
 								   <?php foreach ($areasDisponibles as $id => $desc){ ?>
 								   			<option value="<?php echo $id;?>">
@@ -654,27 +666,31 @@
 								<select class="modeField" id="aditionalDataEditorAgeMode">
 								   			<option value="P" <?php if ($recurso["edad_c_modo"] == "P") echo "selected";?>>Deseado</option>
 								   			<option value="R" <?php if ($recurso["edad_c_modo"] == "R") echo "selected";?>>Requerido</option> 
+								   			<option value="" <?php if ($recurso["edad_c_modo"] == "") echo "selected";?>>Indiferente</option>
 								</select>
 							</div>
 							<div class="field clearfix">
-								<div class="label">Posee twitter:</div>
+								<div class="label">Posee Twitter:</div>
 								<select class="modeField" id="aditionalDataEditorTwitterMode">
 								   			<option value="P" <?php if ($recurso["twitter_c_modo"] == "P") echo "selected";?>>Deseado</option>
-								   			<option value="R" <?php if ($recurso["twitter_c_modo"] == "R") echo "selected";?>>Requerido</option> 
+								   			<option value="R" <?php if ($recurso["twitter_c_modo"] == "R") echo "selected";?>>Requerido</option>
+								   			<option value="" <?php if ($recurso["twitter_c_modo"] == "") echo "selected";?>>Indiferente</option> 
 								</select>
 							</div>
 							<div class="field clearfix">
-								<div class="label">Posee gtalk:</div>
+								<div class="label">Posee Gtalk:</div>
 								<select class="modeField" id="aditionalDataEditorGtalkMode">
 								   			<option value="P" <?php if ($recurso["gtalk_c_modo"] == "P") echo "selected";?>>Deseado</option>
-								   			<option value="R" <?php if ($recurso["gtalk_c_modo"] == "R") echo "selected";?>>Requerido</option> 
+								   			<option value="R" <?php if ($recurso["gtalk_c_modo"] == "R") echo "selected";?>>Requerido</option>
+								   			<option value="" <?php if ($recurso["gtalk_c_modo"] == "") echo "selected";?>>Indiferente</option> 
 								</select>
 							</div>
 							<div class="field clearfix">
-								<div class="label">Posee sms:</div>
+								<div class="label">Posee Skype:</div>
 								<select class="modeField" id="aditionalDataEditorSmsMode">
 								   			<option value="P" <?php if ($recurso["sms_c_modo"] == "P") echo "selected";?>>Deseado</option>
-								   			<option value="R" <?php if ($recurso["sms_c_modo"] == "R") echo "selected";?>>Requerido</option> 
+								   			<option value="R" <?php if ($recurso["sms_c_modo"] == "R") echo "selected";?>>Requerido</option>
+								   			<option value="" <?php if ($recurso["sms_c_modo"] == "") echo "selected";?>>Indiferente</option> 
 								</select>
 							</div>
 						</div>

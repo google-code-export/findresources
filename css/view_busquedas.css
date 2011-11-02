@@ -59,8 +59,15 @@
 }
 
 .label {
-	font-size:12px; /*dont know why need to do this*/
+	font-size:14px; /*dont know why need to do this*/
 	width: 100px;
+	margin-left:15px;
+	margin-bottom:5px;
+}
+.labelpersonalidad{
+	margin-left:15px;
+	margin-bottom:5px;
+	margin-top:5px;
 }
 /*
 .ui-accordion-content {
