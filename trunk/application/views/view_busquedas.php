@@ -554,6 +554,7 @@
 								<div class="label">Institución:</div>
 								<select id="formalEducationEditorInstitution">
 								   <option value="">Otra</option>
+								   <option value="" selected=selected>Seleccione...</option>
 								   <?php foreach ($entidadesEducativas as $id => $desc){ ?>
 								   			<option value="<?php echo $id;?>">
 												<?php echo $desc;?>
@@ -561,7 +562,7 @@
 								   <?php } ?>
 								</select>
 								<select class="modeField" id="formalEducationEditorInstitutionMode">
-											<option value="">Indiferente</option>
+											<option value="" selected=selected>Indiferente</option>
 								   			<option value="P">Deseado</option>
 								   			<option value="R">Requerido</option> 
 								</select>
@@ -576,7 +577,7 @@
 								<div class="label">Título:</div>
 								<input type="text" id="formalEducationEditorTitle" value="" />
 								<select class="modeField" id="formalEducationEditorTitleMode">
-											<option value="">Indiferente</option>
+											<option value="" selected=selected>Indiferente</option>
 								   			<option value="P">Deseado</option>
 								   			<option value="R">Requerido</option> 
 								</select>
@@ -585,6 +586,7 @@
 							<div class="field clearfix">
 								<div class="label">Nivel:</div>
 								<select id="formalEducationEditorLevel">
+											<option value="" selected=selected>Seleccione...</option>
 								   <?php foreach ($nivelesDeEducacion as $id => $desc){ ?>
 								   			<option value="<?php echo $id;?>">
 												<?php echo $desc;?>
@@ -592,7 +594,7 @@
 								   <?php } ?>
 								</select>
 								<select class="modeField" id="formalEducationEditorLevelMode">
-											<option value="">Indiferente</option>
+											<option value="" selected=selected>Indiferente</option>
 								   			<option value="P">Deseado</option>
 								   			<option value="R">Requerido</option> 
 								</select>
@@ -602,6 +604,7 @@
 							<div class="field clearfix">
 								<div class="label">Área:</div>
 								<select id="formalEducationEditorArea">
+											<option value="" selected=selected>Seleccione...</option>
 								   <?php foreach ($areasDisponibles as $id => $desc){ ?>
 								   			<option value="<?php echo $id;?>">
 												<?php echo $desc;?>
@@ -609,7 +612,7 @@
 								   <?php } ?>
 								</select>
 								<select class="modeField" id="formalEducationEditorAreaMode">
-								   			<option value="">Indiferente</option>
+								   			<option value="" selected=selected>Indiferente</option>
 								   			<option value="P">Deseado</option>
 								   			<option value="R">Requerido</option> 
 								</select>
@@ -618,12 +621,13 @@
 							<div class="field clearfix">
 								<div class="label">Estado:</div>
 								<select id="formalEducationEditorStatus">
+									<option value="" selected=selected>Seleccione...</option>
 						   			<option value="T">Terminado</option> 
 						   			<option value="A">Abandonado</option> 
 						   			<option value="C">En Curso</option> 
 								</select>
 								<select class="modeField" id="formalEducationEditorStatusMode">
-								   			<option value="">Indiferente</option>
+								   			<option value="" selected=selected>Indiferente</option>
 								   			<option value="P">Deseado</option>
 								   			<option value="R">Requerido</option> 
 								</select>
@@ -635,7 +639,7 @@
 								a
 								<input type="text" id="formalEducationEditorAverageTo" value="" />
 								<select class="modeField" id="formalEducationEditorAverageMode">
-								   			<option value="">Indiferente</option>
+								   			<option value="" selected=selected>Indiferente</option>
 								   			<option value="P">Deseado</option>
 								   			<option value="R">Requerido</option> 
 								</select>
