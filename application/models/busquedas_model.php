@@ -43,11 +43,11 @@ class Busquedas_model extends CI_Model {
 
 	}	
 	/** CREO O MODIFICO LA EDUCACION FORMAL DE UNA BUSQUEDA **/
-	public function  setEducacionFormalDeBusqueda($idBusqueda, $educacionFormal = "N"){
+	public function  setEducacionFormalDeBusqueda($idBusqueda, $educacionFormal){
 		$result["id_bus_edu_formal"] = NULL;
 		$result["error"] = NULL;
 		$result["desc"] = NULL;
-		
+		if ($educacionFormal['c_baja'] == "") $educacionFormal['c_baja'] = "N";
 		$params = array(
 			array('name'=>':PI_ID_BUS_EDU_FORMAL', 'value'=>$educacionFormal['id_bus_edu_formal'], 'type'=>SQLT_CHR, 'length'=>-1),
 			array('name'=>':PI_ID_BUSQUEDA', 'value'=>$idBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
@@ -547,7 +547,7 @@ class Busquedas_model extends CI_Model {
 		$result["id_historia_laboral"] = NULL;
 		$result["error"] = NULL;
 		$result["desc"] = NULL;
-		
+		if ($historiaLaboral["c_baja"] == "") $historiaLaboral["c_baja"] = "N";
 		$params = array(
 			array('name'=>':PI_ID_BUSQUEDA', 'value'=>$idBusqueda, 'type'=>SQLT_CHR, 'length'=>-1),
 			array('name'=>':PI_ID_HISTORIA_LABORAL', 'value'=>$historiaLaboral["id_historia_laboral"], 'type'=>SQLT_CHR, 'length'=>-1),

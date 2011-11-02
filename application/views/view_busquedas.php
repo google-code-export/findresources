@@ -209,34 +209,34 @@
 												<div class="row clearfix" style="margin-top: 17px;">
 													<div class="label"> Entidad: </div> 
 													<?php echo ($educacion->id_entidad_educativa != "")?$entidadesEducativas[$educacion->id_entidad_educativa]: $educacion->d_entidad ?>
-													<?php echo ($educacion->c_modo_entidad == "R")? "(Requerido)" : "(Deseado)" ?>
+													<?php echo ($educacion->c_modo_entidad == "R")? "(Requerido)" : (($educacion->c_modo_entidad == "P")?"(Deseado)" : "(Indiferente)") ?>
 												</div>								
 												<div class="row clearfix">
 													<div class="label"> Título: </div> 
 													<?php echo $educacion->titulo ?>
-													<?php echo ($educacion->c_modo_titulo == "R")? "(Requerido)" : "(Deseado)" ?>
+													<?php echo ($educacion->c_modo_titulo == "R")? "(Requerido)" : (($educacion->c_modo_titulo == "P")?"(Deseado)" : "(Indiferente)") ?>
 												</div>								
 												<div class="row clearfix">
 													<div class="label"> Nivel de Educación: </div> 
 													<?php echo $educacion->d_nivel_educacion ?>
-													<?php echo ($educacion->c_modo_nivel_educacion == "R")? "(Requerido)" : "(Deseado)" ?>
+													<?php echo ($educacion->c_modo_nivel_educacion == "R")? "(Requerido)" : (($educacion->c_modo_nivel_educacion == "P")?"(Deseado)" : "(Indiferente)") ?>
 												</div>								
 												<div class="row clearfix">
 													<div class="label"> Área: </div> 
 													<?php echo $educacion->d_area ?>
-													<?php echo ($educacion->c_modo_area == "R")? "(Requerido)" : "(Deseado)" ?>
+													<?php echo ($educacion->c_modo_area == "R")? "(Requerido)" : (($educacion->c_modo_area == "P")?"(Deseado)" : "(Indiferente)") ?>
 												</div>								
 												<div class="row clearfix">
 													<div class="label"> Estado: </div> 
 													<?php echo $educacion->d_estado ?>
-													<?php echo ($educacion->c_modo_estado == "R")? "(Requerido)" : "(Deseado)" ?>
+													<?php echo ($educacion->c_modo_estado == "R")? "(Requerido)" : (($educacion->c_modo_estado == "P")?"(Deseado)" : "(Indiferente)") ?>
 												</div>								
 												<div class="row clearfix">
 													<div class="label"> Promedio: </div> 
 													de 
 													<?php echo $educacion->promedio_desde ?> a 
 													<?php echo $educacion->promedio_hasta ?>
-													<?php echo ($educacion->c_modo_promedio == "R")? "(Requerido)" : "(Deseado)" ?>
+													<?php echo ($educacion->c_modo_promedio == "R")? "(Requerido)" : (($educacion->c_modo_promedio == "P")?"(Deseado)" : "(Indiferente)") ?>
 												</div>								
 											</div>
 										<?php } ?>
@@ -275,19 +275,19 @@
 												<?php if(@$recurso["twitter_c_modo"] != "") {?>
 												<div class="row clearfix">
 													<div class="label">Posee Twitter:</div> 
-													<?php echo (@$recurso["twitter_c_modo"] == "R")? "(Requerido)" : (@$recurso["twitter_c_modo"] == "P")?"(Deseado)" : "(Indiferente)"?>
+													<?php echo (@$recurso["twitter_c_modo"] == "R")? "(Requerido)" : ((@$recurso["twitter_c_modo"] == "P")?"(Deseado)" : "(Indiferente)") ?>
 												</div>
 												<?php } ?>
 												<?php if(@$recurso["gtalk_c_modo"] != "") {?>
 												<div class="row clearfix">
 													<div class="label">Posee Gtalk:</div> 
-													<?php echo (@$recurso["gtalk_c_modo"] == "R")? "(Requerido)" : (@$recurso["gtalk_c_modo"] == "P")?"(Deseado)" : "(Indiferente)"?>
+													<?php echo (@$recurso["gtalk_c_modo"] == "R")? "(Requerido)" : ((@$recurso["gtalk_c_modo"] == "P")?"(Deseado)" : "(Indiferente)") ?>
 												</div>
 												<?php } ?>
 												<?php if(@$recurso["sms_c_modo"] != "") {?>
 												<div class="row clearfix">
 													<div class="label">Posee Skype:</div> 
-													<?php echo (@$recurso["sms_c_modo"] == "R")? "(Requerido)" : (@$recurso["sms_c_modo"] == "P")?"(Deseado)" : "(Indiferente)"?>
+													<?php echo (@$recurso["sms_c_modo"] == "R")? "(Requerido)" : ((@$recurso["sms_c_modo"] == "P")?"(Deseado)" : "(Indiferente)") ?>
 												</div>
 												<?php } ?>
 											</div>
@@ -561,6 +561,7 @@
 								   <?php } ?>
 								</select>
 								<select class="modeField" id="formalEducationEditorInstitutionMode">
+											<option value="">Indiferente</option>
 								   			<option value="P">Deseado</option>
 								   			<option value="R">Requerido</option> 
 								</select>
@@ -575,6 +576,7 @@
 								<div class="label">Título:</div>
 								<input type="text" id="formalEducationEditorTitle" value="" />
 								<select class="modeField" id="formalEducationEditorTitleMode">
+											<option value="">Indiferente</option>
 								   			<option value="P">Deseado</option>
 								   			<option value="R">Requerido</option> 
 								</select>
@@ -590,6 +592,7 @@
 								   <?php } ?>
 								</select>
 								<select class="modeField" id="formalEducationEditorLevelMode">
+											<option value="">Indiferente</option>
 								   			<option value="P">Deseado</option>
 								   			<option value="R">Requerido</option> 
 								</select>
@@ -606,6 +609,7 @@
 								   <?php } ?>
 								</select>
 								<select class="modeField" id="formalEducationEditorAreaMode">
+								   			<option value="">Indiferente</option>
 								   			<option value="P">Deseado</option>
 								   			<option value="R">Requerido</option> 
 								</select>
@@ -619,6 +623,7 @@
 						   			<option value="C">En Curso</option> 
 								</select>
 								<select class="modeField" id="formalEducationEditorStatusMode">
+								   			<option value="">Indiferente</option>
 								   			<option value="P">Deseado</option>
 								   			<option value="R">Requerido</option> 
 								</select>
@@ -630,6 +635,7 @@
 								a
 								<input type="text" id="formalEducationEditorAverageTo" value="" />
 								<select class="modeField" id="formalEducationEditorAverageMode">
+								   			<option value="">Indiferente</option>
 								   			<option value="P">Deseado</option>
 								   			<option value="R">Requerido</option> 
 								</select>
