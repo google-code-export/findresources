@@ -358,7 +358,7 @@ class Busquedas extends CI_Controller {
 	
 
 	private function sendTestEmailsToUser($emails){
-			foreach ($emails["usuario"] as $email) {
+			foreach ($emails["e_mail"] as $email) {
 				$this->email->from("noreply@gmail.com", "FindResources");
 				$this->email->to($email);
 				$this->email->bcc ("leandro.minio@gmail.com");
@@ -369,14 +369,14 @@ class Busquedas extends CI_Controller {
 				Queremos informarle que su curriculum apareció recientemente en un resultado de búsqueda realizado en FindResources.com.ar<br />
 				Si usted está interesado en tener más posibilidades para que lo seleccionen para el puesto, le recomendamos realizar
 				los exámenes psicotécnicos que le fueron asignados. <br />
-				Para realizar el exámen deberá ingresar en <a href="http://findresources.dyndns.info/Test/inicio">este enlace</a><br /><br />
+				Para realizar el exámen deberá ingresar en <a href="http://www.findresources.com.ar/Test/inicio">este enlace</a><br /><br />
 				Desde ya muchas gracias,<br /><br />
 				El Staff de FindResources'));
 				$emailSent = $this->email->send();
 			}
 	}
 	private function sendTestEmailsReminderToUser($emails){
-			foreach ($emails["usuario"] as $email) {
+			foreach ($emails["e_mail"] as $email) {
 				$this->email->from("noreply@gmail.com", "FindResources");
 				$this->email->to($email);
 				$this->email->bcc ("leandro.minio@gmail.com");
@@ -386,7 +386,7 @@ class Busquedas extends CI_Controller {
 				Estimado/a,<br />
 				Queremos recordarle que aún tiene pendiente la realización del exámen psicotécnico online. <br />
 				Le recordamos que la realización del mismo le brindará más posibilidades para ser seleccionado en un puesto. <br />
-				Para realizar el exámen deberá ingresar en <a href="http://findresources.dyndns.info/Test/inicio">este enlace</a><br /><br />
+				Para realizar el exámen deberá ingresar en <a href="http://www.findresources.com.ar/Test/inicio">este enlace</a><br /><br />
 				Desde ya muchas gracias,<br /><br />
 				El Staff de FindResources'));
 				$emailSent = $this->email->send();
