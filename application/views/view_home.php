@@ -175,10 +175,12 @@
 				</div>
 				
 				<div class="clearfix row">
-					<div class="label" > Loc./Prov.: </div><div> <?php echo $usuarioData->localidad. ", ".$usuarioData->descProvincia;?></div>
+				<?php if($usuarioData->localidad != "") $coma = ","; else $coma = ""; ?>
+					<div class="label" > Loc./Prov.: </div><div> <?php echo $usuarioData->localidad.$coma." ".$usuarioData->descProvincia;?></div>
 				</div>
 				<div class="clearfix row">
-					<div class="label" > Dirección: </div><div> <?php echo $usuarioData->calle." ".$usuarioData->numero." ".$usuarioData->piso."º ".$usuarioData->departamento;?></div>
+				<?php if ($usuarioData->piso != "") $num = "º"; else $num = "";?>
+					<div class="label" > Dirección: </div><div> <?php echo $usuarioData->calle." ".$usuarioData->numero." ".$usuarioData->piso.$num." ".$usuarioData->departamento;?></div>
 				</div>
 				<div class="clearfix row">
 					<div class="label" > Cantidad de Empleados: </div><div> <?php echo $usuarioData->cantEmpleados;?></div>
