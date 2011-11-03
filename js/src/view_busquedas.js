@@ -217,7 +217,10 @@ function setSearchData(){
 		async: true,
 		success: function(response){
 			hidePopUp();
-			window.location.reload();
+			if($('#searchDataEditorId').val() != "")
+				window.location.reload();
+			else 
+				window.location.assign("/busquedas");
 		},
 		error: function(response){
 			processError(response);

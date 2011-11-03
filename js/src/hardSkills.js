@@ -10,7 +10,7 @@ function addIndustry(showImportance){
 	var selectedIndustry = $('#availableIndustriesSelect').val();
 	
 	if(!selectedIndustry || selectedIndustry == ""){
-		alert("Seleccione un area de negocio");
+		alert("Seleccione un área de negocio");
 		return;
 
 	}
@@ -83,7 +83,7 @@ function addTool(showImportance){
 	var selectedTool = $('#availableToolsSelect').val();
 	
 	if(!selectedArea || selectedArea == -1){
-		alert("Seleccione un area de negocio");
+		alert("Seleccione un área de negocio");
 		return;
 	}
 	

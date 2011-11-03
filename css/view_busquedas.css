@@ -326,3 +326,17 @@
 #finishSearchButton {
 	float:left
 }
+
+#availableSoftSkillsSelect {
+	width:250px;
+}
+#availableIndustriesSelect {
+	width:300px;
+}
+#availableToolsSelect {
+	width:400px;
+	margin-left:50px;
+}
+#availableAreasSelect{
+	vertical-align:top;
+}

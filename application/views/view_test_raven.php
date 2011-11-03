@@ -61,7 +61,7 @@
 	<img src="<?php echo base_url();?>images/raven/<?php echo $placa;?>.jpg" />
 	<h4>Selecciona la pieza que corresponda: </h4><br />
 	<form method="post" id="quiz_form" name="quiz_form">
-	<input type="text" name="item" maxlength="1" id="raven_input" value="<?php echo ($placa == "1")? "?" : "" ?>" />
+	<input type="text" name="item" maxlength="1" id="raven_input" value="<?php echo ($placa == "1")? "?" : "" ?>" autocomplete="off" />
 	<input type="hidden" id="source" name="source" value="<?php echo $source;?>" />
 	<input type="hidden" name="s1" value="<?php echo $s1;?>"/>
 	<input type="hidden" name="s2" value="<?php echo $s2;?>"/>

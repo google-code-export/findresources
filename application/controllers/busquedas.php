@@ -315,7 +315,7 @@ class Busquedas extends CI_Controller {
 													<input type='hidden' name='informe_usuario' value='".$resultado_busqueda->usuario."' />
 													".$informe_link."
 												</form>",*/
-												"<a href='javascript:showCandidateReport(\"". $resultado_busqueda->usuario. "\");' title='Ver CV' ><img src='/images/src/doc.png'/></a>",
+												"<a href='javascript:showCandidateReport(\"". $resultado_busqueda->usuario. "\");' title='Ver Informe' ><img src='/images/src/doc.png'/></a>",
 												
 												/*
 												"<form id='datos$key' name='datos$key' method=post action='curriculum/userBusqueda' target='_blank'>
@@ -358,9 +358,9 @@ class Busquedas extends CI_Controller {
 	
 
 	private function sendTestEmailsToUser($emails){
-			foreach ($emails["e_mail"] as $email) {
-				$this->email->from("noreply@gmail.com", "FindResources");
-				$this->email->to($email);
+			foreach ($emails as $contacto) {
+				$this->email->from("noreply@findresources.com.ar", "FindResources");
+				$this->email->to($contacto->e_mail);
 				$this->email->bcc ("leandro.minio@gmail.com");
 				$this->email->subject(utf8_encode('FindResources - Realización de exámen psicotécnico online'));
 				$this->email->message(utf8_encode('
@@ -376,9 +376,9 @@ class Busquedas extends CI_Controller {
 			}
 	}
 	private function sendTestEmailsReminderToUser($emails){
-			foreach ($emails["e_mail"] as $email) {
-				$this->email->from("noreply@gmail.com", "FindResources");
-				$this->email->to($email);
+			foreach ($emails as $contacto) {
+				$this->email->from("noreply@findresources.com.ar", "FindResources");
+				$this->email->to($contacto->e_mail);
 				$this->email->bcc ("leandro.minio@gmail.com");
 				$this->email->subject(utf8_encode('FindResources - Realización de exámen psicotécnico online'));
 				$this->email->message(utf8_encode('

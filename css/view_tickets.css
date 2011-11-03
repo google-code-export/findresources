@@ -23,6 +23,7 @@
 .label {
 	font-weight: bold;
 	float:left;
+	width:150px;
 }
 
 .field {
