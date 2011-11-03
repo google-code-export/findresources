@@ -73,6 +73,7 @@
 				}
 			}
 		?>
+		<p style="font-size:11px"><b>* Tenga en cuenta que debe describir 5 imágenes en cada lámina para poder pasar a la siguiente.</b></p>
 	</div>
 	<div id="formArea">
 		<form method=post name="tag_form">
@@ -82,7 +83,7 @@
 			<input type=hidden name=top id=top />
 			<input type=hidden name=left id=left /> 	
 			Escribe en una palabra lo que vés :<br />
-			<input type=text name=description id="description" />
+			<input type=text name=description id="description" autocomplete="off"/>
 			<a href="javascript:document.tag_form.submit();" class="button add">Etiquetar área</a>
 			<input type="hidden" name="source" value="<?php echo $source;?>" />
 		</form>
@@ -99,8 +100,7 @@
 			<input type=hidden name=pic value="<?php echo $pic;?>" />
 			<input type=hidden name=del value="<?php echo $clave;?>" />
 			<input type="hidden" name="source" value="<?php echo $source;?>" />
-			<a href="javascript:document.del_form<?php echo $i;?>.submit();" class="button">X</a><a href="#" class="button flag"><?php echo $resTags['description'];?></a>
-			
+			<a href="javascript:document.del_form<?php echo $i;?>.submit();" class="button"><img src="/images/src/delete.png"/></a><a href="#" class="button flag"><?php echo $resTags['description'];?></a>
 			</form>
 	       	<?php 
 	       	$i++;
@@ -111,7 +111,9 @@
 		<form method=post name="pic_form">
 		<input type=hidden name=pic value="<?php echo $pic+1;?>" />
 		<input type="hidden" name="source" value="<?php echo $source;?>" />
+		<?php if (count($session_img) >= "5") { ?>
 		<a href="javascript:document.pic_form.submit();" class="button save">Siguiente imagen &gt;&gt;</a>
+		<?php } ?>
 		</form>
 	</div>
 	 <?php 

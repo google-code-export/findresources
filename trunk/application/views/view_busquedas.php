@@ -389,13 +389,14 @@
 				<div class="inside">
 					<h4>Áreas de negocio</h4>
 					<div class="clearfix">
-						<select id="availableIndustriesSelect">
+						<select id="availableIndustriesSelect" size="5" onclick="javascript:addIndustry(true);">
+							<!-- <option value="" selected=selected>Seleccione...</option>-->
 							<?php foreach ($industriasDisponibles as $id => $industria){ ?>
 								<option value="<?php echo $id; ?>"><?php echo $industria;?></option> 
 							<?php } ?>
 						</select>
 		
-						<a class="addIndustry" href="javascript:addIndustry(true);"> <img src="images/src/add.png"/> Agregar</a>
+						<!-- <a class="addIndustry" href="javascript:addIndustry(true);"> <img src="images/src/add.png"/> Agregar</a>-->
 					</div>
 					<div class="clearfix hardSkillGridHeader">
 						<div id="seniorityTitle">Seniority</div>
@@ -426,7 +427,7 @@
 								<div class="sliderContainer">
 									<div class="slider" title="Importancia: Determina el grado de deseado del puesto. 100% es requerido.)">
 										<label>%</label>
-										<input type="text" class="importanceInput" value="<?php echo $habilidad->importancia ?>" readonly=readonly/>
+										<input type="text" class="importanceInput" value="<?php echo $habilidad->importancia ?>" readonly="readonly" />
 									</div>
 								</div>
 
@@ -438,16 +439,23 @@
 					
 					<h4 id="toolEditorList">Herramientas</h4>
 					<div>
+						<table border=0>
+						<tr>
+						<td>
 						<select id="availableAreasSelect">
-							<option id="availableAreasDefaultOption" value="-1" selected="selected">Áreas</option>
+							<option id="availableAreasDefaultOption" value="-1" selected="selected">Seleccione el área..</option>
 							<?php foreach ($areasDisponibles as $id => $area){ ?>
 								<option value="<?php echo $id; ?>"><?php echo $area;?></option> 
 							<?php } ?>
 						</select>
-						<select id="availableToolsSelect">
-							<option value="-1">Herramientas</option> 
+						</td><td>
+						<select id="availableToolsSelect" size="5" onclick="javascript:addTool(true);">
+							<!-- <option value="-1">Seleccione la herramienta...</option>--> 
 						</select>
-						<a class="addTool" href="javascript:addTool(true);"> <img src="images/src/add.png"/> Agregar</a>
+						<!-- <a class="addTool" href="javascript:addTool(true);"> <img src="images/src/add.png"/> Agregar</a>-->
+						</td>
+						</tr>
+						</table>
 					</div>
 					
 					<div class="clearfix hardSkillGridHeader">
@@ -482,7 +490,7 @@
 								<div class="sliderContainer">
 									<div class="slider" title="Importancia: Determina el grado de deseado del puesto. 100% es requerido.)">
 										<label>%</label>
-										<input type="text" class="importanceInput" value="<?php echo $habilidad->importancia ?>" readonly=readonly/>
+										<input type="text" class="importanceInput" value="<?php echo $habilidad->importancia ?>" readonly="readonly" />
 									</div>
 								</div>
 
@@ -511,14 +519,13 @@
 					<div class="inside">
 						<h4>Habilidades</h4>
 						<div>
-							<select id="availableSoftSkillsSelect">
-								<option id="availableSoftSkillsDefaultOption" value="-1" selected="selected">Características</option>
-								
+							<select id="availableSoftSkillsSelect" onclick="javascript:addSoftSkill();" size="10">
+								<!-- <option id="availableSoftSkillsDefaultOption" value="-1" selected="selected">Seleccione las habilidades...</option>-->
 								<?php foreach ($habilidadesBlandasDisponibles['lista_hab_blandas'] as $index => $habilidad){ ?>
 									<option value="<?php echo $index ?>"><?php echo $habilidad->d_habilidad_blanda;?></option> 
 								<?php } ?>
 							</select>
-							<a href="javascript:addSoftSkill();"> <img src="images/src/add.png"/> Agregar</a>
+							<!-- <a href="javascript:addSoftSkill();"> <img src="images/src/add.png"/> Agregar</a> -->
 						</div>
 						<br />
 						<ul id="editItemSoftSkillList">

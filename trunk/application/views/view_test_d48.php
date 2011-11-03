@@ -91,8 +91,8 @@
 	<h4>Selecciona la ficha que continua la serie: </h4><br />
 	<form method="post" id="quiz_form" name="quiz_form">
 	<table id="d48_ficha">
-	<tr><td><input type="text" name="item1" value="" maxlength="1" id="d48_input" /></td></tr>
-	<tr><td><input type="text" name="item2" value="" maxlength="1" id="d48_input" /></td></tr>
+	<tr><td><input type="text" name="item1" value="" maxlength="1" id="d48_input" autocomplete="off"/></td></tr>
+	<tr><td><input type="text" name="item2" value="" maxlength="1" id="d48_input" autocomplete="off"/></td></tr>
 	</table>
 	<input type="hidden" id="source" name="source" value="<?php echo $source;?>" />
 	<input type="hidden" name="s1" value="<?php echo $s1;?>"/>
