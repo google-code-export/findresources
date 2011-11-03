@@ -223,7 +223,6 @@ class Busquedas extends CI_Controller {
 	public function setGrid(){
 		//$idBusqueda = $this->uri->segment(3);
 		$idBusqueda= $this->input->get('busquedaID');
-		
 		if($this->input->get('refresh') == "S"){
 			$actualizar = "S";
 		} else {
