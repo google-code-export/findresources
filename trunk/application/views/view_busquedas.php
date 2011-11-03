@@ -247,7 +247,7 @@
 										<?php } ?>
 									</div>
 			
-									<div class="block" id="hardProperties">
+									<div class="block">
 										<?php $recurso = $busquedaSeleccionada["recurso"]   ?>
 										
 										<h2>Datos Adicionales <a href="javascript:editAditionalData();" class="editFields"><img src="images/src/pencil.gif"/>Editar</a></h2>
@@ -295,8 +295,8 @@
 													<?php echo (@$recurso["sms_c_modo"] == "R")? "(Requerido)" : ((@$recurso["sms_c_modo"] == "P")?"(Deseado)" : "(Indiferente)") ?>
 												</div>
 												<?php } ?>
+											<?php } //END IF no hay datos adicionales. ?>
 											</div>
-											<?php } ?>
 									</div>
 			
 							    </div> <!--  END OF TAB1 -->
