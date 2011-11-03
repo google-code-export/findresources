@@ -420,11 +420,16 @@ $(function(){
 	///para el caso de que esta pantalla este en un iframe.
 	//se resizea el iframe.
 	if(self!=parent){
-		var parentIFrame = parent.document.getElementById("candidateCVIframe");
-		parentIFrame.height = $("body").css("height");
-		
-		//get out the border
-		$(".body_container").css("border","none");
+		try{
+			var parentIFrame = parent.document.getElementById("candidateCVIframe");
+			parentIFrame.height = $("body").css("height");
+			
+			//get out the border
+			$(".body_container").css("border","none");
+		}
+		catch(e){
+			//nothing to do
+		}
 		
 	}; 
 
