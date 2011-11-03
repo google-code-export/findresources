@@ -66,7 +66,7 @@
 					<div class="field clearfix">
 			        	<div class="label">Contraseña</div>
 			        	<div class="control">
-			        			<input type="password" id="login_password_input" name="email" value="1234567890"/>
+			        			<input type="password" id="login_password_input" name="email" value=""/>
 						</div>
 			        </div>
 			        <div id="login_button_div">
