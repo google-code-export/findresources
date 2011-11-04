@@ -295,12 +295,12 @@ class Busquedas extends CI_Controller {
 				case "P":
 					$estado = "Pendiente";
 					$estado = "<img src='/images/src/delete.png' />";
-					$informe_link = "<img src='/images/src/delete.png' />";
+					$informe_link = "<img src='/images/src/doc.png' title='Informe aún no generado'/>";
 					break;
 				case "R";
 					$estado = "Realizado";
 					$estado = "<img src='/images/src/ok.png' />";
-					$informe_link = "<a href='javascript:document.informe$key.submit();' title='Ver informe'><img src='/images/src/doc.png' /></a>";
+					$informe_link = "<a href='javascript:showCandidateReport(\"". $resultado_busqueda->usuario. "\");' title='Ver Informe' ><img src='/images/src/doc.png'/></a>";
 					break;
 				default:
 					$estado = "Sin datos";
@@ -314,7 +314,7 @@ class Busquedas extends CI_Controller {
 													<input type='hidden' name='informe_usuario' value='".$resultado_busqueda->usuario."' />
 													".$informe_link."
 												</form>",*/
-												"<a href='javascript:showCandidateReport(\"". $resultado_busqueda->usuario. "\");' title='Ver Informe' ><img src='/images/src/doc.png'/></a>",
+												$informe_link,
 												
 												/*
 												"<form id='datos$key' name='datos$key' method=post action='curriculum/userBusqueda' target='_blank'>

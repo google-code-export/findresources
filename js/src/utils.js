@@ -12,8 +12,11 @@ function hidePopUp()
 }
 
 function processError(errorResponse){
-	
-	alert("Por favor verifique los datos ingresados."+strip_tags(errorResponse.responseText));
+	$debug = false;
+	if ($debug)
+		alert("Por favor verifique los datos ingresados."+strip_tags(errorResponse.responseText));
+	else
+		alert("Por favor verifique los datos ingresados.");
 	//$('#errorPopUp .popuptitle').html("System Error (status:" + errorResponse.statusText + ")");
 	//$('#errorPopUp .inside').html(errorResponse.responseText);
 	//showPopUp('#errorPopUp');
