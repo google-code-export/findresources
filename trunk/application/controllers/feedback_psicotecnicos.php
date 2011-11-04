@@ -47,7 +47,7 @@ class Feedback_Psicotecnicos extends CI_Controller {
 				$corrida->usuario,
 				$corrida->entradas,
 				$corrida->salida,
-				"<a href='javascript:editPropuesta(\"". $corrida->id_psicotecnico /*->id_test*/ ."\",  \"". $corrida->id_psicotecnico  ."\",  \"". $corrida->usuario  ."\", \"". $corrida->entradas  ."\",\"". $corrida->salida  ."\");'><img src='/images/src/pencil.gif'></img></a>" 
+				"<a href='javascript:editPropuesta(\"". $idTest ."\",  \"". $corrida->id_psicotecnico  ."\",  \"". $corrida->usuario  ."\", \"". $corrida->entradas  ."\",\"". $corrida->salida  ."\");'><img src='/images/src/pencil.gif'></img></a>" 
 			);
 			$key++;
 		}
@@ -60,7 +60,6 @@ class Feedback_Psicotecnicos extends CI_Controller {
 		$idTest = @$_GET["idTest"];
 		$idCorrida = @$_GET["idPsicotecnico"];
 		$idUsuario = @$_SESSION[SESSION_ID_USUARIO];
-		
 		$data = $this->Test_model->getPropuestaCambioPorUsuario($idTest, $idCorrida, $idUsuario);
 		$respuesta->salidas_del_usuario = $data["propuesta"];
 		$respuesta->notas_del_usuario = $data["nota"];
@@ -73,7 +72,7 @@ class Feedback_Psicotecnicos extends CI_Controller {
 	 * */
 	public function setPropuestaDeCambio(){
 
-		$propuesta = $this->input->post('propuesta');
+		$propuesta = $this->input->post('propuesta_de_salida');
 		$propuesta = json_decode_into_array(utf8_decode($propuesta));
 
 		$idUsuario = @$_SESSION[SESSION_ID_USUARIO];

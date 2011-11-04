@@ -31,6 +31,9 @@
 <script type="text/javascript" src=" <?php echo site_url('js/src/view_feedback_psicotecnicos.js')?>"></script>
 
 <style type="text/css">
+	.popup .in {
+		width: 600px;
+	}
 	.field textarea {
 		width: 350px;
 		height: 100px;
@@ -63,8 +66,6 @@
 									<option value="<?php echo $psicotecnico->id_test; ?>"><?php echo $psicotecnico->nombre_test;?></option> 
 								<?php } ?>
 							</select>
-						</div>
-						<div class="buttonsPopUp">
 							<input type="submit" value="Consultar" onclick="getPsicotecnicosResultados();" />
 						</div>
 					</div>
@@ -100,7 +101,7 @@
 
 			<div class="field clearfix">
 				<div class="label">Notas:</div>
-				<textarea id="softSkillEditorUserNotes"></textarea>
+				<textarea id="softSkillEditorExpertNotes"></textarea>
 			</div>
 
 			<input type="hidden" id="softSkillEditorId"/>

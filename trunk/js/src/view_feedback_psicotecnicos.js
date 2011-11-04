@@ -51,8 +51,8 @@ function editPropuesta(idTest, idPsicotecnico, candidato, entradas, salidas){
 	
 
 	$('#softSkillEditorId').val(candidato);
-	$('#softSkillEditorCandidateEntry').val(entradas);
-	$('#softSkillEditorSystemResponse').val(salidas);
+	$('#softSkillEditorCandidateEntry').html(entradas);
+	$('#softSkillEditorSystemResponse').html(salidas);
 
 	$('#softSkillEditorExpertIdTest').val(idTest);
 	$('#softSkillEditorExpertIdRun').val(idPsicotecnico);
@@ -105,13 +105,11 @@ function setPropuestaDeSalida(){
 			//alert("Se han guardado los datos");
 			hidePopUp();
 			//TODO this is so ugly we shouldnt reload all the page.
-			window.location.reload();
+			//window.location.reload();
 		},
 		error: function(response){
 			processError(response);
 		}
 	});		
-
-	return false;
 
 }
