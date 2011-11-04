@@ -11,10 +11,12 @@
 <head>
 <meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type"/>
 <script type="text/javascript" src="<?php echo site_url('js/libs/jquery-1.6.2.min.js')?>"></script>
+<script type="text/javascript" src="<?php echo site_url('js/libs/jquery-ui.min-1.8.16.js')?>"></script>
 <script type="text/javascript" src="<?php echo site_url('js/libs/json2.js')?>"></script>
 <script type="text/javascript" src="<?php echo site_url('js/src/utils.js')?>"></script>
 <script type="text/javascript" src="<?php echo site_url('js/src/view_home.js')?>"></script>
 
+<link rel="stylesheet" type="text/css" href="<?php echo site_url('css/jquery-ui-1.8.16.css')?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/global.css')?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/view_home.css')?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/style.css')?>" />
@@ -208,7 +210,7 @@
 	</div>
  
 	<div class="opacity" style="display:none;"></div>	
-	<div class="popup" id="userDataPopUp" style="display:none;">
+	<div class="popup companyUserDataPopUp" id="userDataPopUp" style="display:none;">
 	<table cellspacing="0" cellpadding="0" align="center">
 	<tr><td>
 		<div class="in">
@@ -296,7 +298,7 @@
 				</div>
 				<div class="field clearfix">
 					<div class="label">Fecha de inicio de actividades:</div>
-					<input type="text" id="userDataEditorFechaInicio" value="" />&nbsp;&nbsp;(dd/mm/yyyy)
+					<input class="datepicker" type="text" id="userDataEditorFechaInicio" value="" />&nbsp;&nbsp;(dd/mm/yyyy)
 				</div>
 				<div class="buttonsPopUp">
 					<a href="#" onclick="javascript:submit()" class="sendButton button save">Guardar</a>

@@ -119,6 +119,10 @@ height: 40px;
 	margin-top:67px;
 }
 
+.companyUserDataPopUp .in {
+	width: 420px;
+}
+
 .popup .label{
 	font-weight: normal;
 }
