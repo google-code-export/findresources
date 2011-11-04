@@ -402,7 +402,7 @@ class Test_model extends CI_Model {
 			array('name'=>':PI_ID_PSICOTECNICO', 'value'=>$idCorrida, 'type'=>SQLT_CHR , 'length'=>-1),
 			array('name'=>':PI_USUARIO', 'value'=>$usuario, 'type'=>SQLT_CHR , 'length'=>-1),
 			array('name'=>':PO_PROPUESTA', 'value'=>&$result["propuesta"], 'type'=>SQLT_CHR , 'length'=>255),
-			array('name'=>':PO_NOTA', 'value'=>&$result["propuesta"], 'type'=>SQLT_CHR , 'length'=>255),
+			array('name'=>':PO_NOTA', 'value'=>&$result["nota"], 'type'=>SQLT_CHR , 'length'=>255),
 			array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
 			array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
 		);
@@ -412,16 +412,16 @@ class Test_model extends CI_Model {
 		if($result["error"] == 0){
 			return $result;		
 		}else{
-			//TODO exception managment.
-        	throw new Exception('Oracle error message in getInforme(): ' . $result["desc"]);
+			// no result return empty string.
+			$result["propuesta"] = "";
+			$result["nota"] = "";
+			
 		}
 
 	}
 	
 		
 	public function setPropuestaCambioPorUsuario($idTest, $idCorrida, $usuario, $propuesta,$nota){
-		$result["propuesta"] = NULL;
-		$result["nota"] = NULL;
 		
 		$result["error"] = NULL;
 		$result["desc"] = NULL;
