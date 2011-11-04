@@ -59,13 +59,13 @@
 			<div class="tab_container">  
 			    <div id="tab1" class="tab_content">  
 			        <div class="field clearfix">
-			        	<div class="label">Email</div>
+			        	<div class="label">Email:</div>
 			        	<div class="control">
 			        			<input type="text" id="login_email_input" name="email" value="unmail7@unserver.com"/>
 						</div>
 			        </div>
 					<div class="field clearfix">
-			        	<div class="label">Contraseña</div>
+			        	<div class="label">Contraseña:</div>
 			        	<div class="control">
 			        			<input type="password" id="login_password_input" name="email" value=""/>
 						</div>
@@ -77,7 +77,7 @@
 			    </div>  
 			    <div id="tab2" class="tab_content">  
 			        <div class="field">
-			        	<div class="label">Email</div>
+			        	<div class="label">Email:</div>
 			        	<div class="control">
 			        			<input type="text" id="register_email_input" name="email" />
 						</div>
@@ -86,13 +86,13 @@
 			        	<div class="label">*El usuario ya existe</div>
 					</div>
 			        <div class="field">
-			        	<div class="label">Contraseña</div>
+			        	<div class="label">Contraseña:</div>
 			        	<div class="control">
 			        			<input type="password" id="register_password_input" name="email" />
 						</div>
 			        </div>
 			        <div class="field">
-			        	<div class="label">Tipo</div>
+			        	<div class="label">Tipo:</div>
 			        	<div class="control">
 							<select id="register_type_select"> 
 							   <option value="-1" selected="selected"> - tipo de usuario - </option> 
@@ -105,13 +105,13 @@
 			        <div id="user_data" style="display:none;"> 
 				      	<div id="cadidate_fields">
 					        <div class="field">
-					        	<div class="label">Nombre</div>
+					        	<div class="label">Nombre:</div>
 					        	<div class="control">
 					        			<input type="text" id="register_firstname_input" />
 								</div>
 					        </div>
 					        <div class="field">
-					        	<div class="label">Apellido</div>
+					        	<div class="label">Apellido:</div>
 					        	<div class="control">
 					        			<input type="text" id="register_lastname_input" />
 								</div>
@@ -136,7 +136,7 @@
 								</div>
 					        </div>
 					        <div class="field">
-					        	<div class="label">Pais:</div>
+					        	<div class="label">País:</div>
 					        	<div class="control">
 									<select id="register_country_select"> 
 									   <?php  
@@ -154,7 +154,7 @@
 				      	</div>
 				      	<div id="company_fields">
 					        <div class="field">
-					        	<div class="label">Razon social</div>
+					        	<div class="label">Razon social:</div>
 					        	<div class="control">
 					        			<input type="text" id="register_companyname_input" />
 								</div>
@@ -172,19 +172,19 @@
 								</div>
 					        </div>
 					        <div class="field">
-					        	<div class="label">CUIT</div>
+					        	<div class="label">CUIT:</div>
 					        	<div class="control">
 					        			<input type="text" id="register_company_id_input" />
 								</div>
 					        </div>
 					        <div class="field">
-					        	<div class="label">Telefono</div>
+					        	<div class="label">Teléfono:</div>
 					        	<div class="control">
 					        			<input type="text" id="register_company_phone_input" />
 								</div>
 					        </div>
 					        <div class="field">
-					        	<div class="label">Pais:</div>
+					        	<div class="label">País:</div>
 					        	<div class="control">
 									<select id="register_company_country_select"> 
 									   <?php foreach ($paises as $id => $pais){ ?>
