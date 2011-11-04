@@ -59,15 +59,15 @@ class Admin_Usuarios extends CI_Controller {
 	 */
 	public function  setUserData(){
 		$usuario = $this->input->post('usuario');
-		$usuario = json_decode($usuario);
+		$usuario = json_decode_into_array(utf8_decode($usuario));
 		$usuario->clave = md5($usuario->clave);
 
 		$respuesta = $this->Usuario_model->crearNuevoUsuarioExperto($usuario);
 		//email confirmation
 		$this->email->from('noreply@gmail.com', 'Findresources');
-		$this->email->to($usuario->email);
-		$this->email->subject('FindResources - Confirmacion de Registración');
-		$this->email->message('Su usuario Experto ha sido creado contactese con el administrador para saber su contraseña.');
+		$this->email->to($usuario["email"]);
+		$this->email->subject(utf8_encode('FindResources - Confirmación de Registro'));
+		$this->email->message(utf8_encode('Su usuario Experto ha sido creado, contáctese con el administrador para saber su contraseña.'));
 		//ENVIAR EMAIL.
 		$emailSent = $this->email->send();
 		

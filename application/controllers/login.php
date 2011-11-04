@@ -35,16 +35,16 @@ class Login extends CI_Controller {
 	 */
 	public function  crearNuevoUsuario(){
 		$usuario = $this->input->post('usuario');
-		$usuario = json_decode(utf8_decode($usuario));
-		$usuario->clave = md5($usuario->clave);
+		$usuario = json_decode_into_array(utf8_decode($usuario));
+		$usuario["clave"] = md5($usuario["clave"]);
 		$activationCode = $this->randomString(32);
 		$respuesta = $this->Usuario_model->crearNuevoUsuario($usuario, $activationCode);
 		//email confirmation
 		$this->email->from('noreply@gmail.com', 'FindResources');
-		$this->email->to($usuario->email);
+		$this->email->to($usuario["email"]);
 		$this->email->subject(utf8_encode('FindResources - Confirmación de Registro'));
 
-		$link =  base_url() .'autenticacion?autCode=' . $activationCode . '&email='. $usuario->email;
+		$link =  base_url() .'autenticacion?autCode=' . $activationCode . '&email='. $usuario["email"];
 
 		$email = <<<EOF
 		<html>
