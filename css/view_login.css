@@ -40,7 +40,7 @@ body {
  	font-size: 13px;
 	margin-bottom: 10px;
 	height: 200px;
-	border-radius: 5px 5px 5px 5px;
+	border-radius: 10px 10px 10px 10px;
 	width: 415px;
 }
 
@@ -48,7 +48,9 @@ body {
 	/*border-top: 1px #CCCCCC solid;*/
 	padding-top: 9px;
 	width: 443px;
-	
+	background-color:black;
+	height:200px;
+	border-radius: 10px 10px 10px 10px;
 }
 
 #login_tabs {
