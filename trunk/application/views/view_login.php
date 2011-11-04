@@ -62,7 +62,7 @@
 			        <div class="field clearfix">
 			        	<div class="label">Email:</div>
 			        	<div class="control">
-			        			<input type="text" id="login_email_input" name="email" value="unmail7@unserver.com"/>
+			        			<input type="text" id="login_email_input" name="email" value="unmail@unserver.com"/>
 						</div>
 			        </div>
 					<div class="field clearfix">
