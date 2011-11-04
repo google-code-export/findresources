@@ -2,9 +2,9 @@
 body {
  background-color: #fff;
  margin: auto;
- font-size: 10px;
  color: #4F5155;
  width: 960px;
+ font-family: Tahoma;
 }
 
 
@@ -28,7 +28,7 @@ body {
 	position: absolute;
 	padding-right: 7px;
 	border-right: 1px #CCCCCC solid;
-	height: 465px;
+	height: 570px;
 	width: 452px;
 	
 }
@@ -45,7 +45,7 @@ body {
 }
 
 #video_container {
-	border-top: 1px #CCCCCC solid;
+	/*border-top: 1px #CCCCCC solid;*/
 	padding-top: 9px;
 	width: 443px;
 	
@@ -64,11 +64,11 @@ body {
 }
 
 .control input {
-	width: 150px;
+	width: 161px;
 }
 
 .control select{
-	width: 160px;
+	width: 171px;
 }
 .field {
 	margin-top: 15px;
@@ -91,7 +91,7 @@ body {
 }
 
 #register_id_type_select {
-	width: 50px;
+	width: 63px;
 }
 
 #register_id_number_input {
@@ -111,7 +111,7 @@ body {
 
 
 .fb-like {
-	border-bottom: 1px #CCCCCC solid;
+	/*border-bottom: 1px #CCCCCC solid;*/
 	width: 443px;
 	padding-bottom: 10px;
 }

@@ -1,5 +1,5 @@
 ul.tabs {  
-  
+
 margin: 0;  
   
 padding: 0;  
@@ -10,12 +10,12 @@ list-style: none;
   
 height: 32px; /*--Define el ancho de las tabs--*/  
   
-border-bottom: 1px solid #999;  
+border-bottom: 1px solid #999;
   
-border-left: 1px solid #999;  
-  
+/*border-left: 1px solid #999;*/
+
 width: 100%;  
-  
+
 }  
   
 ul.tabs li {  
@@ -30,9 +30,9 @@ height: 31px; /*--Sustrae 1px de la altura de la lista desordenada--*/
   
 line-height: 31px; /*--Alineamiento vertical del texto dentro de la tabla--*/  
   
-border: 1px solid #999;  
-  
-border-left: none;  
+/*border: 1px solid #ccc	;*/
+
+/*border-left: none;  */
   
 margin-bottom: -1px; /*--Desplaza los item de la lista abajo 1px--*/  
   
@@ -40,8 +40,8 @@ overflow: hidden;
   
 position: relative;  
   
-background: #e0e0e0;  
-  
+background: #fff;  
+	border-radius: 5px 5px 5px 5px;
 }  
   
 ul.tabs li a {  
@@ -56,7 +56,7 @@ font-size: 1.2em;
   
 padding: 0 20px;  
   
-border: 1px solid #fff;  
+/*border: 1px solid #fff; */
   
 <a rel="nofollow" title="outline" href=" http://www.cssblog.es/css-la-propiedad-outline/">outline</a>: none;  
   
@@ -64,15 +64,15 @@ border: 1px solid #fff;
   
 ul.tabs li a:hover {  
   
-background: #ccc;  
-  
+background: #E0ECF8;  
+  	border-radius: 5px 5px 5px 5px;
 }  
   
 html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Estate seguro de que a la tab activa no se le aplicarán estas propiedades hover--*/  
   
-background: #fff;  
+background: #81BEF7;  
   
-border-bottom: 1px solid #fff; /*--Esto hace que la tab activa esté conectada con respecto a su contenido--*/  
+/*border-bottom: 1px solid #fff;*/ /*--Esto hace que la tab activa esté conectada con respecto a su contenido--*/  
   
 }
 
@@ -80,9 +80,9 @@ border-bottom: 1px solid #fff; /*--Esto hace que la tab activa esté conectada co
 
 .tab_container {  
   
-border: 1px solid #999;  
+/*border: 1px solid #999;*/
   
-border-top: none;  
+/*border-top: none;*/  
   
 overflow: hidden;  
   
