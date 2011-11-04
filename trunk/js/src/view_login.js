@@ -75,6 +75,7 @@ $(function(){
 		      success: function(response){
 		      		hidePopUp();
 		      		alert("Un mail fue enviado a su casilla para autenticar su usuario.");
+		      		window.location.reload();
 			  },
 			  error: function(response){
 		      		hidePopUp();
