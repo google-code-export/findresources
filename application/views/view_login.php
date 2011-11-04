@@ -6,6 +6,7 @@
 <script type="text/javascript" src="<?php echo site_url('js/libs/json2.js')?>"></script>
 <script type="text/javascript" src=" <?php echo site_url('js/src/utils.js')?>"></script>
 <script type="text/javascript" src="<?php echo site_url('js/src/view_login.js')?>"></script>
+<script src="<?php echo base_url();?>js/libs/jquery-ui-1.8.15.custom.min.js" language="JavaScript" type="text/javascript"></script>
 
 <title>Find Resources</title>
 
@@ -14,6 +15,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/view_login.css')?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/style.css')?>" />
 <link rel="shortcut icon" type="image/x-icon" href="<?php echo site_url("images/src/favicon.ico")?>" />
+<link type="text/css" href="<?php echo base_url();?>css/jquery-ui-1.8.15.custom.css" rel="stylesheet" />
 </head>
 <body>
 <div id="fb-root"></div>
@@ -48,13 +50,12 @@
 			 <center id="video_container"><iframe width="336" height="189" src="http://www.youtube.com/embed/SdZWF8DJOfk" frameborder="0" allowfullscreen></iframe></center>
 			 <br /><br /><div class="fb-like" data-href="https://www.facebook.com/pages/FindResources/198212693580643" data-send="false" data-width="450" data-show-faces="false" data-font="lucida grande"></div>
 		</div>
-		
 		<div id="login_tabs">
 			<ul class="tabs">  
 			    <li><a href="#tab1">Ingresar</a></li>  
-			    <li><a href="#tab2">Registrate</a></li>  
+			    <li><a href="#tab2">Registrarse</a></li>  
 			</ul>  
-			  
+			 
 			<div class="tab_container">  
 			    <div id="tab1" class="tab_content">  
 			        <div class="field clearfix">
