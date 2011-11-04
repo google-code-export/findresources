@@ -80,7 +80,7 @@
 			        <div class="field">
 			        	<div class="label">Email:</div>
 			        	<div class="control">
-			        			<input type="text" id="register_email_input" name="email" />
+			        			<input type="text" id="register_email_input" name="email" autocomplete="off"/>
 						</div>
 			        </div>
 					<div id="login_error_msg" class="field error_msg" style="display:none">
@@ -89,7 +89,7 @@
 			        <div class="field">
 			        	<div class="label">Contraseña:</div>
 			        	<div class="control">
-			        			<input type="password" id="register_password_input" name="email" />
+			        			<input type="password" id="register_password_input" name="email" autocomplete="off"/>
 						</div>
 			        </div>
 			        <div class="field">
@@ -108,13 +108,13 @@
 					        <div class="field">
 					        	<div class="label">Nombre:</div>
 					        	<div class="control">
-					        			<input type="text" id="register_firstname_input" />
+					        			<input type="text" id="register_firstname_input" autocomplete="off"/>
 								</div>
 					        </div>
 					        <div class="field">
 					        	<div class="label">Apellido:</div>
 					        	<div class="control">
-					        			<input type="text" id="register_lastname_input" />
+					        			<input type="text" id="register_lastname_input" autocomplete="off"/>
 								</div>
 					        </div>
 					        <div class="field">
@@ -127,13 +127,13 @@
 												</option> 
 									   <?php } ?>
 									</select>
-					        		<input type="text" id="register_id_number_input" />
+					        		<input type="text" id="register_id_number_input" autocomplete="off"/>
 								</div>
 					        </div>
 					        <div class="field">
 					        	<div class="label">Teléfono:</div>
 					        	<div class="control">
-					        		<input type="text" id="register_phone_number_input" />
+					        		<input type="text" id="register_phone_number_input" autocomplete="off"/>
 								</div>
 					        </div>
 					        <div class="field">
@@ -157,7 +157,7 @@
 					        <div class="field">
 					        	<div class="label">Razon social:</div>
 					        	<div class="control">
-					        			<input type="text" id="register_companyname_input" />
+					        			<input type="text" id="register_companyname_input" autocomplete="off"/>
 								</div>
 					        </div>
 					        <div class="field">
@@ -175,13 +175,13 @@
 					        <div class="field">
 					        	<div class="label">CUIT:</div>
 					        	<div class="control">
-					        			<input type="text" id="register_company_id_input" />
+					        			<input type="text" id="register_company_id_input" autocomplete="off"/>
 								</div>
 					        </div>
 					        <div class="field">
 					        	<div class="label">Teléfono:</div>
 					        	<div class="control">
-					        			<input type="text" id="register_company_phone_input" />
+					        			<input type="text" id="register_company_phone_input" autocomplete="off"/>
 								</div>
 					        </div>
 					        <div class="field">
