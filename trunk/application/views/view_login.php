@@ -31,12 +31,13 @@
 <?php include("toolbar.php"); ?>
 	<div class="body_container">
 		<div id="login_wellcome">
-			<div id="login_wellcome_text">
+		<br /><br />
+			<div id="login_wellcome_text" style="font-family:Tahoma;">
 				<br />
-				 <div style="font-size:15px;">
-					Sitio Web que brinda servicios<br />
-					para búsqueda y selección de personal<br />
-					evaluando conocimientos y personalidad<br /><br />
+				 <div style="font-size:15px;font-weight:bold;text-align:center;">
+					Primer sitio web que brinda servicios<br />
+					para búsqueda y selección de personal,<br />
+					evaluando conocimientos y personalidad.<br /><br />
 				 </div>
 				 <img src="/images/src/find_tilde_s-p.png" alt="&#10004;" />
 				 Ranking de postulantes<br />
@@ -46,9 +47,9 @@
 				Informe de habilidades<br />
 				<img src="/images/src/find_tilde_s-p.png" alt="&#10004;" />
 				Seguimiento detallado del proceso de selección<br /><br />
-			 </div>
+			 </div><br /><br />
 			 <center id="video_container"><iframe width="336" height="189" src="http://www.youtube.com/embed/SdZWF8DJOfk" frameborder="0" allowfullscreen></iframe></center>
-			 <br /><br /><div class="fb-like" data-href="https://www.facebook.com/pages/FindResources/198212693580643" data-send="false" data-width="450" data-show-faces="false" data-font="lucida grande"></div>
+			 <br /><br /><br /><div class="fb-like" data-href="https://www.facebook.com/pages/FindResources/198212693580643" data-send="false" data-width="450" data-show-faces="false" data-font="lucida grande"></div>
 		</div>
 		<div id="login_tabs">
 			<ul class="tabs">  
