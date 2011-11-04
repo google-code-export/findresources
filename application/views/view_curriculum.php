@@ -445,6 +445,10 @@
 				<?php if($perfil == "usuario") { ?><a href="javascript:addIndustry();"> <img src="/images/src/add.png"/> Agregar</a><?php } ?>
 			</div>
 
+			<div class="clearfix hardSkillGridHeader">
+				<div id="seniorityTitle">Nivel de experiencia</div>
+			</div>
+
 			<ul id="editItemIndustryList">
 			<?php foreach ($habilidadesIndustriasDelCV as $habilidad){ ?>
 				<li id="editItemIndustry<?php echo $habilidad->idIndustria ?>" class="industryItem">
@@ -487,6 +491,9 @@
 				<?php if($perfil == "usuario") { ?><a href="javascript:addTool();"> <img src="/images/src/add.png"/> Agregar</a><?php  } ?>
 			</div>
 			
+			<div class="clearfix hardSkillGridHeader">
+				<div id="seniorityTitle">Nivel de experiencia</div>
+			</div>
 			<ul id="editItemToolList">
 			<?php foreach ($habilidadesAreasDelCV as $habilidad){ ?>
 				<li id="editItemTool<?php echo $habilidad->idHerramienta ?>" area="<?php echo $habilidad->idArea ?>" class="toolItem">
