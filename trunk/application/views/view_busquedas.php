@@ -389,14 +389,14 @@
 				<div class="inside">
 					<h4>Áreas de negocio</h4>
 					<div class="clearfix">
-						<select id="availableIndustriesSelect" size="5" onclick="javascript:addIndustry(true);">
+						<select id="availableIndustriesSelect" size="5">
 							<!-- <option value="" selected=selected>Seleccione...</option>-->
 							<?php foreach ($industriasDisponibles as $id => $industria){ ?>
 								<option value="<?php echo $id; ?>"><?php echo $industria;?></option> 
 							<?php } ?>
 						</select>
 		
-						<!-- <a class="addIndustry" href="javascript:addIndustry(true);"> <img src="images/src/add.png"/> Agregar</a>-->
+						<a class="addIndustry button add" href="javascript:addIndustry(true);" >Agregar</a>
 					</div>
 					<div class="clearfix hardSkillGridHeader">
 						<div id="seniorityTitle">Seniority</div>
@@ -449,10 +449,10 @@
 							<?php } ?>
 						</select>
 						</td><td>
-						<select id="availableToolsSelect" size="5" onclick="javascript:addTool(true);">
+						<select id="availableToolsSelect" size="5">
 							<!-- <option value="-1">Seleccione la herramienta...</option>--> 
 						</select>
-						<!-- <a class="addTool" href="javascript:addTool(true);"> <img src="images/src/add.png"/> Agregar</a>-->
+						<a class="addTool button add" href="javascript:addTool(true);">Agregar</a>
 						</td>
 						</tr>
 						</table>
@@ -519,13 +519,13 @@
 					<div class="inside">
 						<h4>Habilidades</h4>
 						<div>
-							<select id="availableSoftSkillsSelect" onclick="javascript:addSoftSkill();" size="10">
+							<select id="availableSoftSkillsSelect" size="10">
 								<!-- <option id="availableSoftSkillsDefaultOption" value="-1" selected="selected">Seleccione las habilidades...</option>-->
 								<?php foreach ($habilidadesBlandasDisponibles['lista_hab_blandas'] as $index => $habilidad){ ?>
 									<option value="<?php echo $index ?>"><?php echo $habilidad->d_habilidad_blanda;?></option> 
 								<?php } ?>
 							</select>
-							<!-- <a href="javascript:addSoftSkill();"> <img src="images/src/add.png"/> Agregar</a> -->
+							<a href="javascript:addSoftSkill();" class="button add">Agregar</a>
 						</div>
 						<br />
 						<ul id="editItemSoftSkillList">
