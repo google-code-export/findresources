@@ -130,7 +130,7 @@
 								</div>
 					        </div>
 					        <div class="field">
-					        	<div class="label">Telefono:</div>
+					        	<div class="label">Teléfono:</div>
 					        	<div class="control">
 					        		<input type="text" id="register_phone_number_input" />
 								</div>
