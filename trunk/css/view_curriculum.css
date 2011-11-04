@@ -128,3 +128,16 @@ h1 {
 .starRatingContainer {
 	display: inline;
 }
+
+.hardSkillGridHeader {
+	margin-top: 10px;
+}
+
+#seniorityTitle {
+    float: left;
+    text-align: center;
+    height: 20px;
+	padding-top: 5px;
+	font-weight: bold;
+	margin-left: 305px;
+}
