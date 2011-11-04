@@ -70,7 +70,7 @@
 						</div>
 			        </div>
 			        <div id="login_button_div">
-				        <a href="#" id="do_login_button" class="button" >Ingresar</a>
+				        <a href="#" id="do_login_button" class="button save" >Ingresar</a>
 			        </div>
 			        
 			    </div>  
@@ -197,7 +197,7 @@
 				      	
 				      	</div>
 				        <div id="login_button_div">
-					        <input type="submit" value="Registrarse" id="do_register_button" disabled="disabled"/>
+					        <a href="#" class="button" ><input type="submit" value="Registrarse" id="do_register_button" disabled="disabled" style="border: 0; background: transparent;font-weight:bold;"/></a>
 				        </div>
 				      	
 			        </div>
