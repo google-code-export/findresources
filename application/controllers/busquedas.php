@@ -295,7 +295,9 @@ class Busquedas extends CI_Controller {
 				case "P":
 					$estado = "Pendiente";
 					$estado = "<img src='/images/src/delete.png' />";
-					$informe_link = "<img src='/images/src/doc.png' title='Informe aún no generado'/>";
+					//TODO FIX SOLO PARA LA DEMO, PERMITE VER EL INFORME AUNQUE TENGA LOS TESTS PENDIENTES.
+					//$informe_link = "<img src='/images/src/doc.png' title=''/>";
+					$informe_link = "<a href='javascript:showCandidateReport(\"". $resultado_busqueda->usuario. "\");' title='Informe aún no generado' ><img src='/images/src/doc.png'/></a>";
 					break;
 				case "R";
 					$estado = "Realizado";
