@@ -15,7 +15,7 @@
 		<h1>Sugerencias</h1>
 		<div style="font-size:15px;">
 		<?php if ($filled_form != true) { ?>
-			<form method="post" action="/home/contact" class="greyform" onsubmit="return validForm();">
+			<form method="post" name="sugerencias" action="/home/contact" class="greyform">
 				<strong>Nombre y Apellido</strong><br />
 				<input type="text" class="text" name="NombreApellido" id="nombreapellido" value="" />
 				<br /><br />
@@ -33,7 +33,7 @@
 				<strong>Descripci&oacute;n</strong><br />
 				<textarea  name="Descripcion" id="descripcion" style="width:300px;height:100px;" ></textarea>
 				<br /><br />
-				<input type="submit" style="width: 84px; height: 28px; margin-left:220px;" src="/images/standard/button_submit.png" alt="Submit" />	
+				<a href="javascript:document.sugerencias.submit();" class="button save" style="margin-left:220px;">Enviar</a>
 			</form>
 			<?php } else {
 				echo "Su solicitud fue enviada con éxito.";

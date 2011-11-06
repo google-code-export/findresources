@@ -65,8 +65,8 @@
 								<?php foreach ($psicotecnicosDisponibles as $psicotecnico){ ?>
 									<option value="<?php echo $psicotecnico->id_test; ?>"><?php echo $psicotecnico->nombre_test;?></option> 
 								<?php } ?>
-							</select>
-							<input type="submit" value="Consultar" onclick="getPsicotecnicosResultados();" />
+							</select>&nbsp;&nbsp;
+							<a href="javascript:getPsicotecnicosResultados();" class="button save" > Consultar</a>
 						</div>
 					</div>
 					<div class="info clearfix block">

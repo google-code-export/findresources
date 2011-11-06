@@ -75,6 +75,8 @@
 
 <div class="body_container">
 		<h1>Curriculum</h1>	
+		<div style="float:right">	<a href="/home" class="button"><img src="/images/src/back.gif" style="vertical-align:sub;width:15px;" />&nbsp;&nbsp;Volver al Inicio</a>
+</div>
 		<div class="CL">
 			<div class="header-block"><?php echo $usuarioData->nombre." ".$usuarioData->apellido;?></div>
 			<div class="info clearfix block">
@@ -286,7 +288,6 @@
 			</div>
 		</div>
 </div>
-
 
 <div class="popup" id="cvDataPopUp" style="display:none;">
 <table cellspacing="0" cellpadding="0" align="center">

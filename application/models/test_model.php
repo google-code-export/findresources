@@ -218,6 +218,13 @@ class Test_model extends CI_Model {
 		$result = "";
 		$i = 1;
 		while($i <= 180) {
+			//TODO SOLO PARA LA DEMO, SE PODRIA AGREGAR UN NUEVO VALOR A V y F para contarlo como incorrecto X
+			// POR BOTON FINALIZAR
+				/* SOLO PARA DEMO */
+				if($ravenAnswers["q".$i] == "") {
+					$ravenAnswers["q".$i] = "V";
+				}
+				/* SOLO PARA DEMO */
 				$result .= $ravenAnswers["q".$i]; 
 				$i++;
 		}

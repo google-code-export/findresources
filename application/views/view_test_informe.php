@@ -36,16 +36,17 @@
 
 	<h1>Informe de Exámen Psicotécnico</h1>
 	<div id="page" style="height:auto;min-height:400px"> 
-	<center> 
-	<br /><br />
-	<h1>Informe</h1> 
-	</center>
-	<br /><br />
+
 	<p style="font-size:14px">
 	<?php
 		if(array_key_exists("0", $informe)) { 
-			foreach($informe as $inf)
-				echo @$inf->informe."<br /><br /><br />";
+			foreach($informe as $inf) {
+			echo "<ul>";
+			echo "<li style='list-style-type: none;font-size:16px;font-family:Tahoma;font-weight:bold;margin-left:10px;padding:20px;'>".
+					str_replace(".", "<li style='list-style-type: circle;font-size:14px;font-family:Tahoma;margin-left:30px;padding:10px;font-family:Tahoma;'>", @$inf->informe);
+				//echo @$inf->informe."<br /><br /><br />";
+			echo "</ul>";
+			}
 		} else {
 			echo "Aún no han sido generados informes para este candidato.";
 		} 

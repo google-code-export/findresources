@@ -28,6 +28,7 @@
 	</h4> 
 	<br /><br /><br />
 	<br /><br /><br />
+	<a href="/home" class="button"><img src="/images/src/back.gif" style="vertical-align:sub;width:15px;" />&nbsp;&nbsp;Volver al Inicio</a>
 	<a href="<?php echo base_url();?>Test" class="button save">Comenzar</a>
 	<?php
 	}
@@ -41,6 +42,7 @@
 	<br /><br /><br /><br />
 	El Staff de FindResources.com.ar
 	</h4> 
+	<br /><br /><a href="/home" class="button"><img src="/images/src/back.gif" style="vertical-align:sub;width:15px;" />&nbsp;&nbsp;Volver al Inicio</a>
 	
 	<?php 
 	}

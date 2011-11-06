@@ -112,7 +112,7 @@
 	$preguntas[61] = "Algunos dicen que me gusta hacerme la victima.";
 	$preguntas[62] = "Me siento mejor cuando estoy solo.";
 	$preguntas[63] = "Me pongo más tenso que los demás frente a situaciones nuevas.";
-	$preguntas[64] = "Generalmente trato de evitar las desilusione, por más que esté convencido de tener razón.";
+	$preguntas[64] = "Generalmente trato de evitar las desilusiones, por más que esté convencido de tener razón.";
 	$preguntas[65] = "Busco soluciones novedosas y excitantes para mí.";
 	$preguntas[66] = "Hubo épocas en que mis padres tuvieron problemas por mi comportamiento.";
 	$preguntas[67] = "Siempre termino mi trabajo antes de descansar.";
@@ -264,7 +264,9 @@
 		<tr>
 			<td>
 			<input type="hidden" name="source" value="<?php echo $source;?>" /><br /><br />
-			<!-- <input type=submit value="Finalizar Test">-->	 
+			<!-- BOTON SOLO PARA DEMO - FINALIZAR TEST -->
+			<a href="#" class="button flag" ><input type=submit value="Finalizar Test" style="border: 0; background: transparent;font-weight:bold;" class="button"/></a>	 
+			<!-- BOTON SOLO PARA DEMO - FINALIZAR TEST -->
 			<?php //Resolver tema de que no ejecuta la validación del form ?> 
 			</td>
 		</tr>
@@ -275,25 +277,24 @@
 	<br />
 	<br />
 	<br />
-	 <?php 
+<?php 
 	}
 	/** ********************* **/
 	/** PAGINA FINAL DEL TEST **/
 	/** ********************* **/
 	if ($source == "test_finished") {
-	?>
-	<br />
-	<br /><br />
-	<h4>Muchas gracias por realizar el Test. Esta información será tenida en cuenta en sus postulaciones.</h4>
+		echo "<br /><br /><br />";
+		if ($result != "OK") {
+			echo "<h4>Hubo un error al guardar la información del test. Por favor contáctese con nosotros, completando el formulario de Ayuda.</h4>";
+			//echo $result;
+		} else {
+			echo "<h4>Muchas gracias por realizar el Test. Esta información será tenida en cuenta en sus postulaciones.</h4>";
+		}
+?>
 	<br /><br /><br />
 	<br /><a href="<?php echo base_url()?>Test">Continuar con el siguiente test.</a>
-	<br /><br /><hr />
-	<?php 
-		if ($result != "OK")
-				echo $result;
-				echo "<br /><hr />";
-	}
-	?>
+	<br /><br />
+<?php } ?>
 	</div> 
 </div> 
 <div id="test_footer">

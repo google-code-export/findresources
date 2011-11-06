@@ -44,7 +44,7 @@ class Login extends CI_Controller {
 		$this->email->to($usuario["email"]);
 		$this->email->subject(utf8_encode('FindResources - Confirmación de Registro'));
 
-		$link =  base_url() .'autenticacion?autCode=' . $activationCode . '&email='. $usuario["email"];
+		$link =  "http://www.findresources.com.ar/" .'autenticacion?autCode=' . $activationCode . '&email='. $usuario["email"];
 
 		$email = <<<EOF
 		<html>

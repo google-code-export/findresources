@@ -120,6 +120,9 @@
 							</h3>
 							</div>
 							<div style="float:right;" >
+								<a href="/home" class="button"><img src="/images/src/back.gif" style="vertical-align:sub;width:15px;" />&nbsp;&nbsp;Volver al Inicio</a>
+							</div>
+							<div style="float:right;" >
 							<a class="editSearchDataLink button" href="javascript:editSearchData(<?php echo $busquedaId?>);" title="Editar">
 								<img src="images/src/edit16.png" style="vertical-align:sub;width:15px" /> Editar datos
 							</a>
@@ -128,7 +131,7 @@
 								<a class="editSearchDataLink button" href="javascript:setGrid(<?php echo $busquedaId?>,'S')" title="Actualizar" >
 								<img src="images/src/refresh.png" style="vertical-align:sub"/> Actualizar Resultados 
 							</a>
-							</div>
+							</div>		
 						</div>
 						<div id="searchTabs" class="clearfix">
 							<ul class="tabs">  

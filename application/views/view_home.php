@@ -80,7 +80,7 @@
 
 		<div id="homeTestLink" align="center">
 <?php if($test_pendiente == "SI") { ?>
-			<a class="testLink" href="/Test"> 
+			<a class="testLink" href="/Test/inicio"> 
 				Realizar Psicotécnico
 			</a>
 <?php } else { ?>
