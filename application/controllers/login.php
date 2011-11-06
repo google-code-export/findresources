@@ -36,6 +36,9 @@ class Login extends CI_Controller {
 	public function  crearNuevoUsuario(){
 		$usuario = $this->input->post('usuario');
 		$usuario = json_decode_into_array(utf8_decode($usuario));
+		
+		$usuario["email"] = strtolower($usuario["email"]);
+		
 		$usuario["clave"] = md5($usuario["clave"]);
 		$activationCode = $this->randomString(32);
 		$respuesta = $this->Usuario_model->crearNuevoUsuario($usuario, $activationCode);
@@ -106,6 +109,9 @@ EOF;
 	 */
 	public function getExisteUsuario(){
 		$usuario = $this->input->post('usuario');
+		
+		$usuario = strtolower($usuario);
+		
 		$estado = $this->Usuario_model->getEstadoUsuario($usuario);
 		if($estado == 0){
 			echo "false";
