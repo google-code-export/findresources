@@ -67,7 +67,6 @@ function setSoftSkill(){
 			processError(response);
 		}
 	});		
-	return false;
 }
 
 function getSoftSkill(idSoftSkill){
