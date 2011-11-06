@@ -32,7 +32,7 @@
 	<div class="body_container">
 		<div id="login_wellcome">
 		<br /><br />
-			<div id="login_wellcome_text" style="font-family:Tahoma;">
+			<div id="login_wellcome_text">
 				<br />
 				 <div style="font-size:15px;font-weight:bold;text-align:center;">
 					Primer sitio web que brinda servicios<br />
