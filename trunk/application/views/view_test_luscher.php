@@ -98,33 +98,28 @@
 	</tr> 
 	</table> 
 	</center> 
-	 <?php 
+<?php 
 	}
-	
 	/** ********************* **/
 	/** PAGINA FINAL DEL TEST **/
 	/** ********************* **/
-	
 	if ($source == "test_finished") {
-	?>
-	<br />
-	<br /><br />
-	<h4>Muchas gracias por realizar el Test. Esta información será tenida en cuenta en sus postulaciones.</h4>
+		echo "<br /><br /><br />";
+		if ($result != "OK") {
+			echo "<h4>Hubo un error al guardar la información del test. Por favor contáctese con nosotros, completando el formulario de Ayuda.</h4>";
+			//echo $result;
+		} else {
+			echo "<h4>Muchas gracias por realizar el Test. Esta información será tenida en cuenta en sus postulaciones.</h4>";
+		}
+?>
 	<br /><br /><br />
 	<br /><a href="<?php echo base_url()?>Test">Continuar con el siguiente test.</a>
-	<br /><br /><hr />
-	<?php 
-		if ($result != "OK")
-				echo $result;
-				echo "<br /><hr />";
-	}
-	?>
+	<br /><br />
+<?php } ?>
 	</div> 
 </div> 
-
 <div id="test_footer">
 <?php include("footer.php"); ?>
 </div>
-
 </body>
 </html>

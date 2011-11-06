@@ -21,7 +21,7 @@ function getPsicotecnicosResultados(){
 			sortorder: "asc",
 			title: 'Resultados de psicotecnicos obtenidos por el sistema',
 			rp: 15,
-			width: 750,
+			width: 870,
 			height: 500,
 			onError: function(response){
 				processError(response);
