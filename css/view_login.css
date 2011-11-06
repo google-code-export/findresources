@@ -4,7 +4,6 @@ body {
  margin: auto;
  color: #4F5155;
  width: 960px;
- font-family: Tahoma;
 }
 
 
@@ -43,7 +42,7 @@ body {
 	border-radius: 10px 10px 10px 10px;
 	width: 415px;
 	
-    font: bold 12px Helvetica, Arial, sans-serif;
+    font: bold 12px;
     text-shadow: 0 1px 0 #fff;
     background-color: #F4F4F4;
     background: -webkit-gradient(linear,0% 55%,0% 90%,from(#F9F9F9),to(#F0F0F0));
