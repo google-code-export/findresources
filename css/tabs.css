@@ -2,7 +2,7 @@ ul.tabs {
 
 margin: 0;  
   
-padding: 0;  
+padding-bottom: 5px;  
   
 float: left;  
   
@@ -34,14 +34,16 @@ line-height: 31px; /*--Alineamiento vertical del texto dentro de la tabla--*/
 
 /*border-left: none;  */
   
-margin-bottom: -1px; /*--Desplaza los item de la lista abajo 1px--*/  
   
 overflow: hidden;  
   
 position: relative;  
   
 background: #fff;  
-	border-radius: 5px 5px 5px 5px;
+
+border-radius: 5px 5px 5px 5px;
+
+border: solid 1px #dcdcdc;
 }  
   
 ul.tabs li a {  

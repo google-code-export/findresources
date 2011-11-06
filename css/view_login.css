@@ -34,14 +34,20 @@ body {
 }
 
 #login_wellcome_text {
-	color: #FFFFFF;
-    background: url("/images/src/find_fondo.jpg") no-repeat scroll 0 0;
+	/*color: #FFFFFF;
+    background: url("/images/src/find_fondo.jpg") no-repeat scroll 0 0;*/
 	padding: 0 8px 0 20px;
  	font-size: 13px;
 	margin-bottom: 10px;
 	height: 200px;
 	border-radius: 10px 10px 10px 10px;
 	width: 415px;
+	
+    font: bold 12px Helvetica, Arial, sans-serif;
+    text-shadow: 0 1px 0 #fff;
+    background-color: #F4F4F4;
+    background: -webkit-gradient(linear,0% 55%,0% 90%,from(#F9F9F9),to(#F0F0F0));
+    border: solid 1px #dcdcdc;
 }
 
 #video_container {
