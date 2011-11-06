@@ -91,6 +91,9 @@ EOF;
 		$usuario = $this->input->post('usuario');
 		$usuario = json_decode($usuario);
 		$clave = md5($usuario->clave);
+
+		$usuario->email = strtolower($usuario->email);
+		
 		$isLoggued = $this->Usuario_model->canLogin($usuario->email, $clave);
 		if($isLoggued){
 			session_destroy();
