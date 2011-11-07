@@ -133,7 +133,7 @@
 						<?php if($curriculumData->idPaisNacionalidad !=""){?>
 							<div><?php echo "<b>Nacionalidad:</b> ".$paises[$curriculumData->idPaisNacionalidad];?></div>
 						<?php } ?>
-						
+						<div><b>Email:</b> <?php echo $curriculumData->usuario;?></div>
 						<div><?php if($curriculumData->gtalk != "") echo "<b>Gtalk:</b> ".$curriculumData->gtalk;?></div>
 
 						<div><?php if($curriculumData->twitter != "") echo "<b>Twitter:</b> ".$curriculumData->twitter;?></div>
