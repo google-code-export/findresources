@@ -189,7 +189,7 @@ function eraseFormalEducation(id){
 }
 
 function eraseInformalEducation(id){
-	var r=confirm("Esta seguro que desea eliminar la educacion informal seleccionada");
+	var r=confirm("Esta seguro que desea eliminar la educacion no formal seleccionada");
 	if (r==true)
 	  {
 		$.ajax({
