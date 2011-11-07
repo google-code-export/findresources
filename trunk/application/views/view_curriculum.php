@@ -57,6 +57,8 @@
 </script>
 <script type="text/javascript" src="<?php echo site_url('js/libs/jquery-1.6.2.min.js')?>"></script>
 <script type="text/javascript" src="<?php echo site_url('js/libs/jquery-ui.min-1.8.16.js')?>"></script>
+<script type="text/javascript" src="<?php echo site_url('js/libs/jquery-tools-min-1.2.6.js')?>"></script>
+
 
 <script type="text/javascript" src="<?php echo site_url('js/libs/json2.js')?>"></script>
 <script type="text/javascript" src=" <?php echo site_url('js/src/starrating.js')?>"></script>
@@ -435,7 +437,7 @@
 		<div class="popuptitle"> Conocimientos </div>
 		<a href="javascript:;" class="closePopUp"></a>
 		<div class="inside">
-			<h4>Áreas de negocio</h4>
+			<h4>Áreas de negocio </h4>
 			<div class="clearfix">
 				<select id="availableIndustriesSelect">
 					<?php foreach ($industriasDisponibles as $id => $industria){ ?>
@@ -443,11 +445,14 @@
 					<?php } ?>
 				</select>
 
-				<?php if($perfil == "usuario") { ?><a href="javascript:addIndustry();"> <img src="/images/src/add.png"/> Agregar</a><?php } ?>
+				<?php if($perfil == "usuario") { ?><a class="addLink" href="javascript:addIndustry();"> <img src="/images/src/add.png"/> Agregar</a><?php } ?>
+				<div class="helpIcon hardSkillsTitleHelpIcon" title="Ingrese aquí los rubros de las empresas donde usted posee experiencia laboral."></div>
 			</div>
 
 			<div class="clearfix hardSkillGridHeader">
 				<div id="seniorityTitle">Nivel de experiencia</div>
+				<div id="" class="helpIcon" title="Defina en esta columna cuanto conoce del rubro seleccionado."></div>
+				
 			</div>
 
 			<ul id="editItemIndustryList">
@@ -461,15 +466,15 @@
 							<ul class='star-rating'>
 								<li class='current-rating' value="<?php echo $habilidad->puntos ?>"></li>
 								<li><a href="#" onclick="vote('#editItemIndustry<?php echo $habilidad->idIndustria ?> .current-rating', 1); return false;" 
-							           title='Trainee' class='one-star'>1</a></li>
+							           title='Trainee: Posee conocimientos académicos o ha investigado el tema.' class='one-star'>1</a></li>
 								<li><a href="#" onclick="vote('#editItemIndustry<?php echo $habilidad->idIndustria ?> .current-rating',2); return false;" 
-							           title='Junior' class='two-stars'>2</a></li>
+							           title='Junior: Menos de 2 años de experiencia laboral en el tema.' class='two-stars'>2</a></li>
 								<li><a href="#" onclick="vote('#editItemIndustry<?php echo $habilidad->idIndustria ?> .current-rating',3); return false;" 
-							           title='Semi senior' class='three-stars'>3</a></li>
+							           title='Semi senior: Posee de 2 a 5 años de experiencia laboral en el tema.' class='three-stars'>3</a></li>
 								<li><a href="#" onclick="vote('#editItemIndustry<?php echo $habilidad->idIndustria ?> .current-rating',4); return false;" 
-							           title='Senior' class='four-stars'>4</a></li>
+							           title='Senior: Posee más de 5 años de experiencia.' class='four-stars'>4</a></li>
 								<li><a href="#" onclick="vote('#editItemIndustry<?php echo $habilidad->idIndustria ?> .current-rating',5); return false;" 
-							           title='Experto' class='five-stars'>5</a></li>
+							           title='Experto: Es un referente técnico en el tema, y/o posee experiencia liderando equipos.' class='five-stars'>5</a></li>
 							</ul>
 						</div>
 						<a class="removeSkillLink" href="javascript:removeIndustry(<?php echo $habilidad->idIndustria ?>);"><img src="/images/src/delete.png"></img></a>
@@ -489,11 +494,13 @@
 				<select id="availableToolsSelect">
 					<option value="-1">Herramientas</option> 
 				</select>
-				<?php if($perfil == "usuario") { ?><a href="javascript:addTool();"> <img src="/images/src/add.png"/> Agregar</a><?php  } ?>
+				<?php if($perfil == "usuario") { ?><a class="addLink" href="javascript:addTool();"> <img src="/images/src/add.png"/> Agregar</a><?php  } ?>
+				<div class="helpIcon hardSkillsTitleHelpIcon" title="Ingrese aquí los rubros de las empresas donde usted posee experiencia laboral."></div>
 			</div>
 			
 			<div class="clearfix hardSkillGridHeader">
 				<div id="seniorityTitle">Nivel de experiencia</div>
+				<div id="" class="helpIcon" title="Defina en esta columna cuanto conoce de la herramienta seleccionada."></div>
 			</div>
 			<ul id="editItemToolList">
 			<?php foreach ($habilidadesAreasDelCV as $habilidad){ ?>
@@ -507,15 +514,15 @@
 							<ul class='star-rating'>
 								<li class='current-rating' value="<?php echo $habilidad->puntos ?>"></li>
 								<li><a href="#" onclick="vote('#editItemTool<?php echo $habilidad->idHerramienta ?> .current-rating', 1); return false;" 
-							           title='Trainee' class='one-star'>1</a></li>
+							           title='Trainee: Posee conocimientos académicos o ha investigado el tema.' class='one-star'>1</a></li>
 								<li><a href="#" onclick="vote('#editItemTool<?php echo $habilidad->idHerramienta ?> .current-rating',2); return false;" 
-							           title='Junior' class='two-stars'>2</a></li>
+							           title='Junior: Menos de 2 años de experiencia laboral en el tema.' class='two-stars'>2</a></li>
 								<li><a href="#" onclick="vote('#editItemTool<?php echo $habilidad->idHerramienta ?> .current-rating',3); return false;" 
-							           title='Semi senior' class='three-stars'>3</a></li>
+							           title='Semi senior: Posee de 2 a 5 años de experiencia laboral en el tema.' class='three-stars'>3</a></li>
 								<li><a href="#" onclick="vote('#editItemTool<?php echo $habilidad->idHerramienta ?> .current-rating',4); return false;" 
-							           title='Senior' class='four-stars'>4</a></li>
+							           title='Senior: Posee más de 5 años de experiencia.' class='four-stars'>4</a></li>
 								<li><a href="#" onclick="vote('#editItemTool<?php echo $habilidad->idHerramienta ?> .current-rating',5); return false;" 
-							           title='Experto' class='five-stars'>5</a></li>
+							           title='Experto: Es un referente técnico en el tema, y/o posee experiencia liderando equipos.' class='five-stars'>5</a></li>
 							</ul>
 		        		</div>
 		        		
