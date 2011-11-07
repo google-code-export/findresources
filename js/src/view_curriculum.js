@@ -320,6 +320,26 @@ $(function(){
 			promedio: $('#formalEducationEditorAverage').val().replace(".", ",")
 			
 		};
+		if(educacionFormal.titulo == ""){
+			alert("Porfavor complete el título");
+			return;
+		}
+		
+		if(educacionFormal.fechaInicio == ""){
+			alert("Porfavor complete la fecha inicio");
+			return;
+		}
+		if(educacionFormal.fechaFinalizacion == ""){
+			alert("Porfavor complete una fecha de finalizacion, en caso de terminado la estimativa");
+			return;
+		}
+		
+		if(educacionFormal.promedio == ""){
+			alert("Porfavor complete el promedio");
+			return;
+		}
+		
+		
 		$.ajax({
 			url: "curriculum/setEducacionFormal",
 			global: false,

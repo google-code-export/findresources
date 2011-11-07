@@ -6,12 +6,12 @@
 <script type="text/javascript">
 	function logout (){
 		$.ajax({
-		      url: "home/doLogout",
+		      url: "/home/doLogout",
 		      global: false,
 		      type: "POST",
 		      async:true,
 		      success: function(response){
-					window.location="login";
+					window.location="/";
 			  },
 			  error: function(response){
 					alert(response);
