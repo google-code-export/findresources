@@ -50,12 +50,12 @@
 	<center>
 	<br /><h3>Mancha Nº<?php echo $pic;?></h3><br />
 	<h4>Etiquete la mancha con las imágenes que vé: </h4><br /></center><br />
-	<!-- <form name="Show">
+	<form name="Show">
 	WIDTH <input type="text" name="MouseX" value="0" size="4">
 	HEIGHT <input type="text" name="MouseY" value="0" size="4">
 	TOP <input type="text" name="MouseW" value="0" size="4">
 	LEFT <input type="text" name="MouseZ" value="0" size="4">
-	</form>-->
+	</form>
 	<div id="taggingArea">
 		<img src="<?php echo base_url();?>images/rorschach/img<?php echo $pic;?>.jpg" width="600px"/>
 		<div id="drag" class="ui-widget ui-widget-content ui-corner-all">
