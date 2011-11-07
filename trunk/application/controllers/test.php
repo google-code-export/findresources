@@ -111,7 +111,7 @@ class Test extends CI_Controller {
 			 	$data['source'] = "test_finished";
 				try {
 					$result = $this->Test_model->setLuscherResults($usuario,$seleccion_luscher1,$seleccion_luscher2);
-					if ($result["error"] == 0 )
+					if ($result["error"] == "0" )
 						$data["result"] = "OK";
 					else 			
 						$data["result"] = "ERROR (".$result["error"].") :".$result["desc"];
@@ -170,7 +170,7 @@ class Test extends CI_Controller {
 				$usuario = $this->functionutils->getSession('SESSION_ID_USUARIO');
 		 		try{
 			 		$result = $this->Test_model->setRavenResults($usuario,$correctAnswers);
-					if ($result["error"] == 0 )
+					if ($result["error"] == "0" )
 						$data["result"] = "OK";
 					else 			
 						$data["result"] = "ERROR (".$result["error"].") :".$result["desc"];
@@ -226,6 +226,7 @@ class Test extends CI_Controller {
 			break;
 			case 'select_ficha_final' : 
 			case 'timeout' :  
+
 		 		$data['timer'] = $this->input->post('timer');
 		 		$data['source'] = "test_finished";
 		 		
@@ -233,8 +234,7 @@ class Test extends CI_Controller {
 				$usuario = $this->functionutils->getSession('SESSION_ID_USUARIO');
 				try {
 		 			$result = $this->Test_model->setD48Results($usuario,$correctAnswers);
-
-					if ($result["error"] == 0 )
+					if ($result["error"] == "0" )
 						$data["result"] = "OK";
 					else 			
 						$data["result"] = "ERROR (".$result["error"].") :".$result["desc"];
@@ -283,7 +283,7 @@ class Test extends CI_Controller {
 				$correctAnswers = $this->Test_model->getMIPSCorrectAnswers($data);
 				try {
 			 		$result = $this->Test_model->setMIPSResults($usuario,$correctAnswers);
-					if ($result["error"] == 0 )
+					if ($result["error"] == "0" )
 						$data["result"] = "OK";
 					else 			
 						$data["result"] = "ERROR (".$result["error"].") :".$result["desc"];
@@ -402,7 +402,7 @@ class Test extends CI_Controller {
 						$tagdata = substr($tagdata,0,-1);
 						$result = $this->Test_model->setRorschachResults($usuario,$tagdata);			
 
-						if ($result["error"] == 0 )
+						if ($result["error"] == "0" )
 							$data["result"] = "OK";
 						else {			
 							$data["result"] = "ERROR (".$result["error"].") :".$result["desc"];
