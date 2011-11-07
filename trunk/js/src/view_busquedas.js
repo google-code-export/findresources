@@ -126,10 +126,11 @@ $(function() {
 	
 	$('#candidateCVIframe').load(function(){
 		$('#candidateCVLoading').css("display", "none");
-	})    
+	});
+	
 	$('#candidateReportIframe').load(function(){
 		$('#candidateReportLoading').css("display", "none");
-	})
+	});
 	
 	return false;
 });
