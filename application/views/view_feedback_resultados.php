@@ -31,11 +31,11 @@
 <script type="text/javascript" src=" <?php echo site_url('js/src/view_feedback_resultados.js')?>"></script>
 
 <style type="text/css">
-	.popup .inside{
+	#candidatosGridPopUp .inside{
 		height: 580px;
 	}
 	
-	.popup .in {
+	#candidatosGridPopUp .in {
 		 height: 600px;
 		 width: 800px;
 	}
@@ -43,6 +43,28 @@
 	.label{
 		width: 200px;
 	}
+
+	#candidateReportPopUp .in {
+		width: 1020px;
+		min-height: 170px;
+	}
+	#candidateReportIframe{
+		width: 950px;
+	}
+	
+	#candidateReportLoading{
+		color: white;
+		background-color: black;
+	    opacity: 0.8;
+	    display: block;
+	    padding: 20px;
+	}
+	
+	#candidateReportLoading img{
+		padding-bottom:5px;
+	}
+
+
 </style>
 
 
@@ -103,6 +125,26 @@
 	</td></tr>
 	</table>
 </div>
+
+<div class="popup" id="candidateReportPopUp" style="display:none;">
+	<table cellspacing="0" cellpadding="0" align="center">
+	<tr><td>
+		<div class="in">
+			<a href="javascript:;" class="closePopUp"></a>
+			<div class="inside">
+				<iframe id="candidateReportIframe" src="" scrolling="no" frameborder="0">
+				</iframe>
+				<div id="candidateReportLoading">
+					<img src="/images/src/55_cycle_ten_24.gif"/>
+					<div> Cargando ...</div>
+				</div>
+				
+			</div>
+		</div>
+	</td></tr>
+	</table>
+</div>
+
 
 </body>
 </html>

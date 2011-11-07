@@ -45,7 +45,7 @@ class Feedback_Resultados extends CI_Controller {
 				$busqueda->usuario,
 				$busqueda->listaconocimientos,
 				$busqueda->listaaspectosperso,
-				"<a class='' href='javascript:showCandidatos(\"". $busqueda->id_busqueda ."\", \"". $busqueda->d_busqueda ."\");'><img src='/images/src/lupa.png'></img></a>" 
+				"<a class='' href='javascript:showCandidatos(\"". $busqueda->id_busqueda ."\", \"". $busqueda->razon_social ."\");'><img src='/images/src/lupa.png'></img></a>" 
 			);
 			$key++;
 		}
@@ -67,13 +67,16 @@ class Feedback_Resultados extends CI_Controller {
 		$rc = false;
 		$key = 1;
 		
+		
+		
 		foreach ($candidatos as $candidato) {
 			$grid["rows"][$key]["id"] = $key;
 			$grid["rows"][$key]["cell"] = array(
 				$candidato->apellido,
 				$candidato->nombre,
 				$candidato->usuario,
-				$candidato->listaaspectosperso_cv
+				$candidato->listaaspectosperso_cv,
+				"<a href='javascript:showCandidateReport(\"". $candidato->usuario. "\");' title='Ver Informe' ><img src='/images/src/doc.png'/></a>"
 			);
 			$key++;
 		}

@@ -49,7 +49,6 @@ function getBusquedas(){
 
 	}
 	
-	return false;
 };
 
 ///global variable.-
@@ -65,7 +64,8 @@ function showCandidatos(idBusqueda, name){
 				{display: 'Apellido', name : 'fecha', width : 100, sortable : false, align: 'left'},
 				{display: 'Nombre', name : 'entradas', width : 100, sortable : false, align: 'left'},
 				{display: 'Email', name : 'entradas', width : 200, sortable : false, align: 'left'},
-				{display: 'Aspectos de la personalidad', name : 'entradas', width : 310, sortable : false, align: 'left'}
+				{display: 'Aspectos de la personalidad', name : 'entradas', width : 310, sortable : false, align: 'left'},
+				{display: 'Ver informe', name : 'entradas', width : 60, sortable : false, align: 'left'}
 			],
 			sortname: "orden",
 			sortorder: "asc",
@@ -77,7 +77,7 @@ function showCandidatos(idBusqueda, name){
 				processError(response);
 			} 
 		}); 
-		addExportLink("#candidatosGridContainer", 'Búsquedas de la empresa ' + name);
+		addExportLink("#candidatosGridContainer", 'Búsquedas de la empresa: ' + name);
 	}else{
 		$("#candidatosGrid").flexOptions({url: 'feedback_resultados/getCandidatosGrid?idBusqueda=' + idBusqueda, title: 'Candidatos de la búsqueda' + name}); 
 		$("#candidatosGrid").flexReload(); 
@@ -86,3 +86,22 @@ function showCandidatos(idBusqueda, name){
 	showPopUp('#candidatosGridPopUp');
 
 }
+
+
+function showCandidateReport(usuario){
+	$('#candidateReportLoading').css("display", "block");
+	$('#candidateReportIframe').attr("height", "0px"); //put in 0px, then the child frame will update the needed height
+	$('#candidateReportIframe').attr("src", "test/informe?usuario=" + usuario);
+	showPopUp('#candidateReportPopUp');
+}
+
+
+$(function() {
+	
+	$('#candidateReportIframe').load(function(){
+		$('#candidateReportLoading').css("display", "none");
+	});
+	
+	return false;
+});
+	
