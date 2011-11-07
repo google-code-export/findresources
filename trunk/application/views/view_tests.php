@@ -4,6 +4,7 @@
 	<meta content="text/html; charset=ISO-8859-1" http-equiv="Content-Type"/>
     <link rel="StyleSheet" type="text/css" href="<?php echo site_url('css/style.css')?>" />
     <link rel=StyleSheet type="text/css" href="<?php echo site_url('css/global.css')?>"/>
+    <script src="<?php echo base_url();?>js/libs/jquery-1.6.2.min.js"></script>
     <link rel="shortcut icon" type="image/x-icon" href="<?php echo site_url("images/src/favicon.ico")?>" />
     <title>FindResources</title> 
 </head> 

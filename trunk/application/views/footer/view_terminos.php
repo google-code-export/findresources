@@ -8,6 +8,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/global.css')?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo site_url('css/style.css')?>" />
 <link rel="shortcut icon" type="image/x-icon" href="<?php echo site_url("images/src/favicon.ico")?>" />
+<script src="<?php echo base_url();?>js/libs/jquery-1.6.2.min.js"></script>
 </head>
 <body>
 <?php 
