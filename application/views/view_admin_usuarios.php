@@ -32,12 +32,27 @@
 <script type="text/javascript" src=" <?php echo site_url('js/src/view_admin_usuarios.js')?>"></script>
 <style type="text/css">
 	#userEditorIdType {
-		width: 50px;
+		width: 65px;
 	}
 	
 	#userEditorIdNumber {
 		width: 87px;
 	}
+	
+	.label {
+		width: 140px;
+	}
+	
+	input[type="text"], input[type="password"]
+	{
+		width: 155px;
+	}
+	
+	.field select{
+		width: 165px;
+	}
+	
+	
 </style>
 
 <title>FindResources </title>
