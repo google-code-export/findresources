@@ -545,7 +545,7 @@
 				<input id="workExperienceEditorId" type="hidden" value="" name="" />
 				
 				<div class="field clearfix">
-					<div class="label">Título:</div>
+					<div class="label">Cargo:</div>
 					<input type="text" id="workExperienceEditorTitle" value="" />
 				</div>
 				
@@ -597,7 +597,7 @@
 				</div>
 
 				<div class="field clearfix">
-					<div class="label">Descripcion:</div>
+					<div class="label">Descripción:</div>
 					<textarea id="workExperienceEditorDescription"></textarea>
 				</div>
 			</div>
