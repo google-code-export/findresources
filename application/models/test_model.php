@@ -263,7 +263,7 @@ class Test_model extends CI_Model {
 		array('name'=>':PO_C_ERROR', 'value'=>&$result["error"], 'type'=>SQLT_CHR , 'length'=>255),
 		array('name'=>':PO_D_ERROR', 'value'=>&$result["desc"], 'type'=>SQLT_CHR, 'length'=>255)
 		);
-		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_TEST','PR_RORSCHACH_USUARIO',$params);
+		$this->oracledb->stored_procedure($this->db->conn_id,'PKG_TEST_III','PR_RORSCHACH_USUARIO',$params);
 
 		if($result["error"] == 0){
 			return $result;		
