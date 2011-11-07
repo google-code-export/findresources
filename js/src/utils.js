@@ -52,10 +52,11 @@ $(function(){
 	$('.popup .closePopUp').click(function(){
 		hidePopUp();
 	});
+	
+	if($().tooltip){
+		$(".helpIcon").tooltip();
+	}///else the library is not defined.
 
-	$('.popup .cancelPopUp').click(function(){
-		hidePopUp();
-	});
 
 return false;
 });

@@ -270,3 +270,21 @@ input[type="text"],input[type="password"],select, textarea {
  background: url("/images/src/ui-bg_diagonals-small_40_db4865_40x40.png") repeat-x scroll 50% 50% red;
 }
 
+.tooltip {
+	display:none;
+	background:transparent url(/images/tooltip/black_arrow.png);
+	font-size:12px;
+	height:70px;
+	width:160px;
+	padding:25px;
+	color:#fff;	
+	z-index: 3000;
+}
+
+
+.helpIcon {
+	background: url("/images/src/info-icon.png") no-repeat scroll center center transparent;
+	width: 16px;
+	height: 16px;
+	cursor: pointer;
+}
