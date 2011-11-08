@@ -440,7 +440,7 @@ class Test extends CI_Controller {
 		
 		$informe  = $this->Test_model->getInforme($usuario);
 		$data['informe'] = $informe["informe_info"];
-		
+		$data['usuarioData'] = $this->Usuario_model->getUsuario($usuario);
 		$data['perfil'] = "empresa"; // por ahora solo la empresa ingresa aqui.
 		
 		$this->load->view('view_test_informe', $data);
