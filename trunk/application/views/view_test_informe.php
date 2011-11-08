@@ -37,16 +37,25 @@
 	<div class='header-block'>Informe de Exámen Psicotécnico</div><br /><br />
 	<div id="page" style="height:auto;min-height:400px"> 
 
-	<p style="font-size:14px">
+
 	<?php
 		$i=0;
 		if(array_key_exists("0", $informe)) { 
 			foreach($informe as $inf) {
 			//echo @$inf->informe."<br />--<br /><br />";
-			if($i == 0) 
-				echo "<b>".@$inf->informe."</b><br /><br /><ul>";
-			else 
+			if($i == 0) {
+				echo "<b style='font-size:14px'>".@$inf->informe."</b>";
+				$photo_filename = "/images/cv/".md5($usuarioData->id).".jpg";
+				$photo_filename = (!file_exists($_SERVER['DOCUMENT_ROOT'].$photo_filename))? "/images/cv/default.jpg":$photo_filename;
+				?>
+				<div style="float:right; width:190px;"><br />
+				<img src="<?php echo $photo_filename;?>" alt="Foto" style="padding:5px;background:#FFF;border: .1em solid black; width:150px;"/>
+				</div>
+				<?php
+				echo "<ul>"; 
+			} else{ 
 				echo str_replace(".", "<li class='informe'>", @$inf->informe);
+			}
 			$i++;
 			}
 			echo "</ul>"; 
@@ -55,7 +64,7 @@
 		} 
 	?>
 	
-	</p>
+
 	</div> 
 </div>
 <div id="test_footer">
