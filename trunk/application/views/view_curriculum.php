@@ -267,7 +267,7 @@
 			</div>
 			
 			<div class="block">
-				<h2>Educaci&oacute;n No Formal <?php if($perfil == "usuario") { ?><a class="addFields tooltipLink" title="Complete aquí su los cursos, certificaciones o talleres que haya realizado." href="javascript:addInformalEducation();"><img src="/images/src/add.png"/> <b>Agregar</b> educación</a><?php } ?></h2>
+				<h2>Educaci&oacute;n No Formal <?php if($perfil == "usuario") { ?><a class="addFields tooltipLink" title="Complete aquí los cursos, certificaciones o talleres que haya realizado." href="javascript:addInformalEducation();"><img src="/images/src/add.png"/> <b>Agregar</b> educación</a><?php } ?></h2>
 				
 				<?php foreach ($educacionNoFormalDelCv as $id => $educacion){ ?>
 				<div class="study inblock">

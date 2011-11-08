@@ -67,7 +67,7 @@
 		<div id="searchBody" class="clearfix">
 			<div id="leftPanel">
 				<div id="newSearchLink" class="clearfix">
-					<a class="newSearch" href="javascript:newSearch();"><img src="images/src/add.png"/> <b>Nueva</b> búsqueda</a>
+					<a class="newSearch button add" href="javascript:newSearch();"><b>Nueva</b> búsqueda</a>
 				</div> <!-- END OF newSearchLink -->
 				<div id="savedSearchLinks" class="clearfix">
 					
@@ -124,7 +124,7 @@
 							</div>
 							<div style="float:right;" >
 							<a class="editSearchDataLink button" href="javascript:editSearchData(<?php echo $busquedaId?>);" title="Editar">
-								<img src="images/src/edit16.png" style="vertical-align:sub;width:15px" /> Editar datos
+								<img src="images/src/edit16.png" style="vertical-align:sub;width:15px" /> Editar búsqueda
 							</a>
 							</div>	
 							<div style="float:right;" >
