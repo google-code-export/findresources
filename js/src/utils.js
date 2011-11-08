@@ -65,6 +65,8 @@ return false;
 /* Inicialización en español para la extensión 'UI date picker' para jQuery. */
 /* Traducido por Vester (xvester@gmail.com). */
 jQuery(function($){
+	$('.cancelPopUp').click(function(){hidePopUp();});
+	
 	if($.datepicker){
 		$.datepicker.regional['es'] = {
 				closeText: 'Cerrar',
