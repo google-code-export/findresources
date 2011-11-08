@@ -242,3 +242,16 @@ form.questions label.error { display: none; }
 	border-style: solid;
 }
 /*[FIN] RAVEN */
+/*[INI] INFORME TEST*/
+li.informe:first-letter {
+	text-transform:capitalize;
+}
+li.informe{
+	list-style-type: circle;
+	font-size:14px;
+	font-family:Tahoma;
+	margin-left:30px;
+	padding:10px;
+	font-family:Tahoma;
+}
+/*[FIN] INFORM TEST*/
