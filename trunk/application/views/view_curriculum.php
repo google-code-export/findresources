@@ -151,7 +151,7 @@
 			</div>
 			
 			<div class="block" id="hardSkills">
-				<h2>Conocimientos <?php if($perfil == "usuario") { ?><a href="javascript:editHardSkills();" class="editFields"><img src="/images/src/pencil.gif"/>Editar</a><?php } ?></h2>
+				<h2>Conocimientos <?php if($perfil == "usuario") { ?><a href="javascript:editHardSkills();" class="editFields tooltipLink" title="Complete aquí los conocimientos que usted haya adquirido"><img src="/images/src/pencil.gif"/>Editar</a><?php } ?></h2>
 				<div class="inblock">
 					<h4>Áreas de negocio</h4>
 					<ul>
@@ -192,7 +192,7 @@
 			
 			<div class="block" id="workExperience">
 		
-				<h2>Experiencia Laboral <?php if($perfil == "usuario") { ?><a class="addFields" href="javascript:addWorkExperience();"><img src="/images/src/add.png"/> <b>Agregar</b> una posición</a> <?php  } ?></h2>
+				<h2>Experiencia Laboral <?php if($perfil == "usuario") { ?><a class="addFields tooltipLink" title="Click para completar una experiencia laboral" href="javascript:addWorkExperience();"><img src="/images/src/add.png"/> <b>Agregar</b> una posición</a> <?php  } ?></h2>
 							
 				<?php foreach ($experienciaLaboralDelCv as $i => $experiencia){ ?>
 
@@ -222,7 +222,7 @@
 			</div>
 			
 			<div class="block">
-				<h2>Educaci&oacute;n Formal <?php if($perfil == "usuario") { ?><a class="addFields" href="javascript:addFormalEducation();"><img src="/images/src/add.png"/> <b>Agregar</b> educación</a><?php } ?></h2>
+				<h2>Educaci&oacute;n Formal <?php if($perfil == "usuario") { ?><a class="addFields tooltipLink" title="Click para completar una Educación Formal" href="javascript:addFormalEducation();"><img src="/images/src/add.png"/> <b>Agregar</b> educación</a><?php } ?></h2>
 				
 				<?php foreach ($educacionFormalDelCv as $i => $educacion){ ?>
 				
@@ -267,7 +267,7 @@
 			</div>
 			
 			<div class="block">
-				<h2>Educaci&oacute;n No Formal <?php if($perfil == "usuario") { ?><a class="addFields" href="javascript:addInformalEducation();"><img src="/images/src/add.png"/> <b>Agregar</b> educación</a><?php } ?></h2>
+				<h2>Educaci&oacute;n No Formal <?php if($perfil == "usuario") { ?><a class="addFields tooltipLink" title="Click para completar una Educación No Formal" href="javascript:addInformalEducation();"><img src="/images/src/add.png"/> <b>Agregar</b> educación</a><?php } ?></h2>
 				
 				<?php foreach ($educacionNoFormalDelCv as $id => $educacion){ ?>
 				<div class="study inblock">
@@ -446,7 +446,7 @@
 				</select>
 
 				<?php if($perfil == "usuario") { ?><a class="addLink" href="javascript:addIndustry();"> <img src="/images/src/add.png"/> Agregar</a><?php } ?>
-				<div class="helpIcon hardSkillsTitleHelpIcon" title="Ingrese aquí los rubros de las empresas donde usted posee experiencia laboral."></div>
+				<div class="helpIcon hardSkillsTitleHelpIcon" title="Ingrese aquí los rubros de las empresas donde usted posee Experiencia Laboral."></div>
 			</div>
 
 			<div class="clearfix hardSkillGridHeader">

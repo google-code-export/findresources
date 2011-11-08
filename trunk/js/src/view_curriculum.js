@@ -456,6 +456,7 @@ $(function(){
 	
 	if($().tooltip){
 		$(".star-rating a").tooltip();
+		$(".tooltipLink").tooltip();
 	}///else the library is not defined.
 
 	
