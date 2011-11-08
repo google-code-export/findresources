@@ -14,7 +14,7 @@
 <?php 
 include("application/views/toolbar.php"); ?>
 	<div class="body_container" style="min-height:600px">
-	<h1>Términos</h1>
+	<h1>Términos y Condiciones</h1>
 	<div style="font-size:15px;">
 <?php 
 echo nl2br('
