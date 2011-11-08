@@ -495,7 +495,7 @@
 					<option value="-1">Herramientas</option> 
 				</select>
 				<?php if($perfil == "usuario") { ?><a class="addLink" href="javascript:addTool();"> <img src="/images/src/add.png"/> Agregar</a><?php  } ?>
-				<div class="helpIcon hardSkillsTitleHelpIcon" title="Ingrese aquí los rubros de las empresas donde usted posee experiencia laboral."></div>
+				<div class="helpIcon hardSkillsTitleHelpIcon" title="Ingrese aquí las herramientas que sabe utilizar para realizar sus tareas laborales."></div>
 			</div>
 			
 			<div class="clearfix hardSkillGridHeader">
