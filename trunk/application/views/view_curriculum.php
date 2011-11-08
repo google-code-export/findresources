@@ -90,7 +90,7 @@
 					<img src="<?php echo $photo_filename;?>" alt="Foto"/>
 				</div>
 				<div class="right">
-					<h2>&nbsp;&nbsp;Información Personal <?php if($perfil == "usuario") { ?> <a href="javascript:editCVData();" class="editFields"><img src="/images/src/pencil.gif"/>Editar</a><?php } ?></h2>
+					<h2>&nbsp;&nbsp;Información Personal <?php if($perfil == "usuario") { ?> <a href="javascript:editCVData();" class="editFields tooltipLink" title="Complete aquí su información personal y sus datos de contacto."><img src="/images/src/pencil.gif"/>Editar</a><?php } ?></h2>
 					<div class="inblock2">
 						<div class="row clearfix">
 							<div><?php echo ($curriculumData->estadoCivil == "") ? "" : "<b>Estado civil:</b> ".$estadosCiviles[$curriculumData->estadoCivil]?>&nbsp;</div>
@@ -151,7 +151,7 @@
 			</div>
 			
 			<div class="block" id="hardSkills">
-				<h2>Conocimientos <?php if($perfil == "usuario") { ?><a href="javascript:editHardSkills();" class="editFields tooltipLink" title="Complete aquí los conocimientos que usted haya adquirido"><img src="/images/src/pencil.gif"/>Editar</a><?php } ?></h2>
+				<h2>Conocimientos <?php if($perfil == "usuario") { ?><a href="javascript:editHardSkills();" class="editFields tooltipLink" title="Complete aquí los conocimientos que usted haya adquirido, junto al nivel de experiencia de cada uno."><img src="/images/src/pencil.gif"/>Editar</a><?php } ?></h2>
 				<div class="inblock">
 					<h4>Áreas de negocio</h4>
 					<ul>
@@ -192,7 +192,7 @@
 			
 			<div class="block" id="workExperience">
 		
-				<h2>Experiencia Laboral <?php if($perfil == "usuario") { ?><a class="addFields tooltipLink" title="Click para completar una experiencia laboral" href="javascript:addWorkExperience();"><img src="/images/src/add.png"/> <b>Agregar</b> una posición</a> <?php  } ?></h2>
+				<h2>Experiencia Laboral <?php if($perfil == "usuario") { ?><a class="addFields tooltipLink" title="Complete aquí su experiencia laboral especificando su cargo, logros u objetivos del mismo." href="javascript:addWorkExperience();"><img src="/images/src/add.png"/> <b>Agregar</b> una posición</a> <?php  } ?></h2>
 							
 				<?php foreach ($experienciaLaboralDelCv as $i => $experiencia){ ?>
 
@@ -222,7 +222,7 @@
 			</div>
 			
 			<div class="block">
-				<h2>Educaci&oacute;n Formal <?php if($perfil == "usuario") { ?><a class="addFields tooltipLink" title="Click para completar una Educación Formal" href="javascript:addFormalEducation();"><img src="/images/src/add.png"/> <b>Agregar</b> educación</a><?php } ?></h2>
+				<h2>Educaci&oacute;n Formal <?php if($perfil == "usuario") { ?><a class="addFields tooltipLink" title="Complete aquí su educación formal, como un terciario, doctorado, licenciatura, etc." href="javascript:addFormalEducation();"><img src="/images/src/add.png"/> <b>Agregar</b> educación</a><?php } ?></h2>
 				
 				<?php foreach ($educacionFormalDelCv as $i => $educacion){ ?>
 				
@@ -267,7 +267,7 @@
 			</div>
 			
 			<div class="block">
-				<h2>Educaci&oacute;n No Formal <?php if($perfil == "usuario") { ?><a class="addFields tooltipLink" title="Click para completar una Educación No Formal" href="javascript:addInformalEducation();"><img src="/images/src/add.png"/> <b>Agregar</b> educación</a><?php } ?></h2>
+				<h2>Educaci&oacute;n No Formal <?php if($perfil == "usuario") { ?><a class="addFields tooltipLink" title="Complete aquí su los cursos, certificaciones o talleres que haya realizado." href="javascript:addInformalEducation();"><img src="/images/src/add.png"/> <b>Agregar</b> educación</a><?php } ?></h2>
 				
 				<?php foreach ($educacionNoFormalDelCv as $id => $educacion){ ?>
 				<div class="study inblock">
