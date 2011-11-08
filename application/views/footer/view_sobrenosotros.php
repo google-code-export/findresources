@@ -15,7 +15,10 @@
 	<div class="body_container" style="min-height:600px">
 	<h1>Sobre Nosotros</h1>
 	<div style="font-size:15px;">
-	<b>Findresources</b> es el primer portal de la argentina que se ocupa de buscar al recurso que mas se adapte a su organización , evaluando no solamente los aspectos técnicos necesarios sino los aspectos de la personalidad de cada uno de los posibles candidatos .
+	<b>Findresources</b> es el primer portal de la Argentina que se ocupa de buscar al recurso que mas se adapte a su organización , evaluando no solamente los aspectos técnicos necesarios sino los aspectos de la personalidad de cada uno de los posibles candidatos .
+	<br /><br />
+	 Por favor póngase en contacto con nosotros para obtener más información 	contacto@findresources.com.ar.
+	
 	</div>
 	</div>
 	<div id="login_footer">
