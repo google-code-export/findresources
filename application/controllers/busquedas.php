@@ -297,15 +297,27 @@ class Busquedas extends CI_Controller {
 					$estado = "<img src='/images/src/delete.png' />";
 					//TODO FIX SOLO PARA LA DEMO, PERMITE VER EL INFORME AUNQUE TENGA LOS TESTS PENDIENTES.
 					//$informe_link = "<img src='/images/src/doc.png' title=''/>";
-					$informe_link = "<a href='javascript:showCandidateReport(\"". $resultado_busqueda->usuario. "\");' title='Informe aún no generado' ><img src='/images/src/doc.png'/></a>";
+					//$informe_link = "<a href='javascript:showCandidateReport(\"". $resultado_busqueda->usuario. "\");' title='Informe aún no generado' ><img src='/images/src/doc.png'/></a>";
 					break;
-				case "R";
+				case "R":
 					$estado = "Realizado";
 					$estado = "<img src='/images/src/ok.png' />";
-					$informe_link = "<a href='javascript:showCandidateReport(\"". $resultado_busqueda->usuario. "\");' title='Ver Informe' ><img src='/images/src/doc.png'/></a>";
+					//$informe_link = "<a href='javascript:showCandidateReport(\"". $resultado_busqueda->usuario. "\");' title='Ver Informe' ><img src='/images/src/doc.png'/></a>";
 					break;
 				default:
 					$estado = "Sin datos";
+					//$informe_link = "Sin datos";
+			}
+			switch ($resultado_busqueda->estado_informe){
+				case "N": //NO GENERADO
+					//TODO FIX SOLO PARA LA DEMO, PERMITE VER EL INFORME AUNQUE TENGA LOS TESTS PENDIENTES.
+					//$informe_link = "<img src='/images/src/doc.png' title=''/>";
+					$informe_link = "<a href='javascript:showCandidateReport(\"". $resultado_busqueda->usuario. "\");' title='Informe aún no generado' ><img src='/images/src/docno.png'/></a>";
+					break;
+				case "G": //GENERADO
+					$informe_link = "<a href='javascript:showCandidateReport(\"". $resultado_busqueda->usuario. "\");' title='Ver Informe' ><img src='/images/src/doc.png'/></a>";
+					break;
+				default:
 					$informe_link = "Sin datos";
 			}
 			$grid["rows"][$key]["id"] = $key;
