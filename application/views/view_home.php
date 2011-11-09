@@ -191,7 +191,7 @@
 					<div class="label" > Fecha de Inicio de actividad: </div><div> <?php echo $usuarioData->fechaInicio;?></div>
 				</div>
 				<div class="clearfix row">
-					<div class="label" > Saldo: </div><div> <?php echo $usuarioData->saldo;?> tickets</div>
+					<div class="label" > Saldo: </div><div> <?php echo $usuarioData->saldo;?> búsquedas</div>
 				</div>
 			</div>
 		</div>
