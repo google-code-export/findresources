@@ -25,8 +25,11 @@
 	<br /><br /><h4>
 	El Test consiste en decidir cuál a tu criterio es la figura que resta en las placas que se te mostrarán. 
 	<br /><br />
-	Disponés de 45 minutos para resolver las 60 placas del test.</h4> 
+	<b>* La realización del siguiente test tiene una demora aproximada de 45 minutos, por favor téngalo en cuenta a la hora de comenzarlo.</b>
 	<br /><br />
+	<br /><br />
+
+	
 	<form method="post" id="quiz_form" name="quiz_form">
 	<input type="hidden" name="source" value="init_test" />
 	<input type="hidden" name="placa" value="0" />

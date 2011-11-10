@@ -36,6 +36,9 @@
 	<br /><br />
 	<h4>Responda a las siguientes 180 preguntas por Verdadero o Falso.</h4> 
 	<br /><br />
+	<b>* La realización del siguiente test tiene una demora aproximada de 30 minutos, por favor téngalo en cuenta a la hora de comenzarlo.</b>
+	<br /><br />
+	<br /><br />
 	<form method="post" id="quiz_form" name="quiz_form">
 	<input type="hidden" name="source" value="init_test" />
 	<a href="javascript:document.quiz_form.submit();" class="button">Comenzar el test</a>
