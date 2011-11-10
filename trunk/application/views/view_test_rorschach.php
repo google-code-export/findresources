@@ -114,9 +114,10 @@
 		<form method=post name="pic_form">
 		<input type=hidden name=pic value="<?php echo $pic+1;?>" />
 		<input type="hidden" name="source" value="<?php echo $source;?>" />
-		<?php if (count($session_img) >= "5") { ?>
+		<?php //TODO ONLY FOR DEMO
+			 //	if (count($session_img) >= "5") { ?>
 		<a href="javascript:document.pic_form.submit();" class="button save">Siguiente imagen &gt;&gt;</a>
-		<?php } ?>
+		<?php //} ?>
 		</form>
 		<!-- BOTON SOLO PARA DEMO - FINALIZAR TEST -->
 		<form id="demo" method=post>
