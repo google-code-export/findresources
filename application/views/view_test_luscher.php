@@ -25,7 +25,11 @@
 	<center> 
 	<br /><br />
 	<h4>Para la realización de este test usted deberá seleccionar 8 colores en el orden que prefiera.</h4>
-	<br /><br /><br /><br /><br /><br />
+	<br /><br />
+	<br /><br />
+	<b>* La realización del siguiente test tiene una demora aproximada de 5 minutos, por favor téngalo en cuenta a la hora de comenzarlo.</b>
+	<br /><br />
+	<br /><br />
 	<form method="post" id="quiz_form" name="quiz_form">
 	<input type="hidden" name="source" value="init_test" />
 	<input type="hidden" name="colors1" value="" />

@@ -33,6 +33,9 @@
 	Observe bien las manchas y seleccione el área donde ve una imagen ajustando el tamaño de un recuadro que le aparecerá arriba a la izquierda.</h4>
 	<br /><br />
 	<br /><br />
+	<b>* La realización del siguiente test tiene una demora aproximada de 20 minutos, por favor téngalo en cuenta a la hora de comenzarlo.</b>
+	<br /><br />
+	<br /><br />
 	<form method="post" id="quiz_form" name="quiz_form">
 	<input type="hidden" name="source" value="init_test" />
 	<a href="javascript:document.quiz_form.submit();" class="button">Comenzar el test</a>
