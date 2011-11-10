@@ -102,6 +102,9 @@ class Test_model extends CI_Model {
 				$result .= "M"; 
 			$i++;
 		}
+		/** TODO ONLY FOR DEMO **/
+		$result ="BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBFFFFFFFFFF";
+		/** TODO ONLY FOR DEMO **/
 		return $result;
 
 	}
@@ -188,6 +191,9 @@ class Test_model extends CI_Model {
 				$result .= "M"; 
 			$i++;
 		}
+		/** TODO ONLY FOR DEMO **/
+		$result ="BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBFFFFFFFF";
+		/** TODO ONLY FOR DEMO **/
 		return $result;
 
 	}
@@ -228,6 +234,9 @@ class Test_model extends CI_Model {
 				$result .= $ravenAnswers["q".$i]; 
 				$i++;
 		}
+		/** TODO ONLY FOR DEMO **/
+		$result ="VVVVVVVVVVVVVFFFFFFFFFFVVVVVVVVVVVVVVVVVVFFFFFFFFFFVVVVVVVVVVVVVVVVVVVVVVVVFFFFFFFFFFVVVVVVVVVVVVVVVVVVVFFFFFFFFFFVVVVVVVVVVVVVVVVFFFFFFFFFFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVFFFFFFFFFF";
+		/** TODO ONLY FOR DEMO **/
 		return $result;
 
 	}
