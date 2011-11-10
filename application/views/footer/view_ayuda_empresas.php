@@ -15,11 +15,8 @@
 	<div class="body_container" style="min-height:600px">
 	<h1>Ayuda</h1>
 	<div style="font-size:15px;">
-	Por favor contáctese con nosotros para solicitar el manual de ayuda para empresas.
-	<br /><br />
-	Muchas gracias.
-	<br /><br />
-	El Staff de FindResources
+	<br />A continuación encontrará una explicación paso a paso, que lo ayudará a conocer todas las funcionalidades FindResources.<br />
+	<?php include("manual_de_usuario_e.html")?>
 	</div>
 	</div>
 	<div id="login_footer">
