@@ -15,7 +15,7 @@
 	<div class="body_container" style="min-height:600px">
 	<h1>Ayuda</h1>
 	<div style="font-size:15px;">
-
+	<br />A continuación encontrará una explicación paso a paso, que lo ayudará a conocer todas las funcionalidades FindResources.<br />	<?php include("manual_de_usuario_c.html")?>
 	</div>
 	</div>
 	<div id="login_footer">
