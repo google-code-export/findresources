@@ -25,6 +25,7 @@ class Home extends CI_Controller {
 		// SI EL USUARIO ES UN CANDIDATO => VERIFICO SI TIENE TESTS PENDIENTES
 		if ($dataUsuario->idTipoUsuario == "C") {
 			$tests_del_usuario = $this->Test_model->getTestsPendientes($idUsuario);
+			//print_r($tests_del_usuario);
 			if (array_key_exists(0, $tests_del_usuario["test_pendientes"]))	{
 				$data["test_pendiente"] = "SI";
 			} else {
