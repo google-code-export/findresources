@@ -50,6 +50,8 @@
 	<br /><br />
 	Haga clic en la ficha blanca para ver el resultado.
 	<br /><br />
+	<b>* La realización del siguiente test tiene una demora aproximada de 40 minutos, por favor téngalo en cuenta a la hora de comenzarlo.</b>
+	<br /><br />
 	<form method="post" id="quiz_form" name="quiz_form">
 	<input type="hidden" name="source" value="init_test" />
 	<input type="hidden" name="placa" value="0" />
