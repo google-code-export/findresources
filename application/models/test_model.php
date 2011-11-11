@@ -103,6 +103,7 @@ class Test_model extends CI_Model {
 			$i++;
 		}
 		/** TODO ONLY FOR DEMO **/
+		if(strlen($result) != 60)
 		$result ="BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB";
 		/** TODO ONLY FOR DEMO **/
 		return $result;
@@ -192,6 +193,7 @@ class Test_model extends CI_Model {
 			$i++;
 		}
 		/** TODO ONLY FOR DEMO **/
+		if(strlen($result) != 48)
 		$result ="BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB";
 		/** TODO ONLY FOR DEMO **/
 		return $result;
@@ -235,6 +237,7 @@ class Test_model extends CI_Model {
 				$i++;
 		}
 		/** TODO ONLY FOR DEMO **/
+		if(strlen($result) != 180)
 		$result ="VVVVVVVFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVFVVVVVVVVVVVVVVVVVVVVVVVVFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV";
 		/** TODO ONLY FOR DEMO **/
 		return $result;
