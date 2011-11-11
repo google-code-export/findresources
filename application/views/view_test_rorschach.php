@@ -85,7 +85,7 @@
 			<input type=hidden name=height id=height />
 			<input type=hidden name=top id=top />
 			<input type=hidden name=left id=left /> 	
-			Escribe en una palabra lo que vés :<br />
+			Describe lo que vés :<br />
 			<input type=text name=description id="description" autocomplete="off"/>
 			<a href="javascript:document.tag_form.submit();" class="button add">Etiquetar área</a>
 			<input type="hidden" name="source" value="<?php echo $source;?>" />
