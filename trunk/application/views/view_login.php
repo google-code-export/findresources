@@ -54,7 +54,8 @@
 		<div id="login_tabs">
 			<ul class="tabs">  
 			    <li><a href="#tab1">Ingresar</a></li>  
-			    <li><a href="#tab2">Registrarse</a></li>  
+			    <?php /*** TODO NO SE PERMITEN NUEVOS REGISTROS TEMPORALMENTE **/?>
+			    <!-- <li><a href="#tab2">Registrarse</a></li>-->  
 			</ul>  
 			 
 			<div class="tab_container">  
@@ -74,7 +75,8 @@
 			        <div id="login_button_div">
 				        <a href="#" id="do_login_button" class="button save" >Ingresar</a>
 			        </div>
-			        
+			         <?php /*** TODO NO SE PERMITEN NUEVOS REGISTROS TEMPORALMENTE **/?>
+			        <div style="align:right;font-size:11px;color:red;"><br />* Momentaneamente no se permiten nuevos registros. </div>
 			    </div>  
 			    <div id="tab2" class="tab_content">  
 			        <div class="field">
