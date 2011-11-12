@@ -18,7 +18,7 @@
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
-	define('ENVIRONMENT', 'production');
+	define('ENVIRONMENT', 'temporaly_closed');
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING
@@ -40,7 +40,10 @@ if (defined('ENVIRONMENT'))
 		case 'production':
 			error_reporting(0);
 		break;
-
+		case 'temporaly_closed' :
+			echo "Estamos realizando reformas en el sitio.";
+			exit;
+		break;
 		default:
 			exit('The application environment is not set correctly.');
 	}
